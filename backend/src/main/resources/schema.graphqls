@@ -1,0 +1,11 @@
+type Query {
+	userPosition(id: UUID!): UserPosition
+}
+
+
+type UserPosition {
+	id: UUID!
+	name: String!
+}
+
+scalar UUID

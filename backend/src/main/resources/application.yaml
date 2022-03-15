@@ -1,0 +1,58 @@
+server:
+  port: "8080"
+spring:
+  application:
+    name: "audra-service"
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: "org.postgresql.Driver"
+  jpa:
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+  liquibase:
+    change-log: "classpath:/db/changelog/changelog-master.xml"
+    database-change-log-lock-table: "DATABASECHANGELOGLOCK"
+    database-change-log-table: "DATABASECHANGELOG"
+    default-schema: "public"
+    url: ${SPRING_DATASOURCE_URL}
+    user: ${SPRING_DATASOURCE_LIQUIBASE_USERNAME}
+    password: ${SPRING_DATASOURCE_LIQUIBASE_PASSWORD}
+
+management:
+  server:
+    port: "8081"
+    address: "127.0.0.1"
+  endpoints:
+    web:
+      base-path:
+      path-mapping:
+        health: "/healthz"
+        info: "/infoz"
+        prometheus: "/prometheus"
+      exposure:
+        include: "health,info,prometheus"
+
+logging:
+  level:
+    root: "info"
+
+graphql:
+  servlet:
+    mapping: "/graphql"
+    enabled: true
+
+graphiql:
+  mapping: "/graphiql"
+  endpoint:
+    graphql: "/graphql"
+  static:
+    basePath: "/"
+  enabled: "true"
+  pageTitle: "GraphiQL"
+  cdn:
+    enabled: "true"
+    version: "0.17.5"
+  props:
+    variables:
+      editorTheme: "solarized light"
