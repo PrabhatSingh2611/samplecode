@@ -1,6 +1,4 @@
-package ch.windmill.audra.dao.entity;
-
-import java.util.UUID;
+package digital.windmill.audra.dao.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,18 +13,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "user_position")
-public class UserPositionEntity {
+@Table(name = "asset_type")
+public class AssetTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "uuid")
-    private UUID uuid;
-
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "icon")
+    private String icon;
 
 }

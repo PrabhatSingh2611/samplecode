@@ -1,4 +1,4 @@
-package ch.windmill.audra;
+package digital.windmill.audra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

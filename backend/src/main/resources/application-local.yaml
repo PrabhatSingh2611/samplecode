@@ -1,30 +1,31 @@
 server:
   port: "8080"
 spring:
-  application:
-    name: "audra-service"
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: "jdbc:postgresql://localhost:5432/audra"
+    username: "postgres"
+    password: "postgres"
     driverClassName: "org.postgresql.Driver"
+
   jpa:
-    open-in-view: false
     database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    open-in-view: false
     properties:
       hibernate:
-        enable-lazy-load-no-trans: false
+        jdbc:
+          enable_lazy_load_no_trans: "false"
+    show-sql: true
+
   liquibase:
+#    enabled: false
     change-log: "classpath:/db/changelog/changelog-master.xml"
     database-change-log-lock-table: "DATABASECHANGELOGLOCK"
     database-change-log-table: "DATABASECHANGELOG"
     default-schema: "public"
-    url: ${SPRING_DATASOURCE_URL}
-    user: ${SPRING_DATASOURCE_LIQUIBASE_USERNAME}
-    password: ${SPRING_DATASOURCE_LIQUIBASE_PASSWORD}
-    contexts: "!test,!local"
-
-spring.jpa.open-in-view: false
+    url: "jdbc:postgresql://localhost:5432/audra"
+    user: "postgres"
+    password: "postgres"
+    contexts: "local"
 
 management:
   server:
@@ -42,7 +43,10 @@ management:
 
 logging:
   level:
-    root: "info"
+    liquibase: "INFO"
+    org:
+      springframework:
+        web: "info"
 
 graphql:
   servlet:
@@ -63,3 +67,4 @@ graphiql:
   props:
     variables:
       editorTheme: "solarized light"
+

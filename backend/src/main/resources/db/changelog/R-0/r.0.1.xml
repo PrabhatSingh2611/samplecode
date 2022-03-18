@@ -4,17 +4,105 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="r.0.0.1" author="rshtepa">
-        <createTable tableName="user_position">
+        <changeSet id="r.0.0.1" author="rshtepa">
+            <sql>CREATE TYPE EMPLOYEE_ROLE AS ENUM ('ADMIN', 'EMPLOYEE');</sql>
+            <sql>CREATE TYPE LEAVE_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED', 'NOT_APPROVED');</sql>
+            <sql>CREATE TYPE ASSET_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED', 'NOT_APPROVED');</sql>
+        </changeSet>
+    <changeSet id="r.0.0.2" author="rshtepa">
+        <createTable tableName="employee_position">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(250)"/>
+        </createTable>
+        <createTable tableName="employee_location">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(250)"/>
+        </createTable>
+        <createTable tableName="employee">
             <column name="id" type="INT8">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(250)"/>
+            <column name="first_name" type="VARCHAR(100)"/>
+            <column name="last_name" type="VARCHAR(100)"/>
+            <column name="role" type="EMPLOYEE_ROLE"/>
+            <column name="birthday" type="timestamptz"/>
+            <column name="position_id" type="INT8">
+               <constraints foreignKeyName="fk_employee2position" references="employee_position(id)"/>
+            </column>
+            <column name="location_id" type="INT8">
+                <constraints foreignKeyName="fk_employee2location" references="employee_location(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="asset_type">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(100)"/>
+            <column name="icon" type="VARCHAR(100)"/>
+        </createTable>
+        <createTable tableName="asset">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(100)"/>
+            <column name="serial_number" type="VARCHAR(100)"/>
+            <column name="asset_type_id" type="INT8">
+                <constraints foreignKeyName="fk_asset2type" references="asset_type(id)"/>
+            </column>
+            <column name="employee_id" type="INT8">
+                <constraints foreignKeyName="fk_asset2employee" references="employee(id)"/>
+            </column>
+            <column name="archived_date" type="timestamptz"/>
+            <column name="purchased_date" type="timestamptz"/>
+        </createTable>
+        <createTable tableName="asset_request">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="request_date" type="timestamptz"/>
+            <column name="employee_id" type="INT8">
+                <constraints foreignKeyName="fk_asset_request2employee" references="employee(id)"/>
+            </column>
+            <column name="asset_id" type="INT8">
+                <constraints foreignKeyName="fk_asset_request2asset" references="asset(id)"/>
+            </column>
+            <column name="status" type="ASSET_REQUEST_STATUS"/>
+            <column name="comment" type="VARCHAR(250)"/>
+        </createTable>
+        <createTable tableName="leave_request">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="request_date" type="timestamptz"/>
+            <column name="employee_id" type="INT8">
+                <constraints foreignKeyName="fk_leave_request2employee" references="employee(id)"/>
+            </column>
+            <column name="status" type="LEAVE_REQUEST_STATUS"/>
+            <column name="start_date" type="timestamptz"/>
+            <column name="end_date" type="timestamptz"/>
+            <column name="comment" type="VARCHAR(250)"/>
         </createTable>
     </changeSet>
+    <changeSet id="r.0.0.3" author="rshtepa" context="test, local">
+    <sql>
+    INSERT INTO asset_type(id, title, icon) 
+    VALUES (1,'asset type 1', 'https://google.com');
+    
+    INSERT INTO employee(id, uuid, first_name, last_name, role, birthday)
+    VALUES (1, '48b560ab-7450-4088-b6bb-f57638ea0877', 'First name', 'Last name', 'ADMIN', now());
+
+    INSERT INTO asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+    VALUES (1, 'asset title 1', 'serial number 1', 1, 1, now(), now());
+    </sql>
+    </changeSet>
+    
 </databaseChangeLog>
 
 

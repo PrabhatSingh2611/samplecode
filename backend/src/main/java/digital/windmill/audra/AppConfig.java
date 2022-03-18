@@ -1,10 +1,11 @@
-package ch.windmill.audra;
+package digital.windmill.audra;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import ch.windmill.audra.graphql.coersing.UUIDScalarCoercing;
-import ch.windmill.audra.graphql.type.UserPosition;
+import digital.windmill.audra.graphql.coersing.UUIDScalarCoercing;
+import digital.windmill.audra.graphql.coersing.ZonedDateTimeScalarCoercing;
+import digital.windmill.audra.graphql.type.Asset;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
 
@@ -21,9 +22,18 @@ public class AppConfig {
     }
 
     @Bean
+    public GraphQLScalarType getZonedDateTimeScalar() {
+        return GraphQLScalarType.newScalar()
+                .name("ZonedDateTime")
+                .description("ZonedDateTime")
+                .coercing(new ZonedDateTimeScalarCoercing())
+                .build();
+    }
+
+    @Bean
     public SchemaParserDictionary schemaParserDictionary() {
         return new SchemaParserDictionary()
-                .add(UserPosition.class);
+                .add(Asset.class);
     }
 
 }

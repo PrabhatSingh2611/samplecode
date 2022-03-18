@@ -1,4 +1,4 @@
-package ch.windmill.audra.graphql.coersing;
+package digital.windmill.audra.graphql.coersing;
 
 import graphql.language.StringValue;
 import graphql.schema.Coercing;

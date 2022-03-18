@@ -1,11 +1,32 @@
 type Query {
-	userPosition(id: UUID!): UserPosition
+	asset(id: Int!): Asset
 }
 
+type Asset {
+	id: Int!
+	title: String
+	serial: String
+	type: AssetType
+	employee: Employee
+	archivedDate: ZonedDateTime
+	purchasedDate: ZonedDateTime
+}
 
-type UserPosition {
-	id: UUID!
-	name: String!
+type AssetType {
+	title: String
+	icon: String
+}
+
+type Employee {
+	id: Int
+	uuid: UUID
+	firstName: String
+	lastName: String
+	role: String
+	birthday: ZonedDateTime
+	position: String
+	location: String
 }
 
 scalar UUID
+scalar ZonedDateTime
