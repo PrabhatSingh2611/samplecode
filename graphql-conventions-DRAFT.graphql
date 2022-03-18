@@ -1,0 +1,156 @@
+# GraphQL Schema Conventions:
+
+1. Naming:
+Name your mutations "verb" first. Then the object, or "noun", if applicable. Use camelCase.
+Query: [type] + “s” (i.e. user, users)
+Mutation: [action][type] (i.e. createUser, deleteUser)
+Subscription: [type] + "Subscription" (i.e. userSubscription)
+Input: [action][type] + "Input" (i.e. CreateUserInput)
+Payload: [action][type] + "Payload" (i.e. CreateUserPayload)
+Enum ??
+Union ??
+Interface ??
+
+
+2. Inputs: !COMMIT!
+Mutations, Queries and Subscriptions should only ever have one input argument "input".
+
+updatePost(input: { id: 4, post: { title: "..." } }) { ... }
+instaed of 
+updatePost(id: 4, newTitle: "...") { ... }
+
+user(input: { id: "..." })
+
+
+3. Payloads:
+
+# Mutation
+type CreateUserPayload {
+	user: User
+	errors: [Error!]
+	metadata: CustomMetadata ??
+}
+
+# Query
+type UserPayload {
+    user: User,
+	errors: [Error!]
+	metadata: CustomMetadata ??
+}
+
+# Subscriptions below
+
+4. UUIDs always !COMMIT!
+type Node {
+    uuid: UUID!
+}
+
+
+5. Connections by default everywhere, even in nested objects !COMMIT!
+
+type User {
+    name: String!
+    posts(input: PostsInput): PostsConnection!
+    ...
+}
+
+
+6. Connection Input !COMMIT!
+
+interface Node {
+    uuid: UUID!
+}
+
+type WhereNodesInput {
+    ids: [Node!]!
+}
+
+type ProductsInput {
+	where: {
+		title: String!
+		category: WhereNodesInput, # Use General Type 
+		subcategory: WhereNodesInput
+	}
+    pagination: {
+        itemsPerPage: Int @default(10)
+        pageNumber: Int
+    }
+	sort: [CustomSortEnum!] # null or array with at least one item
+}
+
+
+7. Define Default Pagination Rules: !COMMIT!
+Max Page Size: 100 
+Default Page Size: 10
+Get All Items: Impossible with one request if more than 100
+
+
+8. ConnectionPayload !COMMIT!
+
+interface ConnectionPayload {
+    items: [Node!]!
+    pageInfo: {
+        currentPage: Int!
+        totalPages: Int!
+    }
+	totalItems: Int!
+}
+
+type UserConnectionPayload implements ConnectionPayload {
+    items: [User!]!
+    pageInfo: {
+        currentPage: Int!
+        totalPages: Int!
+    }
+	totalItems: Int!
+}
+
+
+9. Mutation Patch by default
+
+
+10. Bulk Updates
+
+
+11. SubscriprionNaming
+
+[type]SubscriptionPayload
+node: [type]Subscription if API can’t return exact type
+
+
+12. Subscription Input Schema:
+
+
+13. Subscription Payload Schema
+
+type SubscriptionPayload {
+	fields: [String!]!
+	mutation: MutationTypeEnum!
+	node: Node
+	errors: [Error!] ??
+}
+
+
+14. Reordering without `weight: Int!`
+
+
+15. Unified Error Schema
+
+type Error {
+	message: String!
+	field: String ??
+	tags: [String!]! ??
+	code: String ??
+}
+
+
+16. Async Operationns like LIke return True, Think how to FIX
+
+
+17. Return ID after Delete
+
+
+18. Discuss Unions and Interfaces ??
+
+
+
