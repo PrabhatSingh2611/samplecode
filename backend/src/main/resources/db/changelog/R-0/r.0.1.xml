@@ -90,7 +90,7 @@
             <column name="comment" type="VARCHAR(250)"/>
         </createTable>
     </changeSet>
-    <changeSet id="r.0.0.3" author="rshtepa" context="test, local">
+    <changeSet id="r.0.0.3" author="rshtepa">
     <sql>
     INSERT INTO asset_type(id, title, icon) 
     VALUES (1,'asset type 1', 'https://google.com');

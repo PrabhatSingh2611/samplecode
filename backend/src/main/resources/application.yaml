@@ -24,8 +24,6 @@ spring:
     password: ${SPRING_DATASOURCE_LIQUIBASE_PASSWORD}
     contexts: "!test,!local"
 
-spring.jpa.open-in-view: false
-
 management:
   server:
     port: "8081"
