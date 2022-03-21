@@ -1,5 +1,10 @@
 type Query {
 	asset(id: Int!): Asset
+	assets: [Asset]
+}
+
+type Mutation {
+	testMutation(id: Int!): Asset #playground
 }
 
 type Asset {
@@ -9,7 +14,6 @@ type Asset {
 	type: AssetType
 	employee: Employee
 	archivedDate: ZonedDateTime
-	purchasedDate: ZonedDateTime
 }
 
 type AssetType {

@@ -17,5 +17,4 @@ public class AssetFacade {
     public Asset findAssetById(Long id) {
         return assetMapper.map(assetService.findById(id));
     }
-
 }
