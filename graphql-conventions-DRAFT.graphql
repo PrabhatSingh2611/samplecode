@@ -65,16 +65,19 @@ type WhereNodesInput {
     ids: [Node!]!
 }
 
+#represent request on disered pagenation
+type Pagination {
+        itemsPerPage: Int @default(10)
+        pageNumber: Int
+    }
+
 type ProductsInput {
 	where: {
 		title: String!
 		category: WhereNodesInput, # Use General Type 
 		subcategory: WhereNodesInput
 	}
-    pagination: {
-        itemsPerPage: Int @default(10)
-        pageNumber: Int
-    }
+    pagination: Pagination!
 	sort: [CustomSortEnum!] # null or array with at least one item
 }
 
