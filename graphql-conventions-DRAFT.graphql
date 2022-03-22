@@ -86,6 +86,7 @@ type RelayInput {
 7. Define Default Pagination Rules: !COMMIT!
 Max Page Size: 100 
 Default Page Size: 10
+Default Sort: CREATED_DATETIME_DESC
 Get All Items: Impossible with one request if more than 100
 
 
@@ -178,13 +179,50 @@ interface Node {
 
 20. Groupe by Domain - https://api.travelgatex.com/ ??
 
-21. Describe fields in schema
+21. Describe fields in "schema"
+
+type User {
+    id: UUID!
+    name: String!
+    avatar: Media
+    posts(): PostConnectionPayload
+}
+
+# Solution #1
+# Problem: Differn Payloads, need to wr=ork with Unions
+userSubscription(input: UserSubscriptionInput!): UserSubscriptionPayload!
+
+input UserSubscriptionInput {
+    where: ...
+    mutations: [CREATE]
+}
+
+# Solution #2
+createUserSubscription(input: UserSubscriptionInput): CreateUserSubscriptionPayload!
+updateUserSubscription(input: UserSubscriptionInput): UpdateUserSubscriptionPayload!
+deleteUserSubscription(input: UserSubscriptionInput): DeleteUserSubscriptionPayload!
+
+
 
 TODO:
-1. Subscription: Discuss how to trigger for only required fuields
-2. Subscriptions: how to handle "undefined" update?
-3. Reordering: `weight: Int!` is required for multisorting.
-4. Unified Error Schema
-5. Discuss default fileds in pagination and sorting
-6. Discuss Groupe by Domain
-7. Discuss about cyclic dependencies restriction. Maybe on Query level.
+1. Subscription: Discuss how to trigger for only required fields. ??BE should check can we done this??
+
+2. Subscriptions: how to handle "undefined" update? API will always return current state for all fileds.
+All Subscriptionn types will be "cutted" and have "Subscription" postfix (i.e. UserSubscription) ??BE should check can we done this??
+
+3. Default reordering without `weight: Int!`. FE will send FULL list with new order, API will return list with same new order nex time.
+When user reorder he can't apply any filters or sorting, in other case it will be not default reordering
+and we will define custom rules for it.!
+!COMMIT!
+
+4. Unified Error Schema. ?? Wait Hobzelyan ??
+
+5. Discuss default fileds in pagination and sorting. !COMMIT!
+
+6. Discuss Groupe by Domain. ?? BE should check this ??
+
+7. Discuss about cyclic dependencies restriction. Maybe on Query level. ?? BE responosbility ??
+
+8. Define how Apollo CLient in Microfrontend batch Subscriptios. ?? FE should check this ??
+
+
