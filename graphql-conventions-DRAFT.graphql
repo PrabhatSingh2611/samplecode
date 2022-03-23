@@ -145,14 +145,14 @@ type SubscriptionPayload {
 14. Reordering without `weight: Int` by default. !COMMIT!
 
 
-15. Unified Error Schema
+15. Unified Error Schema !COMMIT!
 type Error {
-	message: String!
-	code: String!
+	message: String! # Not user friendly error!
+	code: String! # NOT_FOUND, ACCESS_DENIED, ...
     validation: [
         {
             message: String!
-	        code: String!
+	        field: String! # Field on which vavlidation failed
         }
     ]
 }
@@ -215,14 +215,15 @@ When user reorder he can't apply any filters or sorting, in other case it will b
 and we will define custom rules for it.!
 !COMMIT!
 
-4. Unified Error Schema. ?? Wait Hobzelyan ??
+4. Unified Error Schema. !COMMIT!
 
 5. Discuss default fileds in pagination and sorting. !COMMIT!
 
-6. Discuss Groupe by Domain. ?? BE should check this ??
+6. Discuss Groupe by Domain. Group queries/mutations/subscriptions by app domain/context (userQueries-UserQuieries, assetQueries, userMutations, assetMutations)
+!COMMIT!
 
 7. Discuss about cyclic dependencies restriction. Maybe on Query level. ?? BE responosbility ??
 
-8. Define how Apollo CLient in Microfrontend batch Subscriptios. ?? FE should check this ??
+8. Define how Apollo Client in Microfrontend batch Subscriptios. ?? FE should check this ??
 
 
