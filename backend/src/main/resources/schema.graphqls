@@ -1,10 +1,35 @@
+#common types
+interface Node {
+    uuid: UUID!
+}
+
+type WhereNodesInput {
+    ids: [Node!]!
+}
+
 type Query {
 	asset(id: Int!): Asset
-	assets: [Asset]
+	assets(input: AssetInput): AssetConnection
 }
 
 type Mutation {
-	testMutation(id: Int!): Asset #playground
+	testMutation(id: Int!): Asset #playground to test
+}
+
+#assets
+type AssetInput { 
+    where: {
+        employee: WhereNodesInput,
+        isArchived: Boolean,
+        type: WhereNodesInput
+    }
+    Pagination: pagination
+}
+
+type AssetConnection {
+    items: [Asset!]!
+    pageInfo: PageInfo
+	totalItems: Int!
 }
 
 type Asset {
@@ -21,6 +46,7 @@ type AssetType {
 	icon: String
 }
 
+#employee
 type Employee {
 	id: Int
 	uuid: UUID
