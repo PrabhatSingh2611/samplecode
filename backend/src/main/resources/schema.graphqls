@@ -7,6 +7,11 @@ type WhereNodesInput {
     ids: [Node!]!
 }
 
+type Pagination { 
+    itemsPerPage: Int @default(10)
+    pageNumber: Int
+}
+
 type Query {
 	asset(id: Int!): Asset
 	assets(input: AssetInput): AssetConnection
@@ -19,11 +24,11 @@ type Mutation {
 #assets
 type AssetInput { 
     where: {
-        employee: WhereNodesInput,
-        isArchived: Boolean, #asset.archivedDate is not null - TRUE
+        employee: WhereNodesInput
+        isArchived: Boolean #asset.archivedDate is not null - TRUE
         type: WhereNodesInput
     }
-    Pagination: pagination
+    pagination: Pagination
 }
 
 type AssetConnection {

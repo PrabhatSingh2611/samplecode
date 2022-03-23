@@ -92,17 +92,22 @@
     </changeSet>
     <changeSet id="r.0.0.3" author="rshtepa">
     <sql>
-    INSERT INTO asset_type(id, title, icon) 
-    VALUES (1,'asset type 1', 'https://google.com');
-    
-    INSERT INTO employee(id, uuid, first_name, last_name, role, birthday)
-    VALUES (1, '48b560ab-7450-4088-b6bb-f57638ea0877', 'First name', 'Last name', 'ADMIN', now());
-
-    INSERT INTO asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-    VALUES (1, 'asset title 1', 'serial number 1', 1, 1, now(), now());
+        insert into asset_type (id, title, icon) values (1,'Laptops','');
+        insert into asset_type (id, title, icon) values (2,'Monitors','');
+        insert into asset_type (id, title, icon) values (3,'Accesories','');
+        
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values (1,'Macbook Pro 13','ABC',1,null,null,now());
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values (2,'Dell Latitude 15','ABC1',1,null,null,now());
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values (3,'Lenovo Laptop 14','ABC2',1,null,null,now());
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values (4,'Dell Latitude 13','ABC3',1,null,null,now());
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values (5,'Dell Monitor 24','ABC5',2,null,null,now());
+                
     </sql>
     </changeSet>
     
 </databaseChangeLog>
-
-
