@@ -7,11 +7,7 @@ type Mutation {
 	testMutation(id: Int!): Asset # playground to test
 }
 
-# common types
-interface Node {
-	uuid: UUID!
-}
-
+# --- COMMON TYPES ---
 input WhereNodeInput {
 	uuid: UUID
 }
@@ -21,10 +17,14 @@ input PageInput {
 	pageNumber: Int! = 0
 }
 
-type Connection {
+interface Connection {
 	items: [Node!]!
 	pageInfo: PageInfo!
 	totalItems: Int!
+}
+
+interface Node {
+	uuid: UUID!
 }
 
 type PageInfo {
@@ -32,7 +32,7 @@ type PageInfo {
 	hasNextPage: Boolean!
 }
 
-# assets
+# --- ASSETS ---
 input AssetInput {
     where: AssetWhereInput
     page: PageInput
@@ -44,14 +44,14 @@ input AssetWhereInput {
 	type: WhereNodeInput
 }
 
-type AssetConnection {
+type AssetConnection implements Connection {
     items: [Asset!]!
-    pageInfo: PageInfo
+    pageInfo: PageInfo!
 	totalItems: Int!
 }
 
-type Asset {
-	id: Int!
+type Asset implements Node {
+	uuid: UUID!
 	title: String
 	serial: String
 	type: AssetType
@@ -59,15 +59,15 @@ type Asset {
 	archivedDate: ZonedDateTime
 }
 
-type AssetType {
+type AssetType implements Node {
+	uuid: UUID!
 	title: String
 	icon: String
 }
 
-# employee
-type Employee {
-	id: Int
-	uuid: UUID
+# --- EMPLOYEES ---
+type Employee implements Node {
+	uuid: UUID!
 	firstName: String
 	lastName: String
 	role: String
