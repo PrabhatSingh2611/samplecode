@@ -6,7 +6,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class Asset {
+public class Asset implements Node {
 
     private UUID uuid;
     private String title;
@@ -17,15 +17,3 @@ public class Asset {
     private ZonedDateTime purchasedDate;
 
 }
-
-/**
- * type Asset {
-    id: Int!
-    title: String
-    serial: String
-    type: AssetType
-    employee: Employee
-    archivedDate: ZonedDateTime
-    purchasedDate: ZonedDateTime
-}
-*/

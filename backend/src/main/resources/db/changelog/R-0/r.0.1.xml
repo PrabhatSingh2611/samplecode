@@ -106,7 +106,6 @@
         values (4,'Dell Latitude 13','ABC3',1,null,null,now());
         insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
         values (5,'Dell Monitor 24','ABC5',2,null,null,now());
-                
     </sql>
     </changeSet>
 

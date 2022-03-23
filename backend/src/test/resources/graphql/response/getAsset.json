@@ -1,0 +1,24 @@
+{
+  "data" : {
+    "asset" : {
+      "uuid":"e838b736-721a-4cf8-80f3-ebcb6da01a36",
+      "title" : "asset title 1",
+      "serial" : null,
+      "type" : {
+        "title" : "asset type 1",
+        "icon" : "https://google.com"
+      },
+      "employee" : {
+        "uuid" : "48b560ab-7450-4088-b6bb-f57638ea0877",
+        "firstName" : "First name",
+        "lastName" : "Last name",
+        "role" : "ADMIN",
+        "birthday" : "2022-03-23T19:37:14.480425Z[UTC]",
+        "position" : null,
+        "location" : null
+      },
+      "archivedDate" : "2022-03-23T19:37:14.480425Z[UTC]",
+      "purchasedDate" : "2022-03-23T19:37:14.480425Z[UTC]"
+    }
+  }
+}

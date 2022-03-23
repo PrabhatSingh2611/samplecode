@@ -1,17 +1,17 @@
 package digital.windmill.audra.graphql.resolver.asset;
 
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 import digital.windmill.audra.graphql.facade.AssetFacade;
 import digital.windmill.audra.graphql.type.Asset;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import digital.windmill.audra.graphql.type.AssetConnectionPayload;
+import digital.windmill.audra.graphql.type.AssetInput;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
-public class AssetResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
+public class AssetResolver implements GraphQLQueryResolver {
 
     private AssetFacade facade;
 
@@ -19,11 +19,7 @@ public class AssetResolver implements GraphQLQueryResolver, GraphQLMutationResol
         return facade.findAssetById(id);
     }
 
-    public Asset testMutation(Long id) {
-        return facade.findAssetById(id);
-    }
-
-    public List<Asset> assets() {
-        return List.of();
+    public AssetConnectionPayload assets(AssetInput input) {
+        return new AssetConnectionPayload();
     }
 }

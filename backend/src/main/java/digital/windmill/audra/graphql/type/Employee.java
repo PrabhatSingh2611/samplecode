@@ -6,7 +6,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class Employee {
+public class Employee implements Node {
 
     private UUID uuid;
     private String firstName;
