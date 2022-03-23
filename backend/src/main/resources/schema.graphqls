@@ -1,34 +1,47 @@
-#common types
-interface Node {
-    uuid: UUID!
-}
-
-type WhereNodesInput {
-    ids: [Node!]!
-}
-
-type Pagination { 
-    itemsPerPage: Int @default(10)
-    pageNumber: Int
-}
-
 type Query {
 	asset(id: Int!): Asset
 	assets(input: AssetInput): AssetConnection
 }
 
 type Mutation {
-	testMutation(id: Int!): Asset #playground to test
+	testMutation(id: Int!): Asset # playground to test
 }
 
-#assets
-type AssetInput { 
-    where: {
-        employee: WhereNodesInput
-        isArchived: Boolean #asset.archivedDate is not null - TRUE
-        type: WhereNodesInput
-    }
-    pagination: Pagination
+# common types
+interface Node {
+	uuid: UUID!
+}
+
+input WhereNodeInput {
+	uuid: UUID
+}
+
+input PageInput {
+	itemsPerPage: Int! = 10
+	pageNumber: Int! = 0
+}
+
+type Connection {
+	items: [Node!]!
+	pageInfo: PageInfo!
+	totalItems: Int!
+}
+
+type PageInfo {
+	hasPreviousPage: Boolean!
+	hasNextPage: Boolean!
+}
+
+# assets
+input AssetInput {
+    where: AssetWhereInput
+    page: PageInput
+}
+
+input AssetWhereInput {
+	employee: WhereNodeInput
+	isArchived: Boolean # asset.archivedDate is not null - TRUE
+	type: WhereNodeInput
 }
 
 type AssetConnection {
@@ -51,7 +64,7 @@ type AssetType {
 	icon: String
 }
 
-#employee
+# employee
 type Employee {
 	id: Int
 	uuid: UUID
