@@ -1,6 +1,7 @@
 package digital.windmill.audra.dao.entity;
 
 import java.time.Instant;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,8 @@ public class AssetEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "uuid")
+    private UUID uuid;
     @Column(name = "title")
     private String title;
     @Column(name = "serial_number")

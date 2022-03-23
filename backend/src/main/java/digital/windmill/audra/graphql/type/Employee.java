@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class Employee {
 
-    private Long id;
     private UUID uuid;
     private String firstName;
     private String lastName;

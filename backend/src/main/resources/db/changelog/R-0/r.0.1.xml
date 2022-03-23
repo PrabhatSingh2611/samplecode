@@ -109,5 +109,23 @@
                 
     </sql>
     </changeSet>
+
+    <changeSet id="r.0.0.4" author="tetiana.hladka">
+        <addColumn tableName="asset_type">
+            <column name="uuid" type="UUID"/>
+        </addColumn>
+        <addColumn tableName="asset">
+            <column name="uuid" type="UUID"/>
+        </addColumn>
+        <sql>
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+            UPDATE asset_type SET uuid = uuid_generate_v4();
+            UPDATE asset SET uuid = uuid_generate_v4();
+        </sql>
+        <addNotNullConstraint tableName="asset_type" columnName="uuid"/>
+        <addNotNullConstraint tableName="asset" columnName="uuid"/>
+        <addUniqueConstraint tableName="asset_type" columnNames="uuid"/>
+        <addUniqueConstraint tableName="asset" columnNames="uuid"/>
+    </changeSet>
     
 </databaseChangeLog>

@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -20,6 +22,8 @@ public class AssetTypeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "uuid")
+    private UUID uuid;
     @Column(name = "title")
     private String title;
     @Column(name = "icon")
