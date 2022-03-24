@@ -1,5 +1,7 @@
 package digital.windmill.audra.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
@@ -14,5 +16,9 @@ public class AssetService {
     
     public AssetEntity findById(Long id) {
         return repo.findById(id).orElse(null);
+    }
+
+    public Page<AssetEntity> findAll() {
+        return repo.findAll(Pageable.unpaged());
     }
 }

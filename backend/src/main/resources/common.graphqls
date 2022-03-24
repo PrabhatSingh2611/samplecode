@@ -3,7 +3,7 @@ input NodeInput {
 }
 
 input PageInput {
-	itemsPerPage: Int = 10
+	itemsPerPage: Int! = 10
 	pageNumber: Int! = 0
 }
 
@@ -15,12 +15,6 @@ interface Connection {
 
 interface Node {
 	uuid: UUID!
-}
-
-interface ConnectionPayload {
-    items: [Node!]!
-    pageInfo: PageInfo!
-	totalItems: Int!
 }
 
 type PageInfo {

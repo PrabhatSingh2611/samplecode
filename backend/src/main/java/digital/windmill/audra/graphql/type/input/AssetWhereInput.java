@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type;
+package digital.windmill.audra.graphql.type.input;
 
 import lombok.Data;
 

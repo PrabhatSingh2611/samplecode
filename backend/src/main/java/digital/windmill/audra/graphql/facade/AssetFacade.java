@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.facade;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +16,14 @@ public class AssetFacade {
     private AssetService assetService;
     private AssetMapper assetMapper;
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public Asset findAssetById(Long id) {
         return assetMapper.map(assetService.findById(id));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Asset> findAllAssets() {
+        return assetService.findAll()
+                .map(assetMapper::map);
     }
 }
