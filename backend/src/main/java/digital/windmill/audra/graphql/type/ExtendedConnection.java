@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * Custom implementation for GraphQL interface:
- *  interface Connection {
+ *  interface ConnectionPayload {
  *      items: [Node!]!
  *      pageInfo: PageInfo!
  *      totalItems: Int!

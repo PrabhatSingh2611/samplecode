@@ -7,7 +7,7 @@ input PageInput {
 	pageNumber: Int! = 0
 }
 
-interface Connection {
+interface ConnectionPayload {
 	items: [Node!]!
 	pageInfo: PageInfo!
 	totalItems: Int!

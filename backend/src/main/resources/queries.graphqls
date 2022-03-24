@@ -1,5 +1,5 @@
 type Query {
 	asset(id: Int!): Asset
-	assets(input: AssetInput): AssetConnection
-#	employees: EmployeeConnectionPayload
+	assets(input: AssetInput): AssetConnectionPayload
+	employees: EmployeeConnectionPayload
 }

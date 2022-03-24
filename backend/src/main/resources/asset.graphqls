@@ -9,7 +9,7 @@ input AssetWhereInput {
 	type: NodeInput
 }
 
-type AssetConnection implements Connection {
+type AssetConnectionPayload implements ConnectionPayload {
     items: [Asset!]!
     pageInfo: PageInfo!
 	totalItems: Int!
