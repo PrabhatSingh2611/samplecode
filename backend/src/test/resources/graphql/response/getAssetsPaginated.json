@@ -1,0 +1,55 @@
+{
+  "data": {
+    "assets": {
+      "items": [
+        {
+          "uuid": "edcfd952-4f1b-4f78-b4ac-f5705b703f33",
+          "title": "Meze Neo",
+          "serial": null,
+          "type": {
+            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "title": "Headphones",
+            "icon": "https://google.com/headphones"
+          },
+          "employee": {
+            "uuid": "78098941-0591-4b9c-998f-95a65e1ece55",
+            "firstName": "Victoria",
+            "lastName": "Luna",
+            "role": "EMPLOYEE",
+            "birthday": "2022-03-15T22:11:15.480425Z[UTC]",
+            "position": null,
+            "location": null
+          },
+          "archivedDate": null,
+          "purchasedDate": "2022-03-23T13:27:14.480425Z[UTC]"
+        },
+        {
+          "uuid": "b1b6aaeb-252b-4324-9166-10c42635572d",
+          "title": "DUNU Titan 1",
+          "serial": null,
+          "type": {
+            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "title": "Headphones",
+            "icon": "https://google.com/headphones"
+          },
+          "employee": {
+            "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+            "firstName": "Geneva",
+            "lastName": "Norman",
+            "role": "EMPLOYEE",
+            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "position": null,
+            "location": null
+          },
+          "archivedDate": "2022-02-02T13:25:34.480425Z[UTC]",
+          "purchasedDate": "2022-01-27T08:12:24.480425Z[UTC]"
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 2,
+        "totalPages": 3
+      },
+      "totalItems": 8
+    }
+  }
+}

@@ -7,6 +7,7 @@
           "title": "Macbook Pro 13",
           "serial": null,
           "type": {
+            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
@@ -27,6 +28,7 @@
           "title": "Dell Latitude 15",
           "serial": null,
           "type": {
+            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
@@ -47,6 +49,7 @@
           "title": "Lenovo Laptop 14",
           "serial": null,
           "type": {
+            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
@@ -67,6 +70,7 @@
           "title": "Dell Latitude 13",
           "serial": null,
           "type": {
+            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
@@ -87,6 +91,7 @@
           "title": "Dell Monitor 24",
           "serial": null,
           "type": {
+            "uuid": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
             "title": "Monitors",
             "icon": "https://google.com/monitors"
           },
@@ -107,6 +112,7 @@
           "title": "KOSS Porta Pro",
           "serial": null,
           "type": {
+            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },
@@ -127,6 +133,7 @@
           "title": "Meze Neo",
           "serial": null,
           "type": {
+            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },
@@ -147,6 +154,7 @@
           "title": "DUNU Titan 1",
           "serial": null,
           "type": {
+            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },

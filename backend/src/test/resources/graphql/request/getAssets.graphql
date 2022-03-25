@@ -1,10 +1,11 @@
-query getAssets {
-	assets {
+query getAssets($input: AssetInput) {
+	assets(input: $input) {
         items {
             uuid
             title
             serial
             type {
+                uuid
                 title
                 icon
             }
