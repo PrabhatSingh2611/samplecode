@@ -1,0 +1,29 @@
+query getAssets {
+	assets {
+        items {
+            uuid
+            title
+            serial
+            type {
+                title
+                icon
+            }
+            employee {
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position
+                location
+            }
+            archivedDate
+            purchasedDate
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
