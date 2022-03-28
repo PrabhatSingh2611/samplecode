@@ -1,0 +1,7 @@
+query getAssetType($uuid: UUID!) {
+    assetType(uuid: $uuid) {
+        uuid
+        title
+        icon
+    }
+}
