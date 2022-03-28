@@ -10,14 +10,16 @@ import digital.windmill.audra.graphql.type.input.AssetInput;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 
+import java.util.UUID;
+
 @Component
 @AllArgsConstructor
 public class AssetResolver implements GraphQLQueryResolver {
 
     private AssetFacade facade;
 
-    public Asset asset(Long id) {
-        return facade.findAssetById(id);
+    public Asset asset(UUID uuid) {
+        return facade.findAssetByUuid(uuid);
     }
 
     public ExtendedConnection<Asset> assets(AssetInput input) {

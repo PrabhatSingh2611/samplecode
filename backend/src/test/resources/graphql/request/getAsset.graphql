@@ -1,5 +1,5 @@
-query getAsset($id: Int!) {
-	asset(id: $id) {
+query getAsset($uuid: UUID!) {
+	asset(uuid: $uuid) {
     uuid 
     title
     serial
