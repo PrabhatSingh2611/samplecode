@@ -1,5 +1,6 @@
 package digital.windmill.audra;
 
+import digital.windmill.audra.graphql.type.LeaveRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,7 +34,8 @@ public class AppConfig {
     @Bean
     public SchemaParserDictionary schemaParserDictionary() {
         return new SchemaParserDictionary()
-                .add(Asset.class);
+                .add(Asset.class)
+                .add(LeaveRequest.class);
     }
 
 }
