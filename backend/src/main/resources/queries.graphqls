@@ -1,5 +1,5 @@
 type Query {
-	asset(id: Int!): Asset
+	asset(uuid: UUID!): Asset
 	assets(input: AssetInput): AssetConnectionPayload
 	employees: EmployeeConnectionPayload
 }

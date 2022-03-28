@@ -9,14 +9,16 @@ import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.dao.repository.AssetRepository;
 import lombok.AllArgsConstructor;
 
+import java.util.UUID;
+
 @Component
 @AllArgsConstructor
 public class AssetService {
 
     private AssetRepository repo;
-    
-    public AssetEntity findById(Long id) {
-        return repo.findById(id).orElse(null);
+
+    public AssetEntity findByUuid(UUID uuid) {
+        return repo.findByUuid(uuid).orElse(null);
     }
 
     public Page<AssetEntity> findAll(AssetInput input) {

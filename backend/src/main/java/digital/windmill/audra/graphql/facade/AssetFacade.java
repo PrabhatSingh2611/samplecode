@@ -10,6 +10,8 @@ import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.service.AssetService;
 import lombok.AllArgsConstructor;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class AssetFacade {
@@ -18,8 +20,8 @@ public class AssetFacade {
     private AssetMapper assetMapper;
 
     @Transactional(readOnly = true)
-    public Asset findAssetById(Long id) {
-        return assetMapper.map(assetService.findById(id));
+    public Asset findAssetByUuid(UUID uuid) {
+        return assetMapper.map(assetService.findByUuid(uuid));
     }
 
     @Transactional(readOnly = true)

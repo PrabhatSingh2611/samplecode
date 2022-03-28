@@ -63,7 +63,7 @@ class AssetIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAssetById() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("id", 1);
+        variables.put("uuid", "e838b736-721a-4cf8-80f3-ebcb6da01a36");
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getAsset.graphql", variables);
         
         log.info(response.readTree().toPrettyString());
