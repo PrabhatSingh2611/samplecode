@@ -1,11 +1,13 @@
 package digital.windmill.audra.graphql.type;
 
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
+import lombok.Data;
 
 import java.time.Instant;
 import java.util.UUID;
 
-public class LeaveRequest {
+@Data
+public class LeaveRequest implements Node {
 
     private UUID uuid;
     private Instant requestDate;
