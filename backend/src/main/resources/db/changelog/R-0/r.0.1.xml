@@ -92,20 +92,25 @@
     </changeSet>
     <changeSet id="r.0.0.3" author="rshtepa">
     <sql>
-        insert into asset_type (id, title, icon) values (1,'Laptops','');
-        insert into asset_type (id, title, icon) values (2,'Monitors','');
-        insert into asset_type (id, title, icon) values (3,'Accesories','');
+        insert into asset_type (id, title, icon) values (1,'Laptops','c0ba7c5f-b683-40c0-88cb-5a51912703cb');
+        insert into asset_type (id, title, icon) values (2,'Monitors','6bd7fd52-1eb2-460e-8615-10e12376af4a');
+        insert into asset_type (id, title, icon) values (3,'Accesories','5966cba4-811d-443f-b16b-807bd77e9e9d');
         
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values (1,'Macbook Pro 13','ABC',1,null,null,now());
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values (2,'Dell Latitude 15','ABC1',1,null,null,now());
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values (3,'Lenovo Laptop 14','ABC2',1,null,null,now());
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values (4,'Dell Latitude 13','ABC3',1,null,null,now());
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values (5,'Dell Monitor 24','ABC5',2,null,null,now());
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
+        values (1,'Macbook Pro 13','ABC',1,null,null,now(),'90890e18-f63f-4126-bfdc-3126a613bbd9');
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
+        values (2,'Dell Latitude 15','ABC1',1,null,null,now(),'40876c02-a029-4863-8340-829e724915c1');
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
+        values (3,'Lenovo Laptop 14','ABC2',1,null,null,now(),'05742200-8d19-45d0-9d1c-74c9dc2c2958');
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
+        values (4,'Dell Latitude 13','ABC3',1,null,null,now(),'9b4e7363-161d-4fdd-a7b7-e3e69deea7c3');
+        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
+        values (5,'Dell Monitor 24','ABC5',2,null,null,now(),'f7662058-a5ea-4113-a844-52687c2a806d');
+
+        insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
+        values (1,'493a5be9-01ba-47c6-95c1-29c230528520','Tom','Johns','ADMIN',now(),null,null);
+        insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
+        values (2,'d7a9e9c8-fa56-47ce-b036-678e6f7f2395','Johny','Robins','ADMIN',now(),null,null);
     </sql>
     </changeSet>
 
@@ -118,8 +123,6 @@
         </addColumn>
         <sql>
             CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-            UPDATE asset_type SET uuid = uuid_generate_v4();
-            UPDATE asset SET uuid = uuid_generate_v4();
         </sql>
         <addNotNullConstraint tableName="asset_type" columnName="uuid"/>
         <addNotNullConstraint tableName="asset" columnName="uuid"/>
