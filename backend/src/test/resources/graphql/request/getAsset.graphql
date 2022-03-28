@@ -4,6 +4,7 @@ query getAsset($id: Int!) {
     title
     serial
     type {
+      uuid
       title
       icon
     }

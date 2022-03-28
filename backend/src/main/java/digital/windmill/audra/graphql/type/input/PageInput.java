@@ -1,9 +1,15 @@
 package digital.windmill.audra.graphql.type.input;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PageInput {
-    private Integer currentPage;
-    private Integer totalPages;
+    private Integer itemsPerPage;
+    private Integer pageNumber;
 }

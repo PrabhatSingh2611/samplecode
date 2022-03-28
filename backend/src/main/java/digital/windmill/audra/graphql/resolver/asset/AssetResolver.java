@@ -21,6 +21,6 @@ public class AssetResolver implements GraphQLQueryResolver {
     }
 
     public ExtendedConnection<Asset> assets(AssetInput input) {
-        return ConnectionUtils.buildNodeConnection(facade.findAllAssets());
+        return ConnectionUtils.buildNodeConnection(facade.findAllAssets(input));
     }
 }
