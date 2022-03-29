@@ -1,10 +1,10 @@
 input NodeInput {
-	uuid: UUID
+	uuid: UUID!
 }
 
 input PageInput {
-	itemsPerPage: Int! = 10
-	pageNumber: Int! = 0
+	itemsPerPage: Int = 10
+	pageNumber: Int = 0
 }
 
 interface ConnectionPayload {

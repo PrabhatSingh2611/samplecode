@@ -1,7 +1,7 @@
 type LeaveRequest implements Node{
     uuid : UUID!
     requestDate : ZonedDateTime
-    employee : Employee
+    employee : Employee!
     status : String
     comment : String
 }
