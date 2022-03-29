@@ -27,7 +27,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="first_name" type="VARCHAR(100)"/>
             <column name="last_name" type="VARCHAR(100)"/>
@@ -44,12 +44,18 @@
             <column name="id" type="INT8">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="title" type="VARCHAR(100)"/>
             <column name="icon" type="VARCHAR(100)"/>
         </createTable>
         <createTable tableName="asset">
             <column name="id" type="INT8">
                 <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="title" type="VARCHAR(100)"/>
             <column name="serial_number" type="VARCHAR(100)"/>
@@ -92,42 +98,25 @@
     </changeSet>
     <changeSet id="r.0.0.3" author="rshtepa">
     <sql>
-        insert into asset_type (id, title, icon) values (1,'Laptops','c0ba7c5f-b683-40c0-88cb-5a51912703cb');
-        insert into asset_type (id, title, icon) values (2,'Monitors','6bd7fd52-1eb2-460e-8615-10e12376af4a');
-        insert into asset_type (id, title, icon) values (3,'Accesories','5966cba4-811d-443f-b16b-807bd77e9e9d');
+        insert into asset_type (id, uuid, title, icon)
+        values
+                (1, 'c0ba7c5f-b683-40c0-88cb-5a51912703cb', 'Laptops', 'https://google.com/laptops'),
+                (2, '6bd7fd52-1eb2-460e-8615-10e12376af4a', 'Monitors', 'https://google.com/monitors'),
+                (3, '5966cba4-811d-443f-b16b-807bd77e9e9d', 'Accessories', 'https://google.com/accessories');
         
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
-        values (1,'Macbook Pro 13','ABC',1,null,null,now(),'90890e18-f63f-4126-bfdc-3126a613bbd9');
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
-        values (2,'Dell Latitude 15','ABC1',1,null,null,now(),'40876c02-a029-4863-8340-829e724915c1');
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
-        values (3,'Lenovo Laptop 14','ABC2',1,null,null,now(),'05742200-8d19-45d0-9d1c-74c9dc2c2958');
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
-        values (4,'Dell Latitude 13','ABC3',1,null,null,now(),'9b4e7363-161d-4fdd-a7b7-e3e69deea7c3');
-        insert into asset (id, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, uuid)
-        values (5,'Dell Monitor 24','ABC5',2,null,null,now(),'f7662058-a5ea-4113-a844-52687c2a806d');
+        insert into asset (id, uuid, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
+        values
+                (1, '90890e18-f63f-4126-bfdc-3126a613bbd9', 'Macbook Pro 13', 'ABC', 1, null, null, now()),
+                (2, '40876c02-a029-4863-8340-829e724915c1', 'Dell Latitude 15', 'ABC1', 1, null, null, now()),
+                (3, '05742200-8d19-45d0-9d1c-74c9dc2c2958', 'Lenovo Laptop 14', 'ABC2', 1, null, null, now()),
+                (4, '9b4e7363-161d-4fdd-a7b7-e3e69deea7c3', 'Dell Latitude 13', 'ABC3', 1, null, null, now()),
+                (5, 'f7662058-a5ea-4113-a844-52687c2a806d', 'Dell Monitor 24', 'ABC5', 2, null, null, now());
 
         insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
-        values (1,'493a5be9-01ba-47c6-95c1-29c230528520','Tom','Johns','ADMIN',now(),null,null);
-        insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
-        values (2,'d7a9e9c8-fa56-47ce-b036-678e6f7f2395','Johny','Robins','ADMIN',now(),null,null);
+        values
+                (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), null, null),
+                (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2395', 'Johny', 'Robins', 'ADMIN', now(), null, null);
     </sql>
-    </changeSet>
-
-    <changeSet id="r.0.0.4" author="tetiana.hladka">
-        <addColumn tableName="asset_type">
-            <column name="uuid" type="UUID"/>
-        </addColumn>
-        <addColumn tableName="asset">
-            <column name="uuid" type="UUID"/>
-        </addColumn>
-        <sql>
-            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-        </sql>
-        <addNotNullConstraint tableName="asset_type" columnName="uuid"/>
-        <addNotNullConstraint tableName="asset" columnName="uuid"/>
-        <addUniqueConstraint tableName="asset_type" columnNames="uuid"/>
-        <addUniqueConstraint tableName="asset" columnNames="uuid"/>
     </changeSet>
     
 </databaseChangeLog>
