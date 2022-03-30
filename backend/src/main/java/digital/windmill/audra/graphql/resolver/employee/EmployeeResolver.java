@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.resolver.employee;
 
+import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.type.ConnectionPayload;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.EmployeeInput;
@@ -16,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeResolver implements GraphQLQueryResolver {
 
+    private EmployeeFacade employeeFacade;
 /*
     public ConnectionPayload<Employee> employees() {
         return ConnectionUtils.buildPayload(new PageImpl<>(List.of()));
@@ -23,6 +25,6 @@ public class EmployeeResolver implements GraphQLQueryResolver {
 */
 
     public ConnectionPayload<Employee> employees(EmployeeInput input) {
-        return ConnectionUtils.buildPayload(new PageImpl<>(List.of()));
+       return ConnectionUtils.buildPayload(employeeFacade.getEmployees(input));
     }
 }
