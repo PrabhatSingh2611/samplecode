@@ -29,7 +29,7 @@ public class EmployeeSpecification {
 
 
 
-    public static Specification<EmployeeEntity> byLocation(SubNodesWhereInput location) {
+    public static Specification<EmployeeEntity> byLocation(NodeInput location) {
         return (root, query, builder) -> {
             if (location == null || location.getUuid() == null) {
                 return builder.conjunction();

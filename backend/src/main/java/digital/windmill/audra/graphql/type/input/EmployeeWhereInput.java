@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeWhereInput {
-    private SubNodesWhereInput location;
+    private NodeInput location;
 }

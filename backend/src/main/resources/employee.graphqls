@@ -20,6 +20,6 @@ input EmployeeInput {
 }
 
 input EmployeeWhereInput {
-	location: SubNodesWhereInput
+	location: NodeInput
 }
 
