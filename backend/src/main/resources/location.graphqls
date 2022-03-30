@@ -1,0 +1,4 @@
+type Location implements Node {
+	uuid: UUID!
+	name: String
+}
