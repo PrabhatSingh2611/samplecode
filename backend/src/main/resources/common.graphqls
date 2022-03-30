@@ -22,5 +22,9 @@ type PageInfo {
     totalPages: Int!
 }
 
+input SubNodesWhereInput{
+   location:UUID
+}
+
 scalar UUID
 scalar ZonedDateTime
