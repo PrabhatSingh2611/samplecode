@@ -1,9 +1,7 @@
 package digital.windmill.audra.dao.repository;
 
 
-import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.graphql.type.input.SubNodesWhereInput;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
