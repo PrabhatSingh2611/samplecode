@@ -9,4 +9,6 @@ import java.util.List;
 @Builder
 public class AssetTypeConnection {
     private List<AssetType> items;
+    private PageInfo pageInfo;
+    private Long totalItems;
 }
