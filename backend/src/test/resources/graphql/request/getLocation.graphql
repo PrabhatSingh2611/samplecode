@@ -1,0 +1,6 @@
+query getlocation($uuid: UUID!) {
+    location(uuid: $uuid) {
+        uuid
+        name
+    }
+}

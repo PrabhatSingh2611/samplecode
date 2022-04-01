@@ -16,5 +16,5 @@ import java.util.UUID;
 public interface LocationRepository extends JpaRepository<LocationEntity,Long>, JpaSpecificationExecutor<LocationEntity> {
 
     @Query("SELECT a FROM LocationEntity a WHERE a.uuid = :uuid")
-    Optional<LocationEntity> findLocationByUuid(@Param("uuid") UUID uuid);
+    Optional<LocationEntity> findByUuid(@Param("uuid") UUID uuid);
 }

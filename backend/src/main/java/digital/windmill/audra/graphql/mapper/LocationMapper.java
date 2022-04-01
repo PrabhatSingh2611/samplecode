@@ -12,9 +12,4 @@ public interface LocationMapper {
 
     Location map(LocationEntity entity);
 
-   /* default String map(LocationEntity location) {
-        return Optional.ofNullable(location).map(LocationEntity::getName).orElse(null);
-    }
-*/
-
 }

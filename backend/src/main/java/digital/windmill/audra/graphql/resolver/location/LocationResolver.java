@@ -14,17 +14,17 @@ public class LocationResolver {
 
     private LocationFacade locationFacade;
 
-     public Location location(UUID uuid) {
+    public Location location(UUID uuid) {
         return locationFacade.findLocationByUuid(uuid);
     }
 
-    public Location allLocation(Location location) {
-        return (Location) locationFacade.findAllLocation(location);
+    //----never be used
+    public Location findAllLocation(Location location) {
+        return locationFacade.findAllLocation(location);
     }
 
-/*
-
-   public ConnectionPayload<Asset> assets(AssetInput input) {
+/*---- needs to be removed
+   public ConnectionPayload<Location> location(AssetInput input) {
         return ConnectionUtils.buildPayload(facade.findAllAssets(input));
     }
 */
