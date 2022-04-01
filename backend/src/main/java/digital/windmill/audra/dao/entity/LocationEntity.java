@@ -17,7 +17,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "employee_location")
+@Table(name = "location")
 public class LocationEntity {
 
     @Id

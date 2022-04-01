@@ -27,21 +27,25 @@ public class LocationFacade {
 
 
     @Transactional(readOnly = true)
-    public Location findAllLocation(Location location) {
-//      return (Location) locationService.findAllLocation(location);
-//      .map(LocationMapper::map);
-        return locationMapper.map((LocationEntity) locationService.findAll(location));
+    public List<Location> findAllLocation() {
+        return locationService
+                .findAll()
+                .stream()
+                .map(locationEntity -> locationMapper.map(locationEntity))
+                .collect(Collectors.toList());
 
     }
 
-    @Transactional(readOnly = true)
-    public Location createLocation(UUID uuid, Location name) {
-        return locationMapper.map(locationService.createLocation(uuid, name));
+
+    public Location createLocation(String name) {
+        return locationMapper.map(locationService.createLocation( name));
     }
 
-    public Location updateLocation(UUID uuid, Location name) {
+    public Location updateLocation(UUID uuid, String name) {
 
+      LocationEntity location =  locationService.findByUuid(uuid);
+      location.setName(name);
 
-        return name;
+        return locationMapper.map(locationService.updateLocation( location));
     }
 }

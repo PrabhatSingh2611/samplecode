@@ -1,0 +1,6 @@
+query getLocations {
+    locations {
+        uuid
+        name
+    }
+}

@@ -1,4 +1,4 @@
-query getlocation($uuid: UUID!) {
+query getLocation($uuid: UUID!) {
     location(uuid: $uuid) {
         uuid
         name

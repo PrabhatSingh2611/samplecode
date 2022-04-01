@@ -14,26 +14,27 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LocationService {
 
-    private static LocationRepository locationRepository;
+    private  LocationRepository locationRepository;
 
-    public static LocationEntity findByUuid(UUID uuid) {
+    public LocationEntity findByUuid(UUID uuid) {
         return locationRepository.findByUuid(uuid).orElse(null);
     }
 
-    public static List<LocationEntity> findAll(Location location) {
+    public  List<LocationEntity> findAll() {
         return  locationRepository.findAll();
     }
 
-    public LocationEntity createLocation(UUID uuid, Location name) {
+    public LocationEntity createLocation(String name) {
         return locationRepository.saveAndFlush(LocationEntity
                 .builder()
                 .uuid(UUID.randomUUID())
-                .name(name.getName())
+                .name(name)
                 .build());
     }
 
+    public LocationEntity updateLocation(LocationEntity location) {
+        return locationRepository.saveAndFlush(location);
+    }
 
-    /*public LocationEntity updateLocation(UUID uuid, Location name){
 
-    }*/
 }
