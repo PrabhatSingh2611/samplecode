@@ -2,7 +2,6 @@ package digital.windmill.audra.dao;
 
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.PageRequest;
@@ -13,11 +12,11 @@ import java.util.Optional;
 public class EmployeeSpecification {
     private static final Integer DEFAULT_PAGE_SIZE = 10;
 
-    public static Pair<Specification<EmployeeEntity>, PageRequest> assets(EmployeeInput input) {
-        var location = Optional.ofNullable(input).map(EmployeeInput::getWhere).map(EmployeeWhereInput::getLocation).orElse(null);
+    public static Pair<Specification<EmployeeEntity>, PageRequest> assets(EmployeesInput input) {
+        var location = Optional.ofNullable(input).map(EmployeesInput::getWhere).map(EmployeeWhereInput::getLocation).orElse(null);
 
-        var itemsPerPage = Optional.ofNullable(input).map(EmployeeInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
-        var pageNumber = Optional.ofNullable(input).map(EmployeeInput::getPagination).map(PageInput::getPageNumber).orElse(0);
+        var itemsPerPage = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
+        var pageNumber = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getPageNumber).orElse(0);
 
         var spec = Specification.where(
                         byLocation(location));

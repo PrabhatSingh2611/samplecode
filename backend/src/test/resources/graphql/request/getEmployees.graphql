@@ -1,4 +1,4 @@
-query getEmployees($input: EmployeeInput!) {
+query getEmployees($input: EmployeesInput) {
     employees(input: $input) {
         items {
             uuid

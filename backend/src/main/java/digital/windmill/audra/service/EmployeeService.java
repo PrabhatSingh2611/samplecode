@@ -3,7 +3,7 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.EmployeeSpecification;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.repository.EmployeeRepository;
-import digital.windmill.audra.graphql.type.input.EmployeeInput;
+import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +25,7 @@ public class EmployeeService {
         return employeeRepository.findByUuid(location.getUuid()).orElse(null);
     }
 
-    public Page<EmployeeEntity> findAll(EmployeeInput input) {
+    public Page<EmployeeEntity> findAll(EmployeesInput input) {
         var spec = EmployeeSpecification.assets(input);
         return employeeRepository.findAll(spec.getKey(), spec.getValue());
     }

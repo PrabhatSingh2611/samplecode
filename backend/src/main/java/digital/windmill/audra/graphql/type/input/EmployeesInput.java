@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeInput {
+public class EmployeesInput {
     private EmployeeWhereInput where;
     private PageInput pagination;
 }
