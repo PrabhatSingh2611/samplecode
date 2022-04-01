@@ -1,7 +1,7 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.AssetSpecification;
-import digital.windmill.audra.graphql.type.input.AssetInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class AssetService {
         return repo.findByUuid(uuid).orElse(null);
     }
 
-    public Page<AssetEntity> findAll(AssetInput input) {
+    public Page<AssetEntity> findAll(AssetsInput input) {
         var spec = AssetSpecification.assets(input);
         return repo.findAll(spec.getKey(), spec.getValue());
     }
