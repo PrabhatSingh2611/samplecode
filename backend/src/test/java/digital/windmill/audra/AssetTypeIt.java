@@ -66,6 +66,17 @@ public class AssetTypeIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllAssetsType() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetTypes.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getAssetTypes.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
     }

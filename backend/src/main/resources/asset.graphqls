@@ -30,3 +30,7 @@ type AssetType implements Node {
 	title: String
 	icon: String
 }
+
+type AssetTypeConnection{
+	items: [AssetType!]!
+}
