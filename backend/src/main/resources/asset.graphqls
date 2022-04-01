@@ -27,6 +27,15 @@ type Asset implements Node {
 
 type AssetType implements Node {
 	uuid: UUID!
-	title: String
+	title: String!
 	icon: String
+}
+
+
+input AssetTypeInput {
+	title:String!
+}
+
+type AssetTypePayload {
+	assetType: AssetType!
 }
