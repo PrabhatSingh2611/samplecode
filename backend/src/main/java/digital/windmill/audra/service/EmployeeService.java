@@ -26,7 +26,7 @@ public class EmployeeService {
     }
 
     public Page<EmployeeEntity> findAll(EmployeesInput input) {
-        var spec = EmployeeSpecification.assets(input);
+        var spec = EmployeeSpecification.employees(input);
         return employeeRepository.findAll(spec.getKey(), spec.getValue());
     }
 }

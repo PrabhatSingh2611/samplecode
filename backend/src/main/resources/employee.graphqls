@@ -16,8 +16,8 @@ type EmployeeConnectionPayload implements ConnectionPayload {
 
 
 input EmployeesInput {
-	where: EmployeeWhereInput!
-	pagination: PageInput!
+	where: EmployeeWhereInput
+	pagination: PageInput
 }
 
 input EmployeeWhereInput {

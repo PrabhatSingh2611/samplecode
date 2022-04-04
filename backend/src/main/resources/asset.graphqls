@@ -1,4 +1,4 @@
-input AssetInput {
+input AssetsInput {
     where: AssetWhereInput
     page: PageInput
 }
@@ -7,6 +7,14 @@ input AssetWhereInput {
 	employee: NodeInput
 	archived: Boolean # asset.archivedDate is not null - TRUE
 	type: NodeInput
+}
+
+input AssetInput {
+	uuid: UUID!
+}
+
+type AssetPayload{
+	item: Asset
 }
 
 type AssetConnectionPayload implements ConnectionPayload {
@@ -29,4 +37,12 @@ type AssetType implements Node {
 	uuid: UUID!
 	title: String
 	icon: String
+}
+
+input AssetTypeInput {
+	uuid: UUID!
+}
+
+type AssetTypePayload{
+	item: AssetType
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 public class EmployeeSpecification {
     private static final Integer DEFAULT_PAGE_SIZE = 10;
 
-    public static Pair<Specification<EmployeeEntity>, PageRequest> assets(EmployeesInput input) {
+    public static Pair<Specification<EmployeeEntity>, PageRequest> employees(EmployeesInput input) {
         var location = Optional.ofNullable(input).map(EmployeesInput::getWhere).map(EmployeeWhereInput::getLocation).orElse(null);
 
         var itemsPerPage = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
@@ -33,9 +33,8 @@ public class EmployeeSpecification {
             if (location == null || location.getUuid() == null) {
                 return builder.conjunction();
             }
-            var employeeJoin = root.join("employee");
-            return builder.equal(employeeJoin.get("uuid"), location.getUuid());
+            var locationJoin = root.join("employee");
+            return builder.equal(locationJoin.get("uuid"), location.getUuid());
         };
     }
-
 }

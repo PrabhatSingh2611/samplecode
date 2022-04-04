@@ -51,24 +51,17 @@ public class EmployeeIt {
         registry.add("spring.liquibase.url", postgreSQLContainer::getJdbcUrl);
     }
 
-
-
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAllEmployees() throws IOException, URISyntaxException {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getEmployees.graphql");
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/getEmployees.graphql");
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getEmployees.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
-        assertThat(response.isOk()).isTrue();
-        //assertThat(response.get("$.")).isNotNull();
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
-
-
-
-
 
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
