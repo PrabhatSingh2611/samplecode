@@ -1,9 +1,11 @@
 {
   "data": {
     "assetType": {
-      "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-      "title": "Laptops",
-      "icon": "https://google.com/laptops"
+      "item": {
+        "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+        "title": "Laptops",
+        "icon": "https://google.com/laptops"
+      }
     }
   }
 }
