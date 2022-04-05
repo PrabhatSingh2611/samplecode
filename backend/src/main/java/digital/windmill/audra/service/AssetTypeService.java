@@ -20,10 +20,9 @@ public class AssetTypeService {
     }
 
     public AssetTypeEntity createAssetType(AssetTypeInput input) {
-        return assetTypeRepository.saveAndFlush(AssetTypeEntity
+        return assetTypeRepository.save(AssetTypeEntity
                 .builder()
                 .uuid(UUID.randomUUID())
-                .title(input.getTitle())
                 .build());
     }
 

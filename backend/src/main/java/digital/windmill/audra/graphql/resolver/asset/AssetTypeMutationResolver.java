@@ -16,7 +16,7 @@ public class AssetTypeMutationResolver implements GraphQLMutationResolver {
     public AssetTypePayload createAssetType(AssetTypeInput assetTypeInput) {
         return AssetTypePayload
                 .builder()
-                .assetType(facade.createAssetType(assetTypeInput))
+                .item(facade.createAssetType(assetTypeInput))
                 .build();
     }
 }
