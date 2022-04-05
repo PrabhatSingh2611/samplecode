@@ -1,7 +1,7 @@
 type Query {
-    asset(uuid: UUID!): Asset!
-    assets(input: AssetInput): AssetConnectionPayload!
-    assetType(uuid: UUID!): AssetType!
+    asset(input: AssetInput!): AssetPayload!
+    assets(input: AssetsInput): AssetConnectionPayload!
+    assetType(input: AssetTypeInput!): AssetTypePayload!
     employees: EmployeeConnectionPayload
     assetTypes: AssetTypeConnection!
 }

@@ -1,7 +1,7 @@
 package digital.windmill.audra.dao;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.graphql.type.input.AssetInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
@@ -15,13 +15,13 @@ public class AssetSpecification {
 
     private static final Integer DEFAULT_PAGE_SIZE = 10;
 
-    public static Pair<Specification<AssetEntity>, PageRequest> assets(AssetInput input) {
-        var archived = Optional.ofNullable(input).map(AssetInput::getWhere).map(AssetWhereInput::getArchived).orElse(null);
-        var employee = Optional.ofNullable(input).map(AssetInput::getWhere).map(AssetWhereInput::getEmployee).orElse(null);
-        var type = Optional.ofNullable(input).map(AssetInput::getWhere).map(AssetWhereInput::getType).orElse(null);
+    public static Pair<Specification<AssetEntity>, PageRequest> assets(AssetsInput input) {
+        var archived = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getArchived).orElse(null);
+        var employee = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getEmployee).orElse(null);
+        var type = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getType).orElse(null);
 
-        var itemsPerPage = Optional.ofNullable(input).map(AssetInput::getPage).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
-        var pageNumber = Optional.ofNullable(input).map(AssetInput::getPage).map(PageInput::getPageNumber).orElse(0);
+        var itemsPerPage = Optional.ofNullable(input).map(AssetsInput::getPage).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
+        var pageNumber = Optional.ofNullable(input).map(AssetsInput::getPage).map(PageInput::getPageNumber).orElse(0);
 
         var spec = Specification.where(
                 byArchived(archived))
