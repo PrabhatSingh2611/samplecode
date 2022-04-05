@@ -1,12 +1,13 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.AssetSpecification;
-import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.dao.repository.AssetRepository;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
+import digital.windmill.audra.dao.entity.AssetEntity;
+import digital.windmill.audra.dao.repository.AssetRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.UUID;
 

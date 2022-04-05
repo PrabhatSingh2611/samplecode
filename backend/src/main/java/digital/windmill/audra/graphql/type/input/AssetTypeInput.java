@@ -12,6 +12,6 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssetInput implements Node {
+public class AssetTypeInput implements Node {
     private UUID uuid;
 }
