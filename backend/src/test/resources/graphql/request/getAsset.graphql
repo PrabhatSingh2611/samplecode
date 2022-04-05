@@ -1,23 +1,25 @@
-query getAsset($uuid: UUID!) {
-	asset(uuid: $uuid) {
-    uuid 
-    title
-    serial
-    type {
-      uuid
-      title
-      icon
+query
+{
+    asset(input: {uuid: "e838b736-721a-4cf8-80f3-ebcb6da01a36"})
+   {
+        item {
+            uuid
+            title
+            serial
+            type {
+                uuid
+                title
+                icon
+            }
+            employee {
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position
+                location
+            }
+        }
     }
-    employee {
-      uuid
-      firstName
-      lastName
-      role
-      birthday
-      position
-      location
-    }
-    archivedDate
-    purchasedDate
-  }
 }
