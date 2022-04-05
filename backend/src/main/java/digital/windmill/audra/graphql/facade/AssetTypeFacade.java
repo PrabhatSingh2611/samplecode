@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
-
+import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 @Service
 @AllArgsConstructor
 public class AssetTypeFacade {
@@ -19,5 +19,10 @@ public class AssetTypeFacade {
     @Transactional(readOnly = true)
     public AssetType findAssetTypeByUuid(UUID uuid) {
         return assetTypeMapper.map(assetTypeService.findByUuid(uuid));
+    }
+
+    @Transactional(readOnly = true)
+    public AssetType createAssetType(AssetTypeInput assetTypeInput){
+        return assetTypeMapper.map(assetTypeService.createAssetType(assetTypeInput));
     }
 }

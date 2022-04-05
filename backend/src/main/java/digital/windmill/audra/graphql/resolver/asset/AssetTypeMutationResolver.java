@@ -1,27 +1,22 @@
 package digital.windmill.audra.graphql.resolver.asset;
 
 import digital.windmill.audra.graphql.facade.AssetTypeFacade;
-import digital.windmill.audra.graphql.type.AssetPayload;
-import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.AssetTypePayload;
-import digital.windmill.audra.graphql.type.input.AssetInput;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 @AllArgsConstructor
-public class AssetTypeResolver implements GraphQLQueryResolver {
+public class AssetTypeMutationResolver implements GraphQLMutationResolver {
 
     private AssetTypeFacade facade;
 
-    public AssetTypePayload assetType(AssetTypeInput input) {
+    public AssetTypePayload createAssetType(AssetTypeInput assetTypeInput) {
         return AssetTypePayload
                 .builder()
-                .item(facade.findAssetTypeByUuid(input.getUuid()))
+                .item(facade.createAssetType(assetTypeInput))
                 .build();
     }
 }

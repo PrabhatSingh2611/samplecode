@@ -1,7 +1,9 @@
 package digital.windmill.audra.service;
 
+
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
+import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,13 @@ public class AssetTypeService {
 
     public AssetTypeEntity findByUuid(UUID uuid) {
         return assetTypeRepository.findByUuid(uuid).orElse(null);
+    }
+
+    public AssetTypeEntity createAssetType(AssetTypeInput input) {
+        return assetTypeRepository.save(AssetTypeEntity
+                .builder()
+                .uuid(UUID.randomUUID())
+                .build());
     }
 
 }
