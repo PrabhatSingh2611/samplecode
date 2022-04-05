@@ -1,8 +1,12 @@
 {
   "data": {
     "updateLocation": {
-      "uuid": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
-      "name": "pune"
+      "items": [
+        {
+          "uuid": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
+          "name": "pune"
+        }
+      ]
     }
   }
 }

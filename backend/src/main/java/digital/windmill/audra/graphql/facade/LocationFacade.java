@@ -3,6 +3,7 @@ package digital.windmill.audra.graphql.facade;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.LocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -36,16 +37,14 @@ public class LocationFacade {
 
     }
 
-
-    public Location createLocation(String name) {
-        return locationMapper.map(locationService.createLocation( name));
+    public Location createLocation(LocationInput input) {
+        return locationMapper.map(locationService.createLocation(input));
     }
 
-    public Location updateLocation(UUID uuid, String name) {
+    public Location updateLocation(LocationInput input) {
 
-      LocationEntity location =  locationService.findByUuid(uuid);
-      location.setName(name);
-
+      LocationEntity location =  locationService.findByUuid(input.getUuid());
+      location.setName(input.getName());
         return locationMapper.map(locationService.updateLocation( location));
     }
 }

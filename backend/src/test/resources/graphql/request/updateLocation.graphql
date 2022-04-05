@@ -1,6 +1,8 @@
 mutation updateLocation{
-    updateLocation(uuid: "9c6369ec-fd74-449f-8b68-83cae2df1aac",location: "pune"){
-        uuid
-        name
+    updateLocation(input:{uuid: "b7f46256-e21d-483b-be29-8bf7617bc3c3", name:"pune"} ){
+       items{
+           uuid
+           name
+       }
     }
 }

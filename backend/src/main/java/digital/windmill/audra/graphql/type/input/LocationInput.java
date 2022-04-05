@@ -1,5 +1,5 @@
-package digital.windmill.audra.graphql.type;
-
+package digital.windmill.audra.graphql.type.input;
+import digital.windmill.audra.graphql.type.Node;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,13 +9,9 @@ import java.util.UUID;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Location implements Node {
-
-    private Long id;
+@AllArgsConstructor
+public class LocationInput implements Node {
     private UUID uuid;
     private String name;
-
-
 }

@@ -2,11 +2,11 @@ package digital.windmill.audra.graphql.resolver.location;
 
 import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.LocationInput;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
 import java.util.UUID;
 
 
@@ -16,11 +16,11 @@ public class LocationMutationResolver implements GraphQLMutationResolver {
 
     private LocationFacade locationFacade;
 
-    public  Location createLocation(String locationName) {
-      return locationFacade.createLocation(locationName);
+    public  Location createLocation(LocationInput input) {
+      return locationFacade.createLocation(input);
     }
 
-    public Location updateLocation(UUID uuid,String locationName){
-        return locationFacade.updateLocation(uuid,locationName);
+    public Location updateLocation(LocationInput input){
+        return locationFacade.updateLocation(input);
     }
 }

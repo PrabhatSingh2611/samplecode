@@ -1,6 +1,9 @@
 query getLocations {
     locations {
-        uuid
-        name
+        items {
+            uuid
+            name
+        }
     }
 }
+

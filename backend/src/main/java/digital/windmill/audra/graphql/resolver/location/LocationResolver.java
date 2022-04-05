@@ -2,6 +2,8 @@ package digital.windmill.audra.graphql.resolver.location;
 
 import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.LocationPayload;
+import digital.windmill.audra.graphql.type.input.LocationInput;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,16 +22,17 @@ public class LocationResolver implements GraphQLQueryResolver {
         return locationFacade.findLocationByUuid(uuid);
     }
 
-    //----never be used
-    public List<Location> getLocations( ) {
-        return locationFacade.findAllLocation( );
+    public List<Location> getLocations() {
+        return locationFacade.findAllLocation();
     }
 
-/*---- needs to be removed
-   public ConnectionPayload<Location> location(AssetInput input) {
-        return ConnectionUtils.buildPayload(facade.findAllAssets(input));
+    public LocationPayload location(LocationInput input) {
+        return LocationPayload
+                .builder()
+                .item(locationFacade.findLocationByUuid(input.getUuid()))
+                        .build();
+
     }
-*/
 }
 
 

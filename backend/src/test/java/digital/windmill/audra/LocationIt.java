@@ -54,15 +54,11 @@ public class LocationIt {
     }
 
 
-
-
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnLocationById() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("uuid", "b7f46256-e21d-483b-be29-8bf7617bc3c3");
-        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getLocation.graphql", variables);
-
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getLocation.graphql");
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getLocation.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
@@ -83,7 +79,7 @@ public class LocationIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldCreateLocation() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("location", "pune");
+        variables.put("location", "london");
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/createLocation.graphql", variables);
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/createLocation.json");
