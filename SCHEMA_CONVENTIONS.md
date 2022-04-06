@@ -43,6 +43,24 @@ instead of
 Even if you need to use one argument like `uuid: UUID` wrap it inside `input`.
 `user(input: { uuid: "..." })`
 
+```graphql
+interface Node {
+    uuid: UUID!
+}
+
+input NodeInput implements Node {
+    uuid: UUID!
+}
+
+input UserInput implements NodeInput {
+    uuid: UUID!
+}
+
+type Query {
+    user(input: UserInput!): UserPayload!
+}
+```
+
 ## Payloads (Singular)
 
 Use a unique payload type for each Mutation/Query/Subscription and add the mutation/quiert/subscription’s output as a field to that payload type.
@@ -102,19 +120,19 @@ type User {
 ## Input (Connection)
 
 ```graphql
-interface Node {
-    uuid: UUID!
+interface Nodes {
+    uuids: [UUID!]!
 }
 
-interface SubNodesWhereInput {
-    ids: [Node!]!
+input NodesInput implements Nodes {
+    uuids: [UUID!]!
 }
 
 type ProductsInput {
 	where: {
 		title: String! # "where" fields realted to Product on top of the `where` object
-		category: SubNodesWhereInput,  # "where" fields realted to Product Sub Objects
-		subcategory: SubNodesWhereInput # "where" fields realted to Product Sub Objects
+		category: NodesInput,  # "where" fields realted to Product Sub Objects
+		subcategory: NodesInput # "where" fields realted to Product Sub Objects
 	}
     pagination: { # Could be changed to `relay: RelayInput!` for Cursor based pagination
         itemsPerPage: Int @default(10)

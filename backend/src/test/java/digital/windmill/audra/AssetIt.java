@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import digital.windmill.audra.graphql.type.input.AssetInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
@@ -63,9 +63,8 @@ class AssetIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAssetById() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("uuid", "e838b736-721a-4cf8-80f3-ebcb6da01a36");
-        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getAsset.graphql", variables);
-        
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAsset.graphql");
+
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAsset.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
@@ -86,7 +85,7 @@ class AssetIt {
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAssetsFiltered() throws IOException, URISyntaxException {
-        var where = AssetInput.builder().where(
+        var where = AssetsInput.builder().where(
                 AssetWhereInput.builder()
                         .archived(false)
                         .type(NodeInput.of("5478b586-e607-4448-ac05-3e5f2adbbc1b"))
@@ -105,7 +104,7 @@ class AssetIt {
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAssetsPaginated() throws IOException, URISyntaxException {
-        var where = AssetInput.builder().page(
+        var where = AssetsInput.builder().page(
                 PageInput.builder()
                         .pageNumber(2)
                         .itemsPerPage(3)

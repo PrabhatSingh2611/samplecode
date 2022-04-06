@@ -1,6 +1,7 @@
 type Mutation {
 	testMutation(uuid: UUID!): Asset # playground to test
+	createAssetType (input:AssetTypeInput!): AssetTypePayload!
 	createLocation(input: CreateLocationInput!): CreateLocationPayload!
 	updateLocation(input: UpdateLocationInput!): UpdateLocationInputPayload!
-	
+
 }
