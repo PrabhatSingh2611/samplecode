@@ -79,8 +79,7 @@ public class LocationIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldCreateLocation() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("location", "london");
-        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/createLocation.graphql", variables);
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/createLocation.graphql");
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/createLocation.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);

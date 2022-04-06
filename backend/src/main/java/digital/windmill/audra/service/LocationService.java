@@ -2,8 +2,9 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
-import digital.windmill.audra.graphql.type.input.LocationInput;
+import digital.windmill.audra.graphql.type.CreateLocationInput;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,14 +21,14 @@ public class LocationService {
         return locationRepository.findByUuid(uuid).orElse(null);
     }
 
-    public  List<LocationEntity> findAll() {
-        return  locationRepository.findAll();
+    public List<LocationEntity> findAll() {
+        return locationRepository.findAll();
     }
 
-    public LocationEntity createLocation(LocationInput input) {
+    public LocationEntity createLocation(CreateLocationInput input) {
         return locationRepository.save(LocationEntity
                 .builder()
-                .uuid(UUID.randomUUID())
+                .uuid(input.getUuid())
                 .name(input.getName())
                 .build());
     }

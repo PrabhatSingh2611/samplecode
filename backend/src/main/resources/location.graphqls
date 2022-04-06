@@ -11,27 +11,30 @@ input CreateLocationInput{
 	uuid:UUID!
 	name:String
 }
-type CreateLocationPayload implements ConnectionPayload{
-	items: [Location!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+
+type CreateLocationPayload{
+	item: Location!
 }
+
 input UpdateLocationInput{
 	uuid:UUID!
 	name:String
 }
-type UpdateLocationInputPayload implements ConnectionPayload{
-	items: [Location!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+type UpdateLocationInputPayload{
+	item: Location!
+
 }
-type LocationPayload implements ConnectionPayload {
-	items: [Location!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+
+#type LocationConnectionPayload implements ConnectionPayload {
+#	items: [Location!]!
+#	pageInfo: PageInfo!
+#	totalItems: Int!
+#}
+
+type LocationPayload {
+	item: Location!
 }
-type LocationConnectionPayload implements ConnectionPayload {
-	items: [Location!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+
+input LocationsInput{
+	page: PageInput
 }

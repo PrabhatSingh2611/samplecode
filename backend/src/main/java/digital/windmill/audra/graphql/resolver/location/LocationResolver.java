@@ -18,9 +18,9 @@ public class LocationResolver implements GraphQLQueryResolver {
 
     private LocationFacade locationFacade;
 
-    public Location location(UUID uuid) {
+   /* public Location location(UUID uuid) {
         return locationFacade.findLocationByUuid(uuid);
-    }
+    }*/
 
     public List<Location> getLocations() {
         return locationFacade.findAllLocation();
@@ -31,7 +31,6 @@ public class LocationResolver implements GraphQLQueryResolver {
                 .builder()
                 .item(locationFacade.findLocationByUuid(input.getUuid()))
                         .build();
-
     }
 }
 
