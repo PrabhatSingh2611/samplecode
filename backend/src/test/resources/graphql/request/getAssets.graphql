@@ -1,4 +1,4 @@
-query getAssets($input: AssetInput) {
+query getAssets($input: AssetsInput) {
 	assets(input: $input) {
         items {
             uuid

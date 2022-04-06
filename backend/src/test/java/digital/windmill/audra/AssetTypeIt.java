@@ -57,11 +57,21 @@ public class AssetTypeIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAssetTypeByUuid() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
-        variables.put("uuid", "5478b586-e607-4448-ac05-3e5f2adbbc1b");
-        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getAssetType.graphql", variables);
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetType.graphql");
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAssetType.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllAssetsType() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetTypes.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getAssetTypes.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
