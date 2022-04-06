@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
+import digital.windmill.audra.graphql.type.input.AssetTypeInput;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -19,5 +22,18 @@ public class AssetTypeFacade {
     @Transactional(readOnly = true)
     public AssetType findAssetTypeByUuid(UUID uuid) {
         return assetTypeMapper.map(assetTypeService.findByUuid(uuid));
+    }
+
+    @Transactional(readOnly = true)
+    public AssetType createAssetType(AssetTypeInput assetTypeInput){
+        return assetTypeMapper.map(assetTypeService.createAssetType(assetTypeInput));
+    }
+
+    public List<AssetType> getAssetsType(){
+        return assetTypeService
+                .getAssetsType()
+                .stream()
+                .map(x->assetTypeMapper.map(x))
+                .collect(Collectors.toList());
     }
 }

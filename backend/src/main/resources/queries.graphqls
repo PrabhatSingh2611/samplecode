@@ -3,4 +3,5 @@ type Query {
     assets(input: AssetsInput): AssetConnectionPayload!
     assetType(input: AssetTypeInput!): AssetTypePayload!
     employees(input: EmployeesInput): EmployeeConnectionPayload!
+    assetTypes: AssetTypeConnection!
 }
