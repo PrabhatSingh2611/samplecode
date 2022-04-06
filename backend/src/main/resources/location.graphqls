@@ -25,16 +25,16 @@ type UpdateLocationInputPayload{
 
 }
 
-#type LocationConnectionPayload implements ConnectionPayload {
-#	items: [Location!]!
-#	pageInfo: PageInfo!
-#	totalItems: Int!
-#}
+type LocationConnectionPayload implements ConnectionPayload {
+	items: [Location!]!
+	pageInfo: PageInfo!
+	totalItems: Int!
+}
 
 type LocationPayload {
 	item: Location!
 }
 
-input LocationsInput{
-	page: PageInput
+type Locations{
+	items : [Location!]!
 }

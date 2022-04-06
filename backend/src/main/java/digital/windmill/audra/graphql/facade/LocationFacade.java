@@ -2,18 +2,15 @@ package digital.windmill.audra.graphql.facade;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
-import digital.windmill.audra.graphql.type.CreateLocationInput;
+import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.input.LocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

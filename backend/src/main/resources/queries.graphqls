@@ -4,5 +4,5 @@ type Query {
     assetType(uuid: UUID!): AssetType!
     employees: EmployeeConnectionPayload
     location(input: LocationInput!): LocationPayload!
-    #locations: LocationConnectionPayload!
+    locations: LocationConnectionPayload!
 }

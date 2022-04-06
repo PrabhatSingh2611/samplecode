@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UpdateLocationPayload {
+public class UpdateLocationInputPayload {
     private Location item;
 }

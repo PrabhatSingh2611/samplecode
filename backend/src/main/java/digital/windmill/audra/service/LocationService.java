@@ -2,9 +2,8 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
-import digital.windmill.audra.graphql.type.CreateLocationInput;
+import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
