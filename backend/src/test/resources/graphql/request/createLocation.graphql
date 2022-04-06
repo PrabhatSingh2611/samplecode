@@ -1,8 +1,7 @@
 mutation createLocation{
-    createLocation(input:{uuid: "b8f46256-e21d-483b-be29-8bf7617bc3c3",name: "pune"}){
-        item {
+    createLocation(input:{uuid: "b8f46256-e21d-483b-be29-8bf7617bc3c3"}){
+        location {
             uuid
-            name
         }
     }
 }

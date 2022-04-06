@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class CreateLocationPayload {
-    private Location item;
+    private Location location;
 }

@@ -13,5 +13,4 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LocationInput implements Node {
     private UUID uuid;
-    private String name;
 }
