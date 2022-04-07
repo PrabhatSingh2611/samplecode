@@ -1,6 +1,6 @@
 type Location implements Node {
     uuid: UUID!
-    name: String
+    name: String!
 }
 
 input LocationInput{
@@ -17,7 +17,7 @@ type CreateLocationPayload{
 
 input UpdateLocationInput{
     uuid:UUID!
-    name:String
+    name:String!
 }
 type UpdateLocationPayload{
     location: Location!
