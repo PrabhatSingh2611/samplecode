@@ -27,7 +27,8 @@ public class LocationService {
     public LocationEntity createLocation(CreateLocationInput input) {
         return locationRepository.save(LocationEntity
                 .builder()
-                .uuid(input.getUuid())
+                .uuid(UUID.randomUUID())
+                .name(input.getName())
                 .build());
     }
 

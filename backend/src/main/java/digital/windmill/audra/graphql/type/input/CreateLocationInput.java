@@ -12,5 +12,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateLocationInput {
-    private UUID uuid;
+    private String name;
 }

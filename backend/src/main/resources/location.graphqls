@@ -5,10 +5,11 @@ type Location implements Node {
 
 input LocationInput{
     uuid:UUID!
+    name: String!
 }
 
 input CreateLocationInput{
-    uuid:UUID!
+    name: String!
 }
 
 type CreateLocationPayload{
