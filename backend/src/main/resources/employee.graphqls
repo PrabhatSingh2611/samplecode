@@ -8,8 +8,40 @@ type Employee implements Node {
 	location: String
 }
 
+
 type EmployeeConnectionPayload implements ConnectionPayload {
     items: [Employee!]!
     pageInfo: PageInfo!
     totalItems: Int!
 }
+
+type EmployeePosition implements Node{
+	uuid: UUID!
+	name:String
+}
+input DeleteEmployeePositionInput{
+	uuid:UUID!
+}
+
+input CreateEmployeePositionInput{
+    name:String!
+}
+
+input UpdateEmployeePositionInput{
+	uuid:UUID!
+	name:String!
+}
+
+type CreateEmployeePositionPayload{
+	item:EmployeePosition
+}
+
+type UpdateEmployeePositionPayload{
+	item:EmployeePosition
+}
+
+
+type DeleteEmployeePositionPayload{
+	employeePosition: Node!
+}
+

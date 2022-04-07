@@ -1,0 +1,7 @@
+mutation createEmployeePosition{
+   createEmployeePosition(input:{name: "HR"}){
+       item {
+           name
+       }
+   }
+}
