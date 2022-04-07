@@ -29,7 +29,7 @@ input CreateEmployeePositionInput{
 
 input UpdateEmployeePositionInput{
 	uuid:UUID!
-	name:String
+	name:String!
 }
 
 type CreateEmployeePositionPayload{
