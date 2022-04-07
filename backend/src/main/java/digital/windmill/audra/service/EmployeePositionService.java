@@ -23,7 +23,7 @@ public class EmployeePositionService {
     }
 
     public EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition){
-        EmployeePositionEntity entity = repo.findByName(employeePosition.getName())
+        EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
                 .orElse(null);
          repo.delete(entity);
          return entity;

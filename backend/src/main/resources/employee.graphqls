@@ -20,11 +20,11 @@ type EmployeePosition implements Node{
 	name:String
 }
 input DeleteEmployeePositionInput{
-	name:String
+	uuid:UUID!
 }
 
 input CreateEmployeePositionInput{
-    name:String
+    name:String!
 }
 
 input UpdateEmployeePositionInput{
@@ -32,9 +32,14 @@ input UpdateEmployeePositionInput{
 	name:String
 }
 
-type EmployeePositionPayload{
+type CreateEmployeePositionPayload{
 	item:EmployeePosition
 }
+
+type UpdateEmployeePositionPayload{
+	item:EmployeePosition
+}
+
 
 type DeleteEmployeePositionPayload{
 	employeePosition: Node!

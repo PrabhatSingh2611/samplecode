@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class EmployeePositionPayload {
+public class UpdateEmployeePositionPayload {
     private EmployeePosition item;
 }

@@ -44,7 +44,7 @@ public class EmployeePositionFacade {
                .map(employeePositionService
                        .deleteEmployeePosition(EmployeePosition
                                .builder()
-                               .name(input.getName())
+                               .uuid(input.getUuid())
                                .build()));
    }
 
