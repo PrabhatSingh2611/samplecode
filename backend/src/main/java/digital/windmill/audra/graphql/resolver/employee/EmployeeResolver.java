@@ -16,10 +16,6 @@ public class EmployeeResolver implements GraphQLQueryResolver {
 
     private EmployeeFacade employeeFacade;
 
-//    public ConnectionPayload<Employee> employees() {
-//        return ConnectionUtils.buildPayload(new PageImpl<>(List.of()));
-//    }
-
     public ConnectionPayload<Employee> employees(EmployeesInput input) {
         return ConnectionUtils.buildPayload(employeeFacade.getEmployees(input));
     }

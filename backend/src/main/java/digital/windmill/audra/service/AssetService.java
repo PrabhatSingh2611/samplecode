@@ -1,6 +1,7 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.AssetSpecification;
+import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,9 @@ public class AssetService {
     private AssetRepository repo;
 
     public AssetEntity findByUuid(UUID uuid) {
-        return repo.findByUuid(uuid).orElse(null);
+        return repo.findByUuid(uuid).orElseThrow(
+                () -> new DataNotFoundException("Asset not found.")
+        );
     }
 
     public Page<AssetEntity> findAll(AssetsInput input) {

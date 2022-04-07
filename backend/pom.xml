@@ -22,6 +22,8 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <test-containers.version>1.15.3</test-containers.version>
+        <skip.unit.tests>false</skip.unit.tests>
+        <skip.integration.tests>true</skip.integration.tests>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -158,8 +160,20 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <skipTests>${skip.unit.tests}</skipTests>
                     <includes>
-                        <include>**/*It.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <configuration>
+                    <skipITs>${skip.integration.tests}</skipITs>
+                    <includes>
+                        <include>**/*IT.java</include>
                     </includes>
                 </configuration>
             </plugin>
