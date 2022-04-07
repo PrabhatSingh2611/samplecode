@@ -1,8 +1,7 @@
 mutation deleteEmployeePosition{
     deleteEmployeePosition(input:{name: "manager"}){
-        item {
+        employeePosition{
             uuid
-            name
         }
     }
 }

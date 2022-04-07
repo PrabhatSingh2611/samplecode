@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.resolver.employee;
 
 import digital.windmill.audra.graphql.facade.EmployeePositionFacade;
+import digital.windmill.audra.graphql.type.DeleteEmployeePositionPayload;
 import digital.windmill.audra.graphql.type.EmployeePositionPayload;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
@@ -30,10 +31,10 @@ public class EmployeePositionMutationResolver implements GraphQLMutationResolver
                 .build();
     }
 
-    public EmployeePositionPayload deleteEmployeePosition(DeleteEmployeePositionInput input){
-        return EmployeePositionPayload
+    public DeleteEmployeePositionPayload deleteEmployeePosition(DeleteEmployeePositionInput input){
+        return DeleteEmployeePositionPayload
                 .builder()
-                .item(employeePositionFacade.deleteEmployeePosition(input))
+                .employeePosition(employeePositionFacade.deleteEmployeePosition(input))
                 .build();
     }
 
