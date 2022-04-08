@@ -9,12 +9,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class EmployeeFacade {
 
     private EmployeeService employeeService;
     private EmployeeMapper employeeMapper;
+
+    @Transactional(readOnly = true)
+    public Employee findAssetByUuid(UUID uuid) {
+        return employeeMapper.map(employeeService.findByUuid(uuid));
+    }
 
     @Transactional(readOnly = true)
     public Page<Employee> getEmployees(EmployeesInput input) {

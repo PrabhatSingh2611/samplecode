@@ -45,8 +45,6 @@ type DeleteEmployeePositionPayload{
 	employeePosition: Node!
 }
 
-
-
 input EmployeesInput {
 	where: EmployeeWhereInput
 	pagination: PageInput
