@@ -23,7 +23,7 @@
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <test-containers.version>1.15.3</test-containers.version>
         <skip.unit.tests>false</skip.unit.tests>
-        <skip.integration.tests>true</skip.integration.tests>
+        <skip.integration.tests>false</skip.integration.tests>
     </properties>
     <dependencyManagement>
         <dependencies>
