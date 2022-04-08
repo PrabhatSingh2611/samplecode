@@ -4,11 +4,15 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-        <changeSet id="r.0.0.1" author="rshtepa">
-            <sql>CREATE TYPE EMPLOYEE_ROLE AS ENUM ('ADMIN', 'EMPLOYEE');</sql>
-            <sql>CREATE TYPE LEAVE_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED', 'NOT_APPROVED');</sql>
-            <sql>CREATE TYPE ASSET_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED', 'NOT_APPROVED');</sql>
-        </changeSet>
+    <changeSet id="r.0.0.1" author="rshtepa">
+        <sql>CREATE TYPE EMPLOYEE_ROLE AS ENUM ('ADMIN', 'EMPLOYEE');</sql>
+        <sql>CREATE TYPE LEAVE_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED',
+            'NOT_APPROVED');
+        </sql>
+        <sql>CREATE TYPE ASSET_REQUEST_STATUS AS ENUM ('NEW', 'REQUESTED', 'IN_PROGRESS', 'ON_HOLD', 'APPROVED',
+            'NOT_APPROVED');
+        </sql>
+    </changeSet>
     <changeSet id="r.0.0.2" author="rshtepa">
         <createTable tableName="employee_position">
             <column name="id" type="INT8" autoIncrement="true">
@@ -19,17 +23,8 @@
             </column>
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
-        <createTable tableName="employee_location">
-            <column name="id" type="INT8">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="uuid" type="UUID">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="name" type="VARCHAR(250)"/>
-        </createTable>
         <createTable tableName="location">
-            <column name="id" type="INT8" autoIncrement= "true" startWith="3">
+            <column name="id" type="INT8" autoIncrement="true" startWith="3">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
@@ -49,7 +44,7 @@
             <column name="role" type="EMPLOYEE_ROLE"/>
             <column name="birthday" type="timestamptz"/>
             <column name="position_id" type="INT8">
-               <constraints foreignKeyName="fk_employee2position" references="employee_position(id)"/>
+                <constraints foreignKeyName="fk_employee2position" references="employee_position(id)"/>
             </column>
             <column name="location_id" type="INT8">
                 <constraints foreignKeyName="fk_employee2location" references="location(id)"/>
@@ -112,45 +107,39 @@
         </createTable>
     </changeSet>
     <changeSet id="r.0.0.3" author="rshtepa">
-    <sql>
-        insert into employee_position(id, uuid, name)
-        values
-        (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
-        (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
-        ;
+        <sql>
+            insert into employee_position(id, uuid, name)
+            values
+            (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
+            (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
+            ;
 
-        insert into employee_location(id, uuid, name)
-        values
-        (1, 'cabfb51b-41c5-4f4d-afd5-146c796391af', 'Lisbon'),
-        (2, '79761728-8f51-475f-aa04-42385a0dfe36', 'Madrid')
-        ;
+            insert into location(id, uuid, name)
+            values
+            (1, 'cabfb51b-41c5-4f4d-afd5-146c796391af', 'Lisbon'),
+            (2, '79761728-8f51-475f-aa04-42385a0dfe36', 'Madrid')
+            ;
+            insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
+            values
+            (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), 1, 1),
+            (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2395', 'Johny', 'Robins', 'ADMIN', now(), 2, 2);
 
-        insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
-        values
-                (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), 1, 1),
-                (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2395', 'Johny', 'Robins', 'ADMIN', now(), 2, 2);
+            insert into asset_type (id, uuid, title, icon)
+            values
+            (1, 'c0ba7c5f-b683-40c0-88cb-5a51912703cb', 'Laptops', 'https://google.com/laptops'),
+            (2, '6bd7fd52-1eb2-460e-8615-10e12376af4a', 'Monitors', 'https://google.com/monitors'),
+            (3, '5966cba4-811d-443f-b16b-807bd77e9e9d', 'Accessories', 'https://google.com/accessories');
 
-        insert into asset_type (id, uuid, title, icon)
-        values
-                (1, 'c0ba7c5f-b683-40c0-88cb-5a51912703cb', 'Laptops', 'https://google.com/laptops'),
-                (2, '6bd7fd52-1eb2-460e-8615-10e12376af4a', 'Monitors', 'https://google.com/monitors'),
-                (3, '5966cba4-811d-443f-b16b-807bd77e9e9d', 'Accessories', 'https://google.com/accessories');
-        
-        insert into asset (id, uuid, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date)
-        values
-                (1, '90890e18-f63f-4126-bfdc-3126a613bbd9', 'Macbook Pro 13', 'ABC', 1, 1, null, now()),
-                (2, '40876c02-a029-4863-8340-829e724915c1', 'Dell Latitude 15', 'ABC1', 1, 1, null, now()),
-                (3, '05742200-8d19-45d0-9d1c-74c9dc2c2958', 'Lenovo Laptop 14', 'ABC2', 1, 1, null, now()),
-                (4, '9b4e7363-161d-4fdd-a7b7-e3e69deea7c3', 'Dell Latitude 13', 'ABC3', 1, 2, null, now()),
-                (5, 'f7662058-a5ea-4113-a844-52687c2a806d', 'Dell Monitor 24', 'ABC5', 2, 2, null, now());
+            insert into asset (id, uuid, title, serial_number, asset_type_id, employee_id, archived_date,
+            purchased_date)
+            values
+            (1, '90890e18-f63f-4126-bfdc-3126a613bbd9', 'Macbook Pro 13', 'ABC', 1, 1, null, now()),
+            (2, '40876c02-a029-4863-8340-829e724915c1', 'Dell Latitude 15', 'ABC1', 1, 1, null, now()),
+            (3, '05742200-8d19-45d0-9d1c-74c9dc2c2958', 'Lenovo Laptop 14', 'ABC2', 1, 1, null, now()),
+            (4, '9b4e7363-161d-4fdd-a7b7-e3e69deea7c3', 'Dell Latitude 13', 'ABC3', 1, 2, null, now()),
+            (5, 'f7662058-a5ea-4113-a844-52687c2a806d', 'Dell Monitor 24', 'ABC5', 2, 2, null, now());
 
-        insert into employee_position(id, uuid, name)
-        values
-               (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
-               (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
-        ;
-
-    </sql>
+        </sql>
     </changeSet>
-    
+
 </databaseChangeLog>

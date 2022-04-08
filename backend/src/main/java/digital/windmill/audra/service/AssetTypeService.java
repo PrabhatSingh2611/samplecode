@@ -23,7 +23,7 @@ public class AssetTypeService {
         );
     }
 
-    public List<AssetTypeEntity> getAssetsType(){
+    public List<AssetTypeEntity> getAssetsType() {
         return assetTypeRepository.findAll();
     }
 

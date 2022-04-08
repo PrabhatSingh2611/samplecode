@@ -1,14 +1,13 @@
 package digital.windmill.audra;
 
-import digital.windmill.audra.graphql.type.LeaveRequest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import digital.windmill.audra.graphql.coersing.UUIDScalarCoercing;
 import digital.windmill.audra.graphql.coersing.ZonedDateTimeScalarCoercing;
 import digital.windmill.audra.graphql.type.Asset;
+import digital.windmill.audra.graphql.type.LeaveRequest;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {

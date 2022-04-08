@@ -2,8 +2,8 @@ package digital.windmill.audra.graphql.facade;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
-import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
@@ -42,8 +42,8 @@ public class LocationFacade {
 
     public Location updateLocation(UpdateLocationInput input) {
 
-      LocationEntity location =  locationService.findByUuid(input.getUuid());
-      location.setName(input.getName());
-        return locationMapper.map(locationService.updateLocation( location));
+        LocationEntity location = locationService.findByUuid(input.getUuid());
+        location.setName(input.getName());
+        return locationMapper.map(locationService.updateLocation(location));
     }
 }
