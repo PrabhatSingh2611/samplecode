@@ -28,6 +28,15 @@
             </column>
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
+        <createTable tableName="location">
+            <column name="id" type="INT8" autoIncrement= "true" startWith="3">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(250)"/>
+        </createTable>
         <createTable tableName="employee">
             <column name="id" type="INT8">
                 <constraints primaryKey="true"/>
@@ -43,7 +52,7 @@
                <constraints foreignKeyName="fk_employee2position" references="employee_position(id)"/>
             </column>
             <column name="location_id" type="INT8">
-                <constraints foreignKeyName="fk_employee2location" references="employee_location(id)"/>
+                <constraints foreignKeyName="fk_employee2location" references="location(id)"/>
             </column>
         </createTable>
         <createTable tableName="asset_type">
@@ -134,6 +143,13 @@
                 (3, '05742200-8d19-45d0-9d1c-74c9dc2c2958', 'Lenovo Laptop 14', 'ABC2', 1, 1, null, now()),
                 (4, '9b4e7363-161d-4fdd-a7b7-e3e69deea7c3', 'Dell Latitude 13', 'ABC3', 1, 2, null, now()),
                 (5, 'f7662058-a5ea-4113-a844-52687c2a806d', 'Dell Monitor 24', 'ABC5', 2, 2, null, now());
+
+        insert into employee_position(id, uuid, name)
+        values
+               (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
+               (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
+        ;
+
     </sql>
     </changeSet>
     

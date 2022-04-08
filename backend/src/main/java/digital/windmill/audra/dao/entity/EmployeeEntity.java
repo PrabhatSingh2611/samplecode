@@ -47,6 +47,6 @@ public class EmployeeEntity {
     private EmployeePositionEntity position;
     @OneToOne
     @JoinColumn(name = "location_id")
-    private EmployeeLocationEntity location;
+    private LocationEntity location;
 
 }

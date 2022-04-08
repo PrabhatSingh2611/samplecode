@@ -1,0 +1,7 @@
+mutation createLocation{
+    createLocation(input:{name: "pune"}){
+        location {
+            name
+        }
+    }
+}
