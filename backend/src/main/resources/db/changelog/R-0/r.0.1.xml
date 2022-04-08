@@ -38,7 +38,7 @@
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
         <createTable tableName="employee">
-            <column name="id" type="INT8">
+            <column name="id" type="INT8" autoIncrement="true" startWith="6">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
@@ -125,6 +125,11 @@
         (2, '79761728-8f51-475f-aa04-42385a0dfe36', 'Madrid')
         ;
 
+        insert into location(id, uuid, name)
+        values
+        (1, 'b7f46256-e21d-483b-be29-8bf7617bc3c3', 'london'),
+        (2, '9c6369ec-fd74-449f-8b68-83cae2df1aac', 'dubai');
+
         insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
         values
                 (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), 1, 1),
@@ -143,12 +148,6 @@
                 (3, '05742200-8d19-45d0-9d1c-74c9dc2c2958', 'Lenovo Laptop 14', 'ABC2', 1, 1, null, now()),
                 (4, '9b4e7363-161d-4fdd-a7b7-e3e69deea7c3', 'Dell Latitude 13', 'ABC3', 1, 2, null, now()),
                 (5, 'f7662058-a5ea-4113-a844-52687c2a806d', 'Dell Monitor 24', 'ABC5', 2, 2, null, now());
-
-        insert into employee_position(id, uuid, name)
-        values
-               (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
-               (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
-        ;
 
     </sql>
     </changeSet>

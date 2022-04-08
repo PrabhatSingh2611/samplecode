@@ -63,6 +63,17 @@ public class EmployeeIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldCreateEmployee() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/createEmployee.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/createEmployee.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
     }

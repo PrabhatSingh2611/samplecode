@@ -15,6 +15,19 @@ type EmployeeConnectionPayload implements ConnectionPayload {
 	totalItems: Int!
 }
 
+input CreateEmployeeInput {
+	firstName: String!
+	lastName: String!
+	birthday: ZonedDateTime
+	position: UUID
+	location: UUID
+}
+
+
+type EmployeePayload {
+	item: Employee
+}
+
 type EmployeePosition implements Node{
 	uuid: UUID!
 	name:String
