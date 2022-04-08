@@ -4,4 +4,7 @@ type Mutation {
 	updateEmployeePosition(input:UpdateEmployeePositionInput!):UpdateEmployeePositionPayload!
 	deleteEmployeePosition(input:DeleteEmployeePositionInput!):DeleteEmployeePositionPayload!
 	createAssetType (input:AssetTypeInput!): AssetTypePayload!
+	createLocation(input: CreateLocationInput!): LocationPayload!
+	updateLocation(input: UpdateLocationInput!): LocationPayload!
+
 }
