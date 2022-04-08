@@ -1,7 +1,7 @@
 package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeeLocationEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
@@ -54,8 +54,8 @@ public class EmployeeMapperTest {
 
     }
 
-    private EmployeeLocationEntity createLocationEntity() {
-        EmployeeLocationEntity e = new EmployeeLocationEntity();
+    private LocationEntity createLocationEntity() {
+        LocationEntity e = new LocationEntity();
         e.setId(1L);
         e.setName(NAME);
         return e;

@@ -2,7 +2,7 @@ package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeeLocationEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.AssetMapperImpl;
@@ -99,8 +99,8 @@ public class AssetMapperTest {
         return p;
     }
 
-    private EmployeeLocationEntity createLocation() {
-        EmployeeLocationEntity l = new EmployeeLocationEntity();
+    private LocationEntity createLocation() {
+        LocationEntity l = new LocationEntity();
         l.setId(1L);
         l.setName(NAME);
         return l;
