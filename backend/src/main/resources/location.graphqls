@@ -12,17 +12,9 @@ input CreateLocationInput{
     name: String!
 }
 
-type CreateLocationPayload{
-    location: Location!
-}
-
 input UpdateLocationInput{
     uuid:UUID!
     name:String!
-}
-type UpdateLocationPayload{
-    location: Location!
-
 }
 
 type LocationConnectionPayload implements ConnectionPayload {
