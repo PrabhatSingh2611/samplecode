@@ -45,6 +45,8 @@ public class EmployeeFacadeTest {
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String FIRST_NAME = "Firstname";
     private static final String LAST_NAME = "Lastname";
+    private static final Integer ITEM_PER_PAGE = 3;
+    private static final Integer PAGE_NUMBER = 2;
     private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "Admin";
     private static final String POSITION = "Position";
