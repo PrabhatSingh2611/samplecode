@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssetWhereInput {
-    private NodeInput employee;
-    private Boolean archived;
-    private NodeInput type;
+public class EmployeesInput {
+    private EmployeeWhereInput where;
+    private PageInput pagination;
 }

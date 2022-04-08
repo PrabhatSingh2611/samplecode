@@ -23,6 +23,9 @@
             <column name="id" type="INT8">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
         <createTable tableName="location">
@@ -110,10 +113,22 @@
     </changeSet>
     <changeSet id="r.0.0.3" author="rshtepa">
     <sql>
+        insert into employee_position(id, uuid, name)
+        values
+        (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
+        (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle')
+        ;
+
+        insert into employee_location(id, uuid, name)
+        values
+        (1, 'cabfb51b-41c5-4f4d-afd5-146c796391af', 'Lisbon'),
+        (2, '79761728-8f51-475f-aa04-42385a0dfe36', 'Madrid')
+        ;
+
         insert into employee (id, uuid, first_name, last_name, role, birthday, position_id, location_id)
         values
-                (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), null, null),
-                (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2395', 'Johny', 'Robins', 'ADMIN', now(), null, null);
+                (1, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns', 'ADMIN', now(), 1, 1),
+                (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2395', 'Johny', 'Robins', 'ADMIN', now(), 2, 2);
 
         insert into asset_type (id, uuid, title, icon)
         values

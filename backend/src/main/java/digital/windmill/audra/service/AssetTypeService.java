@@ -3,6 +3,7 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,9 @@ public class AssetTypeService {
     private AssetTypeRepository assetTypeRepository;
 
     public AssetTypeEntity findByUuid(UUID uuid) {
-        return assetTypeRepository.findByUuid(uuid).orElse(null);
+        return assetTypeRepository.findByUuid(uuid).orElseThrow(
+                () -> new DataNotFoundException("Asset type not found.")
+        );
     }
 
     public List<AssetTypeEntity> getAssetsType(){

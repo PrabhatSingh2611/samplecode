@@ -74,7 +74,8 @@ class AssetIt {
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnAllAssets() throws IOException, URISyntaxException {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssets.graphql");
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/getAssets.graphql");
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAssets.json");

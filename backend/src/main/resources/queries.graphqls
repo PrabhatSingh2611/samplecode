@@ -2,7 +2,7 @@ type Query {
     asset(input: AssetInput!): AssetPayload!
     assets(input: AssetsInput): AssetConnectionPayload!
     assetType(input: AssetTypeInput!): AssetTypePayload!
-    employees: EmployeeConnectionPayload
+    employees(input: EmployeesInput): EmployeeConnectionPayload!
     assetTypes: AssetTypeConnection!
     location(input: LocationInput!): LocationPayload!
     locations: LocationConnectionPayload!
