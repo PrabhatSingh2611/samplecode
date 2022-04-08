@@ -13,7 +13,7 @@ public class Employee implements Node {
     private String lastName;
     private String role;
     private ZonedDateTime birthday;
-    private String position;
+    private EmployeePosition position;
     private String location;
 
 }
