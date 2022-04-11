@@ -2,14 +2,15 @@ package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeeLocationEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.AssetMapperImpl;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,7 +39,7 @@ public class AssetMapperTest {
     private static final String ASSET_TITLE = "Asset title";
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
     private static final String NAME = "Name";
-    private static final String POSITION = "Position";
+    private static final EmployeePosition POSITION = new EmployeePosition();
     private static final String LOCATION = "Location";
     private static final String ROLE = "Admin";
     private final static Instant LOCAL_DATE = Instant.now();
@@ -99,8 +100,8 @@ public class AssetMapperTest {
         return p;
     }
 
-    private EmployeeLocationEntity createLocation() {
-        EmployeeLocationEntity l = new EmployeeLocationEntity();
+    private LocationEntity createLocation() {
+        LocationEntity l = new LocationEntity();
         l.setId(1L);
         l.setName(NAME);
         return l;

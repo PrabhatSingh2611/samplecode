@@ -6,6 +6,7 @@ import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
@@ -49,7 +50,7 @@ public class EmployeeFacadeTest {
     private static final Integer PAGE_NUMBER = 2;
     private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "Admin";
-    private static final String POSITION = "Position";
+    private static final EmployeePosition POSITION = new EmployeePosition();
     private static final String LOCATION = "Location";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
@@ -66,10 +67,10 @@ public class EmployeeFacadeTest {
         var result = facade.findAssetByUuid(TEST_UUID);
 
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID,result.getUuid());
-        Assertions.assertEquals(FIRST_NAME,result.getFirstName());
-        Assertions.assertEquals(LAST_NAME,result.getLastName());
-        Assertions.assertEquals(LOCATION,result.getLocation());
+        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        Assertions.assertEquals(FIRST_NAME, result.getFirstName());
+        Assertions.assertEquals(LAST_NAME, result.getLastName());
+        Assertions.assertEquals(LOCATION, result.getLocation());
     }
 
     private Employee createEmployee() {

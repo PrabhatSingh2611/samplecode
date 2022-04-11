@@ -14,15 +14,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "employee")
 public class EmployeeEntity {
 
