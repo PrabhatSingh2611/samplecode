@@ -1,3 +1,8 @@
+insert into location(id, uuid, name)
+values
+(1, 'b7f46256-e21d-483b-be29-8bf7617bc3c3', 'london'),
+(2, '9c6369ec-fd74-449f-8b68-83cae2df1aac', 'dubai');
+
 INSERT INTO employee(id, uuid, first_name, last_name, role, birthday)
 VALUES
 (1, '48b560ab-7450-4088-b6bb-f57638ea0877', 'Jacob', 'Morris', 'ADMIN', '2022-03-23T19:37:14.480425Z'),
@@ -23,7 +28,3 @@ VALUES
 (7, 'edcfd952-4f1b-4f78-b4ac-f5705b703f33', 'Meze Neo', 'XJSK67HJ897', 3, 5, null, '2022-03-23T13:27:14.480425Z'),
 (8, 'b1b6aaeb-252b-4324-9166-10c42635572d', 'DUNU Titan 1', '83837363', 3, 3, '2022-02-02T13:25:34.480425Z', '2022-01-27T08:12:24.480425Z');
 
-insert into location(id, uuid, name)
-values
-               (1, 'b7f46256-e21d-483b-be29-8bf7617bc3c3', 'london'),
-               (2, '9c6369ec-fd74-449f-8b68-83cae2df1aac', 'dubai');
