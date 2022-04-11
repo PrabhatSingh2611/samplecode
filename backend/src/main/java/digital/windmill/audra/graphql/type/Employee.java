@@ -20,7 +20,7 @@ public class Employee implements Node {
     private String lastName;
     private String role;
     private ZonedDateTime birthday;
-    private String reportingManager;
+    private Employee reportingManager;
     private String position;
     private String location;
 

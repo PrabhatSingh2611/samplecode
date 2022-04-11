@@ -13,7 +13,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class})
 public interface EmployeeMapper {
 
-    @Mapping(target="reportingManager", source = "reportingManager.firstName")
+    @Mapping(target="reportingManager.reportingManager",ignore = true)
     Employee map(EmployeeEntity entity);
     
     default String map(EmployeePositionEntity position) {

@@ -6,7 +6,9 @@ query getEmployees($input: EmployeesInput) {
             lastName
             role
             birthday
-            reportingManager
+            reportingManager{
+                firstName
+            }
             position
             location
         }
