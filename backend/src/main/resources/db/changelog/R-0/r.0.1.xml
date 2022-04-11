@@ -54,7 +54,7 @@
             </column>
         </createTable>
         <createTable tableName="asset_type">
-            <column name="id" type="INT8">
+            <column name="id" type="INT8" autoIncrement= "true" startWith="4">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">

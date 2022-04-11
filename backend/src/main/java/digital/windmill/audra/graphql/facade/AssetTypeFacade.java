@@ -24,8 +24,7 @@ public class AssetTypeFacade {
         return assetTypeMapper.map(assetTypeService.findByUuid(uuid));
     }
 
-    @Transactional(readOnly = true)
-    public AssetType createAssetType(AssetTypeInput assetTypeInput) {
+    public AssetType createAssetType(AssetTypeInput assetTypeInput){
         return assetTypeMapper.map(assetTypeService.createAssetType(assetTypeInput));
     }
 
