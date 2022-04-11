@@ -37,9 +37,6 @@ public class EmployeeFacadeTest {
     @Mock
     private EmployeeMapper employeeMapper;
 
-    @Mock
-    private EmployeeRepository employeeRepository;
-
     @InjectMocks
     private EmployeeFacade facade;
 

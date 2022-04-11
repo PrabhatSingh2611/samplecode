@@ -26,6 +26,7 @@ import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employee")
+
 public class EmployeeEntity {
 
     @Id
