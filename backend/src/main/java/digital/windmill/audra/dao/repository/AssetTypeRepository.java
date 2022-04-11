@@ -15,7 +15,5 @@ public interface AssetTypeRepository extends JpaRepository<AssetTypeEntity, Long
 
     @Query("SELECT a FROM AssetTypeEntity a WHERE a.uuid = :uuid")
     Optional<AssetTypeEntity> findByUuid(@Param("uuid") UUID uuid);
-
-    @Query("SELECT a FROM AssetTypeEntity a WHERE a.title = :title")
-    Optional<AssetTypeEntity> findByTitle(@Param("title") AssetTypeEntity assetTypeEntity);
+    
 }
