@@ -1,10 +1,9 @@
 {
   "data": {
     "createEmployeePosition": {
-      "item":
-        {
-          "name": "HR"
-        }
+      "item": {
+        "name": "HR"
+      }
     }
   }
 }

@@ -1,8 +1,8 @@
 package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.type.Employee;

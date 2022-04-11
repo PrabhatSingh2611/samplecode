@@ -56,7 +56,7 @@ public class EmployeePositionIt {
     void shouldCreateEmployeePosition() throws IOException, URISyntaxException {
         ObjectNode variables = objectMapper.createObjectNode();
         GraphQLResponse response = graphQLTestTemplate
-                                   .postForResource("graphql/request/createEmployeePosition.graphql");
+                .postForResource("graphql/request/createEmployeePosition.graphql");
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/createEmployeePosition.json");

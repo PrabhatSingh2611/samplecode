@@ -2,14 +2,15 @@ package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.AssetMapperImpl;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.Location;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -39,14 +40,13 @@ public class AssetMapperTest {
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
     private static final String NAME = "Name";
     private static final String POSITION = "Position";
-    private static final String LOCATION = "Location";
     private static final String ROLE = "Admin";
     private final static Instant LOCAL_DATE = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
 
     @Test
-    //TODO: map dates and employee
+        //TODO: map dates and employee
     void shouldMap() {
         Asset actual = mapper.map(createAssetEntity());
         assertAll(
@@ -62,10 +62,13 @@ public class AssetMapperTest {
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
-                .position(POSITION)
-                .location(LOCATION)
+                .location(createLocation())
                 .role(ROLE)
                 .build();
+    }
+
+    private Location createLocation() {
+        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 
     private AssetEntity createAssetEntity() {
@@ -87,19 +90,19 @@ public class AssetMapperTest {
         e.setLastName(NAME);
         e.setUuid(TEST_UUID);
         e.setRole(EmployeeRole.EMPLOYEE);
-        e.setLocation(createLocation());
-        e.setPosition(createPosition());
+        e.setLocation(createLocationEntity());
+        e.setPosition(createPositionEntity());
         return e;
     }
 
-    private EmployeePositionEntity createPosition() {
+    private EmployeePositionEntity createPositionEntity() {
         EmployeePositionEntity p = new EmployeePositionEntity();
         p.setId(1L);
         p.setName(NAME);
         return p;
     }
 
-    private LocationEntity createLocation() {
+    private LocationEntity createLocationEntity() {
         LocationEntity l = new LocationEntity();
         l.setId(1L);
         l.setName(NAME);
