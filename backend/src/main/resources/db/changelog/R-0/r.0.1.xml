@@ -43,6 +43,9 @@
             <column name="last_name" type="VARCHAR(100)"/>
             <column name="role" type="EMPLOYEE_ROLE"/>
             <column name="birthday" type="timestamptz"/>
+            <column name="manager_id" type="INT8">
+                <constraints foreignKeyName="fk_employee2manager" references="employee(id)" nullable="true"/>
+            </column>
             <column name="position_id" type="INT8">
                 <constraints foreignKeyName="fk_employee2position" references="employee_position(id)"/>
             </column>

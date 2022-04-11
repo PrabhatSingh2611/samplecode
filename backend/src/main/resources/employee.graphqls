@@ -1,11 +1,12 @@
 type Employee implements Node {
-    uuid: UUID!
-    firstName: String
-    lastName: String
-    role: String
-    birthday: ZonedDateTime
-    position: String
-    location: String
+	uuid: UUID!
+	firstName: String
+	lastName: String
+	role: String
+	birthday: ZonedDateTime
+	reportingManager:Employee
+	position: String
+	location: String
 }
 
 
