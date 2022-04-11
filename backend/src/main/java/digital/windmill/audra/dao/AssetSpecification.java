@@ -1,8 +1,8 @@
 package digital.windmill.audra.dao;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
 import org.apache.commons.lang3.tuple.Pair;
@@ -24,7 +24,7 @@ public class AssetSpecification {
         var pageNumber = Optional.ofNullable(input).map(AssetsInput::getPage).map(PageInput::getPageNumber).orElse(0);
 
         var spec = Specification.where(
-                byArchived(archived))
+                        byArchived(archived))
                 .and(byEmployee(employee))
                 .and(byType(type));
 

@@ -31,7 +31,7 @@ public class EmployeePositionMutationResolver implements GraphQLMutationResolver
                 .build();
     }
 
-    public DeleteEmployeePositionPayload deleteEmployeePosition(DeleteEmployeePositionInput input){
+    public DeleteEmployeePositionPayload deleteEmployeePosition(DeleteEmployeePositionInput input) {
         return DeleteEmployeePositionPayload
                 .builder()
                 .employeePosition(employeePositionFacade.deleteEmployeePosition(input))

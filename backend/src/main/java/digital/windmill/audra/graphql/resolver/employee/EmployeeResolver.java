@@ -5,10 +5,9 @@ import digital.windmill.audra.graphql.type.ConnectionPayload;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.graphql.utils.ConnectionUtils;
-import org.springframework.stereotype.Component;
-
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor

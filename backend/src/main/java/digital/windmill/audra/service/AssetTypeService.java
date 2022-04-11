@@ -23,7 +23,7 @@ public class AssetTypeService {
                 () -> new DataNotFoundException("Asset Type not found"));
     }
 
-    public List<AssetTypeEntity> getAssetsType(){
+    public List<AssetTypeEntity> getAssetsType() {
         return assetTypeRepository.findAll();
     }
 

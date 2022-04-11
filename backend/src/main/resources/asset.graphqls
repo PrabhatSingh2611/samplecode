@@ -4,51 +4,51 @@ input AssetsInput {
 }
 
 input AssetWhereInput {
-	employee: NodeInput
-	archived: Boolean # asset.archivedDate is not null - TRUE
-	type: NodeInput
+    employee: NodeInput
+    archived: Boolean # asset.archivedDate is not null - TRUE
+    type: NodeInput
 }
 
 input AssetInput {
-	uuid: UUID!
+    uuid: UUID!
 }
 
 type AssetPayload{
-	item: Asset
+    item: Asset
 }
 
 type AssetConnectionPayload implements ConnectionPayload {
     items: [Asset!]!
     pageInfo: PageInfo!
-	totalItems: Int!
+    totalItems: Int!
 }
 
 type Asset implements Node {
-	uuid: UUID!
-	title: String
-	serial: String
-	type: AssetType
-	employee: Employee
-	archivedDate: ZonedDateTime
-	purchasedDate: ZonedDateTime
+    uuid: UUID!
+    title: String
+    serial: String
+    type: AssetType
+    employee: Employee
+    archivedDate: ZonedDateTime
+    purchasedDate: ZonedDateTime
 }
 
 type AssetType implements Node {
-	uuid: UUID!
-	title: String
-	icon: String
+    uuid: UUID!
+    title: String
+    icon: String
 }
 
 type AssetTypeConnection implements ConnectionPayload{
-	items: [AssetType!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+    items: [AssetType!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
 }
 input AssetTypeInput {
-	uuid:UUID
+	uuid:UUID!
 	title:String!
 }
 
 type AssetTypePayload{
-	item: AssetType
+    item: AssetType
 }
