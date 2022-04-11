@@ -5,6 +5,5 @@
 package digital.windmill.audra.dao.entity;
 
 
-import org.hibernate.annotations.TypeDef;
-
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
+import org.hibernate.annotations.TypeDef;

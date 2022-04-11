@@ -12,8 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long>, JpaSpecificationExecutor<EmployeeEntity>
-{
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long>, JpaSpecificationExecutor<EmployeeEntity> {
 
     @Query("SELECT a FROM EmployeeEntity a WHERE a.uuid = :uuid")
     Optional<EmployeeEntity> findByUuid(@Param("uuid") UUID uuid);

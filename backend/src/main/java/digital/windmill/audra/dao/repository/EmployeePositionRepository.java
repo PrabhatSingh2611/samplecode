@@ -1,6 +1,5 @@
 package digital.windmill.audra.dao.repository;
 
-import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

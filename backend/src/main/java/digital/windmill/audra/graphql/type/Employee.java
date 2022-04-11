@@ -1,12 +1,12 @@
 package digital.windmill.audra.graphql.type;
 
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
@@ -21,6 +21,6 @@ public class Employee implements Node {
     private ZonedDateTime birthday;
     private Employee reportingManager;
     private String position;
-    private String location;
+    private Location location;
 
 }

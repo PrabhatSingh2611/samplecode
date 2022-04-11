@@ -11,21 +11,21 @@ import org.springframework.stereotype.Component;
 public class EmployeePositionService {
     private EmployeePositionRepository repo;
 
-    public EmployeePositionEntity createEmployeePosition(EmployeePositionEntity employeePosition){
+    public EmployeePositionEntity createEmployeePosition(EmployeePositionEntity employeePosition) {
         return repo.save(employeePosition);
     }
 
-    public EmployeePositionEntity updateEmployeePosition(EmployeePosition employeePosition){
+    public EmployeePositionEntity updateEmployeePosition(EmployeePosition employeePosition) {
         EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
-                                             .orElse(null);
+                .orElse(null);
         entity.setName(employeePosition.getName());
         return repo.save(entity);
     }
 
-    public EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition){
+    public EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition) {
         EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
                 .orElse(null);
-         repo.delete(entity);
-         return entity;
+        repo.delete(entity);
+        return entity;
     }
 }

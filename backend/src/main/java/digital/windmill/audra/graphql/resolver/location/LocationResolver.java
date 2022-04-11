@@ -27,10 +27,10 @@ public class LocationResolver implements GraphQLQueryResolver {
         return LocationPayload
                 .builder()
                 .location(locationFacade.findLocationByUuid(input.getUuid()))
-                        .build();
+                .build();
     }
 
-    public LocationConnectionPayload locations(){
+    public LocationConnectionPayload locations() {
         return LocationConnectionPayload.builder()
                 .items(locationFacade.findAllLocation())
                 .build();

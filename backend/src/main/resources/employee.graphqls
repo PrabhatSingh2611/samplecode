@@ -11,17 +11,17 @@ type Employee implements Node {
 
 
 type EmployeeConnectionPayload implements ConnectionPayload {
-	items: [Employee!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+    items: [Employee!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
 }
 
 type EmployeePosition implements Node{
-	uuid: UUID!
-	name:String
+    uuid: UUID!
+    name:String
 }
 input DeleteEmployeePositionInput{
-	uuid:UUID!
+    uuid:UUID!
 }
 
 input CreateEmployeePositionInput{
@@ -29,29 +29,29 @@ input CreateEmployeePositionInput{
 }
 
 input UpdateEmployeePositionInput{
-	uuid:UUID!
-	name:String!
+    uuid:UUID!
+    name:String!
 }
 
 type CreateEmployeePositionPayload{
-	item:EmployeePosition
+    item:EmployeePosition
 }
 
 type UpdateEmployeePositionPayload{
-	item:EmployeePosition
+    item:EmployeePosition
 }
 
 
 type DeleteEmployeePositionPayload{
-	employeePosition: Node!
+    employeePosition: Node!
 }
 
 input EmployeesInput {
-	where: EmployeeWhereInput
-	pagination: PageInput
+    where: EmployeeWhereInput
+    pagination: PageInput
 }
 
 input EmployeeWhereInput {
-	location: NodeInput
+    location: NodeInput
 }
 
