@@ -3,17 +3,9 @@ package digital.windmill.audra.dao.entity;
 import java.time.Instant;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
@@ -42,6 +34,9 @@ public class EmployeeEntity {
     private EmployeeRole role;
     @Column(name = "birthday")
     private Instant birthday;
+    @ManyToOne
+    @JoinColumn(name = "manager")
+    private EmployeeEntity reportingManager;
     @OneToOne
     @JoinColumn(name = "position_id")
     private EmployeePositionEntity position;

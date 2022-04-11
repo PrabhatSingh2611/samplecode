@@ -8,6 +8,7 @@
             "lastName": "Morris",
             "role": "ADMIN",
             "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+            "reportingManager": "Edmund",
             "position": null,
             "location": null
           },
@@ -17,6 +18,7 @@
           "lastName":"Hogan",
           "role":"EMPLOYEE",
           "birthday":"2022-02-28T12:03:00.480425Z[UTC]",
+          "reportingManager": "Jacob",
           "position": null,
           "location": null
         },
@@ -26,6 +28,7 @@
             "lastName": "Norman",
             "role": "EMPLOYEE",
             "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "reportingManager": "Jacob",
             "position": null,
             "location": null
         },
@@ -35,6 +38,7 @@
             "lastName": "Kelly",
             "role": "ADMIN",
             "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
+            "reportingManager": "Edmund",
             "position": null,
             "location": null
         },
@@ -44,6 +48,7 @@
             "lastName": "Luna",
             "role": "EMPLOYEE",
             "birthday": "2022-03-15T22:11:15.480425Z[UTC]",
+            "reportingManager": "Edmund",
             "position": null,
             "location": null
           }

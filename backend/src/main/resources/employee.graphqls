@@ -4,6 +4,7 @@ type Employee implements Node {
 	lastName: String
 	role: String
 	birthday: ZonedDateTime
+	reportingManager:String
 	position: String
 	location: String
 }
