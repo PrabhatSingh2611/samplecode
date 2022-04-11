@@ -45,7 +45,8 @@ type AssetTypeConnection implements ConnectionPayload{
 	totalItems: Int!
 }
 input AssetTypeInput {
-	uuid: UUID!
+	uuid:UUID
+	title:String!
 }
 
 type AssetTypePayload{

@@ -1,9 +1,9 @@
 type Mutation {
 	testMutation(uuid: UUID!): Asset # playground to test
-	createEmployeePosition(input:CreateEmployeePositionInput!):CreateEmployeePositionPayload!
-	updateEmployeePosition(input:UpdateEmployeePositionInput!):UpdateEmployeePositionPayload!
+	createEmployeePosition(input:CreateEmployeePositionInput!):EmployeePositionPayload!
+	updateEmployeePosition(input:UpdateEmployeePositionInput!):EmployeePositionPayload!
 	deleteEmployeePosition(input:DeleteEmployeePositionInput!):DeleteEmployeePositionPayload!
-	createAssetType (input:AssetTypeInput!): AssetTypePayload!
+	createAssetType(input:AssetTypeInput!): AssetTypePayload!
 	createLocation(input: CreateLocationInput!): LocationPayload!
 	updateLocation(input: UpdateLocationInput!): LocationPayload!
 

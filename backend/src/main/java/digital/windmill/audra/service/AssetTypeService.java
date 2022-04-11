@@ -18,9 +18,7 @@ public class AssetTypeService {
     private AssetTypeRepository assetTypeRepository;
 
     public AssetTypeEntity findByUuid(UUID uuid) {
-        return assetTypeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Asset type not found.")
-        );
+        return assetTypeRepository.findByUuid(uuid).orElse(null);
     }
 
     public List<AssetTypeEntity> getAssetsType(){
@@ -31,6 +29,7 @@ public class AssetTypeService {
         return assetTypeRepository.save(AssetTypeEntity
                 .builder()
                 .uuid(UUID.randomUUID())
+                .title(input.getTitle())
                 .build());
     }
 

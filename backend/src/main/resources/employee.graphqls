@@ -32,14 +32,9 @@ input UpdateEmployeePositionInput{
 	name:String!
 }
 
-type CreateEmployeePositionPayload{
+type EmployeePositionPayload{
 	item:EmployeePosition
 }
-
-type UpdateEmployeePositionPayload{
-	item:EmployeePosition
-}
-
 
 type DeleteEmployeePositionPayload{
 	employeePosition: Node!
