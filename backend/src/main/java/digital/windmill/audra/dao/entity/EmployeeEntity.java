@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;

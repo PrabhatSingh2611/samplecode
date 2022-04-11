@@ -3,7 +3,6 @@ package digital.windmill.audra.graphql.type;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
