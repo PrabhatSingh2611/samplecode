@@ -1,0 +1,12 @@
+{
+  "data": {
+    "createEmployee": {
+      "item":
+      {
+        "firstName": "lox",
+        "lastName": "carry",
+        "position": "manager"
+      }
+    }
+  }
+}

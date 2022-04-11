@@ -22,5 +22,6 @@ type PageInfo {
     totalPages: Int!
 }
 
+
 scalar UUID
 scalar ZonedDateTime

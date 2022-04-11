@@ -7,20 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "employee_location")
-public class EmployeeLocationEntity {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "location")
+public class LocationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
+    @Column(name = "uuid")
+    private UUID uuid;
     @Column(name = "name")
     private String name;
 
