@@ -19,8 +19,4 @@ public interface EmployeeMapper {
         return Optional.ofNullable(position).map(EmployeePositionEntity::getName).orElse(null);
     }
 
-    default String map(LocationEntity position) {
-        return Optional.ofNullable(position).map(LocationEntity::getName).orElse(null);
-    }
-
 }
