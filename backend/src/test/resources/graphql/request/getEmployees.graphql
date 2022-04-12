@@ -6,6 +6,9 @@ query getEmployees($input: EmployeesInput) {
             lastName
             role
             birthday
+            reportingManager{
+                firstName
+            }
             position
             location
         }
@@ -14,5 +17,5 @@ query getEmployees($input: EmployeesInput) {
             totalPages
         }
         totalItems
-        }
+    }
 }

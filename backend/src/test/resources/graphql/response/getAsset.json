@@ -1,26 +1,25 @@
 {
   "data": {
     "asset": {
-      "item":
-        {
-          "uuid": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
-          "title": "Macbook Pro 13",
-          "serial": null,
-          "type": {
-            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
-          },
-          "employee": {
-            "uuid": "48b560ab-7450-4088-b6bb-f57638ea0877",
-            "firstName": "Jacob",
-            "lastName": "Morris",
-            "role": "ADMIN",
-            "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
-            "position": null,
-            "location": null
-          }
+      "item": {
+        "uuid": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
+        "title": "Macbook Pro 13",
+        "serial": null,
+        "type": {
+          "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+          "title": "Laptops",
+          "icon": "https://google.com/laptops"
+        },
+        "employee": {
+          "uuid": "48b560ab-7450-4088-b6bb-f57638ea0877",
+          "firstName": "Jacob",
+          "lastName": "Morris",
+          "role": "ADMIN",
+          "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+          "position": null,
+          "location": null
         }
+      }
     }
   }
 }

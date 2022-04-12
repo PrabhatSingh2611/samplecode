@@ -5,6 +5,7 @@ import graphql.schema.Coercing;
 import graphql.schema.CoercingParseLiteralException;
 import graphql.schema.CoercingParseValueException;
 import graphql.schema.CoercingSerializeException;
+
 import java.util.UUID;
 
 public class UUIDScalarCoercing implements Coercing<UUID, String> {

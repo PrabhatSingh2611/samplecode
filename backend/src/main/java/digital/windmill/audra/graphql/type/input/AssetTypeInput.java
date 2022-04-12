@@ -14,4 +14,5 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AssetTypeInput implements Node {
     private UUID uuid;
+    private String title;
 }

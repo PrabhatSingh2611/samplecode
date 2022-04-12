@@ -1,8 +1,7 @@
 package digital.windmill.audra.dao.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import digital.windmill.audra.dao.entity.AssetEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

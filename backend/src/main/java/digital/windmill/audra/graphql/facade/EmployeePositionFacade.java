@@ -19,33 +19,33 @@ public class EmployeePositionFacade {
     private EmployeePositionService employeePositionService;
     private EmployeePositionMapper employeePositionMapper;
 
-   public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input){
-       return employeePositionMapper
-               .map(employeePositionService
-                       .createEmployeePosition(EmployeePositionEntity
-                               .builder()
-                               .uuid(UUID.randomUUID())
-                               .name(input.getName())
-                               .build()));
-   }
+    public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
+        return employeePositionMapper
+                .map(employeePositionService
+                        .createEmployeePosition(EmployeePositionEntity
+                                .builder()
+                                .uuid(UUID.randomUUID())
+                                .name(input.getName())
+                                .build()));
+    }
 
-   public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input){
-       return employeePositionMapper
-               .map(employeePositionService
-                       .updateEmployeePosition(EmployeePosition
-                               .builder()
-                               .uuid(input.getUuid())
-                               .name(input.getName())
-                               .build()));
-   }
+    public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input) {
+        return employeePositionMapper
+                .map(employeePositionService
+                        .updateEmployeePosition(EmployeePosition
+                                .builder()
+                                .uuid(input.getUuid())
+                                .name(input.getName())
+                                .build()));
+    }
 
-   public EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input){
-       return employeePositionMapper
-               .map(employeePositionService
-                       .deleteEmployeePosition(EmployeePosition
-                               .builder()
-                               .uuid(input.getUuid())
-                               .build()));
-   }
+    public EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input) {
+        return employeePositionMapper
+                .map(employeePositionService
+                        .deleteEmployeePosition(EmployeePosition
+                                .builder()
+                                .uuid(input.getUuid())
+                                .build()));
+    }
 
 }

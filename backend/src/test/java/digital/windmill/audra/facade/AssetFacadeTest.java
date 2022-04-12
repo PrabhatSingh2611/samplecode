@@ -7,6 +7,7 @@ import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.service.AssetService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -77,8 +78,7 @@ public class AssetFacadeTest {
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
-                .position(POSITION)
-                .location(LOCATION)
+                .location(createLocation())
                 .role(ROLE)
                 .build();
     }
@@ -100,5 +100,9 @@ public class AssetFacadeTest {
         a.setArchivedDate(LOCAL_DATE);
         a.setPurchasedDate(LOCAL_DATE);
         return a;
+    }
+
+    private Location createLocation() {
+        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 }

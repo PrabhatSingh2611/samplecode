@@ -1,0 +1,7 @@
+mutation createAssetType {
+    createAssetType(input: {title: "Table"}) {
+        item {
+            title
+        }
+    }
+}

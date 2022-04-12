@@ -16,13 +16,13 @@ public class LocationMutationResolver implements GraphQLMutationResolver {
     private LocationFacade locationFacade;
 
     public LocationPayload createLocation(CreateLocationInput input) {
-      return LocationPayload
-              .builder()
-              .location(locationFacade.createLocation(input))
-              .build();
+        return LocationPayload
+                .builder()
+                .location(locationFacade.createLocation(input))
+                .build();
     }
 
-    public LocationPayload updateLocation(UpdateLocationInput input){
+    public LocationPayload updateLocation(UpdateLocationInput input) {
         return LocationPayload
                 .builder()
                 .location(locationFacade.updateLocation(input))

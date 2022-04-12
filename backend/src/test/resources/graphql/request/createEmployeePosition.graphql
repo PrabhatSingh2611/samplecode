@@ -1,7 +1,7 @@
 mutation createEmployeePosition{
-   createEmployeePosition(input:{name: "HR"}){
-       item {
-           name
-       }
-   }
+    createEmployeePosition(input:{name: "HR"}){
+        item {
+            name
+        }
+    }
 }

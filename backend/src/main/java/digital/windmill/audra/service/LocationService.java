@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LocationService {
 
-    private  LocationRepository locationRepository;
+    private LocationRepository locationRepository;
 
     public LocationEntity findByUuid(UUID uuid) {
         return locationRepository.findByUuid(uuid).orElse(null);

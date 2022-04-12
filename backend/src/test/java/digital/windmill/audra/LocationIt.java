@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import lombok.extern.slf4j.Slf4j;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -75,6 +74,7 @@ public class LocationIt {
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
+
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldCreateLocation() throws IOException, URISyntaxException {
@@ -96,6 +96,7 @@ public class LocationIt {
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
+
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
     }
