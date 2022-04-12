@@ -6,6 +6,7 @@ import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.service.EmployeeService;
 import org.junit.jupiter.api.Assertions;
@@ -80,10 +81,6 @@ public class EmployeeFacadeTest {
         when(employeeService.findAll(any(EmployeesInput.class)))
                 .thenReturn(createListOfEmployeeEntity());
 
-        when(employeeMapper.map(any(EmployeeEntity.class)))
-                .thenReturn(createEmployee());
-
-
         var result = facade.getEmployees(employeesInput);
 
         assertNotNull(result);
@@ -109,8 +106,7 @@ public class EmployeeFacadeTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(FIRST_NAME, result.getFirstName());
         assertEquals(LAST_NAME, result.getLastName());
-        assertEquals(LOCATION, result.getLocation());
-        assertEquals(POSITION, result.getPosition());
+        assertEquals(null, result.getPosition());
         assertEquals(DATE_TIME, result.getBirthday());
     }
 

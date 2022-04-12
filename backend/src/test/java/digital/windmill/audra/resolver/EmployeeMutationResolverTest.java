@@ -3,6 +3,7 @@ package digital.windmill.audra.resolver;
 import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.resolver.employee.EmployeeMutationResolver;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,7 +68,11 @@ class EmployeeMutationResolverTest {
                 .role(ROLE)
                 .birthday(DATE_TIME)
                 .position(POSITION)
-                .location(LOCATION)
+                .location(createLocation())
                 .build();
+    }
+
+    private Location createLocation() {
+        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 }
