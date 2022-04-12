@@ -11,6 +11,7 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

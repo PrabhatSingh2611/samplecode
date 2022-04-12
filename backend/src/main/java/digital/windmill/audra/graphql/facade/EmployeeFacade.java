@@ -1,7 +1,9 @@
 package digital.windmill.audra.graphql.facade;
 
+import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -27,5 +29,12 @@ public class EmployeeFacade {
     public Page<Employee> getEmployees(EmployeesInput input) {
         return employeeService.findAll(input)
                 .map(employeeMapper::map);
+    }
+
+    public Employee createEmployee(CreateEmployeeInput input) {
+        Employee employee = employeeMapper
+                .map(employeeService
+                        .createEmployee(input));
+        return employee;
     }
 }

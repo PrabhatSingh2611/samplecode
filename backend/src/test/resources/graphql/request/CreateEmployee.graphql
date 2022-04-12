@@ -1,0 +1,10 @@
+mutation createEmployee{
+    createEmployee(input: {firstName: "lox",lastName: "carry",position: "cabfb51b-41c5-4f4d-afd5-146c796391ad"})
+    {
+        item {
+            firstName
+            lastName
+            position
+        }
+    }
+}

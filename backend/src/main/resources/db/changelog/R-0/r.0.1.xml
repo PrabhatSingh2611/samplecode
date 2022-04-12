@@ -33,7 +33,7 @@
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
         <createTable tableName="employee">
-            <column name="id" type="INT8">
+            <column name="id" type="INT8" autoIncrement="true" startWith="6">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">

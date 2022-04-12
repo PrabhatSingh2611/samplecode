@@ -17,7 +17,7 @@ public class EmployeePositionService {
 
     public EmployeePositionEntity updateEmployeePosition(EmployeePosition employeePosition) {
         EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
-                .orElse(null);
+                .orElseThrow(() -> new DataNotFoundException("Employee Position not found"));
         entity.setName(employeePosition.getName());
         return repo.save(entity);
     }
