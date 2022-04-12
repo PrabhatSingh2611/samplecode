@@ -2,6 +2,7 @@ package digital.windmill.audra.service;
 
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
@@ -19,18 +20,18 @@ public class AssetTypeService {
 
     public AssetTypeEntity findByUuid(UUID uuid) {
         return assetTypeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Asset type not found.")
-        );
+                () -> new DataNotFoundException("Asset Type not found"));
     }
 
-    public List<AssetTypeEntity> getAssetsType(){
+    public List<AssetTypeEntity> getAssetsType() {
         return assetTypeRepository.findAll();
     }
 
-    public AssetTypeEntity createAssetType(AssetTypeInput input) {
+        public AssetTypeEntity createAssetType(AssetTypeInput input) {
         return assetTypeRepository.save(AssetTypeEntity
                 .builder()
                 .uuid(UUID.randomUUID())
+                .title(input.getTitle())
                 .build());
     }
 

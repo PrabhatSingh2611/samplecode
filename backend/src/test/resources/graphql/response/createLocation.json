@@ -1,10 +1,9 @@
 {
   "data": {
     "createLocation": {
-      "location":
-        {
-          "name": "pune"
-          }
+      "location": {
+        "name": "pune"
+      }
     }
   }
 }

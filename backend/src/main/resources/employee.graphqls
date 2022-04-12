@@ -4,15 +4,16 @@ type Employee implements Node {
 	lastName: String
 	role: String
 	birthday: ZonedDateTime
+	reportingManager:Employee
 	position: String
 	location: String
 }
 
 
 type EmployeeConnectionPayload implements ConnectionPayload {
-	items: [Employee!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+    items: [Employee!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
 }
 
 input CreateEmployeeInput {
@@ -29,11 +30,11 @@ type EmployeePayload {
 }
 
 type EmployeePosition implements Node{
-	uuid: UUID!
-	name:String
+    uuid: UUID!
+    name:String
 }
 input DeleteEmployeePositionInput{
-	uuid:UUID!
+    uuid:UUID!
 }
 
 input CreateEmployeePositionInput{
@@ -41,29 +42,24 @@ input CreateEmployeePositionInput{
 }
 
 input UpdateEmployeePositionInput{
-	uuid:UUID!
-	name:String!
+    uuid:UUID!
+    name:String!
 }
 
-type CreateEmployeePositionPayload{
+type EmployeePositionPayload{
 	item:EmployeePosition
 }
-
-type UpdateEmployeePositionPayload{
-	item:EmployeePosition
-}
-
 
 type DeleteEmployeePositionPayload{
-	employeePosition: Node!
+    employeePosition: Node!
 }
 
 input EmployeesInput {
-	where: EmployeeWhereInput
-	pagination: PageInput
+    where: EmployeeWhereInput
+    pagination: PageInput
 }
 
 input EmployeeWhereInput {
-	location: NodeInput
+    location: NodeInput
 }
 

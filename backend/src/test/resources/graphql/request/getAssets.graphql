@@ -1,5 +1,5 @@
 query getAssets($input: AssetsInput) {
-	assets(input: $input) {
+    assets(input: $input) {
         items {
             uuid
             title

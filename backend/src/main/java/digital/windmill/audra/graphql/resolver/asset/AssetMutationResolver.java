@@ -1,11 +1,10 @@
 package digital.windmill.audra.graphql.resolver.asset;
 
-import org.springframework.stereotype.Component;
-
 import digital.windmill.audra.graphql.facade.AssetFacade;
 import digital.windmill.audra.graphql.type.Asset;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 

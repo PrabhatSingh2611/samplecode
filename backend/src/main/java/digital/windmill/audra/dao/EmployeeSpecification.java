@@ -2,7 +2,10 @@ package digital.windmill.audra.dao;
 
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.graphql.type.input.*;
+import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
+import digital.windmill.audra.graphql.type.input.EmployeesInput;
+import digital.windmill.audra.graphql.type.input.NodeInput;
+import digital.windmill.audra.graphql.type.input.PageInput;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,13 +22,12 @@ public class EmployeeSpecification {
         var pageNumber = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getPageNumber).orElse(0);
 
         var spec = Specification.where(
-                        byLocation(location));
+                byLocation(location));
 
 
         var pageable = PageRequest.of(pageNumber, itemsPerPage);
         return Pair.of(spec, pageable);
     }
-
 
 
     public static Specification<EmployeeEntity> byLocation(NodeInput location) {

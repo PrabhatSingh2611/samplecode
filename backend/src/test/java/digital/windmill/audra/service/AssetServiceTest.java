@@ -1,12 +1,8 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.repository.AssetRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.input.AssetsInput;
-import liquibase.pro.packaged.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

@@ -14,7 +14,7 @@ public class LeaveRequestService {
 
     public LeaveRequestEntity findById(Long id) {
         return leaveRequestRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("Leave request with id "+ id + "not found.")
+                () -> new DataNotFoundException("Leave request with id " + id + "not found.")
         );
     }
 

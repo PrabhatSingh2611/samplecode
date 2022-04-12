@@ -5,7 +5,8 @@ import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
+import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.service.EmployeeService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,9 +15,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,22 +37,18 @@ public class EmployeeFacadeTest {
     @Mock
     private EmployeeMapper employeeMapper;
 
-    @Mock
-    private EmployeeRepository employeeRepository;
-
     @InjectMocks
     private EmployeeFacade facade;
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String FIRST_NAME = "Firstname";
     private static final String LAST_NAME = "Lastname";
-    private static final String NAME = "7JGB";
+    private static final String NAME = "Name";
     private static final Integer ITEM_PER_PAGE = 3;
     private static final Integer PAGE_NUMBER = 2;
     private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "Admin";
     private static final String POSITION = "Position";
-    private static final String LOCATION = "Location";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @BeforeEach
@@ -67,11 +67,36 @@ public class EmployeeFacadeTest {
         var result = facade.findAssetByUuid(TEST_UUID);
 
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID,result.getUuid());
-        Assertions.assertEquals(FIRST_NAME,result.getFirstName());
-        Assertions.assertEquals(LAST_NAME,result.getLastName());
-        Assertions.assertEquals(LOCATION,result.getLocation());
+        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        Assertions.assertEquals(FIRST_NAME, result.getFirstName());
+        Assertions.assertEquals(LAST_NAME, result.getLastName());
+        Assertions.assertEquals(NAME, result.getLocation().getName());
     }
+
+
+    @Test
+    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput) {
+
+        when(employeeService.findAll(any(EmployeesInput.class)))
+                .thenReturn(createListOfEmployeeEntity());
+
+        when(employeeMapper.map(any(EmployeeEntity.class)))
+                .thenReturn(createEmployee());
+
+
+        var result = facade.getEmployees(employeesInput);
+
+        assertNotNull(result);
+        Assertions.assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        Assertions.assertEquals(FIRST_NAME, result.getContent().get(0).getFirstName());
+        Assertions.assertEquals(LAST_NAME, result.getContent().get(0).getLastName());
+        Assertions.assertEquals(NAME, result.getContent().get(0).getLocation().getName());
+    }
+
+    private Page<EmployeeEntity> createListOfEmployeeEntity() {
+        return new PageImpl<>(List.of(createEmployeeEntity()));
+    }
+
 
     @Test
     void shouldCreateEmployee() {
@@ -106,8 +131,7 @@ public class EmployeeFacadeTest {
                 .lastName(LAST_NAME)
                 .role(ROLE)
                 .birthday(DATE_TIME)
-                .position(POSITION)
-                .location(LOCATION)
+                .location(createLocation())
                 .build();
     }
 
@@ -120,5 +144,9 @@ public class EmployeeFacadeTest {
         e.setBirthday(LOCAL_DATE);
 
         return e;
+    }
+
+    private Location createLocation() {
+        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 }
