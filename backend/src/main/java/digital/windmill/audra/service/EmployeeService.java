@@ -39,13 +39,12 @@ public class EmployeeService {
     }
 
     public EmployeeEntity createEmployee(CreateEmployeeInput input){
-        EmployeeEntity entity = employeeRepository.save(EmployeeEntity
+        return employeeRepository.save(EmployeeEntity
                 .builder()
                 .uuid(UUID.randomUUID())
                 .firstName(input.getFirstName())
                 .lastName(input.getLastName())
                 .position(employeePositionRepo.findByUuid(input.getPosition()).orElse(null))
                 .build());
-       return entity;
     }
 }
