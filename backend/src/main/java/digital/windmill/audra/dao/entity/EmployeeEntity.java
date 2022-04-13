@@ -1,8 +1,7 @@
 package digital.windmill.audra.dao.entity;
 
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;

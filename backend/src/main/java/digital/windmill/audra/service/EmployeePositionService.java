@@ -2,6 +2,7 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.repository.EmployeePositionRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
