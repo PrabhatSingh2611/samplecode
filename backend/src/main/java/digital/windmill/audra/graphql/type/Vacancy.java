@@ -1,26 +1,24 @@
 package digital.windmill.audra.graphql.type;
 
+import digital.windmill.audra.dao.entity.enums.VacancyPriority;
+import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Employee implements Node {
+public class Vacancy implements Node {
 
     private UUID uuid;
-    private String firstName;
-    private String lastName;
-    private String role;
-    private ZonedDateTime birthday;
-    private Employee reportingManager;
     private EmployeePosition position;
-    private Location location;
-
+    private String description;
+    private VacancyStatus status;
+    private Employee assignTo;
+    private VacancyPriority priority;
 }

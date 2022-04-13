@@ -1,0 +1,62 @@
+package digital.windmill.audra.service.impl;
+
+import digital.windmill.audra.dao.VacancySpecification;
+import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.dao.entity.VacancyEntity;
+import digital.windmill.audra.dao.repository.VacancyRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.graphql.mapper.VacancyMapper;
+import digital.windmill.audra.graphql.type.Vacancy;
+import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
+import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
+import digital.windmill.audra.graphql.type.input.VacanciesInput;
+import digital.windmill.audra.service.VacancyService;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
+
+import java.util.UUID;
+
+@Component
+@AllArgsConstructor
+public class VacancyServiceImpl implements VacancyService {
+
+    private VacancyRepository vacancyRepository;
+    private VacancyMapper vacancyMapper;
+
+    public Vacancy findVacancyByUuid(UUID uuid) {
+        return vacancyMapper.map(vacancyRepository.findByUuid(uuid).orElseThrow(
+                        () -> new DataNotFoundException("Vacancy not found.")
+                )
+        );
+    }
+
+    public Page<Vacancy> findAllVacancies(VacanciesInput input) {
+        var spec = VacancySpecification.vacancies(input);
+        return vacancyRepository.findAll(spec.getKey(), spec.getValue()).map(vacancyMapper::map);
+    }
+
+    public Vacancy createVacancy(CreateVacancyInput input,
+                                 EmployeePositionEntity employeePositionEntity,
+                                 EmployeeEntity employeeEntity) {
+        var vacancyEntity = vacancyMapper.mapInputToEntity(input, employeePositionEntity, employeeEntity);
+        return vacancyMapper.map(vacancyRepository.save(vacancyEntity));
+    }
+
+    public Vacancy updateVacancy(UpdateVacancyInput input,
+                                 EmployeePositionEntity employeePositionEntity,
+                                 EmployeeEntity employeeEntity) {
+        VacancyEntity entity = vacancyRepository.findByUuid(input.getUuid())
+                .orElseThrow(
+                        () -> new DataNotFoundException("Vacancy not found.")
+                );
+
+        var mappedToEntity = vacancyMapper.mapToEntityWhenUpdate(entity,
+                input,
+                employeePositionEntity,
+                employeeEntity);
+
+        return vacancyMapper.map(vacancyRepository.save(mappedToEntity));
+    }
+}

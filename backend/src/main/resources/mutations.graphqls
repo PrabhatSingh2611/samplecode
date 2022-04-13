@@ -6,5 +6,7 @@ type Mutation {
 	createAssetType(input:AssetTypeInput!): AssetTypePayload!
 	createLocation(input: CreateLocationInput!): LocationPayload!
 	updateLocation(input: UpdateLocationInput!): LocationPayload!
+    createVacancy(input: CreateVacancyInput!): VacancyPayload!
+    updateVacancy(input: UpdateVacancyInput!): VacancyPayload!
 
 }

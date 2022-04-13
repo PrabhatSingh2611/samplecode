@@ -1,6 +1,7 @@
 package digital.windmill.audra.dao.repository;
 
-import digital.windmill.audra.dao.entity.AssetTypeEntity;
+
+import digital.windmill.audra.dao.entity.VacancyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -11,9 +12,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface AssetTypeRepository extends JpaRepository<AssetTypeEntity, Long>, JpaSpecificationExecutor<AssetTypeEntity> {
+public interface VacancyRepository extends JpaRepository<VacancyEntity, Long>, JpaSpecificationExecutor<VacancyEntity> {
 
-    @Query("SELECT a FROM AssetTypeEntity a WHERE a.uuid = :uuid")
-    Optional<AssetTypeEntity> findByUuid(@Param("uuid") UUID uuid);
+    @Query("SELECT a FROM VacancyEntity a WHERE a.uuid = :uuid")
+    Optional<VacancyEntity> findByUuid(@Param("uuid") UUID uuid);
+
 
 }
