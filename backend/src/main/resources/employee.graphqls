@@ -5,8 +5,8 @@ type Employee implements Node {
 	role: String
 	birthday: ZonedDateTime
 	reportingManager:Employee
-	position: String
-	location: String
+	position: EmployeePosition
+	location: Location
 }
 
 

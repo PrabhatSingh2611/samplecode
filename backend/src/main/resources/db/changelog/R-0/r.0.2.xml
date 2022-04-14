@@ -14,7 +14,7 @@
     <changeSet id="r.0.2.2" author="schiriac">
 
         <createTable tableName="vacancy">
-            <column name="id" type="INT8">
+            <column name="id" type="INT8" autoIncrement="true" startWith="3">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
@@ -41,7 +41,7 @@
             insert into vacancy (id, uuid, position_id, description, status, employee_id, priority, created_at, updated_at)
             values
             (1, '493a5be9-01ba-47c6-95c1-29c230528525', '1', 'Vacancy 1', 'NEW', 1, 'LOW', now(), now()),
-            (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2398', '1', 'Vacancy 2', 'IN_PROGRESS', 2, 'NORMAL',  now(), now());
+            (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2398', '2', 'Vacancy 2', 'IN_PROGRESS', 2, 'NORMAL',  now(), now());
         </sql>
 
     </changeSet>

@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class VacancySpecification {
     private static final Integer DEFAULT_PAGE_SIZE = 10;
@@ -54,21 +57,17 @@ public class VacancySpecification {
             List<Predicate> predicates = new ArrayList<>();
 
             if (Objects.nonNull(assignTo)) {
-                var assignToJoin = root.join("employee");
+                var assignToJoin = root.join("assignTo");
                 predicates.add(criteriaBuilder.equal(assignToJoin.get("uuid"), assignTo.getUuid()));
             }
 
             if (Objects.nonNull(positions)) {
-                var position = root.join("employee_position");
-                CriteriaBuilder.In<UUID> inClause = criteriaBuilder.in(position.get("uuid"));
-                positions.forEach(p -> inClause.value(p.getUuid()));
-                predicates.add(criteriaBuilder.in(position.get("uuid")).value(inClause));
+                var position = root.join("position");
+                predicates.add(position.get("uuid").in(positions.stream().map(NodeInput::getUuid).collect(toList())));
             }
 
-            if (Objects.nonNull(statuses)) {
-                CriteriaBuilder.In<VacancyStatus> inClause = criteriaBuilder.in(root.get("status"));
-                statuses.forEach(inClause::value);
-                predicates.add(criteriaBuilder.in(root.get("status")).value(inClause));
+             if (Objects.nonNull(statuses)) {
+                predicates.add(root.get("status").in(statuses));
             }
 
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));

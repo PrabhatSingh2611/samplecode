@@ -1,0 +1,34 @@
+mutation{
+    createVacancy(input:{
+        position:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
+        description:"CREATE VACANCY"
+        status:NEW
+        assignTo:"493a5be9-01ba-47c6-95c1-29c230528520"
+        priority:LOW
+    }){
+        item {
+            position{
+                uuid
+                name
+            }
+            description
+            status
+            assignTo{
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
+            }
+            priority
+        }
+    }
+}

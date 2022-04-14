@@ -18,8 +18,7 @@ public interface VacancyMapper {
     Vacancy map(VacancyEntity entity);
 
     @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "uuid", ignore = true)
-    @Mapping(target = "assignTo.birthday", ignore = true)
+    @Mapping(target = "uuid", source = "entity.uuid")
     @Mapping(target = "position", source = "employeePositionEntity")
     @Mapping(target = "description", source = "input.description")
     @Mapping(target = "status", source = "input.status")
