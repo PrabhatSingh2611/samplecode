@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class EmployeePositionFacadeTest {
 
     @Mock
-    private EmployeePositionService employeePositionService;
+    private EmployeePositionService employeePositionServiceImpl;
 
     @Mock
     private EmployeePositionMapper employeePositionMapper;
@@ -37,7 +37,7 @@ public class EmployeePositionFacadeTest {
 
     @Test
     void shouldCreateEmployeePosition() {
-        when(employeePositionService.createEmployeePosition(any(EmployeePositionEntity.class)))
+        when(employeePositionServiceImpl.createEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePositionEntity());
         when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());
@@ -51,7 +51,7 @@ public class EmployeePositionFacadeTest {
 
     @Test
     void shouldUpdateEmployeePosition() {
-        when(employeePositionService.updateEmployeePosition(any(EmployeePosition.class)))
+        when(employeePositionServiceImpl.updateEmployeePosition(any(EmployeePosition.class)))
                 .thenReturn(testEmployeePositionEntity());
         when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());
@@ -66,7 +66,7 @@ public class EmployeePositionFacadeTest {
 
     @Test
     void deleteEmployeePosition() {
-        when(employeePositionService.deleteEmployeePosition(any(EmployeePosition.class)))
+        when(employeePositionServiceImpl.deleteEmployeePosition(any(EmployeePosition.class)))
                 .thenReturn(testEmployeePositionEntity());
         when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());

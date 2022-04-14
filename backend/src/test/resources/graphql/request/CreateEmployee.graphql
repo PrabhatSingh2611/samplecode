@@ -1,5 +1,11 @@
 mutation createEmployee{
-    createEmployee(input: {firstName: "lox",lastName: "carry",position: "cabfb51b-41c5-4f4d-afd5-146c796391ad"})
+    createEmployee(input: {
+        firstName: "lox",
+        lastName: "carry",
+        position: "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+        location: "5e404b97-be9a-4dea-b785-4153f74069e8",
+        reportingManager: "6bac1755-c88c-4462-ae14-527b54b03e0d"
+    })
     {
         item {
             firstName

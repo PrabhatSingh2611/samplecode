@@ -68,7 +68,7 @@ public class AssetMapperTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().uuid(TEST_UUID).name(NAME).build();
     }
 
     private AssetEntity createAssetEntity() {

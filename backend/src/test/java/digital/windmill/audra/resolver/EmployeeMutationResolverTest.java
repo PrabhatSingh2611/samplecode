@@ -1,6 +1,6 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.graphql.facade.EmployeeFacade;
+import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
 import digital.windmill.audra.graphql.resolver.employee.EmployeeMutationResolver;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 class EmployeeMutationResolverTest {
 
     @Mock
-    private EmployeeFacade employeeFacade;
+    private EmployeeFacadeImpl employeeFacadeImpl;
 
     @InjectMocks
     private EmployeeMutationResolver employeeMutationResolver;
@@ -37,7 +37,7 @@ class EmployeeMutationResolverTest {
 
     @Test
     void createEmployee() {
-        when(employeeFacade.createEmployee(any(CreateEmployeeInput.class)))
+        when(employeeFacadeImpl.createEmployee(any(CreateEmployeeInput.class)))
                 .thenReturn(createEmployeeTest());
 
         var result = employeeMutationResolver.createEmployee(createCreateEmployeeInput());
@@ -73,6 +73,6 @@ class EmployeeMutationResolverTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().uuid(TEST_UUID).name(NAME).build();
     }
 }

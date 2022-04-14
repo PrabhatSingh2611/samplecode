@@ -19,9 +19,15 @@ type EmployeeConnectionPayload implements ConnectionPayload {
 input CreateEmployeeInput {
 	firstName: String!
 	lastName: String!
+	role: EmployeeRole
 	birthday: ZonedDateTime
+	reportingManager: UUID
 	position: UUID
 	location: UUID
+}
+
+enum EmployeeRole {
+	ADMIN, EMPLOYEE
 }
 
 

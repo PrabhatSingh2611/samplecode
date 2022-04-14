@@ -16,8 +16,7 @@ public class EmployeeMutationResolver implements GraphQLMutationResolver {
     public EmployeePayload createEmployee(CreateEmployeeInput input){
        return EmployeePayload
                .builder()
-               .item(employeeFacade
-                       .createEmployee(input))
+               .item(employeeFacade.createEmployee(input))
                .build();
     }
 

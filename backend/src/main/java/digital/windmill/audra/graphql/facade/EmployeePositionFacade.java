@@ -16,12 +16,12 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class EmployeePositionFacade {
-    private EmployeePositionService employeePositionService;
+    private EmployeePositionService employeePositionServiceImpl;
     private EmployeePositionMapper employeePositionMapper;
 
     public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
         return employeePositionMapper
-                .map(employeePositionService
+                .map(employeePositionServiceImpl
                         .createEmployeePosition(EmployeePositionEntity
                                 .builder()
                                 .uuid(UUID.randomUUID())
@@ -31,7 +31,7 @@ public class EmployeePositionFacade {
 
     public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input) {
         return employeePositionMapper
-                .map(employeePositionService
+                .map(employeePositionServiceImpl
                         .updateEmployeePosition(EmployeePosition
                                 .builder()
                                 .uuid(input.getUuid())
@@ -41,7 +41,7 @@ public class EmployeePositionFacade {
 
     public EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input) {
         return employeePositionMapper
-                .map(employeePositionService
+                .map(employeePositionServiceImpl
                         .deleteEmployeePosition(EmployeePosition
                                 .builder()
                                 .uuid(input.getUuid())
