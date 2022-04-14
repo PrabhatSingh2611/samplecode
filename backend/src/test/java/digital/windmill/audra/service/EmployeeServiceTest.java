@@ -68,6 +68,8 @@ public class EmployeeServiceTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(NAME, result.getLastName());
         assertEquals(NAME, result.getFirstName());
+        assertEquals(POSITION, result.getPosition());
+        assertEquals(createLocation().getName(), result.getLocation().getName());
     }
 
     private Employee createEmployee() {
