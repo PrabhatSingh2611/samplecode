@@ -61,11 +61,8 @@ public class EmployeeFacadeImplTest {
     @Test
     void shouldReturnEmployeesById() {
 
-        when(employeeService.findByUuid(any(UUID.class)))
-                .thenReturn(createEmployeeEntity());
-        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
+        when(employeeService.findByUuidMapped(any(UUID.class)))
                 .thenReturn(createEmployee());
-
 
         var result = facade.findEmployeeByUuid(TEST_UUID);
 
