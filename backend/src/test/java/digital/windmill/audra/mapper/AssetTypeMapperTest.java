@@ -51,7 +51,6 @@ class AssetTypeMapperTest {
         var result = mapper.mapAssetTypeInputToAssetTypeEntity(createAssetTypeInput());
         assertNotNull(result);
         assertAll(
-                ()->assertEquals(TEST_UUID, result.getUuid()),
                 ()->assertEquals(TITLE, result.getTitle())
         );
     }
