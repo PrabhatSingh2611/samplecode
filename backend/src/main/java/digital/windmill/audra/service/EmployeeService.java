@@ -35,4 +35,12 @@ public interface EmployeeService {
                             EmployeeEntity employeeEntity,
                             EmployeePositionEntity employeePositionEntity,
                             LocationEntity locationEntity);
+
+    /**
+     * This method will search employee by an uuid value.
+     *
+     * @param uuid of which employee will be searched in Repository
+     * @return required employee searched wrapped into Employee
+     */
+    Employee findByUuidMapped(UUID uuid);
 }

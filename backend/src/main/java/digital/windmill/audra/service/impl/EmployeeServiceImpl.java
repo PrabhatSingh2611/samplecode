@@ -44,4 +44,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 input,employeeEntity, employeePositionEntity, locationEntity);
         return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
+
+    @Override
+    public Employee findByUuidMapped(UUID uuid) {
+        EmployeeEntity employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
+                () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
+        );
+        return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);
+    }
 }

@@ -14,7 +14,7 @@ public interface EmployeeFacade {
      * @return it returns a specific Employee
      */
     @Transactional(readOnly = true)
-    Employee findAssetByUuid(UUID uuid);
+    Employee findEmployeeByUuid(UUID uuid);
 
     /**It Takes EmployeesInput as input and gives all employee in database
      * @param input will be a EmployeesInput type
