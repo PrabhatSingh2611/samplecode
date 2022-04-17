@@ -1,6 +1,6 @@
 package digital.windmill.audra.graphql.resolver.asset;
 
-import digital.windmill.audra.graphql.facade.AssetTypeFacade;
+import digital.windmill.audra.graphql.facade.impl.AssetTypeFacadeImpl;
 import digital.windmill.audra.graphql.type.AssetTypeConnection;
 import digital.windmill.audra.graphql.type.AssetTypePayload;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class AssetTypeResolver implements GraphQLQueryResolver {
 
-    private AssetTypeFacade facade;
+    private AssetTypeFacadeImpl facade;
 
     public AssetTypePayload assetType(AssetTypeInput input) {
         return AssetTypePayload
