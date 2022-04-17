@@ -6,23 +6,31 @@ import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.UUID;
+
 @Mapper(componentModel = "spring")
 public interface AssetTypeMapper {
 
-    /** It maps AssetTypeEntity to AssetType
+    /**
+     * It maps AssetTypeEntity to AssetType
      *
      * @param entity takes AssetTypeEntity as input
      * @return mapped AssetType
      */
     AssetType mapAssetTypeEntityToAssetType(AssetTypeEntity entity);
 
-    /** It maps AssetTypeInput to AssetTypeEntity
+    /**
+     * It maps AssetTypeInput to AssetTypeEntity
      *
      * @param input takes AssetTypeInput as input
      * @return mapped AssetTypeEntity
      */
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "uuid", source = "input.uuid")
+    @Mapping(target = "uuid", expression = "java(generateUUID())")
     @Mapping(target = "title", source = "input.title")
     AssetTypeEntity mapAssetTypeInputToAssetTypeEntity(AssetTypeInput input);
+
+    default UUID generateUUID() {
+        return UUID.randomUUID();
+    }
 }

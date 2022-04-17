@@ -40,7 +40,7 @@ public class AssetTypeServiceTest {
 
     @Test
     void shouldFindAssetByUuid(){
-        when(assetTypeMapper.map(any(AssetTypeEntity.class))).thenReturn(createAssetType());
+        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeServiceImpl.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
@@ -52,7 +52,7 @@ public class AssetTypeServiceTest {
 
     @Test
     void shouldGetAssetsType(){
-        when(assetTypeMapper.map(any(AssetTypeEntity.class))).thenReturn(createAssetType());
+        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll()).thenReturn(createAssetsTypeEntity());
 
         var actual = assetTypeServiceImpl.getAssetsType();

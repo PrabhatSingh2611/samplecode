@@ -1,10 +1,8 @@
 package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.AssetTypeFacade;
-import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
-import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
 import digital.windmill.audra.service.AssetTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,6 @@ import java.util.UUID;
 public class AssetTypeFacadeImpl implements AssetTypeFacade {
 
     private AssetTypeService assetTypeService;
-    private AssetTypeMapper assetTypeMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -26,7 +23,8 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
         return assetTypeService.findAssetByUuid(uuid);
     }
 
-    @Override public AssetType createAssetType(AssetTypeInput assetTypeInput){
+    @Override
+    public AssetType createAssetType(AssetTypeInput assetTypeInput){
         return assetTypeService.createAssetType(assetTypeInput);
     }
 

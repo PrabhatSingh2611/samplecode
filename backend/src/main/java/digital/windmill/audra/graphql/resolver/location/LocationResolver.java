@@ -15,9 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class LocationResolver implements GraphQLQueryResolver {
 
-
     private LocationFacade locationFacade;
-
 
     public List<Location> getLocations() {
         return locationFacade.findAllLocation();

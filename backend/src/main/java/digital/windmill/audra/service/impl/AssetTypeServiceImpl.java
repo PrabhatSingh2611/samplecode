@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -36,13 +35,14 @@ public class AssetTypeServiceImpl implements AssetTypeService {
                 .findAll()
                 .stream()
                 .map(assetTypeMapper::mapAssetTypeEntityToAssetType)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     public AssetType createAssetType(AssetTypeInput input) {
 
-        AssetTypeEntity savedAssetEntity = assetTypeRepository.save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));
+        AssetTypeEntity savedAssetEntity = assetTypeRepository
+                .save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));
         return assetTypeMapper.mapAssetTypeEntityToAssetType(savedAssetEntity);
 
     }

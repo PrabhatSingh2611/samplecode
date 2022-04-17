@@ -8,6 +8,10 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class})
 public interface AssetMapper {
 
+    /**This Map AssetEntity to Asset
+     * @param entity it takes AssetEntity
+     * @return mapped Asset
+     */
     @Mapping(target = "serial", source = "serialNumber")
-    Asset map(AssetEntity entity);
+    Asset mapAssetEntityToAsset(AssetEntity entity);
 }

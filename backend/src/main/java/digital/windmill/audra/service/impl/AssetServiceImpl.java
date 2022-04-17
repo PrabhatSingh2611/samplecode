@@ -17,12 +17,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AssetServiceImpl implements AssetService {
 
-    private AssetRepository repo;
-    private AssetMapper mapper;
+    private AssetRepository assetRepository;
+    private AssetMapper assetMapper;
 
     @Override
     public Asset findAssetByUuid(UUID uuid) {
-        return mapper.map(repo.findByUuid(uuid).orElseThrow(
+        return assetMapper.mapAssetEntityToAsset(assetRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("Asset not found.")
         ));
     }
@@ -30,6 +30,6 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public Page<Asset> findAll(AssetsInput input) {
         var spec = AssetSpecification.assets(input);
-        return repo.findAll(spec.getKey(), spec.getValue()).map(mapper::map);
+        return assetRepository.findAll(spec.getKey(), spec.getValue()).map(assetMapper::mapAssetEntityToAsset);
     }
 }
