@@ -53,7 +53,7 @@ public class AssetServiceTest {
     void shouldReturnAssetByUuid() {
 
         when(assetRepository.findByUuid(any(UUID.class))).thenReturn(createAssetEntity());
-        when(assetMapper.map(any(AssetEntity.class))).thenReturn(createAsset());
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(createAsset());
         var result = service.findAssetByUuid(TEST_UUID);
 
         assertNotNull(result);

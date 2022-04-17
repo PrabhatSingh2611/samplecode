@@ -6,5 +6,9 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface EmployeePositionMapper {
-    EmployeePosition map(EmployeePositionEntity entity);
+    /**Map EmployeePositionEntity to EmployeePosition
+     * @param entity takes EmployeePositionEntity
+     * @return mapped EmployeePosition
+     */
+    EmployeePosition mapEmployeePositionEntityToEmployeePosition(EmployeePositionEntity entity);
 }

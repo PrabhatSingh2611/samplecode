@@ -44,6 +44,7 @@ type AssetTypeConnection implements ConnectionPayload{
     pageInfo: PageInfo!
     totalItems: Int!
 }
+
 input AssetTypeInput {
 	uuid:UUID
 	title:String!

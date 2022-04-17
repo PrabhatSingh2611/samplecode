@@ -1,6 +1,5 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 
@@ -26,5 +25,5 @@ public interface AssetTypeService {
      * @param assetTypeInput input by which we create Asset type
      * @return created AssetType
      */
-    AssetTypeEntity createAssetType(AssetTypeInput assetTypeInput);
+    AssetType createAssetType(AssetTypeInput assetTypeInput);
 }

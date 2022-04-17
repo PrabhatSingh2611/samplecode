@@ -2,7 +2,11 @@ package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.graphql.mapper.LocationMapper;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
+import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,25 +20,27 @@ import java.util.UUID;
 public class LocationServiceImpl implements LocationService {
 
     private LocationRepository locationRepository;
+    private LocationMapper locationMapper;
 
     @Override public LocationEntity findByUuid(UUID uuid) {
-        return locationRepository.findByUuid(uuid).orElse(null);
+        return locationRepository.findByUuid(uuid)
+                .orElseThrow(() -> new DataNotFoundException("Location not found"));
     }
 
     @Override public List<LocationEntity> findAll() {
         return locationRepository.findAll();
     }
 
-    @Override public LocationEntity createLocation(CreateLocationInput input) {
-        return locationRepository.save(LocationEntity
-                .builder()
-                .uuid(UUID.randomUUID())
-                .name(input.getName())
-                .build());
+    @Override
+    public Location createLocation(CreateLocationInput input) {
+        LocationEntity locationEntity = locationMapper.mapCreateLocationInputToLocationEntity(input);
+        LocationEntity savedLocationEntity = locationRepository.save(locationEntity);
+        return locationMapper.mapLocationEntityToLocation(savedLocationEntity);
     }
 
-    @Override public LocationEntity updateLocation(LocationEntity location) {
-        return locationRepository.save(location);
+    @Override public Location updateLocation(UpdateLocationInput input, LocationEntity location) {
+        location.setName(input.getName());
+        return locationMapper.mapLocationEntityToLocation(locationRepository.save(location));
     }
 
 

@@ -10,12 +10,10 @@ import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
-import digital.windmill.audra.service.EmployeePositionService;
 import digital.windmill.audra.service.impl.EmployeePositionServiceImpl;
 import digital.windmill.audra.service.impl.EmployeeServiceImpl;
 import digital.windmill.audra.service.impl.LocationServiceImpl;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -63,20 +61,17 @@ public class EmployeeFacadeImplTest {
     @Test
     void shouldReturnEmployeesById() {
 
-        when(employeeService.findByUuid(any(UUID.class)))
-                .thenReturn(createEmployeeEntity());
-
-        when(employeeMapper.map(any(EmployeeEntity.class)))
+        when(employeeService.findByUuidMapped(any(UUID.class)))
                 .thenReturn(createEmployee());
 
-
-        var result = facade.findAssetByUuid(TEST_UUID);
+        var result = facade.findEmployeeByUuid(TEST_UUID);
 
         assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
         Assertions.assertEquals(NAME, result.getFirstName());
         Assertions.assertEquals(NAME, result.getLastName());
         Assertions.assertEquals(NAME, result.getLocation().getName());
+        Assertions.assertEquals(POSITION, result.getPosition());
     }
 
 
@@ -86,7 +81,7 @@ public class EmployeeFacadeImplTest {
         when(employeeService.findAll(any(EmployeesInput.class)))
                 .thenReturn(createListOfEmployeeEntity());
 
-        when(employeeMapper.map(any(EmployeeEntity.class)))
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn(createEmployee());
 
         var result = facade.getEmployees(employeesInput);

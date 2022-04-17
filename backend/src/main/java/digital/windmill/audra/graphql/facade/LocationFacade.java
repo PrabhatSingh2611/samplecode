@@ -1,49 +1,43 @@
 package digital.windmill.audra.graphql.facade;
 
-import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
-import digital.windmill.audra.service.LocationService;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@Service
-@AllArgsConstructor
-public class LocationFacade {
-    private LocationService locationServiceImpl;
-    private LocationMapper locationMapper;
+public interface LocationFacade {
 
+    /**It return Location by taking uuid as input
+     * @param uuid it used this uuid to give service and take LocationEntity
+     * @return it returns a specific Location
+     */
     @Transactional(readOnly = true)
-    public Location findLocationByUuid(UUID uuid) {
-        return locationMapper.map(locationServiceImpl.findByUuid(uuid));
-    }
+    Location findLocationByUuid(UUID uuid);
 
-
+    /**It Takes NO input and  gives all employee in database
+     * @return all Location in the database
+     */
     @Transactional(readOnly = true)
-    public List<Location> findAllLocation() {
-        return locationServiceImpl
-                .findAll()
-                .stream()
-                .map(locationEntity -> locationMapper.map(locationEntity))
-                .toList();
+    List<Location> findAllLocation();
 
-    }
 
-    public Location createLocation(CreateLocationInput input) {
-        return locationMapper.map(locationServiceImpl.createLocation(input));
-    }
+    /**
+     * This method will create a new location by a value.
+     *
+     * @param input of which location will be created
+     * @return an updated location
+     */
+    Location createLocation(CreateLocationInput input);
 
-    public Location updateLocation(UpdateLocationInput input) {
 
-        LocationEntity location = locationServiceImpl.findByUuid(input.getUuid());
-        location.setName(input.getName());
-        return locationMapper.map(locationServiceImpl.updateLocation(location));
-    }
+    /**
+     * This method will update location by a value.
+     *
+     * @param input of which location will be updated
+     * @return an updated location
+     */
+    Location updateLocation(UpdateLocationInput input);
 }

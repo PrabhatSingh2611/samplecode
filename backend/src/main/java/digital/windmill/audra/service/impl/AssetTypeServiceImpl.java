@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -25,10 +24,8 @@ public class AssetTypeServiceImpl implements AssetTypeService {
     @Override
     public AssetType findAssetByUuid(UUID uuid) {
         return assetTypeMapper.
-                map(assetTypeRepository.
-                        findByUuid(uuid).
-                        orElseThrow(
-                                () -> new DataNotFoundException("Asset Type not found")));
+                mapAssetTypeEntityToAssetType(assetTypeRepository.findByUuid(uuid).orElseThrow(
+                        () -> new DataNotFoundException("Asset Type not found")));
     }
 
     @Override
@@ -37,17 +34,17 @@ public class AssetTypeServiceImpl implements AssetTypeService {
         return assetTypeRepository
                 .findAll()
                 .stream()
-                .map(assetTypeMapper::map)
-                .collect(Collectors.toList());
+                .map(assetTypeMapper::mapAssetTypeEntityToAssetType)
+                .toList();
     }
 
-        @Override
-        public AssetTypeEntity createAssetType(AssetTypeInput input) {
-        return assetTypeRepository.save(AssetTypeEntity
-                .builder()
-                .uuid(UUID.randomUUID())
-                .title(input.getTitle())
-                .build());
+    @Override
+    public AssetType createAssetType(AssetTypeInput input) {
+
+        AssetTypeEntity savedAssetEntity = assetTypeRepository
+                .save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));
+        return assetTypeMapper.mapAssetTypeEntityToAssetType(savedAssetEntity);
+
     }
 
 }

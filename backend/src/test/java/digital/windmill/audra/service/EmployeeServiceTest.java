@@ -51,13 +51,13 @@ public class EmployeeServiceTest {
     @Test
     void shouldCreateEmployee() {
 
-        when(employeeRepository.save(any(EmployeeEntity.class)))
-                .thenReturn(createEmployeeEntity());
-        when(employeeMapper.map(any(CreateEmployeeInput.class),
+        when(employeeMapper.mapEmployeeInputToEmployeeEntity(any(CreateEmployeeInput.class),
                 any(EmployeeEntity.class),
                 any(EmployeePositionEntity.class),
                 any(LocationEntity.class))).thenReturn(createEmployeeEntity());
-        when(employeeMapper.map(any(EmployeeEntity.class))).thenReturn(createEmployee());
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn(createEmployee());
+        when(employeeRepository.save(any(EmployeeEntity.class)))
+                .thenReturn(createEmployeeEntity());
 
         var result = service.createEmployee(createCreateEmployeeInput(),
                 createEmployeeEntity(),

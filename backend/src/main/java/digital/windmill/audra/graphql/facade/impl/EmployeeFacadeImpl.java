@@ -24,17 +24,16 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     private LocationService locationService;
     private EmployeeMapper employeeMapper;
 
-    @Override
     @Transactional(readOnly = true)
-    public Employee findAssetByUuid(UUID uuid) {
-        return employeeMapper.map(employeeService.findByUuid(uuid));
+    public Employee findEmployeeByUuid(UUID uuid) {
+        return employeeService.findByUuidMapped(uuid);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<Employee> getEmployees(EmployeesInput input) {
         return employeeService.findAll(input)
-                .map(employeeMapper::map);
+                .map(employeeMapper::mapEmployeeEntityToEmployee);
     }
 
     @Override
