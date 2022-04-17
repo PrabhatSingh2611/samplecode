@@ -8,14 +8,24 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AssetTypeFacade {
+    /**,
+     * This method will return a specific Asset Type by specific UUID.
+     * @param uuid uuid by which we search Asset type
+     * @return a specific AsserType
+     */
     @Transactional(readOnly = true)
     AssetType findAssetTypeByUuid(UUID uuid);
 
-    /**It updates AssetType Entity
-     * @param assetTypeInput is takes a value to update AssetType Entity
-     * @return an updated AssetType
+    /**
+     * This method will create a specific Asset Type by specific input
+     * @param assetTypeInput input by which we create Asset type
+     * @return created AssetType
      */
     AssetType createAssetType(AssetTypeInput assetTypeInput);
 
+    /**
+     * This method will return all the list of Asset type
+     * @return List of Assettype
+     */
     List<AssetType> getAssetsType();
 }

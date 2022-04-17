@@ -8,17 +8,23 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AssetTypeService {
-    /**It Look for AssetTypeEntity in database
-     * @param uuid input will be as uuid which will be used for looking in database
-     * @return a matched AssetTypeEntity in database
+    /**,
+     * This method will return a specific Asset Type by specific UUID.
+     * @param uuid uuid by which we search Asset type
+     * @return a specific AsserType
      */
-    AssetTypeEntity findByUuid(UUID uuid);
+    AssetType findAssetByUuid(UUID uuid);
 
-    List<AssetTypeEntity> getAssetsType();
+    /**
+     * This method will return all the list of Asset type
+     * @return List of Asset Type
+     */
+    List<AssetType> getAssetsType();
 
-    /**It will be used to create AssetType
-     * @param input takes necessary for creating AssetTypeEntity
+    /**
+     * This method will create a specific Asset Type by specific input
+     * @param assetTypeInput input by which we create Asset type
      * @return created AssetType
      */
-    AssetType createAssetType(AssetTypeInput input);
+    AssetTypeEntity createAssetType(AssetTypeInput assetTypeInput);
 }

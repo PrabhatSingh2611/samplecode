@@ -1,5 +1,5 @@
 query {
-    assetType(input: {title:"Laptops"}) {
+    assetType(input: {uuid: "5478b586-e607-4448-ac05-3e5f2adbbc1b",title:"Laptops"}) {
         item {
             uuid
             title
