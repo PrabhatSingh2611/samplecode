@@ -6,7 +6,6 @@ import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
-import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -32,37 +32,42 @@ public class EmployeeMapperTest {
     private DateTimeMapper zonedDateTime;
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final Long ID = 1L;
-    private static final String NAME = "Name";
-    private static final Integer ITEM_PER_PAGE = 3;
-    private static final Integer PAGE_NUMBER = 2;
-    private final static Instant LOCAL_DATE = Instant.now();
+    private static final Long ID = 22L;
+    private static final String NAME = "9AMj3X";
     private static final EmployeeRole ROLE = EmployeeRole.ADMIN;
-    private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
-    private static final String POSITION = "Position";
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZoneId zone = ZoneId.systemDefault();
+    //    private final static ZonedDateTime DATE_TIME = ZonedDateTime.of(2020, 2, 12, 7, 55, 20, 100, zone);
+    private final static ZonedDateTime DATE_TIME = ZonedDateTime.of(2020, 2, 12, 7, 55, 20, 100, zone);
+    private final static Instant LOCAL_DATE = DATE_TIME.toInstant();
 
     @Test
     void shouldMapEmployeeEntityToEmployee() {
-        Employee actual = mapper.map(createEmployeeEntity());
+        var actual = mapper.mapEmployeeEntityToEmployee(createEmployeeEntity());
         assertAll(
                 () -> assertEquals(TEST_UUID, actual.getUuid()),
-                () -> assertEquals(NAME, actual.getFirstName())
+                () -> assertEquals(NAME, actual.getFirstName()),
+                () -> assertEquals(NAME, actual.getLastName()),
+                () -> assertEquals(NAME, actual.getPosition()),
+                () -> assertEquals(NAME, actual.getLocation().getName())
+//                () -> assertEquals(DATE_TIME, actual.getBirthday()), //TODO getting null while birthdays
+//                () -> assertEquals(DATE_TIME, actual.getReportingManager().getBirthday())
+
         );
     }
 
     @Test
-    void shouldMapCreateEmployeeInputToEmployee() {
-        EmployeeEntity result = mapper.map(createCreateEmployeeInput(),
+    void shouldMapCreateEmployeeInputToEmployeeEntity() {
+        var result = mapper.mapEmployeeInputToEmployeeEntity(createCreateEmployeeInput(),
                 createEmployeeEntity(),
                 createEmployeePositionEntity(),
                 createLocationEntity());
 
         assertNotNull(result);
         assertAll(
-                ()->assertEquals(NAME, result.getFirstName()),
-                ()->assertEquals(createLocationEntity().getName(), result.getLocation().getName()),
-                ()->assertEquals(createEmployeePositionEntity().getName(), result.getPosition().getName())
+                () -> assertEquals(NAME, result.getFirstName()),
+                () -> assertEquals(NAME, result.getLocation().getName()),
+                () -> assertEquals(NAME, result.getPosition().getName())
+//                () -> assertEquals(LOCAL_DATE, result.getBirthday())//TODO getting null while birthdays
 
         );
 

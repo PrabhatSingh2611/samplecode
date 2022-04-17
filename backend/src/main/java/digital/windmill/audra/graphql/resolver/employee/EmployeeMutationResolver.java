@@ -19,7 +19,4 @@ public class EmployeeMutationResolver implements GraphQLMutationResolver {
                .item(employeeFacade.createEmployee(input))
                .build();
     }
-
-
-
 }

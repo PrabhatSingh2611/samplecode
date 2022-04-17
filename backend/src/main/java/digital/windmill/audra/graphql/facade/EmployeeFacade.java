@@ -15,5 +15,11 @@ public interface EmployeeFacade {
     @Transactional(readOnly = true)
     Page<Employee> getEmployees(EmployeesInput input);
 
+    /**
+     * This method will create an Employee by a specific value.
+     *
+     * @param input input of which employee we should create
+     * @return created employee
+     */
     Employee createEmployee(CreateEmployeeInput input);
 }

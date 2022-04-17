@@ -13,32 +13,32 @@ import java.util.UUID;
 @Component
 @AllArgsConstructor
 public class EmployeePositionServiceImpl implements EmployeePositionService {
-    private EmployeePositionRepository repo;
+    private EmployeePositionRepository employeePositionRepository;
 
     @Override
     public EmployeePositionEntity createEmployeePosition(EmployeePositionEntity employeePosition) {
-        return repo.save(employeePosition);
+        return employeePositionRepository.save(employeePosition);
     }
 
     @Override
     public EmployeePositionEntity updateEmployeePosition(EmployeePosition employeePosition) {
-        EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
+        EmployeePositionEntity entity = employeePositionRepository.findByUuid(employeePosition.getUuid())
                 .orElseThrow(() -> new DataNotFoundException("Employee Position not found"));
         entity.setName(employeePosition.getName());
-        return repo.save(entity);
+        return employeePositionRepository.save(entity);
     }
 
     @Override
     public EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition) {
-        EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
+        EmployeePositionEntity entity = employeePositionRepository.findByUuid(employeePosition.getUuid())
                 .orElseThrow(() -> new DataNotFoundException("Employee Position not found"));
-        repo.delete(entity);
+        employeePositionRepository.delete(entity);
         return entity;
     }
 
     @Override
     public EmployeePositionEntity findEmployeePositionByUuid(UUID position) {
-        return repo.findByUuid(position)
+        return employeePositionRepository.findByUuid(position)
                 .orElseThrow(() -> new DataNotFoundException("Employee Position Not found"));
     }
 }

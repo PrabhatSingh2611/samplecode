@@ -65,8 +65,7 @@ public class EmployeeFacadeImplTest {
 
         when(employeeService.findByUuid(any(UUID.class)))
                 .thenReturn(createEmployeeEntity());
-
-        when(employeeMapper.map(any(EmployeeEntity.class)))
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn(createEmployee());
 
 
@@ -77,6 +76,7 @@ public class EmployeeFacadeImplTest {
         Assertions.assertEquals(NAME, result.getFirstName());
         Assertions.assertEquals(NAME, result.getLastName());
         Assertions.assertEquals(NAME, result.getLocation().getName());
+        Assertions.assertEquals(POSITION, result.getPosition());
     }
 
 
@@ -86,7 +86,7 @@ public class EmployeeFacadeImplTest {
         when(employeeService.findAll(any(EmployeesInput.class)))
                 .thenReturn(createListOfEmployeeEntity());
 
-        when(employeeMapper.map(any(EmployeeEntity.class)))
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn(createEmployee());
 
         var result = facade.getEmployees(employeesInput);

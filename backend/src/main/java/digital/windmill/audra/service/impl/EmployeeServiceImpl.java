@@ -10,7 +10,6 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
-import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,12 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
     }
 
-    @Override public EmployeeEntity findByLocation(NodeInput location) {
-        return employeeRepository.findByUuid(location.getUuid()).orElseThrow(
-                () -> new DataNotFoundException("Location not found.")
-        );
-    }
-
     @Override public Page<EmployeeEntity> findAll(EmployeesInput input) {
         var spec = EmployeeSpecification.employees(input);
         return employeeRepository.findAll(spec.getKey(), spec.getValue());
@@ -47,8 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                                    EmployeeEntity employeeEntity,
                                    EmployeePositionEntity employeePositionEntity,
                                    LocationEntity locationEntity) {
-        var toBeSavedEmployeeEntity = employeeMapper.map(input,employeeEntity, employeePositionEntity, locationEntity);
-        EmployeeEntity savedEmployee = employeeRepository.save(toBeSavedEmployeeEntity);
-        return employeeMapper.map(savedEmployee);
+        var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
+                input,employeeEntity, employeePositionEntity, locationEntity);
+        return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
 }

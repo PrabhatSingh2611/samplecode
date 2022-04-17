@@ -39,7 +39,7 @@ public class EmployeePositionFacadeTest {
     void shouldCreateEmployeePosition() {
         when(employeePositionServiceImpl.createEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePositionEntity());
-        when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());
 
         var result = facade.createEmployeePosition(testCreateEmployeePositionInput());
@@ -53,7 +53,7 @@ public class EmployeePositionFacadeTest {
     void shouldUpdateEmployeePosition() {
         when(employeePositionServiceImpl.updateEmployeePosition(any(EmployeePosition.class)))
                 .thenReturn(testEmployeePositionEntity());
-        when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());
 
         var result = facade.updateEmployeePosition(testUpdateEmployeePositionInput());
@@ -68,7 +68,7 @@ public class EmployeePositionFacadeTest {
     void deleteEmployeePosition() {
         when(employeePositionServiceImpl.deleteEmployeePosition(any(EmployeePosition.class)))
                 .thenReturn(testEmployeePositionEntity());
-        when(employeePositionMapper.map(any(EmployeePositionEntity.class)))
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(testEmployeePosition());
 
         var result = facade.deleteEmployeePosition(testDeleteEmployeePositionInput());

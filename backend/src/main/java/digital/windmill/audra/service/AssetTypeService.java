@@ -1,38 +1,24 @@
 package digital.windmill.audra.service;
 
-
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.dao.repository.AssetTypeRepository;
-import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
-@AllArgsConstructor
-public class AssetTypeService {
+public interface AssetTypeService {
+    /**It Look for AssetTypeEntity in database
+     * @param uuid input will be as uuid which will be used for looking in database
+     * @return a matched AssetTypeEntity in database
+     */
+    AssetTypeEntity findByUuid(UUID uuid);
 
-    private AssetTypeRepository assetTypeRepository;
+    List<AssetTypeEntity> getAssetsType();
 
-    public AssetTypeEntity findByUuid(UUID uuid) {
-        return assetTypeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Asset Type not found"));
-    }
-
-    public List<AssetTypeEntity> getAssetsType() {
-        return assetTypeRepository.findAll();
-    }
-
-        public AssetTypeEntity createAssetType(AssetTypeInput input) {
-        return assetTypeRepository.save(AssetTypeEntity
-                .builder()
-                .uuid(UUID.randomUUID())
-                .title(input.getTitle())
-                .build());
-    }
-
+    /**It will be used to create AssetType
+     * @param input takes necessary for creating AssetTypeEntity
+     * @return created AssetType
+     */
+    AssetType createAssetType(AssetTypeInput input);
 }

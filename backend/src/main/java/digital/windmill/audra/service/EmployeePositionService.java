@@ -12,5 +12,11 @@ public interface EmployeePositionService {
 
     EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition);
 
-    EmployeePositionEntity findEmployeePositionByUuid(UUID position);
+    /**
+     * This method will search position by an uuid value.
+     *
+     * @param uuid of which position will be searched in Repository
+     * @return a position
+     */
+    EmployeePositionEntity findEmployeePositionByUuid(UUID uuid);
 }
