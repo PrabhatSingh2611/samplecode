@@ -97,7 +97,7 @@ public class EmployeeFacadeTest {
     @Test
     void shouldCreateEmployee() {
 
-        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePositionEntity());
+        when(employeePositionService.findByUuid(any(UUID.class))).thenReturn(createEmployeePositionEntity());
         when(locationService.findByUuid(any(UUID.class))).thenReturn(createLocationEntity());
         when(employeeService.findByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(employeeService.createEmployee(

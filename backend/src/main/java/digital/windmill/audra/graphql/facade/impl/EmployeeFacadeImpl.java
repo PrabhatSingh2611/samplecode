@@ -35,7 +35,7 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public Employee createEmployee(CreateEmployeeInput input) {
-        var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getPosition());
+        var employeePositionEntity = employeePositionService.findByUuid(input.getPosition());
         var locationEntity = locationService.findByUuid(input.getLocation());
         var employeeEntity = employeeService.findByUuid(input.getReportingManager());
 

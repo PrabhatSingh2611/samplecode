@@ -30,7 +30,7 @@ public interface EmployeePositionService {
 
 
     /**
-     * This method will delete a EmployeePosititon by a specific value.
+     * This method will delete a EmployeePosition by a specific value.
      *
      * @param employeePosition employeePositionEntity of which EmployeePosition we should update
      * @return updated EmployeePosition
@@ -38,6 +38,11 @@ public interface EmployeePositionService {
     EmployeePosition deleteEmployeePosition(EmployeePositionEntity employeePosition);
 
 
+    /**It takes uuid as input and returns EmployeePositionEntity
+     *
+     * @param uuid will take uuid as input to search
+     * @return searched EmployeePosition
+     */
     EmployeePositionEntity findByUuid(UUID uuid);
 
 }
