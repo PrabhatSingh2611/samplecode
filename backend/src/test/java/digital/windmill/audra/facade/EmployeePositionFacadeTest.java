@@ -27,9 +27,6 @@ public class EmployeePositionFacadeTest {
     @Mock
     private EmployeePositionService employeePositionService;
 
-    @Mock
-    private EmployeePositionMapper employeePositionMapper;
-
     @InjectMocks
     private EmployeePositionFacadeImpl facade;
 

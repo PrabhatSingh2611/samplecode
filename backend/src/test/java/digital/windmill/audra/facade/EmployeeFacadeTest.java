@@ -10,6 +10,9 @@ import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
+import digital.windmill.audra.service.EmployeePositionService;
+import digital.windmill.audra.service.EmployeeService;
+import digital.windmill.audra.service.LocationService;
 import digital.windmill.audra.service.impl.EmployeePositionServiceImpl;
 import digital.windmill.audra.service.impl.EmployeeServiceImpl;
 import digital.windmill.audra.service.impl.LocationServiceImpl;
@@ -36,13 +39,11 @@ import static org.mockito.Mockito.when;
 public class EmployeeFacadeTest {
 
     @Mock
-    private EmployeePositionServiceImpl employeePositionService;
+    private EmployeePositionService employeePositionService;
     @Mock
-    private LocationServiceImpl locationService;
+    private LocationService locationService;
     @Mock
-    private EmployeeServiceImpl employeeService;
-    @Mock
-    private EmployeeMapper employeeMapper;
+    private EmployeeService employeeService;
 
     @InjectMocks
     private EmployeeFacadeImpl facade;
@@ -50,8 +51,6 @@ public class EmployeeFacadeTest {
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final Long ID = 1L;
     private static final String NAME = "Name";
-    private static final Integer ITEM_PER_PAGE = 3;
-    private static final Integer PAGE_NUMBER = 2;
     private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "6njELdS";
     private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;

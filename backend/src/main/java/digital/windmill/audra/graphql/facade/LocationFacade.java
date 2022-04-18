@@ -11,13 +11,6 @@ import java.util.UUID;
 
 public interface LocationFacade {
 
-    /**It return Location by taking uuid as input
-     * @param uuid it used this uuid to give service and take LocationEntity
-     * @return it returns a specific Location
-     */
-    @Transactional(readOnly = true)
-    LocationEntity findLocationByUuid(UUID uuid);
-
     /**It Takes NO input and  gives all employee in database
      * @return all Location in the database
      */
