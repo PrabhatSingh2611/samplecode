@@ -30,11 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
     }
 
-    @Override public Page<EmployeeEntity> findAll(EmployeesInput input) {
-        var spec = EmployeeSpecification.employees(input);
-        return employeeRepository.findAll(spec.getKey(), spec.getValue());
-    }
-
     @Override
     public Employee createEmployee(CreateEmployeeInput input,
                                    EmployeeEntity employeeEntity,
@@ -51,5 +46,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
         );
         return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);
+    }
+
+    @Override
+    public Page<Employee> getEmployees(EmployeesInput input) {
+        var spec=EmployeeSpecification.employees(input);
+        Page<EmployeeEntity> allEmployees = employeeRepository.findAll(spec.getKey(), spec.getValue());
+        return allEmployees.map(employeeMapper::mapEmployeeEntityToEmployee);
     }
 }

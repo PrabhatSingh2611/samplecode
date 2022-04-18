@@ -24,12 +24,13 @@ public class LocationResolver implements GraphQLQueryResolver {
     public LocationPayload location(LocationInput input) {
         return LocationPayload
                 .builder()
-                .location(locationFacade.findLocationByUuid(input.getUuid()))
+                .location(locationFacade.findByUuid(input.getUuid()))
                 .build();
     }
 
     public LocationConnectionPayload locations() {
-        return LocationConnectionPayload.builder()
+        return LocationConnectionPayload
+                .builder()
                 .items(locationFacade.findAllLocation())
                 .build();
     }

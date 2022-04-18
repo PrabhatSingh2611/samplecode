@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.facade;
 
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
@@ -15,7 +16,7 @@ public interface LocationFacade {
      * @return it returns a specific Location
      */
     @Transactional(readOnly = true)
-    Location findLocationByUuid(UUID uuid);
+    LocationEntity findLocationByUuid(UUID uuid);
 
     /**It Takes NO input and  gives all employee in database
      * @return all Location in the database
@@ -40,4 +41,12 @@ public interface LocationFacade {
      * @return an updated location
      */
     Location updateLocation(UpdateLocationInput input);
+
+    /**,
+     * This method will return a specific location by specific UUID.
+     * @param uuid uuid by which we search location
+     * @return a specific location
+     */
+    @Transactional(readOnly = true)
+    Location findByUuid(UUID uuid);
 }

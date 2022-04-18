@@ -20,8 +20,6 @@ public interface EmployeeService {
      */
     EmployeeEntity findByUuid(UUID uuid);
 
-    Page<EmployeeEntity> findAll(EmployeesInput input);
-
     /**
      * This method will create employee by provided input.
      *
@@ -43,4 +41,12 @@ public interface EmployeeService {
      * @return required employee searched wrapped into Employee
      */
     Employee findByUuidMapped(UUID uuid);
+
+    /**
+     * This method will search employees by an input value.
+     *
+     * @param input of which employees will be searched in Repository
+     * @return required employees searched wrapped into Employee
+     */
+    Page<Employee> getEmployees(EmployeesInput input);
 }

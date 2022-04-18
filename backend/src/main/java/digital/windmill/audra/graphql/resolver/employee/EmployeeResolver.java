@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class EmployeeResolver implements GraphQLQueryResolver {
 
-    private EmployeeFacade employeeFacadeImpl;
+    private EmployeeFacade employeeFacade;
 
     public ConnectionPayload<Employee> employees(EmployeesInput input) {
-        return ConnectionUtils.buildPayload(employeeFacadeImpl.getEmployees(input));
+        return ConnectionUtils.buildPayload(employeeFacade.getEmployees(input));
     }
 }

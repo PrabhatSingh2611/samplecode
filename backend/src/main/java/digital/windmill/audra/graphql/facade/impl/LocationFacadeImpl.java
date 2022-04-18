@@ -2,7 +2,7 @@ package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.facade.LocationFacade;
-import digital.windmill.audra.graphql.mapper.LocationMapper;
+import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
@@ -18,22 +18,22 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LocationFacadeImpl implements LocationFacade {
     private LocationService locationService;
-    private LocationMapper locationMapper;
 
-    @Override@Transactional(readOnly = true)
-    public Location findLocationByUuid(UUID uuid) {
-        return locationMapper.mapLocationEntityToLocation(locationService.findByUuid(uuid));
+    @Override
+    @Transactional(readOnly = true)
+    public LocationEntity findLocationByUuid(UUID uuid) {
+        return locationService.findByUuid(uuid);
+    }
+
+    @Transactional(readOnly = true)
+    public Location findByUuid(UUID uuid) {
+        return locationService.findByUuidMapped(uuid);
     }
 
 
     @Override@Transactional(readOnly = true)
     public List<Location> findAllLocation() {
-        return locationService
-                .findAll()
-                .stream()
-                .map(locationEntity -> locationMapper.mapLocationEntityToLocation(locationEntity))
-                .toList();
-
+        return locationService.getLocations();
     }
 
     @Override public Location createLocation(CreateLocationInput input) {
