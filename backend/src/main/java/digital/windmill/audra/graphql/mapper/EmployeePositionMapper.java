@@ -18,7 +18,7 @@ public interface EmployeePositionMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(generateUUID())")
     @Mapping(target = "name", source = "input.name")
-    EmployeePositionEntity mapEmployeePositionInputToEmployeePositionEntity(CreateEmployeePositionInput input);
+    EmployeePositionEntity mapCreateEmployeePositionInputToEmployeePositionEntity(CreateEmployeePositionInput input);
 
 
 

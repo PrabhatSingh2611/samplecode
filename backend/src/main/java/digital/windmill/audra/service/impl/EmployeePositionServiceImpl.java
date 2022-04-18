@@ -22,7 +22,7 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
 
     @Override
     public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
-        var toBeSavedEmployeePositionEntity = employeePositionMapper.mapEmployeePositionInputToEmployeePositionEntity(input);
+        var toBeSavedEmployeePositionEntity = employeePositionMapper.mapCreateEmployeePositionInputToEmployeePositionEntity(input);
         EmployeePositionEntity savedEmployee = employeePositionRepository.save(toBeSavedEmployeePositionEntity);
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployee);
     }

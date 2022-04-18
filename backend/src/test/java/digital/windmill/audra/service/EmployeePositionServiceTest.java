@@ -41,7 +41,7 @@ public class EmployeePositionServiceTest {
 
     @Test
     void shouldCreateEmployeePosition() {
-        when(employeePositionMapper.mapEmployeePositionInputToEmployeePositionEntity(any(CreateEmployeePositionInput.class))).thenReturn(createEmployeePositionEntity());
+        when(employeePositionMapper.mapCreateEmployeePositionInputToEmployeePositionEntity(any(CreateEmployeePositionInput.class))).thenReturn(createEmployeePositionEntity());
         when(employeePositionRepository.save(any(EmployeePositionEntity.class))).thenReturn(createEmployeePositionEntity());
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class))).thenReturn(createEmployeePosition());
 
