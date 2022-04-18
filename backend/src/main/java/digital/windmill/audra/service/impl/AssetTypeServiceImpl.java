@@ -7,6 +7,7 @@ import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
+import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import digital.windmill.audra.service.AssetTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -39,7 +40,7 @@ public class AssetTypeServiceImpl implements AssetTypeService {
     }
 
     @Override
-    public AssetType createAssetType(AssetTypeInput input) {
+    public AssetType createAssetType(CreateAssetTypeInput input) {
 
         AssetTypeEntity savedAssetEntity = assetTypeRepository
                 .save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));

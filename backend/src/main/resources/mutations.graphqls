@@ -3,7 +3,7 @@ type Mutation {
 	createEmployeePosition(input:CreateEmployeePositionInput!):EmployeePositionPayload!
 	updateEmployeePosition(input:UpdateEmployeePositionInput!):EmployeePositionPayload!
 	deleteEmployeePosition(input:DeleteEmployeePositionInput!):DeleteEmployeePositionPayload!
-	createAssetType(input:AssetTypeInput!): AssetTypePayload!
+	createAssetType(input:CreateAssetTypeInput!): AssetTypePayload!
 	createLocation(input: CreateLocationInput!): LocationPayload!
 	updateLocation(input: UpdateLocationInput!): LocationPayload!
 	createEmployee(input:CreateEmployeeInput!):EmployeePayload!

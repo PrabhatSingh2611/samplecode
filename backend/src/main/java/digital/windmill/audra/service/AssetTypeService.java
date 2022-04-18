@@ -2,6 +2,7 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
+import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +23,8 @@ public interface AssetTypeService {
 
     /**
      * This method will create a specific Asset Type by specific input
-     * @param assetTypeInput input by which we create Asset type
+     * @param createAssetTypeInput input by which we create Asset type
      * @return created AssetType
      */
-    AssetType createAssetType(AssetTypeInput assetTypeInput);
+    AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput);
 }

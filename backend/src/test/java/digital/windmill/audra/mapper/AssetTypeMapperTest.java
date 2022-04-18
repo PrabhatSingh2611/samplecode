@@ -4,6 +4,7 @@ import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapperImpl;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
+import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,12 +27,9 @@ class AssetTypeMapperTest {
     private static final String TITLE = "FZJIh4SB";
     private static final String ICON = "sQPXFD";
     private static final Long ID = 200L;
-    private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
-    private static final EmployeePosition POSITION = new EmployeePosition();
+
     private static final String LOCATION = "Location";
     private static final String ROLE = "Admin";
-    private final static Instant LOCAL_DATE = Instant.now();
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Test
 
@@ -55,10 +53,10 @@ class AssetTypeMapperTest {
         );
     }
 
-    private AssetTypeInput createAssetTypeInput() {
-        return AssetTypeInput.builder()
-                .uuid(TEST_UUID)
+    private CreateAssetTypeInput createAssetTypeInput() {
+        return CreateAssetTypeInput.builder()
                 .title(TITLE)
+                .icon(ICON)
                 .build();
     }
 
