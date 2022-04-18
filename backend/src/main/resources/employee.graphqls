@@ -1,12 +1,12 @@
 type Employee implements Node {
-	uuid: UUID!
-	firstName: String
-	lastName: String
-	role: String
-	birthday: ZonedDateTime
-	reportingManager:Employee
-	position: String
-	location: String
+    uuid: UUID!
+    firstName: String
+    lastName: String
+    role: String
+    birthday: ZonedDateTime
+    reportingManager:Employee
+    position: String
+    location: String
 }
 
 
@@ -17,41 +17,16 @@ type EmployeeConnectionPayload implements ConnectionPayload {
 }
 
 input CreateEmployeeInput {
-	firstName: String!
-	lastName: String!
-	birthday: ZonedDateTime
-	position: UUID
-	location: UUID
+    firstName: String!
+    lastName: String!
+    birthday: ZonedDateTime
+    position: UUID
+    location: UUID
 }
 
 
 type EmployeePayload {
-	item: Employee
-}
-
-type EmployeePosition implements Node{
-    uuid: UUID!
-    name:String
-}
-input DeleteEmployeePositionInput{
-    uuid:UUID!
-}
-
-input CreateEmployeePositionInput{
-    name:String!
-}
-
-input UpdateEmployeePositionInput{
-    uuid:UUID!
-    name:String!
-}
-
-type EmployeePositionPayload{
-	item:EmployeePosition
-}
-
-type DeleteEmployeePositionPayload{
-    employeePosition: Node!
+    item: Employee
 }
 
 input EmployeesInput {
