@@ -2,7 +2,7 @@ package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.mapper.EmployeePositionMapperImpl;
-import digital.windmill.audra.graphql.type.EmployeePosition;
+import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -25,12 +26,26 @@ public class EmployeePositionMapperTest {
 
 
     @Test
-    void shouldMap() {
-        EmployeePosition actual = mapper.mapEmployeePositionEntityToEmployeePosition(createEmployeePositionEntity());
+    void shouldMapEmployeePositionEntityToEmployeePosition() {
+        var actual = mapper.mapEmployeePositionEntityToEmployeePosition(createEmployeePositionEntity());
+
+        assertNotNull(actual);
         assertAll(
                 () -> assertEquals(TEST_UUID, actual.getUuid()),
                 () -> assertEquals(NAME, actual.getName())
         );
+    }
+
+    @Test
+    void shouldMapEmployeePositionToEmployeePositionEntity() {
+        var actual = mapper.mapCreateEmployeePositionInputToEmployeePositionEntity(testCreateEmployeePosition());
+        assertAll(
+                () -> assertEquals(NAME, actual.getName())
+        );
+    }
+
+    private CreateEmployeePositionInput testCreateEmployeePosition() {
+        return CreateEmployeePositionInput.builder().name(NAME).build();
     }
 
     private EmployeePositionEntity createEmployeePositionEntity() {

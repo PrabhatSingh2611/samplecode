@@ -19,12 +19,6 @@ import java.util.UUID;
 public class LocationFacadeImpl implements LocationFacade {
     private LocationService locationService;
 
-    @Override
-    @Transactional(readOnly = true)
-    public LocationEntity findLocationByUuid(UUID uuid) {
-        return locationService.findByUuid(uuid);
-    }
-
     @Transactional(readOnly = true)
     public Location findByUuid(UUID uuid) {
         return locationService.findByUuidMapped(uuid);

@@ -1,0 +1,112 @@
+package digital.windmill.audra.facade;
+
+import digital.windmill.audra.dao.entity.LocationEntity;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
+import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
+import digital.windmill.audra.graphql.facade.impl.LocationFacadeImpl;
+import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
+import digital.windmill.audra.graphql.type.input.CreateLocationInput;
+import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
+import digital.windmill.audra.service.LocationService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class LocationFacadeTest {
+
+    @Mock
+    private LocationService locationService;
+
+    @InjectMocks
+    private LocationFacadeImpl locationFacade;
+
+    private static final UUID TEST_UUID = UUID.fromString("0069e6ad-d356-472f-99cc-9256565a02a9");
+    private static final Long ID = 1L;
+    private static final String NAME = "PcwrDcz";
+    private final static Instant LOCAL_DATE = Instant.now();
+    private final static LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
+    private static final String ROLE = "6njELdS";
+    private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
+    private static final String POSITION = "62pDeE";
+    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+
+    @Test
+    void shouldFindByUuid() {
+        when(locationService.findByUuidMapped(any(UUID.class)))
+                .thenReturn(testLocation());
+
+        var result = locationFacade.findByUuid(TEST_UUID);
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getName());
+    }
+
+    @Test
+    void shouldFindAllLocation() {
+        when(locationService.getLocations())
+                .thenReturn(listOfLocation());
+
+        var result = locationFacade.findAllLocation();
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.get(0).getUuid());
+        assertEquals(NAME, result.get(0).getName());
+    }
+
+    @Test
+    void shouldCreateLocation() {
+        when(locationService.createLocation(any(CreateLocationInput.class)))
+                .thenReturn(testLocation());
+
+        var result = locationFacade.createLocation(testCreateLocationInput());
+        assertNotNull(result);
+        assertEquals(NAME, result.getName());
+    }
+
+    @Test
+    void shouldUpdateLocation() {
+        when(locationService.updateLocation(any(UpdateLocationInput.class), any(LocationEntity.class)))
+                .thenReturn(testLocation());
+        when(locationService.findByUuid(any(UUID.class))).thenReturn(createLocationEntity());
+
+        var result = locationFacade.updateLocation(testUpdateLocationInput());
+        assertNotNull(result);
+        assertEquals(NAME, result.getName());
+        assertEquals(TEST_UUID, result.getUuid());
+    }
+
+    private LocationEntity createLocationEntity() {
+        return LocationEntity.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
+    }
+
+    private UpdateLocationInput testUpdateLocationInput() {
+        return UpdateLocationInput.builder().uuid(TEST_UUID).name(NAME).build();
+    }
+
+    private CreateLocationInput testCreateLocationInput() {
+        return CreateLocationInput.builder().name(NAME).build();
+    }
+
+    private List<Location> listOfLocation() {
+        return List.of(testLocation());
+    }
+
+    private Location testLocation() {
+        return Location.builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
+    }
+}

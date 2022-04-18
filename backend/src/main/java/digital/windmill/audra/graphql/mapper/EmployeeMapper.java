@@ -50,4 +50,5 @@ public interface EmployeeMapper {
     default UUID generateUUID() {
         return UUID.randomUUID();
     }
+
 }
