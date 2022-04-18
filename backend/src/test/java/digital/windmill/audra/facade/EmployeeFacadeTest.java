@@ -78,12 +78,9 @@ public class EmployeeFacadeTest {
     @Test
     void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput) {
 
-        when(employeeService.findAll(any(EmployeesInput.class)))
+        when(employeeService.getEmployees(any(EmployeesInput.class)))
                 .thenReturn(createListOfEmployeeEntity());
 
-      /*  when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
-                .thenReturn(createEmployee());
-*/
         var result = facade.getEmployees(employeesInput);
 
         assertNotNull(result);
@@ -93,10 +90,9 @@ public class EmployeeFacadeTest {
         Assertions.assertEquals(NAME, result.getContent().get(0).getLocation().getName());
     }
 
-    private Page<EmployeeEntity> createListOfEmployeeEntity() {
-        return new PageImpl<>(List.of(createEmployeeEntity()));
+    private Page<Employee> createListOfEmployeeEntity() {
+        return new PageImpl<>(List.of(createEmployee()));
     }
-
 
     @Test
     void shouldCreateEmployee() {

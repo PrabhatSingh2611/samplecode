@@ -20,8 +20,6 @@ public interface EmployeeService {
      */
     EmployeeEntity findByUuid(UUID uuid);
 
-    Page<EmployeeEntity> findAll(EmployeesInput input);
-
     /**
      * This method will create employee by provided input.
      *

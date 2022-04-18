@@ -30,11 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
     }
 
-    @Override public Page<EmployeeEntity> findAll(EmployeesInput input) {
-        var spec = EmployeeSpecification.employees(input);
-        return employeeRepository.findAll(spec.getKey(), spec.getValue());
-    }
-
     @Override
     public Employee createEmployee(CreateEmployeeInput input,
                                    EmployeeEntity employeeEntity,
