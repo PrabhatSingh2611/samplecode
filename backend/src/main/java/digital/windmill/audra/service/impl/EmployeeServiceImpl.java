@@ -52,4 +52,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
         return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);
     }
+
+    @Override
+    public Page<Employee> getEmployees(EmployeesInput input) {
+        var spec=EmployeeSpecification.employees(input);
+        Page<EmployeeEntity> allEmployees = employeeRepository.findAll(spec.getKey(), spec.getValue());
+        return allEmployees.map(employeeMapper::mapEmployeeEntityToEmployee);
+    }
 }

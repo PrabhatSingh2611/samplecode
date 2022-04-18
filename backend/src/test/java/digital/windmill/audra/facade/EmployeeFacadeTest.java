@@ -33,7 +33,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeFacadeImplTest {
+public class EmployeeFacadeTest {
 
     @Mock
     private EmployeePositionServiceImpl employeePositionService;
@@ -81,9 +81,9 @@ public class EmployeeFacadeImplTest {
         when(employeeService.findAll(any(EmployeesInput.class)))
                 .thenReturn(createListOfEmployeeEntity());
 
-        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
+      /*  when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn(createEmployee());
-
+*/
         var result = facade.getEmployees(employeesInput);
 
         assertNotNull(result);

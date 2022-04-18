@@ -36,4 +36,18 @@ public interface LocationService {
      * @return an updated location
      */
     Location updateLocation(UpdateLocationInput input, LocationEntity location);
+
+    /**
+     * This method will search all the locations,
+     * @return required locations searched
+     */
+    List<Location> getLocations();
+
+    /**
+     * This method will search location by an uuid value.
+     *
+     * @param uuid of which location will be searched in Repository
+     * @return required location searched wrapped into Location
+     */
+    Location findByUuidMapped(UUID uuid);
 }

@@ -43,5 +43,22 @@ public class LocationServiceImpl implements LocationService {
         return locationMapper.mapLocationEntityToLocation(locationRepository.save(location));
     }
 
+    @Override
+    public List<Location> getLocations() {
+        return locationRepository
+                .findAll()
+                .stream()
+                .map(locationMapper::mapLocationEntityToLocation)
+                .toList();
+    }
+
+    @Override
+    public Location findByUuidMapped(UUID uuid) {
+         LocationEntity locationEntity = locationRepository.findByUuid(uuid).orElseThrow(
+                () -> new DataNotFoundException("location not found for : " + uuid.toString())
+        );
+        return locationMapper.mapLocationEntityToLocation(locationEntity);
+    }
+
 
 }
