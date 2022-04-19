@@ -3,11 +3,12 @@ package digital.windmill.audra.service.impl;
 import digital.windmill.audra.dao.EmployeeSpecification;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
+import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.service.EmployeeService;
@@ -24,6 +25,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     private EmployeeMapper employeeMapper;
 
+    private LocationMapper locationMapper;
+
     @Override public EmployeeEntity findByUuid(UUID uuid) {
         return employeeRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
@@ -34,9 +37,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createEmployee(CreateEmployeeInput input,
                                    EmployeeEntity employeeEntity,
                                    EmployeePositionEntity employeePositionEntity,
-                                   LocationEntity locationEntity) {
+                                   Location location) {
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
-                input,employeeEntity, employeePositionEntity, locationEntity);
+                input
+                ,employeeEntity
+                ,employeePositionEntity,
+                locationMapper.mapLocationToLocationEntity(location));
         return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
 
@@ -50,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Page<Employee> getEmployees(EmployeesInput input) {
-        var spec=EmployeeSpecification.employees(input);
+        var spec= EmployeeSpecification.employees(input);
         Page<EmployeeEntity> allEmployees = employeeRepository.findAll(spec.getKey(), spec.getValue());
         return allEmployees.map(employeeMapper::mapEmployeeEntityToEmployee);
     }

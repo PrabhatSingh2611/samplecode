@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Location implements Node {
 
+    private Long id;
     private UUID uuid;
     private String name;
 }

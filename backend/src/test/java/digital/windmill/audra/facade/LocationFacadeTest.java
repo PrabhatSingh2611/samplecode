@@ -1,11 +1,9 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.impl.LocationFacadeImpl;
 import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
@@ -45,7 +43,7 @@ class LocationFacadeTest {
 
     @Test
     void shouldFindByUuid() {
-        when(locationService.findByUuidMapped(any(UUID.class)))
+        when(locationService.findLocationByUuid(any(UUID.class)))
                 .thenReturn(testLocation());
 
         var result = locationFacade.findByUuid(TEST_UUID);
@@ -77,9 +75,9 @@ class LocationFacadeTest {
 
     @Test
     void shouldUpdateLocation() {
-        when(locationService.updateLocation(any(UpdateLocationInput.class), any(LocationEntity.class)))
+        when(locationService.updateLocation(any(UpdateLocationInput.class), any(Location.class)))
                 .thenReturn(testLocation());
-        when(locationService.findByUuid(any(UUID.class))).thenReturn(createLocationEntity());
+        when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocation());
 
         var result = locationFacade.updateLocation(testUpdateLocationInput());
         assertNotNull(result);
@@ -87,8 +85,13 @@ class LocationFacadeTest {
         assertEquals(TEST_UUID, result.getUuid());
     }
 
-    private LocationEntity createLocationEntity() {
-        return LocationEntity.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
+    private Location createLocation() {
+        return Location
+                .builder()
+                .name(NAME)
+                .uuid(TEST_UUID)
+                .id(ID)
+                .build();
     }
 
     private UpdateLocationInput testUpdateLocationInput() {

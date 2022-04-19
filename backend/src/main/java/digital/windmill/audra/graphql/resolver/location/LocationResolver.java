@@ -17,10 +17,6 @@ public class LocationResolver implements GraphQLQueryResolver {
 
     private LocationFacade locationFacade;
 
-    public List<Location> getLocations() {
-        return locationFacade.findAllLocation();
-    }
-
     public LocationPayload location(LocationInput input) {
         return LocationPayload
                 .builder()

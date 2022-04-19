@@ -13,16 +13,6 @@ public interface LocationService {
     /**
      * This method will search location by an uuid value.
      *
-     * @param uuid of which location will be searched in Repository
-     * @return a specific location
-     */
-    LocationEntity findByUuid(UUID uuid);
-
-    List<LocationEntity> findAll();
-
-    /**
-     * This method will search location by an uuid value.
-     *
      * @param input of which location will be created with new data
      * @return an updated location
      */
@@ -35,7 +25,7 @@ public interface LocationService {
      * @param location is previous location that will be updated with new data i,e. input
      * @return an updated location
      */
-    Location updateLocation(UpdateLocationInput input, LocationEntity location);
+    Location updateLocation(UpdateLocationInput input, Location location);
 
     /**
      * This method will search all the locations,
@@ -49,5 +39,5 @@ public interface LocationService {
      * @param uuid of which location will be searched in Repository
      * @return required location searched wrapped into Location
      */
-    Location findByUuidMapped(UUID uuid);
+    Location findLocationByUuid(UUID uuid);
 }

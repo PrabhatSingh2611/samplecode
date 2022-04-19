@@ -32,4 +32,6 @@ public interface LocationMapper {
     default UUID generateUUID() {
         return UUID.randomUUID();
     }
+
+    LocationEntity mapLocationToLocationEntity(Location location);
 }

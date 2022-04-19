@@ -22,15 +22,6 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository locationRepository;
     private LocationMapper locationMapper;
 
-    @Override public LocationEntity findByUuid(UUID uuid) {
-        return locationRepository.findByUuid(uuid)
-                .orElseThrow(() -> new DataNotFoundException("Location not found"));
-    }
-
-    @Override public List<LocationEntity> findAll() {
-        return locationRepository.findAll();
-    }
-
     @Override
     public Location createLocation(CreateLocationInput input) {
         LocationEntity locationEntity = locationMapper.mapCreateLocationInputToLocationEntity(input);
@@ -38,9 +29,12 @@ public class LocationServiceImpl implements LocationService {
         return locationMapper.mapLocationEntityToLocation(savedLocationEntity);
     }
 
-    @Override public Location updateLocation(UpdateLocationInput input, LocationEntity location) {
+    @Override public Location updateLocation(UpdateLocationInput input, Location location) {
         location.setName(input.getName());
-        return locationMapper.mapLocationEntityToLocation(locationRepository.save(location));
+        return locationMapper
+                .mapLocationEntityToLocation(
+                        locationRepository
+                                .save(locationMapper.mapLocationToLocationEntity(location)));
     }
 
     @Override
@@ -53,7 +47,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public Location findByUuidMapped(UUID uuid) {
+    public Location findLocationByUuid(UUID uuid) {
          LocationEntity locationEntity = locationRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("location not found for : " + uuid.toString())
         );

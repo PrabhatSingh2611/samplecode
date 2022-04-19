@@ -3,10 +3,9 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import digital.windmill.audra.dao.repository.EmployeePositionRepository;
 import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
+import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
@@ -34,7 +33,8 @@ public class EmployeeServiceTest {
     private EmployeeRepository employeeRepository;
     @Mock
     private EmployeeMapper employeeMapper;
-
+    @Mock
+    private LocationMapper locationMapper;
 
     @InjectMocks
     private EmployeeServiceImpl service;
@@ -51,6 +51,7 @@ public class EmployeeServiceTest {
     @Test
     void shouldCreateEmployee() {
 
+        when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
         when(employeeMapper.mapEmployeeInputToEmployeeEntity(any(CreateEmployeeInput.class),
                 any(EmployeeEntity.class),
                 any(EmployeePositionEntity.class),
@@ -62,7 +63,7 @@ public class EmployeeServiceTest {
         var result = service.createEmployee(createCreateEmployeeInput(),
                 createEmployeeEntity(),
                 createEmployeePositionEntity(),
-                createLocationEntity());
+                createLocation());
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
