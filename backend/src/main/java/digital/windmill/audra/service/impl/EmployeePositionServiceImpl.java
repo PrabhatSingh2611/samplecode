@@ -27,8 +27,10 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployee);
     }
 
-    public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input,
-                                                   EmployeePositionEntity employeePositionEntity) {
+    @Override
+    public EmployeePosition updateEmployeePosition(
+            UpdateEmployeePositionInput input,
+            EmployeePositionEntity employeePositionEntity) {
         employeePositionEntity.setName(input.getName());
         EmployeePositionEntity savedEmployeePositionEntity = employeePositionRepository.save(employeePositionEntity);
 
@@ -47,8 +49,4 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
                 () -> new DataNotFoundException("Employee Position not found for : " + uuid.toString())
         );
     }
-
-
-
-
 }
