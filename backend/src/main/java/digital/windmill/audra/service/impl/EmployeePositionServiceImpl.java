@@ -30,7 +30,9 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
     @Override
     public EmployeePosition updateEmployeePosition(
             UpdateEmployeePositionInput input,
-            EmployeePositionEntity employeePositionEntity) {
+            EmployeePosition employeePosition) {
+        EmployeePositionEntity employeePositionEntity = employeePositionMapper
+                .mapEmployeePositionToEmployeePositionEntity(employeePosition);
         employeePositionEntity.setName(input.getName());
         EmployeePositionEntity savedEmployeePositionEntity = employeePositionRepository.save(employeePositionEntity);
 
@@ -38,15 +40,22 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
     }
 
     @Override
-    public EmployeePosition deleteEmployeePosition(EmployeePositionEntity employeePositionEntity) {
+    public EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition) {
+        EmployeePositionEntity employeePositionEntity = employeePositionMapper
+                .mapEmployeePositionToEmployeePositionEntity(employeePosition);
         employeePositionRepository.delete(employeePositionEntity);
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity);
     }
 
     @Override
-    public EmployeePositionEntity findByUuid(UUID uuid) {
-        return employeePositionRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Employee Position not found for : " + uuid.toString())
-        );
+    public EmployeePosition findEmployeePositionByUuid(UUID uuid) {
+        return employeePositionMapper
+                .mapEmployeePositionEntityToEmployeePosition(
+                        employeePositionRepository
+                                .findByUuid(uuid)
+                                .orElseThrow(
+                                        () -> new DataNotFoundException("Employee Position not found for : " + uuid.toString())
+                                )
+                );
     }
 }

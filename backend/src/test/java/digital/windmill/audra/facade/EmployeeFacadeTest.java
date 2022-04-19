@@ -4,7 +4,9 @@ import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
+import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
@@ -40,6 +42,9 @@ public class EmployeeFacadeTest {
     @Mock
     private EmployeeService employeeService;
 
+    @Mock
+    private EmployeeMapper employeeMapper;
+
     @InjectMocks
     private EmployeeFacadeImpl facade;
 
@@ -55,7 +60,7 @@ public class EmployeeFacadeTest {
     @Test
     void shouldReturnEmployeesById() {
 
-        when(employeeService.findByUuidMapped(any(UUID.class)))
+        when(employeeService.findEmployeeByUuid(any(UUID.class)))
                 .thenReturn(createEmployee());
 
         var result = facade.findEmployeeByUuid(TEST_UUID);
@@ -66,6 +71,7 @@ public class EmployeeFacadeTest {
         Assertions.assertEquals(NAME, result.getLastName());
         Assertions.assertEquals(NAME, result.getLocation().getName());
         Assertions.assertEquals(POSITION, result.getPosition());
+//        assertThrows(AccessDeniedException.class, () -> facade.deleteUserRoles(createUpdateUserRolesInput()));
     }
 
 
@@ -91,13 +97,11 @@ public class EmployeeFacadeTest {
     @Test
     void shouldCreateEmployee() {
 
-        when(employeePositionService.findByUuid(any(UUID.class))).thenReturn(createEmployeePositionEntity());
+        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
         when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocation());
-        when(employeeService.findByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(employeeService.createEmployee(
                         any(CreateEmployeeInput.class),
-                        any(EmployeeEntity.class),
-                        any(EmployeePositionEntity.class),
+                        any(EmployeePosition.class),
                         any(Location.class)
                 )
         ).thenReturn(createEmployee());
@@ -109,6 +113,15 @@ public class EmployeeFacadeTest {
         assertEquals(NAME, result.getFirstName());
         assertEquals(NAME, result.getLastName());
         assertEquals(DATE_TIME, result.getBirthday());
+    }
+
+    private EmployeePosition createEmployeePosition() {
+        return EmployeePosition
+                .builder()
+                .id(ID)
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 
     private EmployeePositionEntity createEmployeePositionEntity() {
@@ -145,7 +158,16 @@ public class EmployeeFacadeTest {
     }
 
     private Employee createReportingManager() {
-        return new Employee();
+        return Employee.builder()
+                .id(ID)
+                .uuid(TEST_UUID)
+                .lastName(NAME)
+                .firstName(NAME)
+                .position(POSITION)
+                .location(createLocation())
+                .role(ROLE)
+                .reportingManager(null)
+                .build();
     }
 
     private EmployeeEntity createEmployeeEntity() {

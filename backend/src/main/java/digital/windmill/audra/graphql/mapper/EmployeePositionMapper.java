@@ -20,11 +20,17 @@ public interface EmployeePositionMapper {
     @Mapping(target = "name", source = "input.name")
     EmployeePositionEntity mapCreateEmployeePositionInputToEmployeePositionEntity(CreateEmployeePositionInput input);
 
-
-
-    @Mapping(target = "uuid", source = "employeePositionEntity.uuid")
-    @Mapping(target = "name", source = "employeePositionEntity.name")
+    /**Maps EmployeePositionEntity To EmployeePosition
+     * @param employeePositionEntity EmployeePositionEntity
+     * @return mapped EmployeePosition
+     */
     EmployeePosition mapEmployeePositionEntityToEmployeePosition(EmployeePositionEntity employeePositionEntity);
+
+    /**Maps EmployeePosition To EmployeePositionEntity
+     * @param employeePosition EmployeePosition
+     * @return mapped EmployeePositionEntity
+     */
+    EmployeePositionEntity mapEmployeePositionToEmployeePositionEntity(EmployeePosition employeePosition);
 
     default UUID generateUUID() {
         return UUID.randomUUID();

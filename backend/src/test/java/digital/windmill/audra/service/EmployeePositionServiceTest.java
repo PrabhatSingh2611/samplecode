@@ -36,7 +36,7 @@ public class EmployeePositionServiceTest {
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "fJC3qxuU";
-    private static final String UPDATED_NAME = "qEm1R4L";
+    private static final Long ID = 990L;
 
 
     @Test
@@ -56,9 +56,12 @@ public class EmployeePositionServiceTest {
         EmployeePositionEntity entity = createEmployeePositionEntity();
         entity.setName("XaN");
         when(employeePositionRepository.save(any(EmployeePositionEntity.class))).thenReturn(entity);
-        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class))).thenReturn(createEmployeePosition());
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
+                .thenReturn(createEmployeePosition());
+        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
+                .thenReturn(createEmployeePositionEntity());
 
-        var result = service.updateEmployeePosition(updateEmployeePositionInput(), createEmployeePositionEntity());
+        var result = service.updateEmployeePosition(updateEmployeePositionInput(), createEmployeePosition());
         Assertions.assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
         Assertions.assertEquals(NAME, result.getName());
@@ -70,8 +73,9 @@ public class EmployeePositionServiceTest {
 
         doNothing().when(employeePositionRepository).delete(any(EmployeePositionEntity.class));
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class))).thenReturn(createEmployeePosition());
+        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
 
-        var result = service.deleteEmployeePosition(createEmployeePositionEntity());
+        var result = service.deleteEmployeePosition(createEmployeePosition());
         Assertions.assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
         Assertions.assertEquals(NAME, result.getName());
@@ -80,7 +84,9 @@ public class EmployeePositionServiceTest {
     @Test
     void shouldFindByUuid() {
         when(employeePositionRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createEmployeePositionEntity()));
-        var result = service.findByUuid(TEST_UUID);
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
+                .thenReturn(createEmployeePosition());
+        var result = service.findEmployeePositionByUuid(TEST_UUID);
         Assertions.assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
 
@@ -89,7 +95,7 @@ public class EmployeePositionServiceTest {
     @Test
     void shouldThrowNPEWhenUuidIsNull() {
         when(employeePositionRepository.findByUuid(any(UUID.class))).thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
-        Assertions.assertThrows(DataNotFoundException.class, () -> service.findByUuid(TEST_UUID));
+        Assertions.assertThrows(DataNotFoundException.class, () -> service.findEmployeePositionByUuid(TEST_UUID));
     }
 
 
@@ -103,11 +109,11 @@ public class EmployeePositionServiceTest {
 
 
     private EmployeePositionEntity createEmployeePositionEntity() {
-        return EmployeePositionEntity.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return EmployeePositionEntity.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 
     private EmployeePosition createEmployeePosition() {
-        return EmployeePosition.builder().uuid(TEST_UUID).name(NAME).build();
+        return EmployeePosition.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 
 }

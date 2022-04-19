@@ -6,10 +6,12 @@ import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.dao.repository.LeaveRequestRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.LeaveRequestMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.LeaveRequest;
 import digital.windmill.audra.service.impl.LeaveRequestServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -47,29 +49,23 @@ class LeaveRequestServiceTest {
     private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
 
     @Test
-    void shouldFindById() {
+    void shouldFindByIdMapped() {
         when(leaveRequestRepository.findById(any(Long.class))).thenReturn(createLeaveRequestEntity());
-        var result = leaveRequestService.findById(ID);
+        when(leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(any(LeaveRequestEntity.class))).thenReturn(createLeaveRequest());
+        var result = leaveRequestService.findLeaveRequestById(ID);
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(ID, result.getId());
         assertEquals(INSTANT_DATE, result.getRequestDate());
         assertEquals(TEXT, result.getComment());
         assertEquals(STATUS, result.getStatus());
     }
 
     @Test
-    void shouldFindByIdMapped() {
-        when(leaveRequestRepository.findById(any(Long.class))).thenReturn(createLeaveRequestEntity());
-        when(leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(any(LeaveRequestEntity.class))).thenReturn(createLeaveRequest());
-        var result = leaveRequestService.findByIdMapped(ID);
-
-        assertNotNull(result);
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(INSTANT_DATE, result.getRequestDate());
-        assertEquals(TEXT, result.getComment());
-        assertEquals(STATUS, result.getStatus());
+    void shouldThrowDataNotFoundWhenUuidIsNull() {
+        when(leaveRequestRepository.findById(any(Long.class)))
+                .thenThrow(new DataNotFoundException("location not found for :" + ID));
+        Assertions.assertThrows(DataNotFoundException.class, () -> leaveRequestService.findLeaveRequestById(ID));
     }
 
     private LeaveRequest createLeaveRequest() {

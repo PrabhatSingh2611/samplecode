@@ -1,6 +1,5 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.impl.LeaveRequestFacadeImpl;
 import digital.windmill.audra.graphql.type.Employee;
@@ -13,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,7 +37,7 @@ class LeaveRequestFacadeTest {
 
     @Test
     void findLeaveRequestById() {
-        when(leaveRequestService.findByIdMapped(any(Long.class)))
+        when(leaveRequestService.findLeaveRequestById(any(Long.class)))
                 .thenReturn(createLeaveRequest());
 
         var result = leaveRequestFacade.findLeaveRequestById(ID);

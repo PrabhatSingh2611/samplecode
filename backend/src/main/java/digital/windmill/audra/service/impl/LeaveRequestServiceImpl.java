@@ -16,14 +16,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     private LeaveRequestRepository leaveRequestRepository;
     private LeaveRequestMapper leaveRequestMapper;
 
-    @Override public LeaveRequestEntity findById(Long id) {
-        return leaveRequestRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("Leave request with id " + id + "not found.")
-        );
-    }
-
     @Override
-    public LeaveRequest findByIdMapped(Long id) {
+    public LeaveRequest findLeaveRequestById(Long id) {
         LeaveRequestEntity leaveRequestEntity = leaveRequestRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Leave request with id " + id + "not found."));
         return leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(leaveRequestEntity);

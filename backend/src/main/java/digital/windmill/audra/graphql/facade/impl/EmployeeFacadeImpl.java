@@ -24,7 +24,7 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Transactional(readOnly = true)
     public Employee findEmployeeByUuid(UUID uuid) {
-        return employeeService.findByUuidMapped(uuid);
+        return employeeService.findEmployeeByUuid(uuid);
     }
 
     @Override
@@ -35,10 +35,10 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public Employee createEmployee(CreateEmployeeInput input) {
-        var employeePositionEntity = employeePositionService.findByUuid(input.getPosition());
-        var location = locationService.findLocationByUuid(input.getLocation());
-        var employeeEntity = employeeService.findByUuid(input.getReportingManager());
 
-        return employeeService.createEmployee(input, employeeEntity, employeePositionEntity, location);
+        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getPosition());
+        var location = locationService.findLocationByUuid(input.getLocation());
+
+        return employeeService.createEmployee(input, employeePosition, location);
     }
 }

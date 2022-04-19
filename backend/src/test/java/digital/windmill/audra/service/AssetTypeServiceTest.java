@@ -3,6 +3,7 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
+import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
@@ -31,7 +32,7 @@ public class AssetTypeServiceTest {
     private AssetTypeMapper assetTypeMapper;
 
     @InjectMocks
-    private AssetTypeServiceImpl assetTypeServiceImpl;
+    private AssetTypeServiceImpl assetTypeService;
 
     private static final Long ID = 1l;
     private static final UUID TEST_UUID = UUID.fromString("5478b586-e607-4448-ac05-3e5f2adbbc1b");
@@ -42,7 +43,7 @@ public class AssetTypeServiceTest {
     void shouldFindAssetByUuid(){
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
-        var result = assetTypeServiceImpl.findAssetByUuid(TEST_UUID);
+        var result = assetTypeService.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
         Assertions.assertEquals(TITLE, result.getTitle());
@@ -55,10 +56,17 @@ public class AssetTypeServiceTest {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll()).thenReturn(createAssetsTypeEntity());
 
-        var actual = assetTypeServiceImpl.getAssetsType();
+        var actual = assetTypeService.getAssetsType();
         List<AssetType> expected = createAssetsType();
         assertNotNull(actual);
         Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldThrowDataNotFoundWhenUuidIsNull() {
+        when(assetTypeRepository.findByUuid(any(UUID.class)))
+                .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
+        Assertions.assertThrows(DataNotFoundException.class, () -> assetTypeService.findAssetByUuid(TEST_UUID));
     }
 
     private List<AssetType> createAssetsType() {

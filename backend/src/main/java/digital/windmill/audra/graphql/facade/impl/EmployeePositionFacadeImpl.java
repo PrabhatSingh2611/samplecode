@@ -22,13 +22,13 @@ public class EmployeePositionFacadeImpl implements EmployeePositionFacade {
 
     @Override
     public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input) {
-        var employeePosition = employeePositionService.findByUuid(input.getUuid());
+        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getUuid());
         return employeePositionService.updateEmployeePosition(input, employeePosition);
     }
 
     @Override
     public EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input) {
-        var employeePosition = employeePositionService.findByUuid(input.getUuid());
+        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getUuid());
         return employeePositionService.deleteEmployeePosition(employeePosition);
 
     }

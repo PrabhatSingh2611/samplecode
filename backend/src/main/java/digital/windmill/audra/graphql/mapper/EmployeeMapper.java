@@ -5,8 +5,8 @@ import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
-import org.mapstruct.Mapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -27,7 +27,7 @@ public interface EmployeeMapper {
 
     /**It maps CreateEmployeeInput to EmployeeEntity
      * @param input it used for receiving basic information of employee like firstName, lastName, birthday, etc
-     * @param employeeEntity it takes manager's information of employee to be mapped
+     * @param reportingManagerInput it takes manager's information of employee to be mapped
      * @param employeePositionEntity position of employee that will be mapped
      * @param locationEntity location of employee that will be mapped
      * @return mapped EmployeeEntity
@@ -39,16 +39,15 @@ public interface EmployeeMapper {
     @Mapping(target = "lastName", source = "input.lastName")
     @Mapping(target = "role", source = "input.role")
     @Mapping(target = "birthday", source = "input.birthday")
-    @Mapping(target = "reportingManager", source = "employeeEntity")
+    @Mapping(target = "reportingManager", source = "reportingManagerInput")
     @Mapping(target = "position", source = "employeePositionEntity")
     @Mapping(target = "location", source = "locationEntity")
     EmployeeEntity mapEmployeeInputToEmployeeEntity(CreateEmployeeInput input,
-                       EmployeeEntity employeeEntity,
+                       EmployeeEntity reportingManagerInput,
                        EmployeePositionEntity employeePositionEntity,
                        LocationEntity locationEntity);
 
     default UUID generateUUID() {
         return UUID.randomUUID();
     }
-
 }

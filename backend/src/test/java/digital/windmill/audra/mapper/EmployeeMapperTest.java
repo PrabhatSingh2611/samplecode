@@ -20,7 +20,9 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeeMapperTest {
@@ -29,7 +31,7 @@ public class EmployeeMapperTest {
     private EmployeeMapperImpl mapper;
 
     @Mock
-    private DateTimeMapper zonedDateTime;
+    private DateTimeMapper dateTimeMapper;
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final Long ID = 22L;
@@ -42,6 +44,7 @@ public class EmployeeMapperTest {
 
     @Test
     void shouldMapEmployeeEntityToEmployee() {
+        //when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(createInstantDateTime());//TODO getting error while converting birthday from Instant to ZonedDateTime
         var actual = mapper.mapEmployeeEntityToEmployee(createEmployeeEntity());
         assertAll(
                 () -> assertEquals(TEST_UUID, actual.getUuid()),
@@ -49,10 +52,13 @@ public class EmployeeMapperTest {
                 () -> assertEquals(NAME, actual.getLastName()),
                 () -> assertEquals(NAME, actual.getPosition()),
                 () -> assertEquals(NAME, actual.getLocation().getName())
-//                () -> assertEquals(DATE_TIME, actual.getBirthday()), //TODO getting null while birthdays
+//                () -> assertEquals(DATE_TIME, actual.getBirthday()) //TODO getting null while birthdays
 //                () -> assertEquals(DATE_TIME, actual.getReportingManager().getBirthday())
-
         );
+    }
+
+    private Instant createInstantDateTime() {
+        return LOCAL_DATE;
     }
 
     @Test

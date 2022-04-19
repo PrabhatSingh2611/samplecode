@@ -13,7 +13,7 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     private LeaveRequestService leaveRequestService;
 
     @Override public LeaveRequest findLeaveRequestById(Long id) {
-        return leaveRequestService.findByIdMapped(id);
+        return leaveRequestService.findLeaveRequestById(id);
     }
 
 }

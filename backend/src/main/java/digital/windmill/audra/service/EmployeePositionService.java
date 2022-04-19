@@ -1,6 +1,5 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
@@ -26,7 +25,7 @@ public interface EmployeePositionService {
      * @return updated EmployeePosition
      */
     EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input,
-                                            EmployeePositionEntity employeePosition);
+                                            EmployeePosition employeePosition);
 
 
     /**
@@ -35,7 +34,7 @@ public interface EmployeePositionService {
      * @param employeePosition employeePositionEntity of which EmployeePosition we should update
      * @return updated EmployeePosition
      */
-    EmployeePosition deleteEmployeePosition(EmployeePositionEntity employeePosition);
+    EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition);
 
 
     /**It takes uuid as input and returns EmployeePositionEntity
@@ -43,6 +42,6 @@ public interface EmployeePositionService {
      * @param uuid will take uuid as input to search
      * @return searched EmployeePosition
      */
-    EmployeePositionEntity findByUuid(UUID uuid);
+    EmployeePosition findEmployeePositionByUuid(UUID uuid);
 
 }

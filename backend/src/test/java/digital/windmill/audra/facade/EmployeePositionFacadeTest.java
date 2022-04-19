@@ -2,7 +2,6 @@ package digital.windmill.audra.facade;
 
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.facade.impl.EmployeePositionFacadeImpl;
-import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
@@ -14,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,10 +46,10 @@ public class EmployeePositionFacadeTest {
 
     @Test
     void shouldUpdateEmployeePosition() {
-        when(employeePositionService.findByUuid(any(UUID.class))).thenReturn(createEmployeePositionEntity());
+        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
         when(employeePositionService.updateEmployeePosition(
                 any(UpdateEmployeePositionInput.class),
-                any(EmployeePositionEntity.class)))
+                any(EmployeePosition.class)))
                 .thenReturn(testEmployeePosition());
 
         var result = facade.updateEmployeePosition(testUpdateEmployeePositionInput());
@@ -64,14 +62,23 @@ public class EmployeePositionFacadeTest {
 
     @Test
     void deleteEmployeePosition() {
-        when(employeePositionService.findByUuid(any(UUID.class))).thenReturn(createEmployeePositionEntity());
-        when(employeePositionService.deleteEmployeePosition(any(EmployeePositionEntity.class)))
+        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
+        when(employeePositionService.deleteEmployeePosition(any(EmployeePosition.class)))
                 .thenReturn(testEmployeePosition());
 
         var result = facade.deleteEmployeePosition(testDeleteEmployeePositionInput());
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
+    }
+
+    private EmployeePosition createEmployeePosition() {
+        return EmployeePosition
+                .builder()
+                .id(ID)
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 
     private EmployeePositionEntity createEmployeePositionEntity() {
