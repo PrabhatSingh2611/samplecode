@@ -1,10 +1,7 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
-import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
@@ -22,7 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -42,8 +38,6 @@ public class EmployeeFacadeTest {
     @Mock
     private EmployeeService employeeService;
 
-    @Mock
-    private EmployeeMapper employeeMapper;
 
     @InjectMocks
     private EmployeeFacadeImpl facade;
@@ -51,7 +45,6 @@ public class EmployeeFacadeTest {
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final Long ID = 1L;
     private static final String NAME = "Name";
-    private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "6njELdS";
     private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
@@ -70,7 +63,6 @@ public class EmployeeFacadeTest {
         Assertions.assertEquals(NAME, result.getLastName());
         Assertions.assertEquals(NAME, result.getLocation().getName());
         Assertions.assertEquals(NAME, result.getPosition().getName());
-//        assertThrows(AccessDeniedException.class, () -> facade.deleteUserRoles(createUpdateUserRolesInput()));
     }
 
 
@@ -125,13 +117,6 @@ public class EmployeeFacadeTest {
                 .build();
     }
 
-    private EmployeePositionEntity createEmployeePositionEntity() {
-        return EmployeePositionEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
 
     private CreateEmployeeInput createCreateEmployeeInput() {
         return CreateEmployeeInput.builder()
@@ -171,15 +156,6 @@ public class EmployeeFacadeTest {
                 .build();
     }
 
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(ID);
-        e.setUuid(TEST_UUID);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setBirthday(LOCAL_DATE);
-        return e;
-    }
 
     private Location createLocation() {
         return Location.builder().uuid(TEST_UUID).name(NAME).build();

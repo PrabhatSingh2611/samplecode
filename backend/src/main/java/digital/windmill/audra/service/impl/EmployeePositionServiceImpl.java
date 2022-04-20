@@ -22,7 +22,8 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
 
     @Override
     public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
-        var toBeSavedEmployeePositionEntity = employeePositionMapper.mapCreateEmployeePositionInputToEmployeePositionEntity(input);
+        var toBeSavedEmployeePositionEntity = employeePositionMapper
+                .mapCreateEmployeePositionInputToEmployeePositionEntity(input);
         EmployeePositionEntity savedEmployee = employeePositionRepository.save(toBeSavedEmployeePositionEntity);
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployee);
     }
@@ -31,17 +32,16 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
     public EmployeePosition updateEmployeePosition(
             UpdateEmployeePositionInput input,
             EmployeePosition employeePosition) {
-        EmployeePositionEntity employeePositionEntity = employeePositionMapper
-                .mapEmployeePositionToEmployeePositionEntity(employeePosition);
-        employeePositionEntity.setName(input.getName());
-        EmployeePositionEntity savedEmployeePositionEntity = employeePositionRepository.save(employeePositionEntity);
+        var employeePositionEntity = employeePositionMapper
+                .mapUpdateToEmployeePositionEntity(input, employeePosition);
+        var savedEmployeePositionEntity = employeePositionRepository.save(employeePositionEntity);
 
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployeePositionEntity);
     }
 
     @Override
     public EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition) {
-        EmployeePositionEntity employeePositionEntity = employeePositionMapper
+        var employeePositionEntity = employeePositionMapper
                 .mapEmployeePositionToEmployeePositionEntity(employeePosition);
         employeePositionRepository.delete(employeePositionEntity);
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity);

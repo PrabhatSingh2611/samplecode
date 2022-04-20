@@ -1,6 +1,5 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.facade.impl.EmployeePositionFacadeImpl;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
@@ -15,7 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -78,14 +78,6 @@ public class EmployeePositionFacadeTest {
                 .id(ID)
                 .uuid(TEST_UUID)
                 .name(NAME)
-                .build();
-    }
-
-    private EmployeePositionEntity createEmployeePositionEntity() {
-        return EmployeePositionEntity.builder()
-                .id(ID)
-                .name(NAME)
-                .uuid(TEST_UUID)
                 .build();
     }
 

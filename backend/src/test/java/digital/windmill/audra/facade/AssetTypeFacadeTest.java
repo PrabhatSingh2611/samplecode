@@ -4,7 +4,6 @@ package digital.windmill.audra.facade;
 import digital.windmill.audra.graphql.facade.impl.AssetTypeFacadeImpl;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +34,7 @@ public class AssetTypeFacadeTest {
     private static final String ICON = "https://google.com/laptops";
 
     @Test
-    void shouldFindAssetTypeByUuid(){
+    void shouldFindAssetTypeByUuid() {
         when(assetTypeServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.findAssetTypeByUuid(TEST_UUID);
         assertNotNull(result);
@@ -45,26 +44,26 @@ public class AssetTypeFacadeTest {
     }
 
     @Test
-    void shouldGetAssetsType(){
+    void shouldGetAssetsType() {
         when(assetTypeServiceImpl.getAssetsType()).thenReturn(createAssetsType());
         var actual = assetTypeFacadeImpl.getAssetsType();
         List<AssetType> expected = createAssetsType();
         assertNotNull(actual);
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     private List<AssetType> createAssetsType() {
         return Arrays.asList(AssetType.builder()
-                .uuid(TEST_UUID)
-                .title(TITLE)
-                .icon(ICON)
-                .build(),
+                        .uuid(TEST_UUID)
+                        .title(TITLE)
+                        .icon(ICON)
+                        .build(),
                 AssetType.builder()
                         .uuid(SECOND_UUID)
                         .title(TITLE)
                         .icon(ICON)
                         .build()
-                );
+        );
     }
 
     private AssetType createAssetType() {

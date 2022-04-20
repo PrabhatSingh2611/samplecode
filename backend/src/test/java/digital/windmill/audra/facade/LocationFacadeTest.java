@@ -1,7 +1,5 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.impl.LocationFacadeImpl;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
@@ -13,12 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -34,12 +31,6 @@ class LocationFacadeTest {
     private static final UUID TEST_UUID = UUID.fromString("0069e6ad-d356-472f-99cc-9256565a02a9");
     private static final Long ID = 1L;
     private static final String NAME = "PcwrDcz";
-    private final static Instant LOCAL_DATE = Instant.now();
-    private final static LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
-    private static final String ROLE = "6njELdS";
-    private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
-    private static final String POSITION = "62pDeE";
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Test
     void shouldFindByUuid() {

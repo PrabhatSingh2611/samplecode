@@ -2,7 +2,6 @@ package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.AssetTypeFacade;
 import digital.windmill.audra.graphql.type.AssetType;
-import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import digital.windmill.audra.service.AssetTypeService;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
     }
 
     @Override
-    public AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput){
+    public AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput) {
         return assetTypeService.createAssetType(createAssetTypeInput);
     }
 

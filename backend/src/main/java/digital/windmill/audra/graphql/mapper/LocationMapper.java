@@ -32,7 +32,9 @@ public interface LocationMapper {
         return UUID.randomUUID();
     }
 
-    /**Maps Location To LocationEntity
+    /**
+     * Maps Location To LocationEntity
+     *
      * @param location Location
      * @return mapped Location
      */

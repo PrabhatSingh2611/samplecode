@@ -39,6 +39,6 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
         var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getPosition());
         var location = locationService.findLocationByUuid(input.getLocation());
 
-        return employeeService.createEmployee(input,employeeReportingManager, employeePosition, location);
+        return employeeService.createEmployee(input, employeeReportingManager, employeePosition, location);
     }
 }

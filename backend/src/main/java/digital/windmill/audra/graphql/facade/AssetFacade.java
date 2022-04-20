@@ -10,7 +10,8 @@ import java.util.UUID;
 public interface AssetFacade {
     /**
      * This method will return a specific asset by a specific uuid
-     * @param uuid  uuid by which we search Asset
+     *
+     * @param uuid uuid by which we search Asset
      * @return a specific Asset
      */
     @Transactional(readOnly = true)
@@ -18,6 +19,7 @@ public interface AssetFacade {
 
     /**
      * This method will return all assets
+     *
      * @param input input by which we search all the assets.
      * @return list of assets
      */

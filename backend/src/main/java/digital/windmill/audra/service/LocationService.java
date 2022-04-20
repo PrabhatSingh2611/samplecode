@@ -1,6 +1,5 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
@@ -21,7 +20,7 @@ public interface LocationService {
     /**
      * This method will update location by provided value.
      *
-     * @param input of which location will be updated with new data
+     * @param input    of which location will be updated with new data
      * @param location is previous location that will be updated with new data i,e. input
      * @return an updated location
      */
@@ -29,6 +28,7 @@ public interface LocationService {
 
     /**
      * This method will search all the locations,
+     *
      * @return required locations searched
      */
     List<Location> getLocations();

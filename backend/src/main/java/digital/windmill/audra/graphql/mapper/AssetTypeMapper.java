@@ -2,7 +2,6 @@ package digital.windmill.audra.graphql.mapper;
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.type.AssetType;
-import digital.windmill.audra.graphql.type.input.AssetTypeInput;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

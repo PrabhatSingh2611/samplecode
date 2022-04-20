@@ -1,6 +1,5 @@
 package digital.windmill.audra.service.impl;
 
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
@@ -24,12 +23,13 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location createLocation(CreateLocationInput input) {
-        LocationEntity locationEntity = locationMapper.mapCreateLocationInputToLocationEntity(input);
-        LocationEntity savedLocationEntity = locationRepository.save(locationEntity);
+        var locationEntity = locationMapper.mapCreateLocationInputToLocationEntity(input);
+        var savedLocationEntity = locationRepository.save(locationEntity);
         return locationMapper.mapLocationEntityToLocation(savedLocationEntity);
     }
 
-    @Override public Location updateLocation(UpdateLocationInput input, Location location) {
+    @Override
+    public Location updateLocation(UpdateLocationInput input, Location location) {
         location.setName(input.getName());
         return locationMapper
                 .mapLocationEntityToLocation(
@@ -48,7 +48,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location findLocationByUuid(UUID uuid) {
-         LocationEntity locationEntity = locationRepository.findByUuid(uuid).orElseThrow(
+        var locationEntity = locationRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("location not found for : " + uuid.toString())
         );
         return locationMapper.mapLocationEntityToLocation(locationEntity);

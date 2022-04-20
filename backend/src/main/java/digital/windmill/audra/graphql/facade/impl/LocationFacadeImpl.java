@@ -23,16 +23,19 @@ public class LocationFacadeImpl implements LocationFacade {
     }
 
 
-    @Override@Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<Location> findAllLocation() {
         return locationService.getLocations();
     }
 
-    @Override public Location createLocation(CreateLocationInput input) {
+    @Override
+    public Location createLocation(CreateLocationInput input) {
         return locationService.createLocation(input);
     }
 
-    @Override public Location updateLocation(UpdateLocationInput input) {
+    @Override
+    public Location updateLocation(UpdateLocationInput input) {
 
         Location location = locationService.findLocationByUuid(input.getUuid());
         return locationService.updateLocation(input, location);

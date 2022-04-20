@@ -34,13 +34,13 @@ public class AssetTypeServiceTest {
     @InjectMocks
     private AssetTypeServiceImpl assetTypeService;
 
-    private static final Long ID = 1l;
+    private static final Long ID = 1L;
     private static final UUID TEST_UUID = UUID.fromString("5478b586-e607-4448-ac05-3e5f2adbbc1b");
     private static final String TITLE = "Laptops";
     private static final String ICON = "https://google.com/laptops";
 
     @Test
-    void shouldFindAssetByUuid(){
+    void shouldFindAssetByUuid() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeService.findAssetByUuid(TEST_UUID);
@@ -52,14 +52,14 @@ public class AssetTypeServiceTest {
 
 
     @Test
-    void shouldGetAssetsType(){
+    void shouldGetAssetsType() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll()).thenReturn(createAssetsTypeEntity());
 
         var actual = assetTypeService.getAssetsType();
         List<AssetType> expected = createAssetsType();
         assertNotNull(actual);
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -86,7 +86,6 @@ public class AssetTypeServiceTest {
                 .title(TITLE)
                 .build());
     }
-
 
 
     private List<AssetTypeEntity> createAssetsTypeEntity() {

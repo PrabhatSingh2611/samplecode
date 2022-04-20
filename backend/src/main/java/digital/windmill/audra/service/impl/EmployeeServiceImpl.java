@@ -30,7 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, Location location) {
-
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
                 employeeMapper.mapEmployeeToEmployeeEntity(employeeReportingManager),
@@ -42,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployeeByUuid(UUID uuid) {
-        EmployeeEntity employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
+        var employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
         );
         return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);

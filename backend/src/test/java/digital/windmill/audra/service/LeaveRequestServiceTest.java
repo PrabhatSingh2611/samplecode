@@ -41,7 +41,6 @@ class LeaveRequestServiceTest {
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String TEXT = "BuA1VXU";
-    private static final String POSITION = "mDi";
     private static final Long ID = 1L;
     private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
     private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;

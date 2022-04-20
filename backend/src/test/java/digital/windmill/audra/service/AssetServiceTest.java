@@ -7,7 +7,6 @@ import digital.windmill.audra.graphql.mapper.AssetMapper;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.service.impl.AssetServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -86,6 +85,7 @@ public class AssetServiceTest {
                 .purchasedDate(DATE_TIME)
                 .build();
     }
+
     private Employee createEmployee() {
         return Employee.builder()
                 .uuid(TEST_UUID)

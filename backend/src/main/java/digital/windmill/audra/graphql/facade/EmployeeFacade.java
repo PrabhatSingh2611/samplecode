@@ -9,14 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 public interface EmployeeFacade {
-    /**It return Employee by taking uuid as input
+    /**
+     * It return Employee by taking uuid as input
+     *
      * @param uuid it used this uuid to give service and take EmployeeEntity
      * @return it returns a specific Employee
      */
     @Transactional(readOnly = true)
     Employee findEmployeeByUuid(UUID uuid);
 
-    /**It Takes EmployeesInput as input and gives all employee in database
+    /**
+     * It Takes EmployeesInput as input and gives all employee in database
+     *
      * @param input will be a EmployeesInput type
      * @return all Employee matching to given input
      */

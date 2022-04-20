@@ -58,7 +58,8 @@ public class EmployeePositionServiceTest {
         when(employeePositionRepository.save(any(EmployeePositionEntity.class))).thenReturn(entity);
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(createEmployeePosition());
-        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
+        when(employeePositionMapper.mapUpdateToEmployeePositionEntity(any(UpdateEmployeePositionInput.class)
+                ,any(EmployeePosition.class)))
                 .thenReturn(createEmployeePositionEntity());
 
         var result = service.updateEmployeePosition(updateEmployeePositionInput(), createEmployeePosition());
@@ -72,8 +73,10 @@ public class EmployeePositionServiceTest {
     void shouldDeleteEmployeePosition() {
 
         doNothing().when(employeePositionRepository).delete(any(EmployeePositionEntity.class));
-        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class))).thenReturn(createEmployeePosition());
-        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
+                .thenReturn(createEmployeePosition());
+        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
+                .thenReturn(createEmployeePositionEntity());
 
         var result = service.deleteEmployeePosition(createEmployeePosition());
         Assertions.assertNotNull(result);

@@ -14,7 +14,6 @@ import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.service.impl.EmployeeServiceImpl;
-import io.micrometer.core.instrument.Meter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +21,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,7 +28,6 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,50 +47,19 @@ public class EmployeeServiceTest {
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "BuA1VXU";
-    private static final String POSITION = "mDi";
     private static final Long ID = 1L;
     private static final String ROLE = "z9Qtg5d";
     private static final EmployeeRole ROLE_ENUM = EmployeeRole.EMPLOYEE;
-
-    private final static Instant BIRTHDAY = Instant.now();
     private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
 
-//    @Test
-//    void shouldCreateEmployee(@Mock CreateEmployeeInput input,
-//                              @Mock EmployeePosition employeePosition,
-//                              @Mock Location location) {
-//
-//        when(employeeRepository.findByUuid(input.getReportingManager())).thenReturn(createEmployeeEntity());
-//
-//        when(employeeMapper.mapEmployeeInputToEmployeeEntity(
-//                any(CreateEmployeeInput.class),
-//                when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).getMock(),
-//                any(LocationEntity.class))).thenReturn(createEmployeeEntity2());
-//        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn(());
-//
-//        var result = service.(input, employeePosition, location);
-//
-//        assertNotNull(result);
-//
-//    }
 
-    private EmployeeEntity createReportingManager() {
-        return EmployeeEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .location(createLocationEntity())
-                .position(createEmployeePositionEntity())
-                .firstName(NAME)
-                .lastName(NAME)
-                .birthday(BIRTHDAY)
-                .reportingManager(null)
-                .role(ROLE_ENUM)
-                .build();
-    }
-
-    //@Test
+    @Test
     void shouldCreateEmployee(@Mock CreateEmployeeInput input, @Mock Employee employee, @Mock EmployeePosition employeePosition, @Mock Location location) {
 
+        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
+        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
+                .thenReturn(createEmployeePositionEntity());
+        when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
         when(employeeMapper.mapEmployeeInputToEmployeeEntity(any(CreateEmployeeInput.class),
                 any(EmployeeEntity.class),
                 any(EmployeePositionEntity.class),
@@ -105,28 +71,19 @@ public class EmployeeServiceTest {
         when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn((createEmployeePojo()));
 
-        var result = service.createEmployee(testCreateEmployeeInput(), createEmployeePojo(), createEmployeePosition(), createLocation());
+        var result = service.createEmployee(input, employee, employeePosition, location);
 
         assertNotNull(result);
-//        assertEquals(TEST_UUID, result.getUuid());
-//        assertEquals(NAME, result.getLastName());
-//        assertEquals(NAME, result.getFirstName());
-//        assertEquals(POSITION, result.getPosition());
-//        assertEquals(createLocation().getName(), result.getLocation().getName());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getLastName());
+        assertEquals(NAME, result.getFirstName());
+        assertEquals(NAME, result.getLocation().getName());
+        assertEquals(NAME, result.getPosition().getName());
+        assertEquals(ROLE, result.getRole());
+        assertEquals(BIRTHDAY_ZONED_DATE_TIME, result.getBirthday());
     }
 
-    private Employee createEmployeePojo() {
-        return Employee.builder()
-                .uuid(TEST_UUID)
-                .role(ROLE)
-                .firstName(NAME)
-                .lastName(NAME)
-                .position(createEmployeePosition())
-                .location(createLocation())
-                .build();
-    }
-
-    //@Test
+    @Test
     void shouldFindEmployeeByUuid() {
         when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createEmployeeEntity()));
         when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn((createEmployeePojo()));
@@ -137,10 +94,10 @@ public class EmployeeServiceTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getPosition().getName());
-//        assertEquals(BIRTHDAY_ZONED_DATE_TIME, result.getBirthday()); //TODO DateTime Mapping Fails
+        assertEquals(BIRTHDAY_ZONED_DATE_TIME, result.getBirthday());
     }
 
-    //@Test
+    @Test
     void shouldThrowDataNotFoundWhenUuidIsNull() {
         when(employeeRepository.findByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
@@ -167,15 +124,6 @@ public class EmployeeServiceTest {
                 .build();
     }
 
-    private CreateEmployeeInput testCreateEmployeeInput() {
-        return CreateEmployeeInput.builder()
-                .position(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .birthday(BIRTHDAY_ZONED_DATE_TIME)
-                .build();
-    }
-
     private EmployeePositionEntity createEmployeePositionEntity() {
         return EmployeePositionEntity.builder()
                 .id(ID)
@@ -194,6 +142,18 @@ public class EmployeeServiceTest {
                 .position(createEmployeePositionEntity())
                 .location(createLocationEntity())
                 .reportingManager(new EmployeeEntity())
+                .build();
+    }
+
+    private Employee createEmployeePojo() {
+        return Employee.builder()
+                .uuid(TEST_UUID)
+                .role(ROLE)
+                .firstName(NAME)
+                .lastName(NAME)
+                .position(createEmployeePosition())
+                .location(createLocation())
+                .birthday(BIRTHDAY_ZONED_DATE_TIME)
                 .build();
     }
 }

@@ -53,7 +53,7 @@ public class LocationServiceTest {
 
     @Test
     void shouldUpdateLocation(@Mock UpdateLocationInput updateLocationInput,
-                              @Mock Location location){
+                              @Mock Location location) {
         when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
         when(locationRepository.save(any(LocationEntity.class))).thenReturn(createLocationEntity());
         when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class))).thenReturn(createLocation());
@@ -101,7 +101,7 @@ public class LocationServiceTest {
         return LocationEntity.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 
-    private List<LocationEntity> createLocalEntityList(){
+    private List<LocationEntity> createLocalEntityList() {
         List<LocationEntity> locationEntityList = new ArrayList<>();
         locationEntityList.add(createLocationEntity());
         return locationEntityList;

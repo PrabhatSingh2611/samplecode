@@ -16,15 +16,14 @@ public class EmployeePositionMutationResolver implements GraphQLMutationResolver
 
     private EmployeePositionFacade employeePositionFacade;
 
-    public EmployeePositionPayload createEmployeePosition(CreateEmployeePositionInput createEmployeePositionInput)
-    {
-        return  EmployeePositionPayload
+    public EmployeePositionPayload createEmployeePosition(CreateEmployeePositionInput createEmployeePositionInput) {
+        return EmployeePositionPayload
                 .builder()
                 .item(employeePositionFacade.createEmployeePosition(createEmployeePositionInput))
                 .build();
     }
 
-    public EmployeePositionPayload updateEmployeePosition(UpdateEmployeePositionInput input){
+    public EmployeePositionPayload updateEmployeePosition(UpdateEmployeePositionInput input) {
         return EmployeePositionPayload
                 .builder()
                 .item(employeePositionFacade.updateEmployeePosition(input))

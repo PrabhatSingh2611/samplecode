@@ -4,7 +4,6 @@ import digital.windmill.audra.graphql.facade.impl.AssetFacadeImpl;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.service.impl.AssetServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Instant;
+
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -36,10 +35,7 @@ public class AssetFacadeTest {
     private static final String ASSET_TITLE = "Asset title";
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
     private static final String NAME = "Name";
-    private static final EmployeePosition POSITION = new EmployeePosition();
-    private static final String LOCATION = "Location";
     private static final String ROLE = "Admin";
-    private final static Instant LOCAL_DATE = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Test

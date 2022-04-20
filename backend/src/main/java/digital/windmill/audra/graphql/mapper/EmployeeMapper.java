@@ -14,7 +14,9 @@ import java.util.UUID;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
 public interface EmployeeMapper {
 
-    /**It maps EmployeeEntity to Employee
+    /**
+     * It maps EmployeeEntity to Employee
+     *
      * @param entity input as EmployeeEntity
      * @return output as Employee
      */
@@ -25,11 +27,13 @@ public interface EmployeeMapper {
         return Optional.ofNullable(position).map(EmployeePositionEntity::getName).orElse(null);
     }
 
-    /**It maps CreateEmployeeInput to EmployeeEntity
-     * @param input it used for receiving basic information of employee like firstName, lastName, birthday, etc
-     * @param reportingManagerInput it takes manager's information of employee to be mapped
+    /**
+     * It maps CreateEmployeeInput to EmployeeEntity
+     *
+     * @param input                  it used for receiving basic information of employee like firstName, lastName, birthday, etc
+     * @param reportingManagerInput  it takes manager's information of employee to be mapped
      * @param employeePositionEntity position of employee that will be mapped
-     * @param locationEntity location of employee that will be mapped
+     * @param locationEntity         location of employee that will be mapped
      * @return mapped EmployeeEntity
      */
     @Mapping(target = "id", ignore = true)
@@ -43,9 +47,9 @@ public interface EmployeeMapper {
     @Mapping(target = "position", source = "employeePositionEntity")
     @Mapping(target = "location", source = "locationEntity")
     EmployeeEntity mapEmployeeInputToEmployeeEntity(CreateEmployeeInput input,
-                       EmployeeEntity reportingManagerInput,
-                       EmployeePositionEntity employeePositionEntity,
-                       LocationEntity locationEntity);
+                                                    EmployeeEntity reportingManagerInput,
+                                                    EmployeePositionEntity employeePositionEntity,
+                                                    LocationEntity locationEntity);
 
     default UUID generateUUID() {
         return UUID.randomUUID();

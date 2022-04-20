@@ -1,6 +1,5 @@
 package digital.windmill.audra.service.impl;
 
-import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.repository.LeaveRequestRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.LeaveRequestMapper;
@@ -18,7 +17,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
     @Override
     public LeaveRequest findLeaveRequestById(Long id) {
-        LeaveRequestEntity leaveRequestEntity = leaveRequestRepository.findById(id).orElseThrow(
+        var leaveRequestEntity = leaveRequestRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Leave request with id " + id + "not found."));
         return leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(leaveRequestEntity);
     }

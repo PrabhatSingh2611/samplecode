@@ -37,7 +37,8 @@ public interface EmployeePositionService {
     EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition);
 
 
-    /**It takes uuid as input and returns EmployeePositionEntity
+    /**
+     * It takes uuid as input and returns EmployeePositionEntity
      *
      * @param uuid will take uuid as input to search
      * @return searched EmployeePosition
