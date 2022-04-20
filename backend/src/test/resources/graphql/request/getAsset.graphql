@@ -17,8 +17,14 @@ query
                 lastName
                 role
                 birthday
-                position
-                location
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
             }
         }
     }

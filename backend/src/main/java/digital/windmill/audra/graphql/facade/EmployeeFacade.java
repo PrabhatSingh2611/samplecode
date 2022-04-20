@@ -1,31 +1,37 @@
 package digital.windmill.audra.graphql.facade;
 
-import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
-import digital.windmill.audra.service.EmployeeService;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Service
-@AllArgsConstructor
-public class EmployeeFacade {
-
-    private EmployeeService employeeService;
-    private EmployeeMapper employeeMapper;
-
+public interface EmployeeFacade {
+    /**
+     * It return Employee by taking uuid as input
+     *
+     * @param uuid it used this uuid to give service and take EmployeeEntity
+     * @return it returns a specific Employee
+     */
     @Transactional(readOnly = true)
-    public Employee findAssetByUuid(UUID uuid) {
-        return employeeMapper.map(employeeService.findByUuid(uuid));
-    }
+    Employee findEmployeeByUuid(UUID uuid);
 
+    /**
+     * It Takes EmployeesInput as input and gives all employee in database
+     *
+     * @param input will be a EmployeesInput type
+     * @return all Employee matching to given input
+     */
     @Transactional(readOnly = true)
-    public Page<Employee> getEmployees(EmployeesInput input) {
-        return employeeService.findAll(input)
-                .map(employeeMapper::map);
-    }
+    Page<Employee> getEmployees(EmployeesInput input);
+
+    /**
+     * This method will create an Employee by a specific value.
+     *
+     * @param input input of which employee we should create
+     * @return created employee
+     */
+    Employee createEmployee(CreateEmployeeInput input);
 }

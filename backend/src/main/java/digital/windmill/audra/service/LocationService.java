@@ -1,40 +1,43 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.dao.repository.LocationRepository;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 
 import java.util.List;
 import java.util.UUID;
 
+public interface LocationService {
 
-@Component
-@AllArgsConstructor
-public class LocationService {
+    /**
+     * This method will search location by an uuid value.
+     *
+     * @param input of which location will be created with new data
+     * @return an updated location
+     */
+    Location createLocation(CreateLocationInput input);
 
-    private LocationRepository locationRepository;
+    /**
+     * This method will update location by provided value.
+     *
+     * @param input    of which location will be updated with new data
+     * @param location is previous location that will be updated with new data i,e. input
+     * @return an updated location
+     */
+    Location updateLocation(UpdateLocationInput input, Location location);
 
-    public LocationEntity findByUuid(UUID uuid) {
-        return locationRepository.findByUuid(uuid).orElse(null);
-    }
+    /**
+     * This method will search all the locations,
+     *
+     * @return required locations searched
+     */
+    List<Location> getLocations();
 
-    public List<LocationEntity> findAll() {
-        return locationRepository.findAll();
-    }
-
-    public LocationEntity createLocation(CreateLocationInput input) {
-        return locationRepository.save(LocationEntity
-                .builder()
-                .uuid(UUID.randomUUID())
-                .name(input.getName())
-                .build());
-    }
-
-    public LocationEntity updateLocation(LocationEntity location) {
-        return locationRepository.save(location);
-    }
-
-
+    /**
+     * This method will search location by an uuid value.
+     *
+     * @param uuid of which location will be searched in Repository
+     * @return required location searched wrapped into Location
+     */
+    Location findLocationByUuid(UUID uuid);
 }

@@ -98,7 +98,7 @@ public class VacancyIt {
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldUpdateVacancy() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate
-                .postForResource("graphql/request/updateVacancy.graphql");
+                .postForResource("graphql/request/UpdateVacancy.graphql");
 
         log.info(response.readTree().toPrettyString());
 

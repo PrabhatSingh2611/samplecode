@@ -51,8 +51,9 @@ public class VacancyMapperTest {
 
     @Test
     void shouldMapVacancyEntityToVacancy() {
-        when(employeePositionMapper.map(any(EmployeePositionEntity.class))).thenReturn(createPosition());
-        when(employeeMapper.map(any(EmployeeEntity.class))).thenReturn(createEmployee());
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
+                .thenReturn(createPosition());
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn(createEmployee());
 
         var result = mapper.mapVacancyEntityToVacancy(createVacancyEntity());
         assertAll(

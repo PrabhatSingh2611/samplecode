@@ -2,6 +2,8 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
 import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
@@ -32,23 +34,23 @@ public interface VacancyService {
      * This method will create a Vacancy by a specific value.
      *
      * @param input                  input of which vacancy we should create
-     * @param employeePositionEntity employeePositionEntity of which vacancy we should create
-     * @param employeeEntity         employeeEntity of which vacancy we should create
+     * @param employeePosition       employeePosition of which vacancy we should create
+     * @param employee               employee of which vacancy we should create
      * @return created Vacancy
      */
     Vacancy createVacancy(CreateVacancyInput input,
-                          EmployeePositionEntity employeePositionEntity,
-                          EmployeeEntity employeeEntity);
+                          EmployeePosition employeePosition,
+                          Employee employee);
 
     /**
      * This method will update a Vacancy by a specific value.
      *
      * @param input                  input of which vacancy we should update
-     * @param employeePositionEntity employeePositionEntity of which vacancy we should update
-     * @param employeeEntity         employeeEntity of which vacancy we should update
+     * @param employeePosition employeePositionEntity of which vacancy we should update
+     * @param employee         employeeEntity of which vacancy we should update
      * @return updated Vacancy
      */
     Vacancy updateVacancy(UpdateVacancyInput input,
-                          EmployeePositionEntity employeePositionEntity,
-                          EmployeeEntity employeeEntity);
+                          EmployeePosition employeePosition,
+                          Employee employee);
 }

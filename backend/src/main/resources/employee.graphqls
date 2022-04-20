@@ -16,29 +16,23 @@ type EmployeeConnectionPayload implements ConnectionPayload {
     totalItems: Int!
 }
 
-type EmployeePosition implements Node{
-    uuid: UUID!
-    name:String
-}
-input DeleteEmployeePositionInput{
-    uuid:UUID!
-}
-
-input CreateEmployeePositionInput{
-    name:String!
+input CreateEmployeeInput {
+	firstName: String!
+	lastName: String!
+	role: EmployeeRole
+	birthday: ZonedDateTime
+	reportingManager: UUID
+	position: UUID
+	location: UUID
 }
 
-input UpdateEmployeePositionInput{
-    uuid:UUID!
-    name:String!
+enum EmployeeRole {
+	ADMIN, EMPLOYEE
 }
 
-type EmployeePositionPayload{
-	item:EmployeePosition
-}
 
-type DeleteEmployeePositionPayload{
-    employeePosition: Node!
+type EmployeePayload {
+	item: Employee
 }
 
 input EmployeesInput {

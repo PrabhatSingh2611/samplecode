@@ -16,4 +16,8 @@ public abstract class DateTimeMapper {
                 : instant.atZone(UTC_ZONE);
     }
 
+    public Instant map(ZonedDateTime zonedDateTime) {
+        return zonedDateTime == null ? null : zonedDateTime.toInstant();
+    }
+
 }

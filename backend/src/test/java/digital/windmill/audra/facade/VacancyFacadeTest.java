@@ -1,8 +1,5 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
@@ -103,11 +100,11 @@ public class VacancyFacadeTest {
         when(vacancyInput.getAssignTo()).thenReturn(TEST_UUID);
         when(vacancyInput.getPosition()).thenReturn(TEST_UUID);
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class)))
-                .thenReturn(createEmployeePositionEntity());
-        when(employeeService.findByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
+                .thenReturn(createEmployeePosition());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
         when(vacancyService.createVacancy(any(CreateVacancyInput.class),
-                any(EmployeePositionEntity.class),
-                any(EmployeeEntity.class)))
+                any(EmployeePosition.class),
+                any(Employee.class)))
                 .thenReturn(createVacancy());
 
         var actualResult = vacancyFacade.createVacancy(vacancyInput);
@@ -130,11 +127,11 @@ public class VacancyFacadeTest {
         when(vacancyInput.getAssignTo()).thenReturn(TEST_UUID);
         when(vacancyInput.getPosition()).thenReturn(TEST_UUID);
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class)))
-                .thenReturn(createEmployeePositionEntity());
-        when(employeeService.findByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
+                .thenReturn(createEmployeePosition());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
         when(vacancyService.updateVacancy(any(UpdateVacancyInput.class),
-                any(EmployeePositionEntity.class),
-                any(EmployeeEntity.class)))
+                any(EmployeePosition.class),
+                any(Employee.class)))
                 .thenReturn(createVacancy());
 
         var actualResult = vacancyFacade.updateVacancy(vacancyInput);
@@ -188,22 +185,12 @@ public class VacancyFacadeTest {
         return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
     }
 
-
-    private EmployeePositionEntity createEmployeePositionEntity() {
-        EmployeePositionEntity e = new EmployeePositionEntity();
-        e.setId(1L);
-        e.setUuid(TEST_UUID);
-        e.setName(NAME);
-        return e;
-    }
-
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(1L);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setUuid(TEST_UUID);
-        e.setRole(EmployeeRole.EMPLOYEE);
-        return e;
+    private EmployeePosition createEmployeePosition() {
+        return EmployeePosition
+                .builder()
+                .id(1L)
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 }

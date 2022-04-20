@@ -7,6 +7,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class})
 public interface LeaveRequestMapper {
 
-    LeaveRequest map(LeaveRequestEntity entity);
+    /**
+     * This method maps LeaveRequestEntity to LeaveRequest
+     *
+     * @param entity Leave Request Entity is input
+     * @return a mapped LeaveRequest
+     */
+    LeaveRequest mapLeaveRequestEntityToLeaveRequest(LeaveRequestEntity entity);
 
 }

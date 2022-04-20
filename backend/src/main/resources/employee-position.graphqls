@@ -1,0 +1,24 @@
+type EmployeePosition implements Node{
+    uuid: UUID!
+    name:String
+}
+input DeleteEmployeePositionInput{
+    uuid:UUID!
+}
+
+input CreateEmployeePositionInput{
+    name:String!
+}
+
+input UpdateEmployeePositionInput{
+    uuid:UUID!
+    name:String!
+}
+
+type EmployeePositionPayload{
+    item:EmployeePosition
+}
+
+type DeleteEmployeePositionPayload{
+    employeePosition: Node!
+}

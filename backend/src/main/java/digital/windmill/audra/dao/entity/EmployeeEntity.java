@@ -24,6 +24,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "employee")
+
 public class EmployeeEntity {
 
     @Id

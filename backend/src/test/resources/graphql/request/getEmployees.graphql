@@ -9,8 +9,14 @@ query getEmployees($input: EmployeesInput) {
             reportingManager{
                 firstName
             }
-            position
-            location
+            position{
+                uuid
+                name
+            }
+            location{
+                uuid
+                name
+            }
         }
         pageInfo {
             currentPage
