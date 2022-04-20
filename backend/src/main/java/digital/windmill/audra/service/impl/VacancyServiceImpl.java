@@ -26,28 +26,28 @@ public class VacancyServiceImpl implements VacancyService {
     private VacancyMapper vacancyMapper;
 
     public Vacancy findVacancyByUuid(UUID uuid) {
-        return vacancyMapper.map(vacancyRepository.findByUuid(uuid).orElseThrow(
-                        () -> new DataNotFoundException("Vacancy not found.")
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.findVacancyByUuid(uuid).orElseThrow(
+                        () -> new DataNotFoundException("Vacancy " + uuid + "not found.")
                 )
         );
     }
 
     public Page<Vacancy> findAllVacancies(VacanciesInput input) {
         var spec = VacancySpecification.vacancies(input);
-        return vacancyRepository.findAll(spec.getKey(), spec.getValue()).map(vacancyMapper::map);
+        return vacancyRepository.findAll(spec.getKey(), spec.getValue()).map(vacancyMapper::mapVacancyEntityToVacancy);
     }
 
     public Vacancy createVacancy(CreateVacancyInput input,
                                  EmployeePositionEntity employeePositionEntity,
                                  EmployeeEntity employeeEntity) {
         var vacancyEntity = vacancyMapper.mapInputToEntity(input, employeePositionEntity, employeeEntity);
-        return vacancyMapper.map(vacancyRepository.save(vacancyEntity));
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(vacancyEntity));
     }
 
     public Vacancy updateVacancy(UpdateVacancyInput input,
                                  EmployeePositionEntity employeePositionEntity,
                                  EmployeeEntity employeeEntity) {
-        VacancyEntity entity = vacancyRepository.findByUuid(input.getUuid())
+        VacancyEntity entity = vacancyRepository.findVacancyByUuid(input.getUuid())
                 .orElseThrow(
                         () -> new DataNotFoundException("Vacancy not found.")
                 );
@@ -57,6 +57,6 @@ public class VacancyServiceImpl implements VacancyService {
                 employeePositionEntity,
                 employeeEntity);
 
-        return vacancyMapper.map(vacancyRepository.save(mappedToEntity));
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(mappedToEntity));
     }
 }

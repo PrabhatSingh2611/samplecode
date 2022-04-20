@@ -47,7 +47,7 @@ public class EmployeeMapperTest {
         e.setLastName(NAME);
         e.setBirthday(LOCALE_DATE_TIME);
         e.setId(1L);
-        e.setPosition(createPosition());
+        e.setPosition(createPositionEntity());
         e.setLocation(createLocationEntity());
 
         return e;
@@ -61,7 +61,7 @@ public class EmployeeMapperTest {
         return e;
     }
 
-    private EmployeePositionEntity createPosition() {
+    private EmployeePositionEntity createPositionEntity() {
         return EmployeePositionEntity.builder()
                 .id(1L)
                 .uuid(TEST_UUID)

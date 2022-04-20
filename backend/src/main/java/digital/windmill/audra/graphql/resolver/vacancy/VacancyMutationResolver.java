@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.resolver.vacancy;
 
+import digital.windmill.audra.graphql.facade.VacancyFacade;
 import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
 import digital.windmill.audra.graphql.type.VacancyPayload;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class VacancyMutationResolver implements GraphQLMutationResolver {
 
-    private VacancyFacadeImpl vacancyFacade;
+    private VacancyFacade vacancyFacade;
 
     public VacancyPayload createVacancy(CreateVacancyInput vacancyInput) {
         return VacancyPayload

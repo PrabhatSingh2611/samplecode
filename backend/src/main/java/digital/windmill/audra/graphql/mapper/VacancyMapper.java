@@ -15,7 +15,7 @@ import java.util.UUID;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
 public interface VacancyMapper {
 
-    Vacancy map(VacancyEntity entity);
+    Vacancy mapVacancyEntityToVacancy(VacancyEntity entity);
 
     @Mapping(target = "id", source = "entity.id")
     @Mapping(target = "uuid", source = "entity.uuid")

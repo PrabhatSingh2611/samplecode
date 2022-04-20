@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface VacancyRepository extends JpaRepository<VacancyEntity, Long>, JpaSpecificationExecutor<VacancyEntity> {
 
     @Query("SELECT a FROM VacancyEntity a WHERE a.uuid = :uuid")
-    Optional<VacancyEntity> findByUuid(@Param("uuid") UUID uuid);
+    Optional<VacancyEntity> findVacancyByUuid(@Param("uuid") UUID uuid);
 
 
 
