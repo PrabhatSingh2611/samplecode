@@ -58,7 +58,7 @@ public class AssetServiceTest {
     }
 
     @Test
-    void shouldThrowNPEWhenAssetInputIsNull() {
+    void shouldThrowDataNotFoundWhenAssetInputIsNull() {
         Assertions.assertThrows(DataNotFoundException.class, () -> service.findAssetByUuid(null));
     }
 
