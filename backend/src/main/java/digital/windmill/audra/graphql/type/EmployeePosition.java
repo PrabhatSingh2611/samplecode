@@ -12,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class EmployeePosition implements Node {
+    private Long id;
     private UUID uuid;
     private String name;
 }

@@ -1,51 +1,42 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.EmployeeSpecification;
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.repository.EmployeePositionRepository;
-import digital.windmill.audra.dao.repository.EmployeeRepository;
-import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
-import digital.windmill.audra.graphql.type.input.NodeInput;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
-@AllArgsConstructor
-public class EmployeeService {
+public interface EmployeeService {
 
-    private EmployeeRepository employeeRepository;
-    private EmployeePositionRepository employeePositionRepo;
+    /**
+     * This method will create employee by provided input.
+     *
+     * @param location         which is location detail of employee being created
+     * @param input            which is required information of employee like firstName, lastName, birthday, etc
+     * @param employeePosition which is position detail of employee being created
+     * @return an employee created
+     */
+    Employee createEmployee(CreateEmployeeInput input,
+                            Employee employeeReportingManager,
+                            EmployeePosition employeePosition,
+                            Location location);
 
-    public EmployeeEntity findByUuid(UUID uuid) {
-        return employeeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Employee not found.")
-        );
-    }
+    /**
+     * This method will search employee by an uuid value.
+     *
+     * @param uuid of which employee will be searched in Repository
+     * @return required employee searched wrapped into Employee
+     */
+    Employee findEmployeeByUuid(UUID uuid);
 
-    public EmployeeEntity findByLocation(NodeInput location) {
-        return employeeRepository.findByUuid(location.getUuid()).orElseThrow(
-                () -> new DataNotFoundException("Location not found.")
-        );
-    }
-
-    public Page<EmployeeEntity> findAll(EmployeesInput input) {
-        var spec = EmployeeSpecification.employees(input);
-        return employeeRepository.findAll(spec.getKey(), spec.getValue());
-    }
-
-    public EmployeeEntity createEmployee(CreateEmployeeInput input){
-        EmployeeEntity entity = employeeRepository.save(EmployeeEntity
-                .builder()
-                .uuid(UUID.randomUUID())
-                .firstName(input.getFirstName())
-                .lastName(input.getLastName())
-                .position(employeePositionRepo.findByUuid(input.getPosition()).orElse(null))
-                .build());
-       return entity;
-    }
+    /**
+     * This method will search employees by an input value.
+     *
+     * @param input of which employees will be searched in Repository
+     * @return required employees searched wrapped into Employee
+     */
+    Page<Employee> getEmployees(EmployeesInput input);
 }

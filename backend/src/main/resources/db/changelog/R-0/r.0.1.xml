@@ -15,7 +15,7 @@
     </changeSet>
     <changeSet id="r.0.0.2" author="rshtepa">
         <createTable tableName="employee_position">
-            <column name="id" type="INT8" autoIncrement="true">
+            <column name="id" type="INT8" autoIncrement="true" startWith="3">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">

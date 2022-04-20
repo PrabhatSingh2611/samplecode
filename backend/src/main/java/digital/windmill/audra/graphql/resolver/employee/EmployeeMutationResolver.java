@@ -13,14 +13,10 @@ public class EmployeeMutationResolver implements GraphQLMutationResolver {
 
     private EmployeeFacade employeeFacade;
 
-    public EmployeePayload createEmployee(CreateEmployeeInput input){
-       return EmployeePayload
-               .builder()
-               .item(employeeFacade
-                       .createEmployee(input))
-               .build();
+    public EmployeePayload createEmployee(CreateEmployeeInput input) {
+        return EmployeePayload
+                .builder()
+                .item(employeeFacade.createEmployee(input))
+                .build();
     }
-
-
-
 }

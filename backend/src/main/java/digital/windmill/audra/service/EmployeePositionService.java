@@ -1,32 +1,48 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
-import digital.windmill.audra.dao.repository.EmployeePositionRepository;
-import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
+import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
 
-@Component
-@AllArgsConstructor
-public class EmployeePositionService {
-    private EmployeePositionRepository repo;
+import java.util.UUID;
 
-    public EmployeePositionEntity createEmployeePosition(EmployeePositionEntity employeePosition) {
-        return repo.save(employeePosition);
-    }
+public interface EmployeePositionService {
 
-    public EmployeePositionEntity updateEmployeePosition(EmployeePosition employeePosition) {
-        EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
-                .orElseThrow(() -> new DataNotFoundException("Employee Position not found"));
-        entity.setName(employeePosition.getName());
-        return repo.save(entity);
-    }
+    /**
+     * This method will create a EmployeePosition by a specific value.
+     *
+     * @param input input of which EmployeePosition we should create
+     * @return created EmployeePosition
+     */
+    EmployeePosition createEmployeePosition(CreateEmployeePositionInput input);
 
-    public EmployeePositionEntity deleteEmployeePosition(EmployeePosition employeePosition) {
-        EmployeePositionEntity entity = repo.findByUuid(employeePosition.getUuid())
-                .orElse(null);
-        repo.delete(entity);
-        return entity;
-    }
+
+    /**
+     * This method will update a EmployeePosition value
+     *
+     * @param input            input of which EmployeePosition we should update
+     * @param employeePosition employeePositionEntity of which EmployeePosition we should update
+     * @return updated EmployeePosition
+     */
+    EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input,
+                                            EmployeePosition employeePosition);
+
+
+    /**
+     * This method will delete a EmployeePosition by a specific value.
+     *
+     * @param employeePosition employeePositionEntity of which EmployeePosition we should update
+     * @return updated EmployeePosition
+     */
+    EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition);
+
+
+    /**
+     * It takes uuid as input and returns EmployeePositionEntity
+     *
+     * @param uuid will take uuid as input to search
+     * @return searched EmployeePosition
+     */
+    EmployeePosition findEmployeePositionByUuid(UUID uuid);
+
 }

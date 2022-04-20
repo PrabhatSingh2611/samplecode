@@ -14,13 +14,14 @@ import java.util.UUID;
 @Data
 public class Employee implements Node {
 
+    private Long id;
     private UUID uuid;
     private String firstName;
     private String lastName;
     private String role;
     private ZonedDateTime birthday;
     private Employee reportingManager;
-    private String position;
+    private EmployeePosition position;
     private Location location;
 
 }
