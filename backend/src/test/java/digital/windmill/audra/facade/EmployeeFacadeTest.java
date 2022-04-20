@@ -54,7 +54,6 @@ public class EmployeeFacadeTest {
     private final static Instant LOCAL_DATE = Instant.now();
     private static final String ROLE = "6njELdS";
     private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
-    private static final String POSITION = "Position";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Test
@@ -70,7 +69,7 @@ public class EmployeeFacadeTest {
         Assertions.assertEquals(NAME, result.getFirstName());
         Assertions.assertEquals(NAME, result.getLastName());
         Assertions.assertEquals(NAME, result.getLocation().getName());
-        Assertions.assertEquals(POSITION, result.getPosition());
+        Assertions.assertEquals(NAME, result.getPosition().getName());
 //        assertThrows(AccessDeniedException.class, () -> facade.deleteUserRoles(createUpdateUserRolesInput()));
     }
 
@@ -97,10 +96,12 @@ public class EmployeeFacadeTest {
     @Test
     void shouldCreateEmployee() {
 
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
         when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocation());
         when(employeeService.createEmployee(
                         any(CreateEmployeeInput.class),
+                        any(Employee.class),
                         any(EmployeePosition.class),
                         any(Location.class)
                 )
@@ -152,7 +153,7 @@ public class EmployeeFacadeTest {
                 .role(ROLE)
                 .birthday(DATE_TIME)
                 .reportingManager(createReportingManager())
-                .position(POSITION)
+                .position(createEmployeePosition())
                 .location(createLocation())
                 .build();
     }
@@ -163,7 +164,7 @@ public class EmployeeFacadeTest {
                 .uuid(TEST_UUID)
                 .lastName(NAME)
                 .firstName(NAME)
-                .position(POSITION)
+                .position(createEmployeePosition())
                 .location(createLocation())
                 .role(ROLE)
                 .reportingManager(null)

@@ -3,6 +3,7 @@ package digital.windmill.audra.resolver;
 import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
 import digital.windmill.audra.graphql.resolver.employee.EmployeeMutationResolver;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,6 @@ class EmployeeMutationResolverTest {
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "7JGB";
     private static final String ROLE = "Admin";
-    private static final String POSITION = "Position";
-    private static final String LOCATION = "Location";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Test
@@ -45,7 +44,7 @@ class EmployeeMutationResolverTest {
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(ROLE, result.getItem().getRole());
-        assertEquals(POSITION, result.getItem().getPosition());
+        assertEquals(NAME, result.getItem().getPosition().getName());
         assertEquals(DATE_TIME, result.getItem().getBirthday());
 
     }
@@ -67,9 +66,13 @@ class EmployeeMutationResolverTest {
                 .lastName(NAME)
                 .role(ROLE)
                 .birthday(DATE_TIME)
-                .position(POSITION)
+                .position(createEmployeePosition())
                 .location(createLocation())
                 .build();
+    }
+
+    private EmployeePosition createEmployeePosition() {
+        return EmployeePosition.builder().name(NAME).uuid(TEST_UUID).build();
     }
 
     private Location createLocation() {

@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -30,19 +29,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeePositionMapper employeePositionMapper;
 
     @Override
-    public Employee createEmployee(CreateEmployeeInput input,
-                                   EmployeePosition employeePosition,
-                                   Location location) {
-        EmployeeEntity reportingManager = employeeRepository.findByUuid(input.getReportingManager())
-                .orElseThrow(
-                        () -> new DataNotFoundException("Reporting manager not found for : " +
-                                input.getReportingManager())
-                );
+    public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, Location location) {
+
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
-                reportingManager,
+                employeeMapper.mapEmployeeToEmployeeEntity(employeeReportingManager),
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
                 locationMapper.mapLocationToLocationEntity(location));
+
         return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
 

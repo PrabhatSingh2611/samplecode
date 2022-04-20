@@ -5,7 +5,10 @@ import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
+import digital.windmill.audra.graphql.mapper.DateTimeMapperImpl;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
+import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
+import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +34,9 @@ public class EmployeeMapperTest {
     private EmployeeMapperImpl mapper;
 
     @Mock
-    private DateTimeMapper dateTimeMapper;
+    DateTimeMapper dateTimeMapper;
+    @Mock
+    EmployeePositionMapper employeePositionMapper;
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final Long ID = 22L;
@@ -45,16 +50,26 @@ public class EmployeeMapperTest {
     @Test
     void shouldMapEmployeeEntityToEmployee() {
         //when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(createInstantDateTime());//TODO getting error while converting birthday from Instant to ZonedDateTime
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
+                .thenReturn(createPosition());
         var actual = mapper.mapEmployeeEntityToEmployee(createEmployeeEntity());
         assertAll(
                 () -> assertEquals(TEST_UUID, actual.getUuid()),
                 () -> assertEquals(NAME, actual.getFirstName()),
                 () -> assertEquals(NAME, actual.getLastName()),
-                () -> assertEquals(NAME, actual.getPosition()),
+                () -> assertEquals(NAME, actual.getPosition().getName()),
                 () -> assertEquals(NAME, actual.getLocation().getName())
 //                () -> assertEquals(DATE_TIME, actual.getBirthday()) //TODO getting null while birthdays
 //                () -> assertEquals(DATE_TIME, actual.getReportingManager().getBirthday())
         );
+    }
+
+    private EmployeePosition createPosition() {
+        return EmployeePosition.builder()
+                .uuid(TEST_UUID)
+                .id(ID)
+                .name(NAME)
+                .build();
     }
 
     private Instant createInstantDateTime() {
@@ -106,7 +121,7 @@ public class EmployeeMapperTest {
         e.setLastName(NAME);
         e.setBirthday(LOCAL_DATE);
         e.setId(ID);
-        e.setPosition(createPosition());
+        e.setPosition(createPositionEntity());
         e.setLocation(createLocationEntity());
 
         return e;
@@ -120,7 +135,7 @@ public class EmployeeMapperTest {
         return e;
     }
 
-    private EmployeePositionEntity createPosition() {
+    private EmployeePositionEntity createPositionEntity() {
         return EmployeePositionEntity.builder()
                 .id(ID)
                 .uuid(TEST_UUID)

@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 import java.util.Optional;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class})
+@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
 public interface EmployeeMapper {
 
     /**It maps EmployeeEntity to Employee
@@ -50,4 +50,6 @@ public interface EmployeeMapper {
     default UUID generateUUID() {
         return UUID.randomUUID();
     }
+
+    EmployeeEntity mapEmployeeToEmployeeEntity(Employee employeeReportingManager);
 }

@@ -21,7 +21,7 @@ public class Employee implements Node {
     private String role;
     private ZonedDateTime birthday;
     private Employee reportingManager;
-    private String position;
+    private EmployeePosition position;
     private Location location;
 
 }
