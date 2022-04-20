@@ -18,7 +18,7 @@ public class LocationFacadeImpl implements LocationFacade {
     private LocationService locationService;
 
     @Transactional(readOnly = true)
-    public Location findByUuid(UUID uuid) {
+    public Location findLocationByUuid(UUID uuid) {
         return locationService.findLocationByUuid(uuid);
     }
 

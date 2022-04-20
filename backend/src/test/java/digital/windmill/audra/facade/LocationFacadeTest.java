@@ -37,7 +37,7 @@ class LocationFacadeTest {
         when(locationService.findLocationByUuid(any(UUID.class)))
                 .thenReturn(testLocation());
 
-        var result = locationFacade.findByUuid(TEST_UUID);
+        var result = locationFacade.findLocationByUuid(TEST_UUID);
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(NAME, result.getName());
