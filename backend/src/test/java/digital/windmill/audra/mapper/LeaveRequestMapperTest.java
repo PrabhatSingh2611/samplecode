@@ -54,7 +54,7 @@ class LeaveRequestMapperTest {
 
     private EmployeeEntity createEmployeeEntity() {
         EmployeeEntity e = new EmployeeEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setFirstName(NAME);
         e.setLastName(NAME);
         e.setUuid(TEST_UUID);
