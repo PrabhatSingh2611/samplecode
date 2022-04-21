@@ -14,7 +14,4 @@ public class AssetMutationResolver implements GraphQLMutationResolver {
 
     private AssetFacade facade;
 
-    public Asset testMutation(UUID uuid) {
-        return facade.findAssetByUuid(uuid);
-    }
 }
