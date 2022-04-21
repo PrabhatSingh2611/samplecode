@@ -24,6 +24,7 @@ public class EmployeePositionMapperTest {
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "name";
+    private static final Long ID = 1L;
 
 
     @Test
@@ -51,7 +52,7 @@ public class EmployeePositionMapperTest {
 
     private EmployeePositionEntity createEmployeePositionEntity() {
         EmployeePositionEntity e = new EmployeePositionEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setUuid(TEST_UUID);
         e.setName(NAME);
 

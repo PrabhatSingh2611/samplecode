@@ -50,6 +50,7 @@ public class VacancyServiceTest {
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private final static Instant LOCALE_DATE_TIME = Instant.now();
+    private static final Long ID = 1L;
 
     @Mock
     private VacancyRepository vacancyRepository;
@@ -184,14 +185,14 @@ public class VacancyServiceTest {
     private VacancyEntity createVacancyEntity() {
         VacancyEntity e = new VacancyEntity();
         e.setUuid(TEST_UUID);
-        e.setId(1L);
+        e.setId(ID);
         e.setDescription(DESCRIPTION);
         return e;
     }
     private Optional<VacancyEntity> createOptionalVacancyEntity() {
         VacancyEntity e = new VacancyEntity();
         e.setUuid(TEST_UUID);
-        e.setId(1L);
+        e.setId(ID);
         e.setDescription(DESCRIPTION);
         return Optional.of(e);
     }
@@ -225,12 +226,12 @@ public class VacancyServiceTest {
                 .build();
     }
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 
     private EmployeePositionEntity createEmployeePositionEntity() {
         EmployeePositionEntity e = new EmployeePositionEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setUuid(TEST_UUID);
         e.setName(NAME);
         return e;
@@ -241,20 +242,20 @@ public class VacancyServiceTest {
         e.setFirstName(NAME);
         e.setLastName(NAME);
         e.setBirthday(LOCALE_DATE_TIME);
-        e.setId(1L);
+        e.setId(ID);
         e.setPosition(createPositionEntity());
         e.setLocation(createLocationEntity());
         return e;
     }
     private EmployeePositionEntity createPositionEntity() {
         EmployeePositionEntity p = new EmployeePositionEntity();
-        p.setId(1L);
+        p.setId(ID);
         p.setName(NAME);
         return p;
     }
     private LocationEntity createLocationEntity() {
         LocationEntity l = new LocationEntity();
-        l.setId(1L);
+        l.setId(ID);
         l.setName(NAME);
         return l;
     }

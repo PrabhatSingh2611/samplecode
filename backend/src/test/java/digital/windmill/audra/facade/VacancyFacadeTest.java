@@ -37,6 +37,7 @@ public class VacancyFacadeTest {
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final Long ID = 1L;
 
     @Mock
     private VacancyService vacancyService;
@@ -182,13 +183,13 @@ public class VacancyFacadeTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 
     private EmployeePosition createEmployeePosition() {
         return EmployeePosition
                 .builder()
-                .id(1L)
+                .id(ID)
                 .uuid(TEST_UUID)
                 .name(NAME)
                 .build();

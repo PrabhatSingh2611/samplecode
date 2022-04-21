@@ -38,6 +38,7 @@ public class VacancyMapperTest {
     private final static Instant LOCALE_DATE_TIME = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final String ROLE = "Admin";
+    private static final Long ID = 1L;
 
     @Mock
     EmployeePositionMapper employeePositionMapper;
@@ -139,13 +140,13 @@ public class VacancyMapperTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 
     private VacancyEntity createVacancyEntity() {
         VacancyEntity e = new VacancyEntity();
         e.setUuid(TEST_UUID);
-        e.setId(1L);
+        e.setId(ID);
         e.setDescription(DESCRIPTION);
         e.setPosition(createEmployeePositionEntity());
         e.setAssignTo(createEmployeeEntity());
@@ -156,7 +157,7 @@ public class VacancyMapperTest {
 
     private EmployeePositionEntity createEmployeePositionEntity() {
         EmployeePositionEntity e = new EmployeePositionEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setUuid(TEST_UUID);
         e.setName(NAME);
         return e;
@@ -168,7 +169,7 @@ public class VacancyMapperTest {
         e.setFirstName(NAME);
         e.setLastName(NAME);
         e.setBirthday(LOCALE_DATE_TIME);
-        e.setId(1L);
+        e.setId(ID);
         e.setPosition(createPositionEntity());
         e.setLocation(createLocationEntity());
 
@@ -178,14 +179,14 @@ public class VacancyMapperTest {
 
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setName(NAME);
         return e;
     }
 
     private EmployeePositionEntity createPositionEntity() {
         return EmployeePositionEntity.builder()
-                .id(1L)
+                .id(ID)
                 .uuid(TEST_UUID)
                 .name(NAME)
                 .build();

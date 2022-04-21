@@ -33,6 +33,7 @@ public class VacancyMutationResolverTest {
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final Long ID = 1L;
 
 
     @Mock
@@ -120,6 +121,6 @@ public class VacancyMutationResolverTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(1L).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
     }
 }

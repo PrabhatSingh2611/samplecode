@@ -38,6 +38,8 @@ public class AssetMapperTest {
     private static final String NAME = "Name";
     private final static Instant LOCAL_DATE = Instant.now();
 
+    private static final Long ID = 1L;
+
 
     @Test
         //TODO: mapLocationEntityToLocation dates and employee
@@ -53,7 +55,7 @@ public class AssetMapperTest {
 
     private AssetEntity createAssetEntity() {
         AssetEntity a = new AssetEntity();
-        a.setId(1L);
+        a.setId(ID);
         a.setUuid(TEST_UUID);
         a.setTitle(ASSET_TITLE);
         a.setSerialNumber(ASSET_SERIAL_NUMBER);
@@ -65,7 +67,7 @@ public class AssetMapperTest {
 
     private EmployeeEntity createEmployeeEntity() {
         EmployeeEntity e = new EmployeeEntity();
-        e.setId(1L);
+        e.setId(ID);
         e.setFirstName(NAME);
         e.setLastName(NAME);
         e.setUuid(TEST_UUID);
@@ -77,14 +79,14 @@ public class AssetMapperTest {
 
     private EmployeePositionEntity createPositionEntity() {
         EmployeePositionEntity p = new EmployeePositionEntity();
-        p.setId(1L);
+        p.setId(ID);
         p.setName(NAME);
         return p;
     }
 
     private LocationEntity createLocationEntity() {
         LocationEntity l = new LocationEntity();
-        l.setId(1L);
+        l.setId(ID);
         l.setName(NAME);
         return l;
     }
