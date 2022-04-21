@@ -1,0 +1,25 @@
+mutation createEmployee{
+    createEmployee(input: {
+        firstName: "lox"
+        lastName: "carry"
+        position: "cabfb51b-41c5-4f4d-afd5-146c796391ad"
+        location: "b7f46256-e21d-483b-be29-8bf7617bc3c3"
+        reportingManager: "48b560ab-7450-4088-b6bb-f57638ea0877"
+        role: EMPLOYEE
+    })
+    {
+        item {
+            firstName
+            lastName
+            role
+            position{
+                uuid
+                name
+            }
+            location{
+                uuid
+                name
+            }
+        }
+    }
+}

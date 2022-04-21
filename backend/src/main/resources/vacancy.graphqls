@@ -1,0 +1,59 @@
+type Vacancy implements Node{
+    uuid: UUID!
+    position: EmployeePosition!
+    description: String!
+    status: VacancyStatus! #default NEW
+    assignTo: Employee
+    priority: VacancyPriority! #default NORMAL
+}
+
+enum VacancyStatus {
+    NEW, IN_PROGRESS, CLOSED, REJECTED, POSTPONED
+}
+
+enum VacancyPriority {
+    LOW, NORMAL, HIGH
+}
+
+type VacancyConnectionPayload implements ConnectionPayload {
+    items: [Vacancy!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input CreateVacancyInput{
+    position: UUID!
+    description: String!
+    status: VacancyStatus! #default NEW
+    assignTo: UUID
+    priority: VacancyPriority! #default NORMAL
+}
+
+input UpdateVacancyInput{
+    uuid:UUID!
+    position: UUID!
+    description: String!
+    status: VacancyStatus!
+    assignTo: UUID
+    priority: VacancyPriority!
+}
+
+type VacancyPayload {
+    item: Vacancy!
+}
+
+input VacanciesInput {
+    where: VacancyWhereInput
+    pagination: PageInput
+}
+
+input VacancyInput {
+    uuid: UUID!
+}
+
+input VacancyWhereInput {
+    assignTo: NodeInput
+    position: [NodeInput!]!
+    status: [VacancyStatus!]!
+}
+

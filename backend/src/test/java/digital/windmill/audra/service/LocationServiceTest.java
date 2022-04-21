@@ -39,6 +39,7 @@ public class LocationServiceTest {
     private static final UUID TEST_UUID = UUID.fromString("8201ef3c-1ee0-4920-89e2-7b6c4c539a15");
     private static final String NAME = "47nhdrx";
 
+    //TODO: Rest of UT for LocationService class
     @Test
     void shouldCreateLocation(@Mock CreateLocationInput createLocationInput) {
         when(locationMapper.mapCreateLocationInputToLocationEntity(any(CreateLocationInput.class))).thenReturn(createLocationEntity());

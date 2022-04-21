@@ -1,7 +1,6 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
@@ -46,6 +45,7 @@ class LeaveRequestServiceTest {
     private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private final static Instant INSTANT_DATE = Instant.now();
     private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
+    private static final String NAME = "Name";
 
     @Test
     void shouldFindByIdMapped() {
@@ -97,22 +97,12 @@ class LeaveRequestServiceTest {
     }
 
     private EmployeeEntity createEmployeeEntity() {
-        return EmployeeEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .birthday(INSTANT_DATE)
-                .firstName(TEXT)
-                .lastName(TEXT)
-                .position(createPositionEntity())
-                .role(ROLE)
-                .build();
-    }
-
-    private EmployeePositionEntity createPositionEntity() {
-        return EmployeePositionEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(TEXT)
-                .build();
+        EmployeeEntity e = new EmployeeEntity();
+        e.setId(1L);
+        e.setFirstName(NAME);
+        e.setLastName(NAME);
+        e.setUuid(TEST_UUID);
+        e.setRole(EmployeeRole.EMPLOYEE);
+        return e;
     }
 }

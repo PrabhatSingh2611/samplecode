@@ -1,0 +1,35 @@
+mutation{
+    updateVacancy(input:{
+        uuid:"493a5be9-01ba-47c6-95c1-29c230528525"
+        position:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
+        description:"UPDATE VACANCY"
+        status:NEW
+        assignTo:"48b560ab-7450-4088-b6bb-f57638ea0877"
+        priority:LOW
+    }){
+        item {
+            position{
+                uuid
+                name
+            }
+            description
+            status
+            assignTo{
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
+            }
+            priority
+        }
+    }
+}

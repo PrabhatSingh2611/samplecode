@@ -47,9 +47,8 @@ public class AssetTypeFacadeTest {
     void shouldGetAssetsType() {
         when(assetTypeServiceImpl.getAssetsType()).thenReturn(createAssetsType());
         var actual = assetTypeFacadeImpl.getAssetsType();
-        List<AssetType> expected = createAssetsType();
         assertNotNull(actual);
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(createAssetsType(), actual);
     }
 
     private List<AssetType> createAssetsType() {
