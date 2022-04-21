@@ -15,8 +15,14 @@ query getAssets($input: AssetsInput) {
                 lastName
                 role
                 birthday
-                position
-                location
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
             }
             archivedDate
             purchasedDate

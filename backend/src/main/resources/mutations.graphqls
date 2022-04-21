@@ -6,4 +6,7 @@ type Mutation {
 	createLocation(input: CreateLocationInput!): LocationPayload!
 	updateLocation(input: UpdateLocationInput!): LocationPayload!
 	createEmployee(input:CreateEmployeeInput!):EmployeePayload!
+    createVacancy(input: CreateVacancyInput!): VacancyPayload!
+    updateVacancy(input: UpdateVacancyInput!): VacancyPayload!
+
 }

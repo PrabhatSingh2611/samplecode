@@ -21,7 +21,7 @@ public interface AssetTypeFacade {
     /**
      * This method will create a specific Asset Type by specific input
      *
-     * @param assetTypeInput input by which we create Asset type
+     * @param createAssetTypeInput input by which we create Asset type
      * @return created AssetType
      */
     AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput);

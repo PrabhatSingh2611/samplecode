@@ -39,6 +39,8 @@ public class AssetTypeServiceTest {
     private static final String TITLE = "Laptops";
     private static final String ICON = "https://google.com/laptops";
 
+    //TODO: Rest of UT for AssetTypeService class
+
     @Test
     void shouldFindAssetByUuid() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());

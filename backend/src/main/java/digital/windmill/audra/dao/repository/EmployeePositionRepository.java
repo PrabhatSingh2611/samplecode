@@ -17,5 +17,4 @@ public interface EmployeePositionRepository extends
     @Query("SELECT a FROM EmployeePositionEntity a WHERE a.uuid = :uuid")
     Optional<EmployeePositionEntity> findByUuid(@Param("uuid") UUID uuid);
 
-    Optional<EmployeePositionEntity> findByName(String name);
 }

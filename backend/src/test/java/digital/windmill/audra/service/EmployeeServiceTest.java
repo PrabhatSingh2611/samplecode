@@ -49,12 +49,14 @@ public class EmployeeServiceTest {
     private static final String NAME = "BuA1VXU";
     private static final Long ID = 1L;
     private static final String ROLE = "z9Qtg5d";
-    private static final EmployeeRole ROLE_ENUM = EmployeeRole.EMPLOYEE;
     private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
 
 
     @Test
-    void shouldCreateEmployee(@Mock CreateEmployeeInput input, @Mock Employee employee, @Mock EmployeePosition employeePosition, @Mock Location location) {
+    void shouldCreateEmployee(@Mock CreateEmployeeInput input,
+                              @Mock Employee employee,
+                              @Mock EmployeePosition employeePosition,
+                              @Mock Location location) {
 
         when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
@@ -133,16 +135,13 @@ public class EmployeeServiceTest {
     }
 
     private EmployeeEntity createEmployeeEntity() {
-        return EmployeeEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .role(ROLE_ENUM)
-                .firstName(NAME)
-                .lastName(NAME)
-                .position(createEmployeePositionEntity())
-                .location(createLocationEntity())
-                .reportingManager(new EmployeeEntity())
-                .build();
+        EmployeeEntity e = new EmployeeEntity();
+        e.setId(1L);
+        e.setFirstName(NAME);
+        e.setLastName(NAME);
+        e.setUuid(TEST_UUID);
+        e.setRole(EmployeeRole.EMPLOYEE);
+        return e;
     }
 
     private Employee createEmployeePojo() {
