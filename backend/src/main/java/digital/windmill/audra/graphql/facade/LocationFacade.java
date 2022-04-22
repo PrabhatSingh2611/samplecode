@@ -44,5 +44,5 @@ public interface LocationFacade {
      * @return a specific location
      */
     @Transactional(readOnly = true)
-    Location findByUuid(UUID uuid);
+    Location findLocationByUuid(UUID uuid);
 }

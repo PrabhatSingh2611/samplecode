@@ -5,7 +5,6 @@ type Location implements Node {
 
 input LocationInput{
     uuid:UUID!
-    name: String!
 }
 
 input CreateLocationInput{
