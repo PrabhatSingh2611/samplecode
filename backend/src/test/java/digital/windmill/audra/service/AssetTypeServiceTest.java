@@ -2,6 +2,7 @@ package digital.windmill.audra.service;
 
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
+import digital.windmill.audra.dao.entity.VacancyEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
@@ -13,12 +14,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -56,12 +62,15 @@ public class AssetTypeServiceTest {
     @Test
     void shouldGetAssetsType() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
-        when(assetTypeRepository.findAll()).thenReturn(createAssetsTypeEntity());
+        when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
+                .thenReturn(createVacancyEntityList());
 
-        var actual = assetTypeService.getAssetsType();
-        List<AssetType> expected = createAssetsType();
-        assertNotNull(actual);
-        Assertions.assertEquals(expected, actual);
+        var result = assetTypeService.getAssetsType();
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(ICON, result.getContent().get(0).getIcon());
+        assertEquals(TITLE, result.getContent().get(0).getTitle());
+
     }
 
     @Test
@@ -89,6 +98,10 @@ public class AssetTypeServiceTest {
                 .build());
     }
 
+
+    private Page<AssetTypeEntity> createVacancyEntityList() {
+        return new PageImpl<>(createAssetsTypeEntity());
+    }
 
     private List<AssetTypeEntity> createAssetsTypeEntity() {
         return Arrays.asList(AssetTypeEntity.builder()
