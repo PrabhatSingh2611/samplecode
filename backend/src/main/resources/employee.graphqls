@@ -20,7 +20,7 @@ input CreateEmployeeInput {
 	firstName: String!
 	lastName: String!
 	birthday: ZonedDateTime!
-	role: EmployeeRole
+	role: EmployeeRole!
 	reportingManager: UUID
 	position: UUID
 	location: UUID
