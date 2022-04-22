@@ -10,11 +10,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -45,10 +48,13 @@ public class AssetTypeFacadeTest {
 
     @Test
     void shouldGetAssetsType() {
-        when(assetTypeServiceImpl.getAssetsType()).thenReturn(createAssetsType());
-        var actual = assetTypeFacadeImpl.getAssetsType();
-        assertNotNull(actual);
-        Assertions.assertEquals(createAssetsType(), actual);
+        var pagedResponse = new PageImpl(createAssetsType());
+        when(assetTypeServiceImpl.getAssetsType()).thenReturn(pagedResponse);
+        var result = assetTypeFacadeImpl.getAssetsType();
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(ICON, result.getContent().get(0).getIcon());
+        assertEquals(TITLE, result.getContent().get(0).getTitle());
     }
 
     private List<AssetType> createAssetsType() {

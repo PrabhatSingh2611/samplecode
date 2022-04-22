@@ -17,7 +17,12 @@
           "title": "Headphones",
           "icon": "https://google.com/headphones"
         }
-      ]
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 3
     }
   }
 }

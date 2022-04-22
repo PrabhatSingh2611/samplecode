@@ -2,6 +2,7 @@ package digital.windmill.audra.graphql.facade;
 
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
+import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -31,5 +32,5 @@ public interface AssetTypeFacade {
      *
      * @return List of Assettype
      */
-    List<AssetType> getAssetsType();
+    Page<AssetType> getAssetsType();
 }

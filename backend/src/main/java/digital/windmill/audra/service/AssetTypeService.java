@@ -2,6 +2,7 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +22,7 @@ public interface AssetTypeService {
      *
      * @return List of Asset Type
      */
-    List<AssetType> getAssetsType();
+    Page<AssetType> getAssetsType();
 
     /**
      * This method will create a specific Asset Type by specific input
