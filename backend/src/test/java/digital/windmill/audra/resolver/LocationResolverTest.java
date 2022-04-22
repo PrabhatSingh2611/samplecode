@@ -4,12 +4,15 @@ import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.resolver.location.LocationResolver;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.LocationInput;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +35,7 @@ public class LocationResolverTest {
 
     @Test
     void testLocation() {
-        when(facade.findByUuid(any(UUID.class)))
+        when(facade.findLocationByUuid(any(UUID.class)))
                 .thenReturn(createLocation());
 
         var result = locationResolver.location(createLocationInput());
@@ -42,14 +45,28 @@ public class LocationResolverTest {
 
     }
 
+    @Test
+    void testLocations(){
+        when(facade.findAllLocation()).thenReturn(createLocationList());
+
+        var result = locationResolver.locations();
+        Assertions.assertTrue(!result.getItems().isEmpty());
+    }
+
     private LocationInput createLocationInput() {
         return LocationInput
                 .builder()
                 .uuid(TEST_UUID)
-                .name(NAME)
                 .build();
 
     }
+
+    private List<Location> createLocationList() {
+        List<Location> locationList = new ArrayList<>();
+        locationList.add(createLocation());
+        return locationList;
+    }
+
 
     private Location createLocation() {
         return Location

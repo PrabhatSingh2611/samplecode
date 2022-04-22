@@ -4,8 +4,8 @@ import digital.windmill.audra.graphql.facade.EmployeePositionFacade;
 import digital.windmill.audra.graphql.resolver.employee.EmployeePositionMutationResolver;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
+import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -35,9 +37,30 @@ public class EmployeePositionMutationResolverTest {
                 .thenReturn(createEmployeePosition());
 
         var result = employeePositionMutationResolver.createEmployeePosition(createEmployeePositionInput());
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getItem().getUuid());
-        Assertions.assertEquals(NAME, result.getItem().getName());
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getItem().getUuid());
+        assertEquals(NAME, result.getItem().getName());
+    }
+
+
+    @Test
+    void shouldUpdateEmployeePosition() {
+
+        when(facade.updateEmployeePosition(any(UpdateEmployeePositionInput.class)))
+                .thenReturn(createEmployeePosition());
+        var result = employeePositionMutationResolver.updateEmployeePosition(updateEmployeePositionInput());
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getItem().getUuid());
+        assertEquals(NAME, result.getItem().getName());
+    }
+
+    @Test
+    void shouldDeleteEmployeePosition(@Mock DeleteEmployeePositionInput input) {
+        when(facade.deleteEmployeePosition(any(DeleteEmployeePositionInput.class)))
+                .thenReturn(createEmployeePosition());
+        var result = employeePositionMutationResolver.deleteEmployeePosition(input);
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getEmployeePosition().getUuid());
     }
 
     private EmployeePosition createEmployeePosition() {
@@ -47,17 +70,6 @@ public class EmployeePositionMutationResolverTest {
                 .id(1L)
                 .name(NAME)
                 .build();
-    }
-
-    @Test
-    void shouldUpdateEmployeePosition() {
-
-        when(facade.updateEmployeePosition(any(UpdateEmployeePositionInput.class)))
-                .thenReturn(createEmployeePosition());
-        var result = employeePositionMutationResolver.updateEmployeePosition(updateEmployeePositionInput());
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getItem().getUuid());
-        Assertions.assertEquals(NAME, result.getItem().getName());
     }
 
     private UpdateEmployeePositionInput updateEmployeePositionInput() {

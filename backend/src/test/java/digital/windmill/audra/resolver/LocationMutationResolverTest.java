@@ -8,11 +8,14 @@ import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -21,7 +24,7 @@ public class LocationMutationResolverTest {
 
     @Mock
     private LocationFacadeImpl locationFacade;
-    @Mock
+    @InjectMocks
     private LocationMutationResolver locationMutationResolver;
 
     private static final UUID TEST_UUID = UUID.fromString("ab0829f1-1972-46b9-a01a-8e88f95552de");
@@ -32,9 +35,9 @@ public class LocationMutationResolverTest {
         when(locationFacade.createLocation(any(CreateLocationInput.class)))
                 .thenReturn(createLocation());
         var result = locationMutationResolver.createLocation(createLocationInput());
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getLocation().getUuid());
-        Assertions.assertEquals(NAME, result.getLocation().getName());
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getLocation().getUuid());
+        assertEquals(NAME, result.getLocation().getName());
     }
 
     @Test
@@ -42,9 +45,9 @@ public class LocationMutationResolverTest {
         when(locationFacade.updateLocation(any(UpdateLocationInput.class)))
                 .thenReturn(createLocation());
         var result = locationMutationResolver.updateLocation(updateLocationInput());
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getLocation().getUuid());
-        Assertions.assertEquals(NAME, result.getLocation().getName());
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getLocation().getUuid());
+        assertEquals(NAME, result.getLocation().getName());
     }
 
     private CreateLocationInput createLocationInput() {

@@ -40,7 +40,6 @@ class EmployeeMutationResolverTest {
                 .thenReturn(createEmployeeTest());
 
         var result = employeeMutationResolver.createEmployee(createCreateEmployeeInput());
-
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(ROLE, result.getItem().getRole());
