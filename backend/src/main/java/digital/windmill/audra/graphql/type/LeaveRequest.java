@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.type;
 
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
