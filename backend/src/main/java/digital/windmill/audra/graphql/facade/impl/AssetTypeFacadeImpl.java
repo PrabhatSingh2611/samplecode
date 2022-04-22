@@ -5,6 +5,7 @@ import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import digital.windmill.audra.service.AssetTypeService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
     }
 
     @Override
-    public List<AssetType> getAssetsType() {
+    public Page<AssetType> getAssetsType() {
         return assetTypeService
                 .getAssetsType();
     }

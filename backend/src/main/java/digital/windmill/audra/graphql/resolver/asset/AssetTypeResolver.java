@@ -1,9 +1,11 @@
 package digital.windmill.audra.graphql.resolver.asset;
 
 import digital.windmill.audra.graphql.facade.AssetTypeFacade;
-import digital.windmill.audra.graphql.type.AssetTypeConnection;
+import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.AssetTypePayload;
+import digital.windmill.audra.graphql.type.ConnectionPayload;
 import digital.windmill.audra.graphql.type.input.AssetTypeInput;
+import digital.windmill.audra.graphql.utils.ConnectionUtils;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,11 +23,8 @@ public class AssetTypeResolver implements GraphQLQueryResolver {
                 .build();
     }
 
-    public AssetTypeConnection getAssetTypes() {
+    public ConnectionPayload<AssetType> getAssetTypes() {
+         return  ConnectionUtils.buildPayload(facade.getAssetsType());
 
-        return AssetTypeConnection
-                .builder()
-                .items(facade.getAssetsType())
-                .build();
     }
 }
