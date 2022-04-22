@@ -8,14 +8,14 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Audra",
   tagline:
-    "One source of truth, auto-deploy, MS Teams Notifications, easily to integrates in dev flow, everyone can update FE, BE, QA, DevOPs, PO, PM, Blog to keep retrospectives amd meeting notes",
+    "One source of truth, auto-deploy, MS Teams Notifications, easily to integrate in dev flow, everyone can update FE, BE, QA, DevOPs, PO, PM, Blog to keep retrospectives and meeting notes.",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "windmill", // Usually your GitHub org/user name.
+  projectName: "audra-platform", // Usually your repo name.
 
   presets: [
     [
@@ -62,6 +62,12 @@ const config = {
             docId: "frontend/intro",
             position: "left",
             label: "Frontend",
+          },
+          {
+            type: "doc",
+            docId: "backend/intro",
+            position: "left",
+            label: "Backend",
           },
           {
             type: "doc",
