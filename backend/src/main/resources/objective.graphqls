@@ -1,0 +1,51 @@
+type Objective {
+    uuid: UUID!
+    employee: Employee!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime
+    status: ObjectiveStatus
+}
+
+
+enum ObjectiveStatus {
+    NEW
+    IN_PROGRESS
+    POSTPONED
+    DONE
+    CANCELED
+}
+
+input EmployeeObjectivesWhereInput {
+    employee: NodeInput!
+    status: [ObjectiveStatus!]
+}
+
+input CreateObjectiveInput{
+    employee: EmployeeObjectiveInput!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime
+    status: ObjectiveStatus
+}
+
+
+input UpdateObjectiveInput{
+    uuid:UUID!
+    employee: UUID!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime
+    status: ObjectiveStatus
+}
+input EmployeeObjectiveInput {
+    uuid:UUID
+}
+
+type ObjectivePayload{
+    item:Objective
+}
+
