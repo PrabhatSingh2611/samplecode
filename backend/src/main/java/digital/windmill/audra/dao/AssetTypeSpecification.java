@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class AssetTypeSpecification {
     private static final Integer DEFAULT_PAGE_SIZE = 10;
-    private static final Integer DEFAULT_PAGE_NUMBER=1;
+    private static final Integer DEFAULT_PAGE_NUMBER=0;
     public static Pair<Specification<AssetTypeEntity>, PageRequest> assetTypes() {
 
         var itemsPerPage = DEFAULT_PAGE_SIZE;
