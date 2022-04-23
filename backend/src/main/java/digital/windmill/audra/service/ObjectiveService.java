@@ -1,0 +1,38 @@
+package digital.windmill.audra.service;
+
+import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.Objective;
+import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+
+import java.util.UUID;
+
+public interface ObjectiveService {
+    /**
+     * This method Create Objective
+     *
+     * @param input    takes mandatory/ optional input needs for new objective creation
+     * @param employee parameter to add employee inside objective
+     * @return a specific created Objective
+     */
+    Objective createObjective(CreateObjectiveInput input, Employee employee);
+
+    /**
+     * This method will update Objective
+     *
+     * @param input                takes mandatory/ optional input needs for updating objective
+     * @param employee             employe for updating existing objective
+     * @param objectiveToBeUpdated specific objective that will be updated
+     * @return updated Objective
+     */
+    Objective updateObjective(UpdateObjectiveInput input, Employee employee, Objective objectiveToBeUpdated);
+
+    /**
+     * This method withh find specific Objective
+     * This method will return a specific Objective by specific UUID.
+     *
+     * @param uuid uuid by which we search Objective
+     * @return a specific Objective
+     */
+    Objective findObjectiveByUuid(UUID uuid);
+}

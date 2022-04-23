@@ -8,7 +8,6 @@ type Objective {
     status: ObjectiveStatus
 }
 
-
 enum ObjectiveStatus {
     NEW
     IN_PROGRESS

@@ -14,11 +14,8 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring" ,uses = {DateTimeMapper.class})
+@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
 public interface ObjectiveMapper {
-    /*@Mapping(target = "employee.reportingManager", ignore = true)
-    Objective map(ObjectiveEntity entity);*/
-
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(generateUUID())")
@@ -27,11 +24,11 @@ public interface ObjectiveMapper {
     @Mapping(target = "description", source = "input.description")
     @Mapping(target = "comments", source = "input.comments")
     @Mapping(target = "dueToDate", expression = "java(dueToDate(input.getDueToDate()))")
-    @Mapping(target="status",source = "input.status")
-    ObjectiveEntity mapInputToEntity(CreateObjectiveInput input, EmployeeEntity employeeEntity);
+    @Mapping(target = "status", source = "input.status")
+    ObjectiveEntity mapObjectiveInputToEntity(CreateObjectiveInput input, EmployeeEntity employeeEntity);
 
-    @Mapping(target = "employee.reportingManager" , ignore = true)
-    Objective map(ObjectiveEntity objectiveEntity);
+    @Mapping(target = "employee.reportingManager", ignore = true)
+    Objective mapObjectiveEntityToObjective(ObjectiveEntity objectiveEntity);
 
     default String map(EmployeePositionEntity position) {
         return Optional.ofNullable(position).map(EmployeePositionEntity::getName).orElse(null);
@@ -42,13 +39,13 @@ public interface ObjectiveMapper {
     }
 
     @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "uuid",ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "employee", source = "employeeEntity")
     @Mapping(target = "name", source = "input.name")
     @Mapping(target = "description", source = "input.description")
     @Mapping(target = "comments", source = "input.comments")
     @Mapping(target = "dueToDate", expression = "java(dueToDate(input.getDueToDate()))")
-    @Mapping(target="status",source = "input.status")
+    @Mapping(target = "status", source = "input.status")
     ObjectiveEntity mapInputToEntityWhenUpdate(UpdateObjectiveInput input,
                                                ObjectiveEntity entity,
                                                EmployeeEntity employeeEntity);
@@ -56,4 +53,7 @@ public interface ObjectiveMapper {
     default Instant dueToDate(ZonedDateTime zonedDateTime) {
         return zonedDateTime.toInstant();
     }
+
+    @Mapping(target = "dueToDate", expression = "java(dueToDate(objective.getDueToDate()))")
+    ObjectiveEntity mapObjectiveToObjectiveEntity(Objective objective);
 }

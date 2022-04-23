@@ -1,6 +1,6 @@
 package digital.windmill.audra.graphql.resolver.objective;
 
-import digital.windmill.audra.graphql.facade.ObjectiveFacadeImpl;
+import digital.windmill.audra.graphql.facade.ObjectiveFacade;
 import digital.windmill.audra.graphql.type.ObjectivePayload;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class ObjectiveMutationResolver implements GraphQLMutationResolver {
 
-    private ObjectiveFacadeImpl objectiveFacade;
+    private ObjectiveFacade objectiveFacade;
 
     public ObjectivePayload createObjective(CreateObjectiveInput input){
        return ObjectivePayload.builder()

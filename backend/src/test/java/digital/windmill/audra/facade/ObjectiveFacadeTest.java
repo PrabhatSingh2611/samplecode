@@ -1,119 +1,152 @@
 package digital.windmill.audra.facade;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import digital.windmill.audra.graphql.facade.impl.ObjectiveFacadeImpl;
-import digital.windmill.audra.graphql.mapper.ObjectiveMapper;
 import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.type.EmployeePosition;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.EmployeeObjectiveInput;
+import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
-import digital.windmill.audra.service.impl.ObjectiveService;
+import digital.windmill.audra.service.ObjectiveService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ObjectiveFacadeTest {
-
-
-    @Mock
-    ObjectiveService objectiveService;
+class ObjectiveFacadeTest {
 
     @Mock
-    EmployeeService employeeService;
-
+    private ObjectiveService objectiveService;
     @Mock
-    ObjectiveMapper mapper;
-
+    private EmployeeService employeeService;
     @InjectMocks
-    ObjectiveFacadeImpl objectiveFacade;
+    ObjectiveFacadeImpl facade;
 
-    private static final Long ID= 1l;
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final String FIRST_NAME = "Firstname";
-    private static final String LAST_NAME = "Lastname";
-    private static final String NAME = "graphql";
-    private static final String COMMENTS = "schema,etc";
-    private static final String DESCRIPTION = "learning graphql";
-    private static final ZonedDateTime DUE_TO_DATE = ZonedDateTime.parse("2022-07-28T12:03:00.480425Z");
-    final static Instant LOCAL_DATE = Instant.now();
-    private static final String POSITION = "Position";
+    private static final UUID TEST_UUID = UUID.fromString("7ed1f598-b03a-42be-91e9-f9503dde4acd");
+    private static final String DESCRIPTION = "Description";
+    private static final String NAME = "Name";
+    private static final String ROLE = "Employee";
+    private static final String COMMENT = "Comment";
+    private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final Long ID = 813L;
 
 
-
-
-
-   /* @Test
-    void shouldCreateObjective( ){
-
-        *//*var employeeEntity = employeeService.findByUuid(input.getEmployee().getUuid());
-        return objectiveService.createObjective(input,employeeEntity);*//*
-
-        when(objectiveService.createObjective(any(CreateObjectiveInput.class),any(EmployeeEntity.class)))
+    @Test
+    void shouldCreateObjective(@Mock CreateObjectiveInput input) {
+        when(input.getEmployee()).thenReturn(createEmployeeObjective());
+        when(employeeService.findEmployeeByUuid(any(UUID.class)))
+                .thenReturn(createEmployee());
+        when(objectiveService.createObjective(any(CreateObjectiveInput.class), any(Employee.class)))
                 .thenReturn(createObjective());
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
-        var result = objectiveFacade.createObjective(createObjectiveInput());
-        assertNotNull(result);
-        assertEquals(NAME, result.getName());
-        assertEquals(COMMENTS, result.getComments());
-        assertEquals(DUE_TO_DATE, result.getDueToDate());
-    }*/
 
-    private CreateObjectiveInput createObjectiveInput() {
-       return CreateObjectiveInput.builder()
-                .name(NAME)
-                .comments(COMMENTS)
-                .description(DESCRIPTION)
-                .dueToDate(DUE_TO_DATE)
-                .employee(EmployeeObjectiveInput.builder().uuid(TEST_UUID).build())
-                .status(ObjectiveStatus.NEW)
+        var result = facade.createObjective(input);
+
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(DESCRIPTION, result.getDescription());
+        assertEquals(NAME, result.getName());
+        assertEquals(STATUS, result.getStatus());
+        assertEquals(COMMENT, result.getComments());
+        assertEquals(DATE_TIME, result.getDueToDate());
+        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
+        assertEquals(ID, result.getId());
+        assertEquals(ROLE, result.getEmployee().getRole());
+        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+        assertEquals(NAME, result.getEmployee().getLocation().getName());
+    }
+
+    @Test
+    void shouldUpdateObjective(@Mock UpdateObjectiveInput input) {
+        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(employeeService.findEmployeeByUuid(any(UUID.class)))
+                .thenReturn(createEmployee());
+        when(objectiveService.findObjectiveByUuid(any(UUID.class)))
+                .thenReturn(createObjective());
+        when(objectiveService.updateObjective(any(UpdateObjectiveInput.class),
+                any(Employee.class), any(Objective.class)))
+                .thenReturn(createObjective());
+
+        var result = facade.updateObjective(input);
+
+        assertNotNull(result);
+        assertEquals(ID, result.getId());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getName());
+        assertEquals(STATUS, result.getStatus());
+        assertEquals(COMMENT, result.getComments());
+        assertEquals(DATE_TIME, result.getDueToDate());
+        assertEquals(DESCRIPTION, result.getDescription());
+        assertEquals(ROLE, result.getEmployee().getRole());
+        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(NAME, result.getEmployee().getLocation().getName());
+        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+    }
+
+    private EmployeeObjectiveInput createEmployeeObjective() {
+        return EmployeeObjectiveInput.builder()
+                .uuid(TEST_UUID)
                 .build();
     }
 
-
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(ID);
-        e.setUuid(TEST_UUID);
-        e.setFirstName(FIRST_NAME);
-        e.setLastName(LAST_NAME);
-        e.setBirthday(LOCAL_DATE);
-
-        return e;
-    }
-
-    private Objective createObjective(){
-       return Objective.builder()
-                .uuid(UUID.randomUUID())
+    private Objective createObjective() {
+        return Objective.builder()
+                .id(ID)
+                .uuid(TEST_UUID)
                 .name(NAME)
-                .comments(COMMENTS)
                 .description(DESCRIPTION)
-                .dueToDate(DUE_TO_DATE)
+                .comments(COMMENT)
+                .dueToDate(DATE_TIME)
                 .employee(createEmployee())
-                .status(ObjectiveStatus.NEW)
+                .status(STATUS)
                 .build();
     }
 
     private Employee createEmployee() {
-       return Employee.builder()
+        return Employee.builder()
+                .id(ID)
                 .uuid(TEST_UUID)
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME)
-            //    .position(POSITION)
+                .position(createEmployeePosition())
+                .role(ROLE)
                 .birthday(DATE_TIME)
+                .firstName(NAME)
+                .lastName(NAME)
+                .reportingManager(createReportingManager())
+                .location(createLocation())
+                .build();
+    }
+
+    private Location createLocation() {
+        return Location.builder()
+                .id(ID)
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
+    }
+
+    private Employee createReportingManager() {
+        return new Employee();
+    }
+
+    private EmployeePosition createEmployeePosition() {
+        return EmployeePosition.builder()
+                .id(ID)
+                .uuid(TEST_UUID)
+                .name(NAME)
                 .build();
     }
 }

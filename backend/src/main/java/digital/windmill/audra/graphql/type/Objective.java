@@ -3,17 +3,20 @@ package digital.windmill.audra.graphql.type;
 import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Objective {
+    private Long id;
     private UUID uuid;
     private Employee employee;
     private String name;

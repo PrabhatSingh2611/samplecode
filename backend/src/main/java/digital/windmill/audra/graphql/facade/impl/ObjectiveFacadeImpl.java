@@ -6,7 +6,6 @@ import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
-import digital.windmill.audra.service.impl.ObjectiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +16,14 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     private EmployeeService employeeService;
 
     @Override
-    public Objective createObjective(CreateObjectiveInput input){
-        //return objectiveMapper.map(objectiveService.createObjective(input));
-        var employeeEntity = employeeService.findByUuid(input.getEmployee().getUuid());
-        return objectiveService.createObjective(input,employeeEntity);
+    public Objective createObjective(CreateObjectiveInput input) {
+        var employee = employeeService.findEmployeeByUuid(input.getEmployee().getUuid());
+        return objectiveService.createObjective(input, employee);
     }
 
-    public Objective updateObjective(UpdateObjectiveInput input){
-        var employeeEntity = employeeService.findByUuid(input.getUuid());
-        return objectiveService.updateObjective(input,employeeEntity);
+    public Objective updateObjective(UpdateObjectiveInput input) {
+        var employee = employeeService.findEmployeeByUuid(input.getUuid());
+        var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
+        return objectiveService.updateObjective(input, employee, objectiveToBeUpdated);
     }
 }
