@@ -23,7 +23,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     }
 
     public Objective updateObjective(UpdateObjectiveInput input) {
-        var employee = employeeService.findEmployeeByUuid(input.getUuid());
+        var employee = employeeService.findEmployeeByUuid(input.getEmployee());
         var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
         return objectiveService.updateObjective(input, employee, objectiveToBeUpdated);
     }

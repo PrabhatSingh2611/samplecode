@@ -39,7 +39,7 @@ public interface ObjectiveMapper {
     }
 
     @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "uuid", ignore = true)
+    @Mapping(target = "uuid", source = "entity.uuid")
     @Mapping(target = "employee", source = "employeeEntity")
     @Mapping(target = "name", source = "input.name")
     @Mapping(target = "description", source = "input.description")
