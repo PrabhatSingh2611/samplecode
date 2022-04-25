@@ -7,6 +7,7 @@ import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
 import digital.windmill.audra.graphql.type.input.EmployeeObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
@@ -81,6 +82,31 @@ class ObjectiveFacadeTest {
                 .thenReturn(createObjective());
 
         var result = facade.updateObjective(input);
+
+        assertNotNull(result);
+        assertEquals(ID, result.getId());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getName());
+        assertEquals(STATUS, result.getStatus());
+        assertEquals(COMMENT, result.getComments());
+        assertEquals(DATE_TIME, result.getDueToDate());
+        assertEquals(DESCRIPTION, result.getDescription());
+        assertEquals(ROLE, result.getEmployee().getRole());
+        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(NAME, result.getEmployee().getLocation().getName());
+        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+    }
+
+    @Test
+    void shouldDeleteObjective(@Mock DeleteObjectiveInput input) {
+        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(objectiveService.findObjectiveByUuid(any(UUID.class)))
+                .thenReturn(createObjective());
+        when(objectiveService.deleteObjective(any(Objective.class)))
+                .thenReturn(createObjective());
+
+        var result = facade.deleteObjective(input);
 
         assertNotNull(result);
         assertEquals(ID, result.getId());

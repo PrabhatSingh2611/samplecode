@@ -104,6 +104,24 @@ public class ObjectiveServiceTest {
     }
 
     @Test
+    void shouldDeleteObjective(@Mock Objective objectiveToBeDeleted) {
+        when(objectiveMapper.mapObjectiveToObjectiveEntity(any(Objective.class))).thenReturn(createObjectiveEntity());
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjectivePojo());
+
+        var result = objectiveService.deleteObjective(objectiveToBeDeleted);
+
+        assertNotNull(result);
+        assertEquals(NAME, result.getName());
+        assertEquals(DESCRIPTION, result.getDescription());
+        assertEquals(ZONE_DATE_TIME, result.getDueToDate());
+        assertEquals(COMMENT, result.getComments());
+        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(STATUS, result.getStatus());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(ZONE_DATE_TIME, result.getEmployee().getBirthday());
+    }
+
+    @Test
     void shouldReturnObjectiveByUuid() {
 
         when(objectiveRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createObjectiveEntity()));

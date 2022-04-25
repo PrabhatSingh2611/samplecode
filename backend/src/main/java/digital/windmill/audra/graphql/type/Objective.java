@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Objective {
+public class Objective implements Node{
     private Long id;
     private UUID uuid;
     private Employee employee;

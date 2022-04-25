@@ -3,6 +3,7 @@ package digital.windmill.audra.graphql.facade.impl;
 import digital.windmill.audra.graphql.facade.ObjectiveFacade;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
@@ -25,5 +26,11 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
         var employee = employeeService.findEmployeeByUuid(input.getUuid());
         var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
         return objectiveService.updateObjective(input, employee, objectiveToBeUpdated);
+    }
+
+    @Override
+    public Objective deleteObjective(DeleteObjectiveInput input) {
+        var objectiveToBeDeleted = objectiveService.findObjectiveByUuid(input.getUuid());
+        return objectiveService.deleteObjective(objectiveToBeDeleted);
     }
 }

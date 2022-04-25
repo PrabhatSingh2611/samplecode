@@ -1,4 +1,4 @@
-type Objective {
+type Objective implements Node{
     uuid: UUID!
     employee: Employee!
     name: String!
@@ -46,5 +46,13 @@ input EmployeeObjectiveInput {
 
 type ObjectivePayload{
     item:Objective
+}
+
+input DeleteObjectiveInput{
+    uuid: UUID!
+}
+
+type DeleteObjectivePayload{
+    objective: Node!
 }
 

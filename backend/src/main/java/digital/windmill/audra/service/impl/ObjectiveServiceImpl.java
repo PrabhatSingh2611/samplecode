@@ -24,6 +24,14 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     private EmployeeMapper employeeMapper;
 
     @Override
+    public Objective findObjectiveByUuid(UUID uuid) {
+        return objectiveMapper.mapObjectiveEntityToObjective(objectiveRepository.findByUuid(uuid).orElseThrow(
+                        () -> new DataNotFoundException("Objective not available for given UUID : " + uuid.toString())
+                )
+        );
+    }
+
+    @Override
     public Objective createObjective(CreateObjectiveInput input, Employee employee) {
         ObjectiveEntity objectiveEntity = objectiveMapper
                 .mapObjectiveInputToEntity(input, employeeMapper.mapEmployeeToEmployeeEntity(employee));
@@ -41,10 +49,9 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     @Override
-    public Objective findObjectiveByUuid(UUID uuid) {
-        return objectiveMapper.mapObjectiveEntityToObjective(objectiveRepository.findByUuid(uuid).orElseThrow(
-                        () -> new DataNotFoundException("Objective not available for given UUID : " + uuid.toString())
-                )
-        );
+    public Objective deleteObjective(Objective objectiveToBeDeleted) {
+        var objectiveEntityToBeDeleted = objectiveMapper.mapObjectiveToObjectiveEntity(objectiveToBeDeleted);
+        objectiveRepository.delete(objectiveEntityToBeDeleted);
+        return objectiveMapper.mapObjectiveEntityToObjective(objectiveEntityToBeDeleted);
     }
 }

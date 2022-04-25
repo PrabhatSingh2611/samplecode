@@ -35,4 +35,10 @@ public interface ObjectiveService {
      * @return a specific Objective
      */
     Objective findObjectiveByUuid(UUID uuid);
+
+    /**This method will delete a EmployeePosition by a specific value.
+     * @param objectiveToBeDeleted Objective of which we should be deleting
+     * @return deleted EmployeePosition
+     */
+    Objective deleteObjective(Objective objectiveToBeDeleted);
 }

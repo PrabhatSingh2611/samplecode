@@ -9,6 +9,7 @@ import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Locations;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -82,6 +83,17 @@ class ObjectiveMutationResolverTest {
         assertEquals(ROLE, result.getItem().getEmployee().getRole());
         assertEquals(DESCRIPTION, result.getItem().getDescription());
         assertEquals(NAME, result.getItem().getEmployee().getLocation().getName());
+    }
+
+    @Test
+    void shouldDeleteObjective(@Mock DeleteObjectiveInput input) {
+        when(facade.deleteObjective(any(DeleteObjectiveInput.class)))
+                .thenReturn(createObjective());
+
+        var result = resolver.deleteObjective(input);
+
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getObjective().getUuid());
     }
 
     private Objective createObjective() {
