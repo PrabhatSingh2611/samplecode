@@ -10,7 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +31,7 @@ class LocationFacadeTest {
     private LocationFacadeImpl locationFacade;
 
     private static final UUID TEST_UUID = UUID.fromString("0069e6ad-d356-472f-99cc-9256565a02a9");
+    private static final UUID SECOND_UUID = UUID.fromString("b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b");
     private static final Long ID = 1L;
     private static final String NAME = "PcwrDcz";
 
@@ -45,13 +48,26 @@ class LocationFacadeTest {
 
     @Test
     void shouldFindAllLocation() {
+        var pagedResponse = new PageImpl(createLocations());
         when(locationService.getLocations())
-                .thenReturn(listOfLocation());
+                .thenReturn(pagedResponse);
 
-        var result = locationFacade.findAllLocation();
+        var result = locationFacade.getLocations();
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.get(0).getUuid());
-        assertEquals(NAME, result.get(0).getName());
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(NAME, result.getContent().get(0).getName());
+    }
+
+    private List<Location> createLocations() {
+        return Arrays.asList(Location.builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build(),
+                Location.builder()
+                        .uuid(SECOND_UUID)
+                        .name(NAME)
+                        .build()
+        );
     }
 
     @Test

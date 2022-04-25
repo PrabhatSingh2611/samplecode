@@ -1,5 +1,6 @@
 package digital.windmill.audra.service.impl;
 
+import digital.windmill.audra.dao.LocationSpecification;
 import digital.windmill.audra.dao.repository.LocationRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
@@ -8,9 +9,9 @@ import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.UUID;
 
 
@@ -37,16 +38,7 @@ public class LocationServiceImpl implements LocationService {
                                 .save(locationMapper.mapLocationToLocationEntity(location)));
     }
 
-    @Override
-    public List<Location> getLocations() {
-        return locationRepository
-                .findAll()
-                .stream()
-                .map(locationMapper::mapLocationEntityToLocation)
-                .toList();
-    }
-
-    @Override
+     @Override
     public Location findLocationByUuid(UUID uuid) {
         var locationEntity = locationRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("location not found for : " + uuid.toString())
@@ -54,5 +46,11 @@ public class LocationServiceImpl implements LocationService {
         return locationMapper.mapLocationEntityToLocation(locationEntity);
     }
 
+    @Override
+    public Page<Location> getLocations() {
+        var spec = LocationSpecification.getAllLocations();
+        return locationRepository.findAll(spec.getKey(),spec.getValue())
+                .map(locationMapper::mapLocationEntityToLocation);
+    }
 
 }

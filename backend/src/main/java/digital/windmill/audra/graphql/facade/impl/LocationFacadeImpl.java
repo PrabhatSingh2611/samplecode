@@ -6,6 +6,8 @@ import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +24,11 @@ public class LocationFacadeImpl implements LocationFacade {
         return locationService.findLocationByUuid(uuid);
     }
 
-
     @Override
-    @Transactional(readOnly = true)
-    public List<Location> findAllLocation() {
+    public Page<Location> getLocations() {
         return locationService.getLocations();
     }
+
 
     @Override
     public Location createLocation(CreateLocationInput input) {

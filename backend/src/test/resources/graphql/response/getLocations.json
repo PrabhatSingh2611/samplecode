@@ -10,7 +10,12 @@
           "uuid": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
           "name": "dubai"
         }
-      ]
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 2
     }
   }
 }

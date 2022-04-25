@@ -14,12 +14,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -48,8 +50,8 @@ public class LocationServiceTest {
 
         var result = service.createLocation(createLocationInput);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(NAME, result.getName());
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getName());
+        assertEquals(TEST_UUID, result.getUuid());
     }
 
     @Test
@@ -62,17 +64,35 @@ public class LocationServiceTest {
 
         var result = service.updateLocation(updateLocationInput, location);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
-        Assertions.assertEquals(NAME, result.getName());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(NAME, result.getName());
     }
 
     @Test
     void shouldGetLocations() {
-        when(locationRepository.findAll()).thenReturn(createLocalEntityList());
-        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class))).thenReturn(createLocation());
-
+       when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
+                .thenReturn(createLocation());
+        when(locationRepository.findAll((Specification<LocationEntity>) any(),any(PageRequest.class)))
+                .thenReturn(createLocationEntityList());
         var result = service.getLocations();
-        Assertions.assertTrue(!result.isEmpty());
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(NAME, result.getContent().get(0).getName());
+    }
+
+    private Page<LocationEntity> createLocationEntityList() {
+        return new PageImpl<>(createLocationsEntity());
+    }
+
+    private List<LocationEntity> createLocationsEntity() {
+        return Arrays.asList(LocationEntity.builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build(),
+                LocationEntity.builder()
+                        .uuid(TEST_UUID)
+                        .name(NAME)
+                        .build());
     }
 
     @Test
@@ -83,7 +103,7 @@ public class LocationServiceTest {
         var result = service.findLocationByUuid(TEST_UUID);
 
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TEST_UUID, result.getUuid());
     }
 
     @Test

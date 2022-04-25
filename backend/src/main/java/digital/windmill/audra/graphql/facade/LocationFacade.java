@@ -3,21 +3,14 @@ package digital.windmill.audra.graphql.facade;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface LocationFacade {
-
-    /**
-     * It Takes NO input and  gives all employee in database
-     *
-     * @return all Location in the database
-     */
-    @Transactional(readOnly = true)
-    List<Location> findAllLocation();
-
 
     /**
      * This method will create a new location by a value.
@@ -45,4 +38,11 @@ public interface LocationFacade {
      */
     @Transactional(readOnly = true)
     Location findLocationByUuid(UUID uuid);
+
+    /**
+     *
+     * @return all Locations
+     */
+    @Transactional(readOnly = true)
+    Page<Location> getLocations();
 }

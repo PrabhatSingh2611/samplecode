@@ -3,6 +3,8 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,13 +27,7 @@ public interface LocationService {
      * @return an updated location
      */
     Location updateLocation(UpdateLocationInput input, Location location);
-
-    /**
-     * This method will search all the locations,
-     *
-     * @return required locations searched
-     */
-    List<Location> getLocations();
+    
 
     /**
      * This method will search location by an uuid value.
@@ -40,4 +36,10 @@ public interface LocationService {
      * @return required location searched wrapped into Location
      */
     Location findLocationByUuid(UUID uuid);
+
+    /**
+     *
+     * @return all location
+     */
+    Page<Location> getLocations();
 }
