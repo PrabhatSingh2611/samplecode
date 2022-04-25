@@ -39,3 +39,7 @@ VALUES
 (1, '493a5be9-01ba-47c6-95c1-29c230528525', '1', 'Vacancy 1', 'NEW', 1, 'LOW', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z'),
 (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2398', '2', 'Vacancy 2', 'IN_PROGRESS', 2, 'NORMAL',  '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z');
 
+INSERT INTO objective (id, uuid, employee_id, name, description, comments, due_to_date, status)
+VALUES
+(1, 'e94f4d6a-a6cf-4786-a0b8-f096290057e3', 1, 'Objective 1', 'Description of Objective 1', 'Comment of Objective 1', '2022-02-02T13:25:34.480425Z', 'NEW'),
+(2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of Objective 2', '2022-02-02T13:25:34.480425Z', 'DONE');
