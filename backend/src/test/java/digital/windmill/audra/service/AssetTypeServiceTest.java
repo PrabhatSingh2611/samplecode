@@ -2,7 +2,6 @@ package digital.windmill.audra.service;
 
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
-import digital.windmill.audra.dao.entity.VacancyEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
@@ -63,7 +62,7 @@ public class AssetTypeServiceTest {
     void shouldGetAssetsType() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
-                .thenReturn(createVacancyEntityList());
+                .thenReturn(createAssetTypeEntityList());
 
         var result = assetTypeService.getAssetsType();
         assertNotNull(result);
@@ -99,7 +98,7 @@ public class AssetTypeServiceTest {
     }
 
 
-    private Page<AssetTypeEntity> createVacancyEntityList() {
+    private Page<AssetTypeEntity> createAssetTypeEntityList() {
         return new PageImpl<>(createAssetsTypeEntity());
     }
 
