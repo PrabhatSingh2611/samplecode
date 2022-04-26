@@ -1,7 +1,6 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.ObjectiveEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
@@ -14,7 +13,6 @@ import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
-import digital.windmill.audra.graphql.type.input.EmployeeObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.impl.ObjectiveServiceImpl;
 import org.junit.jupiter.api.Assertions;

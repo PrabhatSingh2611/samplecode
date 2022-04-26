@@ -5,6 +5,8 @@ import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 
+import java.util.UUID;
+
 public interface ObjectiveFacade {
 
     /**This method will create an Objective by a specific value.
@@ -25,4 +27,6 @@ public interface ObjectiveFacade {
      * @return a specific deleted Objective
      */
     Objective deleteObjective(DeleteObjectiveInput input);
+
+    Objective findObjectiveByUuid(UUID uuid);
 }

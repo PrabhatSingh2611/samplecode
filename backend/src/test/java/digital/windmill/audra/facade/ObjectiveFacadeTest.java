@@ -8,8 +8,7 @@ import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
-import digital.windmill.audra.graphql.type.input.EmployeeObjectiveInput;
-import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
 import org.junit.jupiter.api.Test;
@@ -127,8 +126,8 @@ class ObjectiveFacadeTest {
         assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
     }
 
-    private EmployeeObjectiveInput createEmployeeObjective() {
-        return EmployeeObjectiveInput.builder()
+    private ObjectiveInput createEmployeeObjective() {
+        return ObjectiveInput.builder()
                 .uuid(TEST_UUID)
                 .build();
     }

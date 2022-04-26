@@ -13,7 +13,6 @@ import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
-import digital.windmill.audra.graphql.type.input.EmployeeObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

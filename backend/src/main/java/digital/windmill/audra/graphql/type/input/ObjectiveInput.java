@@ -11,6 +11,6 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeObjectiveInput {
+public class ObjectiveInput {
     private UUID uuid;
 }

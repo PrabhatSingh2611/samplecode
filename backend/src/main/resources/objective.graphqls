@@ -21,6 +21,7 @@ input EmployeeObjectivesWhereInput {
     status: [ObjectiveStatus!]
 }
 
+
 input CreateObjectiveInput{
     employee: UUID!
     name: String!
@@ -40,7 +41,7 @@ input UpdateObjectiveInput{
     dueToDate: ZonedDateTime!
     status: ObjectiveStatus
 }
-input EmployeeObjectiveInput {
+input ObjectiveInput {
     uuid:UUID
 }
 

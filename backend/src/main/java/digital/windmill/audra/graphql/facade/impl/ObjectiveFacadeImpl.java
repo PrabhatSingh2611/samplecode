@@ -10,6 +10,8 @@ import digital.windmill.audra.service.ObjectiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class ObjectiveFacadeImpl implements ObjectiveFacade {
@@ -32,5 +34,10 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     public Objective deleteObjective(DeleteObjectiveInput input) {
         var objectiveToBeDeleted = objectiveService.findObjectiveByUuid(input.getUuid());
         return objectiveService.deleteObjective(objectiveToBeDeleted);
+    }
+
+    @Override
+    public Objective findObjectiveByUuid(UUID uuid){
+        return objectiveService.findObjectiveByUuid(uuid);
     }
 }
