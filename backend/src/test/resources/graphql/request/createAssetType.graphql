@@ -1,5 +1,5 @@
 mutation createAssetType {
-    createAssetType(input: {title: "Table" icon:"www.laptop.com"}) {
+    createAssetType(input: {title: "Table"}) {
         item {
             title
         }
