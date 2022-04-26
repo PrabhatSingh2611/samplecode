@@ -42,8 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployeeByUuid(UUID uuid) {
-        if(uuid==null)
+        if(uuid==null){
             return null;
+        }
         var employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
                 () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
         );
