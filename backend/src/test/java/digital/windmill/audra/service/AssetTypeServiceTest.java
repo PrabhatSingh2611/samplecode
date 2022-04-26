@@ -59,7 +59,7 @@ public class AssetTypeServiceTest {
 
 
     @Test
-    void shouldGetAssetsType() {
+    void shouldReturnAllAssetsType() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
                 .thenReturn(createAssetTypeEntityList());
