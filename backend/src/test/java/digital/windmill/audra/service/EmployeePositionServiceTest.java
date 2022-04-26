@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -101,6 +102,11 @@ public class EmployeePositionServiceTest {
         Assertions.assertThrows(DataNotFoundException.class, () -> service.findEmployeePositionByUuid(TEST_UUID));
     }
 
+    @Test
+    void shouldReturnNullWhenEmployeeIsNull(){
+        var result = service.findEmployeePositionByUuid(null);
+        assertNull(result);
+    }
 
     private CreateEmployeePositionInput createEmployeePositionInput() {
         return CreateEmployeePositionInput.builder().name(NAME).build();
