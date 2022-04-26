@@ -73,6 +73,16 @@ public class ObjectiveIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldDeleteObjective() throws IOException, URISyntaxException {
+        ObjectNode variables = objectMapper.createObjectNode();
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/deleteObjective.graphql");
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/deleteObjective.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
     }

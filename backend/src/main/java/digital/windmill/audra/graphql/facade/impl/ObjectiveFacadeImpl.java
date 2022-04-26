@@ -18,7 +18,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
 
     @Override
     public Objective createObjective(CreateObjectiveInput input) {
-        var employee = employeeService.findEmployeeByUuid(input.getEmployee().getUuid());
+        var employee = employeeService.findEmployeeByUuid(input.getEmployee());
         return objectiveService.createObjective(input, employee);
     }
 

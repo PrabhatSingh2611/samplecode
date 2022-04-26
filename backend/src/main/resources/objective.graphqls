@@ -22,11 +22,11 @@ input EmployeeObjectivesWhereInput {
 }
 
 input CreateObjectiveInput{
-    employee: EmployeeObjectiveInput!
+    employee: UUID!
     name: String!
     description: String
     comments: String
-    dueToDate: ZonedDateTime
+    dueToDate: ZonedDateTime!
     status: ObjectiveStatus
 }
 
@@ -37,7 +37,7 @@ input UpdateObjectiveInput{
     name: String!
     description: String
     comments: String
-    dueToDate: ZonedDateTime
+    dueToDate: ZonedDateTime!
     status: ObjectiveStatus
 }
 input EmployeeObjectiveInput {

@@ -164,7 +164,7 @@ public class ObjectiveMapperTest {
                 .comments(COMMENT)
                 .description(DESCRIPTION)
                 .dueToDate(ZONE_DATE_TIME)
-                .employee(EmployeeObjectiveInput.builder().uuid(TEST_UUID).build())
+                .employee(TEST_UUID)
                 .status(ObjectiveStatus.NEW)
                 .build();
     }
