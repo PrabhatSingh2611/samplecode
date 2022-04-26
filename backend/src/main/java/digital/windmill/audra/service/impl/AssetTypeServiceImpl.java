@@ -2,14 +2,18 @@ package digital.windmill.audra.service.impl;
 
 
 import digital.windmill.audra.dao.AssetTypeSpecification;
+import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
+import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import digital.windmill.audra.service.AssetTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -30,10 +34,11 @@ public class AssetTypeServiceImpl implements AssetTypeService {
 
     @Override
     public Page<AssetType> getAssetsType() {
-        var spec = AssetTypeSpecification.assetTypes();
-        return assetTypeRepository
-                .findAll(spec.getKey()
-                        ,spec.getValue())
+        Integer DEFAULT_PAGE_SIZE = 10;
+        Integer DEFAULT_PAGE_NUMBER=0;
+        Specification<AssetTypeEntity> specification = AssetTypeSpecification.byAssetType();
+        PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
+        return assetTypeRepository.findAll(specification, pagination)
                 .map(assetTypeMapper::mapAssetTypeEntityToAssetType);
     }
 
