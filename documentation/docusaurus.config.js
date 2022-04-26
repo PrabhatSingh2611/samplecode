@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Audra",
   tagline:
-    "One source of truth, auto-deploy, MS Teams Notifications, easily to integrate in dev flow, everyone can update FE, BE, QA, DevOPs, PO, PM, Blog to keep retrospectives and meeting notes.",
+    "One source of truth, auto-deploy, MS Teams Notifications, easily to integrate in dev flow, everyone can update FE, BE, QA, DevOPs, PO, PM, Global Search, Blog to keep retrospectives and meeting notes.",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
