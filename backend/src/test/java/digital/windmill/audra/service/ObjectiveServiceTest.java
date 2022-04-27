@@ -194,40 +194,6 @@ public class ObjectiveServiceTest {
         return e;
     }
 
-    private CreateObjectiveInput createObjectiveInput() {
-        return CreateObjectiveInput.builder()
-                .name(NAME)
-                .comments(COMMENT)
-                .description(DESCRIPTION)
-                .dueToDate(ZONE_DATE_TIME)
-                .employee(TEST_UUID)
-                .status(ObjectiveStatus.NEW)
-                .build();
-    }
-
-    private UpdateObjectiveInput createUpdateObjectiveEntity() {
-        return UpdateObjectiveInput.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .comments(COMMENT)
-                .description(DESCRIPTION)
-                .dueToDate(ZONE_DATE_TIME)
-                .status(STATUS)
-                .build();
-
-    }
-
-    private CreateObjectiveInput testCreateObjectiveInput() {
-        return CreateObjectiveInput.builder()
-                .name(NAME)
-                .comments(COMMENT)
-                .description(DESCRIPTION)
-                .dueToDate(ZONE_DATE_TIME)
-                .employee(TEST_UUID)
-                .status(ObjectiveStatus.NEW)
-                .build();
-    }
-
     private Objective createObjectivePojo() {
         return Objective.builder()
                 .id(ID)
