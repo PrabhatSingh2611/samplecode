@@ -3,7 +3,9 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
@@ -41,4 +43,11 @@ public interface ObjectiveService {
      * @return deleted EmployeePosition
      */
     Objective deleteObjective(Objective objectiveToBeDeleted);
+
+    /**
+     * This method will return a list of Objective.
+     * @param input for query result
+     * @return a list of Objective including pagination
+     */
+    Page<Objective> findAllObjectives(ObjectivesInput input);
 }

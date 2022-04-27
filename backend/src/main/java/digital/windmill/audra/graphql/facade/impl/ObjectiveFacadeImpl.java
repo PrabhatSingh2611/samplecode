@@ -2,13 +2,18 @@ package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.ObjectiveFacade;
 import digital.windmill.audra.graphql.type.Objective;
+import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.VacanciesInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -39,5 +44,10 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     @Override
     public Objective findObjectiveByUuid(UUID uuid){
         return objectiveService.findObjectiveByUuid(uuid);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Objective> getObjectives(ObjectivesInput input) {
+        return objectiveService.findAllObjectives(input);
     }
 }

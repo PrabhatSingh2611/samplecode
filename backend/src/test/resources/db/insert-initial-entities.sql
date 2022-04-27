@@ -42,4 +42,5 @@ VALUES
 INSERT INTO objective (id, uuid, employee_id, name, description, comments, due_to_date, status)
 VALUES
 (1, 'e94f4d6a-a6cf-4786-a0b8-f096290057e3', 1, 'Objective 1', 'Description of Objective 1', 'Comment of Objective 1', '2022-02-02T13:25:34.480425Z', 'NEW'),
-(2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of Objective 2', '2022-02-02T13:25:34.480425Z', 'DONE');
+(2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of Objective 2', '2022-02-02T13:25:34.480425Z', 'DONE'),
+(3, '2fa56def-ce16-493c-8f8c-173bf3ee8309', 1, 'Objective 3', 'Description of Objective 3', 'Comment of Objective 3', '2022-02-02T13:25:34.480425Z', 'DONE');

@@ -3,7 +3,9 @@ package digital.windmill.audra.graphql.facade;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
@@ -28,5 +30,17 @@ public interface ObjectiveFacade {
      */
     Objective deleteObjective(DeleteObjectiveInput input);
 
+    /**
+     * This method will return a Objective by a specific uuid.
+     * @param uuid of which objective we should look
+     * @return a specific objective
+     */
     Objective findObjectiveByUuid(UUID uuid);
+
+    /**
+     * This method will return a list of Objectives.
+     * @param input input for query result
+     * @return a list of Objective
+     */
+    public Page<Objective> getObjectives(ObjectivesInput input);
 }

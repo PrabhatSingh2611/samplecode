@@ -62,6 +62,16 @@ public class ObjectiveIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllObjectives() throws IOException, URISyntaxException {
+        ObjectNode variables = objectMapper.createObjectNode();
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getObjectives.graphql");
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getObjectives.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")

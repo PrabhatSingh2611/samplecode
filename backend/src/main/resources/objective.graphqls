@@ -21,7 +21,16 @@ input EmployeeObjectivesWhereInput {
     status: [ObjectiveStatus!]
 }
 
+input ObjectivesInput {
+    where: EmployeeObjectivesWhereInput
+    pagination: PageInput
+}
 
+type ObjectiveConnectionPayload implements ConnectionPayload {
+    items: [Objective!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
 input CreateObjectiveInput{
     employee: UUID!
     name: String!
