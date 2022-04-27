@@ -24,6 +24,8 @@ public class AssetTypeServiceImpl implements AssetTypeService {
 
     private AssetTypeRepository assetTypeRepository;
     private AssetTypeMapper assetTypeMapper;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
+    private static final Integer DEFAULT_PAGE_NUMBER=0;
 
     @Override
     public AssetType findAssetByUuid(UUID uuid) {
@@ -34,8 +36,6 @@ public class AssetTypeServiceImpl implements AssetTypeService {
 
     @Override
     public Page<AssetType> getAssetsType() {
-        Integer DEFAULT_PAGE_SIZE = 10;
-        Integer DEFAULT_PAGE_NUMBER=0;
         Specification<AssetTypeEntity> specification = AssetTypeSpecification.byAssetType();
         PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
         return assetTypeRepository.findAll(specification, pagination)
