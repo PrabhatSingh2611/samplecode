@@ -62,13 +62,11 @@ public class AssetTypeServiceTest {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
                 .thenReturn(createAssetTypeEntityList());
-
+        var expected = createAssetsType().stream().toList();
         var result = assetTypeService.getAssetsType();
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
-        assertEquals(ICON, result.getContent().get(0).getIcon());
-        assertEquals(TITLE, result.getContent().get(0).getTitle());
-
+        assertEquals(expected, result.getContent());
+        assertEquals(2L,result.getTotalElements());
     }
 
     @Test
