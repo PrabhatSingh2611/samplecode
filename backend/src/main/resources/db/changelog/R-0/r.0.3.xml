@@ -13,7 +13,7 @@
     <changeSet id="r.0.3.2" author="raviabhishek">
 
         <createTable tableName="objective">
-            <column name="id" type="INT8" autoIncrement="true" startWith="3">
+            <column name="id" type="INT8" autoIncrement="true" startWith="4">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
