@@ -162,11 +162,6 @@ class ObjectiveFacadeTest {
         assertEquals(objectives, result.getContent());
     }
 
-    private ObjectiveInput createEmployeeObjective() {
-        return ObjectiveInput.builder()
-                .uuid(TEST_UUID)
-                .build();
-    }
 
     private Objective createObjective() {
         return Objective.builder()
