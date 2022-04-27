@@ -30,6 +30,12 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeServiceTest {
+
+    private static final Long ID = 1L;
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String TITLE = "Laptops";
+    private static final String ICON = "https://google.com/laptops";
+
     @Mock
     private AssetTypeRepository assetTypeRepository;
 
@@ -38,13 +44,6 @@ public class AssetTypeServiceTest {
 
     @InjectMocks
     private AssetTypeServiceImpl assetTypeService;
-
-    private static final Long ID = 1L;
-    private static final UUID TEST_UUID = UUID.fromString("5478b586-e607-4448-ac05-3e5f2adbbc1b");
-    private static final String TITLE = "Laptops";
-    private static final String ICON = "https://google.com/laptops";
-
-    //TODO: Rest of UT for AssetTypeService class
 
     @Test
     void shouldFindAssetByUuid() {
