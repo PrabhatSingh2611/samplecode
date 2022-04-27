@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class LocationSpecification {
 
-    public static Specification<LocationEntity> byLocation() {
+    public static Specification<LocationEntity> allLocations() {
         return (root, query, builder) -> {
             return builder.conjunction();
         };

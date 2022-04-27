@@ -17,10 +17,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
+
 
 @Component
 @AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
+
+    private static final Integer DEFAULT_PAGE_NUMBER = 0;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
 
     private LocationRepository locationRepository;
     private LocationMapper locationMapper;
@@ -51,9 +56,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Page<Location> getLocations() {
-        Integer DEFAULT_PAGE_SIZE = 10;
-                Integer DEFAULT_PAGE_NUMBER=0;
-                Specification<LocationEntity> specification = LocationSpecification.byLocation();
+                Specification<LocationEntity> specification = LocationSpecification.allLocations();
                 PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
                 return locationRepository.findAll(specification, pagination)
                 .map(locationMapper::mapLocationEntityToLocation);
