@@ -33,13 +33,13 @@ It's much easier to handle and do big Code Review in small and easy steps
 #### How?
 
 1. Before starting to solve any task, the developer writes about how he will implement it.
-2. Tech Design review should be written in Jira Ticket below _Tech Design_ heading.
+2. Tech Design review should be written in Jira Ticket in Comments section.
 3. Developer should folow Tech Design Checklist (Will be done progressively).
 4. Developer sends link to Jira Ticket with Tech Design and asks seniour developers to review it.
-5. Seniour or Expert developers review Tech Design and Approve or Reject with Comments or Solution in Jira Ticket Comment
-6. Only after Approve Developer starts Feature implementation
-7. Developer should follow Tech Design from Jira Ticket
-8. On PR review step Seniour developers can check that implementation fits Tech Design
+5. Seniour or Expert developers review Tech Design and Approve or Reject with Comments or Solution in Jira Ticket Comment.
+6. Only after Approve Developer move Tech Design from Comments section to Dsecription section below **Tech Design** heading and starts Feature implementation.
+7. Developer should follow Tech Design from Jira Ticket.
+8. On PR review step Seniour developers can check that implementation fits Tech Design.
 
 :::caution
 If Seniour developer Rejects Tech Design Developer should start from step 2.
