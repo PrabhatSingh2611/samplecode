@@ -29,6 +29,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
         return objectiveService.createObjective(input, employee);
     }
 
+    @Override
     public Objective updateObjective(UpdateObjectiveInput input) {
         var employee = employeeService.findEmployeeByUuid(input.getEmployee());
         var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
@@ -41,7 +42,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
         return objectiveService.deleteObjective(objectiveToBeDeleted);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public Objective findObjectiveByUuid(UUID uuid){
         return objectiveService.findObjectiveByUuid(uuid);
     }

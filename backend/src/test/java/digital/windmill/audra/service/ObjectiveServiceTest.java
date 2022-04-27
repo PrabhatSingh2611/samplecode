@@ -2,7 +2,6 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.ObjectiveEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import digital.windmill.audra.dao.repository.ObjectiveRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
@@ -13,6 +12,7 @@ import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.impl.ObjectiveServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -21,9 +21,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,6 +39,17 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ObjectiveServiceTest {
+    private static final Long ID = 1l;
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "Name";
+    private static final String COMMENT = "schema,etc";
+    private static final String DESCRIPTION = "Description";
+    private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
+    private static final String ROLE = "EMPLOYEE";
+    private final static ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
+    private final static Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
+
+    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Mock
     ObjectiveRepository objectiveRepository;
@@ -44,17 +60,6 @@ public class ObjectiveServiceTest {
 
     @InjectMocks
     ObjectiveServiceImpl objectiveService;
-
-    private static final Long ID = 1l;
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final String NAME = "Name";
-    private static final String COMMENT = "schema,etc";
-    private static final String DESCRIPTION = "Description";
-    private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private static final String ROLE = "EMPLOYEE";
-    private static final EmployeeRole EMPLOYEE_ROLE = EmployeeRole.EMPLOYEE;
-    private final static ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
-    private final static Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
 
     @Test
     void shouldCreateObjective(@Mock CreateObjectiveInput input, @Mock Employee employee) {
@@ -136,6 +141,35 @@ public class ObjectiveServiceTest {
         when(objectiveRepository.findByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("Objective not found for :" + TEST_UUID));
         Assertions.assertThrows(DataNotFoundException.class, () -> objectiveService.findObjectiveByUuid(TEST_UUID));
+    }
+
+    @Test
+    void shouldReturnAllObjective(@Mock ObjectivesInput input) {
+
+        when(objectiveRepository.findAll((Specification<ObjectiveEntity>) any(), any(PageRequest.class)))
+                .thenReturn(createObjectiveEntityList());
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class)))
+                .thenReturn(createObjectivePojo());
+
+        var result = objectiveService.findAllObjectives(input);
+
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(DESCRIPTION, result.getContent().get(0).getDescription());
+        assertEquals(NAME, result.getContent().get(0).getName());
+        assertEquals(STATUS, result.getContent().get(0).getStatus());
+        assertEquals(COMMENT, result.getContent().get(0).getComments());
+        assertEquals(DATE_TIME, result.getContent().get(0).getDueToDate());
+        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getPosition().getUuid());
+        assertEquals(ID, result.getContent().get(0).getId());
+        assertEquals(ROLE, result.getContent().get(0).getEmployee().getRole());
+        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getLocation().getUuid());
+        assertEquals(NAME, result.getContent().get(0).getEmployee().getLocation().getName());
+    }
+
+    private Page<ObjectiveEntity> createObjectiveEntityList() {
+        return new PageImpl<>(List.of(createObjectiveEntity()));
     }
 
     private ObjectiveEntity createObjectiveEntity() {

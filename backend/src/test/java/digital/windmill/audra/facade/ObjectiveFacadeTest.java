@@ -9,6 +9,8 @@ import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
 import digital.windmill.audra.graphql.type.input.ObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
+import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
 import org.junit.jupiter.api.Test;
@@ -16,8 +18,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,9 +73,10 @@ class ObjectiveFacadeTest {
         assertEquals(NAME, result.getEmployee().getLocation().getName());
     }
 
-   /* @Test
+    @Test
     void shouldUpdateObjective(@Mock UpdateObjectiveInput input) {
-       // when(input.getEmployee()).thenReturn(TEST_UUID);
+        when(input.getEmployee()).thenReturn(TEST_UUID);
+        when(input.getUuid()).thenReturn(TEST_UUID);
         when(employeeService.findEmployeeByUuid(any(UUID.class)))
                 .thenReturn(createEmployee());
         when(objectiveService.findObjectiveByUuid(any(UUID.class)))
@@ -80,8 +85,7 @@ class ObjectiveFacadeTest {
                 any(UpdateObjectiveInput.class),
                 any(Employee.class),
                 any(Objective.class)
-                )
-        ).thenReturn(createObjective());
+                )).thenReturn(createObjective());
 
         var result = facade.updateObjective(input);
 
@@ -98,7 +102,7 @@ class ObjectiveFacadeTest {
         assertEquals(NAME, result.getEmployee().getLocation().getName());
         assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
         assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
-    }*/
+    }
 
     @Test
     void shouldDeleteObjective(@Mock DeleteObjectiveInput input) {
@@ -124,6 +128,38 @@ class ObjectiveFacadeTest {
         assertEquals(NAME, result.getEmployee().getLocation().getName());
         assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
         assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+    }
+
+    @Test
+    void shouldFindObjectiveByUuid() {
+        when(objectiveService.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjective());
+
+        var result = facade.findObjectiveByUuid(TEST_UUID);
+        assertNotNull(result);
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(DESCRIPTION, result.getDescription());
+        assertEquals(NAME, result.getName());
+        assertEquals(STATUS, result.getStatus());
+        assertEquals(COMMENT, result.getComments());
+        assertEquals(DATE_TIME, result.getDueToDate());
+        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
+        assertEquals(ID, result.getId());
+        assertEquals(ROLE, result.getEmployee().getRole());
+        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+        assertEquals(NAME, result.getEmployee().getLocation().getName());
+
+    }
+
+    @Test
+    void shouldGetAllObjectives(@Mock ObjectivesInput input) {
+        List<Objective> objectives = List.of(createObjective());
+        var paged = new PageImpl<>(objectives);
+        when(objectiveService.findAllObjectives(any(ObjectivesInput.class))).thenReturn(paged);
+
+        var result = facade.getObjectives(input);
+        assertNotNull(result);
+        assertEquals(objectives, result.getContent());
     }
 
     private ObjectiveInput createEmployeeObjective() {

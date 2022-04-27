@@ -2,22 +2,23 @@ package digital.windmill.audra.resolver;
 
 import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import digital.windmill.audra.graphql.facade.ObjectiveFacade;
-import digital.windmill.audra.graphql.resolver.objective.ObjectiveMutationResolver;
+import digital.windmill.audra.graphql.resolver.objective.ObjectiveResolver;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.Locations;
 import digital.windmill.audra.graphql.type.Objective;
-import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
-import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
-import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectiveInput;
+import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,29 +26,29 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ObjectiveMutationResolverTest {
+class ObjectiveResolverTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String DESCRIPTION = "Description";
-    private static final String NAME = "Name";
-    private static final String ROLE = "Employee";
-    private static final String COMMENT = "Comment";
+    private static final String DESCRIPTION = "8vw";
+    private static final String NAME = "jxlEjlu";
+    private static final String ROLE = "75Z90X";
+    private static final String COMMENT = "J4Vp8";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Long ID = 571L;
+    private static final Long ID = 663L;
 
     @Mock
-    private ObjectiveFacade facade;
+    private ObjectiveFacade objectiveFacade;
 
     @InjectMocks
-    ObjectiveMutationResolver resolver;
+    ObjectiveResolver objectiveResolver;
 
     @Test
-    void shouldCreateObjective(@Mock CreateObjectiveInput input) {
-        when(facade.createObjective(any(CreateObjectiveInput.class))).thenReturn(createObjective());
+    void shouldGetOjective(@Mock ObjectiveInput objectiveInput) {
+        when(objectiveInput.getUuid()).thenReturn(TEST_UUID);
+        when(objectiveFacade.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjective());
 
-        var result = resolver.createObjective(input);
-
+        var result = objectiveResolver.objective(objectiveInput);
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(DESCRIPTION, result.getItem().getDescription());
@@ -64,36 +65,14 @@ class ObjectiveMutationResolverTest {
     }
 
     @Test
-    void shouldUpdateObjective(@Mock UpdateObjectiveInput input) {
-        when(facade.updateObjective(any(UpdateObjectiveInput.class)))
-                .thenReturn(createObjective());
+    void shouldGetAllObjectives(@Mock ObjectivesInput input) {
+        List<Objective> objectives = List.of(createObjective());
+        Page<Objective> pagedResponse = new PageImpl<>(objectives);
+        when(objectiveFacade.getObjectives(any(ObjectivesInput.class))).thenReturn(pagedResponse);
 
-        var result = resolver.updateObjective(input);
-
+        var result = objectiveResolver.objectives(input);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getItem().getUuid());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getUuid());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getLocation().getUuid());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getPosition().getUuid());
-        assertEquals(ID, result.getItem().getId());
-        assertEquals(NAME, result.getItem().getName());
-        assertEquals(STATUS, result.getItem().getStatus());
-        assertEquals(COMMENT, result.getItem().getComments());
-        assertEquals(DATE_TIME, result.getItem().getDueToDate());
-        assertEquals(ROLE, result.getItem().getEmployee().getRole());
-        assertEquals(DESCRIPTION, result.getItem().getDescription());
-        assertEquals(NAME, result.getItem().getEmployee().getLocation().getName());
-    }
-
-    @Test
-    void shouldDeleteObjective(@Mock DeleteObjectiveInput input) {
-        when(facade.deleteObjective(any(DeleteObjectiveInput.class)))
-                .thenReturn(createObjective());
-
-        var result = resolver.deleteObjective(input);
-
-        assertNotNull(result);
-        assertEquals(TEST_UUID, result.getObjective().getUuid());
+        assertEquals(objectives, result.getItems());
     }
 
     private Objective createObjective() {

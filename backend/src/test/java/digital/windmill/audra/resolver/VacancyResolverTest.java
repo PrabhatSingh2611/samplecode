@@ -30,11 +30,11 @@ import static org.mockito.Mockito.when;
 public class VacancyResolverTest {
 
     private static final UUID TEST_UUID = UUID.fromString("91817d8b-5851-413f-9fd5-31f64cef4692");
+    private static final Long ID = 1L;
     private static final String DESCRIPTION = "Vacancy description";
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Long ID = 1L;
 
 
     @Mock

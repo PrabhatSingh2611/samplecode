@@ -42,5 +42,5 @@ public interface ObjectiveFacade {
      * @param input input for query result
      * @return a list of Objective
      */
-    public Page<Objective> getObjectives(ObjectivesInput input);
+    Page<Objective> getObjectives(ObjectivesInput input);
 }
