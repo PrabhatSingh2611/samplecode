@@ -22,33 +22,35 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class EmployeePositionMutationResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "x4W8hai";
+
     @Mock
     private EmployeePositionFacade facade;
 
     @InjectMocks
     private EmployeePositionMutationResolver employeePositionMutationResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("c16cf92a-6a78-46fc-bd4c-c0a92135bd26");
-    private static final String NAME = "x4W8hai";
-
     @Test
-    void shouldCreateEmployeePosition() {
+    void shouldCreateEmployeePosition(@Mock CreateEmployeePositionInput input) {
         when(facade.createEmployeePosition(any(CreateEmployeePositionInput.class)))
                 .thenReturn(createEmployeePosition());
 
-        var result = employeePositionMutationResolver.createEmployeePosition(createEmployeePositionInput());
+        var result = employeePositionMutationResolver.createEmployeePosition(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(NAME, result.getItem().getName());
     }
 
-
     @Test
-    void shouldUpdateEmployeePosition() {
+    void shouldUpdateEmployeePosition(@Mock UpdateEmployeePositionInput input) {
 
         when(facade.updateEmployeePosition(any(UpdateEmployeePositionInput.class)))
                 .thenReturn(createEmployeePosition());
-        var result = employeePositionMutationResolver.updateEmployeePosition(updateEmployeePositionInput());
+
+        var result = employeePositionMutationResolver.updateEmployeePosition(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(NAME, result.getItem().getName());
@@ -58,7 +60,9 @@ public class EmployeePositionMutationResolverTest {
     void shouldDeleteEmployeePosition(@Mock DeleteEmployeePositionInput input) {
         when(facade.deleteEmployeePosition(any(DeleteEmployeePositionInput.class)))
                 .thenReturn(createEmployeePosition());
+
         var result = employeePositionMutationResolver.deleteEmployeePosition(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getEmployeePosition().getUuid());
     }
@@ -71,20 +75,4 @@ public class EmployeePositionMutationResolverTest {
                 .name(NAME)
                 .build();
     }
-
-    private UpdateEmployeePositionInput updateEmployeePositionInput() {
-        return UpdateEmployeePositionInput
-                .builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private CreateEmployeePositionInput createEmployeePositionInput() {
-        return CreateEmployeePositionInput
-                .builder()
-                .name(NAME)
-                .build();
-    }
-
 }

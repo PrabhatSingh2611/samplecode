@@ -22,13 +22,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class LeaveRequestResolverTest {
 
-    @Mock
-    private LeaveRequestFacade facade;
-
-    @InjectMocks
-    private LeaveRequestResolver leaveRequestResolver;
-
-    private static final UUID TEST_UUID = UUID.fromString("0069e6ad-d356-472f-99cc-9256565a02a9");
+    private static final UUID TEST_UUID = UUID.randomUUID();
     private static final Long ID = 1L;
     private static final String COMMENT = "PcwrDcz";
     private static final String NAME = "v965r2h";
@@ -36,13 +30,19 @@ public class LeaveRequestResolverTest {
     private final static LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
     private static final String ROLE = "6njELdS";
 
+    @Mock
+    private LeaveRequestFacade facade;
+
+    @InjectMocks
+    private LeaveRequestResolver leaveRequestResolver;
 
     @Test
-    void shouldReturnLeaveRequest() {
+    void shouldGetLeaveRequestById() {
         when(facade.findLeaveRequestById(any(Long.class)))
                 .thenReturn(createLeaveRequest());
 
         var result = leaveRequestResolver.LeaveRequest(ID);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(STATUS, result.getStatus());
@@ -68,7 +68,6 @@ public class LeaveRequestResolverTest {
         l.setEmployee(createEmployee());
         l.setStatus(STATUS);
         l.setComment(COMMENT);
-
         return l;
     }
 

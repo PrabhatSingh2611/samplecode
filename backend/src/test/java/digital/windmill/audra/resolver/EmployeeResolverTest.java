@@ -26,40 +26,40 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class EmployeeResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "Fr60l";
+    private static final String ROLE = "Admin";
+    private static final ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
+
     @Mock
     private EmployeeFacade facade;
 
     @InjectMocks
     private EmployeeResolver employeeResolver;
 
-    private static final Long ID = 58L;
-    private static final UUID TEST_UUID = UUID.fromString("2c1a5bff-657c-40ff-93cd-6c44f1d9b6ee");
-    private static final String TEST = "Fr60l";
-    private static final ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
-
     @Test
     void shouldGetAllEmployees(@Mock EmployeesInput input) {
         List<Employee> employees = List.of(createEmployee());
-        var pagedResponse = new PageImpl(employees);
-        when(facade.getEmployees(any(EmployeesInput.class))).thenReturn(pagedResponse);
+        var pagedResponse = new PageImpl<>(employees);
+        when(facade.getEmployees(input)).thenReturn(pagedResponse);
+
         var result = employeeResolver.employees(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItems().get(0).getUuid());
-        assertEquals(TEST, result.getItems().get(0).getFirstName());
-        assertEquals(TEST, result.getItems().get(0).getLastName());
+        assertEquals(NAME, result.getItems().get(0).getFirstName());
         assertEquals(ZONED_DATE_TIME, result.getItems().get(0).getBirthday());
         assertEquals(TEST_UUID, result.getItems().get(0).getLocation().getUuid());
-        assertEquals(TEST, result.getItems().get(0).getPosition().getName());
-        assertEquals(TEST, result.getItems().get(0).getRole());
-    }
+        assertEquals(NAME, result.getItems().get(0).getPosition().getName());
+       }
 
     private Employee createEmployee() {
         return Employee.builder()
-                .id(ID)
+                .id(1L)
                 .uuid(TEST_UUID)
-                .firstName(TEST)
-                .lastName(TEST)
-                .role(TEST)
+                .firstName(NAME)
+                .lastName(NAME)
+                .role(ROLE)
                 .birthday(ZONED_DATE_TIME)
                 .location(createLocation())
                 .position(createPosition())
@@ -68,17 +68,17 @@ public class EmployeeResolverTest {
 
     private EmployeePosition createPosition() {
         return EmployeePosition.builder()
-                .id(ID)
+                .id(1L)
                 .uuid(TEST_UUID)
-                .name(TEST)
+                .name(NAME)
                 .build();
     }
 
     private Location createLocation() {
         return Location.builder()
-                .id(ID)
+                .id(1L)
                 .uuid(TEST_UUID)
-                .name(TEST)
+                .name(NAME)
                 .build();
     }
 }

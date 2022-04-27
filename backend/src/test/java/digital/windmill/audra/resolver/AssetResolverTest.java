@@ -8,7 +8,6 @@ import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.AssetInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,26 +28,26 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AssetResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String ASSET_TITLE = "Title";
+    private static final String ICON = "ICON";
+    private static final String ASSET_SERIAL_NUMBER = "40abh2f6";
+    private static final String NAME = "Name";
+    private static final String ROLE = "Admin";
+    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
+
     @Mock
     private AssetFacade facade;
 
     @InjectMocks
     private AssetResolver assetResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("54720899-db8b-472f-a36a-008e2f2f3b57");
-    private static final String ASSET_TITLE = "Title";
-    private static final String ASSET_SERIAL_NUMBER = "40abh2f6";
-    private static final String NAME = "Name";
-    private static final String ROLE = "Admin";
-    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
-
-
     @Test
-    void testAsset() {
-        when(facade.findAssetByUuid(any(UUID.class)))
-                .thenReturn(createAsset());
+    void shouldGetAssetByUuid() {
+        when(facade.findAssetByUuid(any(UUID.class))).thenReturn(createAsset());
 
         var result = assetResolver.asset(createAssetInput());
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(ASSET_TITLE, result.getItem().getTitle());
@@ -58,20 +57,16 @@ public class AssetResolverTest {
     }
 
     @Test
-    void testAssets(@Mock AssetsInput input) {
-        List<Asset> assets = List.of(createAsset());
-        var pagedResponse = new PageImpl(assets);
-        when(facade.findAllAssets(any(AssetsInput.class))).thenReturn(pagedResponse);
+    void shouldGetAllAssets(@Mock AssetsInput input, @Mock Asset asset) {
+        List<Asset> assets = List.of(asset);
+        var pagedResponse = new PageImpl<>(assets);
+        when(facade.findAllAssets(input)).thenReturn(pagedResponse);
+
         var result = assetResolver.assets(input);
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getItems().get(0).getUuid());
-        Assertions.assertEquals(NAME, result.getItems().get(0).getEmployee().getFirstName());
-        Assertions.assertEquals(NAME, result.getItems().get(0).getEmployee().getLastName());
-        Assertions.assertEquals(ASSET_TITLE, result.getItems().get(0).getTitle());
-        Assertions.assertEquals(ASSET_SERIAL_NUMBER, result.getItems().get(0).getSerial());
-        Assertions.assertEquals(TEST_UUID, result.getItems().get(0).getUuid());
-        Assertions.assertEquals(ZONED_DATE_TIME, result.getItems().get(0).getEmployee().getBirthday());
-        Assertions.assertEquals(ROLE, result.getItems().get(0).getEmployee().getRole());
+
+        assertNotNull(result);
+        assertEquals(assets, result.getItems());
+        assertEquals(1L, result.getTotalItems());
     }
 
     private AssetInput createAssetInput() {
@@ -95,7 +90,8 @@ public class AssetResolverTest {
     }
 
     private Employee createEmployee() {
-        return Employee.builder()
+        return Employee
+                .builder()
                 .id(1L)
                 .uuid(TEST_UUID)
                 .firstName(NAME)
@@ -107,17 +103,19 @@ public class AssetResolverTest {
     }
 
     private Location createLocation() {
-        return Location.builder()
+        return Location
+                .builder()
                 .uuid(TEST_UUID)
                 .name(NAME)
                 .build();
-
     }
 
     private AssetType createAssetType() {
-        return AssetType.builder()
+        return AssetType
+                .builder()
                 .uuid(TEST_UUID)
                 .title(ASSET_TITLE)
+                .icon(ICON)
                 .build();
     }
 

@@ -23,22 +23,22 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class LocationResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "1EYdby2";
+
     @Mock
     private LocationFacade facade;
 
     @InjectMocks
     private LocationResolver locationResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("ab0829f1-1972-46b9-a01a-8e88f95552de");
-    private static final String NAME = "1EYdby2";
-
-
     @Test
-    void testLocation() {
+    void shouldGetLocationByUuid() {
         when(facade.findLocationByUuid(any(UUID.class)))
                 .thenReturn(createLocation());
 
         var result = locationResolver.location(createLocationInput());
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getLocation().getName());
@@ -46,10 +46,12 @@ public class LocationResolverTest {
     }
 
     @Test
-    void testLocations(){
+    void shouldGetAllLocations(){
         when(facade.findAllLocation()).thenReturn(createLocationList());
 
         var result = locationResolver.locations();
+
+        assertNotNull(result);
         Assertions.assertTrue(!result.getItems().isEmpty());
     }
 

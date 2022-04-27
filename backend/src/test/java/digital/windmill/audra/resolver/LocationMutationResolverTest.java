@@ -5,7 +5,6 @@ import digital.windmill.audra.graphql.resolver.location.LocationMutationResolver
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,39 +21,37 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class LocationMutationResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "h1H633Pl";
+
     @Mock
     private LocationFacadeImpl locationFacade;
+
     @InjectMocks
     private LocationMutationResolver locationMutationResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("ab0829f1-1972-46b9-a01a-8e88f95552de");
-    private static final String NAME = "h1H633Pl";
-
     @Test
-    void shouldCreateLocation() {
+    void shouldCreateLocation(@Mock CreateLocationInput input) {
         when(locationFacade.createLocation(any(CreateLocationInput.class)))
                 .thenReturn(createLocation());
-        var result = locationMutationResolver.createLocation(createLocationInput());
+
+        var result = locationMutationResolver.createLocation(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getLocation().getName());
     }
 
     @Test
-    void shouldUpdateLocation() {
+    void shouldUpdateLocation(@Mock UpdateLocationInput input) {
         when(locationFacade.updateLocation(any(UpdateLocationInput.class)))
                 .thenReturn(createLocation());
-        var result = locationMutationResolver.updateLocation(updateLocationInput());
+
+        var result = locationMutationResolver.updateLocation(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getLocation().getName());
-    }
-
-    private CreateLocationInput createLocationInput() {
-        return CreateLocationInput
-                .builder()
-                .name(NAME)
-                .build();
     }
 
     private Location createLocation() {
@@ -65,13 +62,4 @@ public class LocationMutationResolverTest {
                 .name(NAME)
                 .build();
     }
-
-    private UpdateLocationInput updateLocationInput() {
-        return UpdateLocationInput
-                .builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
 }

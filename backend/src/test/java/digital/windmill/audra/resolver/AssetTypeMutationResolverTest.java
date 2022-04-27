@@ -20,22 +20,23 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeMutationResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String TITLE = "chair";
+    private static final String ICON = "https://google.com/chair";
+
     @Mock
     private AssetTypeFacade facade;
 
     @InjectMocks
     private AssetTypeMutationResolver assetTypeMutationResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("ab0829f1-1972-46b9-a01a-8e88f95552de");
-    private static final String TITLE = "chair";
-    private static final String ICON = "https://google.com/chair";
-
     @Test
-    void shouldCreateLocation() {
+    void shouldCreateAssetType(@Mock CreateAssetTypeInput input) {
         when(facade.createAssetType(any(CreateAssetTypeInput.class)))
                 .thenReturn(createAssetType());
 
-        var result = assetTypeMutationResolver.createAssetType(createAssetTypeInput());
+        var result = assetTypeMutationResolver.createAssetType(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(TITLE, result.getItem().getTitle());
@@ -51,12 +52,4 @@ public class AssetTypeMutationResolverTest {
                 .icon(ICON)
                 .build();
     }
-
-    private CreateAssetTypeInput createAssetTypeInput() {
-        return CreateAssetTypeInput
-                .builder()
-                .title(TITLE)
-                .build();
-    }
-
 }

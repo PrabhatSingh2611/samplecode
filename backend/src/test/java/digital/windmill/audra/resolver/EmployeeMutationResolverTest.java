@@ -23,39 +23,30 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class EmployeeMutationResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "aUfhjx";
+    private static final String ROLE = "Admin";
+    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+
     @Mock
     private EmployeeFacadeImpl employeeFacadeImpl;
 
     @InjectMocks
     private EmployeeMutationResolver employeeMutationResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final String NAME = "7JGB";
-    private static final String ROLE = "Admin";
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-
     @Test
-    void createEmployee() {
+    void shouldCreateEmployee(@Mock CreateEmployeeInput input) {
         when(employeeFacadeImpl.createEmployee(any(CreateEmployeeInput.class)))
                 .thenReturn(createEmployeeTest());
 
-        var result = employeeMutationResolver.createEmployee(createCreateEmployeeInput());
+        var result = employeeMutationResolver.createEmployee(input);
+
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getItem().getUuid());
         assertEquals(ROLE, result.getItem().getRole());
         assertEquals(NAME, result.getItem().getPosition().getName());
         assertEquals(DATE_TIME, result.getItem().getBirthday());
 
-    }
-
-    private CreateEmployeeInput createCreateEmployeeInput() {
-        return CreateEmployeeInput.builder()
-                .birthday(DATE_TIME)
-                .position(TEST_UUID)
-                .location(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .build();
     }
 
     private Employee createEmployeeTest() {
@@ -71,10 +62,18 @@ class EmployeeMutationResolverTest {
     }
 
     private EmployeePosition createEmployeePosition() {
-        return EmployeePosition.builder().name(NAME).uuid(TEST_UUID).build();
+        return EmployeePosition
+                .builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 
     private Location createLocation() {
-        return Location.builder().uuid(TEST_UUID).name(NAME).build();
+        return Location
+                .builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 }

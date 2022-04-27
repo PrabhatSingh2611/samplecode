@@ -23,19 +23,18 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeResolverTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String TITLE = "chair";
+    private static final String ICON = "https://google.com/chair";
+
     @Mock
     private AssetTypeFacade facade;
 
     @InjectMocks
     AssetTypeResolver assetTypeResolver;
 
-    private static final UUID TEST_UUID = UUID.fromString("ab0829f1-1972-46b9-a01a-8e88f95552de");
-    private static final String TITLE = "chair";
-    private static final String ICON = "https://google.com/chair";
-
-
     @Test
-    void testAssetType(@Mock AssetTypeInput input) {
+    void shouldGetAssetTypeByUuid() {
         when(facade.findAssetTypeByUuid(any(UUID.class)))
                 .thenReturn(createAssetType());
 
@@ -49,7 +48,7 @@ public class AssetTypeResolverTest {
     }
 
     @Test
-    void getAssetTypes() {
+    void shouldGetAllAssetTypes() {
         when(facade.getAssetsType()).thenReturn(createAssetTypeList());
 
         var result = assetTypeResolver.getAssetTypes();
