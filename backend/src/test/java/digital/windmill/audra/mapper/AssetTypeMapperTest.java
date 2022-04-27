@@ -50,7 +50,6 @@ class AssetTypeMapperTest {
     private CreateAssetTypeInput createAssetTypeInput() {
         return CreateAssetTypeInput.builder()
                 .title(TITLE)
-                .icon(ICON)
                 .build();
     }
 

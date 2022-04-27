@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -91,6 +92,12 @@ public class LocationServiceTest {
         when(locationRepository.findByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
         Assertions.assertThrows(DataNotFoundException.class, () -> service.findLocationByUuid(TEST_UUID));
+    }
+
+    @Test
+    void shouldReturnNullWhenLocationIsNull(){
+        var result = service.findLocationByUuid(null);
+        assertNull(result);
     }
 
     private Location createLocation() {

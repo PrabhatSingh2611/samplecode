@@ -25,8 +25,7 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -104,6 +103,12 @@ public class EmployeeServiceTest {
         when(employeeRepository.findByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
         Assertions.assertThrows(DataNotFoundException.class, () -> service.findEmployeeByUuid(TEST_UUID));
+    }
+
+    @Test
+    void shouldReturnNullWhenEmployeeIsNull(){
+        var result = service.findEmployeeByUuid(null);
+        assertNull(result);
     }
 
     private EmployeePosition createEmployeePosition() {

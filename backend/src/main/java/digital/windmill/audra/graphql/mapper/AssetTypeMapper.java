@@ -28,7 +28,6 @@ public interface AssetTypeMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(generateUUID())")
     @Mapping(target = "title", source = "input.title")
-    @Mapping(target = "icon", source = "input.icon")
     AssetTypeEntity mapAssetTypeInputToAssetTypeEntity(CreateAssetTypeInput input);
 
     default UUID generateUUID() {
