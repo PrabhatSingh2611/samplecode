@@ -34,18 +34,20 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class LocationServiceTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String NAME = "47nhdrx";
+
     @Mock
     private LocationRepository locationRepository;
+
     @Mock
     private LocationMapper locationMapper;
 
     @InjectMocks
     private LocationServiceImpl service;
 
-    private static final UUID TEST_UUID = UUID.fromString("8201ef3c-1ee0-4920-89e2-7b6c4c539a15");
-    private static final String NAME = "47nhdrx";
-
     //TODO: Rest of UT for LocationService class
+
     @Test
     void shouldCreateLocation(@Mock CreateLocationInput createLocationInput) {
         when(locationMapper.mapCreateLocationInputToLocationEntity(any(CreateLocationInput.class))).thenReturn(createLocationEntity());
@@ -74,9 +76,9 @@ public class LocationServiceTest {
 
     @Test
     void shouldGetLocations() {
-       when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
+        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
                 .thenReturn(createLocation());
-        when(locationRepository.findAll((Specification<LocationEntity>) any(),any(PageRequest.class)))
+        when(locationRepository.findAll((Specification<LocationEntity>) any(), any(PageRequest.class)))
                 .thenReturn(createLocationEntityList());
         var result = service.getLocations();
         assertNotNull(result);
@@ -90,9 +92,9 @@ public class LocationServiceTest {
 
     private List<LocationEntity> createLocationsEntity() {
         return Arrays.asList(LocationEntity.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build(),
+                        .uuid(TEST_UUID)
+                        .name(NAME)
+                        .build(),
                 LocationEntity.builder()
                         .uuid(TEST_UUID)
                         .name(NAME)

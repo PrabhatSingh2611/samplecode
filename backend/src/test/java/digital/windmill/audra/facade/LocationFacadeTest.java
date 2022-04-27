@@ -24,16 +24,16 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class LocationFacadeTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final UUID SECOND_UUID = UUID.randomUUID();
+    private static final Long ID = 1L;
+    private static final String NAME = "PcwrDcz";
+
     @Mock
     private LocationService locationService;
 
     @InjectMocks
     private LocationFacadeImpl locationFacade;
-
-    private static final UUID TEST_UUID = UUID.fromString("0069e6ad-d356-472f-99cc-9256565a02a9");
-    private static final UUID SECOND_UUID = UUID.fromString("b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b");
-    private static final Long ID = 1L;
-    private static final String NAME = "PcwrDcz";
 
     @Test
     void shouldFindByUuid() {

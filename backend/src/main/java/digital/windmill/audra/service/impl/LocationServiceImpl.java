@@ -1,6 +1,7 @@
 package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.LocationSpecification;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
@@ -10,6 +11,8 @@ import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import digital.windmill.audra.service.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -48,8 +51,11 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Page<Location> getLocations() {
-        var spec = LocationSpecification.getAllLocations();
-        return locationRepository.findAll(spec.getKey(),spec.getValue())
+        Integer DEFAULT_PAGE_SIZE = 10;
+                Integer DEFAULT_PAGE_NUMBER=0;
+                Specification<LocationEntity> specification = LocationSpecification.byLocation();
+                PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
+                return locationRepository.findAll(specification, pagination)
                 .map(locationMapper::mapLocationEntityToLocation);
     }
 
