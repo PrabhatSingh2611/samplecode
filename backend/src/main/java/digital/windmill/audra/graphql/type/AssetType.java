@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class AssetType {
+public class AssetType implements Node{
 
     private UUID uuid;
     private String title;

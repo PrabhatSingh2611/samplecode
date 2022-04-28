@@ -13,18 +13,29 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeServiceTest {
+
+    private static final Long ID = 1L;
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final String TITLE = "Laptops";
+    private static final String ICON = "https://google.com/laptops";
+
     @Mock
     private AssetTypeRepository assetTypeRepository;
 
@@ -33,13 +44,6 @@ public class AssetTypeServiceTest {
 
     @InjectMocks
     private AssetTypeServiceImpl assetTypeService;
-
-    private static final Long ID = 1L;
-    private static final UUID TEST_UUID = UUID.fromString("5478b586-e607-4448-ac05-3e5f2adbbc1b");
-    private static final String TITLE = "Laptops";
-    private static final String ICON = "https://google.com/laptops";
-
-    //TODO: Rest of UT for AssetTypeService class
 
     @Test
     void shouldFindAssetByUuid() {
@@ -54,14 +58,15 @@ public class AssetTypeServiceTest {
 
 
     @Test
-    void shouldGetAssetsType() {
+    void shouldReturnAllAssetsType() {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
-        when(assetTypeRepository.findAll()).thenReturn(createAssetsTypeEntity());
-
-        var actual = assetTypeService.getAssetsType();
-        List<AssetType> expected = createAssetsType();
-        assertNotNull(actual);
-        Assertions.assertEquals(expected, actual);
+        when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
+                .thenReturn(createAssetTypeEntityList());
+        var expected = createAssetsType().stream().toList();
+        var result = assetTypeService.getAssetsType();
+        assertNotNull(result);
+        assertEquals(expected, result.getContent());
+        assertEquals(2L,result.getTotalElements());
     }
 
     @Test
@@ -89,6 +94,10 @@ public class AssetTypeServiceTest {
                 .build());
     }
 
+
+    private Page<AssetTypeEntity> createAssetTypeEntityList() {
+        return new PageImpl<>(createAssetsTypeEntity());
+    }
 
     private List<AssetTypeEntity> createAssetsTypeEntity() {
         return Arrays.asList(AssetTypeEntity.builder()
