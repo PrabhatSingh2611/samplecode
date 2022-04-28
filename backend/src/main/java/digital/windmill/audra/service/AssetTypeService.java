@@ -16,20 +16,20 @@ public interface AssetTypeService {
      * @param uuid uuid by which we search Asset type
      * @return a specific AsserType
      */
-    AssetType findAssetByUuid(UUID uuid);
+    AssetTypeEntity findAssetByUuid(UUID uuid);
 
     /**
      * This method will return all the list of Asset type
      *
      * @return List of Asset Type
      */
-    Page<AssetType> getAssetsType();
+    Page<AssetTypeEntity> getAssetsType();
 
     /**
      * This method will create a specific Asset Type by specific input
      *
-     * @param createAssetTypeInput input by which we create Asset type
+     * @param assetTypeEntity input by which we create Asset type
      * @return created AssetType
      */
-    AssetTypeEntity createAssetType(CreateAssetTypeInput createAssetTypeInput);
+    AssetTypeEntity createAssetType(AssetTypeEntity assetTypeEntity);
 }

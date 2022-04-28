@@ -1,6 +1,7 @@
 package digital.windmill.audra.facade;
 
 
+import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.facade.impl.AssetTypeFacadeImpl;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.PageImpl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +33,7 @@ public class AssetTypeFacadeTest {
     @InjectMocks
     AssetTypeFacadeImpl assetTypeFacadeImpl;
 
+    private static final Long ID = 1L;
     private static final UUID TEST_UUID = UUID.fromString("5478b586-e607-4448-ac05-3e5f2adbbc1b");
     private static final UUID SECOND_UUID = UUID.fromString("b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b");
     private static final String TITLE = "Laptops";
@@ -38,7 +41,7 @@ public class AssetTypeFacadeTest {
 
     @Test
     void shouldFindAssetTypeByUuid() {
-        when(assetTypeServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetType());
+        when(assetTypeServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeFacadeImpl.findAssetTypeByUuid(TEST_UUID);
         assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
@@ -71,11 +74,12 @@ public class AssetTypeFacadeTest {
         );
     }
 
-    private AssetType createAssetType() {
-        return AssetType.builder()
+    private AssetTypeEntity createAssetTypeEntity() {
+        return AssetTypeEntity.builder()
                 .uuid(TEST_UUID)
-                .title(TITLE)
                 .icon(ICON)
+                .id(ID)
+                .title(TITLE)
                 .build();
     }
 }
