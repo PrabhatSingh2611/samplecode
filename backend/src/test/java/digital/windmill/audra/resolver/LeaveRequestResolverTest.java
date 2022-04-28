@@ -51,16 +51,6 @@ public class LeaveRequestResolverTest {
         assertEquals(NAME, result.getEmployee().getFirstName());
     }
 
-    @Test
-    void testLeaveMutation() {
-
-        //Duplicate code
-
-    }
-
-
-    @Test
-
     private LeaveRequest createLeaveRequest() {
         LeaveRequest l = new LeaveRequest();
         l.setUuid(TEST_UUID);
