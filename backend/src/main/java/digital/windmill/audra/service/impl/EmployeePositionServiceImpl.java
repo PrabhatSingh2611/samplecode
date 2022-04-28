@@ -49,6 +49,9 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
 
     @Override
     public EmployeePosition findEmployeePositionByUuid(UUID uuid) {
+        if(uuid==null) {
+            return null;
+        }
         return employeePositionMapper
                 .mapEmployeePositionEntityToEmployeePosition(
                         employeePositionRepository
