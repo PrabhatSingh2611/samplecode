@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,18 +25,24 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
     @Override
     @Transactional(readOnly = true)
     public AssetType findAssetTypeByUuid(UUID uuid) {
-        return assetTypeService.findAssetByUuid(uuid);
+        return assetTypeMapper.
+                mapAssetTypeEntityToAssetType(assetTypeService.findAssetByUuid(uuid));
     }
 
     @Override
     public AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput) {
-        return assetTypeMapper.mapAssetTypeEntityToAssetType(
-                assetTypeService.createAssetType(createAssetTypeInput));
+        return assetTypeMapper
+                .mapAssetTypeEntityToAssetType(
+                assetTypeService
+                        .createAssetType(assetTypeMapper
+                                .mapAssetTypeInputToAssetTypeEntity(createAssetTypeInput)));
+
     }
 
     @Override
     public Page<AssetType> getAssetsType() {
         return assetTypeService
-                .getAssetsType();
+                .getAssetsType()
+                .map(assetTypeMapper::mapAssetTypeEntityToAssetType);
     }
 }

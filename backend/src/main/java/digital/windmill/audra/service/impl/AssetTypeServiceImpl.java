@@ -23,31 +23,25 @@ import java.util.UUID;
 public class AssetTypeServiceImpl implements AssetTypeService {
 
     private AssetTypeRepository assetTypeRepository;
-    private AssetTypeMapper assetTypeMapper;
     private static final Integer DEFAULT_PAGE_SIZE = 10;
     private static final Integer DEFAULT_PAGE_NUMBER=0;
 
     @Override
-    public AssetType findAssetByUuid(UUID uuid) {
-        return assetTypeMapper.
-                mapAssetTypeEntityToAssetType(assetTypeRepository.findByUuid(uuid).orElseThrow(
-                        () -> new DataNotFoundException("Asset Type not found")));
+    public AssetTypeEntity findAssetByUuid(UUID uuid) {
+        return assetTypeRepository.findByUuid(uuid).orElseThrow(
+                () -> new DataNotFoundException("Asset Type not found"));
     }
 
     @Override
-    public Page<AssetType> getAssetsType() {
+    public Page<AssetTypeEntity> getAssetsType() {
         Specification<AssetTypeEntity> specification = AssetTypeSpecification.byAssetType();
         PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
-        return assetTypeRepository.findAll(specification, pagination)
-                .map(assetTypeMapper::mapAssetTypeEntityToAssetType);
+        return assetTypeRepository.findAll(specification, pagination);
     }
 
     @Override
-    public AssetTypeEntity createAssetType(CreateAssetTypeInput input) {
-        var savedAssetEntity = assetTypeRepository
-                .save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));
-
-        return savedAssetEntity;
+    public AssetTypeEntity createAssetType(AssetTypeEntity assetTypeEntity) {
+        return assetTypeRepository.save(assetTypeEntity);
     }
 
 }
