@@ -23,7 +23,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -47,9 +49,9 @@ public class AssetTypeServiceTest {
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeService.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
-        Assertions.assertEquals(TITLE, result.getTitle());
-        Assertions.assertEquals(ICON, result.getIcon());
+        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TITLE, result.getTitle());
+        assertEquals(ICON, result.getIcon());
     }
 
 
