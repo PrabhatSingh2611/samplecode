@@ -44,7 +44,7 @@ class ObjectiveResolverTest {
     ObjectiveResolver objectiveResolver;
 
     @Test
-    void shouldGetOjective(@Mock ObjectiveInput objectiveInput) {
+    void shouldGetObjective(@Mock ObjectiveInput objectiveInput) {
         when(objectiveInput.getUuid()).thenReturn(TEST_UUID);
         when(objectiveFacade.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjective());
 

@@ -51,11 +51,11 @@ input UpdateObjectiveInput{
     status: ObjectiveStatus
 }
 input ObjectiveInput {
-    uuid:UUID
+    uuid:UUID!
 }
 
 type ObjectivePayload{
-    item:Objective
+    item:Objective!
 }
 
 input DeleteObjectiveInput{
