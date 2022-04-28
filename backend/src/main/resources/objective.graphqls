@@ -51,7 +51,7 @@ input UpdateObjectiveInput{
     status: ObjectiveStatus
 }
 input ObjectiveInput {
-    uuid:UUID
+    uuid:UUID!
 }
 
 type ObjectivePayload{

@@ -31,14 +31,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class ObjectiveFacadeTest {
 
-    @Mock
-    private ObjectiveService objectiveService;
-    @Mock
-    private EmployeeService employeeService;
-    @InjectMocks
-    ObjectiveFacadeImpl facade;
 
-    private static final UUID TEST_UUID = UUID.fromString("7ed1f598-b03a-42be-91e9-f9503dde4acd");
+    private static final UUID TEST_UUID = UUID.randomUUID();
     private static final String DESCRIPTION = "Description";
     private static final String NAME = "Name";
     private static final String ROLE = "Employee";
@@ -46,8 +40,12 @@ class ObjectiveFacadeTest {
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 813L;
-
-
+    @Mock
+    private ObjectiveService objectiveService;
+    @Mock
+    private EmployeeService employeeService;
+    @InjectMocks
+    ObjectiveFacadeImpl facade;
     @Test
     void shouldCreateObjective(@Mock CreateObjectiveInput input) {
         when(input.getEmployee()).thenReturn(TEST_UUID);

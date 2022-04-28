@@ -52,9 +52,9 @@ public class ObjectiveServiceTest {
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Mock
-    ObjectiveRepository objectiveRepository;
+    private ObjectiveRepository objectiveRepository;
     @Mock
-    ObjectiveMapper objectiveMapper;
+    private ObjectiveMapper objectiveMapper;
     @Mock
     private EmployeeMapper employeeMapper;
 
