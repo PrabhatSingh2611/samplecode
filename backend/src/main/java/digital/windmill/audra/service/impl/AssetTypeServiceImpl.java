@@ -43,11 +43,11 @@ public class AssetTypeServiceImpl implements AssetTypeService {
     }
 
     @Override
-    public AssetType createAssetType(CreateAssetTypeInput input) {
+    public AssetTypeEntity createAssetType(CreateAssetTypeInput input) {
         var savedAssetEntity = assetTypeRepository
                 .save(assetTypeMapper.mapAssetTypeInputToAssetTypeEntity(input));
-        return assetTypeMapper.mapAssetTypeEntityToAssetType(savedAssetEntity);
 
+        return savedAssetEntity;
     }
 
 }

@@ -1,6 +1,8 @@
 package digital.windmill.audra.graphql.facade.impl;
 
+import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.facade.AssetTypeFacade;
+import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import digital.windmill.audra.service.AssetTypeService;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class AssetTypeFacadeImpl implements AssetTypeFacade {
 
     private AssetTypeService assetTypeService;
+    private AssetTypeMapper assetTypeMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -26,7 +29,8 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
 
     @Override
     public AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput) {
-        return assetTypeService.createAssetType(createAssetTypeInput);
+        return assetTypeMapper.mapAssetTypeEntityToAssetType(
+                assetTypeService.createAssetType(createAssetTypeInput));
     }
 
     @Override
