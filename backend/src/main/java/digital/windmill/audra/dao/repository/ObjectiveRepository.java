@@ -14,5 +14,5 @@ public interface ObjectiveRepository extends
         JpaRepository<ObjectiveEntity, Long>, JpaSpecificationExecutor<ObjectiveEntity> {
 
     @Query("SELECT a FROM ObjectiveEntity a WHERE a.uuid = :uuid")
-    Optional<ObjectiveEntity> findByUuid(@Param("uuid") UUID uuid);
+    Optional<ObjectiveEntity> findObjectiveByUuid(@Param("uuid") UUID uuid);
 }

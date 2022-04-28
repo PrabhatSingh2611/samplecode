@@ -21,7 +21,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -34,7 +36,7 @@ class ObjectiveResolverTest {
     private static final String ROLE = "75Z90X";
     private static final String COMMENT = "J4Vp8";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 663L;
 
     @Mock

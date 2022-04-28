@@ -24,7 +24,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +46,7 @@ class ObjectiveFacadeTest {
     private static final String ROLE = "Employee";
     private static final String COMMENT = "Comment";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 813L;
 
 

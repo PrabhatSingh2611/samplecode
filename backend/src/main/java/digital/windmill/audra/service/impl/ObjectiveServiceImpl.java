@@ -1,7 +1,6 @@
 package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.ObjectiveSpecification;
-import digital.windmill.audra.dao.VacancySpecification;
 import digital.windmill.audra.dao.entity.ObjectiveEntity;
 import digital.windmill.audra.dao.repository.ObjectiveRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
@@ -9,11 +8,9 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.mapper.ObjectiveMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.Objective;
-import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
-import digital.windmill.audra.graphql.type.input.VacanciesInput;
 import digital.windmill.audra.service.ObjectiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,7 +28,7 @@ public class ObjectiveServiceImpl implements ObjectiveService {
 
     @Override
     public Objective findObjectiveByUuid(UUID uuid) {
-        return objectiveMapper.mapObjectiveEntityToObjective(objectiveRepository.findByUuid(uuid).orElseThrow(
+        return objectiveMapper.mapObjectiveEntityToObjective(objectiveRepository.findObjectiveByUuid(uuid).orElseThrow(
                         () -> new DataNotFoundException("Objective not available for given UUID : " + uuid.toString())
                 )
         );

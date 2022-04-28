@@ -46,10 +46,10 @@ public class ObjectiveServiceTest {
     private static final String DESCRIPTION = "Description";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
     private static final String ROLE = "EMPLOYEE";
-    private final static ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
-    private final static Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
+    private static final ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
+    private static final Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
 
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Mock
     ObjectiveRepository objectiveRepository;
@@ -127,7 +127,7 @@ public class ObjectiveServiceTest {
     @Test
     void shouldReturnObjectiveByUuid() {
 
-        when(objectiveRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createObjectiveEntity()));
+        when(objectiveRepository.findObjectiveByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createObjectiveEntity()));
         when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjectivePojo());
 
         var result = objectiveService.findObjectiveByUuid(TEST_UUID);
@@ -138,7 +138,7 @@ public class ObjectiveServiceTest {
 
     @Test
     void shouldThrowDataNotFoundWhenUuidIsNull() {
-        when(objectiveRepository.findByUuid(any(UUID.class)))
+        when(objectiveRepository.findObjectiveByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("Objective not found for :" + TEST_UUID));
         Assertions.assertThrows(DataNotFoundException.class, () -> objectiveService.findObjectiveByUuid(TEST_UUID));
     }

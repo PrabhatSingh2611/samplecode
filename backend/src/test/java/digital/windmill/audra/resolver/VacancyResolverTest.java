@@ -34,7 +34,7 @@ public class VacancyResolverTest {
     private static final String DESCRIPTION = "Vacancy description";
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
 
     @Mock

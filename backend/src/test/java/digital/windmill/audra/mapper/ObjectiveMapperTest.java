@@ -41,8 +41,8 @@ public class ObjectiveMapperTest {
     private static final String ROLE = "EMPLOYEE";
 
     private static final EmployeeRole EMPLOYEE_ROLE = EmployeeRole.EMPLOYEE;
-    private final static ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
-    private final static Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
+    private static final ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
+    private static final Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
     @Mock
     EmployeeMapper employeeMapper;
     @Mock
