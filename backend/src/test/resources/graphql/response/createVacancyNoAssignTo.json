@@ -1,0 +1,15 @@
+{
+  "data":{
+    "createVacancy":{
+      "item":{
+        "position":{
+          "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+          "name":"manager"
+        },
+        "description":"CREATE VACANCY",
+        "status":"NEW",
+        "priority":"LOW"
+      }
+    }
+  }
+}
