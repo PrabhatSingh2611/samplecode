@@ -1,5 +1,5 @@
 /// <reference types="react" />
 
 declare module 'people/PeopleApp' {
-    export const mount: (el: React.MutableRefObject<null | HTMLDivElement> | null) => void;
+    export const mount: (el: React.MutableRefObject<null | HTMLDivElement> | null) => any;
 }

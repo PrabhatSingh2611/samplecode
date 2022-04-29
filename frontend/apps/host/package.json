@@ -18,6 +18,7 @@
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-error-boundary": "^3.1.4",
+        "react-router-dom": "6",
         "react-scripts": "5.0.1",
         "serve": "^13.0.2",
         "ui": "workspace:*",

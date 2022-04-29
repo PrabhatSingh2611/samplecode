@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 
 import AsyncLoader, { ImportFallbacks, ImportState } from '../core/AsyncLoader';
 
@@ -10,21 +10,26 @@ export interface ImportLoaderProps {
 const PeopleApp = React.memo(
     ({ importLoadingFallback, importErrorFallback }: ImportLoaderProps): JSX.Element => {
         const ref = useRef(null);
+        const unmountRef = useRef<Function | null>(null);
         const [state, setState] = useState<ImportState | null>(null);
 
-        useEffect(() => {
+        useLayoutEffect(() => {
             setState(ImportState.LOADING);
 
             import('people/PeopleApp')
                 .then(({ mount }) => {
                     // TODO: Handle "onUnmount" returned from "mount()"
-                    mount(ref.current);
+                    unmountRef.current = mount(ref.current) as Function;
                     setState(ImportState.SUCCESS);
                 })
                 .catch((err) => {
                     console.error('Failed to import people/PeopleApp.', err);
                     setState(ImportState.ERROR);
                 });
+
+            return () => {
+                unmountRef.current?.();
+            };
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
