@@ -96,6 +96,21 @@ public class VacancyIt {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldCreateVacancyNoAssignTo() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/createVacancyNoAssignTo.graphql");
+
+        log.info(response.readTree().toPrettyString());
+
+        String jsonString = Files.readString(Paths.get(VacancyIt.class.getClassLoader()
+                .getResource("graphql/response/createVacancyNoAssignTo.json")
+                .toURI()), Charset.forName("UTF-8"));
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldUpdateVacancy() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate
                 .postForResource("graphql/request/UpdateVacancy.graphql");
@@ -109,4 +124,18 @@ public class VacancyIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldUpdateVacancyNoAssignTo() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/updateVacancyNoAssignTo.graphql");
+
+        log.info(response.readTree().toPrettyString());
+
+        String jsonString = Files.readString(Paths.get(VacancyIt.class.getClassLoader()
+                .getResource("graphql/response/updateVacancyNoAssignTo.json")
+                .toURI()), Charset.forName("UTF-8"));
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
 }

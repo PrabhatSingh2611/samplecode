@@ -5,5 +5,10 @@ query getAssetsType {
             title
             icon
         }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
     }
 }
