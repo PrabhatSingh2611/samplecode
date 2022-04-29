@@ -1,5 +1,6 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
 import digital.windmill.audra.graphql.type.Employee;
@@ -90,12 +91,12 @@ public class EmployeeFacadeTest {
 
         when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
-        when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocation());
+        when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocationEntity());
         when(employeeService.createEmployee(
                         any(CreateEmployeeInput.class),
                         any(Employee.class),
                         any(EmployeePosition.class),
-                        any(Location.class)
+                        any(LocationEntity.class)
                 )
         ).thenReturn(createEmployee());
 
@@ -157,7 +158,19 @@ public class EmployeeFacadeTest {
     }
 
 
+    private LocationEntity createLocationEntity() {
+        return LocationEntity
+                .builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
+    }
+
     private Location createLocation() {
-        return Location.builder().uuid(TEST_UUID).name(NAME).build();
+        return Location
+                .builder()
+                .uuid(TEST_UUID)
+                .name(NAME)
+                .build();
     }
 }

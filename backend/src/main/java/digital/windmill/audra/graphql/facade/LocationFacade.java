@@ -4,10 +4,8 @@ import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface LocationFacade {
@@ -43,6 +41,5 @@ public interface LocationFacade {
      *
      * @return all Locations
      */
-    @Transactional(readOnly = true)
     Page<Location> getLocations();
 }

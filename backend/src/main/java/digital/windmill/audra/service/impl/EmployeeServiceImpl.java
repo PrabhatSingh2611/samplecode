@@ -2,6 +2,7 @@ package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.EmployeeSpecification;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
@@ -29,13 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeePositionMapper employeePositionMapper;
 
     @Override
-    public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, Location location) {
+    public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, LocationEntity locationEntity) {
 
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
                 employeeMapper.mapEmployeeToEmployeeEntity(employeeReportingManager),
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                locationMapper.mapLocationToLocationEntity(location));
+                locationMapper.mapLocationToLocationEntity(locationEntity));
 
         return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
