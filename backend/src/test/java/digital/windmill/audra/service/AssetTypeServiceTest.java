@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -39,34 +40,31 @@ public class AssetTypeServiceTest {
     @Mock
     private AssetTypeRepository assetTypeRepository;
 
-    @Mock
-    private AssetTypeMapper assetTypeMapper;
 
     @InjectMocks
     private AssetTypeServiceImpl assetTypeService;
 
     @Test
     void shouldFindAssetByUuid() {
-        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeService.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
-        Assertions.assertEquals(TITLE, result.getTitle());
-        Assertions.assertEquals(ICON, result.getIcon());
+        var expected = createAssetTypeEntity().orElse(null);
+        assertEquals(TEST_UUID,result.getUuid());
     }
 
 
     @Test
     void shouldReturnAllAssetsType() {
-        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
                 .thenReturn(createAssetTypeEntityList());
-        var expected = createAssetsType().stream().toList();
         var result = assetTypeService.getAssetsType();
         assertNotNull(result);
-        assertEquals(expected, result.getContent());
         assertEquals(2L,result.getTotalElements());
+        assertEquals(TEST_UUID,result.getContent().get(0).getUuid());
+        assertEquals(TITLE,result.getContent().get(0).getTitle());
+        assertEquals(ICON,result.getContent().get(0).getIcon());
+
     }
 
     @Test
@@ -76,13 +74,18 @@ public class AssetTypeServiceTest {
         Assertions.assertThrows(DataNotFoundException.class, () -> assetTypeService.findAssetByUuid(TEST_UUID));
     }
 
-    private List<AssetType> createAssetsType() {
-        return Arrays.asList(createAssetType(),
-                AssetType.builder()
+    private Page<AssetTypeEntity> createAssetsType() {
+        return  new PageImpl<AssetTypeEntity>(
+        Arrays.asList( AssetTypeEntity.builder()
+                .uuid(TEST_UUID)
+                .title(TITLE)
+                .icon(ICON)
+                .build(),
+                AssetTypeEntity.builder()
                         .uuid(TEST_UUID)
                         .title(TITLE)
                         .icon(ICON)
-                        .build());
+                        .build()));
     }
 
     private Optional<AssetTypeEntity> createAssetTypeEntity() {

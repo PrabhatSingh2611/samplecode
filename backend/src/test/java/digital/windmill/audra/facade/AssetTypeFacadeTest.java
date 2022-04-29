@@ -3,6 +3,7 @@ package digital.windmill.audra.facade;
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.graphql.facade.impl.AssetTypeFacadeImpl;
+import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -11,12 +12,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,6 +29,9 @@ public class AssetTypeFacadeTest {
     @Mock
     AssetTypeServiceImpl assetTypeServiceImpl;
 
+    @Mock
+    private AssetTypeMapper assetTypeMapper;
+
     @InjectMocks
     AssetTypeFacadeImpl assetTypeFacadeImpl;
 
@@ -42,6 +44,7 @@ public class AssetTypeFacadeTest {
     @Test
     void shouldFindAssetTypeByUuid() {
         when(assetTypeServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
+        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.findAssetTypeByUuid(TEST_UUID);
         assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
@@ -51,8 +54,9 @@ public class AssetTypeFacadeTest {
 
     @Test
     void shouldGetAssetsType() {
-        var pagedResponse = new PageImpl(createAssetsType());
+        var pagedResponse = new PageImpl(createAssetsTypeEntity());
         when(assetTypeServiceImpl.getAssetsType()).thenReturn(pagedResponse);
+        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.getAssetsType();
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
@@ -60,13 +64,13 @@ public class AssetTypeFacadeTest {
         assertEquals(TITLE, result.getContent().get(0).getTitle());
     }
 
-    private List<AssetType> createAssetsType() {
-        return Arrays.asList(AssetType.builder()
+    private List<AssetTypeEntity> createAssetsTypeEntity() {
+        return Arrays.asList(AssetTypeEntity.builder()
                         .uuid(TEST_UUID)
                         .title(TITLE)
                         .icon(ICON)
                         .build(),
-                AssetType.builder()
+                AssetTypeEntity.builder()
                         .uuid(SECOND_UUID)
                         .title(TITLE)
                         .icon(ICON)
@@ -80,6 +84,14 @@ public class AssetTypeFacadeTest {
                 .icon(ICON)
                 .id(ID)
                 .title(TITLE)
+                .build();
+    }
+
+    private AssetType createAssetType() {
+        return AssetType.builder()
+                .uuid(TEST_UUID)
+                .title(TITLE)
+                .icon(ICON)
                 .build();
     }
 }
