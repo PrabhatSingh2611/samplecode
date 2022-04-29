@@ -12,7 +12,6 @@ import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
-import digital.windmill.audra.graphql.type.input.ObjectiveInput;
 import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
@@ -28,7 +27,6 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -52,17 +50,14 @@ class ObjectiveFacadeTest {
     private EmployeeService employeeService;
     @Mock
     private ObjectiveMapper objectiveMapper;
-    @Mock
-    private EmployeeMapper employeeMapper;
     @InjectMocks
     ObjectiveFacadeImpl facade;
     @Test
     void shouldCreateObjective(@Mock CreateObjectiveInput input) {
         when(input.getEmployee()).thenReturn(TEST_UUID);
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(objectiveMapper.mapObjectiveInputToEntity(any(CreateObjectiveInput.class), any(EmployeeEntity.class)))
                 .thenReturn(createObjectiveEntity());
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
         when(objectiveService.createObjective(any(ObjectiveEntity.class))).thenReturn(createObjectiveEntity());
 
@@ -87,11 +82,10 @@ class ObjectiveFacadeTest {
     void shouldUpdateObjective(@Mock UpdateObjectiveInput input) {
         when(input.getEmployee()).thenReturn(TEST_UUID);
         when(input.getUuid()).thenReturn(TEST_UUID);
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(objectiveService.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjectiveEntity());
         when(objectiveMapper.mapInputToEntityWhenUpdate(any(UpdateObjectiveInput.class), any(ObjectiveEntity.class),
                 any(EmployeeEntity.class))).thenReturn(createObjectiveEntity());
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
         when(objectiveService.updateObjective(any(ObjectiveEntity.class))).thenReturn(createObjectiveEntity());
 

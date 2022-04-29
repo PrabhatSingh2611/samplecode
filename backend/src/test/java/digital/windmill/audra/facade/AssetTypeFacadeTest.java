@@ -54,7 +54,7 @@ public class AssetTypeFacadeTest {
 
     @Test
     void shouldGetAssetsType() {
-        var pagedResponse = new PageImpl(createAssetsTypeEntity());
+        var pagedResponse = new PageImpl<>(createAssetsTypeEntity());
         when(assetTypeServiceImpl.getAssetsType()).thenReturn(pagedResponse);
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.getAssetsType();

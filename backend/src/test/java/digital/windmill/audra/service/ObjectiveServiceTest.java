@@ -38,7 +38,6 @@ public class ObjectiveServiceTest {
     private static final String COMMENT = "schema,etc";
     private static final String DESCRIPTION = "Description";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private static final String ROLE = "EMPLOYEE";
     private static final ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
     private static final Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();
 
@@ -98,9 +97,7 @@ public class ObjectiveServiceTest {
 
     @Test
     void shouldReturnObjectiveByUuid() {
-
         when(objectiveRepository.findObjectiveByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createObjectiveEntity()));
-//        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjectivePojo());
 
         var result = objectiveService.findObjectiveByUuid(TEST_UUID);
 

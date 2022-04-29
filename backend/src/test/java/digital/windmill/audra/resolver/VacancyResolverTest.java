@@ -66,7 +66,7 @@ public class VacancyResolverTest {
     @Test
     void shouldGetAllVacancies(@Mock VacanciesInput vacanciesInput) {
         List<Vacancy> vacancies = List.of(createVacancy());
-        var pagedResponse = new PageImpl(vacancies);
+        var pagedResponse = new PageImpl<>(vacancies);
         when(vacancyFacade.getVacancies(any(VacanciesInput.class))).thenReturn(pagedResponse);
 
         var actualResult = vacancyResolver.vacancies(vacanciesInput);

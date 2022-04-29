@@ -1,7 +1,6 @@
 package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.ObjectiveFacade;
-import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.mapper.ObjectiveMapper;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
@@ -23,13 +22,11 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     private ObjectiveService objectiveService;
     private EmployeeService employeeService;
     private ObjectiveMapper objectiveMapper;
-    private EmployeeMapper employeeMapper;
 
     @Override
     public Objective createObjective(CreateObjectiveInput input) {
         var employee = employeeService.findEmployeeByUuid(input.getEmployee());
-        var objectiveEntity = objectiveMapper.mapObjectiveInputToEntity(input,
-                employeeMapper.mapEmployeeToEmployeeEntity(employee));
+        var objectiveEntity = objectiveMapper.mapObjectiveInputToEntity(input, employee);
         return objectiveMapper.mapObjectiveEntityToObjective(
                 objectiveService.createObjective(objectiveEntity)
         );
@@ -40,7 +37,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
         var employee = employeeService.findEmployeeByUuid(input.getEmployee());
         var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
         var updatedObjectiveEntity = objectiveMapper.mapInputToEntityWhenUpdate(
-                input, objectiveToBeUpdated, employeeMapper.mapEmployeeToEmployeeEntity(employee));
+                input, objectiveToBeUpdated, employee);
         return objectiveMapper.mapObjectiveEntityToObjective(
                 objectiveService.updateObjective(updatedObjectiveEntity)
         );

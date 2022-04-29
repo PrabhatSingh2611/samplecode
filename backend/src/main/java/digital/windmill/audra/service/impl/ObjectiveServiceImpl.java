@@ -8,6 +8,8 @@ import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.service.ObjectiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -16,6 +18,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ObjectiveServiceImpl implements ObjectiveService {
 
+    private static final Integer DEFAULT_PAGE_NUMBER=0;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
     private ObjectiveRepository objectiveRepository;
 
     @Override
@@ -26,8 +30,9 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     public Page<ObjectiveEntity> findAllObjectives(ObjectivesInput input) {
-        var spec = ObjectiveSpecification.objectives(input);
-        return objectiveRepository.findAll(spec.getKey(), spec.getValue());
+        Specification<ObjectiveEntity> specification = ObjectiveSpecification.allObjectives();
+        PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
+        return objectiveRepository.findAll(specification, pagination);
     }
 
     @Override
