@@ -50,7 +50,7 @@ public class AssetTypeServiceTest {
         var result = assetTypeService.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
         var expected = createAssetTypeEntity().orElse(null);
-        assertEquals(expected,result);
+        assertEquals(TEST_UUID,result.getUuid());
     }
 
 
@@ -59,11 +59,12 @@ public class AssetTypeServiceTest {
         when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
                 .thenReturn(createAssetTypeEntityList());
         var result = assetTypeService.getAssetsType();
-        var expected = createAssetsType().getContent();
-        var actual = result.getContent();
         assertNotNull(result);
         assertEquals(2L,result.getTotalElements());
-        assertEquals(expected,actual);
+        assertEquals(TEST_UUID,result.getContent().get(0).getUuid());
+        assertEquals(TITLE,result.getContent().get(0).getTitle());
+        assertEquals(ICON,result.getContent().get(0).getIcon());
+
     }
 
     @Test
