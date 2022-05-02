@@ -34,7 +34,7 @@ public class AssetResolverTest {
     private static final String ASSET_SERIAL_NUMBER = "40abh2f6";
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
-    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
 
     @Mock
     private AssetFacade facade;

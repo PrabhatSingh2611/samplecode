@@ -26,8 +26,8 @@ public class LeaveRequestResolverTest {
     private static final Long ID = 1L;
     private static final String COMMENT = "PcwrDcz";
     private static final String NAME = "v965r2h";
-    private final static Instant LOCAL_DATE = Instant.now();
-    private final static LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
+    private static final Instant LOCAL_DATE = Instant.now();
+    private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
     private static final String ROLE = "6njELdS";
 
     @Mock

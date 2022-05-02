@@ -26,7 +26,7 @@ class EmployeeMutationResolverTest {
     private static final UUID TEST_UUID = UUID.randomUUID();
     private static final String NAME = "aUfhjx";
     private static final String ROLE = "Admin";
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
     @Mock
     private EmployeeFacadeImpl employeeFacadeImpl;
