@@ -2,6 +2,23 @@ package digital.windmill.audra.facade;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
+import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.graphql.facade.impl.EmployeeFacadeImpl;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
@@ -12,33 +29,15 @@ import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.LocationService;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeFacadeTest {
+class EmployeeFacadeTest {
 
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final Long ID = 1L;
-    private static final String NAME = "Name";
-    private static final String ROLE = "6njELdS";
-    private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+
+    private static final UUID EMPLOYEE_UUID = UUID.randomUUID();
+    private static final UUID REPORTING_MANAGER_UUID = UUID.randomUUID();
+    private static final UUID POSITION_UUID = UUID.randomUUID();
+    private static final UUID LOCATION_UUID = UUID.randomUUID();
 
     @Mock
     private EmployeePositionService employeePositionService;
@@ -49,129 +48,65 @@ public class EmployeeFacadeTest {
     @Mock
     private EmployeeMapper employeeMapper;
 
-
     @InjectMocks
     private EmployeeFacadeImpl facade;
 
     @Test
-    void shouldReturnEmployeesById() {
+    void shouldReturnEmployeesById(@Mock EmployeeEntity employeeEntity,
+            @Mock Employee employee) {
 
-        when(employeeService.findEmployeeByUuid(any(UUID.class)))
-                .thenReturn(createEmployeeEntity());
-        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn(createEmployee());
+        when(employeeService.findEmployeeByUuid(EMPLOYEE_UUID))
+                .thenReturn(employeeEntity);
+        when(employeeMapper.mapEmployeeEntityToEmployee(employeeEntity)).thenReturn(employee);
 
-        var result = facade.findEmployeeByUuid(TEST_UUID);
+        var result = facade.findEmployeeByUuid(EMPLOYEE_UUID);
 
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
-        Assertions.assertEquals(NAME, result.getFirstName());
-        Assertions.assertEquals(NAME, result.getLastName());
-        Assertions.assertEquals(NAME, result.getLocation().getName());
-        Assertions.assertEquals(NAME, result.getPosition().getName());
+        assertSame(employee, result);
     }
 
-
     @Test
-    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput) {
+    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput,
+            @Mock Employee employee) {
 
+        Page<Employee> employeesPage = createOneItemPage(employee);
         when(employeeService.getEmployees(any(EmployeesInput.class)))
-                .thenReturn(createListOfEmployeeEntity());
+                .thenReturn(employeesPage);
 
         var result = facade.getEmployees(employeesInput);
 
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
-        Assertions.assertEquals(NAME, result.getContent().get(0).getFirstName());
-        Assertions.assertEquals(NAME, result.getContent().get(0).getLastName());
-        Assertions.assertEquals(NAME, result.getContent().get(0).getLocation().getName());
-    }
-
-    private Page<Employee> createListOfEmployeeEntity() {
-        return new PageImpl<>(List.of(createEmployee()));
+        assertSame(employeesPage, result);
     }
 
     @Test
-    void shouldCreateEmployee() {
+    void shouldCreateEmployee(
+            @Mock CreateEmployeeInput input,
+            @Mock Employee employee,
+            @Mock EmployeePosition position,
+            @Mock Location location,
+            @Mock EmployeeEntity reportManagerEntity) {
 
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
-        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
-        when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(createLocation());
-        when(employeeService.createEmployee(
-                        any(CreateEmployeeInput.class),
-                        any(EmployeeEntity.class),
-                        any(EmployeePosition.class),
-                        any(Location.class)
-                )
-        ).thenReturn(createEmployee());
+        when(input.getReportingManager()).thenReturn(REPORTING_MANAGER_UUID);
+        when(input.getLocation()).thenReturn(LOCATION_UUID);
+        when(input.getPosition()).thenReturn(POSITION_UUID);
+        when(employeeService.findEmployeeByUuid(REPORTING_MANAGER_UUID)).thenReturn(reportManagerEntity);
+        when(employeePositionService.findEmployeePositionByUuid(POSITION_UUID)).thenReturn(position);
+        when(locationService.findLocationByUuid(LOCATION_UUID)).thenReturn(location);
+        when(employeeService.createEmployee(input,
+                reportManagerEntity,
+                position,
+                location
+            )).thenReturn(employee);
 
-        var result = facade.createEmployee(createCreateEmployeeInput());
+        var result = facade.createEmployee(input);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getFirstName());
-        assertEquals(NAME, result.getLastName());
-        assertEquals(DATE_TIME, result.getBirthday());
-    }
-
-    private EmployeePosition createEmployeePosition() {
-        return EmployeePosition
-                .builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
+        assertSame(employee, result);
     }
 
 
-    private CreateEmployeeInput createCreateEmployeeInput() {
-        return CreateEmployeeInput.builder()
-                .firstName(NAME)
-                .lastName(NAME)
-                .role(ENUM_ROLE)
-                .birthday(DATE_TIME)
-                .reportingManager(TEST_UUID)
-                .position(TEST_UUID)
-                .location(TEST_UUID)
-                .build();
-    }
-
-    private Employee createEmployee() {
-        return Employee.builder()
-                .uuid(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .role(ROLE)
-                .birthday(DATE_TIME)
-                .reportingManager(createReportingManager())
-                .position(createEmployeePosition())
-                .location(createLocation())
-                .build();
-    }
-
-    private Employee createReportingManager() {
-        return Employee.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .lastName(NAME)
-                .firstName(NAME)
-                .position(createEmployeePosition())
-                .location(createLocation())
-                .role(ROLE)
-                .reportingManager(null)
-                .build();
-    }
-
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(ID);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setUuid(TEST_UUID);
-        e.setRole(EmployeeRole.EMPLOYEE);
-        return e;
-    }
-
-    private Location createLocation() {
-        return Location.builder().uuid(TEST_UUID).name(NAME).build();
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 }

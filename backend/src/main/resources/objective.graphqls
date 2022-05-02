@@ -1,0 +1,68 @@
+type Objective implements Node{
+    uuid: UUID!
+    employee: Employee!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime
+    status: ObjectiveStatus
+}
+
+enum ObjectiveStatus {
+    NEW
+    IN_PROGRESS
+    POSTPONED
+    DONE
+    CANCELED
+}
+
+input EmployeeObjectivesWhereInput {
+    employee: NodeInput!
+    status: [ObjectiveStatus!]
+}
+
+input ObjectivesInput {
+    where: EmployeeObjectivesWhereInput
+    pagination: PageInput
+}
+
+type ObjectiveConnectionPayload implements ConnectionPayload {
+    items: [Objective!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+input CreateObjectiveInput{
+    employee: UUID!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime!
+    status: ObjectiveStatus
+}
+
+
+input UpdateObjectiveInput{
+    uuid:UUID!
+    employee: UUID!
+    name: String!
+    description: String
+    comments: String
+    dueToDate: ZonedDateTime!
+    status: ObjectiveStatus
+}
+input ObjectiveInput {
+    uuid:UUID!
+}
+
+type ObjectivePayload{
+    item:Objective!
+}
+
+input DeleteObjectiveInput{
+    uuid: UUID!
+}
+
+type DeleteObjectivePayload{
+    objective: Node!
+}
+

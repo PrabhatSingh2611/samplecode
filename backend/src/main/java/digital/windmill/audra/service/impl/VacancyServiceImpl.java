@@ -43,19 +43,19 @@ public class VacancyServiceImpl implements VacancyService {
 
     public Vacancy createVacancy(CreateVacancyInput input,
                                  EmployeePosition employeePosition,
-                                 EmployeeEntity employee) {
+                                 EmployeeEntity employeeEntity) {
         var vacancyEntity = vacancyMapper
                 .mapInputToEntity(
                         input,
                         employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                        employee
+                        employeeEntity
                 );
         return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(vacancyEntity));
     }
 
     public Vacancy updateVacancy(UpdateVacancyInput input,
                                  EmployeePosition employeePosition,
-                                 EmployeeEntity employee) {
+                                 EmployeeEntity employeeEntity) {
         VacancyEntity entity = vacancyRepository.findVacancyByUuid(input.getUuid())
                 .orElseThrow(
                         () -> new DataNotFoundException("Vacancy not found.")
@@ -64,7 +64,7 @@ public class VacancyServiceImpl implements VacancyService {
         var mappedToEntity = vacancyMapper.mapToEntityWhenUpdate(entity,
                 input,
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                employee);
+                employeeEntity);
 
         return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(mappedToEntity));
     }

@@ -36,6 +36,4 @@ public class EmployeePositionMutationResolver implements GraphQLMutationResolver
                 .employeePosition(employeePositionFacade.deleteEmployeePosition(input))
                 .build();
     }
-
-
 }

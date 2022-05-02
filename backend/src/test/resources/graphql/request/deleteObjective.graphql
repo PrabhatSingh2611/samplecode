@@ -1,0 +1,7 @@
+mutation deleteObjective{
+    deleteObjective(input:{uuid: "e94f4d6a-a6cf-4786-a0b8-f096290057e3"}){
+        objective {
+            uuid
+        }
+    }
+}

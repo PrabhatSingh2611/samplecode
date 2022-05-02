@@ -1,0 +1,17 @@
+{
+  "data": {
+    "createObjective": {
+      "item": {
+        "name": "graphql",
+         "employee": {
+           "firstName": "Edmund",
+           "lastName": "Hogan"
+         },
+        "description": "learning graphql",
+        "comments": "schema,etc",
+        "dueToDate":"2022-07-28T12:03:00.480425Z[UTC]",
+        "status": "NEW"
+      }
+    }
+  }
+}

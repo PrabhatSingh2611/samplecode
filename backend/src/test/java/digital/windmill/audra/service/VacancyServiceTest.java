@@ -2,7 +2,6 @@ package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.VacancyEntity;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
@@ -29,7 +28,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +46,6 @@ public class VacancyServiceTest {
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private final static Instant LOCALE_DATE_TIME = Instant.now();
     private static final Long ID = 1L;
 
     @Mock
@@ -65,7 +62,7 @@ public class VacancyServiceTest {
     @Test
     void shouldReturnVacancyById() {
 
-        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(createOptionalVacancyEntity());
+        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(Optional.of(createVacancyEntity()));
         when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
 
         var actualResult = service.findVacancyByUuid(TEST_UUID);
@@ -118,7 +115,7 @@ public class VacancyServiceTest {
     @Test
     void shouldCreateVacancy(@Mock CreateVacancyInput vacancyInput,
                              @Mock EmployeePosition employeePosition,
-                             @Mock EmployeeEntity employee
+                             @Mock EmployeeEntity employeeEntity
     ) {
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
         when(vacancyMapper.mapInputToEntity(
@@ -130,7 +127,7 @@ public class VacancyServiceTest {
         when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
         when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
 
-        var actualResult = service.createVacancy(vacancyInput, employeePosition, employee);
+        var actualResult = service.createVacancy(vacancyInput, employeePosition, employeeEntity);
 
         assertEquals(TEST_UUID, actualResult.getUuid());
         assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
@@ -148,11 +145,11 @@ public class VacancyServiceTest {
     @Test
     void shouldUpdateVacancy(@Mock UpdateVacancyInput vacancyInput,
                              @Mock EmployeePosition employeePosition,
-                             @Mock EmployeeEntity employee
-    ) {
+                             @Mock EmployeeEntity employeeEntity
+    ){
         when(vacancyInput.getUuid()).thenReturn(TEST_UUID);
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
-        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(createOptionalVacancyEntity());
+        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(Optional.of(createVacancyEntity()));
         when(vacancyMapper.mapToEntityWhenUpdate(
                 any(VacancyEntity.class),
                 any(UpdateVacancyInput.class),
@@ -163,7 +160,7 @@ public class VacancyServiceTest {
         when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
         when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
 
-        var actualResult = service.updateVacancy(vacancyInput, employeePosition, employee);
+        var actualResult = service.updateVacancy(vacancyInput, employeePosition, employeeEntity);
 
         assertEquals(TEST_UUID, actualResult.getUuid());
         assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
@@ -184,14 +181,6 @@ public class VacancyServiceTest {
         e.setId(ID);
         e.setDescription(DESCRIPTION);
         return e;
-    }
-
-    private Optional<VacancyEntity> createOptionalVacancyEntity() {
-        VacancyEntity e = new VacancyEntity();
-        e.setUuid(TEST_UUID);
-        e.setId(ID);
-        e.setDescription(DESCRIPTION);
-        return Optional.of(e);
     }
 
     private Vacancy createVacancy() {
@@ -236,31 +225,5 @@ public class VacancyServiceTest {
         e.setUuid(TEST_UUID);
         e.setName(NAME);
         return e;
-    }
-
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setUuid(TEST_UUID);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setBirthday(LOCALE_DATE_TIME);
-        e.setId(ID);
-        e.setPosition(createPositionEntity());
-        e.setLocation(createLocationEntity());
-        return e;
-    }
-
-    private EmployeePositionEntity createPositionEntity() {
-        EmployeePositionEntity p = new EmployeePositionEntity();
-        p.setId(ID);
-        p.setName(NAME);
-        return p;
-    }
-
-    private LocationEntity createLocationEntity() {
-        LocationEntity l = new LocationEntity();
-        l.setId(ID);
-        l.setName(NAME);
-        return l;
     }
 }

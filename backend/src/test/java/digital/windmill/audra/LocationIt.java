@@ -1,24 +1,6 @@
 package digital.windmill.audra;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
-import com.graphql.spring.boot.test.GraphQLTestTemplate;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlMergeMode;
-import org.springframework.test.context.jdbc.SqlMergeMode.MergeMode;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.net.URI;
@@ -27,36 +9,28 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import com.graphql.spring.boot.test.GraphQLTestTemplate;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-@Testcontainers
-@SqlMergeMode(MergeMode.MERGE)
-@Sql("classpath:/db/delete-all.sql")
-public class LocationIt {
+class LocationIt extends AbstractIntegrationTest {
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    @SuppressWarnings("rawtypes")
-    @Container
-    static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer(DockerImageName.parse(PostgreSQLContainer.IMAGE)).withPassword("postgres").withUsername("postgres");
-
-    @DynamicPropertySource
-    static void dataSourceProperes(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
-        registry.add("spring.liquibase.url", postgreSQLContainer::getJdbcUrl);
-    }
-
-
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldReturnLocationById() throws IOException, URISyntaxException {
-        ObjectNode variables = objectMapper.createObjectNode();
         GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getLocation.graphql");
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getLocation.json");
@@ -78,7 +52,6 @@ public class LocationIt {
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldCreateLocation() throws IOException, URISyntaxException {
-        ObjectNode variables = objectMapper.createObjectNode();
         GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/createLocation.graphql");
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/createLocation.json");
