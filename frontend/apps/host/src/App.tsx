@@ -1,19 +1,25 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { Button } from 'ui';
 
 import './App.css';
+import HostObservables from './core/HostObservables';
 import AsyncPeopleApp from './remotes/AsyncPeopleApp';
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
+                <HostObservables />
                 <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="people" element={<AsyncPeopleApp />} />
-                </Routes>
+                <Switch>
+                    <Route exact path="/people">
+                        <AsyncPeopleApp />
+                    </Route>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                </Switch>
             </BrowserRouter>
         </div>
     );
@@ -22,7 +28,7 @@ function App() {
 const Header = (): JSX.Element => (
     <header className="App-header">
         <nav>
-            <Link to="/">Home</Link> | <Link to="people">People</Link>
+            <Link to="/">Home</Link> | <Link to="/people">People</Link>
         </nav>
     </header>
 );

@@ -26,13 +26,13 @@ const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
     reportWebVitals();
 
     return (): void => {
-        console.log('Unmounting People App...');
+        console.log('Unmounting Remote Example App...');
         hostNavigateObservable?.usubscribeAll();
     };
 };
 
 if (process.env.NODE_ENV === 'development') {
-    const element = document.querySelector('#people-app-root');
+    const element = document.querySelector('#remote-example-app-root');
 
     if (element) {
         mount({ element, inIsolation: true });

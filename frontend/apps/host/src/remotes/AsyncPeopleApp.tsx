@@ -1,4 +1,5 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import AsyncLoader, { ImportFallbacks, ImportState } from '../core/AsyncLoader';
 
@@ -12,7 +13,7 @@ const PeopleApp = React.memo(
         const ref = useRef(null);
         const unmountRef = useRef<Function | null>(null);
         const [state, setState] = useState<ImportState | null>(null);
-        // const location = useLocation();
+        const history = useHistory();
 
         useLayoutEffect(() => {
             setState(ImportState.LOADING);
@@ -23,8 +24,8 @@ const PeopleApp = React.memo(
                     unmountRef.current = mount({
                         element: ref.current!,
                         inIsolation: false,
-                        // TODO: Get from useLocation pathname WITHOUT root path!
-                        initialEntry: '/details',
+                        // TODO: Get from useHostory().location pathname!
+                        initialEntry: history.location.pathname,
                     });
                     setState(ImportState.SUCCESS);
                 })
