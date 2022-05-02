@@ -5,22 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 interface MountProps {
-    el: Element;
-    options?: MountPropsOptions;
-}
-
-interface MountPropsOptions {
+    element: Element;
     inIsolation?: boolean;
-    basePath?: string;
+    initialEntry?: string;
 }
 
-const defaultMountPropsOptions = {
-    inIsolation: false,
-};
-
-const mount = (el: Element) => {
-    const root = createRoot(el!);
-    root.render(<App />);
+const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
+    const root = createRoot(element!);
+    root.render(<App inIsolation={!!inIsolation} initialEntry={initialEntry} />);
 
     // If you want to start measuring performance in your app, pass a function
     // to log results (for example: reportWebVitals(console.log))
@@ -33,10 +25,10 @@ const mount = (el: Element) => {
 };
 
 if (process.env.NODE_ENV === 'development') {
-    const el = document.querySelector('#people-app-root');
+    const element = document.querySelector('#people-app-root');
 
-    if (el) {
-        mount(el);
+    if (element) {
+        mount({ element, inIsolation: true });
     }
 }
 

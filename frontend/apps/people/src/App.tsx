@@ -4,11 +4,19 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import Router from './core/Router';
 
-function App() {
+interface AppProps {
+    inIsolation: boolean;
+    initialEntry?: string;
+}
+
+function App({ inIsolation, initialEntry }: AppProps) {
+    console.log('initialEntry: ', initialEntry);
+    console.log('inIsolation: ', inIsolation);
+
     return (
         <div className="PeopleApp">
             <h1>Hello from People App!</h1>
-            <Router inIsolation={false}>
+            <Router inIsolation={inIsolation} initialEntry={initialEntry}>
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />

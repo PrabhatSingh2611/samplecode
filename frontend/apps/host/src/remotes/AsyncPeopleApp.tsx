@@ -12,6 +12,7 @@ const PeopleApp = React.memo(
         const ref = useRef(null);
         const unmountRef = useRef<Function | null>(null);
         const [state, setState] = useState<ImportState | null>(null);
+        // const location = useLocation();
 
         useLayoutEffect(() => {
             setState(ImportState.LOADING);
@@ -19,7 +20,12 @@ const PeopleApp = React.memo(
             import('people/PeopleApp')
                 .then(({ mount }) => {
                     // TODO: Handle "onUnmount" returned from "mount()"
-                    unmountRef.current = mount(ref.current) as Function;
+                    unmountRef.current = mount({
+                        element: ref.current!,
+                        inIsolation: false,
+                        // TODO: Get from useLocation pathname WITHOUT root path!
+                        initialEntry: '/details',
+                    });
                     setState(ImportState.SUCCESS);
                 })
                 .catch((err) => {
@@ -35,7 +41,7 @@ const PeopleApp = React.memo(
 
         return (
             <AsyncLoader>
-                {/* NOTE: "<div ref={ref} />" should be always rendered */}
+                {/* IMPORTANT: "<div ref={ref} />" should always be rendered */}
                 <div ref={ref} />
                 <ImportFallbacks
                     state={state!}

@@ -1,5 +1,11 @@
 /// <reference types="react" />
 
+interface MountProps {
+    element: Element;
+    inIsolation?: boolean;
+    initialEntry?: string;
+}
+
 declare module 'people/PeopleApp' {
-    export const mount: (el: React.MutableRefObject<null | HTMLDivElement> | null) => any;
+    export const mount: (props: MountProps) => () => void;
 }
