@@ -25,3 +25,4 @@ type PageInfo {
 
 scalar UUID
 scalar ZonedDateTime
+scalar Upload

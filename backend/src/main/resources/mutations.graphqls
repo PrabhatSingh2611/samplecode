@@ -13,4 +13,5 @@ type Mutation {
     createObjective(input: CreateObjectiveInput!): ObjectivePayload!
     updateObjective(input: UpdateObjectiveInput!): ObjectivePayload!
     deleteObjective(input: DeleteObjectiveInput!): DeleteObjectivePayload!
+	uploadResource(resource: Upload!): ResourcePayload
 }

@@ -26,6 +26,15 @@ spring:
     user: "postgres"
     password: "postgres"
     contexts: "local"
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+#      uri: mongodb://root:example@localhost:27017/
+      database: filedatabase
+      gridFsDatabase: files
+      username: root
+      password: example
 
 management:
   server:
@@ -68,4 +77,8 @@ graphiql:
   props:
     variables:
       editorTheme: "solarized light"
+
+storage:
+  mongo.url: mongodb://root:example@localhost:27017/
+  destination.url: http://localhost:8080/resources
 

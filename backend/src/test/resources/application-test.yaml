@@ -68,3 +68,6 @@ graphiql:
     variables:
       editorTheme: "solarized light"
 
+storage: 
+  mongo.url: mongodb://root:example@localhost:27017/
+  destination.url: http://localhost:8080/resources

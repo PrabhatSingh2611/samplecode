@@ -1,0 +1,13 @@
+type Resource {
+  uuid: UUID!
+  url: String!
+  thumbnail: String
+}
+
+input ResourceInput {
+    uuid: UUID!
+}
+
+type ResourcePayload {
+    resource: Resource
+}
