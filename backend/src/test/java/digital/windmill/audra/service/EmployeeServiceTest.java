@@ -21,6 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -48,16 +49,16 @@ public class EmployeeServiceTest {
     private static final String NAME = "BuA1VXU";
     private static final Long ID = 1L;
     private static final String ROLE = "z9Qtg5d";
-    private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
+    private static final ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
+    private static final Instant DATE_TIME_INSTANT = BIRTHDAY_ZONED_DATE_TIME.toInstant();
 
 
     @Test
     void shouldCreateEmployee(@Mock CreateEmployeeInput input,
-                              @Mock Employee employee,
+                              @Mock EmployeeEntity employee,
                               @Mock EmployeePosition employeePosition,
                               @Mock Location location) {
 
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
                 .thenReturn(createEmployeePositionEntity());
         when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
@@ -86,8 +87,7 @@ public class EmployeeServiceTest {
 
     @Test
     void shouldFindEmployeeByUuid() {
-        when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createEmployeeEntity()));
-        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn((createEmployeePojo()));
+        when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.of(createEmployeeEntity()));
 
         var result = service.findEmployeeByUuid(TEST_UUID);
 
@@ -95,7 +95,7 @@ public class EmployeeServiceTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getPosition().getName());
-        assertEquals(BIRTHDAY_ZONED_DATE_TIME, result.getBirthday());
+        assertEquals(DATE_TIME_INSTANT, result.getBirthday());
     }
 
     @Test
@@ -146,6 +146,9 @@ public class EmployeeServiceTest {
         e.setLastName(NAME);
         e.setUuid(TEST_UUID);
         e.setRole(EmployeeRole.EMPLOYEE);
+        e.setLocation(createLocationEntity());
+        e.setBirthday(DATE_TIME_INSTANT);
+        e.setPosition(createEmployeePositionEntity());
         return e;
     }
 

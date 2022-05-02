@@ -8,4 +8,6 @@ type Query {
     locations: LocationConnectionPayload!
     vacancies(input:VacanciesInput!): VacancyConnectionPayload!
     vacancy(input:VacancyInput!):VacancyPayload!
+    objective(input:ObjectiveInput!):ObjectivePayload!
+    objectives(input:ObjectivesInput!):ObjectiveConnectionPayload!
 }

@@ -1,10 +1,10 @@
 package digital.windmill.audra;
 
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 
 @TestConfiguration
-@Profile("test")
+@ActiveProfiles("test")
 public class TestConfig {
 
 }

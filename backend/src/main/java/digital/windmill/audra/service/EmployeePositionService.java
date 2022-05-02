@@ -31,8 +31,8 @@ public interface EmployeePositionService {
     /**
      * This method will delete a EmployeePosition by a specific value.
      *
-     * @param employeePosition employeePositionEntity of which EmployeePosition we should update
-     * @return updated EmployeePosition
+     * @param employeePosition employeePosition of which EmployeePosition we should deleted
+     * @return deleted EmployeePosition
      */
     EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition);
 
