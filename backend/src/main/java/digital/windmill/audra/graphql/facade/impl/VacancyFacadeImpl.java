@@ -41,7 +41,7 @@ public class VacancyFacadeImpl implements VacancyFacade {
 
     public Vacancy updateVacancy(UpdateVacancyInput input) {
         var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getPosition());
-        var employee = employeeService.findEmployeeByUuid(input.getAssignTo());
-        return vacancyService.updateVacancy(input, employeePosition, employee);
+        var employeeEntity = employeeService.findEmployeeByUuid(input.getAssignTo());
+        return vacancyService.updateVacancy(input, employeePosition, employeeEntity);
     }
 }

@@ -95,7 +95,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    void shouldReturnNullWhenLocationIsNull(){
+    void shouldReturnNullWhenLocationIsNull() {
         var result = service.findLocationByUuid(null);
         assertNull(result);
     }

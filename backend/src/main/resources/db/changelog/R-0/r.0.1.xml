@@ -80,7 +80,7 @@
             <column name="icon" type="VARCHAR(100)"/>
         </createTable>
         <createTable tableName="asset">
-            <column name="id" type="INT8">
+            <column name="id" type="INT8" autoIncrement="true" startWith="9">
                 <constraints primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">

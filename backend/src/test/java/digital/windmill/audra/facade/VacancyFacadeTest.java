@@ -1,5 +1,8 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.EmployeePositionEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
@@ -20,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageImpl;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -38,6 +42,7 @@ public class VacancyFacadeTest {
     private static final String ROLE = "Admin";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 1L;
+    private final static Instant LOCAL_DATE = Instant.now();
 
     @Mock
     private VacancyService vacancyService;
@@ -102,10 +107,10 @@ public class VacancyFacadeTest {
         when(vacancyInput.getPosition()).thenReturn(TEST_UUID);
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class)))
                 .thenReturn(createEmployeePosition());
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(vacancyService.createVacancy(any(CreateVacancyInput.class),
                 any(EmployeePosition.class),
-                any(Employee.class)))
+                any(EmployeeEntity.class)))
                 .thenReturn(createVacancy());
 
         var actualResult = vacancyFacade.createVacancy(vacancyInput);
@@ -129,10 +134,10 @@ public class VacancyFacadeTest {
         when(vacancyInput.getPosition()).thenReturn(TEST_UUID);
         when(employeePositionService.findEmployeePositionByUuid(any(UUID.class)))
                 .thenReturn(createEmployeePosition());
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployee());
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
         when(vacancyService.updateVacancy(any(UpdateVacancyInput.class),
                 any(EmployeePosition.class),
-                any(Employee.class)))
+                any(EmployeeEntity.class)))
                 .thenReturn(createVacancy());
 
         var actualResult = vacancyFacade.updateVacancy(vacancyInput);
@@ -193,5 +198,31 @@ public class VacancyFacadeTest {
                 .uuid(TEST_UUID)
                 .name(NAME)
                 .build();
+    }
+
+    private EmployeeEntity createEmployeeEntity() {
+        EmployeeEntity e = new EmployeeEntity();
+        e.setUuid(TEST_UUID);
+        e.setFirstName(NAME);
+        e.setLastName(NAME);
+        e.setBirthday(LOCAL_DATE);
+        e.setId(ID);
+        e.setPosition(createPositionEntity());
+        e.setLocation(createLocationEntity());
+        return e;
+    }
+
+    private EmployeePositionEntity createPositionEntity() {
+        EmployeePositionEntity p = new EmployeePositionEntity();
+        p.setId(ID);
+        p.setName(NAME);
+        return p;
+    }
+
+    private LocationEntity createLocationEntity() {
+        LocationEntity l = new LocationEntity();
+        l.setId(ID);
+        l.setName(NAME);
+        return l;
     }
 }

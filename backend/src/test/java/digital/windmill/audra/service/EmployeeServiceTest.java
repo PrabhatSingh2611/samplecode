@@ -21,6 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -49,15 +50,15 @@ public class EmployeeServiceTest {
     private static final Long ID = 1L;
     private static final String ROLE = "z9Qtg5d";
     private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
+    private final static Instant LOCAL_DATE = Instant.now();
 
 
     @Test
     void shouldCreateEmployee(@Mock CreateEmployeeInput input,
-                              @Mock Employee employee,
+                              @Mock EmployeeEntity employeeEntity,
                               @Mock EmployeePosition employeePosition,
                               @Mock Location location) {
 
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
                 .thenReturn(createEmployeePositionEntity());
         when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
@@ -72,7 +73,7 @@ public class EmployeeServiceTest {
         when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn((createEmployeePojo()));
 
-        var result = service.createEmployee(input, employee, employeePosition, location);
+        var result = service.createEmployee(input, employeeEntity, employeePosition, location);
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
@@ -87,7 +88,6 @@ public class EmployeeServiceTest {
     @Test
     void shouldFindEmployeeByUuid() {
         when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createEmployeeEntity()));
-        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn((createEmployeePojo()));
 
         var result = service.findEmployeeByUuid(TEST_UUID);
 
@@ -95,7 +95,7 @@ public class EmployeeServiceTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getPosition().getName());
-        assertEquals(BIRTHDAY_ZONED_DATE_TIME, result.getBirthday());
+        assertEquals(LOCAL_DATE, result.getBirthday());
     }
 
     @Test
@@ -106,7 +106,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void shouldReturnNullWhenEmployeeIsNull(){
+    void shouldReturnNullWhenEmployeeIsNull() {
         var result = service.findEmployeeByUuid(null);
         assertNull(result);
     }
@@ -146,6 +146,9 @@ public class EmployeeServiceTest {
         e.setLastName(NAME);
         e.setUuid(TEST_UUID);
         e.setRole(EmployeeRole.EMPLOYEE);
+        e.setLocation(createLocationEntity());
+        e.setPosition(createEmployeePositionEntity());
+        e.setBirthday(LOCAL_DATE);
         return e;
     }
 

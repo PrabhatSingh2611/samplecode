@@ -1,0 +1,16 @@
+{
+  "data":{
+    "createAsset":{
+      "item":{
+        "title":"asset 1",
+        "serial":"123qwe",
+        "employee":{
+          "uuid":"48b560ab-7450-4088-b6bb-f57638ea0877"
+        },
+        "archivedDate":"2022-03-23T19:37:14.480425Z[UTC]",
+        "purchasedDate":"2022-03-23T19:37:14.480425Z[UTC]",
+        "nextActionDate":"2022-03-23T19:37:14.480425Z[UTC]"
+      }
+    }
+  }
+}

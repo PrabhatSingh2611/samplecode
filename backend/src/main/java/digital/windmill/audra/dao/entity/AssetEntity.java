@@ -1,6 +1,9 @@
 package digital.windmill.audra.dao.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -17,6 +20,9 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "asset")
 public class AssetEntity {
 
@@ -40,5 +46,7 @@ public class AssetEntity {
     private Instant archivedDate;
     @Column(name = "purchased_date")
     private Instant purchasedDate;
+    @Column(name = "next_action_date")
+    private Instant nextActionDate;
 
 }

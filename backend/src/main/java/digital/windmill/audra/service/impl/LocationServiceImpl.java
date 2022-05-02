@@ -48,7 +48,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Location findLocationByUuid(UUID uuid) {
-        if(uuid==null) {
+        if (uuid == null) {
             return null;
         }
         var locationEntity = locationRepository.findByUuid(uuid).orElseThrow(

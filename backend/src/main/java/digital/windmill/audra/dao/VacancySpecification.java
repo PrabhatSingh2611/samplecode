@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -66,7 +64,7 @@ public class VacancySpecification {
                 predicates.add(position.get("uuid").in(positions.stream().map(NodeInput::getUuid).collect(toList())));
             }
 
-             if (Objects.nonNull(statuses)) {
+            if (Objects.nonNull(statuses)) {
                 predicates.add(root.get("status").in(statuses));
             }
 

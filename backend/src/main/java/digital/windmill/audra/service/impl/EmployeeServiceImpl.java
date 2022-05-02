@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -29,11 +30,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeePositionMapper employeePositionMapper;
 
     @Override
-    public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, Location location) {
+    public Employee createEmployee(CreateEmployeeInput input, EmployeeEntity employeeReportingManager, EmployeePosition employeePosition, Location location) {
 
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
-                employeeMapper.mapEmployeeToEmployeeEntity(employeeReportingManager),
+                employeeReportingManager,
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
                 locationMapper.mapLocationToLocationEntity(location));
 
@@ -41,14 +42,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployeeByUuid(UUID uuid) {
-        if(uuid==null){
-            return null;
+    public EmployeeEntity findEmployeeByUuid(UUID uuid) {
+        if (Objects.nonNull(uuid)) {
+            return employeeRepository.findByUuid(uuid).orElseThrow(
+                    () -> new DataNotFoundException("Employee not found for : " + uuid)
+            );
         }
-        var employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
-        );
-        return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);
+        return null;
     }
 
     @Override

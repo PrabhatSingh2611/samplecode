@@ -1,3 +1,14 @@
+type Asset implements Node {
+    uuid: UUID!
+    title: String
+    serial: String
+    type: AssetType
+    employee: Employee
+    archivedDate: ZonedDateTime
+    purchasedDate: ZonedDateTime
+    nextActionDate: ZonedDateTime
+}
+
 input AssetsInput {
     where: AssetWhereInput
     page: PageInput
@@ -23,37 +34,23 @@ type AssetConnectionPayload implements ConnectionPayload {
     totalItems: Int!
 }
 
-type Asset implements Node {
-    uuid: UUID!
+input CreateAssetInput{
     title: String
     serial: String
-    type: AssetType
-    employee: Employee
+    type: UUID
+    employee: UUID
     archivedDate: ZonedDateTime
     purchasedDate: ZonedDateTime
+    nextActionDate: ZonedDateTime
 }
 
-type AssetType implements Node {
-    uuid: UUID!
+input UpdateAssetInput{
+    uuid:UUID!
     title: String
-    icon: String
-}
-
-type AssetTypeConnection implements ConnectionPayload{
-    items: [AssetType!]!
-    pageInfo: PageInfo!
-    totalItems: Int!
-}
-
-input AssetTypeInput {
-	uuid:UUID!
-}
-
-
-type AssetTypePayload{
-    item: AssetType
-}
-
-input CreateAssetTypeInput{
-    title: String!
+    serial: String
+    type: UUID
+    employee: UUID
+    archivedDate: ZonedDateTime
+    purchasedDate: ZonedDateTime
+    nextActionDate: ZonedDateTime
 }

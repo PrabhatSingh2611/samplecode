@@ -1,11 +1,8 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
-import digital.windmill.audra.graphql.type.AssetType;
-import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface AssetTypeService {

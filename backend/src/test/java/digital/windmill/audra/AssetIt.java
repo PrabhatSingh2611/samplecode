@@ -118,6 +118,28 @@ class AssetIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldCreateAsset() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/createAsset.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/createAsset.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldUpdateAsset() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/updateAsset.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/updateAsset.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
     private String readFromResource(String path) throws IOException, URISyntaxException {
         return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
     }

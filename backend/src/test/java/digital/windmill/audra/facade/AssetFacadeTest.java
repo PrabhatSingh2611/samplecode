@@ -1,6 +1,8 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.graphql.facade.impl.AssetFacadeImpl;
+import digital.windmill.audra.graphql.mapper.AssetMapper;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.graphql.type.Employee;
@@ -24,13 +26,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AssetFacadeTest {
 
-    @Mock
-    private AssetServiceImpl assetServiceImpl;
-
-
-    @InjectMocks
-    private AssetFacadeImpl facade;
-
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String ASSET_TITLE = "Asset title";
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
@@ -40,9 +35,17 @@ public class AssetFacadeTest {
     private final static Instant LOCAL_DATE = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
+    @Mock
+    private AssetServiceImpl assetServiceImpl;
+    @InjectMocks
+    private AssetFacadeImpl facade;
+    @Mock
+    private AssetMapper assetMapper;
+
     @Test
     void shouldReturnAssetByUuid() {
-        when(assetServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAsset());
+        when(assetServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetEntity());
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(createAsset());
         var result = facade.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
         Assertions.assertEquals(TEST_UUID, result.getUuid());
@@ -61,7 +64,20 @@ public class AssetFacadeTest {
                 .employee(createEmployee())
                 .archivedDate(DATE_TIME)
                 .purchasedDate(DATE_TIME)
+                .nextActionDate(DATE_TIME)
                 .build();
+    }
+
+    private AssetEntity createAssetEntity() {
+        AssetEntity a = new AssetEntity();
+        a.setId(1L);
+        a.setUuid(TEST_UUID);
+        a.setTitle(ASSET_TITLE);
+        a.setSerialNumber(ASSET_SERIAL_NUMBER);
+        a.setArchivedDate(LOCAL_DATE);
+        a.setPurchasedDate(LOCAL_DATE);
+        a.setNextActionDate(LOCAL_DATE);
+        return a;
     }
 
     private Employee createEmployee() {
