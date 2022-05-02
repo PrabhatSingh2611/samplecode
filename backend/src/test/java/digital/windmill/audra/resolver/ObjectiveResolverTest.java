@@ -24,6 +24,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -31,13 +32,6 @@ import static org.mockito.Mockito.when;
 class ObjectiveResolverTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String DESCRIPTION = "8vw";
-    private static final String NAME = "jxlEjlu";
-    private static final String ROLE = "75Z90X";
-    private static final String COMMENT = "J4Vp8";
-    private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Long ID = 663L;
 
     @Mock
     private ObjectiveFacade objectiveFacade;
@@ -46,81 +40,29 @@ class ObjectiveResolverTest {
     ObjectiveResolver objectiveResolver;
 
     @Test
-    void shouldGetObjective(@Mock ObjectiveInput objectiveInput) {
+    void shouldGetObjective(@Mock ObjectiveInput objectiveInput,
+                            @Mock Objective objective) {
         when(objectiveInput.getUuid()).thenReturn(TEST_UUID);
-        when(objectiveFacade.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjective());
+        when(objectiveFacade.findObjectiveByUuid(any(UUID.class))).thenReturn(objective);
 
         var result = objectiveResolver.objective(objectiveInput);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getItem().getUuid());
-        assertEquals(DESCRIPTION, result.getItem().getDescription());
-        assertEquals(NAME, result.getItem().getName());
-        assertEquals(STATUS, result.getItem().getStatus());
-        assertEquals(COMMENT, result.getItem().getComments());
-        assertEquals(DATE_TIME, result.getItem().getDueToDate());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getUuid());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getPosition().getUuid());
-        assertEquals(ID, result.getItem().getId());
-        assertEquals(ROLE, result.getItem().getEmployee().getRole());
-        assertEquals(TEST_UUID, result.getItem().getEmployee().getLocation().getUuid());
-        assertEquals(NAME, result.getItem().getEmployee().getLocation().getName());
+        assertSame(objective, result.getItem());
     }
 
     @Test
-    void shouldGetAllObjectives(@Mock ObjectivesInput input) {
-        List<Objective> objectives = List.of(createObjective());
-        Page<Objective> pagedResponse = new PageImpl<>(objectives);
+    void shouldGetAllObjectives(@Mock ObjectivesInput input,
+                                @Mock Objective objective) {
+
+        Page<Objective> pagedResponse = createOneItemPage(objective);
         when(objectiveFacade.getObjectives(any(ObjectivesInput.class))).thenReturn(pagedResponse);
 
         var result = objectiveResolver.objectives(input);
         assertNotNull(result);
-        assertEquals(objectives, result.getItems());
+        assertEquals(pagedResponse.getContent(), result.getItems());
     }
 
-    private Objective createObjective() {
-        return Objective.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .description(DESCRIPTION)
-                .comments(COMMENT)
-                .dueToDate(DATE_TIME)
-                .employee(createEmployee())
-                .status(STATUS)
-                .build();
-    }
-
-    private Employee createEmployee() {
-        return Employee.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .position(createEmployeePosition())
-                .role(ROLE)
-                .birthday(DATE_TIME)
-                .firstName(NAME)
-                .lastName(NAME)
-                .reportingManager(createReportingManager())
-                .location(createLocation())
-                .build();
-    }
-
-    private Location createLocation() {
-        return Location.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private Employee createReportingManager() {
-        return new Employee();
-    }
-
-    private EmployeePosition createEmployeePosition() {
-        return EmployeePosition.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 }

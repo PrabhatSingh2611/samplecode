@@ -30,9 +30,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ObjectiveMapperTest {
+class ObjectiveMapperTest {
 
-    private static final Long ID = 1l;
+    private static final Long ID = 1L;
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "Name";
     private static final String COMMENT = "schema,etc";
@@ -46,9 +46,9 @@ public class ObjectiveMapperTest {
     @Mock
     EmployeeMapper employeeMapper;
     @Mock
-    EmployeePositionMapper employeePositionMapper;
-    @Mock
     DateTimeMapper dateTimeMapper;
+    @Mock
+    EmployeePositionMapper employeePositionMapper;
     @InjectMocks
     private ObjectiveMapperImpl mapper;
 

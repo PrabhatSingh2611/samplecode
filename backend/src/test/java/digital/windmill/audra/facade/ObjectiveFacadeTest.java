@@ -16,11 +16,13 @@ import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.ObjectiveService;
+import liquibase.pro.packaged.T;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import java.time.Instant;
@@ -30,20 +32,14 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ObjectiveFacadeTest {
-    private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String DESCRIPTION = "Description";
-    private static final String NAME = "Name";
-    private static final String ROLE = "Employee";
-    private static final String COMMENT = "Comment";
-    private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Instant INSTANT_LOCAL_DATE = DATE_TIME.toInstant();
-    private static final Long ID = 813L;
+    private static final UUID OBJECTIVE_UUID = UUID.randomUUID();
+    private static final UUID EMPLOYEE_UUID = UUID.randomUUID();
     @Mock
     private ObjectiveService objectiveService;
     @Mock
@@ -52,194 +48,104 @@ class ObjectiveFacadeTest {
     private ObjectiveMapper objectiveMapper;
     @InjectMocks
     ObjectiveFacadeImpl facade;
+
     @Test
-    void shouldCreateObjective(@Mock CreateObjectiveInput input) {
-        when(input.getEmployee()).thenReturn(TEST_UUID);
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
+    void shouldCreateObjective(@Mock CreateObjectiveInput input,
+                               @Mock ObjectiveEntity objectiveEntity,
+                               @Mock Objective objective,
+                               @Mock EmployeeEntity employeeEntity) {
+        when(input.getEmployee()).thenReturn(EMPLOYEE_UUID);
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(employeeEntity);
         when(objectiveMapper.mapObjectiveInputToEntity(any(CreateObjectiveInput.class), any(EmployeeEntity.class)))
-                .thenReturn(createObjectiveEntity());
-        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
-        when(objectiveService.createObjective(any(ObjectiveEntity.class))).thenReturn(createObjectiveEntity());
+                .thenReturn(objectiveEntity);
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(objective);
+        when(objectiveService.createObjective(any(ObjectiveEntity.class))).thenReturn(objectiveEntity);
 
         var result = facade.createObjective(input);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(DESCRIPTION, result.getDescription());
-        assertEquals(NAME, result.getName());
-        assertEquals(STATUS, result.getStatus());
-        assertEquals(COMMENT, result.getComments());
-        assertEquals(DATE_TIME, result.getDueToDate());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
-        assertEquals(ID, result.getId());
-        assertEquals(ROLE, result.getEmployee().getRole());
-        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
-        assertEquals(NAME, result.getEmployee().getLocation().getName());
+        assertSame(objective, result);
     }
 
     @Test
-    void shouldUpdateObjective(@Mock UpdateObjectiveInput input) {
-        when(input.getEmployee()).thenReturn(TEST_UUID);
-        when(input.getUuid()).thenReturn(TEST_UUID);
-        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(createEmployeeEntity());
-        when(objectiveService.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjectiveEntity());
-        when(objectiveMapper.mapInputToEntityWhenUpdate(any(UpdateObjectiveInput.class), any(ObjectiveEntity.class),
-                any(EmployeeEntity.class))).thenReturn(createObjectiveEntity());
-        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
-        when(objectiveService.updateObjective(any(ObjectiveEntity.class))).thenReturn(createObjectiveEntity());
+    void shouldUpdateObjective(@Mock UpdateObjectiveInput input,
+                               @Mock ObjectiveEntity objectiveEntity,
+                               @Mock Objective objective,
+                               @Mock EmployeeEntity employeeEntity) {
+        when(input.getEmployee()).thenReturn(EMPLOYEE_UUID);
+        when(input.getUuid()).thenReturn(OBJECTIVE_UUID);
+        when(employeeService.findEmployeeByUuid(any(UUID.class)))
+                .thenReturn(employeeEntity);
+        when(objectiveService.findObjectiveByUuid(any(UUID.class)))
+                .thenReturn(objectiveEntity);
+        when(objectiveMapper.mapInputToEntityWhenUpdate(any(UpdateObjectiveInput.class),
+                any(ObjectiveEntity.class),
+                any(EmployeeEntity.class))).thenReturn(objectiveEntity);
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class)))
+                .thenReturn(objective);
+        when(objectiveService.updateObjective(any(ObjectiveEntity.class)))
+                .thenReturn(objectiveEntity);
 
         var result = facade.updateObjective(input);
 
         assertNotNull(result);
-        assertEquals(ID, result.getId());
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
-        assertEquals(STATUS, result.getStatus());
-        assertEquals(COMMENT, result.getComments());
-        assertEquals(DATE_TIME, result.getDueToDate());
-        assertEquals(DESCRIPTION, result.getDescription());
-        assertEquals(ROLE, result.getEmployee().getRole());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(NAME, result.getEmployee().getLocation().getName());
-        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
-        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+        assertSame(objective, result);
     }
 
     @Test
-    void shouldDeleteObjective(@Mock DeleteObjectiveInput input) {
-        when(input.getUuid()).thenReturn(TEST_UUID);
+    void shouldDeleteObjective(@Mock DeleteObjectiveInput input,
+                               @Mock ObjectiveEntity objectiveEntity,
+                               @Mock Objective objective) {
+        when(input.getUuid()).thenReturn(OBJECTIVE_UUID);
         when(objectiveService.findObjectiveByUuid(any(UUID.class)))
-                .thenReturn(createObjectiveEntity());
-        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
+                .thenReturn(objectiveEntity);
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class)))
+                .thenReturn(objective);
         when(objectiveService.deleteObjective(any(ObjectiveEntity.class)))
-                .thenReturn(createObjectiveEntity());
+                .thenReturn(objectiveEntity);
 
 
         var result = facade.deleteObjective(input);
-
         assertNotNull(result);
-        assertEquals(ID, result.getId());
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
-        assertEquals(STATUS, result.getStatus());
-        assertEquals(COMMENT, result.getComments());
-        assertEquals(DATE_TIME, result.getDueToDate());
-        assertEquals(DESCRIPTION, result.getDescription());
-        assertEquals(ROLE, result.getEmployee().getRole());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(NAME, result.getEmployee().getLocation().getName());
-        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
-        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
+        assertSame(objective, result);
     }
 
     @Test
-    void shouldFindObjectiveByUuid() {
-        when(objectiveService.findObjectiveByUuid(any(UUID.class))).thenReturn(createObjectiveEntity());
-        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
+    void shouldFindObjectiveByUuid(
+            @Mock ObjectiveEntity objectiveEntity,
+            @Mock Objective objective) {
+        when(objectiveService.findObjectiveByUuid(any(UUID.class)))
+                .thenReturn(objectiveEntity);
 
-        var result = facade.findObjectiveByUuid(TEST_UUID);
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class)))
+                .thenReturn(objective);
+
+        var result = facade.findObjectiveByUuid(OBJECTIVE_UUID);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(DESCRIPTION, result.getDescription());
-        assertEquals(NAME, result.getName());
-        assertEquals(STATUS, result.getStatus());
-        assertEquals(COMMENT, result.getComments());
-        assertEquals(DATE_TIME, result.getDueToDate());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
-        assertEquals(TEST_UUID, result.getEmployee().getPosition().getUuid());
-        assertEquals(ID, result.getId());
-        assertEquals(ROLE, result.getEmployee().getRole());
-        assertEquals(TEST_UUID, result.getEmployee().getLocation().getUuid());
-        assertEquals(NAME, result.getEmployee().getLocation().getName());
-
+        assertSame(objective, result);
     }
 
     @Test
-    void shouldGetAllObjectives(@Mock ObjectivesInput input) {
-        List<ObjectiveEntity> objectives = List.of(createObjectiveEntity());
-        var paged = new PageImpl<>(objectives);
-        when(objectiveService.findAllObjectives(any(ObjectivesInput.class))).thenReturn(paged);
-        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class))).thenReturn(createObjective());
+    void shouldGetAllObjectives(@Mock ObjectivesInput input,
+                                @Mock ObjectiveEntity objectiveEntity,
+                                @Mock Objective objective) {
+
+
+        Page<ObjectiveEntity> objectivePage = createOneItemPage(objectiveEntity);
+        when(objectiveService.findAllObjectives(any(ObjectivesInput.class)))
+                .thenReturn(objectivePage);
+        when(objectiveMapper.mapObjectiveEntityToObjective(any(ObjectiveEntity.class)))
+                .thenReturn(objective);
 
         var result = facade.getObjectives(input);
         assertNotNull(result);
-        assertEquals(ID, result.getContent().get(0).getId());
-        assertEquals(DESCRIPTION, result.getContent().get(0).getDescription());
-        assertEquals(COMMENT, result.getContent().get(0).getComments());
-        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
-        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getUuid());
-        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getLocation().getUuid());
-        assertEquals(TEST_UUID, result.getContent().get(0).getEmployee().getPosition().getUuid());
+        assertEquals(objectivePage.getContent().get(0).getUuid(), result.getContent().get(0).getUuid());
+        assertEquals(objectivePage.getContent().get(0).getId(), result.getContent().get(0).getId());
+        assertEquals(objectivePage.getContent().get(0).getComments(), result.getContent().get(0).getComments());
+        assertEquals(objectivePage.getContent().get(0).getDescription(), result.getContent().get(0).getDescription());
     }
 
-
-    private Objective createObjective() {
-        return Objective.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .description(DESCRIPTION)
-                .comments(COMMENT)
-                .dueToDate(DATE_TIME)
-                .employee(createEmployee())
-                .status(STATUS)
-                .build();
-    }
-
-    private Employee createEmployee() {
-        return Employee.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .position(createEmployeePosition())
-                .role(ROLE)
-                .birthday(DATE_TIME)
-                .firstName(NAME)
-                .lastName(NAME)
-                .reportingManager(createReportingManager())
-                .location(createLocation())
-                .build();
-    }
-
-    private Location createLocation() {
-        return Location.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private Employee createReportingManager() {
-        return new Employee();
-    }
-
-    private EmployeePosition createEmployeePosition() {
-        return EmployeePosition.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(ID);
-        e.setUuid(TEST_UUID);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setBirthday(INSTANT_LOCAL_DATE);
-        return e;
-    }
-
-    private ObjectiveEntity createObjectiveEntity() {
-        return ObjectiveEntity.builder()
-                .id(ID)
-                .name(NAME)
-                .comments(COMMENT)
-                .description(DESCRIPTION)
-                .dueToDate(INSTANT_LOCAL_DATE)
-                .status(ObjectiveStatus.NEW)
-                .employee(createEmployeeEntity())
-                .build();
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 }
