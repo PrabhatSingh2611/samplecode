@@ -1,0 +1,70 @@
+server:
+  port: "8080"
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/audra"
+    username: "postgres"
+    password: "postgres"
+    driverClassName: "org.postgresql.Driver"
+
+  jpa:
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          enable_lazy_load_no_trans: "false"
+    show-sql: true
+
+  liquibase:
+    #    enabled: false
+    change-log: "classpath:/db/changelog/changelog-master.xml"
+    database-change-log-lock-table: "DATABASECHANGELOGLOCK"
+    database-change-log-table: "DATABASECHANGELOG"
+    default-schema: "public"
+    url: "jdbc:postgresql://localhost:5432/audra"
+    user: "postgres"
+    password: "postgres"
+    contexts: "local"
+
+management:
+  server:
+    port: "8081"
+    address: "127.0.0.1"
+  endpoints:
+    web:
+      base-path:
+      path-mapping:
+        health: "/healthz"
+        info: "/infoz"
+        prometheus: "/prometheus"
+      exposure:
+        include: "health,info,prometheus"
+
+logging:
+  level:
+    liquibase: "INFO"
+    org:
+      springframework:
+        web: "info"
+
+graphql:
+  servlet:
+    mapping: "/graphql"
+    enabled: true
+
+graphiql:
+  mapping: "/graphiql"
+  endpoint:
+    graphql: "/graphql"
+  static:
+    basePath: "/"
+  enabled: "true"
+  pageTitle: "GraphiQL"
+  cdn:
+    enabled: "true"
+    version: "0.17.5"
+  props:
+    variables:
+      editorTheme: "solarized light"
+

@@ -1,0 +1,46 @@
+type Employee implements Node {
+	uuid: UUID!
+	firstName: String
+	lastName: String
+	role: String
+	birthday: ZonedDateTime
+	reportingManager:Employee
+	position: EmployeePosition
+	location: Location
+}
+
+
+type EmployeeConnectionPayload implements ConnectionPayload {
+    items: [Employee!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input CreateEmployeeInput {
+	firstName: String!
+	lastName: String!
+	birthday: ZonedDateTime!
+	role: EmployeeRole!
+	reportingManager: UUID
+	position: UUID
+	location: UUID
+}
+
+enum EmployeeRole {
+	ADMIN, EMPLOYEE
+}
+
+
+type EmployeePayload {
+	item: Employee
+}
+
+input EmployeesInput {
+    where: EmployeeWhereInput
+    pagination: PageInput
+}
+
+input EmployeeWhereInput {
+    location: NodeInput
+}
+

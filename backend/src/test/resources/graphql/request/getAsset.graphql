@@ -1,0 +1,31 @@
+query
+{
+    asset(input: {uuid: "e838b736-721a-4cf8-80f3-ebcb6da01a36"})
+    {
+        item {
+            uuid
+            title
+            serial
+            type {
+                uuid
+                title
+                icon
+            }
+            employee {
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
+            }
+        }
+    }
+}

@@ -1,18 +1,25 @@
 package digital.windmill.audra.service;
 
-import org.springframework.stereotype.Component;
+import digital.windmill.audra.graphql.type.Asset;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
+import org.springframework.data.domain.Page;
 
-import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.dao.repository.AssetRepository;
-import lombok.AllArgsConstructor;
+import java.util.UUID;
 
-@Component
-@AllArgsConstructor
-public class AssetService {
+public interface AssetService {
+    /**
+     * This method will return a specific asset by a specific uuid
+     *
+     * @param uuid uuid by which we search Asset
+     * @return a specific Asset
+     */
+    Asset findAssetByUuid(UUID uuid);
 
-    private AssetRepository repo;
-    
-    public AssetEntity findById(Long id) {
-        return repo.findById(id).orElse(null);
-    }
+    /**
+     * This method will return all assets
+     *
+     * @param input input by which we search all the assets.
+     * @return list of assets
+     */
+    Page<Asset> findAll(AssetsInput input);
 }

@@ -1,7 +1,12 @@
 package digital.windmill.audra.dao.entity;
 
-import java.time.Instant;
-import java.util.UUID;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,19 +16,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.time.Instant;
+import java.util.UUID;
 
-import org.hibernate.annotations.Type;
-
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "employee")
+
 public class EmployeeEntity {
 
     @Id
@@ -42,11 +49,14 @@ public class EmployeeEntity {
     private EmployeeRole role;
     @Column(name = "birthday")
     private Instant birthday;
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private EmployeeEntity reportingManager;
     @OneToOne
     @JoinColumn(name = "position_id")
     private EmployeePositionEntity position;
     @OneToOne
     @JoinColumn(name = "location_id")
-    private EmployeeLocationEntity location;
+    private LocationEntity location;
 
 }

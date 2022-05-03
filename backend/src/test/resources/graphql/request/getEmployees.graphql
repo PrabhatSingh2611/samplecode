@@ -1,0 +1,27 @@
+query getEmployees($input: EmployeesInput) {
+    employees(input: $input) {
+        items {
+            uuid
+            firstName
+            lastName
+            role
+            birthday
+            reportingManager{
+                firstName
+            }
+            position{
+                uuid
+                name
+            }
+            location{
+                uuid
+                name
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

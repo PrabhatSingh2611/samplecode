@@ -1,14 +1,14 @@
 package digital.windmill.audra.graphql.coersing;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-
 import graphql.language.StringValue;
 import graphql.schema.Coercing;
 import graphql.schema.CoercingParseLiteralException;
 import graphql.schema.CoercingParseValueException;
 import graphql.schema.CoercingSerializeException;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ZonedDateTimeScalarCoercing implements Coercing<ZonedDateTime, String> {
 
@@ -18,7 +18,7 @@ public class ZonedDateTimeScalarCoercing implements Coercing<ZonedDateTime, Stri
     @Override
     public String serialize(Object dataFetcherResult) throws CoercingSerializeException {
         if (dataFetcherResult instanceof ZonedDateTime dt) {
-            return dt.withZoneSameInstant( UTC_ZONE )
+            return dt.withZoneSameInstant(UTC_ZONE)
                     .format(FORMATTER);
         }
         throw new CoercingSerializeException("Could not serialize as ZonedDateTime object - " + dataFetcherResult);
@@ -26,7 +26,11 @@ public class ZonedDateTimeScalarCoercing implements Coercing<ZonedDateTime, Stri
 
     @Override
     public ZonedDateTime parseValue(Object input) throws CoercingParseValueException {
-        return null;
+        try {
+            return ZonedDateTime.parse(input.toString(), FORMATTER);
+        } catch (RuntimeException e) {
+            throw new CoercingParseValueException("Cannot cast value " + input + " into ZonedDateTime");
+        }
     }
 
     @Override
@@ -34,8 +38,8 @@ public class ZonedDateTimeScalarCoercing implements Coercing<ZonedDateTime, Stri
         String value = ((StringValue) input).getValue();
         try {
             return ZonedDateTime.parse(value, FORMATTER);
-        } catch (RuntimeException ex) {
-            throw new CoercingParseLiteralException("Cant parse value " + value + " into ZonedDateTime");
+        } catch (RuntimeException e) {
+            throw new CoercingParseLiteralException("Cannot parse value " + value + " into ZonedDateTime");
         }
     }
 }

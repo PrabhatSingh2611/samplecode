@@ -1,0 +1,59 @@
+input AssetsInput {
+    where: AssetWhereInput
+    page: PageInput
+}
+
+input AssetWhereInput {
+    employee: NodeInput
+    archived: Boolean # asset.archivedDate is not null - TRUE
+    type: NodeInput
+}
+
+input AssetInput {
+    uuid: UUID!
+}
+
+type AssetPayload{
+    item: Asset
+}
+
+type AssetConnectionPayload implements ConnectionPayload {
+    items: [Asset!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+type Asset implements Node {
+    uuid: UUID!
+    title: String
+    serial: String
+    type: AssetType
+    employee: Employee
+    archivedDate: ZonedDateTime
+    purchasedDate: ZonedDateTime
+}
+
+type AssetType implements Node {
+    uuid: UUID!
+    title: String
+    icon: String
+}
+
+type AssetTypeConnection implements ConnectionPayload{
+    items: [AssetType!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input AssetTypeInput {
+	uuid:UUID!
+}
+
+
+type AssetTypePayload{
+    item: AssetType
+}
+
+input CreateAssetTypeInput{
+    title: String!
+}

@@ -1,0 +1,27 @@
+input NodeInput {
+    uuid: UUID!
+}
+
+input PageInput {
+    itemsPerPage: Int = 10
+    pageNumber: Int = 0
+}
+
+interface ConnectionPayload {
+    items: [Node!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+interface Node {
+    uuid: UUID!
+}
+
+type PageInfo {
+    currentPage: Int!
+    totalPages: Int!
+}
+
+
+scalar UUID
+scalar ZonedDateTime

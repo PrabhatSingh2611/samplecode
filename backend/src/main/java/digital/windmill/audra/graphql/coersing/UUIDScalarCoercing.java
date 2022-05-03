@@ -9,6 +9,7 @@ import graphql.schema.CoercingSerializeException;
 import java.util.UUID;
 
 public class UUIDScalarCoercing implements Coercing<UUID, String> {
+
     @Override
     public String serialize(Object dataFetcherResult) throws CoercingSerializeException {
         return dataFetcherResult.toString();
@@ -16,7 +17,11 @@ public class UUIDScalarCoercing implements Coercing<UUID, String> {
 
     @Override
     public UUID parseValue(Object input) throws CoercingParseValueException {
-        return null;
+        try {
+            return UUID.fromString(input.toString());
+        } catch (RuntimeException e) {
+            throw new CoercingParseValueException("Cannot cast value " + input + " into UUID");
+        }
     }
 
     @Override
@@ -24,8 +29,8 @@ public class UUIDScalarCoercing implements Coercing<UUID, String> {
         String value = ((StringValue) input).getValue();
         try {
             return UUID.fromString(value);
-        } catch (RuntimeException ex) {
-            throw new CoercingParseLiteralException("Cant cast value " + value + " into UUID");
+        } catch (RuntimeException e) {
+            throw new CoercingParseLiteralException("Cannot cast value " + value + " into UUID");
         }
     }
 }

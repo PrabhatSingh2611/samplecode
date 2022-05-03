@@ -17,7 +17,7 @@ spring:
     show-sql: true
 
   liquibase:
-#    enabled: false
+    #    enabled: false
     change-log: "classpath:/db/changelog/changelog-master.xml"
     database-change-log-lock-table: "DATABASECHANGELOGLOCK"
     database-change-log-table: "DATABASECHANGELOG"
@@ -52,6 +52,7 @@ graphql:
   servlet:
     mapping: "/graphql"
     enabled: true
+    corsEnabled: false
 
 graphiql:
   mapping: "/graphiql"

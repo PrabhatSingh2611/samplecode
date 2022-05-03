@@ -1,0 +1,28 @@
+{
+  "data": {
+    "assetTypes": {
+      "items": [
+        {
+          "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+          "title": "Laptops",
+          "icon": "https://google.com/laptops"
+        },
+        {
+          "uuid": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+          "title": "Monitors",
+          "icon": "https://google.com/monitors"
+        },
+        {
+          "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+          "title": "Headphones",
+          "icon": "https://google.com/headphones"
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 3
+    }
+  }
+}

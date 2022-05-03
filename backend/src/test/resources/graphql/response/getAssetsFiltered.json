@@ -1,0 +1,40 @@
+{
+  "data": {
+    "assets": {
+      "items": [
+        {
+          "uuid": "37464c92-80fa-4946-b41f-27928e6ec4d3",
+          "title": "Dell Latitude 15",
+          "serial": "343234323",
+          "type": {
+            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+            "title": "Laptops",
+            "icon": "https://google.com/laptops"
+          },
+          "employee": {
+            "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+            "firstName": "Geneva",
+            "lastName": "Norman",
+            "role": "EMPLOYEE",
+            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "position":{
+              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name":"manager"
+            },
+            "location":{
+              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "name":"london"
+            }
+          },
+          "archivedDate": null,
+          "purchasedDate": "2022-02-23T12:32:45.480425Z[UTC]"
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 1
+    }
+  }
+}

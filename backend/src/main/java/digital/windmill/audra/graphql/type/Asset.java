@@ -1,13 +1,20 @@
 package digital.windmill.audra.graphql.type;
 
-import java.time.ZonedDateTime;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Data
-public class Asset {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Asset implements Node {
 
-    private Long id;
+    private UUID uuid;
     private String title;
     private String serial;
     private AssetType type;
@@ -16,15 +23,3 @@ public class Asset {
     private ZonedDateTime purchasedDate;
 
 }
-
-/**
- * type Asset {
-    id: Int!
-    title: String
-    serial: String
-    type: AssetType
-    employee: Employee
-    archivedDate: ZonedDateTime
-    purchasedDate: ZonedDateTime
-}
-*/

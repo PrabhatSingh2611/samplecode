@@ -1,0 +1,27 @@
+type Location implements Node {
+    uuid: UUID!
+    name: String!
+}
+
+input LocationInput{
+    uuid:UUID!
+}
+
+input CreateLocationInput{
+    name: String!
+}
+
+input UpdateLocationInput{
+    uuid:UUID!
+    name:String!
+}
+
+type LocationConnectionPayload implements ConnectionPayload {
+    items: [Location!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+type LocationPayload {
+    location: Location!
+}

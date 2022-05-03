@@ -1,6 +1,9 @@
 package digital.windmill.audra.dao.entity;
 
-import java.time.Instant;
+import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-
-import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
-import lombok.Getter;
-import lombok.Setter;
+import java.time.Instant;
 
 @Entity
 @Getter

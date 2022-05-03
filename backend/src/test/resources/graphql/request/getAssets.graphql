@@ -1,0 +1,36 @@
+query getAssets($input: AssetsInput) {
+    assets(input: $input) {
+        items {
+            uuid
+            title
+            serial
+            type {
+                uuid
+                title
+                icon
+            }
+            employee {
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    uuid
+                    name
+                }
+                location{
+                    uuid
+                    name
+                }
+            }
+            archivedDate
+            purchasedDate
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

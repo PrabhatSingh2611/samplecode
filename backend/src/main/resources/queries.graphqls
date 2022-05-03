@@ -1,0 +1,13 @@
+type Query {
+    asset(input: AssetInput!): AssetPayload!
+    assets(input: AssetsInput): AssetConnectionPayload!
+    assetType(input: AssetTypeInput!): AssetTypePayload!
+    assetTypes: AssetTypeConnection!
+    employees(input: EmployeesInput): EmployeeConnectionPayload!
+    location(input: LocationInput!): LocationPayload!
+    locations: LocationConnectionPayload!
+    vacancies(input:VacanciesInput!): VacancyConnectionPayload!
+    vacancy(input:VacancyInput!):VacancyPayload!
+    objective(input:ObjectiveInput!):ObjectivePayload!
+    objectives(input:ObjectivesInput!):ObjectiveConnectionPayload!
+}
