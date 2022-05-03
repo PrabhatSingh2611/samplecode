@@ -44,8 +44,6 @@ public class LocationServiceImpl implements LocationService {
         return locationRepository.save(locationEntity);
     }
 
-
-
     @Override
     public Page<LocationEntity> getLocations() {
                 Specification<LocationEntity> specification = LocationSpecification.allLocations();

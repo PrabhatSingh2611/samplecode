@@ -12,14 +12,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -27,9 +28,6 @@ import static org.mockito.Mockito.when;
 class LocationFacadeTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final UUID SECOND_UUID = UUID.randomUUID();
-    private static final Long ID = 1L;
-    private static final String NAME = "PcwrDcz";
 
     @Mock
     private LocationService locationService;
@@ -38,98 +36,77 @@ class LocationFacadeTest {
     private LocationMapper locationMapper;
 
     @InjectMocks
-    private LocationFacadeImpl locationFacadeImpl;
+    private LocationFacadeImpl locationFacade;
 
     @Test
-    void shouldFindLocationByUuid() {
+    void shouldFindLocationByUuid(@Mock LocationEntity locationEntity,
+                                  @Mock Location location) {
+
         when(locationService.findLocationByUuid(any(UUID.class)))
-                .thenReturn(createLocationEntity());
+                .thenReturn(locationEntity);
         when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
-                .thenReturn(createLocation());
+                .thenReturn(location);
 
-        var result = locationFacadeImpl.findLocationByUuid(TEST_UUID);
+        var result = locationFacade.findLocationByUuid(TEST_UUID);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
+        assertSame(location, result);
     }
 
     @Test
-    void shouldFindAllLocation() {
-        var pagedResponse = new PageImpl(createLocationsEntity());
-        when(locationService.getLocations())
-                .thenReturn(pagedResponse);
-        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
-                .thenReturn(createLocation());
+    void shouldFindAllLocation(@Mock LocationEntity locationEntity,
+                               @Mock Location location) {
 
-        var result = locationFacadeImpl.getLocations();
+        Page<LocationEntity> locationPage = createOneItemPage(locationEntity);
+        when(locationService.getLocations()).thenReturn(locationPage);
+        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
+                .thenReturn(location);
+
+        var result = locationFacade.getLocations();
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
-        assertEquals(NAME, result.getContent().get(0).getName());
+        assertEquals(locationPage.getContent().get(0).getUuid(), result.getContent().get(0).getUuid());
+        assertEquals(locationPage.getContent().get(0).getName(), result.getContent().get(0).getName());
+    }
+
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 
 
     @Test
-    void shouldCreateLocation(@Mock CreateLocationInput input) {
+    void shouldCreateLocation(@Mock CreateLocationInput input,
+                              @Mock LocationEntity locationEntity,
+                              @Mock Location location) {
+
         when(locationService.createLocation(any(LocationEntity.class)))
-                .thenReturn(createLocationEntity());
-
+                .thenReturn(locationEntity);
         when(locationMapper.mapCreateLocationInputToLocationEntity(any(CreateLocationInput.class)))
-                .thenReturn(createLocationEntity());
+                .thenReturn(locationEntity);
         when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
-                .thenReturn(createLocation());
-        var result = locationFacadeImpl.createLocation(input);
+                .thenReturn(location);
+
+        var result = locationFacade.createLocation(input);
         assertNotNull(result);
-        assertEquals(NAME, result.getName());
+        assertSame(location, result);
+
     }
 
     @Test
-    void shouldUpdateLocation() {
-       when(locationService.findLocationByUuid(any(UUID.class)))
-                .thenReturn(createLocationEntity());
+    void shouldUpdateLocation(@Mock UpdateLocationInput input,
+                              @Mock LocationEntity locationEntity,
+                              @Mock Location location) {
+
+        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(locationService.findLocationByUuid(any(UUID.class)))
+                .thenReturn(locationEntity);
         when(locationMapper.mapLocationToLocationEntityUpdate((any(UpdateLocationInput.class)), any(LocationEntity.class)))
-                .thenReturn(createLocationEntity());
+                .thenReturn(locationEntity);
         when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
-               .thenReturn(createLocation());
+                .thenReturn(location);
         when(locationService.updateLocation(any(LocationEntity.class)))
-                .thenReturn(createLocationEntity());
-        var result = locationFacadeImpl.updateLocation(createUpdateLocationInput());
+                .thenReturn(locationEntity);
+        var result = locationFacade.updateLocation(input);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
-    }
-
-    private UpdateLocationInput createUpdateLocationInput() {
-        return UpdateLocationInput.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private Location createLocation() {
-        return Location
-                .builder()
-                .name(NAME)
-                .uuid(TEST_UUID)
-                .id(ID)
-                .build();
-    }
-
-    private LocationEntity createLocationEntity() {
-        return LocationEntity.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private List<LocationEntity> createLocationsEntity() {
-        return Arrays.asList(LocationEntity.builder()
-                        .uuid(TEST_UUID)
-                        .name(NAME)
-                        .build(),
-                LocationEntity.builder()
-                        .uuid(SECOND_UUID)
-                        .name(NAME)
-                        .build());
+        assertSame(location, result);
     }
 }

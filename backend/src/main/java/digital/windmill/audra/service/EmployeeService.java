@@ -1,6 +1,7 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Location;
@@ -15,7 +16,7 @@ public interface EmployeeService {
     /**
      * This method will create employee by provided input.
      *
-     * @param location         which is location detail of employee being created
+     * @param locationEntity         which is location detail of employee being created
      * @param input            which is required information of employee like firstName, lastName, birthday, etc
      * @param employeePosition which is position detail of employee being created
      * @return an employee created
@@ -23,7 +24,7 @@ public interface EmployeeService {
     Employee createEmployee(CreateEmployeeInput input,
                             EmployeeEntity employeeReportingManager,
                             EmployeePosition employeePosition,
-                            Location location);
+                            LocationEntity locationEntity);
 
     /**
      * This method will search employee by an uuid value.

@@ -19,7 +19,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -28,7 +28,6 @@ import static org.mockito.Mockito.when;
 public class LocationServiceTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String NAME = "47nhdrx";
 
     @Mock
     private LocationRepository locationRepository;
@@ -37,50 +36,52 @@ public class LocationServiceTest {
     private LocationServiceImpl locationService;
 
     @Test
-    void shouldReturnLocationByUuid() {
+    void shouldReturnLocationByUuid(@Mock LocationEntity locationEntity) {
+
         when(locationRepository.findByUuid(any(UUID.class)))
-                .thenReturn(Optional.ofNullable(createLocationEntity()));
+                .thenReturn(Optional.ofNullable(locationEntity));
 
         var result = locationService.findLocationByUuid(TEST_UUID);
         assertNotNull(result);
-        assertEquals(TEST_UUID,result.getUuid());
-        assertEquals(NAME,result.getName());
+        assertEquals(locationEntity, result);
     }
 
     @Test
-    void shouldCreateLocation(){
+    void shouldCreateLocation(@Mock LocationEntity locationEntity){
+
         when(locationRepository.save(any(LocationEntity.class)))
-                .thenReturn(createLocationEntity());
+                .thenReturn(locationEntity);
 
-        var result = locationService.createLocation(createLocationEntity());
+        var result = locationService.createLocation(locationEntity);
         assertNotNull(result);
-        assertEquals(TEST_UUID,result.getUuid());
-        assertEquals(NAME,result.getName());
-
-
+        assertSame(locationEntity, result);
     }
 
     @Test
-    void shouldUpdateLocation() {
+    void shouldUpdateLocation(@Mock LocationEntity locationEntity) {
+
         when(locationRepository.save(any(LocationEntity.class)))
-                .thenReturn(createLocationEntity());
+                .thenReturn(locationEntity);
 
-        var result = locationService.updateLocation(createLocationEntity());
+        var result = locationService.updateLocation(locationEntity);
         assertNotNull(result);
-        assertEquals(TEST_UUID,result.getUuid());
-        assertEquals(NAME,result.getName());
+        assertSame(locationEntity, result);
     }
 
     @Test
-    void shouldReturnAllLocations() {
+    void shouldReturnAllLocations(@Mock LocationEntity locationEntity) {
+
+        Page<LocationEntity> locationPage = createOneItemPage(locationEntity);
         when(locationRepository.findAll((Specification<LocationEntity>) any(), any(PageRequest.class)))
-                .thenReturn(createLocationEntityList());
+                .thenReturn(locationPage);
         var result = locationService.getLocations();
 
         assertNotNull(result);
-        assertEquals(2L,result.getTotalElements());
-        assertEquals(TEST_UUID,result.getContent().get(0).getUuid());
-        assertEquals(NAME,result.getContent().get(0).getName());
+        assertSame(locationPage, result);
+    }
+
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 
     @Test
@@ -88,35 +89,6 @@ public class LocationServiceTest {
         when(locationRepository.findByUuid(any(UUID.class)))
                 .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
         Assertions.assertThrows(DataNotFoundException.class, () -> locationService.findLocationByUuid(TEST_UUID));
-    }
-
-    @Test
-    void shouldReturnNullWhenLocationIsNull() {
-        var result = locationService.findLocationByUuid(null);
-        assertNull(result);
-    }
-
-    private LocationEntity createLocationEntity() {
-        return LocationEntity.builder()
-                .uuid(TEST_UUID)
-                .id(1L)
-                .name(NAME)
-                .build();
-    }
-
-    private Page<LocationEntity> createLocationEntityList() {
-        return new PageImpl<>(createLocationsEntity());
-    }
-
-    private List<LocationEntity> createLocationsEntity() {
-        return Arrays.asList(LocationEntity.builder()
-                        .uuid(TEST_UUID)
-                        .name(NAME)
-                        .build(),
-                LocationEntity.builder()
-                        .uuid(TEST_UUID)
-                        .name(NAME)
-                        .build());
     }
 
 }
