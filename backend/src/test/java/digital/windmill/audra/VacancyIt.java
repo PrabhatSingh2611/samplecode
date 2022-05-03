@@ -1,17 +1,6 @@
 package digital.windmill.audra;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.graphql.spring.boot.test.GraphQLResponse;
-import com.graphql.spring.boot.test.GraphQLTestTemplate;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlMergeMode;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -19,15 +8,19 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import com.graphql.spring.boot.test.GraphQLTestTemplate;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-@Testcontainers
-@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
-@Sql("classpath:/db/delete-all.sql")
-public class VacancyIt {
+public class VacancyIt  extends AbstractIntegrationTest {
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
 
@@ -96,6 +89,21 @@ public class VacancyIt {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldCreateVacancyNoAssignTo() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/createVacancyNoAssignTo.graphql");
+
+        log.info(response.readTree().toPrettyString());
+
+        String jsonString = Files.readString(Paths.get(VacancyIt.class.getClassLoader()
+                .getResource("graphql/response/createVacancyNoAssignTo.json")
+                .toURI()), Charset.forName("UTF-8"));
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldUpdateVacancy() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate
                 .postForResource("graphql/request/UpdateVacancy.graphql");
@@ -109,4 +117,18 @@ public class VacancyIt {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldUpdateVacancyNoAssignTo() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/updateVacancyNoAssignTo.graphql");
+
+        log.info(response.readTree().toPrettyString());
+
+        String jsonString = Files.readString(Paths.get(VacancyIt.class.getClassLoader()
+                .getResource("graphql/response/updateVacancyNoAssignTo.json")
+                .toURI()), Charset.forName("UTF-8"));
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
 }

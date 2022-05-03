@@ -121,10 +121,9 @@ public class VacancyServiceTest {
     @Test
     void shouldCreateVacancy(@Mock CreateVacancyInput vacancyInput,
                              @Mock EmployeePosition employeePosition,
-                             @Mock Employee employee
+                             @Mock EmployeeEntity employeeEntity
                              ){
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(vacancyMapper.mapInputToEntity(
                 any(CreateVacancyInput.class),
                 any(EmployeePositionEntity.class),
@@ -134,7 +133,7 @@ public class VacancyServiceTest {
         when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
         when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
 
-        var actualResult = service.createVacancy(vacancyInput, employeePosition, employee);
+        var actualResult = service.createVacancy(vacancyInput, employeePosition, employeeEntity);
 
         assertEquals(TEST_UUID, actualResult.getUuid());
         assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
@@ -152,11 +151,10 @@ public class VacancyServiceTest {
     @Test
     void shouldUpdateVacancy(@Mock UpdateVacancyInput vacancyInput,
                              @Mock EmployeePosition employeePosition,
-                             @Mock Employee employee
+                             @Mock EmployeeEntity employeeEntity
     ){
         when(vacancyInput.getUuid()).thenReturn(TEST_UUID);
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class))).thenReturn(createEmployeeEntity());
         when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(createOptionalVacancyEntity());
         when(vacancyMapper.mapToEntityWhenUpdate(
                 any(VacancyEntity.class),
@@ -168,7 +166,7 @@ public class VacancyServiceTest {
         when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
         when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
 
-        var actualResult = service.updateVacancy(vacancyInput, employeePosition, employee);
+        var actualResult = service.updateVacancy(vacancyInput, employeePosition, employeeEntity);
 
         assertEquals(TEST_UUID, actualResult.getUuid());
         assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
