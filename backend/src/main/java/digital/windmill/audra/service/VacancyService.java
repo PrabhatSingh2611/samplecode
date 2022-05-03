@@ -1,8 +1,6 @@
 package digital.windmill.audra.service;
 
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
-import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
@@ -40,7 +38,7 @@ public interface VacancyService {
      */
     Vacancy createVacancy(CreateVacancyInput input,
                           EmployeePosition employeePosition,
-                          Employee employee);
+                          EmployeeEntity employee);
 
     /**
      * This method will update a Vacancy by a specific value.
@@ -52,5 +50,5 @@ public interface VacancyService {
      */
     Vacancy updateVacancy(UpdateVacancyInput input,
                           EmployeePosition employeePosition,
-                          Employee employee);
+                          EmployeeEntity employee);
 }

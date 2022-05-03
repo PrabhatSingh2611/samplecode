@@ -2,7 +2,6 @@ package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.EmployeeSpecification;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.EmployeeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
@@ -18,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -30,26 +30,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeePositionMapper employeePositionMapper;
 
     @Override
-    public Employee createEmployee(CreateEmployeeInput input, Employee employeeReportingManager, EmployeePosition employeePosition, LocationEntity locationEntity) {
+    public Employee createEmployee(CreateEmployeeInput input, EmployeeEntity employeeReportingManager, EmployeePosition employeePosition, Location location) {
 
         var toBeSavedEmployeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
-                employeeMapper.mapEmployeeToEmployeeEntity(employeeReportingManager),
+                employeeReportingManager,
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                locationMapper.mapLocationToLocationEntity(locationEntity));
+                locationMapper.mapLocationToLocationEntity(location));
 
         return employeeMapper.mapEmployeeEntityToEmployee(employeeRepository.save(toBeSavedEmployeeEntity));
     }
 
     @Override
-    public Employee findEmployeeByUuid(UUID uuid) {
-        if(uuid==null){
-            return null;
+    public EmployeeEntity findEmployeeByUuid(UUID uuid) {
+        if(Optional.ofNullable(uuid).isPresent()){
+            return employeeRepository.findByUuid(uuid).orElseThrow(
+                    () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
+            );
         }
-        var employeeEntity = employeeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
-        );
-        return employeeMapper.mapEmployeeEntityToEmployee(employeeEntity);
+        else
+            return null;
     }
 
     @Override

@@ -55,5 +55,5 @@ public interface EmployeeMapper {
         return UUID.randomUUID();
     }
 
-    EmployeeEntity mapEmployeeToEmployeeEntity(Employee employeeReportingManager);
+    EmployeeEntity mapEmployeeToEmployeeEntity(Employee employee);
 }

@@ -2,14 +2,12 @@ package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.VacancySpecification;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.VacancyEntity;
 import digital.windmill.audra.dao.repository.VacancyRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.mapper.VacancyMapper;
-import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
@@ -45,19 +43,19 @@ public class VacancyServiceImpl implements VacancyService {
 
     public Vacancy createVacancy(CreateVacancyInput input,
                                  EmployeePosition employeePosition,
-                                 Employee employee) {
+                                 EmployeeEntity employeeEntity) {
         var vacancyEntity = vacancyMapper
                 .mapInputToEntity(
                         input,
                         employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                        employeeMapper.mapEmployeeToEmployeeEntity(employee)
+                        employeeEntity
                         );
         return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(vacancyEntity));
     }
 
     public Vacancy updateVacancy(UpdateVacancyInput input,
                                  EmployeePosition employeePosition,
-                                 Employee employee) {
+                                 EmployeeEntity employeeEntity) {
         VacancyEntity entity = vacancyRepository.findVacancyByUuid(input.getUuid())
                 .orElseThrow(
                         () -> new DataNotFoundException("Vacancy not found.")
@@ -66,7 +64,7 @@ public class VacancyServiceImpl implements VacancyService {
         var mappedToEntity = vacancyMapper.mapToEntityWhenUpdate(entity,
                 input,
                 employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
-                employeeMapper.mapEmployeeToEmployeeEntity(employee));
+                employeeEntity);
 
         return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(mappedToEntity));
     }

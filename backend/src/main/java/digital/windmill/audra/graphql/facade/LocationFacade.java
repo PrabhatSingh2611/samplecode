@@ -28,7 +28,6 @@ public interface LocationFacade {
     Location updateLocation(UpdateLocationInput input);
 
     /**
-     * ,
      * This method will return a specific location by specific UUID.
      *
      * @param uuid uuid by which we search location
