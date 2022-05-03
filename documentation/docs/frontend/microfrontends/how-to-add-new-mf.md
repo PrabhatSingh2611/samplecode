@@ -6,9 +6,9 @@ sidebar_position: 3
 
 #### Variables to use in Steps:
 
-1. `NEW_MF_NAME` => `People`, `MyMF`
-2. `NEW_MF_NAME_LOWERCASE` => `people`, `my-mf`
-3. `NEW_MF_PORT` => `3001`, `3002`
+1. `NEW_MF_NAME` should be _PascalCase_ => `People`, `MyNewSuperCoolMF`
+2. `NEW_MF_NAME_LOWERCASE` should be _kebab-case_ => `people`, `my-new-super-cool-mf`
+3. `NEW_MF_PORT` should be between 3001 and 3099 => `3001`, `3002`
 
 #### Steps:
 
