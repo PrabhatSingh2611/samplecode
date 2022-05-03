@@ -1,0 +1,25 @@
+{
+    "name": "audra",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo run build --filter=!./apps/remote-example",
+        "dev": "turbo run dev --parallel --filter=!./apps/remote-example",
+        "lint": "turbo run lint --filter=!./apps/remote-example",
+        "clear-all": "turbo run clear-all && rm -rf node_modules && rm pnpm-lock.yaml",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "prettier": "latest",
+        "turbo": "latest"
+    },
+    "engines": {
+        "npm": ">=7.0.0",
+        "node": ">=16.0.0"
+    },
+    "packageManager": "pnpm@7.0.0"
+}
