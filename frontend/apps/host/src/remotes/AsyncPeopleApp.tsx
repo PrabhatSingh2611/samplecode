@@ -2,6 +2,7 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AsyncLoader, { ImportFallbacks, ImportState } from '../core/AsyncLoader';
+import { getRealtivePathname } from '../core/observable.hooks';
 
 export interface ImportLoaderProps {
     importLoadingFallback?: React.ReactNode;
@@ -21,11 +22,15 @@ const PeopleApp = React.memo(
             import('people/PeopleApp')
                 .then(({ mount }) => {
                     // TODO: Handle "onUnmount" returned from "mount()"
+                    const relativePathname = getRealtivePathname(
+                        history.location.pathname,
+                        '/people',
+                        false
+                    );
                     unmountRef.current = mount({
                         element: ref.current!,
                         inIsolation: false,
-                        // TODO: Get from useHostory().location pathname!
-                        initialEntry: history.location.pathname,
+                        initialEntry: relativePathname,
                     });
                     setState(ImportState.SUCCESS);
                 })

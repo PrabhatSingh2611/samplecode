@@ -20,7 +20,8 @@ const useInitHostNavigateObservable = (): void => {
     const onHistoryChange = ({ pathname }: any) => {
         const lastEvent = hostNavigateObservable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            hostNavigateObservable.publish({ pathname });
+            const relativePathname = getRealtivePathname(pathname, '/people', false);
+            hostNavigateObservable.publish({ pathname: relativePathname });
         }
     };
     history.listen(onHistoryChange);
@@ -37,11 +38,38 @@ const useInitAuthNavigateObservable = (): void => {
     const onAuthNavigate = ({ pathname }: any) => {
         console.count('onAuthNavigate');
         if (pathname !== history.location.pathname) {
-            history.push(pathname);
+            const relativePathname = getRealtivePathname(pathname, '/people');
+            console.log(
+                '🚀 ~ file: observable.hooks.ts ~ line 42 ~ onAuthNavigate ~ relativePathname',
+                relativePathname
+            );
+            history.push(relativePathname);
         }
     };
 
     useLayoutEffect(() => {
         authNavigateObservable.subscribe(onAuthNavigate);
     });
+};
+
+// NOTE: This functions will remove or add relatesTo string from pathname (i.e. "/people/details" <=> "/details")
+export const getRealtivePathname = (
+    pathname: string,
+    relatesTo: string,
+    prepend = true
+): string => {
+    if (prepend) {
+        if (pathname === '/') {
+            return relatesTo;
+        }
+
+        return relatesTo + pathname;
+    }
+
+    if (pathname === '/' || pathname === relatesTo) {
+        return '/';
+    }
+
+    const replaceValue = `${relatesTo}/`;
+    return pathname.replace(replaceValue, '/');
 };

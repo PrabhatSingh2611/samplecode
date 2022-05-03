@@ -3,7 +3,7 @@ import { Input } from 'ui';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import Router from './core/Router';
-import AuthObservables from './core/AuthObservavbles';
+import RemoteExampleObservables from './core/RemoteExampleObservavbles';
 
 interface AppProps {
     inIsolation: boolean;
@@ -16,13 +16,13 @@ function App({ inIsolation, initialEntry }: AppProps) {
         <div className="RemoteExampleApp">
             <h1>Hello from Remote Example App!</h1>
             <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                <AuthObservables />
+                <RemoteExampleObservables />
                 <Header />
                 <Switch>
-                    <Route path="/remote-example/details">
+                    <Route path="/details">
                         <Details />
                     </Route>
-                    <Route path="/remote-example">
+                    <Route path="/">
                         <Home />
                     </Route>
                 </Switch>
@@ -32,24 +32,24 @@ function App({ inIsolation, initialEntry }: AppProps) {
 }
 
 const Header = (): JSX.Element => (
-    <header className="App-header">
+    <header className="RemoteExampleAppHeader">
         <nav>
-            <Link to="/remote-example">Home</Link> | <Link to="/remote-example/details">Details</Link>
+            <Link to="/">Home</Link> | <Link to="/details">Details</Link>
         </nav>
     </header>
 );
 
 const Home = (): JSX.Element => (
-    <header className="App-header">
+    <div className="RemoteExampleAppHome">
         <h1>Remote Example App</h1>
         <Input />
-    </header>
+    </div>
 );
 
 const Details = (): JSX.Element => (
-    <header className="App-header">
+    <div className="RemoteExampleAppDetatils">
         <h1>Remote Example App Details</h1>
-    </header>
+    </div>
 );
 
 export default App;

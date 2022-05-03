@@ -19,10 +19,10 @@ function App({ inIsolation, initialEntry }: AppProps) {
                 <PeopleObservables />
                 <Header />
                 <Switch>
-                    <Route path="/people/details">
+                    <Route path="/details">
                         <Details />
                     </Route>
-                    <Route path="/people">
+                    <Route path="/">
                         <Home />
                     </Route>
                 </Switch>
@@ -32,24 +32,24 @@ function App({ inIsolation, initialEntry }: AppProps) {
 }
 
 const Header = (): JSX.Element => (
-    <header className="App-header">
+    <header className="PeopleAppHeader">
         <nav>
-            <Link to="/people">Home</Link> | <Link to="/people/details">Details</Link>
+            <Link to="/">Home</Link> | <Link to="/details">Details</Link>
         </nav>
     </header>
 );
 
 const Home = (): JSX.Element => (
-    <header className="App-header">
+    <div className="PeopleAppHeaderHome">
         <h1>People App</h1>
         <Input />
-    </header>
+    </div>
 );
 
 const Details = (): JSX.Element => (
-    <header className="App-header">
+    <div className="PeopleAppDetails">
         <h1>People App Details</h1>
-    </header>
+    </div>
 );
 
 export default App;

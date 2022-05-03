@@ -8,12 +8,12 @@ import AsyncPeopleApp from './remotes/AsyncPeopleApp';
 
 function App() {
     return (
-        <div className="App">
+        <div className="HostApp">
             <BrowserRouter>
                 <HostObservables />
                 <Header />
                 <Switch>
-                    <Route exact path="/people">
+                    <Route path="/people">
                         <AsyncPeopleApp />
                     </Route>
                     <Route exact path="/">
@@ -26,18 +26,24 @@ function App() {
 }
 
 const Header = (): JSX.Element => (
-    <header className="App-header">
+    <header className="HostAppHeader">
         <nav>
-            <Link to="/">Home</Link> | <Link to="/people">People</Link>
+            <Link className="HostAppLink" to="/">
+                Home
+            </Link>{' '}
+            |{' '}
+            <Link className="HostAppLink" to="/people">
+                People
+            </Link>
         </nav>
     </header>
 );
 
 const Home = (): JSX.Element => (
-    <header className="App-header">
+    <div className="HostAppHome">
         <h1>Host App</h1>
         <Button />
-    </header>
+    </div>
 );
 
 export default App;

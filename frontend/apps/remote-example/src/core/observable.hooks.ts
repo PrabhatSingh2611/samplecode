@@ -2,12 +2,12 @@ import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // NOTE: !!! This should be done only once per app. !!!
-type AuthNavigatePayload = {
+type RemoteExampleNavigatePayload = {
     pathname: string;
 };
 
-export const authNavigateObservable = window.__shared__?.getRemoteObservable<AuthNavigatePayload>(
-    'auth:navigate',
+export const remoteExampleNavigateObservable = window.__shared__?.getRemoteObservable<RemoteExampleNavigatePayload>(
+    'remote-example:navigate',
     {
         type: 'object',
         properties: {
@@ -38,9 +38,9 @@ export const hostNavigateObservable = window.__shared__?.getRemoteObservable<Hos
 );
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
-export const useInitAuthObservables = () => {
+export const useInitRemoteExampleObservables = () => {
     useInitHostNavigateObservable();
-    useInitAuthNavigateObservable();
+    useInitRemoteExampleNavigateObservable();
 };
 
 const useInitHostNavigateObservable = () => {
@@ -59,13 +59,13 @@ const useInitHostNavigateObservable = () => {
     });
 };
 
-const useInitAuthNavigateObservable = () => {
+const useInitRemoteExampleNavigateObservable = () => {
     const history = useHistory();
 
     const onHistoryChange = ({ pathname }: Location) => {
-        const lastEvent = authNavigateObservable?.observable.getLastEvent();
+        const lastEvent = remoteExampleNavigateObservable?.observable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            authNavigateObservable?.publish({ pathname });
+            remoteExampleNavigateObservable?.publish({ pathname });
         }
     };
     // TODO: Fix typo
