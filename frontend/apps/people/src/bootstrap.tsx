@@ -13,11 +13,7 @@ interface MountProps {
 
 const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
     const root = createRoot(element!);
-    // root.render(
-    //     <React.StrictMode>
-    //         <App inIsolation={!!inIsolation} initialEntry={initialEntry} />
-    //     </React.StrictMode>
-    // );
+    // NOTE: React.StrictMode breaks React Router
     root.render(<App inIsolation={!!inIsolation} initialEntry={initialEntry} />);
 
     // If you want to start measuring performance in your app, pass a function
@@ -27,6 +23,7 @@ const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
 
     return (): void => {
         console.log('Unmounting People App...');
+        // NOTE: This should be done for all MF's to  avoid memory leaks
         hostNavigateObservable?.usubscribeAll();
     };
 };
