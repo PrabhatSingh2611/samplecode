@@ -10,46 +10,29 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeMutationResolverTest {
 
-    private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String TITLE = "chair";
-    private static final String ICON = "https://google.com/chair";
-
     @Mock
-    private AssetTypeFacade facade;
+    private AssetTypeFacade assetTypeFacade;
 
     @InjectMocks
     private AssetTypeMutationResolver assetTypeMutationResolver;
 
     @Test
-    void shouldCreateAssetType(@Mock CreateAssetTypeInput input) {
-        when(facade.createAssetType(any(CreateAssetTypeInput.class)))
-                .thenReturn(createAssetType());
+    void shouldCreateAssetType(@Mock CreateAssetTypeInput input,
+                               @Mock AssetType assetType) {
+
+        when(assetTypeFacade.createAssetType(any(CreateAssetTypeInput.class))).thenReturn(assetType);
 
         var result = assetTypeMutationResolver.createAssetType(input);
-
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getItem().getUuid());
-        assertEquals(TITLE, result.getItem().getTitle());
-        assertEquals(ICON, result.getItem().getIcon());
+        assertSame(assetType, result.getItem());
 
-    }
-
-    private AssetType createAssetType() {
-        return AssetType
-                .builder()
-                .uuid(TEST_UUID)
-                .title(TITLE)
-                .icon(ICON)
-                .build();
     }
 }

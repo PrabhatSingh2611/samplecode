@@ -12,67 +12,54 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeePositionMutationResolverTest {
 
-    private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String NAME = "x4W8hai";
-
     @Mock
-    private EmployeePositionFacade facade;
+    private EmployeePositionFacade employeePositionFacade;
 
     @InjectMocks
     private EmployeePositionMutationResolver employeePositionMutationResolver;
 
     @Test
-    void shouldCreateEmployeePosition(@Mock CreateEmployeePositionInput input) {
-        when(facade.createEmployeePosition(any(CreateEmployeePositionInput.class)))
-                .thenReturn(createEmployeePosition());
+    void shouldCreateEmployeePosition(@Mock CreateEmployeePositionInput input,
+                                      @Mock EmployeePosition employeePosition) {
+
+        when(employeePositionFacade.createEmployeePosition(any(CreateEmployeePositionInput.class)))
+                .thenReturn(employeePosition);
 
         var result = employeePositionMutationResolver.createEmployeePosition(input);
-
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getItem().getUuid());
-        assertEquals(NAME, result.getItem().getName());
+        assertSame(employeePosition, result.getItem());
     }
 
     @Test
-    void shouldUpdateEmployeePosition(@Mock UpdateEmployeePositionInput input) {
+    void shouldUpdateEmployeePosition(@Mock UpdateEmployeePositionInput input,
+                                      @Mock EmployeePosition employeePosition) {
 
-        when(facade.updateEmployeePosition(any(UpdateEmployeePositionInput.class)))
-                .thenReturn(createEmployeePosition());
+        when(employeePositionFacade.updateEmployeePosition(any(UpdateEmployeePositionInput.class)))
+                .thenReturn(employeePosition);
 
         var result = employeePositionMutationResolver.updateEmployeePosition(input);
-
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getItem().getUuid());
-        assertEquals(NAME, result.getItem().getName());
+        assertSame(employeePosition, result.getItem());
     }
 
     @Test
-    void shouldDeleteEmployeePosition(@Mock DeleteEmployeePositionInput input) {
-        when(facade.deleteEmployeePosition(any(DeleteEmployeePositionInput.class)))
-                .thenReturn(createEmployeePosition());
+    void shouldDeleteEmployeePosition(@Mock DeleteEmployeePositionInput input,
+                                      @Mock EmployeePosition employeePosition) {
+
+        when(employeePositionFacade.deleteEmployeePosition(any(DeleteEmployeePositionInput.class)))
+                .thenReturn(employeePosition);
 
         var result = employeePositionMutationResolver.deleteEmployeePosition(input);
-
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getEmployeePosition().getUuid());
+        assertSame(employeePosition, result.getEmployeePosition());
     }
 
-    private EmployeePosition createEmployeePosition() {
-        return EmployeePosition
-                .builder()
-                .uuid(TEST_UUID)
-                .id(1L)
-                .name(NAME)
-                .build();
-    }
 }

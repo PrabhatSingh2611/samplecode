@@ -4,7 +4,6 @@ import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.resolver.location.LocationResolver;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.LocationInput;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static graphql.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -24,59 +24,41 @@ import static org.mockito.Mockito.when;
 public class LocationResolverTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String NAME = "1EYdby2";
 
     @Mock
-    private LocationFacade facade;
+    private LocationFacade locationfacade;
 
     @InjectMocks
     private LocationResolver locationResolver;
 
     @Test
-    void shouldGetLocationByUuid() {
-        when(facade.findLocationByUuid(any(UUID.class)))
-                .thenReturn(createLocation());
+    void shouldGetLocationByUuid(@Mock LocationInput input,
+                                 @Mock Location location) {
 
-        var result = locationResolver.location(createLocationInput());
+        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(locationfacade.findLocationByUuid(any(UUID.class)))
+                .thenReturn(location);
 
+        var result = locationResolver.location(input);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getLocation().getUuid());
-        assertEquals(NAME, result.getLocation().getName());
-
+        assertSame(location, result.getLocation());
     }
 
     @Test
-    void shouldGetAllLocations(){
-        when(facade.findAllLocation()).thenReturn(createLocationList());
+    void shouldGetAllLocations(@Mock Location location){
+
+        when(locationfacade.findAllLocation()).thenReturn(createLocationList(location));
 
         var result = locationResolver.locations();
-
         assertNotNull(result);
-        Assertions.assertTrue(!result.getItems().isEmpty());
+        assertTrue(!result.getItems().isEmpty());
     }
 
-    private LocationInput createLocationInput() {
-        return LocationInput
-                .builder()
-                .uuid(TEST_UUID)
-                .build();
-
-    }
-
-    private List<Location> createLocationList() {
+    private List<Location> createLocationList(@Mock Location location) {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(createLocation());
+        locationList.add(location);
         return locationList;
     }
 
-
-    private Location createLocation() {
-        return Location
-                .builder()
-                .id(1L)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
 
 }
