@@ -5,8 +5,8 @@ const deps = getShareableDeps();
 module.exports = {
     output: {
         filename: '[name].[contenthash].js',
-        publicPath: 'http://localhost:3001/', // // Use with "build:serve" script
-        // publicPath: '/people/latest/', // Use for production
+        // publicPath: 'http://localhost:3001/', // Use for local prodiction test with "build:serve" script
+        publicPath: '/people/latest/', // Use for production
     },
     plugins: [
         new ModuleFederationPlugin({

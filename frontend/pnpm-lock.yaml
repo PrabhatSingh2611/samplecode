@@ -124,6 +124,61 @@ importers:
       tsconfig-paths-webpack-plugin: 3.5.2
       typescript: 4.6.4
 
+  apps/remote-example:
+    specifiers:
+      '@babel/core': ^7.17.9
+      '@babel/plugin-syntax-flow': ^7.16.7
+      '@babel/plugin-transform-react-jsx': ^7.14.9
+      '@craco/craco': ^6.4.3
+      '@testing-library/dom': 8.13.0
+      '@testing-library/jest-dom': ^5.16.4
+      '@testing-library/react': ^13.1.1
+      '@testing-library/user-event': ^13.5.0
+      '@types/jest': ^27.4.1
+      '@types/node': ^16.11.27
+      '@types/react': ^18.0.6
+      '@types/react-dom': ^18.0.2
+      '@types/react-router-dom': ^5.3.3
+      config: workspace:*
+      prettier: ^2.6.2
+      react: ^18.0.0
+      react-dom: ^18.0.0
+      react-router-dom: ^5.3.1
+      react-scripts: 5.0.1
+      serve: ^13.0.2
+      tsconfig: workspace:*
+      tsconfig-paths-webpack-plugin: ^3.5.2
+      typescript: ^4.6.3
+      ui: workspace:*
+      web-vitals: ^2.1.4
+    dependencies:
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      react-router-dom: 5.3.1_react@18.1.0
+      react-scripts: 5.0.1_yo44apyfppz34s3hgzapanbtsa
+      ui: link:../../packages/ui
+      web-vitals: 2.1.4
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@babel/plugin-syntax-flow': 7.16.7_@babel+core@7.17.10
+      '@babel/plugin-transform-react-jsx': 7.17.3_@babel+core@7.17.10
+      '@craco/craco': 6.4.3_2uygp7jtrg3bynjijgtkyqh2ia
+      '@testing-library/dom': 8.13.0
+      '@testing-library/jest-dom': 5.16.4
+      '@testing-library/react': 13.1.1_ef5jwxihqo6n7gxfmzogljlgcm
+      '@testing-library/user-event': 13.5.0_tlwynutqiyp5mns3woioasuxnq
+      '@types/jest': 27.5.0
+      '@types/node': 16.11.33
+      '@types/react': 18.0.8
+      '@types/react-dom': 18.0.3
+      '@types/react-router-dom': 5.3.3
+      config: link:../../packages/config
+      prettier: 2.6.2
+      serve: 13.0.2
+      tsconfig: link:../../packages/tsconfig
+      tsconfig-paths-webpack-plugin: 3.5.2
+      typescript: 4.6.4
+
   packages/config:
     specifiers:
       '@babel/core': ^7.17.9

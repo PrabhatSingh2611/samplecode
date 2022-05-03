@@ -13,13 +13,15 @@ sidebar_position: 3
 #### Steps:
 
 1. `cd frontend/apps`
-2. `cp remote-example {NEW_MF_NAME_LOWERCASE}`
-3. Using **Search & Replace** replace all `remote-example` with `NEW_MF_NAME_LOWERCASE`
-4. Using **Search & Replace** replace all `RemoteExample` with `NEW_MF_NAME`
-5. Using **Search & Replace** replace all `Remote Example` with `NEW_MF_NAME`
-6. Using **Search & Replace** replace all `3000` with `NEW_MF_PORT`
-7. Rename `.package.json` to `package.json`
+2. Remove `node_modules` from `frontend/remote-example`
+3. `cp remote-example {NEW_MF_NAME_LOWERCASE}`
+4. Using **Search & Replace** replace all `remote-example` with `NEW_MF_NAME_LOWERCASE`
+5. Using **Search & Replace** replace all `RemoteExample` with `NEW_MF_NAME`
+6. Using **Search & Replace** replace all `Remote Example` with `NEW_MF_NAME`
+7. Using **Search & Replace** replace all `3000` with `NEW_MF_PORT`
 8. Update packages if needed. Remove `react-router-dom` if needed.
-9. `cd frontend`
-10. `pnpm install`
-11. `pnpm dev`
+9. Add your new MF to `plugins.ModuleFederationPlugin.remotes` list in `frontend/apps/host/config/craco-config.dev.js` as `{NEW_MF_NAME_LOWERCASE}: '{NEW_MF_NAME_LOWERCASE}@http://localhost:{NEW_MF_PORT}/remoteEntry.js',`
+10. Add your new MF to `plugins.ModuleFederationPlugin.remotes` list in `frontend/apps/host/config/craco-config.prod.js` as `{NEW_MF_NAME_LOWERCASE}: '{NEW_MF_NAME_LOWERCASE}@${domain}/{NEW_MF_NAME_LOWERCASE}/latest/remoteEntry.js'` don't forget to change "'" to "`".
+11. `cd frontend`
+12. `pnpm install`
+13. `pnpm dev`

@@ -6,18 +6,19 @@ type RemoteExampleNavigatePayload = {
     pathname: string;
 };
 
-export const remoteExampleNavigateObservable = window.__shared__?.getRemoteObservable<RemoteExampleNavigatePayload>(
-    'remote-example:navigate',
-    {
-        type: 'object',
-        properties: {
-            pathname: {
-                type: 'string',
+export const remoteExampleNavigateObservable =
+    window.__shared__?.getRemoteObservable<RemoteExampleNavigatePayload>(
+        'remote-example:navigate',
+        {
+            type: 'object',
+            properties: {
+                pathname: {
+                    type: 'string',
+                },
             },
-        },
-        required: ['pathname'],
-    }
-);
+            required: ['pathname'],
+        }
+    );
 
 // NOTE: !!! This should be done only once per app. !!!
 type HostNavigatePayload = {
