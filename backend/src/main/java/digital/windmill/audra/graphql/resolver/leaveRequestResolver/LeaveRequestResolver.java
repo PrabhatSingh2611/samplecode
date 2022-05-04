@@ -11,6 +11,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
+
 public class LeaveRequestResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
 
     public LeaveRequestFacade facade;
