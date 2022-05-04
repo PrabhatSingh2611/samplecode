@@ -1,6 +1,7 @@
 package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
+import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
@@ -8,7 +9,8 @@ import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.AssetMapperImpl;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
-import digital.windmill.audra.graphql.type.Asset;
+import digital.windmill.audra.graphql.type.input.CreateAssetInput;
+import digital.windmill.audra.graphql.type.input.UpdateAssetInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -37,6 +40,7 @@ public class AssetMapperTest {
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
     private static final String NAME = "Name";
     private final static Instant LOCAL_DATE = Instant.now();
+    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
 
     private static final Long ID = 1L;
 
@@ -44,12 +48,77 @@ public class AssetMapperTest {
     @Test
         //TODO: mapLocationEntityToLocation dates and employee
     void shouldMapAssetEntityToAsset() {
-        Asset actual = mapper.mapAssetEntityToAsset(createAssetEntity());
+        var actual = mapper.mapAssetEntityToAsset(createAssetEntity());
         assertAll(
                 () -> assertEquals(ASSET_TITLE, actual.getTitle()),
                 () -> assertEquals(TEST_UUID, actual.getUuid()),
                 () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerial())
         );
+    }
+
+    @Test
+    void shouldMapAssetCreateInputToAssetEntity() {
+        var actual = mapper.mapAssetCreateInputToAssetEntity(createAssetInput(),
+                createAssetTypeEntity(),
+                createEmployeeEntity());
+        assertAll(
+                () -> assertEquals(ASSET_TITLE, actual.getTitle()),
+                () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerialNumber()),
+                () -> assertEquals(TEST_UUID, actual.getType().getUuid()),
+                () -> assertEquals(NAME, actual.getType().getTitle()),
+                () -> assertEquals(TEST_UUID, actual.getEmployee().getUuid())
+        );
+    }
+
+    @Test
+    void shouldMapAssetUpdateInputToAssetEntity() {
+        var actual = mapper.mapAssetUpdateInputToAssetEntity(updateAssetInput(),
+                createAssetEntity(),
+                createAssetTypeEntity(),
+                createEmployeeEntity());
+        assertAll(
+                () -> assertEquals(TEST_UUID, actual.getUuid()),
+                () -> assertEquals(ASSET_TITLE, actual.getTitle()),
+                () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerialNumber()),
+                () -> assertEquals(TEST_UUID, actual.getType().getUuid()),
+                () -> assertEquals(NAME, actual.getType().getTitle()),
+                () -> assertEquals(TEST_UUID, actual.getEmployee().getUuid())
+        );
+    }
+
+    private AssetTypeEntity createAssetTypeEntity() {
+        return AssetTypeEntity.builder()
+                .uuid(TEST_UUID)
+                .id(ID)
+                .title(NAME)
+                .build();
+    }
+
+    private CreateAssetInput createAssetInput() {
+        return CreateAssetInput
+                .builder()
+                .title(ASSET_TITLE)
+                .serial(ASSET_SERIAL_NUMBER)
+                .employee(TEST_UUID)
+                .type(TEST_UUID)
+                .archivedDate(ZONED_DATE_TIME)
+                .purchasedDate(ZONED_DATE_TIME)
+                .nextActionDate(ZONED_DATE_TIME)
+                .build();
+    }
+
+    private UpdateAssetInput updateAssetInput() {
+        return UpdateAssetInput
+                .builder()
+                .uuid(TEST_UUID)
+                .title(ASSET_TITLE)
+                .serial(ASSET_SERIAL_NUMBER)
+                .employee(TEST_UUID)
+                .type(TEST_UUID)
+                .archivedDate(ZONED_DATE_TIME)
+                .purchasedDate(ZONED_DATE_TIME)
+                .nextActionDate(ZONED_DATE_TIME)
+                .build();
     }
 
 

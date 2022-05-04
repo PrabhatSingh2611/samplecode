@@ -3,7 +3,6 @@ package digital.windmill.audra.facade;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
@@ -41,10 +40,9 @@ public class VacancyFacadeTest {
     private static final String DESCRIPTION = "Vacancy description";
     private static final String NAME = "Name";
     private static final String ROLE = "Admin";
-    private static final EmployeeRole ENUM_ROLE = EmployeeRole.ADMIN;
-    private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Instant DATE_TIME_INSTANT = DATE_TIME.toInstant();
+    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 1L;
+    private final static Instant LOCAL_DATE = Instant.now();
 
     @Mock
     private VacancyService vacancyService;
@@ -56,7 +54,7 @@ public class VacancyFacadeTest {
     private EmployeeService employeeService;
 
     @InjectMocks
-    VacancyFacadeImpl vacancyFacade;
+    private VacancyFacadeImpl vacancyFacade;
 
 
     @Test
@@ -83,7 +81,7 @@ public class VacancyFacadeTest {
     @Test
     void shouldGetAllVacancies(@Mock VacanciesInput vacanciesInput) {
         List<Vacancy> vacancies = List.of(createVacancy());
-        var pagedResponse = new PageImpl<>(vacancies);
+        var pagedResponse = new PageImpl(vacancies);
         when(vacancyService.findAllVacancies(any(VacanciesInput.class))).thenReturn(pagedResponse);
 
         var actualResult = vacancyFacade.getVacancies(vacanciesInput);
@@ -201,45 +199,30 @@ public class VacancyFacadeTest {
                 .name(NAME)
                 .build();
     }
+
     private EmployeeEntity createEmployeeEntity() {
-        return EmployeeEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .role(ENUM_ROLE)
-                .reportingManager(createReportingManagerEntity())
-                .location(createLocationEntity())
-                .birthday(DATE_TIME_INSTANT)
-                .position(createEmployeePositionEntity())
-                .build();
+        EmployeeEntity e = new EmployeeEntity();
+        e.setUuid(TEST_UUID);
+        e.setFirstName(NAME);
+        e.setLastName(NAME);
+        e.setBirthday(LOCAL_DATE);
+        e.setId(ID);
+        e.setPosition(createPositionEntity());
+        e.setLocation(createLocationEntity());
+        return e;
     }
 
-    private EmployeePositionEntity createEmployeePositionEntity() {
-        return EmployeePositionEntity
-                .builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
+    private EmployeePositionEntity createPositionEntity() {
+        EmployeePositionEntity p = new EmployeePositionEntity();
+        p.setId(ID);
+        p.setName(NAME);
+        return p;
     }
 
     private LocationEntity createLocationEntity() {
-        return LocationEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private EmployeeEntity createReportingManagerEntity() {
-        return EmployeeEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .role(ENUM_ROLE)
-                .birthday(DATE_TIME_INSTANT)
-                .build();
+        LocationEntity l = new LocationEntity();
+        l.setId(ID);
+        l.setName(NAME);
+        return l;
     }
 }

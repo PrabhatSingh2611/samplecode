@@ -31,9 +31,9 @@ public interface VacancyService {
     /**
      * This method will create a Vacancy by a specific value.
      *
-     * @param input                  input of which vacancy we should create
-     * @param employeePosition       employeePosition of which vacancy we should create
-     * @param employee               employee of which vacancy we should create
+     * @param input            input of which vacancy we should create
+     * @param employeePosition employeePosition of which vacancy we should create
+     * @param employee         employee of which vacancy we should create
      * @return created Vacancy
      */
     Vacancy createVacancy(CreateVacancyInput input,
@@ -43,7 +43,7 @@ public interface VacancyService {
     /**
      * This method will update a Vacancy by a specific value.
      *
-     * @param input                  input of which vacancy we should update
+     * @param input            input of which vacancy we should update
      * @param employeePosition employeePositionEntity of which vacancy we should update
      * @param employee         employeeEntity of which vacancy we should update
      * @return updated Vacancy

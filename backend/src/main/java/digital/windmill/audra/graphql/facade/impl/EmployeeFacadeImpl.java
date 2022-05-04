@@ -26,9 +26,7 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Transactional(readOnly = true)
     public Employee findEmployeeByUuid(UUID uuid) {
-        return employeeMapper.mapEmployeeEntityToEmployee(
-                employeeService.findEmployeeByUuid(uuid)
-        );
+        return employeeMapper.mapEmployeeEntityToEmployee(employeeService.findEmployeeByUuid(uuid));
     }
 
     @Override

@@ -8,7 +8,7 @@ public class AssetTypeSpecification {
 
     public static Specification<AssetTypeEntity> allAssetTypes() {
         return (root, query, builder) -> {
-           return builder.conjunction();
+            return builder.conjunction();
         };
     }
 }

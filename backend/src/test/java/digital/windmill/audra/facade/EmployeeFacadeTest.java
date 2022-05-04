@@ -1,5 +1,7 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,6 +39,7 @@ class EmployeeFacadeTest {
     private static final UUID REPORTING_MANAGER_UUID = UUID.randomUUID();
     private static final UUID POSITION_UUID = UUID.randomUUID();
     private static final UUID LOCATION_UUID = UUID.randomUUID();
+
     @Mock
     private EmployeePositionService employeePositionService;
     @Mock
@@ -45,8 +48,9 @@ class EmployeeFacadeTest {
     private EmployeeService employeeService;
     @Mock
     private EmployeeMapper employeeMapper;
+
     @InjectMocks
-    EmployeeFacadeImpl facade;
+    private EmployeeFacadeImpl facade;
 
     @Test
     void shouldReturnEmployeesById(@Mock EmployeeEntity employeeEntity,
@@ -63,7 +67,7 @@ class EmployeeFacadeTest {
     }
 
     @Test
-    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput, 
+    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput,
             @Mock Employee employee) {
 
         Page<Employee> employeesPage = createOneItemPage(employee);

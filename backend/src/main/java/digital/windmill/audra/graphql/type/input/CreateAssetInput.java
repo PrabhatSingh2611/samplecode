@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type;
+package digital.windmill.audra.graphql.type.input;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,17 +10,14 @@ import java.util.UUID;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Asset implements Node {
-
-    private UUID uuid;
+@AllArgsConstructor
+public class CreateAssetInput {
     private String title;
     private String serial;
-    private AssetType type;
-    private Employee employee;
+    private UUID type;
+    private UUID employee;
     private ZonedDateTime archivedDate;
     private ZonedDateTime purchasedDate;
     private ZonedDateTime nextActionDate;
-
 }

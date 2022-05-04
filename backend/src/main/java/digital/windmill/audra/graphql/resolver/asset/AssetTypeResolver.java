@@ -24,7 +24,7 @@ public class AssetTypeResolver implements GraphQLQueryResolver {
     }
 
     public ConnectionPayload<AssetType> getAssetTypes() {
-         return  ConnectionUtils.buildPayload(facade.getAssetsType());
+        return ConnectionUtils.buildPayload(facade.getAssetsType());
 
     }
 }

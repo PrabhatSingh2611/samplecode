@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -20,12 +21,15 @@ public class AssetTypeServiceImpl implements AssetTypeService {
 
     private AssetTypeRepository assetTypeRepository;
     private static final Integer DEFAULT_PAGE_SIZE = 10;
-    private static final Integer DEFAULT_PAGE_NUMBER=0;
+    private static final Integer DEFAULT_PAGE_NUMBER = 0;
 
     @Override
     public AssetTypeEntity findAssetByUuid(UUID uuid) {
-        return assetTypeRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Asset Type not found"));
+        if (Objects.nonNull(uuid)) {
+            return assetTypeRepository.findByUuid(uuid).orElseThrow(
+                    () -> new DataNotFoundException("Asset Type not found " + uuid));
+        }
+        return null;
     }
 
     @Override

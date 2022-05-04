@@ -1,6 +1,7 @@
 package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.AssetSpecification;
+import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.dao.repository.AssetRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.mapper.AssetMapper;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -21,15 +23,22 @@ public class AssetServiceImpl implements AssetService {
     private AssetMapper assetMapper;
 
     @Override
-    public Asset findAssetByUuid(UUID uuid) {
-        return assetMapper.mapAssetEntityToAsset(assetRepository.findByUuid(uuid).orElseThrow(
-                () -> new DataNotFoundException("Asset not found.")
-        ));
+    public AssetEntity findAssetByUuid(UUID uuid) {
+        if (Objects.nonNull(uuid)) {
+            return assetRepository.findByUuid(uuid).orElseThrow(
+                    () -> new DataNotFoundException("Asset not found " + uuid));
+        }
+        return null;
     }
 
     @Override
     public Page<Asset> findAll(AssetsInput input) {
         var spec = AssetSpecification.assets(input);
         return assetRepository.findAll(spec.getKey(), spec.getValue()).map(assetMapper::mapAssetEntityToAsset);
+    }
+
+    @Override
+    public AssetEntity createOrUpdateAsset(AssetEntity entity) {
+        return assetRepository.save(entity);
     }
 }

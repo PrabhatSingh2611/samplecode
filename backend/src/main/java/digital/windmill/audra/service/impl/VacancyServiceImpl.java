@@ -49,7 +49,7 @@ public class VacancyServiceImpl implements VacancyService {
                         input,
                         employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(employeePosition),
                         employeeEntity
-                        );
+                );
         return vacancyMapper.mapVacancyEntityToVacancy(vacancyRepository.save(vacancyEntity));
     }
 

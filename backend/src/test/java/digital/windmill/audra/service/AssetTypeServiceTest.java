@@ -4,8 +4,6 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
-import digital.windmill.audra.graphql.type.AssetType;
 import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -49,8 +46,7 @@ public class AssetTypeServiceTest {
         when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
         var result = assetTypeService.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
-        var expected = createAssetTypeEntity().orElse(null);
-        assertEquals(TEST_UUID,result.getUuid());
+        assertEquals(TEST_UUID, result.getUuid());
     }
 
 
@@ -60,10 +56,10 @@ public class AssetTypeServiceTest {
                 .thenReturn(createAssetTypeEntityList());
         var result = assetTypeService.getAssetsType();
         assertNotNull(result);
-        assertEquals(2L,result.getTotalElements());
-        assertEquals(TEST_UUID,result.getContent().get(0).getUuid());
-        assertEquals(TITLE,result.getContent().get(0).getTitle());
-        assertEquals(ICON,result.getContent().get(0).getIcon());
+        assertEquals(2L, result.getTotalElements());
+        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(TITLE, result.getContent().get(0).getTitle());
+        assertEquals(ICON, result.getContent().get(0).getIcon());
 
     }
 
@@ -74,19 +70,6 @@ public class AssetTypeServiceTest {
         Assertions.assertThrows(DataNotFoundException.class, () -> assetTypeService.findAssetByUuid(TEST_UUID));
     }
 
-    private Page<AssetTypeEntity> createAssetsType() {
-        return  new PageImpl<AssetTypeEntity>(
-        Arrays.asList( AssetTypeEntity.builder()
-                .uuid(TEST_UUID)
-                .title(TITLE)
-                .icon(ICON)
-                .build(),
-                AssetTypeEntity.builder()
-                        .uuid(TEST_UUID)
-                        .title(TITLE)
-                        .icon(ICON)
-                        .build()));
-    }
 
     private Optional<AssetTypeEntity> createAssetTypeEntity() {
         return Optional.ofNullable(AssetTypeEntity.builder()
@@ -114,13 +97,5 @@ public class AssetTypeServiceTest {
                         .icon(ICON)
                         .build()
         );
-    }
-
-    private AssetType createAssetType() {
-        return AssetType.builder()
-                .uuid(TEST_UUID)
-                .title(TITLE)
-                .icon(ICON)
-                .build();
     }
 }

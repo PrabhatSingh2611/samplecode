@@ -1,0 +1,24 @@
+type AssetType implements Node {
+    uuid: UUID!
+    title: String
+    icon: String
+}
+
+type AssetTypeConnection implements ConnectionPayload{
+    items: [AssetType!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input AssetTypeInput {
+	uuid:UUID!
+}
+
+
+type AssetTypePayload{
+    item: AssetType
+}
+
+input CreateAssetTypeInput{
+    title: String!
+}

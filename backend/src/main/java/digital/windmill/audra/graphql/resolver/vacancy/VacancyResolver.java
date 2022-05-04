@@ -1,10 +1,8 @@
 package digital.windmill.audra.graphql.resolver.vacancy;
 
 import digital.windmill.audra.graphql.facade.VacancyFacade;
-import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
 import digital.windmill.audra.graphql.type.ConnectionPayload;
 import digital.windmill.audra.graphql.type.Vacancy;
-import digital.windmill.audra.graphql.type.VacancyConnectionPayload;
 import digital.windmill.audra.graphql.type.VacancyPayload;
 import digital.windmill.audra.graphql.type.input.VacanciesInput;
 import digital.windmill.audra.graphql.type.input.VacancyInput;

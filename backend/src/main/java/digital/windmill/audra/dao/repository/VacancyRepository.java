@@ -18,6 +18,4 @@ public interface VacancyRepository extends JpaRepository<VacancyEntity, Long>, J
     Optional<VacancyEntity> findVacancyByUuid(@Param("uuid") UUID uuid);
 
 
-
-
 }

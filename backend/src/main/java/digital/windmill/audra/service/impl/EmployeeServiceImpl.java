@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -43,13 +43,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeEntity findEmployeeByUuid(UUID uuid) {
-        if(Optional.ofNullable(uuid).isPresent()){
+        if (Objects.nonNull(uuid)) {
             return employeeRepository.findByUuid(uuid).orElseThrow(
-                    () -> new DataNotFoundException("Employee not found for : " + uuid.toString())
+                    () -> new DataNotFoundException("Employee not found for : " + uuid)
             );
         }
-        else
-            return null;
+        return null;
     }
 
     @Override

@@ -60,7 +60,7 @@ public class EmployeePositionServiceTest {
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(createEmployeePosition());
         when(employeePositionMapper.mapUpdateToEmployeePositionEntity(any(UpdateEmployeePositionInput.class)
-                ,any(EmployeePosition.class)))
+                , any(EmployeePosition.class)))
                 .thenReturn(createEmployeePositionEntity());
 
         var result = service.updateEmployeePosition(updateEmployeePositionInput(), createEmployeePosition());
@@ -103,7 +103,7 @@ public class EmployeePositionServiceTest {
     }
 
     @Test
-    void shouldReturnNullWhenEmployeeIsNull(){
+    void shouldReturnNullWhenEmployeeIsNull() {
         var result = service.findEmployeePositionByUuid(null);
         assertNull(result);
     }

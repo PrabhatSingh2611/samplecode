@@ -49,13 +49,13 @@ public class EmployeeServiceTest {
     private static final String NAME = "BuA1VXU";
     private static final Long ID = 1L;
     private static final String ROLE = "z9Qtg5d";
-    private static final ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
-    private static final Instant DATE_TIME_INSTANT = BIRTHDAY_ZONED_DATE_TIME.toInstant();
+    private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
+    private final static Instant LOCAL_DATE = Instant.now();
 
 
     @Test
     void shouldCreateEmployee(@Mock CreateEmployeeInput input,
-                              @Mock EmployeeEntity employee,
+                              @Mock EmployeeEntity employeeEntity,
                               @Mock EmployeePosition employeePosition,
                               @Mock LocationEntity locationEntity) {
 
@@ -73,7 +73,7 @@ public class EmployeeServiceTest {
         when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn((createEmployeePojo()));
 
-        var result = service.createEmployee(input, employee, employeePosition, locationEntity);
+        var result = service.createEmployee(input, employeeEntity, employeePosition, locationEntity);
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());
@@ -87,7 +87,7 @@ public class EmployeeServiceTest {
 
     @Test
     void shouldFindEmployeeByUuid() {
-        when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.of(createEmployeeEntity()));
+        when(employeeRepository.findByUuid(any(UUID.class))).thenReturn(Optional.ofNullable(createEmployeeEntity()));
 
         var result = service.findEmployeeByUuid(TEST_UUID);
 
@@ -95,7 +95,7 @@ public class EmployeeServiceTest {
         assertEquals(TEST_UUID, result.getUuid());
         assertEquals(TEST_UUID, result.getLocation().getUuid());
         assertEquals(NAME, result.getPosition().getName());
-        assertEquals(DATE_TIME_INSTANT, result.getBirthday());
+        assertEquals(LOCAL_DATE, result.getBirthday());
     }
 
     @Test
@@ -106,7 +106,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void shouldReturnNullWhenEmployeeIsNull(){
+    void shouldReturnNullWhenEmployeeIsNull() {
         var result = service.findEmployeeByUuid(null);
         assertNull(result);
     }
@@ -147,8 +147,8 @@ public class EmployeeServiceTest {
         e.setUuid(TEST_UUID);
         e.setRole(EmployeeRole.EMPLOYEE);
         e.setLocation(createLocationEntity());
-        e.setBirthday(DATE_TIME_INSTANT);
         e.setPosition(createEmployeePositionEntity());
+        e.setBirthday(LOCAL_DATE);
         return e;
     }
 
