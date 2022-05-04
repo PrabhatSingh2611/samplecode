@@ -3,7 +3,6 @@ package digital.windmill.audra.resolver;
 import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.resolver.location.LocationResolver;
 import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.LocationInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,11 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static graphql.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
