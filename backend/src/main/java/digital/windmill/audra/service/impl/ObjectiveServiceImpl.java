@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ObjectiveServiceImpl implements ObjectiveService {
 
-    private static final Integer DEFAULT_PAGE_NUMBER=0;
+
     private static final Integer DEFAULT_PAGE_SIZE = 10;
     private ObjectiveRepository objectiveRepository;
 
@@ -30,9 +30,8 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     public Page<ObjectiveEntity> findAllObjectives(ObjectivesInput input) {
-        Specification<ObjectiveEntity> specification = ObjectiveSpecification.allObjectives();
-        PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
-        return objectiveRepository.findAll(specification, pagination);
+        var specification = ObjectiveSpecification.objectives(input,DEFAULT_PAGE_SIZE);
+        return objectiveRepository.findAll(specification.getKey(), specification.getValue());
     }
 
     @Override
