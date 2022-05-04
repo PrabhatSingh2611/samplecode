@@ -3,6 +3,7 @@ package digital.windmill.audra.graphql.mapper;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
+import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -35,8 +36,19 @@ public interface LocationMapper {
     /**
      * Maps Location To LocationEntity
      *
-     * @param location Location
+     * @param locationEntity Location
      * @return mapped Location
      */
-    LocationEntity mapLocationToLocationEntity(Location location);
+    LocationEntity mapLocationToLocationEntity(LocationEntity locationEntity);
+
+    /**
+     *
+     * @param input
+     * @param updatedLocationEntity
+     * @return
+     */
+    @Mapping(target = "id", source = "updatedLocationEntity.id")
+    @Mapping(target = "uuid", source = "updatedLocationEntity.uuid")
+    @Mapping(target = "name", source = "input.name")
+    LocationEntity mapLocationToLocationEntityUpdate(UpdateLocationInput input, LocationEntity updatedLocationEntity);
 }

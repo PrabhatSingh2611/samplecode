@@ -1,11 +1,15 @@
-query getLocations {
-    locations {
-        items {
-            uuid
-            name,
+query {
+    locations{
+        items{
             uuid
             name
         }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
     }
 }
+
 

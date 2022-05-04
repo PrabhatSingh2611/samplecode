@@ -1,8 +1,11 @@
 package digital.windmill.audra.service;
 
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,26 +15,19 @@ public interface LocationService {
     /**
      * This method will search location by an uuid value.
      *
-     * @param input of which location will be created with new data
+     * @param locationEntity of which location will be created with new data
      * @return an updated location
      */
-    Location createLocation(CreateLocationInput input);
+    LocationEntity createLocation(LocationEntity locationEntity);
 
     /**
      * This method will update location by provided value.
      *
-     * @param input    of which location will be updated with new data
-     * @param location is previous location that will be updated with new data i,e. input
+     * @param locationEntity is previous location that will be updated with new data
      * @return an updated location
      */
-    Location updateLocation(UpdateLocationInput input, Location location);
-
-    /**
-     * This method will search all the locations,
-     *
-     * @return required locations searched
-     */
-    List<Location> getLocations();
+    LocationEntity updateLocation(LocationEntity locationEntity);
+    
 
     /**
      * This method will search location by an uuid value.
@@ -39,5 +35,11 @@ public interface LocationService {
      * @param uuid of which location will be searched in Repository
      * @return required location searched wrapped into Location
      */
-    Location findLocationByUuid(UUID uuid);
+    LocationEntity findLocationByUuid(UUID uuid);
+
+    /**
+     *
+     * @return all location
+     */
+    Page<LocationEntity> getLocations();
 }

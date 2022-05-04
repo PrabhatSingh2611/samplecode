@@ -18,14 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(MockitoExtension.class)
 class LocationMapperTest {
 
-    @InjectMocks
-    private LocationMapperImpl mapper;
-
     private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
     private static final String TEXT = "EQSW";
-    private static final UUID TEST_UUID = UUID.fromString("b3a998bf-f067-40fd-a292-827b57226517");
+    private static final UUID TEST_UUID = UUID.randomUUID();
     private static final Long ID = 620L;
-    private static final Instant INSTANT_DATE = Instant.now();
+
+    @InjectMocks
+    private LocationMapperImpl mapper;
 
     @Test
     void mapLocationEntityToLocation() {

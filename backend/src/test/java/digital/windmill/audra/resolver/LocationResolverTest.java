@@ -9,12 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static graphql.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
@@ -47,18 +48,16 @@ public class LocationResolverTest {
     @Test
     void shouldGetAllLocations(@Mock Location location){
 
-        when(locationfacade.findAllLocation()).thenReturn(createLocationList(location));
+        Page<Location> pagedResponse = createOneItemPage(location);
+        when(locationfacade.getLocations()).thenReturn(pagedResponse);
 
         var result = locationResolver.locations();
         assertNotNull(result);
-        assertTrue(!result.getItems().isEmpty());
+        assertEquals(pagedResponse.getContent(), result.getItems());
     }
 
-    private List<Location> createLocationList(@Mock Location location) {
-        List<Location> locationList = new ArrayList<>();
-        locationList.add(location);
-        return locationList;
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
-
 
 }
