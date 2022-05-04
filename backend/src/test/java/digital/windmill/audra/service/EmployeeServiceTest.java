@@ -57,11 +57,11 @@ public class EmployeeServiceTest {
     void shouldCreateEmployee(@Mock CreateEmployeeInput input,
                               @Mock EmployeeEntity employeeEntity,
                               @Mock EmployeePosition employeePosition,
-                              @Mock Location location) {
+                              @Mock LocationEntity locationEntity) {
 
         when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class)))
                 .thenReturn(createEmployeePositionEntity());
-        when(locationMapper.mapLocationToLocationEntity(any(Location.class))).thenReturn(createLocationEntity());
+        when(locationMapper.mapLocationToLocationEntity(any(LocationEntity.class))).thenReturn(createLocationEntity());
         when(employeeMapper.mapEmployeeInputToEmployeeEntity(any(CreateEmployeeInput.class),
                 any(EmployeeEntity.class),
                 any(EmployeePositionEntity.class),
@@ -73,7 +73,7 @@ public class EmployeeServiceTest {
         when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
                 .thenReturn((createEmployeePojo()));
 
-        var result = service.createEmployee(input, employeeEntity, employeePosition, location);
+        var result = service.createEmployee(input, employeeEntity, employeePosition, locationEntity);
 
         assertNotNull(result);
         assertEquals(TEST_UUID, result.getUuid());

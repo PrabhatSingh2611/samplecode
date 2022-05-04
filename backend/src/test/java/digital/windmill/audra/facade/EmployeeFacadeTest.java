@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import java.util.UUID;
 
+import digital.windmill.audra.dao.entity.LocationEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -84,7 +85,7 @@ class EmployeeFacadeTest {
             @Mock CreateEmployeeInput input,
             @Mock Employee employee,
             @Mock EmployeePosition position,
-            @Mock Location location,
+            @Mock LocationEntity locationEntity,
             @Mock EmployeeEntity reportManagerEntity) {
 
         when(input.getReportingManager()).thenReturn(REPORTING_MANAGER_UUID);
@@ -92,11 +93,11 @@ class EmployeeFacadeTest {
         when(input.getPosition()).thenReturn(POSITION_UUID);
         when(employeeService.findEmployeeByUuid(REPORTING_MANAGER_UUID)).thenReturn(reportManagerEntity);
         when(employeePositionService.findEmployeePositionByUuid(POSITION_UUID)).thenReturn(position);
-        when(locationService.findLocationByUuid(LOCATION_UUID)).thenReturn(location);
+        when(locationService.findLocationByUuid(LOCATION_UUID)).thenReturn(locationEntity);
         when(employeeService.createEmployee(input,
                 reportManagerEntity,
                 position,
-                location
+                locationEntity
             )).thenReturn(employee);
 
         var result = facade.createEmployee(input);

@@ -1,39 +1,26 @@
 {
-  "data":{
-    "objectives":{
-      "items":[
-        {
-          "employee":{
-            "uuid":"48b560ab-7450-4088-b6bb-f57638ea0877"
-          },
-          "uuid":"e94f4d6a-a6cf-4786-a0b8-f096290057e3",
-          "name":"Objective 1",
-          "status":"NEW"
+  "data" : {
+    "objectives" : {
+      "items" : [ {
+        "employee" : {
+          "uuid" : "48b560ab-7450-4088-b6bb-f57638ea0877"
         },
-        {
-          "employee":{
-          "uuid":"5bea1a4d-b457-47c9-bf8b-72f50182b707"
+        "uuid" : "e94f4d6a-a6cf-4786-a0b8-f096290057e3",
+        "name" : "Objective 1",
+        "status" : "NEW"
+      }, {
+        "employee" : {
+          "uuid" : "48b560ab-7450-4088-b6bb-f57638ea0877"
         },
-          "uuid":"395e206f-fb3e-4364-92bf-0f5778e739a4",
-          "name":"Objective 2",
-          "status":"DONE"
-        },
-        {
-          "employee":
-          {
-            "uuid":"48b560ab-7450-4088-b6bb-f57638ea0877"
-          },
-          "uuid":"2fa56def-ce16-493c-8f8c-173bf3ee8309",
-          "name":"Objective 3",
-          "status":"DONE"
-        }
-      ],
-      "pageInfo":
-      {
-        "currentPage":0,
-        "totalPages":1
+        "uuid" : "2fa56def-ce16-493c-8f8c-173bf3ee8309",
+        "name" : "Objective 3",
+        "status" : "DONE"
+      } ],
+      "pageInfo" : {
+        "currentPage" : 0,
+        "totalPages" : 1
       },
-      "totalItems":3
+      "totalItems" : 2
     }
   }
 }

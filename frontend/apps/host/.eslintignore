@@ -1,0 +1,12 @@
+// .eslintignore
+build/*
+public/*
+config/*
+craco.config.js
+.eslintrc.js
+.prettier.js
+src/react-app-env.d.ts
+src/reportWebVitals.ts
+src/service-worker.ts
+src/serviceWorkerRegistration.ts
+src/setupTests.ts
