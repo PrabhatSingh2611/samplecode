@@ -1,5 +1,7 @@
 package digital.windmill.audra.rest;
 
+import java.util.UUID;
+
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import digital.windmill.audra.storage.StorageService;
+import digital.windmill.audra.rest.facade.RestResourceFacade;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -22,11 +24,11 @@ public class ResourceController {
             .notFound()
             .build();
 
-    private final StorageService service;
+    private final RestResourceFacade resourceFacade;
 
-    @GetMapping("/{resourceId}")
-    public ResponseEntity<Resource> fileById(@PathVariable("resourceId") String resourceId) {
-        return service.findById(resourceId)
+    @GetMapping("/{resourceUuid}")
+    public ResponseEntity<Resource> fileById(@PathVariable("resourceUuid") UUID resourceUuid) {
+        return resourceFacade.findById(resourceUuid)
             .map(this::prepareResponse)
             .orElse(NOT_FOUND_RESOURCE_RESPONSE);
     }

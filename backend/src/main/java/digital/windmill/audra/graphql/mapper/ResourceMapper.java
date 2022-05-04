@@ -32,9 +32,9 @@ public abstract class ResourceMapper {
     @Named("buildUrl")
     public String buildUrl(ResourceEntity entity)  {
         if (entity == null 
-                || entity.getOuterReference() == null) {
+                || entity.getUuid() == null) {
             return null;
         }
-        return StringUtils.join(urlPath, entity.getOuterReference());
+        return StringUtils.join(urlPath, entity.getUuid());
     }
 }

@@ -19,11 +19,10 @@ import digital.windmill.audra.graphql.type.Resource;
 class ResourceMapperTest {
 
     private static final UUID RESOURCE_UUID = UUID.randomUUID();
+    private static final UUID RESOURCE_THUMBNAIL_UUID = UUID.randomUUID();
     private static final String RESOURCE_PATH = "http://resource_path";
-    private static final String RESOURCE_REFERENCE = "res_reference";
-    private static final String THUMBNAIL_REFERENCE = "res_reference";
-    private static final String RESOURCE_URL = RESOURCE_PATH + "/" + RESOURCE_REFERENCE;
-    private static final String THUMBNAIL_URL = RESOURCE_PATH + "/" + THUMBNAIL_REFERENCE;
+    private static final String RESOURCE_URL = RESOURCE_PATH + "/" + RESOURCE_UUID;
+    private static final String THUMBNAIL_URL = RESOURCE_PATH + "/" + RESOURCE_THUMBNAIL_UUID;
 
     private ResourceMapper mapper = new ResourceMapperImpl();
 
@@ -31,8 +30,7 @@ class ResourceMapperTest {
     void shouldMap(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
         mapper.setUrlPath(RESOURCE_PATH);
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
-        when(entity.getOuterReference()).thenReturn(RESOURCE_REFERENCE);
-        when(entity.getThumbnail().getOuterReference()).thenReturn(THUMBNAIL_REFERENCE);
+        when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
 
         Resource actual = mapper.map(entity);
         assertEquals(RESOURCE_UUID, actual.getUuid());
@@ -44,7 +42,6 @@ class ResourceMapperTest {
     void shouldMapWithoutThumbnail(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
         mapper.setUrlPath(RESOURCE_PATH);
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
-        when(entity.getOuterReference()).thenReturn(RESOURCE_REFERENCE);
         
         Resource actual = mapper.map(entity);
         assertEquals(RESOURCE_UUID, actual.getUuid());
@@ -55,13 +52,12 @@ class ResourceMapperTest {
     @Test
     void shouldMapWithNotConfiguredUrlPath(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
-        when(entity.getOuterReference()).thenReturn(RESOURCE_REFERENCE);
-        when(entity.getThumbnail().getOuterReference()).thenReturn(THUMBNAIL_REFERENCE);
+        when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
 
         Resource actual = mapper.map(entity);
         assertEquals(RESOURCE_UUID, actual.getUuid());
-        assertEquals(RESOURCE_REFERENCE, actual.getUrl());
-        assertEquals(THUMBNAIL_REFERENCE, actual.getThumbnail());
+        assertEquals(RESOURCE_UUID.toString(), actual.getUrl());
+        assertEquals(RESOURCE_THUMBNAIL_UUID.toString(), actual.getThumbnail());
     }
 
 }

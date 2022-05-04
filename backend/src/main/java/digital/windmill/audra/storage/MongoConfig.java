@@ -15,8 +15,9 @@ import com.mongodb.client.MongoClients;
 @EnableMongoRepositories
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    private static final String FILE_STORAGE_DB = "files";
-    @Value("${storage.mongo.url}")
+    @Value("${spring.data.mongodb.gridfs.database}")
+    private String storageDatabase;
+    @Value("${spring.data.mongodb.uri}")
     private String mongoUrl;
 
     @Bean
@@ -31,7 +32,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     
     @Override
     protected String getDatabaseName() {
-        return FILE_STORAGE_DB;
+        return storageDatabase;
     }
 
 }

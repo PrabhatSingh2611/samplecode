@@ -3,20 +3,13 @@ package digital.windmill.audra;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graphql.spring.boot.test.GraphQLResponse;
-import com.graphql.spring.boot.test.GraphQLTestTemplate;
 
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
@@ -26,12 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class AssetIt extends AbstractIntegrationTest {
-
-    @Autowired
-    private GraphQLTestTemplate graphQLTestTemplate;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
@@ -113,18 +100,6 @@ class AssetIt extends AbstractIntegrationTest {
         String jsonString = readFromResource("graphql/response/updateAsset.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
-    }
-
-    private String readFromResource(String path) throws IOException, URISyntaxException {
-        return Files.readString(Paths.get(resourceUri(path)), StandardCharsets.UTF_8);
-    }
-
-    private URI resourceUri(String path) throws URISyntaxException {
-        return AssetIt
-                .class
-                .getClassLoader()
-                .getResource(path)
-                .toURI();
     }
 
 }

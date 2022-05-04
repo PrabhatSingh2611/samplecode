@@ -9,23 +9,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graphql.spring.boot.test.GraphQLResponse;
-import com.graphql.spring.boot.test.GraphQLTestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class VacancyIt  extends AbstractIntegrationTest {
-    @Autowired
-    private GraphQLTestTemplate graphQLTestTemplate;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")

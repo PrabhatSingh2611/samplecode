@@ -15,7 +15,6 @@ spring:
         jdbc:
           enable_lazy_load_no_trans: "false"
     show-sql: true
-
   liquibase:
     #    enabled: false
     change-log: "classpath:/db/changelog/changelog-master.xml"
@@ -26,6 +25,14 @@ spring:
     user: "postgres"
     password: "postgres"
     contexts: "local"
+  data:
+    mongodb:
+      username: root
+      password: example
+      host: localhost
+      port: 27017
+      uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}
+      gridfs.database: files
 
 management:
   server:
@@ -43,10 +50,11 @@ management:
 
 logging:
   level:
-    liquibase: "INFO"
+    root: warn
+    liquibase: "warn"
     org:
       springframework:
-        web: "info"
+        web: "warn"
 
 graphql:
   servlet:
@@ -68,6 +76,4 @@ graphiql:
     variables:
       editorTheme: "solarized light"
 
-storage: 
-  mongo.url: mongodb://root:example@localhost:27017/
-  destination.url: http://localhost:8080/resources
+storage.destination.url: http://localhost:8080/resources
