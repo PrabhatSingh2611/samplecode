@@ -1,0 +1,28 @@
+# IMPORTANT! This Dockerfile should be build from repository root.
+
+FROM node:16
+
+# Specify ENV variable to choose what app to build "docker build --build-arg TARGET=host" ["host", "people", "auth"]
+ARG TARGET=host
+ENV TARGET=${TARGET}
+
+# Instal pnpm globaly
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
+# Copy contents of /frontend from repository root to /app dir
+COPY frontend /app/
+
+# Set /app as current working directory
+WORKDIR /app
+
+# Fetch packages from a lockfile into virtual store, package manifest is ignored.
+RUN pnpm fetch
+
+# Install deps for all apps and packages
+RUN pnpm install -r --offline
+
+# Build only MF App and it's dependencies from packages
+RUN pnpm run build:${TARGET}
+
+# Copy MF build sources to /app/build
+RUN cp -a apps/${TARGET}/build .

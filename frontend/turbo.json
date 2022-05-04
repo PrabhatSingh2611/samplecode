@@ -8,6 +8,9 @@
                 "build/**"
             ]
         },
+        "build:host": {
+            "cache": false
+        },
         "lint": {
             "outputs": []
         },

@@ -8,6 +8,9 @@
     ],
     "scripts": {
         "build": "turbo run build --filter=!./apps/remote-example",
+        "build:host": "turbo run build --filter=./apps/host",
+        "build:people": "turbo run build --filter=./apps/people",
+        "build:auth": "turbo run build --filter=./apps/auth",
         "dev": "turbo run dev --parallel --filter=!./apps/remote-example",
         "lint": "turbo run lint --filter=!./apps/remote-example",
         "clear-all": "turbo run clear-all && rm -rf node_modules && rm pnpm-lock.yaml",
