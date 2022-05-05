@@ -39,7 +39,9 @@ public class StorageService {
 
     private DBObject prepareMetadata(StorableObject object) {
         var metadata = new BasicDBObject();
-        metadata.putAll(object.getMetadata());
+        if (object.getMetadata() != null) {
+            metadata.putAll(object.getMetadata());
+        }
         return metadata;
     }
     
