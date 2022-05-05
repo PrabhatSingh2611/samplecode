@@ -1,0 +1,9 @@
+mutation uploadResource($file: Upload!){
+  uploadResource(resource: $file) {
+    resource {
+      uuid
+      url
+      thumbnail
+    }
+  }
+}

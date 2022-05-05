@@ -15,10 +15,17 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_DATASOURCE_LIQUIBASE_USERNAME: postgres
       SPRING_DATASOURCE_LIQUIBASE_PASSWORD: postgres
+      STORAGE_HOST: http://localhost:8080/resources
+      SPRING_MONGO_USERNAME: root
+      SPRING_MONGO_PASSWORD: example
+      SPRING_MONGO_HOST: mongo
+      SPRING_MONGO_PORT: 27017
     depends_on:
       - "db"
+      - "mongo"
     links:
       - "db:db"
+      - "mongo:mongo"
 
   db:
     container_name: audra-db
@@ -29,3 +36,14 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: audra
+
+  mongo:
+    container_name: audra-mongodb
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+

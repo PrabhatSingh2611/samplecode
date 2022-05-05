@@ -1,6 +1,8 @@
 server:
   port: "8080"
 spring:
+  application:
+    name: "audra-service"
   datasource:
     url: "jdbc:postgresql://localhost:5432/audra"
     username: "postgres"
@@ -8,14 +10,11 @@ spring:
     driverClassName: "org.postgresql.Driver"
 
   jpa:
-    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
     open-in-view: false
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
     properties:
       hibernate:
-        jdbc:
-          enable_lazy_load_no_trans: "false"
-    show-sql: true
-
+        enable-lazy-load-no-trans: false
   liquibase:
     #    enabled: false
     change-log: "classpath:/db/changelog/changelog-master.xml"
@@ -26,6 +25,12 @@ spring:
     user: "postgres"
     password: "postgres"
     contexts: "local"
+  data:
+    mongodb:
+      username: root
+      password: example
+      host: localhost
+      port: 27017
 
 management:
   server:
@@ -68,4 +73,6 @@ graphiql:
   props:
     variables:
       editorTheme: "solarized light"
+
+storage.destination.url: http://localhost:8080/resources
 

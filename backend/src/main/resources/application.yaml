@@ -23,6 +23,14 @@ spring:
     user: ${SPRING_DATASOURCE_LIQUIBASE_USERNAME}
     password: ${SPRING_DATASOURCE_LIQUIBASE_PASSWORD}
     contexts: "!test,!local"
+  data:
+    mongodb:
+      username: ${SPRING_MONGO_USERNAME}
+      password: ${SPRING_MONGO_PASSWORD}
+      host: ${SPRING_MONGO_HOST}
+      port: ${SPRING_MONGO_PORT}
+      uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}
+      gridfs.database: files
 
 management:
   server:
@@ -40,12 +48,13 @@ management:
 
 logging:
   level:
-    root: "info"
+    root: "warn"
 
 graphql:
   servlet:
     mapping: "/graphql"
     enabled: true
+    corsEnabled: false
 
 graphiql:
   mapping: "/graphiql"
@@ -61,3 +70,5 @@ graphiql:
   props:
     variables:
       editorTheme: "solarized light"
+
+storage.destination.url: ${STORAGE_HOST}

@@ -1,0 +1,11 @@
+query getResource($uuid : UUID!) {
+  resource(input: {
+    uuid: $uuid
+  }) {
+    resource {
+      uuid
+      url
+      thumbnail
+    }
+  } 
+}
