@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Component;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +38,9 @@ public class StorageService {
     }
 
     private DBObject prepareMetadata(StorableObject object) {
-        return null;
+        var metadata = new BasicDBObject();
+        metadata.putAll(object.getMetadata());
+        return metadata;
     }
     
     private Query queryById(String resourceId) {
