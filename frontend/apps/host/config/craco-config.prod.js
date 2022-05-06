@@ -13,7 +13,7 @@ module.exports = {
             name: 'host',
             remotes: {
                 // people: `people@http://localhost:3001/remoteEntry.js`, // Use for local prodiction test with "build:serve" script
-                people: `people@$people/latest/remoteEntry.js`, // Use for Production
+                people: `people@people/latest/remoteEntry.js`, // Use for Production
             },
             shared: {
                 ...deps,
