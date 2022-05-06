@@ -121,6 +121,17 @@ type User {
 }
 ```
 
+## Update lists
+
+If you need to update several entities in big list use `ListInput`
+
+```graphql
+input ListInput {
+  add: NodesInput
+  remove: NodesInput
+}
+```
+
 ## Input (Connection)
 
 ```graphql
@@ -132,7 +143,7 @@ input NodesInput implements Nodes {
     uuids: [UUID!]!
 }
 
-type ProductsInput {
+input ProductsInput {
 	where: {
 		title: String! # "where" fields realted to Product on top of the `where` object
 		category: NodesInput,  # "where" fields realted to Product Sub Objects
