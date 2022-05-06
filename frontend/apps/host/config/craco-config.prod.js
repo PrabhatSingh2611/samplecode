@@ -2,8 +2,6 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const { getShareableDeps } = require('./shareable-dependencies');
 const deps = getShareableDeps();
 
-const domain = process.env.REACT_APP_PRODUCTION_DOMAIN;
-
 module.exports = {
     output: {
         filename: '[name].[contenthash].js',
@@ -15,7 +13,7 @@ module.exports = {
             name: 'host',
             remotes: {
                 // people: `people@http://localhost:3001/remoteEntry.js`, // Use for local prodiction test with "build:serve" script
-                people: `people@${domain}/people/latest/remoteEntry.js`, // Use for Production
+                people: `people@$people/latest/remoteEntry.js`, // Use for Production
             },
             shared: {
                 ...deps,
