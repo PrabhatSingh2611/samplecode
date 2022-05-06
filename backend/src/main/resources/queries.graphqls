@@ -10,5 +10,7 @@ type Query {
     vacancy(input:VacancyInput!):VacancyPayload!
     objective(input:ObjectiveInput!):ObjectivePayload!
     objectives(input:ObjectivesInput!):ObjectiveConnectionPayload!
+    announcement(input:AnnouncementInput!):AnnouncementPayload!
+    announcements(input:AnnouncementsInput!):AnnouncementConnectionPayload!
     resource(input: ResourceInput!): ResourcePayload!
 }

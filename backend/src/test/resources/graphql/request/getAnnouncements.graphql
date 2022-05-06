@@ -1,0 +1,19 @@
+query {
+    announcements(input:
+    {
+        from: "2022-02-02T13:25:34.480425Z",
+        to : "2022-03-02T13:25:34.480425Z"
+    }
+    ){
+        items{
+            uuid
+            createdAt
+        }
+
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

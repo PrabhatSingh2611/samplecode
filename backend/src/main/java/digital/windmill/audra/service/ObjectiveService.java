@@ -7,36 +7,34 @@ import org.springframework.data.domain.Page;
 import java.util.UUID;
 
 public interface ObjectiveService {
-    /**
-     * This method Create Objective
-     *
-     * @param objectiveEntity takes objectiveEntity as parameter
+    /**This method Create Objective
+     * @param entity by which Objective entity will be created
      * @return created Objective
      */
-    ObjectiveEntity createObjective(ObjectiveEntity objectiveEntity);
+    ObjectiveEntity createObjective(ObjectiveEntity entity);
 
     /**This method will update Objective
-     * @param updatedObjectiveEntity specific objective Entity that will be updated
-     * @return updated Objective
+     * @param entity specific objective Entity that will be updated
+     * @return updated Objective Entity
      */
-    ObjectiveEntity updateObjective(ObjectiveEntity updatedObjectiveEntity);
+    ObjectiveEntity updateObjective(ObjectiveEntity entity);
 
     /**This method will return a specific Objective by specific UUID.
-     * @param uuid uuid by which we search Objective
-     * @return a specific Objective
+     * @param uuid uuid by which we search Objective Entity
+     * @return a specific Objective Entity
      */
     ObjectiveEntity findObjectiveByUuid(UUID uuid);
 
-    /**This method will delete a EmployeePosition by a specific value.
+    /**This method will delete an Objective by a specific value.
      * @param objectiveToBeDeleted Objective of which we should be deleting
-     * @return deleted EmployeePosition
+     * @return deleted objective Entity
      */
     ObjectiveEntity deleteObjective(ObjectiveEntity objectiveToBeDeleted);
 
     /**
      * This method will return a list of Objective.
      * @param input for query result
-     * @return a list of Objective including pagination
+     * @return a list of Objective Entity including pagination
      */
     Page<ObjectiveEntity> findAllObjectives(ObjectivesInput input);
 }

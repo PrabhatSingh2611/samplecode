@@ -1,0 +1,8 @@
+mutation {
+    createAnnouncement(input: {body: "There will be holiday tomorrow"})
+    {
+        item {
+            body
+        }
+    }
+}

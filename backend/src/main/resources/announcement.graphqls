@@ -1,0 +1,42 @@
+type Announcement implements Node {
+    uuid: UUID!
+    body: String!
+    createdAt: ZonedDateTime!
+}
+
+input AnnouncementInput {
+    uuid: UUID!
+}
+
+type AnnouncementConnectionPayload implements ConnectionPayload {
+    items: [Announcement!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input AnnouncementsInput {
+    from: ZonedDateTime
+    to: ZonedDateTime
+    pagination: PageInput
+}
+
+input CreateAnnouncementInput {
+    body: String!
+}
+
+type AnnouncementPayload {
+    item: Announcement!
+}
+
+input UpdateAnnouncementInput {
+    uuid: UUID!
+    body: String!
+}
+
+input DeleteAnnouncementInput {
+    uuid: UUID!
+}
+
+type DeleteAnnouncementPayload {
+    Announcement: Node!
+}

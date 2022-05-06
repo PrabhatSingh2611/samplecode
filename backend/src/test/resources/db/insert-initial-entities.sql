@@ -44,3 +44,7 @@ VALUES
 (1, 'e94f4d6a-a6cf-4786-a0b8-f096290057e3', 1, 'Objective 1', 'Description of Objective 1', 'Comment of Objective 1', '2022-02-02T13:25:34.480425Z', 'NEW'),
 (2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of Objective 2', '2022-02-02T13:25:34.480425Z', 'DONE'),
 (3, '2fa56def-ce16-493c-8f8c-173bf3ee8309', 1, 'Objective 3', 'Description of Objective 3', 'Comment of Objective 3', '2022-02-02T13:25:34.480425Z', 'DONE');
+
+insert into announcement (id, uuid, body, created_at)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c88', 'this is sample 1 announcement body', '2022-02-02T13:25:34.480425Z'),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb890', 'this is sample 2 announcement body', '2021-02-02T13:25:34.480425Z');
