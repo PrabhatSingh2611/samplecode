@@ -5,6 +5,11 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Router from './core/Router';
 import PeopleObservables from './core/PeopleObservables';
 
+// NOTE - Set these lines in your remote and change the host value to the name of your remote (TH)
+// IMPORTANT - Call this function at the root of the application
+// import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
+// ClassNameGenerator.configure((componentName) => `people-${componentName}`);
+
 interface AppProps {
     inIsolation: boolean;
     initialEntry?: string;

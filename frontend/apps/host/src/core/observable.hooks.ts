@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AUTH_APP_CHANNEL, HOST_APP_CHANNEL } from './constants';
-import { Observable } from './observable';
+import { AUTH_APP_CHANNEL, HOST_APP_CHANNEL } from 'core/constants';
+import { Observable } from 'core/observable';
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
 export const useInitHostObservables = (): void => {
@@ -20,7 +20,7 @@ const useInitHostNavigateObservable = (): void => {
     const onHistoryChange = ({ pathname }: any) => {
         const lastEvent = hostNavigateObservable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            const relativePathname = getRealtivePathname(pathname, '/people', false);
+            const relativePathname = getRelativePathname(pathname, '/people', false);
             hostNavigateObservable.publish({ pathname: relativePathname });
         }
     };
@@ -38,7 +38,7 @@ const useInitAuthNavigateObservable = (): void => {
     const onAuthNavigate = ({ pathname }: any) => {
         console.count('onAuthNavigate');
         if (pathname !== history.location.pathname) {
-            const relativePathname = getRealtivePathname(pathname, '/people');
+            const relativePathname = getRelativePathname(pathname, '/people');
             console.log(
                 '🚀 ~ file: observable.hooks.ts ~ line 42 ~ onAuthNavigate ~ relativePathname',
                 relativePathname
@@ -53,7 +53,7 @@ const useInitAuthNavigateObservable = (): void => {
 };
 
 // NOTE: This functions will remove or add relatesTo string from pathname (i.e. "/people/details" <=> "/details")
-export const getRealtivePathname = (
+export const getRelativePathname = (
     pathname: string,
     relatesTo: string,
     prepend = true

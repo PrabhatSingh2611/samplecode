@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useInitHostObservables } from './observable.hooks';
+import { useInitHostObservables } from 'core/observable.hooks';
 
 const HostObservables = memo(
     () => {

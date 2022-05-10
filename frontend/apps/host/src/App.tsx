@@ -1,49 +1,38 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import { Button } from 'ui';
+import { BrowserRouter } from 'react-router-dom';
 
-import './App.css';
-import HostObservables from './core/HostObservables';
-import AsyncPeopleApp from './remotes/AsyncPeopleApp';
+import HostObservables from 'core/HostObservables';
 
-function App() {
+import ThemeProvider from 'theme';
+import { HelmetProvider } from 'react-helmet-async';
+import MotionLazyContainer from 'components/MotionLazyContainer';
+import ThemeSettings from 'components/settings';
+import { SettingsProvider } from 'contexts/SettingsContext';
+import { CollapseDrawerProvider } from 'contexts/CollapseDrawerContext';
+import DashboardLayout from 'layouts/dashboard';
+
+// NOTE - Set these lines in your remote and change the host value to the name of your remote (TH)
+// IMPORTANT - Call this function at the root of the application
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
+ClassNameGenerator.configure((componentName) => `host-${componentName}`);
+
+export default function App() {
     return (
-        <div className="HostApp">
-            <BrowserRouter>
-                <HostObservables />
-                <Header />
-                <Switch>
-                    <Route path="/people">
-                        <AsyncPeopleApp />
-                    </Route>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                </Switch>
-            </BrowserRouter>
-        </div>
+        <HelmetProvider>
+            <SettingsProvider>
+                <CollapseDrawerProvider>
+                    <BrowserRouter>
+                        <HostObservables />
+                        <MotionLazyContainer>
+                            <ThemeProvider>
+                                <ThemeSettings>
+                                    <DashboardLayout />
+                                </ThemeSettings>
+                            </ThemeProvider>
+                        </MotionLazyContainer>
+                    </BrowserRouter>
+                </CollapseDrawerProvider>
+            </SettingsProvider>
+        </HelmetProvider>
     );
 }
-
-const Header = (): JSX.Element => (
-    <header className="HostAppHeader">
-        <nav>
-            <Link className="HostAppLink" to="/">
-                Home
-            </Link>{' '}
-            |{' '}
-            <Link className="HostAppLink" to="/people">
-                People
-            </Link>
-        </nav>
-    </header>
-);
-
-const Home = (): JSX.Element => (
-    <div className="HostAppHome">
-        <h1>Host App</h1>
-        <Button />
-    </div>
-);
-
-export default App;

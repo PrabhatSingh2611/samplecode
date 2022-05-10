@@ -1,8 +1,8 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import AsyncLoader, { ImportFallbacks, ImportState } from '../core/AsyncLoader';
-import { getRealtivePathname } from '../core/observable.hooks';
+import AsyncLoader, { ImportFallbacks, ImportState } from 'core/AsyncLoader';
+import { getRelativePathname } from 'core/observable.hooks';
 
 export interface ImportLoaderProps {
     importLoadingFallback?: React.ReactNode;
@@ -22,7 +22,7 @@ const PeopleApp = React.memo(
             import('people/PeopleApp')
                 .then(({ mount }) => {
                     // TODO: Handle "onUnmount" returned from "mount()"
-                    const relativePathname = getRealtivePathname(
+                    const relativePathname = getRelativePathname(
                         history.location.pathname,
                         '/people',
                         false
