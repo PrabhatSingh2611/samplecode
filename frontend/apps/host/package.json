@@ -35,8 +35,8 @@
         "simplebar": "^5.3.6",
         "simplebar-react": "^2.3.6",
         "stylis-plugin-rtl": "^2.1.1",
-        "ui": "workspace:*",
         "url": "^0.11.0",
+        "wdx": "^0.1.0",
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {

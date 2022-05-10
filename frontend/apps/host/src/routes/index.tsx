@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import AsyncPeopleApp from 'remotes/AsyncPeopleApp';
-import { Button } from 'ui';
+import { WButton } from 'wdx';
 
 export default function Routes() {
     return (
@@ -18,6 +18,6 @@ export default function Routes() {
 const Home = () => (
     <div className="HostAppHome">
         <h1>Host App</h1>
-        <Button />
+        <WButton>click me</WButton>
     </div>
 );

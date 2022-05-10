@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
+import { ThemeProvider } from 'wdx';
+
 import HostObservables from 'core/HostObservables';
 
-import ThemeProvider from 'theme';
 import { HelmetProvider } from 'react-helmet-async';
 import MotionLazyContainer from 'components/MotionLazyContainer';
 import ThemeSettings from 'components/settings';

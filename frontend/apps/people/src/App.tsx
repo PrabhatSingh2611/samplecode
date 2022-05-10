@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input } from 'ui';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import Router from './core/Router';
@@ -47,7 +46,6 @@ const Header = (): JSX.Element => (
 const Home = (): JSX.Element => (
     <div className="PeopleAppHeaderHome">
         <h1>People App</h1>
-        <Input />
     </div>
 );
 
