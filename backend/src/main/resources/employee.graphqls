@@ -2,7 +2,7 @@ type Employee implements Node {
 	uuid: UUID!
 	firstName: String
 	lastName: String
-	role: String
+	role: EmployeeRole
 	birthday: ZonedDateTime
 	reportingManager:Employee
 	position: EmployeePosition

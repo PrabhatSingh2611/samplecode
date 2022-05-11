@@ -1,6 +1,7 @@
 package digital.windmill.audra.facade;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.facade.impl.AssetFacadeImpl;
 import digital.windmill.audra.graphql.mapper.AssetMapper;
 import digital.windmill.audra.graphql.type.Asset;
@@ -30,8 +31,7 @@ public class AssetFacadeTest {
     private static final String ASSET_TITLE = "Asset title";
     private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
     private static final String NAME = "Name";
-    private static final String POSITION = "Position";
-    private static final String ROLE = "Admin";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private final static Instant LOCAL_DATE = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 

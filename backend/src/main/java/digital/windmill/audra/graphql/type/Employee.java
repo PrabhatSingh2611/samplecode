@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.type;
 
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class Employee implements Node {
     private UUID uuid;
     private String firstName;
     private String lastName;
-    private String role;
+    private EmployeeRole role;
     private ZonedDateTime birthday;
     private Employee reportingManager;
     private EmployeePosition position;

@@ -4,6 +4,7 @@ import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.VacancyEntity;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.mapper.EmployeeMapper;
@@ -37,7 +38,7 @@ public class VacancyMapperTest {
     private static final String NAME = "Name";
     private final static Instant LOCALE_DATE_TIME = Instant.now();
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final String ROLE = "Admin";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private static final Long ID = 1L;
 
     @Mock

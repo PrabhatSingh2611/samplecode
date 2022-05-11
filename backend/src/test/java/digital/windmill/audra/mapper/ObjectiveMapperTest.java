@@ -38,7 +38,7 @@ class ObjectiveMapperTest {
     private static final String COMMENT = "schema,etc";
     private static final String DESCRIPTION = "Description";
     private static final ObjectiveStatus STATUS = ObjectiveStatus.NEW;
-    private static final String ROLE = "EMPLOYEE";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private static final EmployeeRole EMPLOYEE_ROLE = EmployeeRole.EMPLOYEE;
     private static final ZonedDateTime ZONE_DATE_TIME = ZonedDateTime.now();
     private static final Instant INSTANT_LOCAL_DATE = ZONE_DATE_TIME.toInstant();

@@ -1,5 +1,6 @@
 package digital.windmill.audra.resolver;
 
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.LeaveRequestFacade;
 import digital.windmill.audra.graphql.resolver.leaveRequestResolver.LeaveRequestResolver;
@@ -28,7 +29,7 @@ public class LeaveRequestResolverTest {
     private static final String NAME = "v965r2h";
     private static final Instant LOCAL_DATE = Instant.now();
     private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
-    private static final String ROLE = "6njELdS";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
 
     @Mock
     private LeaveRequestFacade facade;

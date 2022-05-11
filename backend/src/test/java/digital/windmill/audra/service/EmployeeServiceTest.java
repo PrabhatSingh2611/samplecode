@@ -48,7 +48,7 @@ public class EmployeeServiceTest {
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String NAME = "BuA1VXU";
     private static final Long ID = 1L;
-    private static final String ROLE = "z9Qtg5d";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private final static ZonedDateTime BIRTHDAY_ZONED_DATE_TIME = ZonedDateTime.now();
     private final static Instant LOCAL_DATE = Instant.now();
 

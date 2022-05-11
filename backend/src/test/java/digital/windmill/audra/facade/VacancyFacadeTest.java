@@ -3,6 +3,7 @@ package digital.windmill.audra.facade;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.facade.impl.VacancyFacadeImpl;
@@ -39,7 +40,7 @@ public class VacancyFacadeTest {
     private static final UUID TEST_UUID = UUID.fromString("91817d8b-5851-413f-9fd5-31f64cef4692");
     private static final String DESCRIPTION = "Vacancy description";
     private static final String NAME = "Name";
-    private static final String ROLE = "Admin";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
     private static final Long ID = 1L;
     private final static Instant LOCAL_DATE = Instant.now();

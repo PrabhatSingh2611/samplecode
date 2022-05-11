@@ -1,5 +1,6 @@
 package digital.windmill.audra.resolver;
 
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.facade.AssetFacade;
 import digital.windmill.audra.graphql.resolver.asset.AssetMutationResolver;
 import digital.windmill.audra.graphql.type.Asset;
@@ -27,7 +28,7 @@ public class AssetMutationTest {
     private static final UUID TEST_UUID = UUID.fromString("91817d8b-5851-413f-9fd5-31f64cef4692");
     private static final Long ID = 1L;
     private static final String NAME = "Name";
-    private static final String ROLE = "6njELdS";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private static final String SERIAL = "123QWE";
     private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
 

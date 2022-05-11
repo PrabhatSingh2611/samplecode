@@ -1,5 +1,6 @@
 package digital.windmill.audra.resolver;
 
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.VacancyPriority;
 import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.graphql.facade.VacancyFacade;
@@ -33,7 +34,7 @@ public class VacancyResolverTest {
     private static final Long ID = 1L;
     private static final String DESCRIPTION = "Vacancy description";
     private static final String NAME = "Name";
-    private static final String ROLE = "Admin";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
     private static final ZonedDateTime DATE_TIME = ZonedDateTime.now();
 
 

@@ -1,5 +1,6 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.impl.LeaveRequestFacadeImpl;
 import digital.windmill.audra.graphql.type.Employee;
@@ -33,7 +34,7 @@ class LeaveRequestFacadeTest {
     private static final String NAME = "PcwrDcz";
     private final static Instant LOCAL_DATE = Instant.now();
     private final static LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
-    private static final String ROLE = "6njELdS";
+    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
 
     @Test
     void findLeaveRequestById() {
