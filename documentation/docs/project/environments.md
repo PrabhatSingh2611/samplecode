@@ -2,48 +2,56 @@
 sidebar_position: 2
 ---
 
+import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } from '../index.js'
+
 # Environments
 
-## Develop
+## Develop Environments:
 
 ### Main Develop
 
-- URL: <a href="https://dev-audra.dev.topazdigital.cloud" target="_blank">https://dev-audra.dev.topazdigital.cloud</a>
-- Status: ✅ **ACTIVE**, _Incremental Auto Deploy is IN PROGRESS_
+- Status: ✅ **ACTIVE**, _Incremental & Auto Deploy is IN PROGRESS_
 - Purpose: **Test latest Develop**
-- Main Develop Env redeployed automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
+- URL (_FrontEnd_): <ExternalLink url="https://dev-audra.dev.topazdigital.cloud"/>
+- Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/Audra-front/"/>
+- Main Develop Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
 - Automatically redeploys only affected/updated/changed MF's: 🚀 **Incremental Auto Deploy**
 
 ### Documentation
 
-- URL: <a href="https://dev-audra-docs.dev.topazdigital.cloud" target="_blank">https://dev-audra-docs.dev.topazdigital.cloud</a>
 - Status: 🚧 **UNDER CONSTRUCTION**
 - Purpose: **Read Documentation**
-- Documentation Env redeployed automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
+- URL (_FrontEnd_): <ExternalLink url="https://dev-audra-docs.dev.topazdigital.cloud"/>
+- Jenkinks (_FrontEnd_): N/A
+- Owner: <TeamAll/>
+- Documentation Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
 
 ### Develop #1
 
-- URL: <a href="https://dev-audra-1.dev.topazdigital.cloud" target="_blank">https://dev-audra-1.dev.topazdigital.cloud</a>
 - Status: 🚧 **UNDER CONSTRUCTION**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
-- Owned by Team: **Leleka More**
+- URL (_FrontEnd_): <ExternalLink url="https://dev-audra-1.dev.topazdigital.cloud"/>
+- Jenkinks (_FrontEnd_): N/A
+- Owner: <TeamLelekaMore/>
 - Develop #1 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
 
 ### Develop #2
 
-- URL: <a href="https://dev-audra-2.dev.topazdigital.cloud" target="_blank">https://dev-audra-2.dev.topazdigital.cloud</a>
 - Status: 🚧 **UNDER CONSTRUCTION**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
-- Owned by Team: **Avengers**
+- URL (_FrontEnd_): <ExternalLink url="https://dev-audra-2.dev.topazdigital.cloud"/>
+- Jenkinks (_FrontEnd_): N/A
+- Owner: <TeamAvengers/>
 - Develop #2 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
 
 ### Develop #3
 
-- URL: <a href="https://dev-audra-3.dev.topazdigital.cloud" target="_blank">https://dev-audra-3.dev.topazdigital.cloud</a>
 - Status: 🚧 **UNDER CONSTRUCTION**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
-- Owned by Team: **Achivers**
+- URL (_FrontEnd_): <ExternalLink url="https://dev-audra-3.dev.topazdigital.cloud"/>
+- Jenkinks (_FrontEnd_): N/A
+- Owner: <TeamAchivers/>
 - Develop #3 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
