@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { List, Collapse } from '@mui/material';
-import { NavListProps } from 'components/nav-section/type';
-import { NavItemRoot, NavItemSub } from 'components/nav-section/vertical/NavItem';
-import { getActive } from 'components/nav-section/utils/nav-section.utils';
 
-type NavListRootProps = {
+import { List, Collapse } from '@mui/material';
+
+import { NavListProps } from 'components/nav-section/type';
+import { getActive } from 'components/nav-section/utils/nav-section.utils';
+import { NavItemRoot, NavItemSub } from 'components/nav-section/vertical/NavItem';
+
+interface INavListRootProps {
     list: NavListProps;
     isCollapse: boolean;
-};
+}
 
-export function NavListRoot({ list, isCollapse }: NavListRootProps) {
+export function NavListRoot({ list, isCollapse }: INavListRootProps): JSX.Element {
     const { pathname } = useLocation();
 
     const active = getActive(list.path, pathname);
@@ -27,7 +29,7 @@ export function NavListRoot({ list, isCollapse }: NavListRootProps) {
                     isCollapse={isCollapse}
                     active={active}
                     open={open}
-                    onOpen={() => setOpen(!open)}
+                    onOpen={(): void => setOpen(!open)}
                 />
 
                 {!isCollapse && (
@@ -46,11 +48,11 @@ export function NavListRoot({ list, isCollapse }: NavListRootProps) {
     return <NavItemRoot item={list} active={active} isCollapse={isCollapse} />;
 }
 
-type NavListSubProps = {
+interface INavListSubProps {
     list: NavListProps;
-};
+}
 
-function NavListSub({ list }: NavListSubProps) {
+function NavListSub({ list }: INavListSubProps): JSX.Element {
     const { pathname } = useLocation();
 
     const active = getActive(list.path, pathname);
@@ -62,7 +64,12 @@ function NavListSub({ list }: NavListSubProps) {
     if (hasChildren) {
         return (
             <>
-                <NavItemSub item={list} onOpen={() => setOpen(!open)} open={open} active={active} />
+                <NavItemSub
+                    item={list}
+                    onOpen={(): void => setOpen(!open)}
+                    open={open}
+                    active={active}
+                />
 
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding sx={{ pl: 3 }}>

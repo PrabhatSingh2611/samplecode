@@ -1,12 +1,14 @@
-import { m, MotionProps } from 'framer-motion';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+
 import { Box, BoxProps } from '@mui/material';
-import useResponsive from 'hooks/useResponsive';
+import { m, MotionProps } from 'framer-motion';
+
 import { varContainer } from 'components/animate/variants';
+import useResponsive from 'hooks/useResponsive';
 
-type IProps = BoxProps & MotionProps;
+type IBoxProps = BoxProps & MotionProps;
 
-interface Props extends IProps {
+interface IProps extends IBoxProps {
     children: ReactNode;
     disableAnimatedMobile?: boolean;
 }
@@ -15,7 +17,7 @@ export default function MotionViewport({
     children,
     disableAnimatedMobile = true,
     ...other
-}: Props) {
+}: IProps): JSX.Element {
     const isDesktop = useResponsive('up', 'sm');
 
     if (!isDesktop && disableAnimatedMobile) {

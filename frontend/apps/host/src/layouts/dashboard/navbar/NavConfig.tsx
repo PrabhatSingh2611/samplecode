@@ -1,6 +1,8 @@
+import React from 'react';
+
 import SvgIconStyle from 'components/SvgIconStyle';
 
-const getIcon = (name: string) => (
+const getIcon = (name: string): JSX.Element => (
     <SvgIconStyle src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
 );
 

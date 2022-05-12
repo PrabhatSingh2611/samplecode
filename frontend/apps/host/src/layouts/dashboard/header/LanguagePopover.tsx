@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { MenuItem, Stack } from '@mui/material';
 import { Localization } from '@mui/material/locale';
+
 import Image from 'components/Image';
 import MenuPopover from 'components/MenuPopover';
 import { IconButtonAnimate } from 'components/animate';
@@ -13,14 +15,14 @@ interface ILangOption {
     icon: string;
 }
 
-export default function LanguagePopover() {
+export default function LanguagePopover(): JSX.Element {
     const [open, setOpen] = useState<HTMLElement | null>(null);
 
-    const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpen = (event: React.MouseEvent<HTMLElement>): void => {
         setOpen(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(null);
     };
 
@@ -42,10 +44,10 @@ export default function LanguagePopover() {
                 anchorEl={open}
                 onClose={handleClose}
                 sx={{
+                    width: 180,
                     mt: 1.5,
                     ml: 0.75,
-                    width: 180,
-                    '& .MuiMenuItem-root': { px: 1, typography: 'body2', borderRadius: 0.75 },
+                    '& .MuiMenuItem-root': { px: 1, borderRadius: 0.75, typography: 'body2' },
                 }}
             >
                 <Stack spacing={0.75}>

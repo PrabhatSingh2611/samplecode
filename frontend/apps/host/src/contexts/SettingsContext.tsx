@@ -1,7 +1,5 @@
-import { ReactNode, useEffect, createContext } from 'react';
-import useLocalStorage from 'hooks/useLocalStorage';
-import getColorPresets, { colorPresets, defaultPreset } from 'utils/getColorPresets';
-import { defaultSettings } from 'theme/config';
+import React, { ReactNode, useEffect, createContext } from 'react';
+
 import {
     ThemeMode,
     ThemeLayout,
@@ -10,35 +8,51 @@ import {
     ThemeColorPresets,
     SettingsContextProps,
 } from 'components/settings/type';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { defaultSettings } from 'theme/config';
+import getColorPresets, { colorPresets, defaultPreset } from 'utils/getColorPresets';
 
 const initialState: SettingsContextProps = {
     ...defaultSettings,
+    // TODO:fix types for onToggleMode ext. (VZ)
     // Mode
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleMode: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeMode: () => {},
 
     // Direction
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleDirection: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeDirection: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeDirectionByLang: () => {},
 
     // Layout
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleLayout: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeLayout: () => {},
 
     // Contrast
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleContrast: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeContrast: () => {},
 
     // Color
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onChangeColor: () => {},
     setColor: defaultPreset,
     colorOption: [],
 
     // Stretch
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleStretch: () => {},
 
     // Reset
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onResetSetting: () => {},
 };
 
@@ -48,7 +62,7 @@ type SettingsProviderProps = {
     children: ReactNode;
 };
 
-function SettingsProvider({ children }: SettingsProviderProps) {
+function SettingsProvider({ children }: SettingsProviderProps): JSX.Element {
     const [settings, setSettings] = useLocalStorage('settings', {
         themeMode: initialState.themeMode,
         themeLayout: initialState.themeLayout,
@@ -69,14 +83,14 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Mode
 
-    const onToggleMode = () => {
+    const onToggleMode = (): void => {
         setSettings({
             ...settings,
             themeMode: settings.themeMode === 'light' ? 'dark' : 'light',
         });
     };
 
-    const onChangeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeMode = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSettings({
             ...settings,
             themeMode: (event.target as HTMLInputElement).value as ThemeMode,
@@ -85,21 +99,21 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Direction
 
-    const onToggleDirection = () => {
+    const onToggleDirection = (): void => {
         setSettings({
             ...settings,
             themeDirection: settings.themeDirection === 'rtl' ? 'ltr' : 'rtl',
         });
     };
 
-    const onChangeDirection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeDirection = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSettings({
             ...settings,
             themeDirection: (event.target as HTMLInputElement).value as ThemeDirection,
         });
     };
 
-    const onChangeDirectionByLang = (lang: string) => {
+    const onChangeDirectionByLang = (lang: string): void => {
         setSettings({
             ...settings,
             themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
@@ -108,14 +122,14 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Layout
 
-    const onToggleLayout = () => {
+    const onToggleLayout = (): void => {
         setSettings({
             ...settings,
             themeLayout: settings.themeLayout === 'vertical' ? 'horizontal' : 'vertical',
         });
     };
 
-    const onChangeLayout = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeLayout = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSettings({
             ...settings,
             themeLayout: (event.target as HTMLInputElement).value as ThemeLayout,
@@ -124,14 +138,14 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Contrast
 
-    const onToggleContrast = () => {
+    const onToggleContrast = (): void => {
         setSettings({
             ...settings,
             themeContrast: settings.themeContrast === 'default' ? 'bold' : 'default',
         });
     };
 
-    const onChangeContrast = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeContrast = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSettings({
             ...settings,
             themeContrast: (event.target as HTMLInputElement).value as ThemeContrast,
@@ -140,7 +154,7 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Color
 
-    const onChangeColor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeColor = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSettings({
             ...settings,
             themeColorPresets: (event.target as HTMLInputElement).value as ThemeColorPresets,
@@ -149,7 +163,7 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Stretch
 
-    const onToggleStretch = () => {
+    const onToggleStretch = (): void => {
         setSettings({
             ...settings,
             themeStretch: !settings.themeStretch,
@@ -158,7 +172,7 @@ function SettingsProvider({ children }: SettingsProviderProps) {
 
     // Reset
 
-    const onResetSetting = () => {
+    const onResetSetting = (): void => {
         setSettings({
             themeMode: initialState.themeMode,
             themeLayout: initialState.themeLayout,

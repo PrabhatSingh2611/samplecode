@@ -1,12 +1,14 @@
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
-import { Box, BoxProps } from '@mui/material';
 
-interface Props extends BoxProps {
+import { Box, BoxProps } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+interface IProps extends BoxProps {
     disabledLink?: boolean;
 }
 
-export default function Logo({ disabledLink = false, sx }: Props) {
+export default function Logo({ disabledLink = false, sx }: IProps): JSX.Element {
     const theme = useTheme();
 
     const PRIMARY_LIGHT = theme.palette.primary.light;

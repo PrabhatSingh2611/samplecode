@@ -1,7 +1,10 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { List, Box, ListSubheader, SxProps } from '@mui/material';
-import { NavSectionProps } from '../type';
-import { NavListRoot } from './NavList';
+import { styled } from '@mui/material/styles';
+
+import { INavSectionProps } from 'components/nav-section/type';
+import { NavListRoot } from 'components/nav-section/vertical/NavList';
 
 interface IProps {
     sx?: SxProps;
@@ -25,7 +28,7 @@ export default function NavSectionVertical({
     navConfig,
     isCollapse = false,
     ...other
-}: NavSectionProps) {
+}: INavSectionProps): JSX.Element {
     return (
         <Box {...other}>
             {navConfig.map((group) => (

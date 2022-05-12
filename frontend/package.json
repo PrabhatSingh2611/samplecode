@@ -12,11 +12,16 @@
         "build:people": "turbo run build --filter=./apps/people",
         "build:auth": "turbo run build --filter=./apps/auth",
         "dev": "turbo run dev --parallel --filter=!./apps/remote-example",
-        "lint": "turbo run lint --filter=!./apps/remote-example",
+        "lint": "turbo run lint --filter=!./packages/wdx",
+        "lint:fix": "turbo run lint:fix",
         "clear-all": "turbo run clear-all && rm -rf node_modules && rm pnpm-lock.yaml",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "prepare": "cd .. && husky install frontend/.husky",
+        "unused-exports": "turbo run unused-exports"
     },
     "devDependencies": {
+        "@welldone-software/why-did-you-render": "^7.0.1",
+        "husky": "^7.0.4",
         "prettier": "latest",
         "turbo": "latest"
     },

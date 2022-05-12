@@ -1,9 +1,11 @@
-import { memo } from 'react';
-import { styled } from '@mui/material/styles';
+import React, { memo } from 'react';
+
 import { Container, AppBar } from '@mui/material';
-import { HEADER } from 'theme/config';
+import { styled } from '@mui/material/styles';
+
 import { NavSectionHorizontal } from 'components/nav-section';
 import navConfig from 'layouts/dashboard/navbar/NavConfig';
+import { HEADER } from 'theme/config';
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     transition: theme.transitions.create('top', {
@@ -19,7 +21,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
 }));
 
-function NavbarHorizontal() {
+function NavbarHorizontal(): JSX.Element {
     return (
         <RootStyle>
             <Container maxWidth={false}>

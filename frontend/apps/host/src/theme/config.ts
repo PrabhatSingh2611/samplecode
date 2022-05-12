@@ -1,4 +1,5 @@
 import { enUS, frFR, zhCN, viVN } from '@mui/material/locale';
+
 import { SettingsValueProps } from 'components/settings/type';
 
 export const HEADER = {
@@ -63,5 +64,3 @@ export const allLangs = [
         icon: '/assets/icons/flags/ic_flag_cn.svg',
     },
 ];
-
-export const defaultLang = allLangs[0]; // English

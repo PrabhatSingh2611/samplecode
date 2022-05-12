@@ -1,17 +1,21 @@
-import { m } from 'framer-motion';
-import { forwardRef, ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
+
 import { Box, IconButton, IconButtonProps } from '@mui/material';
+import { m } from 'framer-motion';
+
+import { getVariantSize } from 'components/animate/FabButtonAnimate';
 
 const IconButtonAnimate = forwardRef<HTMLButtonElement, IconButtonProps>(
-    ({ children, size = 'medium', ...other }, ref) => (
+    ({ children, size = 'medium', ...other }, ref): JSX.Element => (
         <AnimateWrap size={size}>
             <IconButton size={size} ref={ref} {...other}>
                 {children}
             </IconButton>
         </AnimateWrap>
-    )
+    ),
 );
 
+IconButtonAnimate.displayName = 'IconButtonAnimate';
 export default IconButtonAnimate;
 
 type AnimateWrapProp = {
@@ -34,16 +38,13 @@ const varLarge = {
     tap: { scale: 0.99 },
 };
 
-function AnimateWrap({ size, children }: AnimateWrapProp) {
-    const isSmall = size === 'small';
-    const isLarge = size === 'large';
-
+function AnimateWrap({ size, children }: AnimateWrapProp): JSX.Element {
     return (
         <Box
             component={m.div}
             whileTap="tap"
             whileHover="hover"
-            variants={(isSmall && varSmall) || (isLarge && varLarge) || varMedium}
+            variants={getVariantSize(size, varSmall, varMedium, varLarge)}
             sx={{
                 display: 'inline-flex',
             }}

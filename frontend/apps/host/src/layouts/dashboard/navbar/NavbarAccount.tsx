@@ -1,5 +1,7 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Box, Link, Typography, Avatar } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const RootStyle = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -12,11 +14,11 @@ const RootStyle = styled('div')(({ theme }) => ({
     }),
 }));
 
-type Props = {
+interface IProps {
     isCollapse: boolean | undefined;
-};
+}
 
-export default function NavbarAccount({ isCollapse }: Props) {
+export default function NavbarAccount({ isCollapse }: IProps): JSX.Element {
     return (
         <Link underline="none" color="inherit">
             <RootStyle
@@ -39,8 +41,8 @@ export default function NavbarAccount({ isCollapse }: Props) {
                                 duration: theme.transitions.duration.shorter,
                             }),
                         ...(isCollapse && {
-                            ml: 0,
                             width: 0,
+                            ml: 0,
                         }),
                     }}
                 >

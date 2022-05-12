@@ -1,8 +1,11 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Grid, RadioGroup, CardActionArea } from '@mui/material';
-import useSettings from 'hooks/useSettings';
+import { styled } from '@mui/material/styles';
+
 import Iconify from 'components/Iconify';
 import BoxMask from 'components/settings/drawer/BoxMask';
+import useSettings from 'hooks/useSettings';
 
 const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     height: 72,
@@ -14,7 +17,7 @@ const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     borderRadius: Number(theme.shape.borderRadius) * 1.25,
 }));
 
-export default function SettingDirection() {
+export default function SettingDirection(): JSX.Element {
     const { themeDirection, onChangeDirection } = useSettings();
 
     return (
@@ -24,7 +27,7 @@ export default function SettingDirection() {
                     const isSelected = themeDirection === direction;
 
                     return (
-                        <Grid key={direction} item xs={6} sx={{ pl: 2, pt: 2 }}>
+                        <Grid key={direction} item xs={6} sx={{ pt: 2, pl: 2 }}>
                             <BoxStyle
                                 sx={{
                                     ...(isSelected && {

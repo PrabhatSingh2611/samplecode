@@ -1,21 +1,29 @@
-import { m, MotionProps } from 'framer-motion';
+import React from 'react';
+
 import { Box, BoxProps } from '@mui/material';
+import { m, MotionProps } from 'framer-motion';
+
 import { varFade } from 'components/animate/variants';
 
 type Props = BoxProps & MotionProps;
 
-interface TextAnimateProps extends Props {
+interface ITextAnimateProps extends Props {
     text: string;
 }
 
-export default function TextAnimate({ text, variants, sx, ...other }: TextAnimateProps) {
+export default function TextAnimate({
+    text,
+    variants,
+    sx,
+    ...other
+}: ITextAnimateProps): JSX.Element {
     return (
         <Box
             component={m.h1}
             sx={{
-                typography: 'h1',
-                overflow: 'hidden',
                 display: 'inline-flex',
+                overflow: 'hidden',
+                typography: 'h1',
                 ...sx,
             }}
             {...other}

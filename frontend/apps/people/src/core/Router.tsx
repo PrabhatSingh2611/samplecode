@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
-export interface RouterParams {
+interface IRouterParams {
     children: React.ReactNode;
     inIsolation: boolean;
     initialEntry?: string;
 }
 
-export default function Router({ children, inIsolation, initialEntry }: RouterParams): JSX.Element {
+export default function Router({
+    children,
+    inIsolation,
+    initialEntry,
+}: IRouterParams): JSX.Element {
     const initialEntries = initialEntry ? [initialEntry] : ['/'];
 
     return inIsolation ? (

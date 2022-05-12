@@ -1,4 +1,5 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const devRemotes = require('./dev-remotes');
 const { getShareableDeps } = require('./shareable-dependencies');
 const deps = getShareableDeps();
 
@@ -20,9 +21,7 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: 'host',
-            remotes: {
-                people: 'people@http://localhost:3001/remoteEntry.js',
-            },
+            remotes: devRemotes,
             shared: {
                 ...deps,
                 react: {

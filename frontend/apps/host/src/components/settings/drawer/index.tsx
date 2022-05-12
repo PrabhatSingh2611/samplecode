@@ -1,21 +1,23 @@
-import { AnimatePresence, m } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import React, { useState, useEffect } from 'react';
+
 import { Stack, Divider, Backdrop, Typography, IconButton } from '@mui/material';
-import useSettings from 'hooks/useSettings';
-import cssStyles from 'utils/cssStyles';
-import { NAVBAR, defaultSettings } from 'theme/config';
+import { alpha, styled } from '@mui/material/styles';
+import { AnimatePresence, m } from 'framer-motion';
+
 import Iconify from 'components/Iconify';
 import Scrollbar from 'components/Scrollbar';
 import { varFade } from 'components/animate';
-import ToggleButton from 'components/settings/drawer/ToggleButton';
-import SettingMode from 'components/settings/drawer/SettingMode';
-import SettingLayout from 'components/settings/drawer/SettingLayout';
-import SettingStretch from 'components/settings/drawer/SettingStretch';
+import SettingColorPresets from 'components/settings/drawer/SettingColorPresets';
 import SettingContrast from 'components/settings/drawer/SettingContrast';
 import SettingDirection from 'components/settings/drawer/SettingDirection';
 import SettingFullscreen from 'components/settings/drawer/SettingFullscreen';
-import SettingColorPresets from 'components/settings/drawer/SettingColorPresets';
+import SettingLayout from 'components/settings/drawer/SettingLayout';
+import SettingMode from 'components/settings/drawer/SettingMode';
+import SettingStretch from 'components/settings/drawer/SettingStretch';
+import ToggleButton from 'components/settings/drawer/ToggleButton';
+import useSettings from 'hooks/useSettings';
+import { NAVBAR, defaultSettings } from 'theme/config';
+import cssStyles from 'utils/cssStyles';
 
 const RootStyle = styled(m.div)(({ theme }) => ({
     ...cssStyles(theme).bgBlur({ color: theme.palette.background.paper, opacity: 0.92 }),
@@ -33,11 +35,11 @@ const RootStyle = styled(m.div)(({ theme }) => ({
     borderRadius: Number(theme.shape.borderRadius) * 1.5,
     boxShadow: `-24px 12px 32px -4px ${alpha(
         theme.palette.mode === 'light' ? theme.palette.grey[500] : theme.palette.common.black,
-        0.16
+        0.16,
     )}`,
 }));
 
-export default function SettingsDrawer() {
+export default function SettingsDrawer(): JSX.Element {
     const {
         themeMode,
         themeLayout,
@@ -79,11 +81,11 @@ export default function SettingsDrawer() {
         }
     }, [open]);
 
-    const handleToggle = () => {
+    const handleToggle = (): void => {
         setOpen((prev) => !prev);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(false);
     };
 
@@ -92,7 +94,7 @@ export default function SettingsDrawer() {
             <Backdrop
                 open={open}
                 onClick={handleClose}
-                sx={{ background: 'transparent', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, background: 'transparent' }}
             />
 
             {!open && <ToggleButton open={open} notDefault={notDefault} onToggle={handleToggle} />}

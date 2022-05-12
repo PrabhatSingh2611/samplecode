@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 
-export default function useOffSetTop(top: number) {
+export default function useOffSetTop(top: number): boolean {
     const [offsetTop, setOffSetTop] = useState(false);
     const isTop = top || 100;
 
     useEffect(() => {
-        window.onscroll = () => {
+        window.onscroll = (): void => {
             if (window.pageYOffset > isTop) {
                 setOffSetTop(true);
             } else {
                 setOffSetTop(false);
             }
         };
+
         return () => {
             window.onscroll = null;
         };

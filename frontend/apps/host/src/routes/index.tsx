@@ -1,8 +1,11 @@
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AsyncPeopleApp from 'remotes/AsyncPeopleApp';
+
 import { WButton } from 'wdx';
 
-export default function Routes() {
+import AsyncPeopleApp from 'remotes/AsyncPeopleApp';
+
+export default function Routes(): JSX.Element {
     return (
         <Switch>
             <Route path="/people">
@@ -15,7 +18,7 @@ export default function Routes() {
     );
 }
 
-const Home = () => (
+const Home = (): JSX.Element => (
     <div className="HostAppHome">
         <h1>Host App</h1>
         <WButton>click me</WButton>

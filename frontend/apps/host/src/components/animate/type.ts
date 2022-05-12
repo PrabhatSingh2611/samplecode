@@ -1,4 +1,4 @@
-type EaseType =
+export type EaseType =
     | 'linear'
     | 'easeIn'
     | 'easeOut'

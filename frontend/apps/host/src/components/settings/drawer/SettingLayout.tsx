@@ -1,7 +1,10 @@
-import { styled, alpha } from '@mui/material/styles';
+import React from 'react';
+
 import { Grid, RadioGroup, CardActionArea, Box, Stack } from '@mui/material';
-import useSettings from 'hooks/useSettings';
+import { styled, alpha } from '@mui/material/styles';
+
 import BoxMask from 'components/settings/drawer/BoxMask';
+import useSettings from 'hooks/useSettings';
 
 const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     display: 'flex',
@@ -12,7 +15,7 @@ const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     borderRadius: Number(theme.shape.borderRadius) * 1.25,
 }));
 
-export default function SettingLayout() {
+export default function SettingLayout(): JSX.Element {
     const { themeLayout, onChangeLayout } = useSettings();
 
     return (
@@ -23,7 +26,7 @@ export default function SettingLayout() {
                     const isVertical = layout === 'vertical';
 
                     return (
-                        <Grid key={layout} item xs={6} sx={{ pl: 2, pt: 2 }}>
+                        <Grid key={layout} item xs={6} sx={{ pt: 2, pl: 2 }}>
                             <BoxStyle
                                 sx={{
                                     ...(isSelected && {
@@ -57,14 +60,14 @@ const style = {
     borderRadius: 0.5,
 };
 
-function VerticalBox({ isSelected }: LayoutBoxProps) {
+function VerticalBox({ isSelected }: LayoutBoxProps): JSX.Element {
     return (
         <>
             <Box
                 sx={{
                     ...style,
-                    mb: 0.75,
                     height: 12,
+                    mb: 0.75,
                     bgcolor: (theme) => alpha(theme.palette.text.disabled, 0.72),
                     ...(isSelected && {
                         bgcolor: (theme) => alpha(theme.palette.primary.main, 0.72),
@@ -86,14 +89,14 @@ function VerticalBox({ isSelected }: LayoutBoxProps) {
     );
 }
 
-function HorizontalBox({ isSelected }: LayoutBoxProps) {
+function HorizontalBox({ isSelected }: LayoutBoxProps): JSX.Element {
     return (
         <>
             <Box
                 sx={{
                     ...style,
-                    mb: 0.75,
                     height: 12,
+                    mb: 0.75,
                     bgcolor: (theme) => alpha(theme.palette.text.disabled, 0.72),
                     ...(isSelected && {
                         bgcolor: (theme) => alpha(theme.palette.primary.main, 0.72),

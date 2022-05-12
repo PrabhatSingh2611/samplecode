@@ -1,5 +1,6 @@
 import { alpha } from '@mui/material/styles';
 import { Shadows } from '@mui/material/styles/shadows';
+
 import palette from 'theme/palette';
 
 interface CustomShadowOptions {
@@ -38,6 +39,7 @@ const createShadow = (color: string): Shadows => {
     const transparent1 = alpha(color, 0.2);
     const transparent2 = alpha(color, 0.14);
     const transparent3 = alpha(color, 0.12);
+
     return [
         'none',
         `0px 2px 1px -1px ${transparent1},0px 1px 1px 0px ${transparent2},0px 1px 3px 0px ${transparent3}`,
@@ -67,8 +69,27 @@ const createShadow = (color: string): Shadows => {
     ];
 };
 
-const createCustomShadow = (color: string) => {
+interface ICreateCustomShadowResult {
+    error: string;
+    dropdown: string;
+    secondary: string;
+    dialog: string;
+    success: string;
+    z1: string;
+    z20: string;
+    warning: string;
+    z12: string;
+    z24: string;
+    z8: string;
+    z16: string;
+    card: string;
+    primary: string;
+    info: string;
+}
+
+const createCustomShadow = (color: string): ICreateCustomShadowResult => {
     const transparent = alpha(color, 0.16);
+
     return {
         z1: `0 1px 2px 0 ${transparent}`,
         z8: `0 8px 16px 0 ${transparent}`,

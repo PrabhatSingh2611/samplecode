@@ -13,6 +13,7 @@ module.exports = {
         configure: {
             output: getConfig('output', {}),
             plugins: getConfig('plugins', []),
+            performance: getConfig('performance', {}),
         },
     },
 };

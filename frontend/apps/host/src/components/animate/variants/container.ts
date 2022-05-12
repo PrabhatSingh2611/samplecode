@@ -4,7 +4,22 @@ export type Props = {
     staggerOut?: number;
 };
 
-export const varContainer = (props?: Props) => {
+interface IVariantContainer {
+    animate: {
+        transition: {
+            staggerChildren: number;
+            delayChildren: number;
+        };
+    };
+    exit: {
+        transition: {
+            staggerChildren: number;
+            staggerDirection: number;
+        };
+    };
+}
+
+export const varContainer = (props?: Props): IVariantContainer => {
     const staggerIn = props?.staggerIn || 0.05;
     const delayIn = props?.staggerIn || 0.05;
     const staggerOut = props?.staggerIn || 0.05;

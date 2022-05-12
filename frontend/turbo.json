@@ -1,12 +1,8 @@
 {
     "pipeline": {
         "build": {
-            "dependsOn": [
-                "^build"
-            ],
-            "outputs": [
-                "build/**"
-            ]
+            "dependsOn": ["^build"],
+            "outputs": ["build/**"]
         },
         "build:host": {
             "cache": false
@@ -14,11 +10,17 @@
         "lint": {
             "outputs": []
         },
+        "lint:fix": {
+            "outputs": []
+        },
         "dev": {
             "cache": false
         },
         "clear-all": {
             "cache": false
+        },
+        "unused-exports": {
+            "outputs": []
         }
     }
 }

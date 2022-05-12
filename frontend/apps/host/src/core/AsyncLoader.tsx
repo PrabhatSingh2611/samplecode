@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-export interface AsyncLoaderProps {
+interface IAsyncLoaderProps {
     children: React.ReactNode;
 }
 
-export default function AsyncLoader({ children }: AsyncLoaderProps): JSX.Element {
+export default function AsyncLoader({ children }: IAsyncLoaderProps): JSX.Element {
     return (
         <ErrorBoundary FallbackComponent={AsyncErrorFallback}>
             <Suspense fallback={<AsyncLoadingFallback />}>{children}</Suspense>
@@ -13,12 +13,11 @@ export default function AsyncLoader({ children }: AsyncLoaderProps): JSX.Element
     );
 }
 
-interface FallbackProps {
+interface IFallbackProps {
     error: Error;
-    resetErrorBoundary: (...args: Array<unknown>) => void;
 }
 
-const AsyncErrorFallback = ({ error }: FallbackProps): JSX.Element => {
+const AsyncErrorFallback = ({ error }: IFallbackProps): JSX.Element => {
     console.error(error);
 
     return (
@@ -40,12 +39,12 @@ const AsyncErrorFallback = ({ error }: FallbackProps): JSX.Element => {
 };
 
 // TODO: Replace "<b>Loading ...</b>" with "<Progress />" component
-export const AsyncLoadingFallback = (): JSX.Element => <b>Loading...</b>;
+const AsyncLoadingFallback = (): JSX.Element => <b>Loading...</b>;
 
 // TODO: Replace "<b>Loading ...</b>" with "<Progress />" component
-export const ImportLoadingFallback = (): JSX.Element => <b>Loading...</b>;
+const ImportLoadingFallback = (): JSX.Element => <b>Loading...</b>;
 
-export const ImportErrorFallback = (): JSX.Element => (
+const ImportErrorFallback = (): JSX.Element => (
     <div
         role="alert"
         style={{
@@ -68,8 +67,8 @@ export enum ImportState {
     'ERROR' = 'error',
 }
 
-export interface ImportFallbacksProps {
-    state: ImportState;
+interface IImportFallbacksProps {
+    state: ImportState | null;
     loadingFallback?: React.ReactNode;
     errorFallback?: React.ReactNode;
 }
@@ -78,7 +77,7 @@ export const ImportFallbacks = ({
     state,
     loadingFallback,
     errorFallback,
-}: ImportFallbacksProps): JSX.Element => (
+}: IImportFallbacksProps): JSX.Element => (
     <>
         {state === ImportState.LOADING && (loadingFallback || <ImportLoadingFallback />)}
         {state === ImportState.ERROR && (errorFallback || <ImportErrorFallback />)}

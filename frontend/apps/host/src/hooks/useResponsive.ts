@@ -7,7 +7,7 @@ type Key = Breakpoint | number;
 type Start = Breakpoint | number;
 type End = Breakpoint | number;
 
-export default function useResponsive(query: Query, key?: Key, start?: Start, end?: End) {
+export default function useResponsive(query: Query, key?: Key, start?: Start, end?: End): boolean {
     const theme = useTheme();
 
     const mediaUp = useMediaQuery(theme.breakpoints.up(key as Key));
@@ -30,7 +30,6 @@ export default function useResponsive(query: Query, key?: Key, start?: Start, en
         return mediaBetween;
     }
 
-    if (query === 'only') {
-        return mediaOnly;
-    }
+    // if query === 'only'
+    return mediaOnly;
 }

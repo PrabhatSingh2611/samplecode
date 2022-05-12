@@ -1,7 +1,10 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { CardActionArea, Stack } from '@mui/material';
-import useSettings from 'hooks/useSettings';
+import { styled } from '@mui/material/styles';
+
 import Iconify from 'components/Iconify';
+import useSettings from 'hooks/useSettings';
 
 const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     padding: theme.spacing(2),
@@ -11,7 +14,7 @@ const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     borderRadius: Number(theme.shape.borderRadius) * 1.25,
 }));
 
-export default function SettingStretch() {
+export default function SettingStretch(): JSX.Element {
     const { themeStretch, onToggleStretch } = useSettings();
 
     const ICON_SIZE = {
@@ -33,17 +36,17 @@ export default function SettingStretch() {
                 alignItems="center"
                 justifyContent="space-between"
                 sx={{
-                    pt: 2,
-                    pl: 2,
-                    px: 1,
-                    mx: 'auto',
                     width: 0.5,
                     height: 40,
-                    borderRadius: 1,
+                    mx: 'auto',
+                    px: 1,
+                    pt: 2,
+                    pl: 2,
                     color: 'action.active',
-                    bgcolor: 'background.default',
+                    borderRadius: 1,
                     boxShadow: (theme) => theme.customShadows.z12,
                     transition: (theme) => theme.transitions.create('width'),
+                    bgcolor: 'background.default',
                     ...(themeStretch && {
                         width: 1,
                         color: 'primary.main',

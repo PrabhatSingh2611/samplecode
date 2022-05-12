@@ -1,8 +1,9 @@
-import { memo } from 'react';
-import { useTheme } from '@mui/material/styles';
-import { Box, BoxProps } from '@mui/material';
+import React, { memo } from 'react';
 
-function DocIllustration({ ...other }: BoxProps) {
+import { Box, BoxProps } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+function DocIllustration({ ...other }: BoxProps): JSX.Element {
     const theme = useTheme();
 
     const PRIMARY_MAIN = theme.palette.primary.main;

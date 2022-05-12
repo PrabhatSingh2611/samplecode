@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import React, { ReactNode } from 'react';
+
 import { Box, SxProps } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
 import SimpleBarReact, { Props as ScrollbarProps } from 'simplebar-react';
 
 const RootStyle = styled('div')(() => ({
@@ -33,16 +34,16 @@ const SimpleBarStyle = styled(SimpleBarReact)(({ theme }) => ({
     },
 }));
 
-interface Props extends ScrollbarProps {
+interface IProps extends ScrollbarProps {
     sx?: SxProps;
     children: ReactNode;
 }
 
-export default function Scrollbar({ children, sx, ...other }: Props) {
+export default function Scrollbar({ children, sx, ...other }: IProps): JSX.Element {
     const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        userAgent
+        userAgent,
     );
 
     if (isMobile) {

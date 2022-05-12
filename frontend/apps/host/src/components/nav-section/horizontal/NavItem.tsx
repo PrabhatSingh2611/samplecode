@@ -1,13 +1,15 @@
-import { ReactElement, forwardRef } from 'react';
+import React, { ReactElement, forwardRef } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
+
 import { Box, Link } from '@mui/material';
-import { ICON } from 'theme/config';
-import { NavItemProps } from 'components/nav-section/type';
+
 import Iconify from 'components/Iconify';
 import { NavListItem } from 'components/nav-section/horizontal/NavListItem';
+import { NavItemProps } from 'components/nav-section/type';
 import { isExternalLink } from 'components/nav-section/utils/nav-section.utils';
+import { ICON } from 'theme/config';
 
-export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
+const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
     ({ item, active, open, onMouseEnter, onMouseLeave }, ref) => {
         const { title, path, icon, children, disabled, roles } = item;
 
@@ -22,7 +24,9 @@ export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, Nav
                     disabled={disabled}
                     roles={roles}
                 >
-                    <NavItemContent icon={icon} title={title} children={children} />
+                    <NavItemContent icon={icon} title={title}>
+                        {children}
+                    </NavItemContent>
                 </NavListItem>
             );
         }
@@ -36,7 +40,9 @@ export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, Nav
                 disabled={disabled}
                 roles={roles}
             >
-                <NavItemContent icon={icon} title={title} children={children} />
+                <NavItemContent icon={icon} title={title}>
+                    {children}
+                </NavItemContent>
             </NavListItem>
         ) : (
             <NavListItem
@@ -46,14 +52,18 @@ export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, Nav
                 disabled={disabled}
                 roles={roles}
             >
-                <NavItemContent icon={icon} title={title} children={children} />
+                <NavItemContent icon={icon} title={title}>
+                    {children}
+                </NavItemContent>
             </NavListItem>
         );
-    }
+    },
 );
+NavItemRoot.displayName = 'NavItemRoot';
+export { NavItemRoot };
 
-export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
-    ({ item, active, open, onMouseEnter, onMouseLeave }, ref) => {
+const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
+    ({ item, active, open, onMouseEnter, onMouseLeave }, ref): JSX.Element => {
         const { title, path, icon, children, disabled, roles } = item;
 
         if (children) {
@@ -69,7 +79,9 @@ export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavI
                     disabled={disabled}
                     roles={roles}
                 >
-                    <NavItemContent icon={icon} title={title} children={children} subItem />
+                    <NavItemContent icon={icon} title={title} subItem>
+                        {children}
+                    </NavItemContent>
                 </NavListItem>
             );
         }
@@ -85,7 +97,9 @@ export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavI
                 disabled={disabled}
                 roles={roles}
             >
-                <NavItemContent icon={icon} title={title} children={children} subItem />
+                <NavItemContent icon={icon} title={title} subItem>
+                    {children}
+                </NavItemContent>
             </NavListItem>
         ) : (
             <NavListItem
@@ -97,29 +111,34 @@ export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavI
                 disabled={disabled}
                 roles={roles}
             >
-                <NavItemContent icon={icon} title={title} children={children} subItem />
+                <NavItemContent icon={icon} title={title} subItem>
+                    {children}
+                </NavItemContent>
             </NavListItem>
         );
-    }
+    },
 );
 
-type NavItemContentProps = {
+NavItemSub.displayName = 'NavItemSub';
+export { NavItemSub };
+
+interface INavItemContentProps {
     title: string;
     icon?: ReactElement;
     children?: { title: string; path: string }[];
     subItem?: boolean;
-};
+}
 
-function NavItemContent({ icon, title, children, subItem }: NavItemContentProps) {
+function NavItemContent({ icon, title, children, subItem }: INavItemContentProps): JSX.Element {
     return (
         <>
             {icon && (
                 <Box
                     component="span"
                     sx={{
-                        mr: 1,
                         width: ICON.NAVBAR_ITEM_HORIZONTAL,
                         height: ICON.NAVBAR_ITEM_HORIZONTAL,
+                        mr: 1,
                         '& svg': { width: '100%', height: '100%' },
                     }}
                 >
@@ -133,9 +152,9 @@ function NavItemContent({ icon, title, children, subItem }: NavItemContentProps)
                 <Iconify
                     icon={subItem ? 'eva:chevron-right-fill' : 'eva:chevron-down-fill'}
                     sx={{
-                        ml: 0.5,
                         width: ICON.NAVBAR_ITEM_HORIZONTAL,
                         height: ICON.NAVBAR_ITEM_HORIZONTAL,
+                        ml: 0.5,
                     }}
                 />
             )}

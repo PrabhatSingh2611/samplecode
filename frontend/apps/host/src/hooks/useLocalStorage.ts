@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function useLocalStorage<ValueType>(key: string, defaultValue: ValueType) {
+export default function useLocalStorage<ValueType>(
+    key: string,
+    defaultValue: ValueType,
+): [ValueType, (newValue: ValueType) => void] {
     const [value, setValue] = useState(() => {
         const storedValue = localStorage.getItem(key);
 
@@ -8,7 +11,7 @@ export default function useLocalStorage<ValueType>(key: string, defaultValue: Va
     });
 
     useEffect(() => {
-        const listener = (e: StorageEvent) => {
+        const listener = (e: StorageEvent): void => {
             if (e.storageArea === localStorage && e.key === key) {
                 setValue(e.newValue ? JSON.parse(e.newValue) : e.newValue);
             }
@@ -20,7 +23,7 @@ export default function useLocalStorage<ValueType>(key: string, defaultValue: Va
         };
     }, [key, defaultValue]);
 
-    const setValueInLocalStorage = (newValue: ValueType) => {
+    const setValueInLocalStorage = (newValue: ValueType): void => {
         setValue((currentValue: ValueType) => {
             const result = typeof newValue === 'function' ? newValue(currentValue) : newValue;
 

@@ -1,15 +1,19 @@
-import { useState } from 'react';
-import { alpha } from '@mui/material/styles';
+import React, { useState } from 'react';
+
 import { Button } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+
 import Iconify from 'components/Iconify';
 
-export default function SettingFullscreen() {
+export default function SettingFullscreen(): JSX.Element {
     const [fullscreen, setFullscreen] = useState(false);
 
-    const toggleFullScreen = () => {
+    const toggleFullScreen = (): void => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
             setFullscreen(true);
+            // Actually can be situation when document.exitFullscreen can not exist
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         } else if (document.exitFullscreen) {
             document.exitFullscreen();
             setFullscreen(false);

@@ -1,7 +1,9 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
+
 import { Stack } from '@mui/material';
-import { NavSectionProps } from 'components/nav-section/type';
+
 import { NavListRoot } from 'components/nav-section/horizontal/NavList';
+import { INavSectionProps } from 'components/nav-section/type';
 
 const hideScrollbar = {
     msOverflowStyle: 'none',
@@ -12,12 +14,12 @@ const hideScrollbar = {
     },
 } as const;
 
-function NavSectionHorizontal({ navConfig }: NavSectionProps) {
+function NavSectionHorizontal({ navConfig }: INavSectionProps): JSX.Element {
     return (
         <Stack
             direction="row"
             justifyContent="center"
-            sx={{ bgcolor: 'background.neutral', borderRadius: 1, px: 0.5 }}
+            sx={{ px: 0.5, borderRadius: 1, bgcolor: 'background.neutral' }}
         >
             <Stack direction="row" sx={{ ...hideScrollbar, py: 1 }}>
                 {navConfig.map((group) => (

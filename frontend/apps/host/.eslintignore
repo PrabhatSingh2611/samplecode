@@ -10,3 +10,5 @@ src/reportWebVitals.ts
 src/service-worker.ts
 src/serviceWorkerRegistration.ts
 src/setupTests.ts
+// TODO: remove after theme will move to wdx (VZ)
+src/theme

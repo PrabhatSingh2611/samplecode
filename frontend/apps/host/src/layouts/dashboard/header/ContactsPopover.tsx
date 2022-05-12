@@ -1,24 +1,26 @@
-import { useState, MouseEvent } from 'react';
-import { alpha } from '@mui/material/styles';
+import React, { useState, MouseEvent } from 'react';
+
 import { Avatar, Typography, ListItemText, ListItemAvatar, MenuItem } from '@mui/material';
-import { fToNow } from 'utils/formatTime';
+import { alpha } from '@mui/material/styles';
+
 import { _contacts } from '_mock';
-import Iconify from 'components/Iconify';
-import Scrollbar from 'components/Scrollbar';
-import MenuPopover from 'components/MenuPopover';
 import BadgeStatus from 'components/BadgeStatus';
+import Iconify from 'components/Iconify';
+import MenuPopover from 'components/MenuPopover';
+import Scrollbar from 'components/Scrollbar';
 import { IconButtonAnimate } from 'components/animate';
+import { fToNow } from 'utils/formatTime';
 
 const ITEM_HEIGHT = 64;
 
-export default function ContactsPopover() {
+export default function ContactsPopover(): JSX.Element {
     const [open, setOpen] = useState<HTMLElement | null>(null);
 
-    const handleOpen = (event: MouseEvent<HTMLElement>) => {
+    const handleOpen = (event: MouseEvent<HTMLElement>): void => {
         setOpen(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(null);
     };
 
@@ -44,12 +46,12 @@ export default function ContactsPopover() {
                 anchorEl={open}
                 onClose={handleClose}
                 sx={{
+                    width: 320,
                     mt: 1.5,
                     ml: 0.75,
-                    width: 320,
                     '& .MuiMenuItem-root': {
-                        px: 1.5,
                         height: ITEM_HEIGHT,
+                        px: 1.5,
                         borderRadius: 0.75,
                     },
                 }}

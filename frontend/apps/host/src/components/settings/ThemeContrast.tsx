@@ -1,14 +1,16 @@
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
+
 import { CssBaseline } from '@mui/material';
 import { alpha, ThemeOptions, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import componentsOverride from 'theme/overrides';
-import useSettings from 'hooks/useSettings';
 
-type Props = {
+import useSettings from 'hooks/useSettings';
+import componentsOverride from 'theme/overrides';
+
+type IProps = {
     children: ReactNode;
 };
 
-export default function ThemeContrast({ children }: Props) {
+export default function ThemeContrast({ children }: IProps): JSX.Element {
     const defaultTheme = useTheme();
 
     const { themeContrast } = useSettings();
@@ -29,7 +31,7 @@ export default function ThemeContrast({ children }: Props) {
             borderRadius: Number(defaultTheme.shape.borderRadius) * 2,
             boxShadow: `0 0 1px 0 ${alpha(shadowColor, 0.48)}, 0 2px 4px -1px ${alpha(
                 shadowColor,
-                0.24
+                0.24,
             )}`,
         },
     } as const;
@@ -60,7 +62,7 @@ export default function ThemeContrast({ children }: Props) {
             styles.bgDefault,
             styles.cardBold,
             styles.cardDefault,
-        ]
+        ],
     );
 
     const theme = createTheme(themeOptions);

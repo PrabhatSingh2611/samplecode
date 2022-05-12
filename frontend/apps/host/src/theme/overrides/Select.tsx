@@ -1,7 +1,6 @@
-import { Theme } from '@mui/material/styles';
 import { InputSelectIcon } from 'theme/overrides/CustomIcons';
 
-export default function Select(theme: Theme) {
+export default function Select() {
     return {
         MuiSelect: {
             defaultProps: {

@@ -1,15 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { NavListProps } from 'components/nav-section/type';
+
 import { NavItemRoot, NavItemSub } from 'components/nav-section/horizontal/NavItem';
 import { PaperStyle } from 'components/nav-section/horizontal/NavListItem';
+import { NavListProps } from 'components/nav-section/type';
 import { getActive } from 'components/nav-section/utils/nav-section.utils';
 
-type NavListRootProps = {
+interface INavListRootProps {
     list: NavListProps;
-};
+}
 
-export function NavListRoot({ list }: NavListRootProps) {
+export function NavListRoot({ list }: INavListRootProps): JSX.Element {
     const menuRef = useRef(null);
 
     const { pathname } = useLocation();
@@ -27,11 +28,11 @@ export function NavListRoot({ list }: NavListRootProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname]);
 
-    const handleOpen = () => {
+    const handleOpen = (): void => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(false);
     };
 
@@ -68,11 +69,11 @@ export function NavListRoot({ list }: NavListRootProps) {
     return <NavItemRoot item={list} active={active} />;
 }
 
-type NavListSubProps = {
+interface INavListSubProps {
     list: NavListProps;
-};
+}
 
-function NavListSub({ list }: NavListSubProps) {
+function NavListSub({ list }: INavListSubProps): JSX.Element {
     const menuRef = useRef(null);
 
     const { pathname } = useLocation();
@@ -81,11 +82,11 @@ function NavListSub({ list }: NavListSubProps) {
 
     const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
+    const handleOpen = (): void => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(false);
     };
 

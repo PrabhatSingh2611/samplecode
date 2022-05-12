@@ -1,4 +1,7 @@
+import React from 'react';
+
 import { Theme } from '@mui/material/styles';
+
 import { StarIcon } from 'theme/overrides/CustomIcons';
 
 const ICON_SMALL = { width: 20, height: 20 };

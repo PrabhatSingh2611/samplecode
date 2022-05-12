@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { CollapseDrawerContext } from 'contexts/CollapseDrawerContext';
 
-const useCollapseDrawer = () => useContext(CollapseDrawerContext);
+import { CollapseDrawerContext, CollapseDrawerContextProps } from 'contexts/CollapseDrawerContext';
+
+const useCollapseDrawer = (): CollapseDrawerContextProps => useContext(CollapseDrawerContext);
 
 export default useCollapseDrawer;

@@ -1,6 +1,10 @@
+import React from 'react';
+
 import { Theme } from '@mui/material/styles';
-import { ColorSchema } from 'theme/palette';
+
 import { ErrorIcon, InfoIcon, SuccessIcon, WarningIcon } from 'theme/overrides/CustomIcons';
+
+import { ColorSchema } from 'theme/palette';
 
 export default function Alert(theme: Theme) {
     const isLight = theme.palette.mode === 'light';

@@ -1,15 +1,24 @@
+import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
+
 import { Box, Link, ListItemText, Typography, Tooltip } from '@mui/material';
-import { NavItemProps } from 'components/nav-section/type';
+
 import Iconify from 'components/Iconify';
+import { NavItemProps } from 'components/nav-section/type';
+import { isExternalLink } from 'components/nav-section/utils/nav-section.utils';
 import {
     NavListItem,
     ListItemTextStyle,
     ListItemIconStyle,
 } from 'components/nav-section/vertical/NavListItem';
-import { isExternalLink } from 'components/nav-section/utils/nav-section.utils';
 
-export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }: NavItemProps) {
+export function NavItemRoot({
+    item,
+    isCollapse,
+    open = false,
+    active,
+    onOpen,
+}: NavItemProps): JSX.Element {
     const { title, path, icon, info, children, disabled, caption, roles } = item;
 
     const renderContent = (
@@ -75,7 +84,12 @@ export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }: 
 
 type NavItemSubProps = Omit<NavItemProps, 'isCollapse'>;
 
-export function NavItemSub({ item, open = false, active = false, onOpen }: NavItemSubProps) {
+export function NavItemSub({
+    item,
+    open = false,
+    active = false,
+    onOpen,
+}: NavItemSubProps): JSX.Element {
     const { title, path, info, children, disabled, caption, roles } = item;
 
     const renderContent = (
@@ -146,7 +160,7 @@ type DotIconProps = {
     active: boolean;
 };
 
-export function DotIcon({ active }: DotIconProps) {
+function DotIcon({ active }: DotIconProps): JSX.Element {
     return (
         <ListItemIconStyle>
             <Box
@@ -155,11 +169,11 @@ export function DotIcon({ active }: DotIconProps) {
                     width: 4,
                     height: 4,
                     borderRadius: '50%',
-                    bgcolor: 'text.disabled',
                     transition: (theme) =>
                         theme.transitions.create('transform', {
                             duration: theme.transitions.duration.shorter,
                         }),
+                    bgcolor: 'text.disabled',
                     ...(active && {
                         transform: 'scale(2)',
                         bgcolor: 'primary.main',
@@ -170,11 +184,11 @@ export function DotIcon({ active }: DotIconProps) {
     );
 }
 
-type ArrowIconProps = {
+interface IArrowIconProps {
     open: boolean;
-};
+}
 
-export function ArrowIcon({ open }: ArrowIconProps) {
+function ArrowIcon({ open }: IArrowIconProps): JSX.Element {
     return (
         <Iconify
             icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}

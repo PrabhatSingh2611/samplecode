@@ -1,5 +1,5 @@
+import { ColorVariants, ThemeColorPresets } from 'components/settings/type';
 import palette from 'theme/palette';
-import { ThemeColorPresets } from 'components/settings/type';
 
 export const colorPresets = [
     // DEFAULT
@@ -60,13 +60,13 @@ export const colorPresets = [
 ];
 
 export const defaultPreset = colorPresets[0];
-export const purplePreset = colorPresets[1];
-export const cyanPreset = colorPresets[2];
-export const bluePreset = colorPresets[3];
-export const orangePreset = colorPresets[4];
-export const redPreset = colorPresets[5];
+const purplePreset = colorPresets[1];
+const cyanPreset = colorPresets[2];
+const bluePreset = colorPresets[3];
+const orangePreset = colorPresets[4];
+const redPreset = colorPresets[5];
 
-export default function getColorPresets(presetsKey: ThemeColorPresets) {
+export default function getColorPresets(presetsKey: ThemeColorPresets): ColorVariants {
     return {
         purple: purplePreset,
         cyan: cyanPreset,

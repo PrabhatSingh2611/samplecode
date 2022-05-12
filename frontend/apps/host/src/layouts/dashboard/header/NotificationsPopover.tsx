@@ -1,5 +1,5 @@
-import { noCase } from 'change-case';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import {
     Box,
     List,
@@ -15,34 +15,36 @@ import {
     ListItemAvatar,
     ListItemButton,
 } from '@mui/material';
-import { fToNow } from 'utils/formatTime';
+import { noCase } from 'change-case';
+
 import { _notifications } from '_mock';
 import Iconify from 'components/Iconify';
-import Scrollbar from 'components/Scrollbar';
 import MenuPopover from 'components/MenuPopover';
+import Scrollbar from 'components/Scrollbar';
 import { IconButtonAnimate } from 'components/animate';
+import { fToNow } from 'utils/formatTime';
 
-export default function NotificationsPopover() {
+export default function NotificationsPopover(): JSX.Element {
     const [notifications, setNotifications] = useState(_notifications);
 
     const totalUnRead = notifications.filter((item) => item.isUnRead).length;
 
     const [open, setOpen] = useState<HTMLElement | null>(null);
 
-    const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpen = (event: React.MouseEvent<HTMLElement>): void => {
         setOpen(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(null);
     };
 
-    const handleMarkAllAsRead = () => {
+    const handleMarkAllAsRead = (): void => {
         setNotifications(
             notifications.map((notification) => ({
                 ...notification,
                 isUnRead: false,
-            }))
+            })),
         );
     };
 
@@ -62,7 +64,7 @@ export default function NotificationsPopover() {
                 open={Boolean(open)}
                 anchorEl={open}
                 onClose={handleClose}
-                sx={{ width: 360, p: 0, mt: 1.5, ml: 0.75 }}
+                sx={{ width: 360, mt: 1.5, ml: 0.75, p: 0 }}
             >
                 <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
                     <Box sx={{ flexGrow: 1 }}>
@@ -83,7 +85,7 @@ export default function NotificationsPopover() {
 
                 <Divider sx={{ borderStyle: 'dashed' }} />
 
-                <Scrollbar sx={{ height: { xs: 340, sm: 'auto' } }}>
+                <Scrollbar sx={{ height: { sm: 'auto', xs: 340 } }}>
                     <List
                         disablePadding
                         subheader={
@@ -129,7 +131,7 @@ export default function NotificationsPopover() {
     );
 }
 
-type NotificationItemProps = {
+interface INotificationItemProps {
     id: string;
     title: string;
     description: string;
@@ -137,17 +139,17 @@ type NotificationItemProps = {
     type: string;
     createdAt: Date;
     isUnRead: boolean;
-};
+}
 
-function NotificationItem({ notification }: { notification: NotificationItemProps }) {
+function NotificationItem({ notification }: { notification: INotificationItemProps }): JSX.Element {
     const { avatar, title } = renderContent(notification);
 
     return (
         <ListItemButton
             sx={{
+                mt: '1px',
                 py: 1.5,
                 px: 2.5,
-                mt: '1px',
                 ...(notification.isUnRead && {
                     bgcolor: 'action.selected',
                 }),
@@ -162,13 +164,13 @@ function NotificationItem({ notification }: { notification: NotificationItemProp
                     <Typography
                         variant="caption"
                         sx={{
-                            mt: 0.5,
                             display: 'flex',
                             alignItems: 'center',
+                            mt: 0.5,
                             color: 'text.disabled',
                         }}
                     >
-                        <Iconify icon="eva:clock-outline" sx={{ mr: 0.5, width: 16, height: 16 }} />
+                        <Iconify icon="eva:clock-outline" sx={{ width: 16, height: 16, mr: 0.5 }} />
                         {fToNow(notification.createdAt)}
                     </Typography>
                 }
@@ -177,7 +179,10 @@ function NotificationItem({ notification }: { notification: NotificationItemProp
     );
 }
 
-function renderContent(notification: NotificationItemProps) {
+function renderContent(notification: INotificationItemProps): {
+    avatar: JSX.Element | null;
+    title: JSX.Element;
+} {
     const title = (
         <Typography variant="subtitle2">
             {notification.title}
@@ -231,6 +236,7 @@ function renderContent(notification: NotificationItemProps) {
             title,
         };
     }
+
     return {
         avatar: notification.avatar ? (
             <img alt={notification.title} src={notification.avatar} />

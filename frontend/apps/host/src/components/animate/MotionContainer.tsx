@@ -1,15 +1,23 @@
-import { m, MotionProps } from 'framer-motion';
+import React from 'react';
+
 import { Box, BoxProps } from '@mui/material';
+import { m, MotionProps } from 'framer-motion';
+
 import { varContainer } from 'components/animate/variants';
 
-type IProps = BoxProps & MotionProps;
+type IBoxProps = BoxProps & MotionProps;
 
-export interface Props extends IProps {
+interface IProps extends IBoxProps {
     animate?: boolean;
     action?: boolean;
 }
 
-export default function MotionContainer({ animate, action = false, children, ...other }: Props) {
+export default function MotionContainer({
+    animate,
+    action = false,
+    children,
+    ...other
+}: IProps): JSX.Element {
     if (action) {
         return (
             <Box

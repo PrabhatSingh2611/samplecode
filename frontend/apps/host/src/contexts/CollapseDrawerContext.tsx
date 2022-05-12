@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useState, useEffect } from 'react';
+import React, { ReactNode, createContext, useState, useEffect } from 'react';
+
 import useResponsive from 'hooks/useResponsive';
 
 export type CollapseDrawerContextProps = {
@@ -13,18 +14,22 @@ export type CollapseDrawerContextProps = {
 const initialState: CollapseDrawerContextProps = {
     collapseClick: false,
     collapseHover: false,
+    // TODO:fix types for onToggleCollapse ext. (VZ)
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onToggleCollapse: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onHoverEnter: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onHoverLeave: () => {},
 };
 
 const CollapseDrawerContext = createContext(initialState);
 
-type CollapseDrawerProviderProps = {
+interface ICollapseDrawerProviderProps {
     children: ReactNode;
-};
+}
 
-function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
+function CollapseDrawerProvider({ children }: ICollapseDrawerProviderProps): JSX.Element {
     const isDesktop = useResponsive('up', 'lg');
 
     const [collapse, setCollapse] = useState({
@@ -41,17 +46,17 @@ function CollapseDrawerProvider({ children }: CollapseDrawerProviderProps) {
         }
     }, [isDesktop]);
 
-    const handleToggleCollapse = () => {
+    const handleToggleCollapse = (): void => {
         setCollapse({ ...collapse, click: !collapse.click });
     };
 
-    const handleHoverEnter = () => {
+    const handleHoverEnter = (): void => {
         if (collapse.click) {
             setCollapse({ ...collapse, hover: true });
         }
     };
 
-    const handleHoverLeave = () => {
+    const handleHoverLeave = (): void => {
         setCollapse({ ...collapse, hover: false });
     };
 

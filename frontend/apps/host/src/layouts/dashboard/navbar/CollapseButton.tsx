@@ -1,12 +1,15 @@
+import React from 'react';
+
 import { Box } from '@mui/material';
+
 import { IconButtonAnimate } from 'components/animate';
 
-type Props = {
+interface IProps {
     onToggleCollapse: VoidFunction;
     collapseClick: boolean;
-};
+}
 
-export default function CollapseButton({ onToggleCollapse, collapseClick }: Props) {
+export default function CollapseButton({ onToggleCollapse, collapseClick }: IProps): JSX.Element {
     return (
         <IconButtonAnimate onClick={onToggleCollapse}>
             <Box

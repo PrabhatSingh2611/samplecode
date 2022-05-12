@@ -1,5 +1,7 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Popover, PopoverProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 type Arrow =
     | 'top-left'
@@ -82,7 +84,7 @@ const ArrowStyle = styled('span')<ArrowStyleProps>(({ arrow, theme }) => {
     };
 });
 
-interface Props extends PopoverProps {
+interface IProps extends PopoverProps {
     arrow?: Arrow;
     disabledArrow?: boolean;
 }
@@ -99,7 +101,7 @@ export default function MenuPopover({
     disabledArrow,
     sx,
     ...other
-}: Props) {
+}: IProps): JSX.Element {
     return (
         <PopoverStyle
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

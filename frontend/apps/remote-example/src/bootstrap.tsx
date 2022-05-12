@@ -1,18 +1,22 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { hostNavigateObservable } from './core/observable.hooks';
 
-interface MountProps {
+import { createRoot } from 'react-dom/client';
+
+import App from 'App';
+
+import { hostNavigateObservable } from './core/observable.hooks';
+import reportWebVitals from './reportWebVitals';
+
+import './index.css';
+
+interface IMountProps {
     element: Element;
     inIsolation?: boolean;
     initialEntry?: string;
 }
 
-const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
-    const root = createRoot(element!);
+const mount = ({ element, initialEntry, inIsolation }: IMountProps): (() => void) => {
+    const root = createRoot(element);
     // NOTE: React.StrictMode breaks React Router
     root.render(<App inIsolation={!!inIsolation} initialEntry={initialEntry} />);
 
@@ -24,7 +28,7 @@ const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
     return (): void => {
         console.log('Unmounting Remote Example App...');
         // NOTE: This should be done for all MF's to  avoid memory leaks
-        hostNavigateObservable?.unsubscribeAll();
+        hostNavigateObservable.unsubscribeAll();
     };
 };
 
@@ -36,4 +40,5 @@ if (process.env.NODE_ENV === 'development') {
     }
 }
 
+// ts-unused-exports:disable-next-line
 export { mount };

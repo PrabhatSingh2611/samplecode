@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import { BoxProps } from '@mui/material';
 
 export type NavListProps = {
@@ -26,7 +27,7 @@ export type NavItemProps = {
     onMouseLeave?: VoidFunction;
 };
 
-export interface NavSectionProps extends BoxProps {
+export interface INavSectionProps extends BoxProps {
     isCollapse?: boolean;
     navConfig: {
         subheader: string;

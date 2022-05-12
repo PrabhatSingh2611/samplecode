@@ -1,14 +1,9 @@
-import { Theme, useTheme, styled } from '@mui/material/styles';
-import { BoxProps } from '@mui/material';
+import React from 'react';
 
-export type BadgeStatusEnum =
-    | 'away'
-    | 'busy'
-    | 'unread'
-    | 'online'
-    | 'offline'
-    | 'invisible'
-    | string;
+import { BoxProps } from '@mui/material';
+import { Theme, useTheme, styled } from '@mui/material/styles';
+
+type BadgeStatusEnum = 'away' | 'busy' | 'unread' | 'online' | 'offline' | 'invisible' | string;
 
 type BadgeSize = 'small' | 'medium' | 'large';
 
@@ -80,15 +75,19 @@ const RootStyle = styled('span')(
                 backgroundColor: theme.palette.info.main,
             }),
         };
-    }
+    },
 );
 
-interface Props extends BoxProps {
+interface IProps extends BoxProps {
     size?: BadgeSize;
     status?: BadgeStatusEnum;
 }
 
-export default function BadgeStatus({ size = 'medium', status = 'offline', sx }: Props) {
+export default function BadgeStatus({
+    size = 'medium',
+    status = 'offline',
+    sx,
+}: IProps): JSX.Element {
     const theme = useTheme();
 
     return <RootStyle ownerState={{ status, size }} sx={sx} theme={theme} />;

@@ -1,4 +1,5 @@
 import { add } from 'date-fns';
+
 import _mock from './_mock';
 import { randomStringInArray, randomNumberRange } from './funcs';
 
@@ -45,4 +46,3 @@ export const _invoices = [...Array(20)].map((_, index) => ({
         ]),
     })),
 }));
-

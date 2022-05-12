@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import Router from './core/Router';
+import { FlagsProvider } from 'flagged';
+
+import Router from 'core/Router';
+
 import RemoteExampleObservables from './core/RemoteExampleObservavbles';
 
 // NOTE - Set these lines in your remote and change the host value to the name of your remote (TH)
@@ -9,29 +12,30 @@ import RemoteExampleObservables from './core/RemoteExampleObservavbles';
 // import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 // ClassNameGenerator.configure((componentName) => `remoteName-${componentName}`);
 
-interface AppProps {
+interface IAppProps {
     inIsolation: boolean;
     initialEntry?: string;
-    defaultHistory?: History;
 }
 
-function App({ inIsolation, initialEntry }: AppProps) {
+function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
     return (
-        <div className="RemoteExampleApp">
-            <h1>Hello from Remote Example App!</h1>
-            <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                <RemoteExampleObservables />
-                <Header />
-                <Switch>
-                    <Route path="/details">
-                        <Details />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                </Switch>
-            </Router>
-        </div>
+        <FlagsProvider>
+            <div className="RemoteExampleApp">
+                <h1>Hello from Remote Example App!</h1>
+                <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                    <RemoteExampleObservables />
+                    <Header />
+                    <Switch>
+                        <Route path="/details">
+                            <Details />
+                        </Route>
+                        <Route path="/">
+                            <Home />
+                        </Route>
+                    </Switch>
+                </Router>
+            </div>
+        </FlagsProvider>
     );
 }
 

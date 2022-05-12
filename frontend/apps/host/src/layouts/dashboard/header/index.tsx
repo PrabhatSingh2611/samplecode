@@ -1,17 +1,20 @@
-import { styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Box, Stack, AppBar, Toolbar } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+import Iconify from 'components/Iconify';
+import Logo from 'components/Logo';
+import { IconButtonAnimate } from 'components/animate';
 import useOffSetTop from 'hooks/useOffSetTop';
 import useResponsive from 'hooks/useResponsive';
-import cssStyles from 'utils/cssStyles';
-import { HEADER, NAVBAR } from 'theme/config';
-import Logo from 'components/Logo';
-import Iconify from 'components/Iconify';
-import { IconButtonAnimate } from 'components/animate';
-import Searchbar from 'layouts/dashboard/header/Searchbar';
 import AccountPopover from 'layouts/dashboard/header/AccountPopover';
-import LanguagePopover from 'layouts/dashboard/header/LanguagePopover';
 import ContactsPopover from 'layouts/dashboard/header/ContactsPopover';
+import LanguagePopover from 'layouts/dashboard/header/LanguagePopover';
 import NotificationsPopover from 'layouts/dashboard/header/NotificationsPopover';
+import Searchbar from 'layouts/dashboard/header/Searchbar';
+import { HEADER, NAVBAR } from 'theme/config';
+import cssStyles from 'utils/cssStyles';
 
 type RootStyleProps = {
     isCollapse: boolean;
@@ -57,7 +60,7 @@ export default function DashboardHeader({
     onOpenSidebar,
     isCollapse = false,
     verticalLayout = false,
-}: Props) {
+}: Props): JSX.Element {
     const isOffset = useOffSetTop(HEADER.DASHBOARD_DESKTOP_HEIGHT) && !verticalLayout;
 
     const isDesktop = useResponsive('up', 'lg');

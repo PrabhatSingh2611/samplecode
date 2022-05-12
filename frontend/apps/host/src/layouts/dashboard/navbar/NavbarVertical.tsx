@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { styled, useTheme } from '@mui/material/styles';
+
 import { Box, Stack, Drawer } from '@mui/material';
-import useResponsive from 'hooks/useResponsive';
-import useCollapseDrawer from 'hooks/useCollapseDrawer';
-import cssStyles from 'utils/cssStyles';
-import { NAVBAR } from 'theme/config';
+import { styled, useTheme } from '@mui/material/styles';
+
 import Logo from 'components/Logo';
 import Scrollbar from 'components/Scrollbar';
 import { NavSectionVertical } from 'components/nav-section';
-import navConfig from 'layouts/dashboard/navbar/NavConfig';
-import NavbarDocs from 'layouts/dashboard/navbar/NavbarDocs';
-import NavbarAccount from 'layouts/dashboard/navbar/NavbarAccount';
+import useCollapseDrawer from 'hooks/useCollapseDrawer';
+import useResponsive from 'hooks/useResponsive';
 import CollapseButton from 'layouts/dashboard/navbar/CollapseButton';
+import navConfig from 'layouts/dashboard/navbar/NavConfig';
+import NavbarAccount from 'layouts/dashboard/navbar/NavbarAccount';
+import NavbarDocs from 'layouts/dashboard/navbar/NavbarDocs';
+import { NAVBAR } from 'theme/config';
+import cssStyles from 'utils/cssStyles';
 
 const RootStyle = styled('div')(({ theme }) => ({
     [theme.breakpoints.up('lg')]: {
@@ -23,12 +25,12 @@ const RootStyle = styled('div')(({ theme }) => ({
     },
 }));
 
-type Props = {
+type IProps = {
     isOpenSidebar: boolean;
     onCloseSidebar: VoidFunction;
 };
 
-export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props) {
+export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps): JSX.Element {
     const theme = useTheme();
 
     const { pathname } = useLocation();
@@ -55,16 +57,16 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: Props)
         <Scrollbar
             sx={{
                 height: 1,
-                '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
+                '& .simplebar-content': { display: 'flex', flexDirection: 'column', height: 1 },
             }}
         >
             <Stack
                 spacing={3}
                 sx={{
+                    flexShrink: 0,
+                    px: 2.5,
                     pt: 3,
                     pb: 2,
-                    px: 2.5,
-                    flexShrink: 0,
                     ...(isCollapse && { alignItems: 'center' }),
                 }}
             >

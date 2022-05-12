@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { alpha, styled } from '@mui/material/styles';
+
 import {
     LinkProps,
     ListItemText,
@@ -7,11 +7,13 @@ import {
     ListItemIcon,
     ListItemButtonProps,
 } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
+
 import { ICON, NAVBAR } from 'theme/config';
 
 type IProps = LinkProps & ListItemButtonProps;
 
-export interface ListItemStyleProps extends IProps {
+interface IListItemStyleProps extends IProps {
     component?: ElementType;
     to?: string;
     activeRoot?: boolean;
@@ -23,7 +25,7 @@ export interface ListItemStyleProps extends IProps {
 export const NavListItem = styled(ListItemButton, {
     shouldForwardProp: (prop) =>
         prop !== 'activeRoot' && prop !== 'activeSub' && prop !== 'subItem',
-})<ListItemStyleProps>(({ activeRoot, activeSub, subItem, theme }) => ({
+})<IListItemStyleProps>(({ activeRoot, activeSub, subItem, theme }) => ({
     ...theme.typography.body2,
     position: 'relative',
     height: NAVBAR.DASHBOARD_ITEM_ROOT_HEIGHT,
@@ -50,13 +52,13 @@ export const NavListItem = styled(ListItemButton, {
     }),
 }));
 
-interface ListItemTextStyleProps extends ListItemButtonProps {
+interface IListItemTextStyleProps extends ListItemButtonProps {
     isCollapse?: boolean;
 }
 
 export const ListItemTextStyle = styled(ListItemText, {
     shouldForwardProp: (prop) => prop !== 'isCollapse',
-})<ListItemTextStyleProps>(({ isCollapse, theme }) => ({
+})<IListItemTextStyleProps>(({ isCollapse, theme }) => ({
     whiteSpace: 'nowrap',
     transition: theme.transitions.create(['width', 'opacity'], {
         duration: theme.transitions.duration.shorter,

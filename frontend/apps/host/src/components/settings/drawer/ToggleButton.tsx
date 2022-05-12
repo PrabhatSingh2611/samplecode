@@ -1,8 +1,11 @@
-import { alpha, styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Tooltip } from '@mui/material';
-import cssStyles from 'utils/cssStyles';
+import { alpha, styled } from '@mui/material/styles';
+
 import Iconify from 'components/Iconify';
 import { IconButtonAnimate } from 'components/animate';
+import cssStyles from 'utils/cssStyles';
 
 const RootStyle = styled('span')(({ theme }) => ({
     ...cssStyles(theme).bgBlur({ opacity: 0.64 }),
@@ -15,7 +18,7 @@ const RootStyle = styled('span')(({ theme }) => ({
     borderRadius: '24px 0 20px 24px',
     boxShadow: `-12px 12px 32px -4px ${alpha(
         theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.common.black,
-        0.36
+        0.36,
     )}`,
 }));
 
@@ -35,7 +38,7 @@ type Props = {
     onToggle: VoidFunction;
 };
 
-export default function ToggleButton({ notDefault, open, onToggle }: Props) {
+export default function ToggleButton({ notDefault, open, onToggle }: Props): JSX.Element {
     return (
         <RootStyle>
             {notDefault && !open && <DotStyle />}
@@ -52,7 +55,7 @@ export default function ToggleButton({ notDefault, open, onToggle }: Props) {
                             bgcolor: (theme) =>
                                 alpha(
                                     theme.palette.primary.main,
-                                    theme.palette.action.hoverOpacity
+                                    theme.palette.action.hoverOpacity,
                                 ),
                         },
                     }}

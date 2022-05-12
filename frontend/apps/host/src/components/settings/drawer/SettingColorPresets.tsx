@@ -1,7 +1,10 @@
-import { alpha, styled } from '@mui/material/styles';
+import React from 'react';
+
 import { Box, Grid, RadioGroup, CardActionArea } from '@mui/material';
-import useSettings from 'hooks/useSettings';
+import { alpha, styled } from '@mui/material/styles';
+
 import BoxMask from 'components/settings/drawer/BoxMask';
+import useSettings from 'hooks/useSettings';
 
 const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     height: 48,
@@ -13,7 +16,7 @@ const BoxStyle = styled(CardActionArea)(({ theme }) => ({
     borderRadius: Number(theme.shape.borderRadius) * 1.25,
 }));
 
-export default function SettingColorPresets() {
+export default function SettingColorPresets(): JSX.Element {
     const { themeColorPresets, onChangeColor, colorOption } = useSettings();
 
     return (
@@ -25,13 +28,13 @@ export default function SettingColorPresets() {
                     const isSelected = themeColorPresets === colorName;
 
                     return (
-                        <Grid key={colorName} item xs={4} sx={{ pl: 2, pt: 2 }}>
+                        <Grid key={colorName} item xs={4} sx={{ pt: 2, pl: 2 }}>
                             <BoxStyle
                                 sx={{
                                     ...(isSelected && {
-                                        bgcolor: alpha(colorValue, 0.08),
                                         border: `solid 2px ${colorValue}`,
                                         boxShadow: `inset 0 4px 8px 0 ${alpha(colorValue, 0.24)}`,
+                                        bgcolor: alpha(colorValue, 0.08),
                                     }),
                                 }}
                             >
@@ -40,13 +43,13 @@ export default function SettingColorPresets() {
                                         width: 24,
                                         height: 14,
                                         borderRadius: '50%',
-                                        bgcolor: colorValue,
                                         transform: 'rotate(-45deg)',
                                         transition: (theme) =>
                                             theme.transitions.create('all', {
-                                                easing: theme.transitions.easing.easeInOut,
                                                 duration: theme.transitions.duration.shorter,
+                                                easing: theme.transitions.easing.easeInOut,
                                             }),
+                                        bgcolor: colorValue,
                                         ...(isSelected && { transform: 'none' }),
                                     }}
                                 />

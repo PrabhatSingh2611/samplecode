@@ -1,11 +1,13 @@
 import { ElementType } from 'react';
-import { alpha, styled } from '@mui/material/styles';
+
 import { Button, Popover, ButtonProps, LinkProps } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
+
 import { NAVBAR } from 'theme/config';
 
 type IProps = LinkProps & ButtonProps;
 
-export interface ListItemStyleProps extends IProps {
+interface IListItemStyleProps extends IProps {
     component?: ElementType;
     to?: string;
     activeRoot?: boolean;
@@ -18,7 +20,7 @@ export interface ListItemStyleProps extends IProps {
 export const NavListItem = styled(Button, {
     shouldForwardProp: (prop) =>
         prop !== 'activeRoot' && prop !== 'activeSub' && prop !== 'subItem' && prop !== 'open',
-})<ListItemStyleProps>(({ activeRoot, activeSub, subItem, open, theme }) => {
+})<IListItemStyleProps>(({ activeRoot, activeSub, subItem, open, theme }) => {
     const isLight = theme.palette.mode === 'light';
 
     const activeRootStyle = {
@@ -26,7 +28,7 @@ export const NavListItem = styled(Button, {
         backgroundColor: theme.palette.common.white,
         boxShadow: `-2px 4px 6px 0 ${alpha(
             isLight ? theme.palette.grey[500] : theme.palette.common.black,
-            0.16
+            0.16,
         )}`,
     };
 

@@ -1,5 +1,7 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+
 import { ThemeProvider } from 'wdx';
+
 import useSettings from 'hooks/useSettings';
 
 declare type Props = {

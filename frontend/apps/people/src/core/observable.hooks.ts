@@ -4,29 +4,26 @@ import { useHistory } from 'react-router-dom';
 import { createRemoteObservable } from 'wdx';
 
 // NOTE: !!! This should be done only once per app. !!!
-type AuthNavigatePayload = {
+type TAuthNavigatePayload = {
     pathname: string;
 };
 
-export const authNavigateObservable = createRemoteObservable<AuthNavigatePayload>(
-    'auth:navigate',
-    {
-        type: 'object',
-        properties: {
-            pathname: {
-                type: 'string',
-            },
+const authNavigateObservable = createRemoteObservable<TAuthNavigatePayload>('auth:navigate', {
+    type: 'object',
+    properties: {
+        pathname: {
+            type: 'string',
         },
-        required: ['pathname'],
-    }
-);
+    },
+    required: ['pathname'],
+});
 
 // NOTE: !!! This should be done only once per app. !!!
 type HostNavigatePayload = {
     pathname: string;
 };
 
-export const hostNavigateObservable = window.__shared__?.getRemoteObservable<HostNavigatePayload>(
+export const hostNavigateObservable = window.__shared__.getRemoteObservable<HostNavigatePayload>(
     'host:navigate',
     {
         type: 'object',
@@ -36,19 +33,19 @@ export const hostNavigateObservable = window.__shared__?.getRemoteObservable<Hos
             },
         },
         required: ['pathname'],
-    }
+    },
 );
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
-export const useInitAuthObservables = () => {
+export const useInitAuthObservables = (): void => {
     useInitHostNavigateObservable();
     useInitAuthNavigateObservable();
 };
 
-const useInitHostNavigateObservable = () => {
+const useInitHostNavigateObservable = (): void => {
     const history = useHistory();
 
-    const onHostNavigate = ({ pathname }: Location) => {
+    const onHostNavigate = ({ pathname }: Location): void => {
         console.count('onHostNavigate');
         if (pathname !== history.location.pathname) {
             history.push(pathname);
@@ -57,17 +54,17 @@ const useInitHostNavigateObservable = () => {
 
     useLayoutEffect(() => {
         // TODO: Fix typo
-        hostNavigateObservable?.subscribe(onHostNavigate as any);
+        hostNavigateObservable.subscribe(onHostNavigate as any);
     });
 };
 
-const useInitAuthNavigateObservable = () => {
+const useInitAuthNavigateObservable = (): void => {
     const history = useHistory();
 
-    const onHistoryChange = ({ pathname }: Location) => {
-        const lastEvent = authNavigateObservable?.observable.getLastEvent();
+    const onHistoryChange = ({ pathname }: Location): void => {
+        const lastEvent = authNavigateObservable.observable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            authNavigateObservable?.publish({ pathname });
+            authNavigateObservable.publish({ pathname });
         }
     };
     // TODO: Fix typo

@@ -1,5 +1,7 @@
 import _mock from '../_mock';
 
+// TODO: don't remove comment untill usage (VZ)
+// ts-unused-exports:disable-next-line
 export const countries = [
     {
         timezones: ['America/Aruba'],

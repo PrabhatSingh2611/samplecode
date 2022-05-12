@@ -8,4 +8,4 @@ export { default as IconButtonAnimate } from 'components/animate/IconButtonAnima
 
 export { default as MotionViewport } from 'components/animate/MotionViewport';
 export { default as MotionContainer } from 'components/animate/MotionContainer';
-export { default as MotionLazyContainer } from 'components/animate/MotionLazyContainer';
+export { default as MotionLazyContainer } from 'components/MotionLazyContainer';

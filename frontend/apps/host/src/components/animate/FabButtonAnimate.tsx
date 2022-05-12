@@ -1,9 +1,10 @@
-import { m } from 'framer-motion';
-import { forwardRef, ReactNode } from 'react';
-import { useTheme } from '@mui/material/styles';
-import { Box, Fab, FabProps, SxProps } from '@mui/material';
+import React, { forwardRef, ReactNode } from 'react';
 
-interface Props extends Omit<FabProps, 'color'> {
+import { Box, Fab, FabProps, SxProps } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { m, Variants } from 'framer-motion';
+
+interface IProps extends Omit<FabProps, 'color'> {
     sxWrap?: SxProps;
     color?:
         | 'inherit'
@@ -16,7 +17,7 @@ interface Props extends Omit<FabProps, 'color'> {
         | 'error';
 }
 
-const FabButtonAnimate = forwardRef<HTMLButtonElement, Props>(
+const FabButtonAnimate = forwardRef<HTMLButtonElement, IProps>(
     ({ color = 'primary', size = 'large', children, sx, sxWrap, ...other }, ref) => {
         const theme = useTheme();
 
@@ -41,12 +42,12 @@ const FabButtonAnimate = forwardRef<HTMLButtonElement, Props>(
                     ref={ref}
                     size={size}
                     sx={{
-                        boxShadow: theme.customShadows[color],
                         color: theme.palette[color].contrastText,
-                        bgcolor: theme.palette[color].main,
+                        boxShadow: theme.customShadows[color],
                         '&:hover': {
                             bgcolor: theme.palette[color].dark,
                         },
+                        bgcolor: theme.palette[color].main,
                         ...sx,
                     }}
                     {...other}
@@ -55,14 +56,17 @@ const FabButtonAnimate = forwardRef<HTMLButtonElement, Props>(
                 </Fab>
             </AnimateWrap>
         );
-    }
+    },
 );
 
-export default FabButtonAnimate;
+FabButtonAnimate.displayName = 'FabButtonAnimate';
+export default { FabButtonAnimate };
+
+type Size = 'small' | 'medium' | 'large';
 
 type AnimateWrapProp = {
     children: ReactNode;
-    size: 'small' | 'medium' | 'large';
+    size: Size;
     sxWrap?: SxProps;
 };
 
@@ -81,16 +85,30 @@ const varLarge = {
     tap: { scale: 0.99 },
 };
 
-function AnimateWrap({ size, children, sxWrap }: AnimateWrapProp) {
-    const isSmall = size === 'small';
-    const isLarge = size === 'large';
+export const getVariantSize = (
+    size: Size,
+    smallVar: Variants,
+    mediumVar: Variants,
+    largeVar: Variants,
+): Variants => {
+    if (size === 'small') {
+        return smallVar;
+    }
 
+    if (size === 'medium') {
+        return mediumVar;
+    }
+
+    return largeVar;
+};
+
+function AnimateWrap({ size, children, sxWrap }: AnimateWrapProp): JSX.Element {
     return (
         <Box
             component={m.div}
             whileTap="tap"
             whileHover="hover"
-            variants={(isSmall && varSmall) || (isLarge && varLarge) || varMedium}
+            variants={getVariantSize(size, varSmall, varMedium, varLarge)}
             sx={{
                 display: 'inline-flex',
                 ...sxWrap,

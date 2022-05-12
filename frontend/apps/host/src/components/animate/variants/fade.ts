@@ -1,6 +1,8 @@
 import { VariantsType } from 'components/animate/type';
 import { varTranEnter, varTranExit } from 'components/animate/variants/transition';
 
+// TODO: fix return type (VZ)
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const varFade = (props?: VariantsType) => {
     const distance = props?.distance || 120;
     const durationIn = props?.durationIn;

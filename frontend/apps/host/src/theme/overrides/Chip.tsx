@@ -1,4 +1,5 @@
 import { Theme } from '@mui/material/styles';
+
 import { CloseIcon } from 'theme/overrides/CustomIcons';
 
 export default function Chip(theme: Theme) {

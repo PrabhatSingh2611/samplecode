@@ -1,8 +1,11 @@
-import { m, AnimatePresence } from 'framer-motion';
+import React from 'react';
+
 import { Dialog, Box, Paper, DialogProps } from '@mui/material';
+import { m, AnimatePresence } from 'framer-motion';
+
 import { varFade } from 'components/animate/variants';
 
-export interface Props extends DialogProps {
+interface IProps extends DialogProps {
     variants?: Record<string, unknown>;
     onClose?: VoidFunction;
 }
@@ -14,7 +17,7 @@ export default function DialogAnimate({
     children,
     sx,
     ...other
-}: Props) {
+}: IProps): JSX.Element {
     return (
         <AnimatePresence>
             {open && (
@@ -23,7 +26,7 @@ export default function DialogAnimate({
                     maxWidth="xs"
                     open={open}
                     onClose={onClose}
-                    PaperComponent={(props) => (
+                    PaperComponent={(props): JSX.Element => (
                         <Box
                             component={m.div}
                             {...(variants ||
@@ -34,16 +37,16 @@ export default function DialogAnimate({
                                     easeIn: 'easeInOut',
                                 }).inUp)}
                             sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 width: '100%',
                                 height: '100%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
                             }}
                         >
                             <Box
                                 onClick={onClose}
-                                sx={{ width: '100%', height: '100%', position: 'fixed' }}
+                                sx={{ position: 'fixed', width: '100%', height: '100%' }}
                             />
                             <Paper sx={sx} {...props}>
                                 {props.children}

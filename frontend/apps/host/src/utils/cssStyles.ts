@@ -12,11 +12,11 @@ type BackgroundGradientProps = {
     endColor?: string;
 };
 
-interface BackgroundImageProps extends BackgroundGradientProps {
+interface IBackgroundImageProps extends BackgroundGradientProps {
     url?: string;
 }
 
-function getDirection(value = 'bottom') {
+function getDirection(value = 'bottom'): string | undefined {
     return {
         top: 'to top',
         right: 'to right',
@@ -25,9 +25,30 @@ function getDirection(value = 'bottom') {
     }[value];
 }
 
-export default function cssStyles(theme?: Theme) {
+type BgGradientResult = { background: string };
+
+interface IBgBlurResult {
+    WebkitBackdropFilter: string;
+    backgroundColor: string;
+    backdropFilter: string;
+}
+
+interface IBgImagesResult {
+    background: string;
+    backgroundSize: string;
+    backgroundPosition: string;
+    backgroundRepeat: string;
+}
+
+interface ICssStylesResult {
+    bgBlur: (props?: BackgroundBlurProps) => IBgBlurResult;
+    bgImage: (props?: IBackgroundImageProps) => IBgImagesResult;
+    bgGradient: (props?: BackgroundGradientProps) => BgGradientResult;
+}
+
+export default function cssStyles(theme?: Theme): ICssStylesResult {
     return {
-        bgBlur: (props?: BackgroundBlurProps) => {
+        bgBlur: (props?: BackgroundBlurProps): IBgBlurResult => {
             const color = props?.color || theme?.palette.background.default || '#000000';
 
             const blur = props?.blur || 6;
@@ -39,7 +60,7 @@ export default function cssStyles(theme?: Theme) {
                 backgroundColor: alpha(color, opacity),
             };
         },
-        bgGradient: (props?: BackgroundGradientProps) => {
+        bgGradient: (props?: BackgroundGradientProps): BgGradientResult => {
             const direction = getDirection(props?.direction);
             const startColor = props?.startColor || `${alpha('#000000', 0)} 0%`;
             const endColor = props?.endColor || '#000000 75%';
@@ -48,7 +69,7 @@ export default function cssStyles(theme?: Theme) {
                 background: `linear-gradient(${direction}, ${startColor}, ${endColor});`,
             };
         },
-        bgImage: (props?: BackgroundImageProps) => {
+        bgImage: (props?: IBackgroundImageProps): IBgImagesResult => {
             const url = props?.url || '/assets/bg_gradient.jpg';
             const direction = getDirection(props?.direction);
             const startColor =

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
-import useResponsive from 'hooks/useResponsive';
-import useCollapseDrawer from 'hooks/useCollapseDrawer';
-import { HEADER, NAVBAR } from 'theme/config';
 
-import DashboardHeader from 'layouts/dashboard/header';
-import NavbarVertical from 'layouts/dashboard/navbar/NavbarVertical';
-import NavbarHorizontal from 'layouts/dashboard/navbar/NavbarHorizontal';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+import useCollapseDrawer from 'hooks/useCollapseDrawer';
+import useResponsive from 'hooks/useResponsive';
 import useSettings from 'hooks/useSettings';
+import DashboardHeader from 'layouts/dashboard/header';
+import NavbarHorizontal from 'layouts/dashboard/navbar/NavbarHorizontal';
+import NavbarVertical from 'layouts/dashboard/navbar/NavbarVertical';
 import Routes from 'routes';
+import { HEADER, NAVBAR } from 'theme/config';
 
 type MainStyleProps = {
     collapseClick: boolean;
@@ -36,7 +37,7 @@ const MainStyle = styled('main', {
     },
 }));
 
-export default function DashboardLayout() {
+export default function DashboardLayout(): JSX.Element {
     const { collapseClick, isCollapse } = useCollapseDrawer();
 
     const { themeLayout } = useSettings();
@@ -51,14 +52,17 @@ export default function DashboardLayout() {
         return (
             <>
                 <DashboardHeader
-                    onOpenSidebar={() => setOpen(true)}
+                    onOpenSidebar={(): void => setOpen(true)}
                     verticalLayout={verticalLayout}
                 />
 
                 {isDesktop ? (
                     <NavbarHorizontal />
                 ) : (
-                    <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+                    <NavbarVertical
+                        isOpenSidebar={open}
+                        onCloseSidebar={(): void => setOpen(false)}
+                    />
                 )}
 
                 <Box
@@ -66,12 +70,12 @@ export default function DashboardLayout() {
                     sx={{
                         px: { lg: 2 },
                         pt: {
-                            xs: `${HEADER.MOBILE_HEIGHT + 24}px`,
                             lg: `${HEADER.DASHBOARD_DESKTOP_HEIGHT + 80}px`,
+                            xs: `${HEADER.MOBILE_HEIGHT + 24}px`,
                         },
                         pb: {
-                            xs: `${HEADER.MOBILE_HEIGHT + 24}px`,
                             lg: `${HEADER.DASHBOARD_DESKTOP_HEIGHT + 24}px`,
+                            xs: `${HEADER.MOBILE_HEIGHT + 24}px`,
                         },
                     }}
                 >
@@ -88,9 +92,9 @@ export default function DashboardLayout() {
                 minHeight: { lg: 1 },
             }}
         >
-            <DashboardHeader isCollapse={isCollapse} onOpenSidebar={() => setOpen(true)} />
+            <DashboardHeader isCollapse={isCollapse} onOpenSidebar={(): void => setOpen(true)} />
 
-            <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+            <NavbarVertical isOpenSidebar={open} onCloseSidebar={(): void => setOpen(false)} />
 
             <MainStyle collapseClick={collapseClick}>{<Routes />}</MainStyle>
         </Box>

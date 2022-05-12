@@ -1,6 +1,8 @@
-import { useState, MouseEvent } from 'react';
-import { alpha } from '@mui/material/styles';
+import React, { useState, MouseEvent } from 'react';
+
 import { Box, Divider, Typography, Stack, MenuItem, Avatar } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+
 import MenuPopover from 'components/MenuPopover';
 import { IconButtonAnimate } from 'components/animate';
 
@@ -19,14 +21,14 @@ const MENU_OPTIONS = [
     },
 ];
 
-export default function AccountPopover() {
+export default function AccountPopover(): JSX.Element {
     const [open, setOpen] = useState<HTMLElement | null>(null);
 
-    const handleOpen = (event: MouseEvent<HTMLElement>) => {
+    const handleOpen = (event: MouseEvent<HTMLElement>): void => {
         setOpen(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(null);
     };
 
@@ -38,12 +40,12 @@ export default function AccountPopover() {
                     p: 0,
                     ...(open && {
                         '&:before': {
-                            zIndex: 1,
                             content: "''",
+                            position: 'absolute',
+                            zIndex: 1,
                             width: '100%',
                             height: '100%',
                             borderRadius: '50%',
-                            position: 'absolute',
                             bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
                         },
                     }),
@@ -60,12 +62,12 @@ export default function AccountPopover() {
                 anchorEl={open}
                 onClose={handleClose}
                 sx={{
-                    p: 0,
                     mt: 1.5,
                     ml: 0.75,
+                    p: 0,
                     '& .MuiMenuItem-root': {
-                        typography: 'body2',
                         borderRadius: 0.75,
+                        typography: 'body2',
                     },
                 }}
             >

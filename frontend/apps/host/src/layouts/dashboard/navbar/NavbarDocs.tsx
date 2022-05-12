@@ -1,11 +1,14 @@
+import React from 'react';
+
 import { Stack, Button, Typography } from '@mui/material';
+
 import DocIllustration from 'components/nav-section/DocIllustration';
 
-export default function NavbarDocs() {
+export default function NavbarDocs(): JSX.Element {
     return (
         <Stack
             spacing={3}
-            sx={{ px: 5, pb: 5, mt: 10, width: 1, textAlign: 'center', display: 'block' }}
+            sx={{ display: 'block', width: 1, mt: 10, px: 5, pb: 5, textAlign: 'center' }}
         >
             <DocIllustration sx={{ width: 1 }} />
 
