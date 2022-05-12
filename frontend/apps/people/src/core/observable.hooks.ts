@@ -23,18 +23,15 @@ type HostNavigatePayload = {
     pathname: string;
 };
 
-export const hostNavigateObservable = window.__shared__.getRemoteObservable<HostNavigatePayload>(
-    'host:navigate',
-    {
-        type: 'object',
-        properties: {
-            pathname: {
-                type: 'string',
-            },
+export const hostNavigateObservable = createRemoteObservable<HostNavigatePayload>('host:navigate', {
+    type: 'object',
+    properties: {
+        pathname: {
+            type: 'string',
         },
-        required: ['pathname'],
     },
-);
+    required: ['pathname'],
+});
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
 export const useInitAuthObservables = (): void => {
