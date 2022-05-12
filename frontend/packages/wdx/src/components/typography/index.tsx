@@ -4,7 +4,7 @@ import Typography, { TypographyProps } from '@mui/material/Typography';
 
 export interface WTypographyProps extends TypographyProps {}
 
-function WTypography(props: WTypographyProps) {
+function WTypography(props: WTypographyProps):JSX.Element {
     return <Typography {...props} />;
 }
 

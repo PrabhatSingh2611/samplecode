@@ -3,7 +3,7 @@ import React from 'react';
 import WButton from './index';
 
 const meta: Meta = {
-  title: 'Components/Button',
+  title: 'MUI/Inputs/Button',
   component: WButton,
   argTypes: {
     children: {

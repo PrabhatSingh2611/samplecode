@@ -98,7 +98,7 @@ function WPopover({
     disabledArrow,
     sx,
     ...other
-}: WPopoverProps) {
+}: WPopoverProps):JSX.Element {
     return (
         <Popover
             anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}

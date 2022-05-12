@@ -12,7 +12,6 @@ export default function Button(theme: Theme) {
         sizeLarge: {
           height: 48,
         },
-        // contained
         containedInherit: {
           color: theme.palette.grey[800],
           boxShadow: theme.customShadows.z8,

@@ -1,17 +1,11 @@
+import { Theme } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import WTypography from './index';
+import WBox from './index';
 
 const meta: Meta = {
-  title: 'MUI/Data Display/Typography',
-  component: WTypography,
-  argTypes: {
-    children: {
-      control: {
-        type: 'text',
-      },
-    },
-  },
+  title: 'MUI/Layout/Box',
+  component: WBox,
   parameters: {
     controls: { expanded: true },
   },
@@ -20,7 +14,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = args => {
-  return <WTypography {...args} />;
+  return <WBox {...args}>I'm {args.component}</WBox>;
 }
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
@@ -28,5 +22,13 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 
 Default.args = {
-  children: 'this is text'
+  component: 'section',
+  sx: (theme: Theme) => ({
+      display: 'grid',
+      placeContent: 'center',
+      width: 200,
+      height: 200,
+      background: theme.palette.info.main,
+      color: theme.palette.common.white
+  })
 };

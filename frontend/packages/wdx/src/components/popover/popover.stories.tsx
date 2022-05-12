@@ -5,7 +5,7 @@ import WButton from "../button";
 import WTypography from "../typography";
 
 const meta: Meta = {
-  title: 'Components/Popover',
+  title: 'Extra Components/Popover',
   component: WPopover,
   parameters: {
     controls: { expanded: true },
