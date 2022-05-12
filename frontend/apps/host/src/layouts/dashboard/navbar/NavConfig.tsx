@@ -21,11 +21,12 @@ const navConfig = [
     {
         subheader: 'Navigation',
         items: [
-            { title: 'People', path: '/people', icon: ICONS.user },
-            { title: 'Assets', path: '/assets', icon: ICONS.dashboard },
-            { title: 'Organization', path: '/organization', icon: ICONS.booking },
+            { title: 'Home', path: '/people/me', icon: ICONS.user },
+            { title: 'Policy', path: '/people/policy', icon: ICONS.dashboard },
+            { title: 'Employees', path: '/people/employees', icon: ICONS.dashboard },
+            { title: 'Leave Requests', path: '/people/leaves', icon: ICONS.booking },
+            { title: 'Assets', path: '/assets', icon: ICONS.invoice },
             { title: 'Recruitment', path: '/recruitment', icon: ICONS.invoice },
-            { title: 'Grow', path: '/grow', icon: ICONS.analytics },
         ],
     },
 

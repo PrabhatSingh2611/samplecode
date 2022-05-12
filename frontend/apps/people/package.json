@@ -22,7 +22,9 @@
         "react-router-dom": "^5.3.1",
         "react-scripts": "5.0.1",
         "wdx": "^0.1.0",
-        "web-vitals": "^2.1.4"
+        "web-vitals": "^2.1.4",
+        "react-helmet-async": "^1.2.3",
+        "@mui/material": "^5.6.0"
     },
     "devDependencies": {
         "@babel/core": "^7.17.9",

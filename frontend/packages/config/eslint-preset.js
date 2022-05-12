@@ -38,9 +38,10 @@ module.exports = {
         'newline-before-return': 2,
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
-        'no-unused-vars': 2,
+        'no-unused-vars': 1,
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['off'],
+        'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/naming-convention': [
             'error',
             {
@@ -56,7 +57,7 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-condition': 2,
         'linebreak-style': ['error', 'unix'],
         'import/order': [
-            'error',
+            'warn',
             {
                 groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
                 pathGroups: [

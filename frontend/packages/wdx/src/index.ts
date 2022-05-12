@@ -11,6 +11,11 @@ export { default as WGrid, WGridProps } from './components/grid';
 export { default as WPopover, WPopoverProps } from './components/popover';
 export { default as WStack, WStackProps } from './components/stack';
 export { default as WTypography, WTypographyProps } from './components/typography';
+export { default as WPage, WPageProps } from './components/page';
+export { default as WBlockContent } from './components/upload/block-content';
+export { default as WRejectionFiles } from './components/upload/rejection-files';
+export { default as WUploadSingleFile } from './components/upload/upload-single-file';
+export { WUploadProps, WCustomFile } from './components/upload/type'
 
 // CORE
 export { default as Observable, createRemoteObservable } from './core/observable'

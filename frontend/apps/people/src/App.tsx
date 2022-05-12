@@ -1,7 +1,17 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { WBox } from 'wdx';
+
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 import { FlagsProvider } from 'flagged';
+
+import { EEmployeesRouterLink } from 'features/employees/models/employees-router-link';
+import { ELeavesRouterLink } from 'features/leaves/models/leaves-router-link';
+import { EMeRouterLink } from 'features/me/models/me-router-link';
+import PolicyPage from 'features/policy/containers/policy-list-page/policy-list-page.container';
+import { EPolicyRouterLink } from 'features/policy/models/policy-router-link.enum';
 
 import PeopleObservables from 'core/PeopleObservables';
 import Router from 'core/Router';
@@ -11,6 +21,8 @@ import Router from 'core/Router';
 // import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 // ClassNameGenerator.configure((componentName) => `people-${componentName}`);
 
+ClassNameGenerator.configure((componentName) => `people-${componentName}`);
+
 interface IAppProps {
     inIsolation: boolean;
     initialEntry?: string;
@@ -19,43 +31,40 @@ interface IAppProps {
 function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
     return (
         <FlagsProvider>
-            <div className="PeopleApp">
-                <h1>Hello from People App!</h1>
-                <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                    <PeopleObservables />
-                    <Header />
-                    <Switch>
-                        <Route path="/details">
-                            <Details />
-                        </Route>
-                        <Route path="/">
-                            <Home />
-                        </Route>
-                    </Switch>
-                </Router>
-            </div>
+            <HelmetProvider>
+                <WBox className="PeopleApp">
+                    <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                        <PeopleObservables />
+                        <Switch>
+                            <Route path={EMeRouterLink.Me}>
+                                <Details title="Me page" />
+                            </Route>
+                            <Route path={EPolicyRouterLink.Policy}>
+                                <PolicyPage />
+                            </Route>
+                            <Route path={EEmployeesRouterLink.Employees}>
+                                <Details title="Employees page" />
+                            </Route>
+                            <Route path={ELeavesRouterLink.Leaves}>
+                                <Details title="Leaves page" />
+                            </Route>
+                            <Route exact={true} path="/">
+                                <Redirect to={EMeRouterLink.Me} />
+                            </Route>
+                        </Switch>
+                    </Router>
+                </WBox>
+            </HelmetProvider>
         </FlagsProvider>
     );
 }
 
-const Header = (): JSX.Element => (
-    <header className="PeopleAppHeader">
-        <nav>
-            <Link to="/">Home</Link> | <Link to="/details">Details</Link>
-        </nav>
-    </header>
-);
-
-const Home = (): JSX.Element => (
-    <div className="PeopleAppHeaderHome">
-        <h1>People App</h1>
-    </div>
-);
-
-const Details = (): JSX.Element => (
-    <div className="PeopleAppDetails">
-        <h1>People App Details</h1>
-    </div>
-);
+function Details({ title }: { title: string }): JSX.Element {
+    return (
+        <div className="PeopleAppDetails">
+            <h1>{title}</h1>
+        </div>
+    );
+}
 
 export default App;
