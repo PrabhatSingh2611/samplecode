@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AUTH_APP_CHANNEL, HOST_APP_CHANNEL } from 'core/constants';
-import { Observable } from 'core/observable';
+import { Observable } from 'wdx';
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
 export const useInitHostObservables = (): void => {

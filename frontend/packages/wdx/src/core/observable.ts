@@ -1,6 +1,6 @@
 import { validate } from 'jsonschema';
 
-import { Events, Observer, Observers } from './types';
+import {Events, Observer, Observers, RemoteObservable} from './types';
 
 function deepCompareStrict(a: any, b: any): boolean {
     if (typeof a !== typeof b) {
@@ -13,7 +13,7 @@ function deepCompareStrict(a: any, b: any): boolean {
         if (a.length !== b.length) {
             return false;
         }
-        return a.every(function (v, i) {
+        return a.every(function (_, i) {
             return deepCompareStrict(a[i], b[i]);
         });
     }
@@ -21,11 +21,14 @@ function deepCompareStrict(a: any, b: any): boolean {
         if (!a || !b) {
             return a === b;
         }
-        var aKeys = Object.keys(a);
-        var bKeys = Object.keys(b);
+
+        const aKeys = Object.keys(a);
+        const bKeys = Object.keys(b);
+
         if (aKeys.length !== bKeys.length) {
             return false;
         }
+
         return aKeys.every(function (v) {
             return deepCompareStrict(a[v], b[v]);
         });
@@ -33,11 +36,11 @@ function deepCompareStrict(a: any, b: any): boolean {
     return a === b;
 }
 
-export const SHARED = '__shared__';
-export const EVENTS = '__events__';
-export const CHANNELS = '__channels__';
+const SHARED = '__shared__';
+const EVENTS = '__events__';
+const CHANNELS = '__channels__';
 
-export class Observable<T = any> {
+export default class Observable<T = any> {
     private _namespace!: string;
 
     private _schema!: Object;
@@ -48,7 +51,7 @@ export class Observable<T = any> {
                 [EVENTS]: {},
                 [CHANNELS]: {},
                 getRemoteObservable: (namespace, schema) =>
-                    createRemoteObservalbe(namespace, schema),
+                    createRemoteObservable(namespace, schema),
             };
         }
 
@@ -125,13 +128,12 @@ export class Observable<T = any> {
 
     getLastEvent(): T | undefined {
         const { events } = this;
+
         if (!events.length) {
             return;
         }
 
-        const lastEvent = events[events.length - 1];
-
-        return lastEvent;
+        return events[events.length - 1];
     }
 
     publish(data: T): void {
@@ -140,6 +142,8 @@ export class Observable<T = any> {
         }
         const { events } = this;
         const lastEvent = this.getLastEvent();
+
+
 
         this.observers.forEach((observer) => observer(data, { events, lastEvent }));
 
@@ -168,7 +172,7 @@ export class Observable<T = any> {
     }
 }
 
-export class PayloadMismatchError extends Error {
+class PayloadMismatchError extends Error {
     /**
      * Creates a new PayloadMismatchError error
      * @param namespace - name of event namespace
@@ -177,14 +181,16 @@ export class PayloadMismatchError extends Error {
      */
     constructor(public namespace: string, public schema: any, public payload: any) {
         super(`payload does not match the specified schema for namespace [${namespace}].`);
+        // @ts-ignore
         if (Error.captureStackTrace) {
+            // @ts-ignore
             Error.captureStackTrace(this, PayloadMismatchError);
         }
         this.name = 'PayloadMismatchError';
     }
 }
 
-export class SchemaMismatchError extends Error {
+class SchemaMismatchError extends Error {
     /**
      * Creates a new SchemaMismatchError error
      * @param namespace - name of event namespace
@@ -193,14 +199,17 @@ export class SchemaMismatchError extends Error {
      */
     constructor(public namespace: string, public schema: any, public newSchema: any) {
         super(`schema registration for [${namespace}] must match already registered schema.`);
+
+        // @ts-ignore
         if (Error.captureStackTrace) {
+            // @ts-ignore
             Error.captureStackTrace(this, SchemaMismatchError);
         }
         this.name = 'SchemaMismatchError';
     }
 }
 
-function createRemoteObservalbe(namespace: string, schema: Object) {
+export function createRemoteObservable<T = any>(namespace: string, schema: Object): RemoteObservable<T> {
     const observable = new Observable(namespace, schema);
     const subscriptions = new Set<any>();
 
@@ -213,7 +222,7 @@ function createRemoteObservalbe(namespace: string, schema: Object) {
         publish: (data: any) => {
             observable.publish(data);
         },
-        usubscribeAll: () => {
+        unsubscribeAll: () => {
             subscriptions.forEach((subscription: Observer<any>) => {
                 observable.unsubscribe(subscription);
             });

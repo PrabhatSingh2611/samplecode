@@ -1,12 +1,14 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { createRemoteObservable } from 'wdx';
+
 // NOTE: !!! This should be done only once per app. !!!
 type AuthNavigatePayload = {
     pathname: string;
 };
 
-export const authNavigateObservable = window.__shared__?.getRemoteObservable<AuthNavigatePayload>(
+export const authNavigateObservable = createRemoteObservable<AuthNavigatePayload>(
     'auth:navigate',
     {
         type: 'object',

@@ -1,9 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { hostNavigateObservable } from './core/observable.hooks';
+
+import './index.css';
 
 interface MountProps {
     element: Element;
@@ -24,7 +26,7 @@ const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
     return (): void => {
         console.log('Unmounting People App...');
         // NOTE: This should be done for all MF's to  avoid memory leaks
-        hostNavigateObservable?.usubscribeAll();
+        hostNavigateObservable?.unsubscribeAll();
     };
 };
 

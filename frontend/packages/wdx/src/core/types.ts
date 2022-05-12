@@ -27,7 +27,7 @@ export interface RemoteObservable<T = any> {
     observable: Observable<T>;
     subscribe(subscription: Observer<T>): void;
     publish(data: T): void;
-    usubscribeAll(): void;
+    unsubscribeAll(): void;
 }
 
 declare global {
@@ -35,7 +35,10 @@ declare global {
         __shared__: {
             __events__: Record<string, Events>;
             __channels__: Record<string, Channels>;
-            getRemoteObservable: (namespace: string, schema: Object) => RemoteObservable;
+            getRemoteObservable: <T = any>(
+                namespace: string,
+                schema: Object
+            ) => RemoteObservable<T>;
         };
     }
 }

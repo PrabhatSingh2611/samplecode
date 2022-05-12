@@ -24,7 +24,7 @@ const mount = ({ element, initialEntry, inIsolation }: MountProps) => {
     return (): void => {
         console.log('Unmounting Remote Example App...');
         // NOTE: This should be done for all MF's to  avoid memory leaks
-        hostNavigateObservable?.usubscribeAll();
+        hostNavigateObservable?.unsubscribeAll();
     };
 };
 
