@@ -35,7 +35,7 @@ module.exports = {
         'no-extra-boolean-cast': 2,
         'no-useless-return': 2,
         curly: [2, 'all'],
-        'newline-before-return': 2,
+        'newline-before-return': 1,
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'no-unused-vars': 1,
@@ -53,7 +53,7 @@ module.exports = {
                 },
             },
         ],
-        '@typescript-eslint/explicit-function-return-type': 'error',
+        '@typescript-eslint/explicit-function-return-type': 1,
         '@typescript-eslint/no-unnecessary-condition': 2,
         'linebreak-style': ['error', 'unix'],
         'import/order': [

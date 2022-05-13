@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import WUploadSingleFile from './UploadSingleFile';
+import WUploadSingleFile from './upload-single-file';
 import WButton from "../button";
 import WIconify from "../iconify";
 

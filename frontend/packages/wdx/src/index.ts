@@ -16,6 +16,10 @@ export { default as WBlockContent } from './components/upload/block-content';
 export { default as WRejectionFiles } from './components/upload/rejection-files';
 export { default as WUploadSingleFile } from './components/upload/upload-single-file';
 export { WUploadProps, WCustomFile } from './components/upload/type'
+export { default as WActionsDrawer, WActionsDrawerProps } from './components/actions-drawer';
+export { default as WIconButton, WIconButtonProps } from './components/icon-button';
+export { default as WDrawer, WDrawerProps } from './components/drawer';
+export { default as WDivider, WDividerProps } from './components/divider';
 
 // CORE
 export { default as Observable, createRemoteObservable } from './core/observable'
