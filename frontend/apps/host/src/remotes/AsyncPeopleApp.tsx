@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import AsyncLoader, { ImportFallbacks, ImportState } from 'core/AsyncLoader';
 import { getRelativePathname } from 'core/observable.hooks';
+import { EPeopleRouterLink } from 'models/people-router-link';
 
 interface IImportLoaderProps {
     importLoadingFallback?: React.ReactNode;
@@ -26,9 +27,10 @@ const PeopleApp = React.memo(function PeopleApp({
                 // TODO: Handle "onUnmount" returned from "mount()"
                 const relativePathname = getRelativePathname(
                     history.location.pathname,
-                    '/people',
+                    EPeopleRouterLink.People,
                     false,
                 );
+
                 unmountRef.current = mount({
                     element: ref.current!,
                     inIsolation: false,

@@ -1,5 +1,5 @@
 enum HostEvent {
-    'NAVIGATE' = 'host:navigate',
+    NAVIGATE = 'host:navigate',
 }
 
 export const HOST_APP_CHANNEL = {
@@ -17,13 +17,13 @@ export const HOST_APP_CHANNEL = {
     },
 };
 
-enum AuthEvent {
-    'NAVIGATE' = 'auth:navigate',
+enum PeopleEvent {
+    NAVIGATE = 'people:navigate',
 }
 
-export const AUTH_APP_CHANNEL = {
+export const PEOPLE_APP_CHANNEL = {
     NAVIGATE: {
-        EVENT: AuthEvent.NAVIGATE,
+        EVENT: PeopleEvent.NAVIGATE,
         SCHEMA: {
             type: 'object',
             properties: {

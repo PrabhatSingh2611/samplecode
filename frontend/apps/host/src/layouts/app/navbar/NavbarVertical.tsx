@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Box, Stack, Drawer } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import { WDrawer, WBox, WStack } from 'wdx';
 
 import Logo from 'components/Logo';
 import Scrollbar from 'components/Scrollbar';
 import { NavSectionVertical } from 'components/nav-section';
 import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
-import CollapseButton from 'layouts/dashboard/navbar/CollapseButton';
-import navConfig from 'layouts/dashboard/navbar/NavConfig';
-import NavbarAccount from 'layouts/dashboard/navbar/NavbarAccount';
-import NavbarDocs from 'layouts/dashboard/navbar/NavbarDocs';
+import CollapseButton from 'layouts/app/navbar/CollapseButton';
+import navConfig from 'layouts/app/navbar/NavConfig';
+import NavbarAccount from 'layouts/app/navbar/NavbarAccount';
+import NavbarDocs from 'layouts/app/navbar/NavbarDocs';
 import { NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
 
@@ -60,7 +60,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
                 '& .simplebar-content': { display: 'flex', flexDirection: 'column', height: 1 },
             }}
         >
-            <Stack
+            <WStack
                 spacing={3}
                 sx={{
                     flexShrink: 0,
@@ -70,7 +70,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
                     ...(isCollapse && { alignItems: 'center' }),
                 }}
             >
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <WStack direction="row" alignItems="center" justifyContent="space-between">
                     <Logo />
 
                     {isDesktop && !isCollapse && (
@@ -79,16 +79,12 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
                             collapseClick={collapseClick}
                         />
                     )}
-                </Stack>
+                </WStack>
 
                 <NavbarAccount isCollapse={isCollapse} />
-            </Stack>
+            </WStack>
 
             <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
-
-            <Box sx={{ flexGrow: 1 }} />
-
-            {!isCollapse && <NavbarDocs />}
         </Scrollbar>
     );
 
@@ -104,17 +100,17 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
             }}
         >
             {!isDesktop && (
-                <Drawer
+                <WDrawer
                     open={isOpenSidebar}
                     onClose={onCloseSidebar}
                     PaperProps={{ sx: { width: NAVBAR.DASHBOARD_WIDTH } }}
                 >
                     {renderContent}
-                </Drawer>
+                </WDrawer>
             )}
 
             {isDesktop && (
-                <Drawer
+                <WDrawer
                     open
                     variant="persistent"
                     onMouseEnter={onHoverEnter}
@@ -139,7 +135,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
                     }}
                 >
                     {renderContent}
-                </Drawer>
+                </WDrawer>
             )}
         </RootStyle>
     );

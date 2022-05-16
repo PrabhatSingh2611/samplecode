@@ -8,11 +8,11 @@ import Logo from 'components/Logo';
 import { IconButtonAnimate } from 'components/animate';
 import useOffSetTop from 'hooks/useOffSetTop';
 import useResponsive from 'hooks/useResponsive';
-import AccountPopover from 'layouts/dashboard/header/AccountPopover';
-import ContactsPopover from 'layouts/dashboard/header/ContactsPopover';
-import LanguagePopover from 'layouts/dashboard/header/LanguagePopover';
-import NotificationsPopover from 'layouts/dashboard/header/NotificationsPopover';
-import Searchbar from 'layouts/dashboard/header/Searchbar';
+import AccountPopover from 'layouts/app/header/AccountPopover';
+import ContactsPopover from 'layouts/app/header/ContactsPopover';
+import LanguagePopover from 'layouts/app/header/LanguagePopover';
+import NotificationsPopover from 'layouts/app/header/NotificationsPopover';
+import Searchbar from 'layouts/app/header/Searchbar';
 import { HEADER, NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
 
@@ -56,7 +56,7 @@ type Props = {
     verticalLayout?: boolean;
 };
 
-export default function DashboardHeader({
+export default function AppHeader({
     onOpenSidebar,
     isCollapse = false,
     verticalLayout = false,

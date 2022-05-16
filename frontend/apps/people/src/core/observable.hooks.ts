@@ -4,11 +4,11 @@ import { useHistory } from 'react-router-dom';
 import { createRemoteObservable } from 'wdx';
 
 // NOTE: !!! This should be done only once per app. !!!
-type TAuthNavigatePayload = {
+type TPeopleNavigatePayload = {
     pathname: string;
 };
 
-const authNavigateObservable = createRemoteObservable<TAuthNavigatePayload>('auth:navigate', {
+const peopleNavigateObservable = createRemoteObservable<TPeopleNavigatePayload>('people:navigate', {
     type: 'object',
     properties: {
         pathname: {
@@ -34,9 +34,9 @@ export const hostNavigateObservable = createRemoteObservable<HostNavigatePayload
 });
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
-export const useInitAuthObservables = (): void => {
+export const useInitPeopleObservables = (): void => {
     useInitHostNavigateObservable();
-    useInitAuthNavigateObservable();
+    useInitPeopleNavigateObservable();
 };
 
 const useInitHostNavigateObservable = (): void => {
@@ -55,13 +55,13 @@ const useInitHostNavigateObservable = (): void => {
     });
 };
 
-const useInitAuthNavigateObservable = (): void => {
+const useInitPeopleNavigateObservable = (): void => {
     const history = useHistory();
 
     const onHistoryChange = ({ pathname }: Location): void => {
-        const lastEvent = authNavigateObservable.observable.getLastEvent();
+        const lastEvent = peopleNavigateObservable.observable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            authNavigateObservable.publish({ pathname });
+            peopleNavigateObservable.publish({ pathname });
         }
     };
     // TODO: Fix typo

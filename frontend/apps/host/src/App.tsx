@@ -11,7 +11,7 @@ import ThemeSettings from 'components/settings';
 import { CollapseDrawerProvider } from 'contexts/CollapseDrawerContext';
 import { SettingsProvider } from 'contexts/SettingsContext';
 import HostObservables from 'core/HostObservables';
-import DashboardLayout from 'layouts/dashboard';
+import AppLayout from 'layouts/app';
 
 // NOTE - Set these lines in your remote and change the host value to the name of your remote (TH)
 // IMPORTANT - Call this function at the root of the application
@@ -28,7 +28,7 @@ export default function App(): JSX.Element {
                             <MotionLazyContainer>
                                 <ThemeSettingsProvider>
                                     <ThemeSettings>
-                                        <DashboardLayout />
+                                        <AppLayout />
                                     </ThemeSettings>
                                 </ThemeSettingsProvider>
                             </MotionLazyContainer>

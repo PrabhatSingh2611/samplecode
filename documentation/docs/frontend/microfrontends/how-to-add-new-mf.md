@@ -14,7 +14,8 @@ sidebar_position: 3
 
 1. `cd frontend/apps`
 2. Remove `node_modules` from `frontend/remote-example`
-3. `cp remote-example {NEW_MF_NAME_LOWERCASE}`
+3. `cp -R remote-example {NEW_MF_NAME_LOWERCASE}`
+4. Rename file `src/core/RemoteExampleObservables.tsx` to `src/core/[NEW_MF_NAME]Observables.tsx`
 4. Using **Search & Replace** replace all `remote-example` with `NEW_MF_NAME_LOWERCASE`
 5. Using **Search & Replace** replace all `RemoteExample` with `NEW_MF_NAME`
 6. Using **Search & Replace** replace all `Remote Example` with `NEW_MF_NAME`

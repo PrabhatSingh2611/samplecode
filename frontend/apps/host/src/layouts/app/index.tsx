@@ -6,9 +6,9 @@ import { styled } from '@mui/material/styles';
 import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
 import useSettings from 'hooks/useSettings';
-import DashboardHeader from 'layouts/dashboard/header';
-import NavbarHorizontal from 'layouts/dashboard/navbar/NavbarHorizontal';
-import NavbarVertical from 'layouts/dashboard/navbar/NavbarVertical';
+import DashboardHeader from 'layouts/app/header';
+import NavbarHorizontal from 'layouts/app/navbar/NavbarHorizontal';
+import NavbarVertical from 'layouts/app/navbar/NavbarVertical';
 import Routes from 'routes';
 import { HEADER, NAVBAR } from 'theme/config';
 
@@ -37,7 +37,7 @@ const MainStyle = styled('main', {
     },
 }));
 
-export default function DashboardLayout(): JSX.Element {
+export default function AppLayout(): JSX.Element {
     const { collapseClick, isCollapse } = useCollapseDrawer();
 
     const { themeLayout } = useSettings();

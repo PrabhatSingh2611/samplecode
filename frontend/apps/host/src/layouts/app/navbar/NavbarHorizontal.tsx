@@ -4,7 +4,7 @@ import { Container, AppBar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { NavSectionHorizontal } from 'components/nav-section';
-import navConfig from 'layouts/dashboard/navbar/NavConfig';
+import navConfig from 'layouts/app/navbar/NavConfig';
 import { HEADER } from 'theme/config';
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
