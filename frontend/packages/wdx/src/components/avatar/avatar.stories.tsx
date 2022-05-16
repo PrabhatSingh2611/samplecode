@@ -28,5 +28,6 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 
 Default.args = {
-  children: 'AU'
+  children: 'AU',
+  variant: 'circular'
 };

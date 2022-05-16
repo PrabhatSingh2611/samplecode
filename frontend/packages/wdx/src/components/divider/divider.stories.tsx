@@ -4,7 +4,7 @@ import WDivider from './index';
 import WTypography from '../typography';
 
 const meta: Meta = {
-  title: 'MUI/Layout/Divider',
+  title: 'MUI/Data Display/Divider',
   component: WDivider,
   parameters: {
     controls: { expanded: true },

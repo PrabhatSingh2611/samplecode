@@ -28,5 +28,10 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 
 Default.args = {
-  children: 'click me'
+  size: "medium",
+  color: "primary",
+  variant: "text",
+  fullWidth: false,
+  disabled: false,
+  children: "click me",
 };

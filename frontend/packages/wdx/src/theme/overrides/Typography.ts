@@ -1,3 +1,5 @@
+// TODO: Fix types to Theme
+// @ts-nocheck
 import { Theme } from '@mui/material/styles';
 
 export default function Typography(theme: Theme) {

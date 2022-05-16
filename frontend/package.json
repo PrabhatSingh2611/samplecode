@@ -11,7 +11,7 @@
         "build:host": "turbo run build --filter=./apps/host",
         "build:people": "turbo run build --filter=./apps/people",
         "build:auth": "turbo run build --filter=./apps/auth",
-        "dev": "turbo run dev --no-cache --parallel --filter=!./apps/remote-example",
+        "dev": "turbo run dev --no-cache --parallel --filter=!./apps/remote-example --filter=!./packages/wdx",
         "lint": "turbo run lint --filter=!./packages/wdx",
         "lint:fix": "turbo run lint:fix",
         "clear-all": "turbo run clear-all && rm -rf node_modules && rm pnpm-lock.yaml",

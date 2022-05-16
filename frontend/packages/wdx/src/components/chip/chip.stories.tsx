@@ -1,11 +1,11 @@
 import { Meta, Story } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
-import WButton from '../button';
-import WBadge from './index';
+import WChip from './index';
 
 const meta: Meta = {
-  title: 'MUI/Data Display/Badge',
-  component: WBadge,
+  title: 'MUI/Data Display/Chip',
+  component: WChip,
   argTypes: {
     children: {
       control: {
@@ -21,7 +21,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = args => {
-  return <WBadge {...args}><WButton variant='contained'>Toggle popover</WButton></WBadge>;
+  return <WChip {...args}/>;
 }
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
@@ -29,8 +29,11 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 
 Default.args = {
-  badgeContent: 4,
-  max: 7,
-  color: 'error',
-  variant: 'standard',
+  label: 'Chip Filled',
+  variant: 'circular',
+  color: 'primary',
+  size: 'medium',
+  disabled: false,
+  clickable: false,
+  onDelete: action('OnClick'),
 };
