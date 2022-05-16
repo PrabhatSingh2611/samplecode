@@ -33,4 +33,22 @@ sidebar_position: 1
 
 ## How to start?
 
-Do we need this?
+Before start make sure you have `pnpm` installed globally.
+
+### Installing dependencies: 
+
+    cd frontend && pnpm i
+
+### Running locally for development.
+
+Run WDX package:
+
+    pnpm dev:wdx
+
+After WDX is up run others: 
+
+    pnpm dev
+
+### Build project
+
+    pnpm build

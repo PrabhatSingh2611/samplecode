@@ -1,6 +1,6 @@
 const dependencies = require('../package.json').dependencies;
 
-const NOT_SHAREABLE_DEPENDENCIES = ['ui'];
+const NOT_SHAREABLE_DEPENDENCIES = ['wdx'];
 
 function getShareableDeps() {
     const shareableDependencies = {};
