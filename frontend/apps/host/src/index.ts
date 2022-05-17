@@ -1,6 +1,6 @@
 import('bootstrap');
 
-// TEST: Trigger build
+// TEST: Trigger build 2
 
 // NOTE: This is fix for "All files must be modules when the '--isolatedModules' flag is provided." error.
 export {};
