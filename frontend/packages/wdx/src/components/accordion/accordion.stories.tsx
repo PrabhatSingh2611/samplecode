@@ -47,7 +47,7 @@ const TemplateDefault: Story = args => {
                     </Typography>
                 </WAccordionDetails>
             </WAccordion>
-            <WAccordion {...args}>
+            <WAccordion {...args} disabled={true}>
                 <WAccordionSummary
                     expandIcon={<TreeViewCollapseIcon />}
                     aria-controls="panel3a-content"
@@ -82,5 +82,4 @@ export const Default = TemplateDefault.bind({});
 
 Default.args = {
     variant: 'elevation',
-    disabled: false,
 };

@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/**/**.stories.mdx', '../src/components/**/*.stories.@(ts|tsx|js|jsx)'],
+  stories: ['../src/**/**.stories.mdx', '../src/components/**/*.stories.@(ts|tsx|js|jsx)', '../src/widgets/**/*.stories.@(ts|tsx|js|jsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   webpackFinal(config) {
     delete config.resolve.alias['emotion-theming'];

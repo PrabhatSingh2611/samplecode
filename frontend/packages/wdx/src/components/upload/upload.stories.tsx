@@ -5,7 +5,7 @@ import WButton from "../button";
 import WIconify from "../iconify";
 
 const meta: Meta = {
-  title: 'Components/Upload singe file',
+  title: 'Extra Components/Upload singe file',
   component: WUploadSingleFile,
 };
 

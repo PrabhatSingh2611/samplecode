@@ -6,7 +6,7 @@ import WBox from '../box';
 import WTypography from '../typography';
 
 const meta: Meta = {
-  title: 'MUI/Inputs/Drawer',
+  title: 'MUI/Navigation/Drawer',
   component: WDrawer,
   argTypes: {
     children: {
