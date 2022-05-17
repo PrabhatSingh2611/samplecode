@@ -30,6 +30,7 @@ export { default as WCard, WCardActions, WCardActionArea, WCardContent, WCardHea
 export { default as WCheckbox, WCheckboxProps} from './components/checkbox';
 export { default as WChip, WChipProps } from './components/chip';
 export { default as WContainer, WContainerProps } from './components/container';
+export { default as WDatePicker, WDatePickerProps, WDateTimePicker, WDateTimePickerProps, WLocalizationProvider, WLocalizationProviderProps, WAdapterDateFns } from './components/date-picker';
 export { default as WDivider, WDividerProps } from './components/divider';
 export { default as WDrawer, WDrawerProps } from './components/drawer';
 export { default as WFab, WFabProps } from './components/floating-action-button';

@@ -1,11 +1,12 @@
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
+import { FlagsProvider } from 'flagged';
+import { WBox } from 'wdx';
+
 import PeopleObservables from 'core/PeopleObservables';
 import Router from 'core/Router';
-import { FlagsProvider } from 'flagged';
 import Routes from 'routes';
-import { WBox } from 'wdx';
 
 interface IAppProps {
     inIsolation: boolean;

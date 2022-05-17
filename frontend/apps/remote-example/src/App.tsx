@@ -7,7 +7,6 @@ import Router from 'core/Router';
 
 import RemoteExampleObservables from './core/RemoteExampleObservavbles';
 
-
 interface IAppProps {
     inIsolation: boolean;
     initialEntry?: string;
