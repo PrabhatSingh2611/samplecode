@@ -1,0 +1,55 @@
+input CreatePolicyInput {
+    title: String!
+    file: ResourceInput!
+    status: PolicyStatus!
+}
+
+type Policy implements Node {
+    uuid: UUID!
+    title: String!
+    file: Resource!
+    publicationDate: ZonedDateTime
+    status: PolicyStatus!
+    owner: Employee!
+}
+
+enum PolicyStatus {
+    PUBLISHED
+    UNPUBLISHED
+}
+
+type PolicyPayload {
+    policy: Policy
+}
+
+input DeletePoliciesInput {
+    policies: NodesInput!
+}
+
+type DeletePoliciesPayload {
+    policies: DeletedNodes!
+}
+
+type PolicyConnectionPayload implements ConnectionPayload {
+    items: [Policy!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input PoliciesInput {
+    where: PoliciesWhereInput
+    pagination: PageInput
+    sort: [PolicySort!] = publicationDate_DESC
+}
+
+enum PolicySort {
+    publicationDate_DESC
+    publicationDate_ASC
+}
+
+input PoliciesWhereInput {
+    """
+    API will filter by "title".
+    """
+    query: String
+}

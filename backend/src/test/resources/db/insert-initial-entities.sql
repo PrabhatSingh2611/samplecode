@@ -48,3 +48,14 @@ VALUES
 insert into announcement (id, uuid, body, created_at)
             values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c88', 'this is sample 1 announcement body', '2022-02-02T13:25:34.480425Z'),
                    (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb890', 'this is sample 2 announcement body', '2021-02-02T13:25:34.480425Z');
+
+ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
+
+INSERT INTO resource (id, uuid, outer_reference, thumbnail_id)
+VALUES
+(1, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 1);
+
+insert into policy (id, uuid, title, resource_id, publication_date, status, employee_id)
+values
+(1001, '239e8741-f04d-406a-bf7d-e2feaf8f5619', 'policy_title_1', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 2),
+(1002, 'c9cfa69a-b21d-42e9-a75f-78993d6cb509', 'policy_title_2', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 1);

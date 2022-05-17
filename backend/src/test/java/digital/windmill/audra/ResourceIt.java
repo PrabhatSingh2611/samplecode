@@ -1,19 +1,9 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Optional;
-import java.util.UUID;
-
+import com.graphql.spring.boot.test.GraphQLResponse;
+import digital.windmill.audra.graphql.type.ResourcePayload;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,11 +25,16 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-import com.graphql.spring.boot.test.GraphQLResponse;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Optional;
+import java.util.UUID;
 
-import digital.windmill.audra.graphql.type.ResourcePayload;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @Testcontainers
@@ -73,7 +68,7 @@ class ResourceIt extends AbstractIntegrationTest {
         assertEquals(lastAddedResourceUuid, uploadResponse.getResource().getUuid(), "Last added resource's uuid should be same as in response");
         assertTrue(uploadResponse.getResource().getUrl().startsWith(storageUrl), "Url should starts with url path from configuration");
         assertTrue(uploadResponse.getResource().getUrl().endsWith(lastAddedResourceUuid.toString()), "Url should ends with resource uuid");
-        assertNull(uploadResponse.getResource().getThumbnail());
+        assertTrue(uploadResponse.getResource().getThumbnail().startsWith(storageUrl), "Thumbnail should be generated automatically");
     }
 
     @Test

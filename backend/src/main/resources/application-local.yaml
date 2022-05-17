@@ -76,3 +76,7 @@ graphiql:
 
 storage.destination.url: http://localhost:8080/resources
 
+resource:
+  thumbnail:
+    height: 800
+    width: 500

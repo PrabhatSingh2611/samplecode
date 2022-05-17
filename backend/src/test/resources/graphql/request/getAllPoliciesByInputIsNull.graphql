@@ -1,0 +1,37 @@
+query {
+    policies(
+        input: { where: {}, sort: publicationDate_DESC }
+    ) {
+        items {
+            uuid
+            title
+            owner {
+                uuid
+                firstName
+                lastName
+                role
+                birthday
+                position {
+                    uuid
+                    name
+                }
+                location {
+                    uuid
+                    name
+                }
+            }
+            file {
+                uuid
+                url
+                thumbnail
+            }
+            publicationDate
+            status
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

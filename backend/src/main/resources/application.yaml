@@ -31,6 +31,11 @@ spring:
       port: ${SPRING_MONGO_PORT}
       uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}
       gridfs.database: files
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+      enabled: true
 
 management:
   server:
@@ -72,3 +77,8 @@ graphiql:
       editorTheme: "solarized light"
 
 storage.destination.url: ${STORAGE_HOST}
+
+resource:
+  thumbnail:
+    height: ${RESOURCE_THUMBNAIL_HEIGHT:800}
+    width: ${RESOURCE_THUMBNAIL_WIDTH:500}

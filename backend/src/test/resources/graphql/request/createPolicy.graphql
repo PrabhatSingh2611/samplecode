@@ -1,0 +1,34 @@
+mutation createPolicy {
+    createPolicy(
+        input: {
+            file: { uuid: "e72e2eff-def2-479c-a827-bc5e59d694b4" }
+            status: PUBLISHED
+            title: "sample_title"
+        }
+    ) {
+        policy {
+            title
+            status
+            file {
+                uuid
+                thumbnail
+                url
+            }
+            owner {
+                uuid
+                firstName
+                lastName
+                birthday
+                role
+                location {
+                    uuid
+                    name
+                }
+                position {
+                    uuid
+                    name
+                }
+            }
+        }
+    }
+}

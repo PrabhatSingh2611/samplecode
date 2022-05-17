@@ -22,6 +22,7 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <test-containers.version>1.15.3</test-containers.version>
+        <jthumbnail.version>master-SNAPSHOT</jthumbnail.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -102,6 +103,11 @@
             <groupId>com.vladmihalcea</groupId>
             <artifactId>hibernate-types-52</artifactId>
             <version>${hibernate-types.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.makbn</groupId>
+            <artifactId>JThumbnail</artifactId>
+            <version>${jthumbnail.version}</version>
         </dependency>
         <!-- OTHER DEPENDECIES END -->
 
@@ -208,11 +214,10 @@
             </plugin>
         </plugins>
     </build>
-    <!-- repositorie-s>
+    <repositories>
         <repository>
-            <id>nexus-snapshots</id>
-            <name>nexus-snapshots</name>
-            <url>https://<repo-domain>/repository/audra-java/</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
-    </repositories -->
+    </repositories>
 </project>

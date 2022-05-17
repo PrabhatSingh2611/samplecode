@@ -1,30 +1,27 @@
 package digital.windmill.audra.graphql.facade;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.servlet.http.Part;
-
+import digital.windmill.audra.dao.entity.ResourceEntity;
+import digital.windmill.audra.graphql.mapper.ResourceMapper;
+import digital.windmill.audra.graphql.type.Resource;
+import digital.windmill.audra.properties.ResourceProperties;
+import digital.windmill.audra.service.ResourceService;
+import digital.windmill.audra.service.impl.ThumbnailServiceImpl;
+import digital.windmill.audra.storage.StorableObject;
+import digital.windmill.audra.storage.StorageService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import digital.windmill.audra.dao.entity.ResourceEntity;
-import digital.windmill.audra.graphql.mapper.ResourceMapper;
-import digital.windmill.audra.graphql.type.Resource;
-import digital.windmill.audra.service.ResourceService;
-import digital.windmill.audra.storage.StorableObject;
-import digital.windmill.audra.storage.StorageService;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ResourceFacadeTest {
@@ -40,6 +37,10 @@ class ResourceFacadeTest {
     private ResourceMapper mapper;
     @Mock
     private StorageService storageService;
+    @Mock
+    private ResourceProperties resourceProperties;
+    @Mock
+    private ThumbnailServiceImpl thumbnailService;
     
     @InjectMocks
     private ResourceFacade facade;
@@ -68,7 +69,8 @@ class ResourceFacadeTest {
             @Mock Part part,
             @Mock InputStream inputStream,
             @Mock ResourceEntity resourceEntity,
-            @Mock Resource resource
+            @Mock Resource resource,
+            @Mock ResourceProperties.Thumbnail thumbnail
             ) throws IOException {
         StorableObject objectToStore = StorableObject.builder()
                 .stream(inputStream)
@@ -79,12 +81,14 @@ class ResourceFacadeTest {
         when(part.getSubmittedFileName()).thenReturn(RESOURCE_FILE_NAME);
         when(part.getInputStream()).thenReturn(inputStream);
         when(part.getContentType()).thenReturn(RESOURCE_CONTENT_TYPE);
-        when(storageService.store(objectToStore))
-            .thenReturn(RESOURCE_REFERENCE);
-        when(service.createResourceByReference(RESOURCE_REFERENCE)).thenReturn(resourceEntity);
+        when(storageService.store(objectToStore)).thenReturn(RESOURCE_REFERENCE);
+        when(service.createResourceByReference(RESOURCE_REFERENCE, null)).thenReturn(resourceEntity);
         when(mapper.map(resourceEntity)).thenReturn(resource);
+        when(resourceProperties.getThumbnail()).thenReturn(thumbnail);
+        when(resourceProperties.getThumbnail().getHeight()).thenReturn(100);
+        when(resourceProperties.getThumbnail().getWidth()).thenReturn(100);
 
-        Resource actualResult = facade.storeResource(part);
+        Resource actualResult = facade.storeResource(part, null);
         assertNotNull(actualResult);
         assertSame(resource, actualResult);
 

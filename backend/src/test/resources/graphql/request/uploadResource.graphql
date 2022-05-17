@@ -1,5 +1,5 @@
-mutation uploadResource($file: Upload!){
-  uploadResource(resource: $file) {
+mutation uploadResource($file: Upload!, $thumbnail: Upload){
+  uploadResource(resource: $file, thumbnail: $thumbnail) {
     resource {
       uuid
       url

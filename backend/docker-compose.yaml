@@ -27,6 +27,8 @@ services:
       SPRING_MONGO_PASSWORD: example
       SPRING_MONGO_HOST: mongo
       SPRING_MONGO_PORT: 27017
+      RESOURCE_THUMBNAIL_HEIGHT: 800
+      RESOURCE_THUMBNAIL_WIDTH: 500
     depends_on:
       - "db"
       - "mongo"

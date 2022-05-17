@@ -1,13 +1,12 @@
 package digital.windmill.audra.service;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.stereotype.Component;
-
 import digital.windmill.audra.dao.entity.ResourceEntity;
 import digital.windmill.audra.dao.repository.ResourceRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @AllArgsConstructor
@@ -20,11 +19,19 @@ public class ResourceService {
                 .flatMap(repository::findByUuid);
     }
 
-    public ResourceEntity createResourceByReference(String resourceReference) {
-        ResourceEntity entity = new ResourceEntity();
-        entity.setOuterReference(resourceReference);
-        entity.setUuid(UUID.randomUUID());
-        return repository.save(entity);
+    public ResourceEntity createResourceByReference(String resourceReference, String thumbnailReference) {
+        ResourceEntity resourceEntity = new ResourceEntity();
+        resourceEntity.setOuterReference(resourceReference);
+        resourceEntity.setUuid(UUID.randomUUID());
+
+        if (thumbnailReference != null) {
+            var thumbnailEntity = new ResourceEntity();
+            thumbnailEntity.setUuid(UUID.randomUUID());
+            thumbnailEntity.setOuterReference(thumbnailReference);
+            resourceEntity.setThumbnail(thumbnailEntity);
+        }
+
+        return repository.save(resourceEntity);
     }
 
 }

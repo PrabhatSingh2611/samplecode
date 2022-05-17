@@ -3,6 +3,7 @@ package digital.windmill.audra.dao.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class ResourceEntity {
     private UUID uuid;
     @Column(name = "outer_reference")
     private String outerReference;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "thumbnail_id")
     private ResourceEntity thumbnail;
 

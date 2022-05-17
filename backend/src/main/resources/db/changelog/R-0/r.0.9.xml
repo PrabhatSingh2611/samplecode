@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.9.1" author="ravi.raj">
+        <sql>CREATE TYPE POLICY_STATUS AS ENUM ('PUBLISHED', 'UNPUBLISHED');</sql>
+    </changeSet>
+
+    <changeSet id="r.0.9.2" author="ravi.raj">
+        <createTable tableName="policy">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_policy2resource" references="resource(id)" nullable="true"/>
+            </column>
+            <column name="publication_date" type="timestamptz"/>
+            <column name="status" type="POLICY_STATUS"/>
+            <column name="employee_id" type="INT8">
+                <constraints foreignKeyName="fk_policy2employee" references="employee(id)" nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="r.0.9.3" author="ravi" context="local">
+        <sql>
+            INSERT INTO resource (uuid, outer_reference, thumbnail_id)
+            VALUES ('5d33f42e-4e5f-4513-80c2-8e8f9880b4ec', 'resource_outer_reference_1', 1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

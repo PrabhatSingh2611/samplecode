@@ -1,0 +1,39 @@
+{
+  "data": {
+    "policies": {
+      "items": [
+        {
+          "uuid": "239e8741-f04d-406a-bf7d-e2feaf8f5619",
+          "title": "policy_title_1",
+          "owner": {
+            "uuid": "5bea1a4d-b457-47c9-bf8b-72f50182b707",
+            "firstName": "Edmund",
+            "lastName": "Hogan",
+            "role": "EMPLOYEE",
+            "birthday": "2022-02-28T12:03:00.480425Z[UTC]",
+            "position": {
+              "uuid": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name": "manager"
+            },
+            "location": {
+              "uuid": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "name": "london"
+            }
+          },
+          "file": {
+            "uuid": "e72e2eff-def2-479c-a827-bc5e59d694b4",
+            "url": "http://localhost:8080/resources/e72e2eff-def2-479c-a827-bc5e59d694b4",
+            "thumbnail": "http://localhost:8080/resources/e72e2eff-def2-479c-a827-bc5e59d694b4"
+          },
+          "publicationDate": "2022-02-02T13:25:34.480425Z[UTC]",
+          "status": "PUBLISHED"
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 1
+    }
+  }
+}
