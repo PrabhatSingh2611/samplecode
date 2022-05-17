@@ -7,8 +7,6 @@ import OutlinedInput, { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import InputBase, { InputBaseProps } from "@mui/material/InputBase";
 import InputLabel, { InputLabelProps } from "@mui/material/InputLabel";
 import InputAdornment, { InputAdornmentProps } from "@mui/material/InputAdornment";
-import FormControl, { FormControlProps } from "@mui/material/FormControl";
-import FormHelperText, { FormHelperTextProps } from "@mui/material/FormHelperText";
 
 export type WTextFieldProps = TextFieldProps & {}
 
@@ -23,10 +21,6 @@ export interface WInputBaseProps extends InputBaseProps {}
 export interface WInputLabelProps extends InputLabelProps {}
 
 export interface WInputAdornmentProps extends InputAdornmentProps {}
-
-export interface WFormControlProps extends FormControlProps {}
-
-export interface WFormHelperTextProps extends FormHelperTextProps {}
 
 export function WInput(props: WInputProps) {
     return <Input {...props} />
@@ -50,14 +44,6 @@ export function WInputLabel(props: WInputLabelProps) {
 
 export function WInputAdornment(props: WInputAdornmentProps) {
     return <InputAdornment {...props} />
-}
-
-export function WFormControl(props: WFormControlProps) {
-    return <FormControl {...props} />
-}
-
-export function WFormHelperText(props: WFormHelperTextProps) {
-    return <FormHelperText {...props} />
 }
 
 function WTextField(props: WTextFieldProps): JSX.Element {

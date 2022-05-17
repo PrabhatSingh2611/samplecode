@@ -20,4 +20,3 @@ export default forwardRef<HTMLDivElement, WPageProps>(({ children, title = '', m
     </Box>
   </>
 ));
-
