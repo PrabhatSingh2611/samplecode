@@ -2,7 +2,6 @@ import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import WActionsDrawer from './index';
 import WButton from '../button';
-import WTypography from '../typography';
 
 const meta: Meta = {
   title: 'Extra Components/ActionsDrawer',
@@ -35,7 +34,13 @@ const Template: Story = (args) => {
         onClose={() => setIsDrawerOpened(false)}
         title="Settings"
       >
-        <WTypography>{'Drawer content'}</WTypography>
+        <WActionsDrawer.Content>
+            Some content
+        </WActionsDrawer.Content>
+        <WActionsDrawer.Footer>
+            <WButton>Save</WButton>
+            <WButton variant="outlined">Continue</WButton>
+        </WActionsDrawer.Footer>
       </WActionsDrawer>
     </>
   );

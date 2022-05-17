@@ -1,52 +1,71 @@
 import React, { ReactNode } from 'react';
 
 import WIconButton from '../icon-button';
-import WDrawer from '../drawer';
+import WDrawer, { WDrawerProps } from '../drawer';
 import WBox from '../box';
 import WTypography from '../typography';
 import WStack from '../stack';
-import WDivider from '../divider';
-import WIconify from '../iconify';
+import { SxProps, Theme } from '@mui/material';
+import WIcon from '../icon';
 
-export interface WActionsDrawerProps {
+export interface WActionsDrawerProps extends WDrawerProps {
   title?: string;
+  actions?: JSX.Element
   children: ReactNode;
   isOpened: boolean;
+  childSx?: SxProps<Theme>,
   onClose: () => void;
 }
 
-const contentSX = { py: 2, pr: 1, pl: 2.5 };
 
 function WActionsDrawer({
   title,
   children,
   isOpened,
   onClose,
+  childSx,
+  ...props
 }: WActionsDrawerProps): JSX.Element {
   return (
-    <WDrawer open={isOpened} onClose={onClose} anchor="right">
-      <WBox sx={{ width: 660 }}>
+    <WDrawer {...props} open={isOpened} onClose={onClose} anchor="right">
+      <WBox sx={{display: 'grid', gridTemplateRows: 'max-content 1fr max-content', height: 1, width: 660, ...childSx}}>
         <WStack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
-          sx={contentSX}
+          sx={(theme: Theme)=>({px: 3, pt: 3, pb: 1.5, borderBottom: `1px solid ${theme.palette.divider}`})}
         >
           <WTypography variant="subtitle1" sx={{ flexGrow: 1 }}>
             {title}
           </WTypography>
 
+            {/* TODO: Fix Icon */}
           <WIconButton onClick={onClose}>
-            <WIconify icon={'eva:close-fill'} width={20} height={20} />
+            <WIcon name="Close" fontSize='small' />
           </WIconButton>
         </WStack>
 
-        <WDivider />
-
-        <WBox sx={contentSX}>{children}</WBox>
+        {children}
       </WBox>
     </WDrawer>
   );
 }
+
+WActionsDrawer.Content = function WActionsDrawerContent({children}:{children: ReactNode}):JSX.Element {
+    return (
+        <WBox sx={{py: 3, px: 4, overflow: 'auto'}}>
+            {children}
+        </WBox>
+    )
+}
+
+WActionsDrawer.Footer = function WActionsDrawerContent({children}:{children: ReactNode}):JSX.Element {
+    return (
+        <WBox sx={{p: 3, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.5}}>
+            {children}
+        </WBox>
+    )
+}
+
 
 export default WActionsDrawer;
