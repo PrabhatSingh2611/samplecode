@@ -7,10 +7,6 @@ import Router from 'core/Router';
 
 import RemoteExampleObservables from './core/RemoteExampleObservavbles';
 
-// NOTE - Set these lines in your remote and change the host value to the name of your remote (TH)
-// IMPORTANT - Call this function at the root of the application
-// import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
-// ClassNameGenerator.configure((componentName) => `remoteName-${componentName}`);
 
 interface IAppProps {
     inIsolation: boolean;
