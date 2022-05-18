@@ -161,7 +161,6 @@ export default function SortingSelecting() {
           </Table>
         </TableContainer>
       </Scrollbar>
-
       <Box sx={{ position: 'relative' }}>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}

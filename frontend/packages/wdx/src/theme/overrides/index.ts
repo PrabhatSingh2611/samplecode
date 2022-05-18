@@ -22,6 +22,7 @@ import Steper from './Stepper';
 import Switch from './Switch';
 import Typography from './Typography';
 import Tooltip from './Tooltip';
+import Table from './Table';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
@@ -46,6 +47,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Steper(theme),
     Switch(theme),
     Typography(theme),
-    Tooltip(theme),
+    Table(theme),
+    Tooltip(theme)
   );
 }

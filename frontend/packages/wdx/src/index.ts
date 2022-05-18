@@ -57,6 +57,22 @@ export { default as WTooltip, WTooltipProps } from './components/tooltip';
 export { default as WSwitch, WSwitchProps } from './components/switch';
 export { default as WTypography, WTypographyProps } from './components/typography';
 export { default as WUploadSingleFile } from './components/upload/upload-single-file';
+export {
+  default as WTable,
+  WTableProps,
+  WFormControlTableLabelProps,
+  WTableCellProps,
+  WTableContainerProps,
+  WTableFooterProps,
+  WTableHeadProps,
+  WTablePaginationProps,
+  WTableRowProps,
+  WTableSortLabelProps,
+} from './components/table';
 
 // WIDGETS
 export { default as WImageCard, WImageCardProps } from './widgets/image-card';
+export {
+  default as WBaseTable,
+  IWBaseTableProps,
+} from './widgets/table/base-table.widget';
