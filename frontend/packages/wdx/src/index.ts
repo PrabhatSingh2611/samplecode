@@ -75,7 +75,9 @@ export {
 } from './components/table';
 
 // WIDGETS
+export { default as WEmptyState, WEmptyStateProps } from './widgets/empty-state';
 export { default as WImageCard, WImageCardProps } from './widgets/image-card';
+export { default as WSubHeader, WSubHeaderProps } from './widgets/subheader';
 export {
   default as WBaseTable,
   IWBaseTableProps,

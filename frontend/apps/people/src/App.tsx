@@ -1,15 +1,13 @@
-import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-
-import { FlagsProvider } from 'flagged';
-import { WBox } from 'wdx';
-
-import { ApolloProvider } from '@apollo/client';
 
 import { getClient } from 'client';
 import PeopleObservables from 'core/PeopleObservables';
 import Router from 'core/Router';
+import { FlagsProvider } from 'flagged';
 import Routes from 'routes';
+import { ThemeProvider, WBox } from 'wdx';
+
+import { ApolloProvider } from '@apollo/client';
 
 interface IAppProps {
     inIsolation: boolean;
@@ -21,12 +19,15 @@ function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
         <ApolloProvider client={getClient(inIsolation)}>
             <FlagsProvider>
                 <HelmetProvider>
-                    <WBox className="PeopleApp">
-                        <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                            <PeopleObservables />
-                            <Routes />
-                        </Router>
-                    </WBox>
+                    {/* TODO: Remove ThemeProvider when it will be fixed (AU) */}
+                    <ThemeProvider themeMode="light" themeDirection="ltr">
+                        <WBox className="PeopleApp">
+                            <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                                <PeopleObservables />
+                                <Routes />
+                            </Router>
+                        </WBox>
+                    </ThemeProvider>
                 </HelmetProvider>
             </FlagsProvider>
         </ApolloProvider>
