@@ -41,7 +41,7 @@ function WActionsDrawer({
 
             {/* TODO: Fix Icon */}
           <WIconButton onClick={onClose}>
-            <WIcon name="Close" fontSize='small' />
+            <WIcon name="close" fontSize='small' />
           </WIconButton>
         </WStack>
 

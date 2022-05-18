@@ -1,14 +1,7 @@
-export type TIcons = 'Abc' |
-    'AcUnit' |
-    'AccessAlarm' |
-    'AccessAlarms' |
-    'AccessTime' |
-    'Accessibility' |
-    'Accessible' |
-    'AccountBox' |
-    'AccountCircle' |
-    'AccountTree' |
-    'Close'
-
+export type TIcons =
+    'abc' |
+    'ac-unit' |
+    'access-alarm' |
+    'close'
 
  // TODO: Add more types of icons (YD)

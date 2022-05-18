@@ -14,7 +14,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = args => {
-  return <WIcon {...args} name="AccessTime" color='primary'/>;
+  return <WIcon {...args} name="close" color='primary'/>;
 }
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
