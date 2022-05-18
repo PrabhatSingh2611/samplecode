@@ -1,0 +1,8 @@
+mutation createEmployeePosition($input: CreateEmployeePositionInput!) {
+    createEmployeePosition(input: $input) {
+        item {
+            uuid
+            name
+        }
+    }
+}

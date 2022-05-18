@@ -2,10 +2,15 @@ import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import { FlagsProvider } from 'flagged';
+import { WBox, WTypography } from 'wdx';
 
+import { ApolloProvider } from '@apollo/client';
+
+import { getClient } from 'client';
+import RemoteExampleObservables from 'core/RemoteExampleObservavbles';
 import Router from 'core/Router';
-
-import RemoteExampleObservables from './core/RemoteExampleObservavbles';
+import EmployeesList from 'features/employees/components/EmployeesList.component';
+import AuthorizationBtn from 'features/me/components/authBtn';
 
 interface IAppProps {
     inIsolation: boolean;
@@ -14,23 +19,25 @@ interface IAppProps {
 
 function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
     return (
-        <FlagsProvider>
-            <div className="RemoteExampleApp">
-                <h1>Hello from Remote Example App!</h1>
-                <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                    <RemoteExampleObservables />
-                    <Header />
-                    <Switch>
-                        <Route path="/details">
-                            <Details />
-                        </Route>
-                        <Route path="/">
-                            <Home />
-                        </Route>
-                    </Switch>
-                </Router>
-            </div>
-        </FlagsProvider>
+        <ApolloProvider client={getClient(inIsolation)}>
+            <FlagsProvider>
+                <WBox className="RemoteExampleApp">
+                    <WTypography>Hello from Remote Example App!</WTypography>
+                    <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                        <RemoteExampleObservables />
+                        <Header />
+                        <Switch>
+                            <Route path="/details">
+                                <Details />
+                            </Route>
+                            <Route path="/">
+                                <Home />
+                            </Route>
+                        </Switch>
+                    </Router>
+                </WBox>
+            </FlagsProvider>
+        </ApolloProvider>
     );
 }
 
@@ -43,15 +50,17 @@ const Header = (): JSX.Element => (
 );
 
 const Home = (): JSX.Element => (
-    <div className="RemoteExampleAppHome">
-        <h1>Remote Example App</h1>
-    </div>
+    <WBox className="RemoteExampleAppHome">
+        <WTypography>Remote Example App</WTypography>
+        <AuthorizationBtn />
+    </WBox>
 );
 
 const Details = (): JSX.Element => (
-    <div className="RemoteExampleAppDetatils">
-        <h1>Remote Example App Details</h1>
-    </div>
+    <WBox className="RemoteExampleAppDetatils">
+        <WTypography>Remote Example App Details</WTypography>
+        <EmployeesList />
+    </WBox>
 );
 
 export default App;

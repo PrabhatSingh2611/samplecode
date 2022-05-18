@@ -1,0 +1,24 @@
+overwrite: true
+schema:
+    - http://localhost:8080/graphql
+documents: 'src/features/**/**/*.graphql'
+generates:
+    src/graphql-generated-types/types.ts:
+        - typescript
+    src/graphql-generated-types:
+        preset: near-operation-file
+        presetConfig:
+            extension: .generated.tsx
+            baseTypesPath: types.ts
+        plugins:
+            - 'typescript-operations'
+            - 'typescript-react-apollo'
+
+config:
+    reactApolloVersion: 3
+    withHooks: true
+    withHOC: false
+    withComponent: false
+    namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true

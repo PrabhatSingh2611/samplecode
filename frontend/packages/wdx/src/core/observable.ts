@@ -41,40 +41,20 @@ function deepCompareStrict(a: any, b: any): boolean {
   return a === b;
 }
 
-const SHARED = '__shared__';
-const EVENTS = '__events__';
-const CHANNELS = '__channels__';
+export const SHARED = '__shared__';
+export const EVENTS = '__events__';
+export const CHANNELS = '__channels__';
+export const APOLLO_CACHE = '__apollo_cache__';
 
 export default class Observable<T = any> {
   private _namespace!: string;
 
   private _schema!: Object;
 
-  private static initialize() {
-    if (!window[SHARED]) {
-      window[SHARED] = {
-        [EVENTS]: {},
-        [CHANNELS]: {},
-        getRemoteObservable: (namespace, schema) =>
-          createRemoteObservable(namespace, schema),
-      };
+    constructor(namespace: string, schema: Object) {
+        this.namespace = namespace;
+        this.schema = schema;
     }
-
-    if (!window[SHARED][EVENTS]) {
-      window[SHARED][EVENTS] = {};
-    }
-
-    if (!window[SHARED][CHANNELS]) {
-      window[SHARED][CHANNELS] = {};
-    }
-  }
-
-  constructor(namespace: string, schema: Object) {
-    Observable.initialize();
-
-    this.namespace = namespace;
-    this.schema = schema;
-  }
 
   set namespace(namespace: string) {
     this._namespace = namespace;

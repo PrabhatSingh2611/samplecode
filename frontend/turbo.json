@@ -4,6 +4,10 @@
             "dependsOn": ["^build"],
             "outputs": ["build/**"]
         },
+        "build:staging": {
+            "dependsOn": ["^build"],
+            "outputs": ["build/**"]
+        },
         "build:host": {
             "cache": false
         },
@@ -16,11 +20,17 @@
         "dev": {
             "cache": false
         },
+        "dev:staging": {
+            "cache": false
+        },
         "clear-all": {
             "cache": false
         },
         "unused-exports": {
             "outputs": []
+        },
+        "codegen": {
+            "cache": false
         }
     }
 }

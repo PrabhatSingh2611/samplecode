@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 
+import { WBox, WTypography } from 'wdx';
+
 import { EAssetsRouterLink } from 'models/assets-router-link';
 import { EPeopleRouterLink } from 'models/people-router-link';
 import { ERecruitmentRouterLink } from 'models/recruitment-router-llink';
@@ -57,8 +59,8 @@ function SettingsRoutes(): JSX.Element {
 
 function Page({ title }: { title: string }): JSX.Element {
     return (
-        <div className="HostAppHome">
-            <h1>{title}</h1>
-        </div>
+        <WBox className="HostAppHome">
+            <WTypography>{title}</WTypography>
+        </WBox>
     );
 }

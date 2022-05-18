@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { styled, useTheme } from '@mui/material/styles';
-import { WDrawer, WBox, WStack } from 'wdx';
+import { WBox, WDrawer, WStack } from 'wdx';
 
 import Logo from 'components/Logo';
 import Scrollbar from 'components/Scrollbar';
 import { NavSectionVertical } from 'components/nav-section';
+import CollapseButton from 'features/navbar/components/CollapseButton';
+import navConfig from 'features/navbar/components/NavConfig';
+import NavbarAccount from 'features/navbar/components/NavbarAccount';
+import NavbarDocs from 'features/navbar/components/NavbarDocs';
 import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
-import CollapseButton from 'layouts/app/navbar/CollapseButton';
-import navConfig from 'layouts/app/navbar/NavConfig';
-import NavbarAccount from 'layouts/app/navbar/NavbarAccount';
-import NavbarDocs from 'layouts/app/navbar/NavbarDocs';
 import { NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
 
@@ -85,6 +85,10 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
             </WStack>
 
             <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
+
+            <WBox sx={{ flexGrow: 1 }} />
+
+            {!isCollapse && <NavbarDocs />}
         </Scrollbar>
     );
 

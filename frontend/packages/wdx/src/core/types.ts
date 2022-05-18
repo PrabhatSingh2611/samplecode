@@ -33,6 +33,7 @@ export interface RemoteObservable<T = any> {
 declare global {
     interface Window {
         __shared__: {
+            __apollo_cache__: any;
             __events__: Record<string, Events>;
             __channels__: Record<string, Channels>;
             getRemoteObservable: <T = any>(

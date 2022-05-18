@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { Box, Stack, AppBar, Toolbar } from '@mui/material';
+import { AppBar, Box, Stack, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Iconify from 'components/Iconify';
 import Logo from 'components/Logo';
 import { IconButtonAnimate } from 'components/animate';
+import AccountPopover from 'features/header/components/AccountPopover';
+import ContactsPopover from 'features/header/components/ContactsPopover';
+import LanguagePopover from 'features/header/components/LanguagePopover';
+import NotificationsPopover from 'features/header/components/NotificationsPopover';
+import Searchbar from 'features/header/components/Searchbar';
 import useOffSetTop from 'hooks/useOffSetTop';
 import useResponsive from 'hooks/useResponsive';
-import AccountPopover from 'layouts/app/header/AccountPopover';
-import ContactsPopover from 'layouts/app/header/ContactsPopover';
-import LanguagePopover from 'layouts/app/header/LanguagePopover';
-import NotificationsPopover from 'layouts/app/header/NotificationsPopover';
-import Searchbar from 'layouts/app/header/Searchbar';
 import { HEADER, NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
 

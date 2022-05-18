@@ -10,3 +10,5 @@ src/reportWebVitals.ts
 src/service-worker.ts
 src/serviceWorkerRegistration.ts
 src/setupTests.ts
+*.generated.tsx
+src/graphql-generated-types/

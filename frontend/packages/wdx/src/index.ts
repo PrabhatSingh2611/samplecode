@@ -3,6 +3,7 @@ export { default as ThemeProvider } from './theme/index';
 
 // CORE
 export { default as Observable, createRemoteObservable } from './core/observable'
+export { default as initialize } from './core/initialize';
 
 // HOOKS
 // TODO: Fix Property 'breakpoints' does not exist on type 'Theme' (AU)
@@ -20,7 +21,10 @@ export { WGallery } from './widgets/image-card/types'
 export { default as WAccordion, WAccordionActions, WAccordionDetails, WAccordionSummary, WAccordionProps, WAccordionActionsProps, WAccordionDetailsProps, WAccordionSummaryProps } from './components/accordion';
 export { default as WActionsDrawer, WActionsDrawerProps } from './components/actions-drawer';
 export { default as WAvatar, WAvatarProps } from './components/avatar';
-export { default as WAvatarGroup, WAvatarGroupProps } from './components/avatar-group';
+export {
+  default as WAvatarGroup,
+  WAvatarGroupProps,
+} from './components/avatar-group';
 export { default as WBadge, WBadgeProps } from './components/badge';
 export { default as WBox, WBoxProps } from './components/box';
 export { default as WBreadcrumbs, WBreadcrumbsProps } from './components/breadcrumbs';

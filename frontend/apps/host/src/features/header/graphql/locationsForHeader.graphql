@@ -1,0 +1,12 @@
+query getLocationsForHeader {
+    locations {
+        items {
+            ...LocationForHeader
+        }
+    }
+}
+
+fragment LocationForHeader on Location {
+    uuid
+    name
+}

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { WBox, WTypography } from 'wdx';
+
+import EmployeesList from 'features/employees/components/EmployeesList.component';
+import AuthorizationBtn from 'features/me/components/authBtn';
 import PoliciesPage from 'features/policies/containers/policies-page/policies-page.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
 
@@ -8,13 +12,13 @@ function Routes(): JSX.Element {
     return (
         <Switch>
             <Route path={EPeopleRouterLink.Me}>
-                <PageSample title="Me page" />
+                <AuthorizationBtn />
             </Route>
             <Route path={EPeopleRouterLink.Policies}>
                 <PoliciesPage />
             </Route>
             <Route path={EPeopleRouterLink.Employees}>
-                <PageSample title="Employees page" />
+                <EmployeesList />
             </Route>
             <Route path={EPeopleRouterLink.Leaves}>
                 <PageSample title="Leaves page" />
@@ -32,9 +36,9 @@ function Routes(): JSX.Element {
 // TODO: Remove after adding all pages
 function PageSample({ title }: { title: string }): JSX.Element {
     return (
-        <div>
-            <h1>{title}</h1>
-        </div>
+        <WBox>
+            <WTypography>{title}</WTypography>
+        </WBox>
     );
 }
 

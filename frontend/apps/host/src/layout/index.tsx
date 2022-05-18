@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import AppHeader from 'features/header/components';
+import NavbarHorizontal from 'features/navbar/components/NavbarHorizontal';
+import NavbarVertical from 'features/navbar/components/NavbarVertical';
 import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
 import useSettings from 'hooks/useSettings';
-import DashboardHeader from 'layouts/app/header';
-import NavbarHorizontal from 'layouts/app/navbar/NavbarHorizontal';
-import NavbarVertical from 'layouts/app/navbar/NavbarVertical';
 import Routes from 'routes';
 import { HEADER, NAVBAR } from 'theme/config';
 
@@ -37,7 +37,7 @@ const MainStyle = styled('main', {
     },
 }));
 
-export default function AppLayout(): JSX.Element {
+export default function DashboardLayout(): JSX.Element {
     const { collapseClick, isCollapse } = useCollapseDrawer();
 
     const { themeLayout } = useSettings();
@@ -51,7 +51,7 @@ export default function AppLayout(): JSX.Element {
     if (verticalLayout) {
         return (
             <>
-                <DashboardHeader
+                <AppHeader
                     onOpenSidebar={(): void => setOpen(true)}
                     verticalLayout={verticalLayout}
                 />
@@ -92,7 +92,7 @@ export default function AppLayout(): JSX.Element {
                 minHeight: { lg: 1 },
             }}
         >
-            <DashboardHeader isCollapse={isCollapse} onOpenSidebar={(): void => setOpen(true)} />
+            <AppHeader isCollapse={isCollapse} onOpenSidebar={(): void => setOpen(true)} />
 
             <NavbarVertical isOpenSidebar={open} onCloseSidebar={(): void => setOpen(false)} />
 

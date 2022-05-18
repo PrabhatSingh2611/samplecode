@@ -1,0 +1,33 @@
+query getEmployeesForEmployeesList($input: EmployeesInput) {
+    employees(input: $input) {
+       items {
+           ...EmployeeForEmployeesList
+       }
+       pageInfo {
+            currentPage
+            totalPages
+       }
+       totalItems
+    }
+}
+
+fragment EmployeeForEmployeesList on Employee {
+    uuid
+    firstName
+    lastName
+    role
+    birthday
+    reportingManager {
+        uuid
+        firstName
+        lastName
+    }
+    position {
+        uuid
+        name
+    }
+    location {
+        uuid
+        name
+    }
+}
