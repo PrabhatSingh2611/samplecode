@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 cd frontend
-pnpm run lint && pnpm run unused-exports
+pnpm run lint && pnpm run unused-exports && pnpm build
