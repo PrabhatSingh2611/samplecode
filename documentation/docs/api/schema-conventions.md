@@ -23,7 +23,7 @@ To make "persisted" comment which will be reflected in Schema type _three double
 
 ```graphql
 type User implements Node {
-    uuid: UUID!
+    id: UUID!
     """
     My cool descriptive comment about notObviousField
     """
@@ -34,11 +34,11 @@ type User implements Node {
 
 ## Identification
 
-Always use `uuid: UUID!` by default, instead of `id: ID!` or something else
+Always use `id: UUID!` by default, instead of `id: ID!` or something else
 
 ```graphql
 type User implements Node {
-  uuid: UUID!
+  id: UUID!
 }
 ```
 
@@ -54,12 +54,12 @@ All Types should by default implement `Node` interface
 
 ```graphql
 type User implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 
 type ChatMessage implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 ```
@@ -98,12 +98,12 @@ Name your Subscriptions object like, or "noun" + "Subscription" postfix. Subscri
 
 ```graphql
 type UserSubscripton implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 
 type ChatMessageSubscription implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 ```
@@ -129,7 +129,7 @@ Name your Enums object like, use singular type name. Use `PascalCase`
 
 ```graphql
 type ChatMessage implements Node {
-    uuid: UUID!
+    id: UUID!
     type: ChatMessageType!
     status: ChatMessageStatus!
     ...
@@ -156,16 +156,16 @@ All types should implement Node interface by default.
 
 ```graphql
 interface Node {
-  uuid: UUID!
+  id: UUID!
 }
 
 type User implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 
 type ChatMessage implements Node {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 ```
@@ -176,11 +176,11 @@ Nodes interface is the same as Node but plural. Use when working with list of en
 
 ```graphql
 interface Nodes {
-  uuids: [UUID!]!
+  ids: [UUID!]!
 }
 
 input NodesInput {
-  uuids: [UUID!]!
+  ids: [UUID!]!
 }
 
 input ListInput {
@@ -219,14 +219,14 @@ type UserConnectionPayload implements ConnectionPayload {
 Use a single, required, unique, input object type as an argument for easier Mutations, Queries and Subscriptions execution on the client.
 
 Mutations, Queries and Subscriptions should only ever have one input argument `input`.
-Even if you need to use one argument like `uuid: UUID!` wrap it inside `input`.
+Even if you need to use one argument like `id: UUID!` wrap it inside `input`.
 
 ```graphql
 # Bad 👎
 type Mutation {
-    createUser(uuid: UUID!, email: String!): UserPayload!
-    patchUser(uuid: UUID!, email: String!): UserPayload!
-    deleteUser(uuid: UUID!): UserPayload!: UserPayload!
+    createUser(id: UUID!, email: String!): UserPayload!
+    patchUser(id: UUID!, email: String!): UserPayload!
+    deleteUser(id: UUID!): UserPayload!: UserPayload!
 }
 
 # Good 👍
@@ -241,33 +241,33 @@ input CreateUserInput {
 }
 
 input PatchUserInput {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 
 input DeleteUserInput {
-    uuid: UUID!
+    id: UUID!
     ...
 }
 ```
 
 ### Type NodeInput
 
-NodeInput is a helper general type to use for getting entities only by uuid
+NodeInput is a helper general type to use for getting entities only by id
 
 ```graphql
 input NodeInput {
-  uuid: UUID!
+  id: UUID!
 }
 ```
 
 ### Type NodesInput
 
-NodesInput is a helper general type to use for getting entities only by uuids
+NodesInput is a helper general type to use for getting entities only by ids
 
 ```graphql
 input NodesInput {
-  uuids: [UUID!]!
+  ids: [UUID!]!
 }
 ```
 
