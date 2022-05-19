@@ -10,7 +10,7 @@ import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } fro
 
 ### Main Develop
 
-- Status: ✅ **ACTIVE**, _Incremental & Auto Deploy is IN PROGRESS_
+- Status: ✅ **ACTIVE**
 - Purpose: **Test latest Develop**
 - URL (_FrontEnd_): <ExternalLink url="https://dev-audra.dev.topazdigital.cloud"/>
 - Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/Audra-front/"/>
