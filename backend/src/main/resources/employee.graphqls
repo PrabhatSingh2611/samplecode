@@ -1,44 +1,44 @@
 type Employee implements Node {
-	id: UUID!
-	firstName: String
-	lastName: String
-	role: EmployeeRole
-	birthday: ZonedDateTime
-	reportingManager: Employee
-	position: EmployeePosition
-	location: Location
+    id: UUID!
+    firstName: String
+    lastName: String
+    role: EmployeeRole
+    birthday: ZonedDateTime
+    reportingManager: Employee
+    position: EmployeePosition
+    location: Location
 }
 
 type EmployeeConnectionPayload implements ConnectionPayload {
-	items: [Employee!]!
-	pageInfo: PageInfo!
-	totalItems: Int!
+    items: [Employee!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
 }
 
 input CreateEmployeeInput {
-	firstName: String!
-	lastName: String!
-	birthday: ZonedDateTime!
-	role: EmployeeRole!
-	reportingManager: UUID
-	position: UUID
-	location: UUID
+    firstName: String!
+    lastName: String!
+    birthday: ZonedDateTime!
+    role: EmployeeRole!
+    reportingManager: UUID
+    position: UUID
+    location: UUID
 }
 
 enum EmployeeRole {
-	ADMIN
-	EMPLOYEE
+    ADMIN
+    EMPLOYEE
 }
 
 type EmployeePayload {
-	item: Employee
+    item: Employee
 }
 
 input EmployeesInput {
-	where: EmployeeWhereInput
-	pagination: PageInput
+    where: EmployeeWhereInput
+    pagination: PageInput
 }
 
 input EmployeeWhereInput {
-	location: NodeInput
+    location: NodeInput
 }

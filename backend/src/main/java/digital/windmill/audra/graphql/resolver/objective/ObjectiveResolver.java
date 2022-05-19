@@ -17,7 +17,7 @@ public class ObjectiveResolver implements GraphQLQueryResolver {
 
     private ObjectiveFacade objectiveFacade;
 
-    public ObjectivePayload objective(ObjectiveInput objectiveInput){
+    public ObjectivePayload objective(ObjectiveInput objectiveInput) {
         return ObjectivePayload.builder()
                 .item(objectiveFacade.findObjectiveByUuid(objectiveInput.getId()))
                 .build();

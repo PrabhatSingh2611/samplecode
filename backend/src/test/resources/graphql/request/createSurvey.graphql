@@ -1,0 +1,43 @@
+mutation createSurvey{
+    createSurvey(input:
+    {   title: "graphql"
+        description: "learning graphql"
+        questions:  [{
+            body: "This is body 1"
+            type: SINGLE
+            options:  [{
+                text: "This is text 1"
+            },{
+                text:"This is text 2"
+            }
+            ]
+        },
+            {
+                body: "This is body 2"
+                type: SINGLE
+                options:  [{
+                    text: "This is text 1"
+                },{
+                    text:"This is text 2"
+                }
+                ]
+            }
+        ]
+    }){
+        survey{
+            title
+            description
+            questions {
+                items {
+                    body
+                    type
+                    options {
+                        items {
+                            text
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

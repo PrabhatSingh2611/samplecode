@@ -1,0 +1,57 @@
+{
+  "data": {
+    "surveys": {
+      "items": [
+        {
+          "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c89",
+          "title": "Survey 1",
+          "description": "this is sample 1 description",
+          "questions": {
+            "items": [
+              {
+                "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c92",
+                "body": "this is sample 1 question body",
+                "type": "SINGLE",
+                "options": {
+                  "items": [
+                    {
+                      "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
+                      "text": "this is sample 1 option text"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb891",
+          "title": "Survey 2",
+          "description": "this is sample 2 description",
+          "questions": {
+            "items": [
+              {
+                "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb894",
+                "body": "this is sample 2 question body",
+                "type": "SINGLE",
+                "options": {
+                  "items": [
+                    {
+                      "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb896",
+                      "text": "this is sample 2 option text"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 2
+    }
+  }
+}

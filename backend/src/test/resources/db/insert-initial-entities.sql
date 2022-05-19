@@ -59,3 +59,18 @@ insert into policy (id, uuid, title, resource_id, publication_date, status, empl
 values
 (1001, '239e8741-f04d-406a-bf7d-e2feaf8f5619', 'policy_title_1', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 2),
 (1002, 'c9cfa69a-b21d-42e9-a75f-78993d6cb509', 'policy_title_2', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 1);
+insert into survey (id, uuid, title_i18n, description_i18n, created_at, updated_at)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c89', '{"en": "Survey 1"}','{"en": "this is sample 1 description"}', '2022-02-02T13:25:34.480425Z','2022-02-02T13:25:34.480425Z'),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb891', '{"en": "Survey 2"}','{"en": "this is sample 2 description"}', '2021-02-02T13:25:34.480425Z','2021-02-02T13:25:34.480425Z');
+
+insert into question (id, uuid, body_i18n, type,survey_id)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92', '{"en": "this is sample 1 question body"}','SINGLE',1),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894', '{"en": "this is sample 2 question body"}','SINGLE',2);
+
+insert into option (id, uuid, text_i18n, question_id)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "this is sample 1 option text"}',1),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "this is sample 2 option text"}',2);
+
+ALTER SEQUENCE survey_id_seq RESTART WITH 1000;
+ALTER SEQUENCE question_id_seq RESTART WITH 1000;
+ALTER SEQUENCE option_id_seq RESTART WITH 1000;

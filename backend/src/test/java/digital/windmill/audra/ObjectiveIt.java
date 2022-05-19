@@ -1,17 +1,15 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
-
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 class ObjectiveIt extends AbstractIntegrationTest {
@@ -38,7 +36,7 @@ class ObjectiveIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
-     void shouldCreateObjective() throws IOException, URISyntaxException {
+    void shouldCreateObjective() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/createObjective.graphql");
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/createObjective.json");

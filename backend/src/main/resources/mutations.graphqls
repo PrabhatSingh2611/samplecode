@@ -19,4 +19,7 @@ type Mutation {
     uploadResource(resource: Upload!, thumbnail: Upload): ResourcePayload
     createPolicy(input: CreatePolicyInput!): PolicyPayload!
     deletePolicies(input: DeletePoliciesInput!): DeletePoliciesPayload!
+    createSurvey(input: CreateSurveyInput!) : SurveyPayload!
+    patchSurvey(input: PatchSurveyInput!) : SurveyPayload!
+    deleteSurvey(input: DeleteSurveyInput!) : DeleteSurveyPayload!
 }

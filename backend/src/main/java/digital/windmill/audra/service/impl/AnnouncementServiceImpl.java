@@ -6,6 +6,7 @@ import digital.windmill.audra.dao.repository.AnnouncementRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.AnnouncementsInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
+import digital.windmill.audra.service.AnnouncementService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 @Component
 @AllArgsConstructor
-public class AnnouncementServiceImpl implements digital.windmill.audra.service.AnnouncementService {
+public class AnnouncementServiceImpl implements AnnouncementService {
 
     private static final Integer DEFAULT_PAGE_NUMBER = 0;
     private static final Integer DEFAULT_PAGE_SIZE = 10;
@@ -30,14 +31,14 @@ public class AnnouncementServiceImpl implements digital.windmill.audra.service.A
     }
 
     @Override
-    public Page<AnnouncementEntity> findAllAnnouncements(AnnouncementsInput input){
+    public Page<AnnouncementEntity> findAllAnnouncements(AnnouncementsInput input) {
         var specification = AnnouncementSpecification.byAnnouncementsInput(input);
         var itemsPerPage = Optional.of(input).map(AnnouncementsInput::getPagination).
                 map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
         var pageNumber = Optional.of(input).map(AnnouncementsInput::getPagination).
-                map(PageInput::getPageNumber).orElse(0);
+                map(PageInput::getPageNumber).orElse(DEFAULT_PAGE_NUMBER);
         var pageable = PageRequest.of(pageNumber, itemsPerPage);
-        return announcementRepository.findAll(specification,pageable);
+        return announcementRepository.findAll(specification, pageable);
     }
 
     @Override

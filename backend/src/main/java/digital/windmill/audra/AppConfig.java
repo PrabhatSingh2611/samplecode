@@ -5,14 +5,19 @@ import digital.windmill.audra.graphql.coersing.ZonedDateTimeScalarCoercing;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.LeaveRequest;
 import digital.windmill.audra.properties.ResourceProperties;
+import digital.windmill.i18n.I18nConfig;
 import graphql.kickstart.servlet.apollo.ApolloScalars;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
+@Import(I18nConfig.class)
+@EnableAutoConfiguration
 @EnableConfigurationProperties({ResourceProperties.class})
 public class AppConfig {
 

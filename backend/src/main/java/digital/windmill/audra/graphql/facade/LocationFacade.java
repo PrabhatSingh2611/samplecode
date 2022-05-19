@@ -37,7 +37,6 @@ public interface LocationFacade {
     Location findLocationByUuid(UUID uuid);
 
     /**
-     *
      * @return all Locations
      */
     Page<Location> getLocations();

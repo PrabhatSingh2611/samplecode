@@ -30,7 +30,7 @@ public class ObjectiveSpecification {
         var itemsPerPage = Optional.ofNullable(input).map(ObjectivesInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
         var pageNumber = Optional.ofNullable(input).map(ObjectivesInput::getPagination).map(PageInput::getPageNumber).orElse(0);
 
-        Specification<ObjectiveEntity> spec = new ObjectivePredicate(employee,status);
+        Specification<ObjectiveEntity> spec = new ObjectivePredicate(employee, status);
 
         var pageable = PageRequest.of(pageNumber, itemsPerPage);
         return Pair.of(spec, pageable);

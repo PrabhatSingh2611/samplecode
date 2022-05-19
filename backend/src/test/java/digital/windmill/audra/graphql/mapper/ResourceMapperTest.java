@@ -1,19 +1,18 @@
 package digital.windmill.audra.graphql.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.when;
-
-import java.util.UUID;
-
+import digital.windmill.audra.dao.entity.ResourceEntity;
+import digital.windmill.audra.graphql.type.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import digital.windmill.audra.dao.entity.ResourceEntity;
-import digital.windmill.audra.graphql.type.Resource;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ResourceMapperTest {
@@ -27,7 +26,7 @@ class ResourceMapperTest {
     private ResourceMapper mapper = new ResourceMapperImpl();
 
     @Test
-    void shouldMap(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
+    void shouldMap(@Mock(answer = Answers.RETURNS_DEEP_STUBS) ResourceEntity entity) {
         mapper.setUrlPath(RESOURCE_PATH);
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
         when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
@@ -39,18 +38,18 @@ class ResourceMapperTest {
     }
 
     @Test
-    void shouldMapWithoutThumbnail(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
+    void shouldMapWithoutThumbnail(@Mock(answer = Answers.RETURNS_DEEP_STUBS) ResourceEntity entity) {
         mapper.setUrlPath(RESOURCE_PATH);
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
-        
+
         Resource actual = mapper.map(entity);
         assertEquals(RESOURCE_UUID, actual.getId());
         assertEquals(RESOURCE_URL, actual.getUrl());
         assertNull(actual.getThumbnail());
     }
-    
+
     @Test
-    void shouldMapWithNotConfiguredUrlPath(@Mock( answer = Answers.RETURNS_DEEP_STUBS ) ResourceEntity entity) {
+    void shouldMapWithNotConfiguredUrlPath(@Mock(answer = Answers.RETURNS_DEEP_STUBS) ResourceEntity entity) {
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
         when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
 

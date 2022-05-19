@@ -49,7 +49,7 @@ public class LocationServiceTest {
     }
 
     @Test
-    void shouldCreateLocation(@Mock LocationEntity locationEntity){
+    void shouldCreateLocation(@Mock LocationEntity locationEntity) {
 
         when(locationRepository.save(any(LocationEntity.class)))
                 .thenReturn(locationEntity);

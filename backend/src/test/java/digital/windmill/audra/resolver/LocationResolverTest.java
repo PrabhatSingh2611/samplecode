@@ -46,7 +46,7 @@ public class LocationResolverTest {
     }
 
     @Test
-    void shouldGetAllLocations(@Mock Location location){
+    void shouldGetAllLocations(@Mock Location location) {
 
         Page<Location> pagedResponse = createOneItemPage(location);
         when(locationfacade.getLocations()).thenReturn(pagedResponse);

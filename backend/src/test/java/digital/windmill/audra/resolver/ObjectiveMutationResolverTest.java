@@ -1,12 +1,7 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import digital.windmill.audra.graphql.facade.ObjectiveFacade;
 import digital.windmill.audra.graphql.resolver.objective.ObjectiveMutationResolver;
-import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.Locations;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.DeleteObjectiveInput;
@@ -17,11 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,6 +23,7 @@ class ObjectiveMutationResolverTest {
     private ObjectiveFacade facade;
     @InjectMocks
     ObjectiveMutationResolver resolver;
+
     @Test
     void shouldCreateObjective(@Mock CreateObjectiveInput input,
                                @Mock Objective objective) {

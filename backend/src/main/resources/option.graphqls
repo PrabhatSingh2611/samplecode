@@ -1,0 +1,14 @@
+type QuestionOption implements Node {
+    id: UUID!
+    text: String!
+}
+
+type OptionConnectionPayload implements ConnectionPayload {
+    items: [QuestionOption!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input CreateQuestionOptionInput {
+    text: String!
+}

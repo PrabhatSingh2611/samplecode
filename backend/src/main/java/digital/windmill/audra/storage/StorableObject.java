@@ -1,11 +1,11 @@
 package digital.windmill.audra.storage;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Map;
-
-import lombok.Builder;
-import lombok.Data;
 
 @Data
 @Builder

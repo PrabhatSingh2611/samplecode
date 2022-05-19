@@ -18,7 +18,7 @@ public class PolicySpecification {
             Optional.of(input)
                     .map(PoliciesInput::getWhere)
                     .map(PoliciesWhereInput::getQuery)
-                    .map(q->cb.equal(root.get("title"), q))
+                    .map(q -> cb.equal(root.get("title"), q))
                     .ifPresent(predicates::add);
 
             return cb.and(predicates.toArray(Predicate[]::new));

@@ -1,21 +1,19 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-class EmployeePositionIt  extends AbstractIntegrationTest {
+class EmployeePositionIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
@@ -41,7 +39,7 @@ class EmployeePositionIt  extends AbstractIntegrationTest {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
-    @Test 
+    @Test
     @Disabled("Doesn't work, because employee has link with position. Should be fixed!!!")
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldDeleteEmployeePosition() throws IOException, URISyntaxException {

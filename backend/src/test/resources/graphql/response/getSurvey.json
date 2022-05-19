@@ -1,0 +1,28 @@
+{
+  "data": {
+    "survey": {
+      "survey": {
+        "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c89",
+        "title": "Survey 1",
+        "description": "this is sample 1 description",
+        "questions": {
+          "items": [
+            {
+              "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c92",
+              "body": "this is sample 1 question body",
+              "type": "SINGLE",
+              "options": {
+                "items": [
+                  {
+                    "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
+                    "text": "this is sample 1 option text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

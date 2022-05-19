@@ -53,7 +53,7 @@ public class AssetTypeResolverTest {
 
         var result = assetTypeResolver.getAssetTypes();
         assertNotNull(result);
-        assertEquals(pagedResponse.getContent(),result.getItems());
+        assertEquals(pagedResponse.getContent(), result.getItems());
     }
 
     private <T> Page<T> createOneItemPage(T item) {

@@ -1,0 +1,42 @@
+{
+  "data": {
+    "createSurvey": {
+      "survey": {
+        "title": "graphql",
+        "description": "learning graphql",
+        "questions": {
+          "items": [
+            {
+              "body": "This is body 1",
+              "type": "SINGLE",
+              "options": {
+                "items": [
+                  {
+                    "text": "This is text 1"
+                  },
+                  {
+                    "text": "This is text 2"
+                  }
+                ]
+              }
+            },
+            {
+              "body": "This is body 2",
+              "type": "SINGLE",
+              "options": {
+                "items": [
+                  {
+                    "text": "This is text 1"
+                  },
+                  {
+                    "text": "This is text 2"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

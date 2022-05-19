@@ -21,7 +21,8 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="position_id" type="INT8">
-                <constraints foreignKeyName="fk_vacancy2employee_position" references="employee_position(id)" nullable="true"/>
+                <constraints foreignKeyName="fk_vacancy2employee_position" references="employee_position(id)"
+                             nullable="true"/>
             </column>
             <column name="description" type="VARCHAR(500)"/>
             <column name="status" type="VACANCY_STATUS"/>
@@ -38,10 +39,11 @@
     <changeSet id="r.0.2.3" author="schiriac">
 
         <sql>
-            insert into vacancy (id, uuid, position_id, description, status, employee_id, priority, created_at, updated_at)
+            insert into vacancy (id, uuid, position_id, description, status, employee_id, priority, created_at,
+            updated_at)
             values
             (1, '493a5be9-01ba-47c6-95c1-29c230528525', '1', 'Vacancy 1', 'NEW', 1, 'LOW', now(), now()),
-            (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2398', '2', 'Vacancy 2', 'IN_PROGRESS', 2, 'NORMAL',  now(), now());
+            (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2398', '2', 'Vacancy 2', 'IN_PROGRESS', 2, 'NORMAL', now(), now());
         </sql>
 
     </changeSet>

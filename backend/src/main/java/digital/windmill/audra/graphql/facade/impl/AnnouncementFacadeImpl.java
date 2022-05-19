@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.facade.impl;
 
+import digital.windmill.audra.graphql.facade.AnnouncementFacade;
 import digital.windmill.audra.graphql.mapper.AnnouncementMapper;
 import digital.windmill.audra.graphql.type.Announcement;
 import digital.windmill.audra.graphql.type.input.AnnouncementsInput;
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class AnnouncementFacadeImpl implements digital.windmill.audra.graphql.facade.AnnouncementFacade {
+public class AnnouncementFacadeImpl implements AnnouncementFacade {
     private AnnouncementService announcementService;
     private AnnouncementMapper announcementMapper;
 

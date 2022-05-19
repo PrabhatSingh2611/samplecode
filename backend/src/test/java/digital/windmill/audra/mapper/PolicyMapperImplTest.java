@@ -136,6 +136,7 @@ class PolicyMapperImplTest {
 
         return e;
     }
+
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
         e.setName(TEXT);

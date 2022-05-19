@@ -1,0 +1,13 @@
+mutation patchSurvey{
+    patchSurvey(input:
+    {
+        id: "f0ebfc41-acfb-4049-9aef-ea8ab8057c89"
+        title: "graphql"
+        description: "learning graphql"
+    }){
+        survey{
+            title
+            description
+        }
+    }
+}

@@ -41,13 +41,13 @@ class ResourceFacadeTest {
     private ResourceProperties resourceProperties;
     @Mock
     private ThumbnailServiceImpl thumbnailService;
-    
+
     @InjectMocks
     private ResourceFacade facade;
 
     @Test
     void shouldFindResourceByUuid(@Mock ResourceEntity resourceEntity,
-            @Mock Resource resource) {
+                                  @Mock Resource resource) {
         when(service.findResourceByUuid(RESOURCE_UUID)).thenReturn(Optional.of(resourceEntity));
         when(mapper.map(resourceEntity)).thenReturn(resource);
 
@@ -71,7 +71,7 @@ class ResourceFacadeTest {
             @Mock ResourceEntity resourceEntity,
             @Mock Resource resource,
             @Mock ResourceProperties.Thumbnail thumbnail
-            ) throws IOException {
+    ) throws IOException {
         StorableObject objectToStore = StorableObject.builder()
                 .stream(inputStream)
                 .fileName(RESOURCE_FILE_NAME)

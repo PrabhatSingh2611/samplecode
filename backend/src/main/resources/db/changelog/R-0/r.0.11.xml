@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.11.1" author="schiriac">
+
+        <sql>
+            CREATE TYPE QUESTION_TYPE AS ENUM ('SINGLE', 'MULTIPLE', 'ORDER', 'TEXT');
+        </sql>
+
+    </changeSet>
+    <changeSet id="r.0.11.2" author="schiriac">
+
+        <createTable tableName="survey">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="description_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="created_at" type="timestamptz"/>
+            <column name="updated_at" type="timestamptz"/>
+        </createTable>
+
+        <createTable tableName="question">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="body_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="type" type="QUESTION_TYPE"/>
+            <column name="survey_id" type="INT8">
+                <constraints foreignKeyName="fk_question2survey" references="survey(id)" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="option">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="text_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="question_id" type="INT8">
+                <constraints foreignKeyName="fk_option2question" references="question(id)" nullable="false"/>
+            </column>
+        </createTable>
+
+
+    </changeSet>
+</databaseChangeLog>

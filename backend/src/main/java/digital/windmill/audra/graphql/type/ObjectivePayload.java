@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ObjectivePayload {
-   private Objective item;
+    private Objective item;
 }

@@ -1,0 +1,55 @@
+type Survey implements Node {
+    id: UUID!
+    title: String!
+    description: String!
+    questions: QuestionConnectionPayload
+}
+
+type SurveyPayload {
+    survey: Survey!
+}
+
+type DeleteSurveyPayload {
+    Survey: Node!
+}
+
+type SurveyConnectionPayload implements ConnectionPayload {
+    items: [Survey!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+
+input CreateSurveyInput {
+    title: String!
+    description: String!
+    questions: [CreateQuestionInput]!
+}
+
+input PatchSurveyInput {
+    id: UUID!
+    title: String
+    description: String
+    questions: [CreateQuestionInput]
+}
+
+input SurveysInput {
+    where: SurveyWhereInput
+    pagination: PageInput
+}
+
+
+input SurveyInput {
+    id: UUID!
+}
+
+input SurveyWhereInput {
+    title: String
+}
+
+input DeleteSurveyInput {
+    id: UUID!
+}
+
+
+

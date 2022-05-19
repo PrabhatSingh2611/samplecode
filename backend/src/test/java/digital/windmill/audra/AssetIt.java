@@ -1,21 +1,19 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
-
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 class AssetIt extends AbstractIntegrationTest {

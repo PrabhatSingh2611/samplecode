@@ -1,14 +1,13 @@
 package digital.windmill.audra.graphql.mapper;
 
+import digital.windmill.audra.dao.entity.ResourceEntity;
+import digital.windmill.audra.graphql.type.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
-import digital.windmill.audra.dao.entity.ResourceEntity;
-import digital.windmill.audra.graphql.type.Resource;
 
 @Mapper(componentModel = "spring")
 public abstract class ResourceMapper {
@@ -31,8 +30,8 @@ public abstract class ResourceMapper {
     public abstract Resource map(ResourceEntity entity);
 
     @Named("buildUrl")
-    public String buildUrl(ResourceEntity entity)  {
-        if (entity == null 
+    public String buildUrl(ResourceEntity entity) {
+        if (entity == null
                 || entity.getUuid() == null) {
             return null;
         }

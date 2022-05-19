@@ -1,0 +1,28 @@
+query {
+    surveys(input:
+    {}){
+        items{
+            uuid
+            title
+            description
+            questions {
+                items {
+                    uuid
+                    body
+                    type
+                    options {
+                        items {
+                            uuid
+                            text
+                        }
+                    }
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

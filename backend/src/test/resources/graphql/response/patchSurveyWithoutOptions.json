@@ -1,0 +1,22 @@
+{
+  "data": {
+    "patchSurvey": {
+      "survey": {
+        "title": "graphql",
+        "description": "learning graphql",
+        "questions": {
+          "items": [
+            {
+              "body": "This is body 1",
+              "type": "SINGLE"
+            },
+            {
+              "body": "This is body 2",
+              "type": "SINGLE"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

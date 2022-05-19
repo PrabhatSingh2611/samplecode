@@ -34,9 +34,11 @@
     <changeSet id="r.0.3.3" author="raviabhishek">
         <sql>
             insert into objective (id, uuid, employee_id, name, description, comments, due_to_date, status)
-values
-    (1, 'e94f4d6a-a6cf-4786-a0b8-f096290057e3', 1, 'Objective 1', 'Description of Objective 1', 'Comment of Objective 1', now(), 'NEW'),
-    (2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of Objective 2', now(), 'DONE');
+            values
+            (1, 'e94f4d6a-a6cf-4786-a0b8-f096290057e3', 1, 'Objective 1', 'Description of Objective 1', 'Comment of
+            Objective 1', now(), 'NEW'),
+            (2, '395e206f-fb3e-4364-92bf-0f5778e739a4', 2, 'Objective 2', 'Description of Objective 2', 'Comment of
+            Objective 2', now(), 'DONE');
         </sql>
 
     </changeSet>

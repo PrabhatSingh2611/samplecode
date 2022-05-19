@@ -60,7 +60,7 @@ class ResourceIt extends AbstractIntegrationTest {
     void shouldStoreResource() throws IOException, URISyntaxException {
         UUID uuidOfPrevResource = findUuidOfLastAddedResource();
         assertNull(uuidOfPrevResource, "Any resources were added before");
-        
+
         ResourcePayload uploadResponse = uploadResourceFromClassPath("graphql/request/uploadResource.graphql");
 
         UUID lastAddedResourceUuid = findUuidOfLastAddedResource();
@@ -73,7 +73,7 @@ class ResourceIt extends AbstractIntegrationTest {
 
     @Test
     void shouldGetUploadedResourceByUuid() throws IOException, URISyntaxException {
-        
+
         ResourcePayload uploadedResponse = uploadResourceFromClassPath("graphql/request/uploadResource.graphql");
         var input = objectMapper.createObjectNode().putPOJO("id", uploadedResponse.getResource().getId());
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getResource.graphql", input);
@@ -114,7 +114,7 @@ class ResourceIt extends AbstractIntegrationTest {
         ClassPathResource fileResource = new ClassPathResource(pathInClassPath);
         var formData = new LinkedMultiValueMap<>();
         formData.set("operations", objectMapper.writeValueAsString(params));
-        formData.set("map",  "{\"file\": [\"variables.file\"]}");
+        formData.set("map", "{\"file\": [\"variables.file\"]}");
         formData.set("file", fileResource);
 
         var requestEntity = new HttpEntity<>(formData);
@@ -140,6 +140,7 @@ class ResourceIt extends AbstractIntegrationTest {
     private static class UploadDataRestResponse {
         private UploadRestResponse data;
     }
+
     @Data
     private static class UploadRestResponse {
         private ResourcePayload uploadResource;
