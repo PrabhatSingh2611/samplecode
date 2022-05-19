@@ -58,7 +58,7 @@ export function WTableHead({
               checked={rowCount > 0 && selectedCount === rowCount}
               onChange={(
                 event: React.ChangeEvent<HTMLInputElement>,
-                isChecked
+                isChecked: boolean
               ) => onSelectAllRows({ element: event.target, isChecked })}
             />
           </WTable.Cell>

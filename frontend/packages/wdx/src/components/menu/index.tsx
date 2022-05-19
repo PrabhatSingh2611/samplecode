@@ -23,4 +23,6 @@ function WMenu(props: WMenuProps):JSX.Element {
     return <Menu {...props} />;
 }
 
+WMenu.Item = WMenuItem;
+
 export default WMenu;

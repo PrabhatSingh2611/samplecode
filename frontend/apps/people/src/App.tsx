@@ -1,13 +1,14 @@
 import { HelmetProvider } from 'react-helmet-async';
 
-import { getClient } from 'client';
-import PeopleObservables from 'core/PeopleObservables';
-import Router from 'core/Router';
 import { FlagsProvider } from 'flagged';
-import Routes from 'routes';
 import { ThemeProvider, WBox } from 'wdx';
 
 import { ApolloProvider } from '@apollo/client';
+
+import { getClient } from 'client';
+import PeopleObservables from 'core/PeopleObservables';
+import Router from 'core/Router';
+import Routes from 'routes';
 
 interface IAppProps {
     inIsolation: boolean;

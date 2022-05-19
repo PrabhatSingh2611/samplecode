@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import WBox from '../box';
-import WFormControl, { WFormControlLabel } from '../form';
+import WForm from '../form';
 import WRadio, { WRadioGroup } from './index';
 
 const meta: Meta = {
@@ -14,34 +14,36 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = args => {
+const Template: Story = (args) => {
   return (
-    <WBox display='flex' gap={4}>
-        <WRadio {...args} color="default" />
-        <WRadio {...args} color="error" />
-        <WRadio {...args} color="info" />
-        <WRadio {...args} color="primary" />
-        <WRadio {...args} color="success" />
+    <WBox display="flex" gap={4}>
+      <WRadio {...args} color="default" />
+      <WRadio {...args} color="error" />
+      <WRadio {...args} color="info" />
+      <WRadio {...args} color="primary" />
+      <WRadio {...args} color="success" />
     </WBox>
+  );
+};
 
-  )
-}
-
-const TemplateGroup: Story = args => {
-    return (
-        <WFormControl>
-            <WRadioGroup
-                {...args}
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-            >
-                <WFormControlLabel value="female" control={<WRadio />} label="Female" />
-                <WFormControlLabel value="male" control={<WRadio />} label="Male" />
-            </WRadioGroup>
-        </WFormControl>
-
-    )
-  }
+const TemplateGroup: Story = (args) => {
+  return (
+    <WForm.Control>
+      <WRadioGroup
+        {...args}
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <WForm.ControlLabel
+          value="female"
+          control={<WRadio />}
+          label="Female"
+        />
+        <WForm.ControlLabel value="male" control={<WRadio />} label="Male" />
+      </WRadioGroup>
+    </WForm.Control>
+  );
+};
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
@@ -55,5 +57,5 @@ Default.args = {
 };
 
 Group.args = {
-    row: true,
-}
+  row: true,
+};

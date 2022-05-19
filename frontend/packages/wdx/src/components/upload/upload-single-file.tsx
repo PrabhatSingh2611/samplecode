@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { forwardRef } from 'react';
 import { useDropzone } from 'react-dropzone';
-import {styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { WUploadProps } from './type';
 import WImage from '../image';
 import RejectionFiles from './rejection-files';
 import BlockContent from './block-content';
 
-const DropZoneStyle = styled('div')(({ theme }:any):any => ({
+const DropZoneStyle = styled('div')(({ theme }: any): any => ({
   outline: 'none',
   overflow: 'hidden',
   position: 'relative',
@@ -19,60 +19,64 @@ const DropZoneStyle = styled('div')(({ theme }:any):any => ({
   '&:hover': { opacity: 0.72, cursor: 'pointer' },
 }));
 
-export default function WUploadSingleFile({
-  error = false,
-  file,
-  helperText,
-  sx,
-  footer,
-  ...other
-}: WUploadProps):JSX.Element {
-  const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
-    multiple: false,
-    ...other,
-  });
+const WUploadSingleFile = forwardRef<HTMLInputElement, WUploadProps>(
+  ({ error = false, file, helperText, sx, footer, ...other }, ref) => {
+    const {
+      getRootProps,
+      getInputProps,
+      isDragActive,
+      isDragReject,
+      fileRejections,
+    } = useDropzone({
+      multiple: false,
+      ...other,
+    });
 
-  return (
-    <Box sx={{ width: '100%', ...sx }}>
-      <DropZoneStyle
-        {...getRootProps()}
-        sx={{
-          ...(isDragActive && { opacity: 0.72 }),
-          ...((isDragReject || error) && {
-            color: 'error.main',
-            borderColor: 'error.light',
-            bgcolor: 'error.lighter',
-          }),
-          ...(file && {
-            padding: '12% 0',
-          }),
-        }}
-      >
-        <input {...getInputProps()} />
+    return (
+      <Box sx={{ width: '100%', ...sx }}>
+        <DropZoneStyle
+          {...getRootProps()}
+          sx={{
+            ...(isDragActive && { opacity: 0.72 }),
+            ...((isDragReject || error) && {
+              color: 'error.main',
+              borderColor: 'error.light',
+              bgcolor: 'error.lighter',
+            }),
+            ...(file && {
+              padding: '12% 0',
+            }),
+          }}
+        >
+          <input {...getInputProps()} ref={ref} />
 
-        <BlockContent />
+          <BlockContent />
 
-        {file && (
-          <WImage
-            alt="file preview"
-            src={typeof file === 'string' ? file : file.preview}
-            sx={{
-              top: 8,
-              left: 8,
-              borderRadius: 1,
-              position: 'absolute',
-              width: 'calc(100% - 16px)',
-              height: 'calc(100% - 16px)',
-            }}
-          />
-        )}
+          {file && (
+            <WImage
+              alt="file preview"
+              src={typeof file === 'string' ? file : file.preview}
+              sx={{
+                top: 0,
+                left: 0,
+                borderRadius: 1,
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          )}
           {footer && footer}
+        </DropZoneStyle>
 
-      </DropZoneStyle>
+        {fileRejections.length > 0 && (
+          <RejectionFiles fileRejections={fileRejections} />
+        )}
 
-      {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
+        {helperText && helperText}
+      </Box>
+    );
+  }
+);
 
-      {helperText && helperText}
-    </Box>
-  );
-}
+export default WUploadSingleFile;
