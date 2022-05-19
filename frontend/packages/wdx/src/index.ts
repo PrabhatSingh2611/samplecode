@@ -92,7 +92,10 @@ export {
 } from './components/form';
 export { default as WGrid, WGridProps } from './components/grid';
 export { default as WIcon, WIconProps } from './components/icon';
-export { default as WIconButton, WIconButtonProps } from './components/icon-button';
+export {
+  default as WIconButton,
+  WIconButtonProps,
+} from './components/icon-button';
 export { default as WIconofy, WIconifyProps } from './components/iconify';
 export { default as WImage, WImageRato } from './components/image';
 export { default as WLink, WLinkProps } from './components/link';
@@ -186,7 +189,10 @@ export {
 export * as Yup from 'yup';
 
 // WIDGETS
-export { default as WEmptyState, WEmptyStateProps } from './widgets/empty-state';
+export {
+  default as WEmptyState,
+  WEmptyStateProps,
+} from './widgets/empty-state';
 export { default as WImageCard, WImageCardProps } from './widgets/image-card';
 export { default as WSubHeader, WSubHeaderProps } from './widgets/subheader';
 export {
