@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 public class Vacancy implements Node {
 
-    private UUID uuid;
+    private UUID id;
     private EmployeePosition position;
     private String description;
     private VacancyStatus status;

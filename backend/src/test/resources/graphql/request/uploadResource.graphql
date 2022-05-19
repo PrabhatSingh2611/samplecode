@@ -1,7 +1,7 @@
 mutation uploadResource($file: Upload!, $thumbnail: Upload){
   uploadResource(resource: $file, thumbnail: $thumbnail) {
     resource {
-      uuid
+      id
       url
       thumbnail
     }

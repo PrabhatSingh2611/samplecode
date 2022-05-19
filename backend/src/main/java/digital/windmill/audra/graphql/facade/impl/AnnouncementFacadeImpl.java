@@ -36,7 +36,7 @@ public class AnnouncementFacadeImpl implements digital.windmill.audra.graphql.fa
     @Override
     @Transactional
     public Announcement createAnnouncement(CreateAnnouncementInput input) {
-        return announcementMapper.mapAnnouncementEntityToAnnouncement(announcementService.saveOrUpdateAnnouncement(
+        return announcementMapper.mapAnnouncementEntityToAnnouncement(announcementService.save(
                 announcementMapper.mapCreateAnnounceInputToAnnouncementEntity(input)
         ));
     }
@@ -44,8 +44,8 @@ public class AnnouncementFacadeImpl implements digital.windmill.audra.graphql.fa
     @Override
     @Transactional
     public Announcement updateAnnouncement(UpdateAnnouncementInput input) {
-        var announcementToBeUpdated = announcementService.findAnnouncementByUuid(input.getUuid());
-        return announcementMapper.mapAnnouncementEntityToAnnouncement(announcementService.saveOrUpdateAnnouncement(
+        var announcementToBeUpdated = announcementService.findAnnouncementByUuid(input.getId());
+        return announcementMapper.mapAnnouncementEntityToAnnouncement(announcementService.save(
                 announcementMapper.mapUpdateAnnouncementInputToAnnouncementEntity(input, announcementToBeUpdated)
         ));
     }
@@ -53,7 +53,7 @@ public class AnnouncementFacadeImpl implements digital.windmill.audra.graphql.fa
     @Override
     @Transactional
     public Announcement deleteAnnouncement(DeleteAnnouncementInput input) {
-        var announcementToBeDeleted = announcementService.findAnnouncementByUuid(input.getUuid());
+        var announcementToBeDeleted = announcementService.findAnnouncementByUuid(input.getId());
         return announcementMapper.mapAnnouncementEntityToAnnouncement(
                 announcementService.deleteAnnouncement(announcementToBeDeleted)
         );

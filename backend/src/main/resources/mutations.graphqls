@@ -1,21 +1,21 @@
 type Mutation {
-    createEmployeePosition(input:CreateEmployeePositionInput!):EmployeePositionPayload!
-    updateEmployeePosition(input:UpdateEmployeePositionInput!):EmployeePositionPayload!
-    deleteEmployeePosition(input:DeleteEmployeePositionInput!):DeleteEmployeePositionPayload!
-    createAssetType(input:CreateAssetTypeInput!): AssetTypePayload!
-    createAsset(input:CreateAssetInput!): AssetPayload!
+    createEmployeePosition(input: CreateEmployeePositionInput!): EmployeePositionPayload!
+    updateEmployeePosition(input: UpdateEmployeePositionInput!): EmployeePositionPayload!
+    deleteEmployeePosition(input: DeleteEmployeePositionInput!): DeleteEmployeePositionPayload!
+    createAssetType(input: CreateAssetTypeInput!): AssetTypePayload!
+    createAsset(input: CreateAssetInput!): AssetPayload!
     updateAsset(input: UpdateAssetInput!): AssetPayload!
     createLocation(input: CreateLocationInput!): LocationPayload!
     updateLocation(input: UpdateLocationInput!): LocationPayload!
-    createEmployee(input:CreateEmployeeInput!):EmployeePayload!
+    createEmployee(input: CreateEmployeeInput!): EmployeePayload!
     createVacancy(input: CreateVacancyInput!): VacancyPayload!
     updateVacancy(input: UpdateVacancyInput!): VacancyPayload!
     createObjective(input: CreateObjectiveInput!): ObjectivePayload!
     updateObjective(input: UpdateObjectiveInput!): ObjectivePayload!
     deleteObjective(input: DeleteObjectiveInput!): DeleteObjectivePayload!
-    createAnnouncement(input: CreateAnnouncementInput!) : AnnouncementPayload!
-    updateAnnouncement(input: UpdateAnnouncementInput!) : AnnouncementPayload!
-    deleteAnnouncement(input: DeleteAnnouncementInput!) :DeleteAnnouncementPayload!
+    createAnnouncement(input: CreateAnnouncementInput!): AnnouncementPayload!
+    updateAnnouncement(input: UpdateAnnouncementInput!): AnnouncementPayload!
+    deleteAnnouncement(input: DeleteAnnouncementInput!): DeleteAnnouncementPayload!
     uploadResource(resource: Upload!, thumbnail: Upload): ResourcePayload
     createPolicy(input: CreatePolicyInput!): PolicyPayload!
     deletePolicies(input: DeletePoliciesInput!): DeletePoliciesPayload!

@@ -1,9 +1,6 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.ObjectiveEntity;
-import digital.windmill.audra.dao.entity.enums.ObjectiveStatus;
 import digital.windmill.audra.dao.repository.ObjectiveRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.ObjectivesInput;
@@ -19,13 +16,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.Instant;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
@@ -44,7 +38,7 @@ class ObjectiveServiceTest {
     void shouldCreateObjective(@Mock ObjectiveEntity objectiveEntity) {
         when(objectiveRepository.save(any(ObjectiveEntity.class))).thenReturn(objectiveEntity);
 
-        var result = objectiveService.createObjective(objectiveEntity);
+        var result = objectiveService.save(objectiveEntity);
 
         assertNotNull(result);
         assertSame(objectiveEntity, result);
@@ -54,7 +48,7 @@ class ObjectiveServiceTest {
     void shouldUpdateObjective(@Mock ObjectiveEntity objectiveEntity) {
         when(objectiveRepository.save(any(ObjectiveEntity.class))).thenReturn(objectiveEntity);
 
-        var result = objectiveService.updateObjective(objectiveEntity);
+        var result = objectiveService.save(objectiveEntity);
         assertNotNull(result);
         assertSame(objectiveEntity, result);
     }

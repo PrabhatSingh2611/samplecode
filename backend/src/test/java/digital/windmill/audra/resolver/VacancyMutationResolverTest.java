@@ -49,10 +49,10 @@ public class VacancyMutationResolverTest {
 
         var actualResult = vacancyResolver.createVacancy(vacancyInput);
         assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getItem().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getId());
         assertEquals(NAME, actualResult.getItem().getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getId());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getFirstName());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getLastName());
         assertEquals(ROLE, actualResult.getItem().getAssignTo().getRole());
@@ -68,10 +68,10 @@ public class VacancyMutationResolverTest {
 
         var actualResult = vacancyResolver.updateVacancy(vacancyInput);
         assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getItem().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getId());
         assertEquals(NAME, actualResult.getItem().getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getId());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getFirstName());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getLastName());
         assertEquals(ROLE, actualResult.getItem().getAssignTo().getRole());
@@ -85,14 +85,14 @@ public class VacancyMutationResolverTest {
     private NodeInput createNodeInput() {
         return NodeInput
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .build();
     }
 
     private Vacancy createVacancy() {
         return Vacancy
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .position(createPosition())
                 .assignTo(createEmployee())
                 .description(DESCRIPTION)
@@ -103,7 +103,7 @@ public class VacancyMutationResolverTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
@@ -116,12 +116,12 @@ public class VacancyMutationResolverTest {
     private EmployeePosition createPosition() {
         return EmployeePosition
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }
 
     private Location createLocation() {
-        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 }

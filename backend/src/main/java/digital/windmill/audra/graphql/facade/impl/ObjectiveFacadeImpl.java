@@ -28,24 +28,24 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
         var employee = employeeService.findEmployeeByUuid(input.getEmployee());
         var objectiveEntity = objectiveMapper.mapObjectiveInputToEntity(input, employee);
         return objectiveMapper.mapObjectiveEntityToObjective(
-                objectiveService.createObjective(objectiveEntity)
+                objectiveService.save(objectiveEntity)
         );
     }
 
     @Override
     public Objective updateObjective(UpdateObjectiveInput input) {
         var employee = employeeService.findEmployeeByUuid(input.getEmployee());
-        var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getUuid());
+        var objectiveToBeUpdated = objectiveService.findObjectiveByUuid(input.getId());
         var updatedObjectiveEntity = objectiveMapper.mapInputToEntityWhenUpdate(
                 input, objectiveToBeUpdated, employee);
         return objectiveMapper.mapObjectiveEntityToObjective(
-                objectiveService.updateObjective(updatedObjectiveEntity)
+                objectiveService.save(updatedObjectiveEntity)
         );
     }
 
     @Override
     public Objective deleteObjective(DeleteObjectiveInput input) {
-        var objectiveToBeDeleted = objectiveService.findObjectiveByUuid(input.getUuid());
+        var objectiveToBeDeleted = objectiveService.findObjectiveByUuid(input.getId());
         return  objectiveMapper.mapObjectiveEntityToObjective(
                 objectiveService.deleteObjective(objectiveToBeDeleted)
         );

@@ -12,6 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateLocationInput {
-    private UUID uuid;
+    private UUID id;
     private String name;
 }

@@ -3,16 +3,16 @@
     "objectives" : {
       "items" : [ {
         "employee" : {
-          "uuid" : "48b560ab-7450-4088-b6bb-f57638ea0877"
+          "id" : "48b560ab-7450-4088-b6bb-f57638ea0877"
         },
-        "uuid" : "e94f4d6a-a6cf-4786-a0b8-f096290057e3",
+        "id" : "e94f4d6a-a6cf-4786-a0b8-f096290057e3",
         "name" : "Objective 1",
         "status" : "NEW"
       }, {
         "employee" : {
-          "uuid" : "48b560ab-7450-4088-b6bb-f57638ea0877"
+          "id" : "48b560ab-7450-4088-b6bb-f57638ea0877"
         },
-        "uuid" : "2fa56def-ce16-493c-8f8c-173bf3ee8309",
+        "id" : "2fa56def-ce16-493c-8f8c-173bf3ee8309",
         "name" : "Objective 3",
         "status" : "DONE"
       } ],

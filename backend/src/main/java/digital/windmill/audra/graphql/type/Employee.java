@@ -15,8 +15,7 @@ import java.util.UUID;
 @Data
 public class Employee implements Node {
 
-    private Long id;
-    private UUID uuid;
+    private UUID id;
     private String firstName;
     private String lastName;
     private EmployeeRole role;

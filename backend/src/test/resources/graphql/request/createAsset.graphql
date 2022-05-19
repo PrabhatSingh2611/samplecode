@@ -13,7 +13,7 @@ mutation createAsset{
             title
             serial
             employee {
-                uuid
+                id
             }
             archivedDate
             purchasedDate

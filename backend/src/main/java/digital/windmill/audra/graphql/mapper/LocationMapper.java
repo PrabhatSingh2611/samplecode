@@ -6,6 +6,7 @@ import digital.windmill.audra.graphql.type.input.CreateLocationInput;
 import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public interface LocationMapper {
      * @param entity it takes LocationEntity as Input
      * @return mapped to Location
      */
+    @Mapping(target = "id", source = "uuid")
     Location mapLocationEntityToLocation(LocationEntity entity);
 
 
@@ -47,8 +49,6 @@ public interface LocationMapper {
      * @param updatedLocationEntity
      * @return
      */
-    @Mapping(target = "id", source = "updatedLocationEntity.id")
-    @Mapping(target = "uuid", source = "updatedLocationEntity.uuid")
-    @Mapping(target = "name", source = "input.name")
-    LocationEntity mapLocationToLocationEntityUpdate(UpdateLocationInput input, LocationEntity updatedLocationEntity);
+    @Mapping(target = "id", ignore = true)
+    LocationEntity mapLocationToLocationEntityUpdate(UpdateLocationInput input, @MappingTarget LocationEntity updatedLocationEntity);
 }

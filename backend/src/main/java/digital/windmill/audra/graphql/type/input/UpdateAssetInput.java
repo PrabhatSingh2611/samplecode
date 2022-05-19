@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateAssetInput {
-    private UUID uuid;
+    private UUID id;
     private String title;
     private String serial;
     private UUID type;

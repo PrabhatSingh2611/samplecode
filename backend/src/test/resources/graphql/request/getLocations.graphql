@@ -1,7 +1,7 @@
 query {
     locations{
         items{
-            uuid
+            id
             name
         }
         pageInfo {

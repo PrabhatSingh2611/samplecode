@@ -3,10 +3,6 @@ package digital.windmill.audra.service.impl;
 import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.repository.EmployeePositionRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
-import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
-import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,47 +14,21 @@ import java.util.UUID;
 public class EmployeePositionServiceImpl implements EmployeePositionService {
 
     private EmployeePositionRepository employeePositionRepository;
-    private EmployeePositionMapper employeePositionMapper;
 
     @Override
-    public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
-        var toBeSavedEmployeePositionEntity = employeePositionMapper
-                .mapCreateEmployeePositionInputToEmployeePositionEntity(input);
-        EmployeePositionEntity savedEmployee = employeePositionRepository.save(toBeSavedEmployeePositionEntity);
-        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployee);
+    public EmployeePositionEntity save(EmployeePositionEntity employeePositionEntity) {
+        return employeePositionRepository.save(employeePositionEntity);
     }
 
     @Override
-    public EmployeePosition updateEmployeePosition(
-            UpdateEmployeePositionInput input,
-            EmployeePosition employeePosition) {
-        var employeePositionEntity = employeePositionMapper
-                .mapUpdateToEmployeePositionEntity(input, employeePosition);
-        var savedEmployeePositionEntity = employeePositionRepository.save(employeePositionEntity);
-
-        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployeePositionEntity);
-    }
-
-    @Override
-    public EmployeePosition deleteEmployeePosition(EmployeePosition employeePosition) {
-        var employeePositionEntity = employeePositionMapper
-                .mapEmployeePositionToEmployeePositionEntity(employeePosition);
+    public EmployeePositionEntity deleteEmployeePosition(EmployeePositionEntity employeePositionEntity) {
         employeePositionRepository.delete(employeePositionEntity);
-        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity);
+        return employeePositionEntity;
     }
 
     @Override
-    public EmployeePosition findEmployeePositionByUuid(UUID uuid) {
-        if (uuid == null) {
-            return null;
-        }
-        return employeePositionMapper
-                .mapEmployeePositionEntityToEmployeePosition(
-                        employeePositionRepository
-                                .findByUuid(uuid)
-                                .orElseThrow(
-                                        () -> new DataNotFoundException("Employee Position not found for : " + uuid.toString())
-                                )
-                );
+    public EmployeePositionEntity findEmployeePositionByUuid(UUID uuid) {
+        return employeePositionRepository.findByUuid(uuid)
+                .orElseThrow(() -> new DataNotFoundException("Employee Position not found for : " + uuid.toString()));
     }
 }

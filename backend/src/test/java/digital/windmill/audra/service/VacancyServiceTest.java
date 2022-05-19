@@ -1,21 +1,10 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.VacancyEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import digital.windmill.audra.dao.entity.enums.VacancyPriority;
-import digital.windmill.audra.dao.entity.enums.VacancyStatus;
 import digital.windmill.audra.dao.repository.VacancyRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.mapper.VacancyMapper;
-import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.Vacancy;
-import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
-import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
 import digital.windmill.audra.graphql.type.input.VacanciesInput;
 import digital.windmill.audra.service.impl.VacancyServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -24,63 +13,37 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class VacancyServiceTest {
 
-    private static final UUID TEST_UUID = UUID.fromString("91817d8b-5851-413f-9fd5-31f64cef4692");
-    private static final String DESCRIPTION = "Vacancy description";
-    private static final String NAME = "Name";
-    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
-    private static final Long ID = 1L;
+    private static final UUID VACANCY_UUID = UUID.fromString("91817d8b-5851-413f-9fd5-31f64cef4692");
 
     @Mock
     private VacancyRepository vacancyRepository;
 
     @Mock
     private VacancyMapper vacancyMapper;
-    @Mock
-    private EmployeePositionMapper employeePositionMapper;
 
     @InjectMocks
     private VacancyServiceImpl service;
 
     @Test
-    void shouldReturnVacancyById() {
-
-        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(Optional.of(createVacancyEntity()));
-        when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
-
-        var actualResult = service.findVacancyByUuid(TEST_UUID);
-
-        assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getUuid());
-        assertEquals(TEST_UUID, actualResult.getUuid());
-        assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
-        assertEquals(NAME, actualResult.getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getAssignTo().getUuid());
-        assertEquals(NAME, actualResult.getAssignTo().getFirstName());
-        assertEquals(NAME, actualResult.getAssignTo().getLastName());
-        assertEquals(ROLE, actualResult.getAssignTo().getRole());
-        assertEquals(DATE_TIME, actualResult.getAssignTo().getBirthday());
-        assertEquals(DESCRIPTION, actualResult.getDescription());
-        assertEquals(VacancyStatus.NEW, actualResult.getStatus());
-        assertEquals(VacancyPriority.LOW, actualResult.getPriority());
+    void shouldReturnVacancyById(@Mock VacancyEntity vacancyEntity) {
+        when(vacancyRepository.findVacancyByUuid(VACANCY_UUID)).thenReturn(Optional.of(vacancyEntity));
+        var actualResult = service.findVacancyByUuid(VACANCY_UUID);
+        assertEquals(vacancyEntity, actualResult);
     }
 
     @Test
@@ -89,142 +52,23 @@ public class VacancyServiceTest {
     }
 
     @Test
-    void shouldGetAllVacancies(@Mock VacanciesInput vacanciesInput) {
+    void shouldGetAllVacancies(@Mock VacanciesInput vacanciesInput,
+                               @Mock VacancyEntity vacancyEntity,
+                               @Mock Vacancy vacancy) {
         when(vacancyRepository.findAll((Specification<VacancyEntity>) any(), any(PageRequest.class)))
-                .thenReturn(createVacancyEntityList());
-        when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
+                .thenReturn(new PageImpl<>(List.of(vacancyEntity)));
+        when(vacancyMapper.mapVacancyEntityToVacancy(vacancyEntity)).thenReturn(vacancy);
+
         var actualResult = service.findAllVacancies(vacanciesInput);
-        assertNotNull(actualResult);
-        assertEquals(1, actualResult.getContent().size());
-        assertEquals(TEST_UUID, actualResult.getContent().get(0).getUuid());
-        assertEquals(TEST_UUID, actualResult.getContent().get(0).getPosition().getUuid());
-        assertEquals(NAME, actualResult.getContent().get(0).getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getContent().get(0).getAssignTo().getUuid());
-        assertEquals(NAME, actualResult.getContent().get(0).getAssignTo().getFirstName());
-        assertEquals(NAME, actualResult.getContent().get(0).getAssignTo().getLastName());
-        assertEquals(ROLE, actualResult.getContent().get(0).getAssignTo().getRole());
-        assertEquals(DATE_TIME, actualResult.getContent().get(0).getAssignTo().getBirthday());
-        assertEquals(DESCRIPTION, actualResult.getContent().get(0).getDescription());
-        assertEquals(VacancyStatus.NEW, actualResult.getContent().get(0).getStatus());
-        assertEquals(VacancyPriority.LOW, actualResult.getContent().get(0).getPriority());
-    }
 
-    private Page<VacancyEntity> createVacancyEntityList() {
-        return new PageImpl<>(List.of(createVacancyEntity()));
+        assertEquals(new PageImpl<>(List.of(vacancy)), actualResult);
     }
 
     @Test
-    void shouldCreateVacancy(@Mock CreateVacancyInput vacancyInput,
-                             @Mock EmployeePosition employeePosition,
-                             @Mock EmployeeEntity employeeEntity
-    ) {
-        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
-        when(vacancyMapper.mapInputToEntity(
-                any(CreateVacancyInput.class),
-                any(EmployeePositionEntity.class),
-                any(EmployeeEntity.class)))
-                .thenReturn(createVacancyEntity());
-
-        when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
-        when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
-
-        var actualResult = service.createVacancy(vacancyInput, employeePosition, employeeEntity);
-
-        assertEquals(TEST_UUID, actualResult.getUuid());
-        assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
-        assertEquals(NAME, actualResult.getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getAssignTo().getUuid());
-        assertEquals(NAME, actualResult.getAssignTo().getFirstName());
-        assertEquals(NAME, actualResult.getAssignTo().getLastName());
-        assertEquals(ROLE, actualResult.getAssignTo().getRole());
-        assertEquals(DATE_TIME, actualResult.getAssignTo().getBirthday());
-        assertEquals(DESCRIPTION, actualResult.getDescription());
-        assertEquals(VacancyStatus.NEW, actualResult.getStatus());
-        assertEquals(VacancyPriority.LOW, actualResult.getPriority());
+    void shouldSave(@Mock VacancyEntity vacancyEntity) {
+        when(vacancyRepository.save(vacancyEntity)).thenReturn(vacancyEntity);
+        var actualResult = service.save(vacancyEntity);
+        assertEquals(vacancyEntity, actualResult);
     }
 
-    @Test
-    void shouldUpdateVacancy(@Mock UpdateVacancyInput vacancyInput,
-                             @Mock EmployeePosition employeePosition,
-                             @Mock EmployeeEntity employeeEntity
-    ){
-        when(vacancyInput.getUuid()).thenReturn(TEST_UUID);
-        when(employeePositionMapper.mapEmployeePositionToEmployeePositionEntity(any(EmployeePosition.class))).thenReturn(createEmployeePositionEntity());
-        when(vacancyRepository.findVacancyByUuid(any(UUID.class))).thenReturn(Optional.of(createVacancyEntity()));
-        when(vacancyMapper.mapToEntityWhenUpdate(
-                any(VacancyEntity.class),
-                any(UpdateVacancyInput.class),
-                any(EmployeePositionEntity.class),
-                any(EmployeeEntity.class))).
-                thenReturn(createVacancyEntity());
-
-        when(vacancyRepository.save(any(VacancyEntity.class))).thenReturn(createVacancyEntity());
-        when(vacancyMapper.mapVacancyEntityToVacancy(any(VacancyEntity.class))).thenReturn(createVacancy());
-
-        var actualResult = service.updateVacancy(vacancyInput, employeePosition, employeeEntity);
-
-        assertEquals(TEST_UUID, actualResult.getUuid());
-        assertEquals(TEST_UUID, actualResult.getPosition().getUuid());
-        assertEquals(NAME, actualResult.getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getAssignTo().getUuid());
-        assertEquals(NAME, actualResult.getAssignTo().getFirstName());
-        assertEquals(NAME, actualResult.getAssignTo().getLastName());
-        assertEquals(ROLE, actualResult.getAssignTo().getRole());
-        assertEquals(DATE_TIME, actualResult.getAssignTo().getBirthday());
-        assertEquals(DESCRIPTION, actualResult.getDescription());
-        assertEquals(VacancyStatus.NEW, actualResult.getStatus());
-        assertEquals(VacancyPriority.LOW, actualResult.getPriority());
-    }
-
-    private VacancyEntity createVacancyEntity() {
-        VacancyEntity e = new VacancyEntity();
-        e.setUuid(TEST_UUID);
-        e.setId(ID);
-        e.setDescription(DESCRIPTION);
-        return e;
-    }
-
-    private Vacancy createVacancy() {
-        return Vacancy
-                .builder()
-                .uuid(TEST_UUID)
-                .position(createPosition())
-                .assignTo(createEmployee())
-                .description(DESCRIPTION)
-                .status(VacancyStatus.NEW)
-                .priority(VacancyPriority.LOW)
-                .build();
-    }
-
-    private Employee createEmployee() {
-        return Employee.builder()
-                .uuid(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .birthday(DATE_TIME)
-                .location(createLocation())
-                .position(createPosition())
-                .role(ROLE)
-                .build();
-    }
-
-    private EmployeePosition createPosition() {
-        return EmployeePosition
-                .builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private Location createLocation() {
-        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
-    }
-
-    private EmployeePositionEntity createEmployeePositionEntity() {
-        EmployeePositionEntity e = new EmployeePositionEntity();
-        e.setId(ID);
-        e.setUuid(TEST_UUID);
-        e.setName(NAME);
-        return e;
-    }
 }

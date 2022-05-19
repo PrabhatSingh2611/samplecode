@@ -2,12 +2,12 @@ mutation deletePolicies {
     deletePolicies(
         input: {
             policies: {
-                uuids: ["239e8741-f04d-406a-bf7d-e2feaf8f5619"]
+                ids: ["239e8741-f04d-406a-bf7d-e2feaf8f5619"]
             }
         }
     ) {
         policies {
-            uuids
+            ids
         }
     }
 }

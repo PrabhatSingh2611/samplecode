@@ -17,6 +17,7 @@ public interface AssetTypeMapper {
      * @param entity takes AssetTypeEntity as input
      * @return mapped AssetType
      */
+    @Mapping(target = "id", source = "uuid")
     AssetType mapAssetTypeEntityToAssetType(AssetTypeEntity entity);
 
     /**

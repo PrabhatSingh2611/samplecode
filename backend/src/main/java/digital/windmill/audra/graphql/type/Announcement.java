@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Announcement implements Node {
-    private UUID uuid;
+    private UUID id;
     private String body;
     private ZonedDateTime createdAt;
 }

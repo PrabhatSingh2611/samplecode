@@ -1,7 +1,7 @@
 query getEmployees($input: EmployeesInput) {
     employees(input: $input) {
         items {
-            uuid
+            id
             firstName
             lastName
             role
@@ -10,11 +10,11 @@ query getEmployees($input: EmployeesInput) {
                 firstName
             }
             position{
-                uuid
+                id
                 name
             }
             location{
-                uuid
+                id
                 name
             }
         }

@@ -1,11 +1,11 @@
 type Resource {
-  uuid: UUID!
-  url: String!
-  thumbnail: String
+    id: UUID!
+    url: String!
+    thumbnail: String
 }
 
 input ResourceInput {
-    uuid: UUID!
+    id: UUID!
 }
 
 type ResourcePayload {

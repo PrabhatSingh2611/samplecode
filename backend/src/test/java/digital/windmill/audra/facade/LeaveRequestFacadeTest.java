@@ -43,14 +43,14 @@ class LeaveRequestFacadeTest {
 
         var result = leaveRequestFacade.findLeaveRequestById(ID);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TEST_UUID, result.getId());
         assertEquals(STATUS, result.getStatus());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getId());
     }
 
     private LeaveRequest createLeaveRequest() {
         LeaveRequest l = new LeaveRequest();
-        l.setUuid(TEST_UUID);
+        l.setId(TEST_UUID);
         l.setRequestDate(LOCAL_DATE);
         l.setEmployee(createEmployee());
         l.setStatus(STATUS);
@@ -62,7 +62,7 @@ class LeaveRequestFacadeTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .role(ROLE)

@@ -42,7 +42,7 @@ class AnnouncementMapperTest {
         when(dateTimeMapper.map(any(Instant.class))).thenReturn(ZONED_DATE_TIME);
         var result = mapper.mapAnnouncementEntityToAnnouncement(createAnnouncementEntity());
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TEST_UUID, result.getId());
         assertEquals(TEXT, result.getBody());
         assertEquals(ZONED_DATE_TIME, result.getCreatedAt());
     }
@@ -69,7 +69,7 @@ class AnnouncementMapperTest {
     private UpdateAnnouncementInput updateAnnouncementInputPojo() {
         return UpdateAnnouncementInput.builder()
                 .body(TEXT)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .build();
     }
 

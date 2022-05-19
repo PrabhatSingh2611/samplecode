@@ -24,8 +24,8 @@ public class PolicyServiceImpl implements PolicyService {
     private PolicyRepository policyRepository;
 
     @Override
-    public PolicyEntity createPolicy(PolicyEntity policyToBeSaved) {
-        return policyRepository.save(policyToBeSaved);
+    public PolicyEntity save(PolicyEntity policyEntity) {
+        return policyRepository.save(policyEntity);
     }
 
     @Override
@@ -36,9 +36,9 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     @Override
-    public PolicyEntity deletePolicy(PolicyEntity entity) {
-        policyRepository.delete(entity);
-        return entity;
+    public PolicyEntity deletePolicy(PolicyEntity policyEntity) {
+        policyRepository.delete(policyEntity);
+        return policyEntity;
     }
 
     @Override

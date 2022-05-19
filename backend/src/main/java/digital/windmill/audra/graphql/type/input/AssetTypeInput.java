@@ -13,6 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssetTypeInput implements Node {
-    private UUID uuid;
+    private UUID id;
     private String title;
 }

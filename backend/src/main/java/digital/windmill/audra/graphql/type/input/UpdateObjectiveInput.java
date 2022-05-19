@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateObjectiveInput {
-    private UUID uuid;
+    private UUID id;
     private UUID employee;
     private String name;
     private String description;

@@ -3,35 +3,35 @@ query {
     { where:{
 
         assignTo:{
-            uuid:"48b560ab-7450-4088-b6bb-f57638ea0877"
+            id:"48b560ab-7450-4088-b6bb-f57638ea0877"
         }
         position:{
-            uuid:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
+            id:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
         }
         status:NEW
 
     }
     }){
         items{
-            uuid
+            id
             position{
-                uuid
+                id
                 name
             }
             description
             status
             assignTo{
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

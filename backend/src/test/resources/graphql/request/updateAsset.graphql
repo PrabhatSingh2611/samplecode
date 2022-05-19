@@ -1,6 +1,6 @@
 mutation updateAsset{
     updateAsset(input: {
-        uuid: "b1b6aaeb-252b-4324-9166-10c42635572d"
+        id: "b1b6aaeb-252b-4324-9166-10c42635572d"
         title: "asset 1"
         serial: "123qwe"
         type: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
@@ -14,7 +14,7 @@ mutation updateAsset{
             title
             serial
             employee {
-                uuid
+                id
             }
             archivedDate
             purchasedDate

@@ -41,14 +41,14 @@ public class AnnouncementServiceImpl implements digital.windmill.audra.service.A
     }
 
     @Override
-    public AnnouncementEntity saveOrUpdateAnnouncement(AnnouncementEntity entity) {
-        return announcementRepository.save(entity);
+    public AnnouncementEntity save(AnnouncementEntity announcementEntity) {
+        return announcementRepository.save(announcementEntity);
     }
 
 
     @Override
-    public AnnouncementEntity deleteAnnouncement(AnnouncementEntity entity) {
-        announcementRepository.delete(entity);
-        return entity;
+    public AnnouncementEntity deleteAnnouncement(AnnouncementEntity announcementEntity) {
+        announcementRepository.delete(announcementEntity);
+        return announcementEntity;
     }
 }

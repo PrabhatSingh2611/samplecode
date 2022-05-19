@@ -56,12 +56,12 @@ public class VacancySpecification {
 
             if (Objects.nonNull(assignTo)) {
                 var assignToJoin = root.join("assignTo");
-                predicates.add(criteriaBuilder.equal(assignToJoin.get("uuid"), assignTo.getUuid()));
+                predicates.add(criteriaBuilder.equal(assignToJoin.get("uuid"), assignTo.getId()));
             }
 
             if (Objects.nonNull(positions)) {
                 var position = root.join("position");
-                predicates.add(position.get("uuid").in(positions.stream().map(NodeInput::getUuid).collect(toList())));
+                predicates.add(position.get("uuid").in(positions.stream().map(NodeInput::getId).collect(toList())));
             }
 
             if (Objects.nonNull(statuses)) {

@@ -15,10 +15,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class NodesInput implements Nodes {
 
-    private List<UUID> uuids;
+    private List<UUID> ids;
 
-    public static NodesInput of(List<String> uuids){
-        return new NodesInput(uuids.stream()
+    public static NodesInput of(List<String> ids){
+        return new NodesInput(ids.stream()
                 .map(UUID::fromString)
                 .toList()
         );

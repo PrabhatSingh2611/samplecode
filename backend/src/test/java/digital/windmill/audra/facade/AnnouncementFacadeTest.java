@@ -78,7 +78,7 @@ class AnnouncementFacadeTest {
                 .thenReturn(announcement);
         when(announcementMapper.mapCreateAnnounceInputToAnnouncementEntity(any(CreateAnnouncementInput.class)))
                 .thenReturn(announcementEntity);
-        when(announcementService.saveOrUpdateAnnouncement(any(AnnouncementEntity.class)))
+        when(announcementService.save(any(AnnouncementEntity.class)))
                 .thenReturn(announcementEntity);
 
         var result = facade.createAnnouncement(input);
@@ -92,14 +92,14 @@ class AnnouncementFacadeTest {
             @Mock Announcement announcement,
             @Mock AnnouncementEntity announcementEntity) {
 
-        when(input.getUuid()).thenReturn(ANNOUNCEMENT_UUID);
+        when(input.getId()).thenReturn(ANNOUNCEMENT_UUID);
         when(announcementService.findAnnouncementByUuid(any(UUID.class))).thenReturn(announcementEntity);
         when(announcementMapper.mapAnnouncementEntityToAnnouncement(any(AnnouncementEntity.class)))
                 .thenReturn(announcement);
         when(announcementMapper.mapUpdateAnnouncementInputToAnnouncementEntity(any(UpdateAnnouncementInput.class),
                 any(AnnouncementEntity.class)))
                 .thenReturn(announcementEntity);
-        when(announcementService.saveOrUpdateAnnouncement(any(AnnouncementEntity.class)))
+        when(announcementService.save(any(AnnouncementEntity.class)))
                 .thenReturn(announcementEntity);
 
         var result = facade.updateAnnouncement(input);
@@ -113,7 +113,7 @@ class AnnouncementFacadeTest {
             @Mock Announcement announcement,
             @Mock AnnouncementEntity announcementEntity) {
 
-        when(input.getUuid()).thenReturn(ANNOUNCEMENT_UUID);
+        when(input.getId()).thenReturn(ANNOUNCEMENT_UUID);
         when(announcementService.findAnnouncementByUuid(any(UUID.class))).thenReturn(announcementEntity);
         when(announcementMapper.mapAnnouncementEntityToAnnouncement(any(AnnouncementEntity.class)))
                 .thenReturn(announcement);

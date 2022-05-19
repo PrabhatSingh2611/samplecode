@@ -32,11 +32,11 @@ public class EmployeeSpecification {
 
     public static Specification<EmployeeEntity> byLocation(NodeInput location) {
         return (root, query, builder) -> {
-            if (location == null || location.getUuid() == null) {
+            if (location == null || location.getId() == null) {
                 return builder.conjunction();
             }
             var locationJoin = root.join("employee");
-            return builder.equal(locationJoin.get("uuid"), location.getUuid());
+            return builder.equal(locationJoin.get("uuid"), location.getId());
         };
     }
 }

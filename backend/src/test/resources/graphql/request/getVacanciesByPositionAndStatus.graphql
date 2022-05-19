@@ -3,35 +3,35 @@
     { where:{
 
         position:[{
-            uuid:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
+            id:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
         },
             {
-                uuid:"79761728-8f51-475f-aa04-42385a0dfe35",
+                id:"79761728-8f51-475f-aa04-42385a0dfe35",
             }]
         status:[NEW,IN_PROGRESS]
 
     }
     }){
         items{
-            uuid
+            id
             position{
-                uuid
+                id
                 name
             }
             description
             status
             assignTo{
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

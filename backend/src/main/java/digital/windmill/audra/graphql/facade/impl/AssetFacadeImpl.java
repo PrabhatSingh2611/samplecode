@@ -42,15 +42,15 @@ public class AssetFacadeImpl implements AssetFacade {
         var assetTypeEntity = assetTypeService.findAssetByUuid(input.getType());
         var employeeEntity = employeeService.findEmployeeByUuid(input.getEmployee());
         var entity = assetMapper.mapAssetCreateInputToAssetEntity(input, assetTypeEntity, employeeEntity);
-        return assetMapper.mapAssetEntityToAsset(assetService.createOrUpdateAsset(entity));
+        return assetMapper.mapAssetEntityToAsset(assetService.save(entity));
     }
 
     @Override
     public Asset updateAsset(UpdateAssetInput input) {
-        var assetEntity = assetService.findAssetByUuid(input.getUuid());
+        var assetEntity = assetService.findAssetByUuid(input.getId());
         var assetTypeEntity = assetTypeService.findAssetByUuid(input.getType());
         var employeeEntity = employeeService.findEmployeeByUuid(input.getEmployee());
         var entity = assetMapper.mapAssetUpdateInputToAssetEntity(input, assetEntity, assetTypeEntity, employeeEntity);
-        return assetMapper.mapAssetEntityToAsset(assetService.createOrUpdateAsset(entity));
+        return assetMapper.mapAssetEntityToAsset(assetService.save(entity));
     }
 }

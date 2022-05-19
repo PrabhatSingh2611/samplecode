@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Policy implements Node {
-    private UUID uuid;
+    private UUID id;
     private String title;
     private Resource file;
     private ZonedDateTime publicationDate;

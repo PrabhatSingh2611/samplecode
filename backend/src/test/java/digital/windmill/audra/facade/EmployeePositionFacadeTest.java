@@ -1,6 +1,8 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.graphql.facade.impl.EmployeePositionFacadeImpl;
+import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
@@ -12,11 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,86 +22,53 @@ public class EmployeePositionFacadeTest {
 
     @Mock
     private EmployeePositionService employeePositionService;
-
+    @Mock
+    private EmployeePositionMapper employeePositionMapper;
     @InjectMocks
     private EmployeePositionFacadeImpl facade;
 
-    private static final UUID TEST_UUID = UUID.fromString("beefbb78-b6af-4270-9a94-86626b036fb0");
-    private static final String NAME = "audra";
-    private static final Long ID = 214L;
-
     @Test
-    void shouldCreateEmployeePosition() {
-        when(employeePositionService.createEmployeePosition(any(CreateEmployeePositionInput.class)))
-                .thenReturn(testEmployeePosition());
+    void shouldCreateEmployeePosition(@Mock CreateEmployeePositionInput input,
+                                      @Mock EmployeePositionEntity employeePositionEntity,
+                                      @Mock EmployeePosition employeePosition) {
+        when(employeePositionMapper.mapCreateEmployeePositionInputToEmployeePositionEntity(input))
+                .thenReturn(employeePositionEntity);
+        when(employeePositionService.save(employeePositionEntity)).thenReturn(employeePositionEntity);
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity))
+                .thenReturn(employeePosition);
 
-        var result = facade.createEmployeePosition(testCreateEmployeePositionInput());
+        var actualResult = facade.createEmployeePosition(input);
 
-        assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
+        assertEquals(employeePosition, actualResult);
     }
 
     @Test
-    void shouldUpdateEmployeePosition() {
-        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
-        when(employeePositionService.updateEmployeePosition(
-                any(UpdateEmployeePositionInput.class),
-                any(EmployeePosition.class)))
-                .thenReturn(testEmployeePosition());
+    void shouldUpdateEmployeePosition(@Mock UpdateEmployeePositionInput input,
+                                      @Mock EmployeePositionEntity employeePositionEntity,
+                                      @Mock EmployeePosition employeePosition) {
+        when(employeePositionService.findEmployeePositionByUuid(input.getId())).thenReturn(employeePositionEntity);
+        when(employeePositionService.save(employeePositionEntity)).thenReturn(employeePositionEntity);
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity))
+                .thenReturn(employeePosition);
 
-        var result = facade.updateEmployeePosition(testUpdateEmployeePositionInput());
+        var actualResult = facade.updateEmployeePosition(input);
 
-        assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-        assertEquals(NAME, result.getName());
+        assertEquals(employeePosition, actualResult);
 
     }
 
     @Test
-    void deleteEmployeePosition() {
-        when(employeePositionService.findEmployeePositionByUuid(any(UUID.class))).thenReturn(createEmployeePosition());
-        when(employeePositionService.deleteEmployeePosition(any(EmployeePosition.class)))
-                .thenReturn(testEmployeePosition());
+    void deleteEmployeePosition(@Mock DeleteEmployeePositionInput input,
+                                @Mock EmployeePositionEntity employeePositionEntity,
+                                @Mock EmployeePosition employeePosition) {
+        when(employeePositionService.findEmployeePositionByUuid(input.getId())).thenReturn(employeePositionEntity);
+        when(employeePositionService.deleteEmployeePosition(employeePositionEntity)).thenReturn(employeePositionEntity);
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity))
+                .thenReturn(employeePosition);
 
-        var result = facade.deleteEmployeePosition(testDeleteEmployeePositionInput());
+        var actualResult = facade.deleteEmployeePosition(input);
 
-        assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(employeePosition, actualResult);
     }
 
-    private EmployeePosition createEmployeePosition() {
-        return EmployeePosition
-                .builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private DeleteEmployeePositionInput testDeleteEmployeePositionInput() {
-        return DeleteEmployeePositionInput.builder()
-                .uuid(TEST_UUID)
-                .build();
-    }
-
-    private UpdateEmployeePositionInput testUpdateEmployeePositionInput() {
-        return UpdateEmployeePositionInput.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
-
-    private CreateEmployeePositionInput testCreateEmployeePositionInput() {
-        CreateEmployeePositionInput c = new CreateEmployeePositionInput();
-        c.setName(NAME);
-        return c;
-    }
-
-    private EmployeePosition testEmployeePosition() {
-        return EmployeePosition.builder()
-                .uuid(TEST_UUID)
-                .name(NAME)
-                .build();
-    }
 }

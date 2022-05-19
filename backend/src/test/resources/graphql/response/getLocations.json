@@ -3,11 +3,11 @@
     "locations": {
       "items": [
         {
-          "uuid": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+          "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
           "name": "london"
         },
         {
-          "uuid": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
+          "id": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
           "name": "dubai"
         }
       ],

@@ -50,7 +50,7 @@ public class ObjectiveSpecification {
 
             if (Objects.nonNull(employee)) {
                 var assignToJoin = root.join("employee");
-                predicates.add(criteriaBuilder.equal(assignToJoin.get("uuid"), employee.getUuid()));
+                predicates.add(criteriaBuilder.equal(assignToJoin.get("uuid"), employee.getId()));
             }
 
             if (Objects.nonNull(statuses)) {

@@ -60,12 +60,12 @@ class PolicyFacadeImplTest {
         when(resourceService.findResourceByUuid(any(UUID.class)))
                 .thenReturn(Optional.of(file));
         when(input.getFile()).thenReturn(resourceInput);
-        when(input.getFile().getUuid()).thenReturn(RESOURCE_UUID);
+        when(input.getFile().getId()).thenReturn(RESOURCE_UUID);
         when(policyMapper.mapCreatePolicyInputToPolicyEntity(any(EmployeeEntity.class),
                 any(ResourceEntity.class),
                 any(CreatePolicyInput.class)))
                 .thenReturn(policyEntity);
-        when(policyService.createPolicy(any(PolicyEntity.class))).thenReturn(policyEntity);
+        when(policyService.save(any(PolicyEntity.class))).thenReturn(policyEntity);
         when(policyMapper.mapPolicyEntityToPolicy(any(PolicyEntity.class)))
                 .thenReturn(policy);
 
@@ -81,11 +81,11 @@ class PolicyFacadeImplTest {
         when(policyService.findPolicyByUuid(any(UUID.class))).thenReturn(policyEntity);
         when(policyService.deletePolicy(any(PolicyEntity.class))).thenReturn(policyEntity);
         when(input.getPolicies()).thenReturn(nodesInput);
-        when(input.getPolicies().getUuids()).thenReturn(List.of(POLICY_UUID));
+        when(input.getPolicies().getIds()).thenReturn(List.of(POLICY_UUID));
 
         var result = facade.deletePolicies(input);
         assertNotNull(result);
-        assertSame(policyEntity.getUuid(), result.getUuids().get(0));
+        assertSame(policyEntity.getUuid(), result.getIds().get(0));
 
     }
 
@@ -102,7 +102,7 @@ class PolicyFacadeImplTest {
 
         var result = facade.getPolicies(input);
         assertNotNull(result);
-        assertSame(page.getContent().get(0).getUuid(), result.getContent().get(0).getUuid());
+        assertSame(page.getContent().get(0).getUuid(), result.getContent().get(0).getId());
     }
 
     private <T> Page<T> createOneItemPage(T item) {

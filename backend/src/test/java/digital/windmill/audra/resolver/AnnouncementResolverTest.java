@@ -36,7 +36,7 @@ class AnnouncementResolverTest {
     void shouldGetAnnouncement(
             @Mock AnnouncementInput input,
             @Mock Announcement announcement) {
-        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(input.getId()).thenReturn(TEST_UUID);
         when(announcementFacade.findAnnouncementByUuid(any(UUID.class)))
                 .thenReturn(announcement);
 

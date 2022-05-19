@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.VacancyFacade;
+import digital.windmill.audra.graphql.mapper.VacancyMapper;
 import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
 import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
@@ -22,10 +23,12 @@ public class VacancyFacadeImpl implements VacancyFacade {
     private VacancyService vacancyService;
     private EmployeePositionService employeePositionService;
     private EmployeeService employeeService;
+    private VacancyMapper vacancyMapper;
 
     @Transactional(readOnly = true)
     public Vacancy findVacancyByUuid(UUID uuid) {
-        return vacancyService.findVacancyByUuid(uuid);
+        var vacancyEntity = vacancyService.findVacancyByUuid(uuid);
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyEntity);
     }
 
     @Transactional(readOnly = true)
@@ -36,12 +39,15 @@ public class VacancyFacadeImpl implements VacancyFacade {
     public Vacancy createVacancy(CreateVacancyInput input) {
         var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getPosition());
         var employeeEntity = employeeService.findEmployeeByUuid(input.getAssignTo());
-        return vacancyService.createVacancy(input, employeePositionEntity, employeeEntity);
+        var vacancyEntity = vacancyMapper.mapInputToEntity(input, employeePositionEntity, employeeEntity);
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyService.save(vacancyEntity));
     }
 
     public Vacancy updateVacancy(UpdateVacancyInput input) {
-        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getPosition());
+        var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getPosition());
         var employeeEntity = employeeService.findEmployeeByUuid(input.getAssignTo());
-        return vacancyService.updateVacancy(input, employeePosition, employeeEntity);
+        var vacancyEntity = vacancyService.findVacancyByUuid(input.getId());
+        vacancyMapper.mapToEntityWhenUpdate(vacancyEntity, input, employeePositionEntity, employeeEntity);
+        return vacancyMapper.mapVacancyEntityToVacancy(vacancyService.save(vacancyEntity));
     }
 }

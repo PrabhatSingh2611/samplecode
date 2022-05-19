@@ -4,5 +4,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface Nodes {
-    List<UUID> getUuids();
+    List<UUID> getIds();
 }

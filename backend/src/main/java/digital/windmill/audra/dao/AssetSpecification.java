@@ -47,21 +47,21 @@ public class AssetSpecification {
 
     public static Specification<AssetEntity> byEmployee(NodeInput employee) {
         return (root, query, builder) -> {
-            if (employee == null || employee.getUuid() == null) {
+            if (employee == null || employee.getId() == null) {
                 return builder.conjunction();
             }
             var employeeJoin = root.join("employee");
-            return builder.equal(employeeJoin.get("uuid"), employee.getUuid());
+            return builder.equal(employeeJoin.get("uuid"), employee.getId());
         };
     }
 
     public static Specification<AssetEntity> byType(NodeInput type) {
         return (root, query, builder) -> {
-            if (type == null || type.getUuid() == null) {
+            if (type == null || type.getId() == null) {
                 return builder.conjunction();
             }
             var typeJoin = root.join("type");
-            return builder.equal(typeJoin.get("uuid"), type.getUuid());
+            return builder.equal(typeJoin.get("uuid"), type.getId());
         };
     }
 }

@@ -1,27 +1,27 @@
 {
     vacancy(input:{
-        uuid:"493a5be9-01ba-47c6-95c1-29c230528525"
+        id:"493a5be9-01ba-47c6-95c1-29c230528525"
     }){
         item{
-            uuid
+            id
             position{
-                uuid
+                id
                 name
             }
             description
             status
             assignTo{
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

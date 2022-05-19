@@ -35,19 +35,15 @@ public class LocationFacadeImpl implements LocationFacade {
 
     @Override
     public Location createLocation(CreateLocationInput input) {
-        return locationMapper
-                .mapLocationEntityToLocation(
-                        locationService
-                                .createLocation(locationMapper
-                                        .mapCreateLocationInputToLocationEntity(input)));
-
+        var locationEntity = locationMapper.mapCreateLocationInputToLocationEntity(input);
+        var savedLocationEntity = locationService.save(locationEntity);
+        return locationMapper.mapLocationEntityToLocation(savedLocationEntity);
     }
 
     @Override
     public Location updateLocation(UpdateLocationInput input) {
-        var locationToBeUpdated = locationService.findLocationByUuid(input.getUuid());
-        var updatedLocationEntity = locationMapper
-                .mapLocationToLocationEntityUpdate(input,locationToBeUpdated);
-        return locationMapper.mapLocationEntityToLocation(locationService.updateLocation(updatedLocationEntity));
+        var locationToBeUpdated = locationService.findLocationByUuid(input.getId());
+        var updatedLocationEntity = locationMapper.mapLocationToLocationEntityUpdate(input,locationToBeUpdated);
+        return locationMapper.mapLocationEntityToLocation(locationService.save(updatedLocationEntity));
     }
 }

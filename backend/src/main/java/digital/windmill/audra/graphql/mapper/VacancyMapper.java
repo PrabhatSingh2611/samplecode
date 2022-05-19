@@ -8,6 +8,7 @@ import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
 import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -15,18 +16,18 @@ import java.util.UUID;
 @Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
 public interface VacancyMapper {
 
+    @Mapping(target = "id", source = "uuid")
     Vacancy mapVacancyEntityToVacancy(VacancyEntity entity);
 
-    @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "uuid", source = "entity.uuid")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "position", source = "employeePositionEntity")
     @Mapping(target = "description", source = "input.description")
     @Mapping(target = "status", source = "input.status")
     @Mapping(target = "assignTo", source = "employeeEntity")
     @Mapping(target = "priority", source = "input.priority")
-    @Mapping(target = "createdAt", source = "entity.createdAt")
     @Mapping(target = "updatedAt", expression = "java(retrieveNowDate())")
-    VacancyEntity mapToEntityWhenUpdate(VacancyEntity entity,
+    VacancyEntity mapToEntityWhenUpdate(@MappingTarget VacancyEntity vacancyEntity,
                                         UpdateVacancyInput input,
                                         EmployeePositionEntity employeePositionEntity,
                                         EmployeeEntity employeeEntity);

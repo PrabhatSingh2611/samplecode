@@ -31,7 +31,7 @@ public class AssetTypeFacadeImpl implements AssetTypeFacade {
         return assetTypeMapper
                 .mapAssetTypeEntityToAssetType(
                         assetTypeService
-                                .createAssetType(assetTypeMapper
+                                .save(assetTypeMapper
                                         .mapAssetTypeInputToAssetTypeEntity(createAssetTypeInput)));
 
     }

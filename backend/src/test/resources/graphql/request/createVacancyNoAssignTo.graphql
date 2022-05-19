@@ -7,7 +7,7 @@ mutation{
     }){
         item {
             position{
-                uuid
+                id
                 name
             }
             description

@@ -1,7 +1,7 @@
 query {
-    assetType(input: {uuid: "5478b586-e607-4448-ac05-3e5f2adbbc1b"}) {
+    assetType(input: {id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"}) {
         item {
-            uuid
+            id
             title
             icon
         }

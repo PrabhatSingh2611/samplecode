@@ -39,7 +39,7 @@ class PolicyServiceImplTest {
         when(policyRepository.save(any(PolicyEntity.class)))
                 .thenReturn(policyToBeSaved);
 
-        var result = service.createPolicy(policyToBeSaved);
+        var result = service.save(policyToBeSaved);
         assertNotNull(result);
         assertSame(policyToBeSaved, result);
     }

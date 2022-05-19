@@ -1,9 +1,9 @@
-query getResource($uuid : UUID!) {
+query getResource($id : UUID!) {
   resource(input: {
-    uuid: $uuid
+    id: $id
   }) {
     resource {
-      uuid
+      id
       url
       thumbnail
     }

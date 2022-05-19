@@ -25,6 +25,7 @@ public abstract class ResourceMapper {
         this.urlPath = urlPath;
     }
 
+    @Mapping(target = "id", source = "uuid")
     @Mapping(target = "url", source = "entity", qualifiedByName = "buildUrl")
     @Mapping(target = "thumbnail", source = "thumbnail", qualifiedByName = "buildUrl")
     public abstract Resource map(ResourceEntity entity);

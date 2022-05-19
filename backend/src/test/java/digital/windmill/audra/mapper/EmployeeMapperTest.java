@@ -53,7 +53,7 @@ public class EmployeeMapperTest {
 
         var actual = mapper.mapEmployeeEntityToEmployee(createEmployeeEntity());
         assertAll(
-                () -> assertEquals(TEST_UUID, actual.getUuid()),
+                () -> assertEquals(TEST_UUID, actual.getId()),
                 () -> assertEquals(NAME, actual.getFirstName()),
                 () -> assertEquals(NAME, actual.getLastName()),
                 () -> assertEquals(NAME, actual.getPosition().getName()),
@@ -84,8 +84,7 @@ public class EmployeeMapperTest {
 
     private EmployeePosition createPosition() {
         return EmployeePosition.builder()
-                .uuid(TEST_UUID)
-                .id(ID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }

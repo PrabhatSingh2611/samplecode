@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 public class AssetType implements Node {
 
-    private UUID uuid;
+    private UUID id;
     private String title;
     private String icon;
 

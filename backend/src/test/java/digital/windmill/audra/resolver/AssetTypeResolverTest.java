@@ -36,7 +36,7 @@ public class AssetTypeResolverTest {
     void shouldGetAssetTypeByUuid(@Mock AssetTypeInput assetTypeInput,
                                   @Mock AssetType assetType) {
 
-        when(assetTypeInput.getUuid()).thenReturn(TEST_UUID);
+        when(assetTypeInput.getId()).thenReturn(TEST_UUID);
         when(assetTypeFacade.findAssetTypeByUuid(any(UUID.class)))
                 .thenReturn(assetType);
 

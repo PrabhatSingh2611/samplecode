@@ -2,7 +2,7 @@
   "data" : {
     "deleteAnnouncement" : {
       "Announcement" : {
-        "uuid" : "d3e573f6-9b06-46ab-b3ff-ebd7caefb890"
+        "id" : "d3e573f6-9b06-46ab-b3ff-ebd7caefb890"
       }
     }
   }

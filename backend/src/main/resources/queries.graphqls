@@ -6,12 +6,12 @@ type Query {
     employees(input: EmployeesInput): EmployeeConnectionPayload!
     location(input: LocationInput!): LocationPayload!
     locations: LocationConnectionPayload!
-    vacancies(input:VacanciesInput!): VacancyConnectionPayload!
-    vacancy(input:VacancyInput!):VacancyPayload!
-    objective(input:ObjectiveInput!):ObjectivePayload!
-    objectives(input:ObjectivesInput!):ObjectiveConnectionPayload!
-    announcement(input:AnnouncementInput!):AnnouncementPayload!
-    announcements(input:AnnouncementsInput!):AnnouncementConnectionPayload!
+    vacancies(input: VacanciesInput!): VacancyConnectionPayload!
+    vacancy(input: VacancyInput!): VacancyPayload!
+    objective(input: ObjectiveInput!): ObjectivePayload!
+    objectives(input: ObjectivesInput!): ObjectiveConnectionPayload!
+    announcement(input: AnnouncementInput!): AnnouncementPayload!
+    announcements(input: AnnouncementsInput!): AnnouncementConnectionPayload!
     resource(input: ResourceInput!): ResourcePayload!
     policies(input: PoliciesInput!): PolicyConnectionPayload!
 }

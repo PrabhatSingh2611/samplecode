@@ -1,5 +1,5 @@
 type Asset implements Node {
-    uuid: UUID!
+    id: UUID!
     title: String
     serial: String
     type: AssetType
@@ -21,10 +21,10 @@ input AssetWhereInput {
 }
 
 input AssetInput {
-    uuid: UUID!
+    id: UUID!
 }
 
-type AssetPayload{
+type AssetPayload {
     item: Asset
 }
 
@@ -34,7 +34,7 @@ type AssetConnectionPayload implements ConnectionPayload {
     totalItems: Int!
 }
 
-input CreateAssetInput{
+input CreateAssetInput {
     title: String
     serial: String
     type: UUID
@@ -44,8 +44,8 @@ input CreateAssetInput{
     nextActionDate: ZonedDateTime
 }
 
-input UpdateAssetInput{
-    uuid:UUID!
+input UpdateAssetInput {
+    id: UUID!
     title: String
     serial: String
     type: UUID

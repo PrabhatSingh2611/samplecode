@@ -48,7 +48,7 @@ public class AssetServiceTest {
     @Test
     void shouldCreateOrUpdateAsset(@Mock AssetEntity entity) {
         when(assetRepository.save(any(AssetEntity.class))).thenReturn(createAssetEntity());
-        var result = service.createOrUpdateAsset(entity);
+        var result = service.save(entity);
         assertNotNull(result);
     }
 

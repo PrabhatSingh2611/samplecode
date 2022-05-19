@@ -15,5 +15,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeletedNodes implements Nodes {
-    private List<UUID> uuids;
+    private List<UUID> ids;
 }

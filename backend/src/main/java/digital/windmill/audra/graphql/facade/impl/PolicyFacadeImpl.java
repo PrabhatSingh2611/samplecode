@@ -29,15 +29,15 @@ public class PolicyFacadeImpl implements PolicyFacade {
     @Override
     public Policy createPolicy(CreatePolicyInput input, UUID ownerUuid) {
         var owner = employeeService.findEmployeeByUuid(ownerUuid);
-        var file = resourceService.findResourceByUuid(input.getFile().getUuid());
+        var file = resourceService.findResourceByUuid(input.getFile().getId());
         var policyToBeSaved = policyMapper.mapCreatePolicyInputToPolicyEntity(owner, file.get(), input);
-        var savedPolicy = policyService.createPolicy(policyToBeSaved);
+        var savedPolicy = policyService.save(policyToBeSaved);
         return policyMapper.mapPolicyEntityToPolicy(savedPolicy);
     }
 
     @Override
     public DeletedNodes deletePolicies(DeletePoliciesInput input) {
-        var policiesToBeDeleted = input.getPolicies().getUuids()
+        var policiesToBeDeleted = input.getPolicies().getIds()
                 .stream()
                 .map(p -> policyService.findPolicyByUuid(p))
                 .toList();
@@ -47,7 +47,7 @@ public class PolicyFacadeImpl implements PolicyFacade {
                 .toList();
 
         return DeletedNodes.builder()
-                .uuids(deletedPolicies.stream().map(PolicyEntity::getUuid).toList())
+                .ids(deletedPolicies.stream().map(PolicyEntity::getUuid).toList())
                 .build();
     }
 

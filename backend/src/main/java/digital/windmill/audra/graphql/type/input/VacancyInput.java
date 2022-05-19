@@ -13,5 +13,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VacancyInput implements Node {
-    private UUID uuid;
+    private UUID id;
 }

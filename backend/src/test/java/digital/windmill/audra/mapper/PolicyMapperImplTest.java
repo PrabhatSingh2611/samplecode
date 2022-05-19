@@ -37,7 +37,6 @@ import static org.mockito.Mockito.when;
 class PolicyMapperImplTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final Long ID = 22L;
     private static final String TEXT = "9AMj3X";
     private static final PolicyStatus STATUS = PolicyStatus.PUBLISHED;
     private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
@@ -62,7 +61,6 @@ class PolicyMapperImplTest {
         assertEquals(TEST_UUID, result.getFile().getUuid());
         assertEquals(TEXT, result.getFile().getOuterReference());
         assertEquals(TEST_UUID, result.getFile().getThumbnail().getUuid());
-        assertEquals(ID, result.getFile().getThumbnail().getId());
         assertEquals(TEXT, result.getFile().getThumbnail().getOuterReference());
         assertEquals(TEXT, result.getFile().getOuterReference());
     }
@@ -82,7 +80,6 @@ class PolicyMapperImplTest {
 
     private PolicyEntity createPolicyEntity() {
         PolicyEntity e = new PolicyEntity();
-        e.setId(ID);
         e.setUuid(TEST_UUID);
         e.setOwner(createEmployeeEntity());
         e.setStatus(STATUS);
@@ -94,14 +91,13 @@ class PolicyMapperImplTest {
 
     private Employee createEmployee() {
         Employee e = new Employee();
-        e.setId(ID);
         e.setBirthday(DATE_TIME);
         e.setRole(EmployeeRole.EMPLOYEE);
         e.setFirstName(TEXT);
         e.setLastName(TEXT);
         e.setLocation(createLocation());
         e.setPosition(createPosition());
-        e.setUuid(TEST_UUID);
+        e.setId(TEST_UUID);
         e.setReportingManager(new Employee());
         return e;
 
@@ -109,22 +105,21 @@ class PolicyMapperImplTest {
 
     private EmployeePosition createPosition() {
         return EmployeePosition.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(TEXT)
                 .build();
     }
 
     private Location createLocation() {
         Location e = new Location();
-        e.setId(ID);
+        e.setId(TEST_UUID);
         e.setName(TEXT);
         return e;
     }
 
     private Resource createResource() {
         Resource r = new Resource();
-        r.setUuid(TEST_UUID);
+        r.setId(TEST_UUID);
         r.setThumbnail(TEXT);
         r.setUrl(TEXT);
         return r;
@@ -136,7 +131,6 @@ class PolicyMapperImplTest {
         e.setFirstName(TEXT);
         e.setLastName(TEXT);
         e.setBirthday(LOCAL_DATE);
-        e.setId(ID);
         e.setPosition(createPositionEntity());
         e.setLocation(createLocationEntity());
 
@@ -144,14 +138,12 @@ class PolicyMapperImplTest {
     }
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
-        e.setId(ID);
         e.setName(TEXT);
         return e;
     }
 
     private EmployeePositionEntity createPositionEntity() {
         return EmployeePositionEntity.builder()
-                .id(ID)
                 .uuid(TEST_UUID)
                 .name(TEXT)
                 .build();
@@ -167,13 +159,12 @@ class PolicyMapperImplTest {
 
     private ResourceInput createResourceInputFile() {
         ResourceInput r = new ResourceInput();
-        r.setUuid(TEST_UUID);
+        r.setId(TEST_UUID);
         return r;
     }
 
     private ResourceEntity createResourceEntity() {
         ResourceEntity r = new ResourceEntity();
-        r.setId(ID);
         r.setUuid(TEST_UUID);
         r.setThumbnail(createThumbNail());
         r.setOuterReference(TEXT);
@@ -182,7 +173,6 @@ class PolicyMapperImplTest {
 
     private ResourceEntity createThumbNail() {
         ResourceEntity r = new ResourceEntity();
-        r.setId(ID);
         r.setUuid(TEST_UUID);
         r.setOuterReference(TEXT);
         return r;

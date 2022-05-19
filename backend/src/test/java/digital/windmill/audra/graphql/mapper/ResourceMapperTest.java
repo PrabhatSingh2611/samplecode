@@ -33,7 +33,7 @@ class ResourceMapperTest {
         when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
 
         Resource actual = mapper.map(entity);
-        assertEquals(RESOURCE_UUID, actual.getUuid());
+        assertEquals(RESOURCE_UUID, actual.getId());
         assertEquals(RESOURCE_URL, actual.getUrl());
         assertEquals(THUMBNAIL_URL, actual.getThumbnail());
     }
@@ -44,7 +44,7 @@ class ResourceMapperTest {
         when(entity.getUuid()).thenReturn(RESOURCE_UUID);
         
         Resource actual = mapper.map(entity);
-        assertEquals(RESOURCE_UUID, actual.getUuid());
+        assertEquals(RESOURCE_UUID, actual.getId());
         assertEquals(RESOURCE_URL, actual.getUrl());
         assertNull(actual.getThumbnail());
     }
@@ -55,7 +55,7 @@ class ResourceMapperTest {
         when(entity.getThumbnail().getUuid()).thenReturn(RESOURCE_THUMBNAIL_UUID);
 
         Resource actual = mapper.map(entity);
-        assertEquals(RESOURCE_UUID, actual.getUuid());
+        assertEquals(RESOURCE_UUID, actual.getId());
         assertEquals(RESOURCE_UUID.toString(), actual.getUrl());
         assertEquals(RESOURCE_THUMBNAIL_UUID.toString(), actual.getThumbnail());
     }

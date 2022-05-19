@@ -30,7 +30,7 @@ public class EmployeePositionMapperTest {
 
         assertNotNull(actual);
         assertAll(
-                () -> assertEquals(TEST_UUID, actual.getUuid()),
+                () -> assertEquals(TEST_UUID, actual.getId()),
                 () -> assertEquals(NAME, actual.getName())
         );
     }

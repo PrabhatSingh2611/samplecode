@@ -1,11 +1,11 @@
 type Announcement implements Node {
-    uuid: UUID!
+    id: UUID!
     body: String!
     createdAt: ZonedDateTime!
 }
 
 input AnnouncementInput {
-    uuid: UUID!
+    id: UUID!
 }
 
 type AnnouncementConnectionPayload implements ConnectionPayload {
@@ -29,12 +29,12 @@ type AnnouncementPayload {
 }
 
 input UpdateAnnouncementInput {
-    uuid: UUID!
+    id: UUID!
     body: String!
 }
 
 input DeleteAnnouncementInput {
-    uuid: UUID!
+    id: UUID!
 }
 
 type DeleteAnnouncementPayload {

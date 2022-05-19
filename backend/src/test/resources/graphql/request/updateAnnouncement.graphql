@@ -1,8 +1,8 @@
 mutation {
-    updateAnnouncement(input:{uuid: "f0ebfc41-acfb-4049-9aef-ea8ab8057c88",body: "There will be holiday tomorrow"})
+    updateAnnouncement(input:{id: "f0ebfc41-acfb-4049-9aef-ea8ab8057c88",body: "There will be holiday tomorrow"})
     {
         item {
-            uuid
+            id
             body
             createdAt
         }

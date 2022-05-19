@@ -3,7 +3,7 @@
     "employees":{
       "items":[
         {
-          "uuid":"48b560ab-7450-4088-b6bb-f57638ea0877",
+          "id":"48b560ab-7450-4088-b6bb-f57638ea0877",
           "firstName":"Jacob",
           "lastName":"Morris",
           "role":"ADMIN",
@@ -12,16 +12,16 @@
             "firstName":"Edmund"
           },
           "position":{
-            "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name":"manager"
           },
           "location":{
-            "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
             "name":"london"
           }
         },
         {
-          "uuid":"5bea1a4d-b457-47c9-bf8b-72f50182b707",
+          "id":"5bea1a4d-b457-47c9-bf8b-72f50182b707",
           "firstName":"Edmund",
           "lastName":"Hogan",
           "role":"EMPLOYEE",
@@ -30,16 +30,16 @@
             "firstName":"Jacob"
           },
           "position":{
-            "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name":"manager"
           },
           "location":{
-            "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
             "name":"london"
           }
         },
         {
-          "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+          "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
           "firstName": "Geneva",
           "lastName": "Norman",
           "role": "EMPLOYEE",
@@ -48,16 +48,16 @@
             "firstName" : "Jacob"
           },
           "position":{
-            "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name":"manager"
           },
           "location":{
-            "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
             "name":"london"
           }
         },
         {
-          "uuid": "b48db556-3bd0-479e-9f1a-231be9636887",
+          "id": "b48db556-3bd0-479e-9f1a-231be9636887",
           "firstName": "Danielle",
           "lastName": "Kelly",
           "role": "ADMIN",
@@ -66,16 +66,16 @@
             "firstName" : "Edmund"
           },
           "position":{
-            "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name":"manager"
           },
           "location":{
-            "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
             "name":"london"
           }
         },
         {
-          "uuid": "78098941-0591-4b9c-998f-95a65e1ece55",
+          "id": "78098941-0591-4b9c-998f-95a65e1ece55",
           "firstName": "Victoria",
           "lastName": "Luna",
           "role": "EMPLOYEE",
@@ -84,11 +84,11 @@
             "firstName" : "Edmund"
           },
           "position":{
-            "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name":"manager"
           },
           "location":{
-            "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
             "name":"london"
           }
         }

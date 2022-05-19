@@ -14,10 +14,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class NodeInput implements Node {
 
-    private UUID uuid;
+    private UUID id;
 
-    public static NodeInput of(String uuid) {
-        return new NodeInput(UUID.fromString(uuid));
+    public static NodeInput of(String id) {
+        return new NodeInput(UUID.fromString(id));
     }
 
 }

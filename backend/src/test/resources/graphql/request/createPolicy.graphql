@@ -1,7 +1,7 @@
 mutation createPolicy {
     createPolicy(
         input: {
-            file: { uuid: "e72e2eff-def2-479c-a827-bc5e59d694b4" }
+            file: { id: "e72e2eff-def2-479c-a827-bc5e59d694b4" }
             status: PUBLISHED
             title: "sample_title"
         }
@@ -10,22 +10,22 @@ mutation createPolicy {
             title
             status
             file {
-                uuid
+                id
                 thumbnail
                 url
             }
             owner {
-                uuid
+                id
                 firstName
                 lastName
                 birthday
                 role
                 location {
-                    uuid
+                    id
                     name
                 }
                 position {
-                    uuid
+                    id
                     name
                 }
             }

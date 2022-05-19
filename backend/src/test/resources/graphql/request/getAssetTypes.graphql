@@ -1,7 +1,7 @@
 query getAssetsType {
     assetTypes{
         items {
-            uuid
+            id
             title
             icon
         }

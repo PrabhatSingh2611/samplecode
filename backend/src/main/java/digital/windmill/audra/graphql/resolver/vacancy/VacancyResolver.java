@@ -20,7 +20,7 @@ public class VacancyResolver implements GraphQLQueryResolver {
     public VacancyPayload vacancy(VacancyInput input) {
         return VacancyPayload
                 .builder()
-                .item(vacancyFacade.findVacancyByUuid(input.getUuid()))
+                .item(vacancyFacade.findVacancyByUuid(input.getId()))
                 .build();
     }
 

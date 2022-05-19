@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 public class UpdateVacancyInput {
-    private UUID uuid;
+    private UUID id;
     private UUID position;
     private String description;
     private VacancyStatus status;

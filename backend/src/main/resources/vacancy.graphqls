@@ -1,5 +1,5 @@
-type Vacancy implements Node{
-    uuid: UUID!
+type Vacancy implements Node {
+    id: UUID!
     position: EmployeePosition!
     description: String!
     status: VacancyStatus! #default NEW
@@ -8,11 +8,17 @@ type Vacancy implements Node{
 }
 
 enum VacancyStatus {
-    NEW, IN_PROGRESS, CLOSED, REJECTED, POSTPONED
+    NEW
+    IN_PROGRESS
+    CLOSED
+    REJECTED
+    POSTPONED
 }
 
 enum VacancyPriority {
-    LOW, NORMAL, HIGH
+    LOW
+    NORMAL
+    HIGH
 }
 
 type VacancyConnectionPayload implements ConnectionPayload {
@@ -21,7 +27,7 @@ type VacancyConnectionPayload implements ConnectionPayload {
     totalItems: Int!
 }
 
-input CreateVacancyInput{
+input CreateVacancyInput {
     position: UUID!
     description: String!
     status: VacancyStatus! #default NEW
@@ -29,8 +35,8 @@ input CreateVacancyInput{
     priority: VacancyPriority! #default NORMAL
 }
 
-input UpdateVacancyInput{
-    uuid:UUID!
+input UpdateVacancyInput {
+    id: UUID!
     position: UUID!
     description: String!
     status: VacancyStatus!
@@ -48,7 +54,7 @@ input VacanciesInput {
 }
 
 input VacancyInput {
-    uuid: UUID!
+    id: UUID!
 }
 
 input VacancyWhereInput {
@@ -56,4 +62,3 @@ input VacancyWhereInput {
     position: [NodeInput!]!
     status: [VacancyStatus!]!
 }
-

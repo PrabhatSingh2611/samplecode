@@ -7,6 +7,7 @@ import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
@@ -25,21 +26,21 @@ public interface ObjectiveMapper {
     @Mapping(target = "status", source = "input.status")
     ObjectiveEntity mapObjectiveInputToEntity(CreateObjectiveInput input, EmployeeEntity employeeEntity);
 
-    @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "uuid", source = "entity.uuid")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "employee", source = "employeeEntity")
     @Mapping(target = "name", source = "input.name")
     @Mapping(target = "description", source = "input.description")
     @Mapping(target = "comments", source = "input.comments")
     @Mapping(target = "dueToDate", expression = "java(dueToDate(input.getDueToDate()))")
     @Mapping(target = "status", source = "input.status")
-    ObjectiveEntity mapInputToEntityWhenUpdate(UpdateObjectiveInput input, ObjectiveEntity entity, EmployeeEntity employeeEntity);
+    ObjectiveEntity mapInputToEntityWhenUpdate(UpdateObjectiveInput input, @MappingTarget ObjectiveEntity entity, EmployeeEntity employeeEntity);
 
+    @Mapping(target = "id", source = "uuid")
     @Mapping(target = "employee.reportingManager", ignore = true)
+    @Mapping(target = "employee.id", source = "employee.uuid")
+    @Mapping(target = "employee.location.id", source = "employee.location.uuid")
     Objective mapObjectiveEntityToObjective(ObjectiveEntity objectiveEntity);
-
-    @Mapping(target = "dueToDate", expression = "java(dueToDate(objective.getDueToDate()))")
-    ObjectiveEntity mapObjectiveToObjectiveEntity(Objective objective);
 
     default UUID generateUUID() {
         return UUID.randomUUID();

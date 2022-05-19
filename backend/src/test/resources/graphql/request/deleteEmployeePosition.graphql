@@ -1,7 +1,7 @@
 mutation deleteEmployeePosition{
-    deleteEmployeePosition(input:{uuid: "cabfb51b-41c5-4f4d-afd5-146c796391ad"}){
+    deleteEmployeePosition(input:{id: "cabfb51b-41c5-4f4d-afd5-146c796391ad"}){
         employeePosition{
-            uuid
+            id
         }
     }
 }

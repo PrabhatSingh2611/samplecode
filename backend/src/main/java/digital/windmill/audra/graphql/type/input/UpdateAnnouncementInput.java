@@ -8,6 +8,6 @@ import java.util.UUID;
 @Data
 @Builder
 public class UpdateAnnouncementInput {
-    private UUID uuid;
+    private UUID id;
     private String body;
 }

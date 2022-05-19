@@ -54,7 +54,7 @@ public class LocationServiceTest {
         when(locationRepository.save(any(LocationEntity.class)))
                 .thenReturn(locationEntity);
 
-        var result = locationService.createLocation(locationEntity);
+        var result = locationService.save(locationEntity);
         assertNotNull(result);
         assertSame(locationEntity, result);
     }
@@ -65,7 +65,7 @@ public class LocationServiceTest {
         when(locationRepository.save(any(LocationEntity.class)))
                 .thenReturn(locationEntity);
 
-        var result = locationService.updateLocation(locationEntity);
+        var result = locationService.save(locationEntity);
         assertNotNull(result);
         assertSame(locationEntity, result);
     }

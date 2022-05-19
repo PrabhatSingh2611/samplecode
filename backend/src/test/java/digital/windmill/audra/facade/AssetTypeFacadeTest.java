@@ -47,7 +47,7 @@ public class AssetTypeFacadeTest {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.findAssetTypeByUuid(TEST_UUID);
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        Assertions.assertEquals(TEST_UUID, result.getId());
         Assertions.assertEquals(TITLE, result.getTitle());
         Assertions.assertEquals(ICON, result.getIcon());
     }
@@ -59,7 +59,7 @@ public class AssetTypeFacadeTest {
         when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         var result = assetTypeFacadeImpl.getAssetsType();
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
+        assertEquals(TEST_UUID, result.getContent().get(0).getId());
         assertEquals(ICON, result.getContent().get(0).getIcon());
         assertEquals(TITLE, result.getContent().get(0).getTitle());
     }
@@ -89,7 +89,7 @@ public class AssetTypeFacadeTest {
 
     private AssetType createAssetType() {
         return AssetType.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(TITLE)
                 .icon(ICON)
                 .build();

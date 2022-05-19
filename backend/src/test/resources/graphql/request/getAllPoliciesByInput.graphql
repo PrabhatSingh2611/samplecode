@@ -3,25 +3,25 @@ query {
         input: { where: { query: "policy_title_1" }, sort: publicationDate_DESC }
     ) {
         items {
-            uuid
+            id
             title
             owner {
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position {
-                    uuid
+                    id
                     name
                 }
                 location {
-                    uuid
+                    id
                     name
                 }
             }
             file {
-                uuid
+                id
                 url
                 thumbnail
             }

@@ -3,16 +3,16 @@ query {
     { where:{
 
          employee:{
-            uuid:"48b560ab-7450-4088-b6bb-f57638ea0877"
+            id:"48b560ab-7450-4088-b6bb-f57638ea0877"
         }
       status: [NEW,DONE]
     }
     }){
         items{
            employee {
-               uuid
+               id
            }
-            uuid
+            id
             name
             status
             }

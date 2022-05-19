@@ -1,5 +1,5 @@
-type Objective implements Node{
-    uuid: UUID!
+type Objective implements Node {
+    id: UUID!
     employee: Employee!
     name: String!
     description: String
@@ -31,7 +31,7 @@ type ObjectiveConnectionPayload implements ConnectionPayload {
     pageInfo: PageInfo!
     totalItems: Int!
 }
-input CreateObjectiveInput{
+input CreateObjectiveInput {
     employee: UUID!
     name: String!
     description: String
@@ -40,9 +40,8 @@ input CreateObjectiveInput{
     status: ObjectiveStatus
 }
 
-
-input UpdateObjectiveInput{
-    uuid:UUID!
+input UpdateObjectiveInput {
+    id: UUID!
     employee: UUID!
     name: String!
     description: String
@@ -51,18 +50,17 @@ input UpdateObjectiveInput{
     status: ObjectiveStatus
 }
 input ObjectiveInput {
-    uuid:UUID!
+    id: UUID!
 }
 
-type ObjectivePayload{
-    item:Objective!
+type ObjectivePayload {
+    item: Objective!
 }
 
-input DeleteObjectiveInput{
-    uuid: UUID!
+input DeleteObjectiveInput {
+    id: UUID!
 }
 
-type DeleteObjectivePayload{
+type DeleteObjectivePayload {
     objective: Node!
 }
-

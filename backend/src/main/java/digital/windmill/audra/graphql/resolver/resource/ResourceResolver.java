@@ -15,7 +15,7 @@ public class ResourceResolver implements GraphQLQueryResolver {
     private ResourceFacade facade;
 
     public ResourcePayload resource(ResourceInput input) {
-        return new ResourcePayload(facade.findResourceByUuid(input.getUuid()));
+        return new ResourcePayload(facade.findResourceByUuid(input.getId()));
     }
 
 }

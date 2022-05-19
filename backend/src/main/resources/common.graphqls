@@ -1,9 +1,9 @@
 input NodeInput {
-    uuid: UUID!
+    id: UUID!
 }
 
 input NodesInput {
-    uuids: [UUID!]!
+    ids: [UUID!]!
 }
 
 input PageInput {
@@ -18,23 +18,21 @@ interface ConnectionPayload {
 }
 
 interface Node {
-    uuid: UUID!
+    id: UUID!
 }
 
 interface Nodes {
-    uuids: [UUID!]!
+    ids: [UUID!]!
 }
 
 type DeletedNodes implements Nodes {
-    uuids: [UUID!]!
+    ids: [UUID!]!
 }
 
 type PageInfo {
     currentPage: Int!
     totalPages: Int!
 }
-
-
 
 scalar UUID
 scalar ZonedDateTime

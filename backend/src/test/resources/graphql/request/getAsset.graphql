@@ -1,28 +1,28 @@
 query
 {
-    asset(input: {uuid: "e838b736-721a-4cf8-80f3-ebcb6da01a36"})
+    asset(input: {id: "e838b736-721a-4cf8-80f3-ebcb6da01a36"})
     {
         item {
-            uuid
+            id
             title
             serial
             type {
-                uuid
+                id
                 title
                 icon
             }
             employee {
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

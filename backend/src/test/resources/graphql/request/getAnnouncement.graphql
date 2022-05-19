@@ -1,9 +1,9 @@
 query {
     announcement(input:{
-        uuid: "f0ebfc41-acfb-4049-9aef-ea8ab8057c88"
+        id: "f0ebfc41-acfb-4049-9aef-ea8ab8057c88"
     }){
         item {
-            uuid
+            id
             body
         }
     }

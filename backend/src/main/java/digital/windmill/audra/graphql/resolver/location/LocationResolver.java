@@ -19,7 +19,7 @@ public class LocationResolver implements GraphQLQueryResolver {
     public LocationPayload location(LocationInput input) {
         return LocationPayload
                 .builder()
-                .location(locationFacade.findLocationByUuid(input.getUuid()))
+                .location(locationFacade.findLocationByUuid(input.getId()))
                 .build();
     }
 

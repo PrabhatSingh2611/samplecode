@@ -26,5 +26,6 @@ public interface PolicyMapper {
                                                     ResourceEntity file,
                                                     CreatePolicyInput input);
 
+    @Mapping(target = "id", source = "uuid")
     Policy mapPolicyEntityToPolicy(PolicyEntity savedPolicy);
 }

@@ -3,26 +3,26 @@
     "assets": {
       "items": [
         {
-          "uuid": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
+          "id": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
           "title": "Macbook Pro 13",
           "serial": "Е673РВ",
           "type": {
-            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+            "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
           "employee": {
-            "uuid": "48b560ab-7450-4088-b6bb-f57638ea0877",
+            "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
             "firstName": "Jacob",
             "lastName": "Morris",
             "role": "ADMIN",
             "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -30,26 +30,26 @@
           "purchasedDate": "2022-03-23T19:37:14.480425Z[UTC]"
         },
         {
-          "uuid": "37464c92-80fa-4946-b41f-27928e6ec4d3",
+          "id": "37464c92-80fa-4946-b41f-27928e6ec4d3",
           "title": "Dell Latitude 15",
           "serial": "343234323",
           "type": {
-            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+            "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
           "employee": {
-            "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+            "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
             "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -57,26 +57,26 @@
           "purchasedDate": "2022-02-23T12:32:45.480425Z[UTC]"
         },
         {
-          "uuid": "3c5201a9-cf34-4fd2-95d8-0d8b2e534463",
+          "id": "3c5201a9-cf34-4fd2-95d8-0d8b2e534463",
           "title": "Lenovo Laptop 14",
           "serial": "EJS32SDGSD",
           "type": {
-            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+            "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
           "employee": {
-            "uuid": "b48db556-3bd0-479e-9f1a-231be9636887",
+            "id": "b48db556-3bd0-479e-9f1a-231be9636887",
             "firstName": "Danielle",
             "lastName": "Kelly",
             "role": "ADMIN",
             "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -84,26 +84,26 @@
           "purchasedDate": "2022-01-15T14:17:26.480425Z[UTC]"
         },
         {
-          "uuid": "224c2d4d-05fb-449e-8dca-309fc390fbe5",
+          "id": "224c2d4d-05fb-449e-8dca-309fc390fbe5",
           "title": "Dell Latitude 13",
           "serial": "SD832HGJTR",
           "type": {
-            "uuid": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+            "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
             "title": "Laptops",
             "icon": "https://google.com/laptops"
           },
           "employee": {
-            "uuid": "48b560ab-7450-4088-b6bb-f57638ea0877",
+            "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
             "firstName": "Jacob",
             "lastName": "Morris",
             "role": "ADMIN",
             "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -111,26 +111,26 @@
           "purchasedDate": "2022-03-04T13:34:42.480425Z[UTC]"
         },
         {
-          "uuid": "759e9771-bdfa-4156-b5d8-71a5ecf22d2f",
+          "id": "759e9771-bdfa-4156-b5d8-71a5ecf22d2f",
           "title": "Dell Monitor 24",
           "serial": "56327382",
           "type": {
-            "uuid": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+            "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
             "title": "Monitors",
             "icon": "https://google.com/monitors"
           },
           "employee": {
-            "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+            "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
             "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -138,26 +138,26 @@
           "purchasedDate": "2022-03-07T19:51:11.480425Z[UTC]"
         },
         {
-          "uuid": "0f3f7f9a-4a9c-45b5-b43d-59cad5a49725",
+          "id": "0f3f7f9a-4a9c-45b5-b43d-59cad5a49725",
           "title": "KOSS Porta Pro",
           "serial": "737383389",
           "type": {
-            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },
           "employee": {
-            "uuid": "b48db556-3bd0-479e-9f1a-231be9636887",
+            "id": "b48db556-3bd0-479e-9f1a-231be9636887",
             "firstName": "Danielle",
             "lastName": "Kelly",
             "role": "ADMIN",
             "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -165,26 +165,26 @@
           "purchasedDate": "2022-02-13T17:34:28.480425Z[UTC]"
         },
         {
-          "uuid": "edcfd952-4f1b-4f78-b4ac-f5705b703f33",
+          "id": "edcfd952-4f1b-4f78-b4ac-f5705b703f33",
           "title": "Meze Neo",
           "serial": "XJSK67HJ897",
           "type": {
-            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },
           "employee": {
-            "uuid": "78098941-0591-4b9c-998f-95a65e1ece55",
+            "id": "78098941-0591-4b9c-998f-95a65e1ece55",
             "firstName": "Victoria",
             "lastName": "Luna",
             "role": "EMPLOYEE",
             "birthday": "2022-03-15T22:11:15.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },
@@ -192,26 +192,26 @@
           "purchasedDate": "2022-03-23T13:27:14.480425Z[UTC]"
         },
         {
-          "uuid": "b1b6aaeb-252b-4324-9166-10c42635572d",
+          "id": "b1b6aaeb-252b-4324-9166-10c42635572d",
           "title": "DUNU Titan 1",
           "serial": "83837363",
           "type": {
-            "uuid": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
             "title": "Headphones",
             "icon": "https://google.com/headphones"
           },
           "employee": {
-            "uuid": "6bac1755-c88c-4462-ae14-527b54b03e0d",
+            "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
             "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
             "position":{
-              "uuid":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
             },
             "location":{
-              "uuid":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+              "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
               "name":"london"
             }
           },

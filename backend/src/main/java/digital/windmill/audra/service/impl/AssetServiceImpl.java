@@ -38,7 +38,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public AssetEntity createOrUpdateAsset(AssetEntity entity) {
-        return assetRepository.save(entity);
+    public AssetEntity save(AssetEntity assetEntity) {
+        return assetRepository.save(assetEntity);
     }
 }

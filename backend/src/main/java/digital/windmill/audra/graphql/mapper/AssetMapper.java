@@ -8,10 +8,11 @@ import digital.windmill.audra.graphql.type.input.CreateAssetInput;
 import digital.windmill.audra.graphql.type.input.UpdateAssetInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class})
+@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, AssetTypeMapper.class})
 public interface AssetMapper {
 
     /**
@@ -20,6 +21,7 @@ public interface AssetMapper {
      * @param entity it takes AssetEntity
      * @return mapped Asset
      */
+    @Mapping(target = "id", source = "uuid")
     @Mapping(target = "serial", source = "serialNumber")
     Asset mapAssetEntityToAsset(AssetEntity entity);
 
@@ -36,8 +38,8 @@ public interface AssetMapper {
                                                  AssetTypeEntity assetTypeEntity,
                                                  EmployeeEntity employeeEntity);
 
-    @Mapping(target = "id", source = "assetEntity.id")
-    @Mapping(target = "uuid", source = "assetEntity.uuid")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "title", source = "input.title")
     @Mapping(target = "serialNumber", source = "input.serial")
     @Mapping(target = "type", source = "assetTypeEntity")
@@ -46,7 +48,7 @@ public interface AssetMapper {
     @Mapping(target = "purchasedDate", source = "input.purchasedDate")
     @Mapping(target = "nextActionDate", source = "input.nextActionDate")
     AssetEntity mapAssetUpdateInputToAssetEntity(UpdateAssetInput input,
-                                                 AssetEntity assetEntity,
+                                                 @MappingTarget AssetEntity assetEntity,
                                                  AssetTypeEntity assetTypeEntity,
                                                  EmployeeEntity employeeEntity);
 

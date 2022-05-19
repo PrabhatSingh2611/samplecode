@@ -5,7 +5,7 @@ input CreatePolicyInput {
 }
 
 type Policy implements Node {
-    uuid: UUID!
+    id: UUID!
     title: String!
     file: Resource!
     publicationDate: ZonedDateTime

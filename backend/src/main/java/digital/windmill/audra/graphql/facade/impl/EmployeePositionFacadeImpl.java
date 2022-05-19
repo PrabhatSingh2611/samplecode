@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.facade.impl;
 
 import digital.windmill.audra.graphql.facade.EmployeePositionFacade;
+import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
@@ -14,24 +15,28 @@ import org.springframework.stereotype.Service;
 public class EmployeePositionFacadeImpl implements EmployeePositionFacade {
 
     private EmployeePositionService employeePositionService;
+    private EmployeePositionMapper employeePositionMapper;
 
     @Override
     public EmployeePosition createEmployeePosition(CreateEmployeePositionInput input) {
-        return employeePositionService.createEmployeePosition(input);
+        var employeePositionEntity = employeePositionMapper.mapCreateEmployeePositionInputToEmployeePositionEntity(input);
+        var savedEmployeePositionEntity = employeePositionService.save(employeePositionEntity);
+        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(savedEmployeePositionEntity);
     }
 
     @Override
     public EmployeePosition updateEmployeePosition(UpdateEmployeePositionInput input) {
-        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getUuid());
-        return employeePositionService.updateEmployeePosition(input, employeePosition);
+        var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getId());
+        employeePositionMapper.mapUpdateToEmployeePositionEntity(employeePositionEntity, input);
+        var updatedEmployeePositionEntity = employeePositionService.save(employeePositionEntity);
+        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(updatedEmployeePositionEntity);
     }
 
     @Override
     public EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input) {
-        var employeePosition = employeePositionService.findEmployeePositionByUuid(input.getUuid());
-        return employeePositionService.deleteEmployeePosition(employeePosition);
-
+        var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getId());
+        var deletedEmployeePositionEntity = employeePositionService.deleteEmployeePosition(employeePositionEntity);
+        return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(deletedEmployeePositionEntity);
     }
-
 
 }

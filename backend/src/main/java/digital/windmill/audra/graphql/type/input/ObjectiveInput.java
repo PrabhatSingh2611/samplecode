@@ -12,5 +12,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ObjectiveInput {
-    private UUID uuid;
+    private UUID id;
 }

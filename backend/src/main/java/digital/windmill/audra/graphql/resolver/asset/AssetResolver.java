@@ -21,7 +21,7 @@ public class AssetResolver implements GraphQLQueryResolver {
 
         return AssetPayload
                 .builder()
-                .item(facade.findAssetByUuid(input.getUuid()))
+                .item(facade.findAssetByUuid(input.getId()))
                 .build();
     }
 

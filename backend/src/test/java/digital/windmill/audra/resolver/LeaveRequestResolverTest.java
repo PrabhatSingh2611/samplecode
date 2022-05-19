@@ -45,16 +45,16 @@ public class LeaveRequestResolverTest {
         var result = leaveRequestResolver.LeaveRequest(ID);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TEST_UUID, result.getId());
         assertEquals(STATUS, result.getStatus());
         assertEquals(COMMENT, result.getComment());
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getId());
         assertEquals(NAME, result.getEmployee().getFirstName());
     }
 
     private LeaveRequest createLeaveRequest() {
         LeaveRequest l = new LeaveRequest();
-        l.setUuid(TEST_UUID);
+        l.setId(TEST_UUID);
         l.setRequestDate(LOCAL_DATE);
         l.setEmployee(createEmployee());
         l.setStatus(STATUS);
@@ -64,7 +64,7 @@ public class LeaveRequestResolverTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .role(ROLE)

@@ -8,23 +8,23 @@ mutation{
     }){
         item {
             position{
-                uuid
+                id
                 name
             }
             description
             status
             assignTo{
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

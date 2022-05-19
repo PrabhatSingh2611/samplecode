@@ -25,30 +25,24 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public LocationEntity findLocationByUuid(UUID uuid) {
-        if(Optional.ofNullable(uuid).isPresent()) {
+        if (Optional.ofNullable(uuid).isPresent()) {
             return locationRepository.findByUuid(uuid).orElseThrow(
                     () -> new DataNotFoundException("location not found for : " + uuid)
             );
-        }
-        else
+        } else
             return null;
     }
 
     @Override
-    public LocationEntity createLocation(LocationEntity locationEntity) {
-        return locationRepository.save(locationEntity);
-    }
-
-    @Override
-    public LocationEntity updateLocation(LocationEntity locationEntity) {
+    public LocationEntity save(LocationEntity locationEntity) {
         return locationRepository.save(locationEntity);
     }
 
     @Override
     public Page<LocationEntity> getLocations() {
-                Specification<LocationEntity> specification = LocationSpecification.allLocations();
-                PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
-                return locationRepository.findAll(specification, pagination);
+        Specification<LocationEntity> specification = LocationSpecification.allLocations();
+        PageRequest pagination = PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
+        return locationRepository.findAll(specification, pagination);
     }
 
 }

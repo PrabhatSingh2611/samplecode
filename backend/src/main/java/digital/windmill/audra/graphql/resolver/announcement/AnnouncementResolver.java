@@ -18,7 +18,7 @@ public class AnnouncementResolver implements GraphQLQueryResolver {
 
     public AnnouncementPayload announcement(AnnouncementInput input) {
         return AnnouncementPayload.builder()
-                .item(announcementFacade.findAnnouncementByUuid(input.getUuid()))
+                .item(announcementFacade.findAnnouncementByUuid(input.getId()))
                 .build();
     }
 

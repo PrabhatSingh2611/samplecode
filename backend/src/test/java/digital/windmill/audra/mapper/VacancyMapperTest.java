@@ -59,11 +59,11 @@ public class VacancyMapperTest {
 
         var result = mapper.mapVacancyEntityToVacancy(createVacancyEntity());
         assertAll(
-                () -> assertEquals(TEST_UUID, result.getUuid()),
+                () -> assertEquals(TEST_UUID, result.getId()),
                 () -> assertEquals(DESCRIPTION, result.getDescription()),
                 () -> assertEquals(NAME, result.getPosition().getName()),
-                () -> assertEquals(TEST_UUID, result.getPosition().getUuid()),
-                () -> assertEquals(TEST_UUID, result.getAssignTo().getUuid()),
+                () -> assertEquals(TEST_UUID, result.getPosition().getId()),
+                () -> assertEquals(TEST_UUID, result.getAssignTo().getId()),
                 () -> assertEquals(VacancyStatus.NEW, result.getStatus()),
                 () -> assertEquals(VacancyPriority.LOW, result.getPriority())
         );
@@ -124,14 +124,14 @@ public class VacancyMapperTest {
     private EmployeePosition createPosition() {
         return EmployeePosition
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
@@ -141,7 +141,7 @@ public class VacancyMapperTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 
     private VacancyEntity createVacancyEntity() {

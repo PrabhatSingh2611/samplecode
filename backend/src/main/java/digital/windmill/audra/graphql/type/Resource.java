@@ -1,13 +1,13 @@
 package digital.windmill.audra.graphql.type;
 
-import java.util.UUID;
-
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 public class Resource {
 
-    private UUID uuid;
+    private UUID id;
     private String url;
     private String thumbnail;
 

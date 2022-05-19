@@ -1,26 +1,26 @@
 query getAssets($input: AssetsInput) {
     assets(input: $input) {
         items {
-            uuid
+            id
             title
             serial
             type {
-                uuid
+                id
                 title
                 icon
             }
             employee {
-                uuid
+                id
                 firstName
                 lastName
                 role
                 birthday
                 position{
-                    uuid
+                    id
                     name
                 }
                 location{
-                    uuid
+                    id
                     name
                 }
             }

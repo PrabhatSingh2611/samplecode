@@ -44,9 +44,9 @@ public class AssetMutationTest {
 
         var actualResult = assetMutationResolver.createAsset(createAssetInput);
         assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getItem().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getType().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getEmployee().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getType().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getEmployee().getId());
         assertEquals(NAME, actualResult.getItem().getTitle());
         assertEquals(SERIAL, actualResult.getItem().getSerial());
         assertEquals(DATE_TIME, actualResult.getItem().getArchivedDate());
@@ -60,9 +60,9 @@ public class AssetMutationTest {
 
         var actualResult = assetMutationResolver.updateAsset(updateAssetInput);
         assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getItem().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getType().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getEmployee().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getType().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getEmployee().getId());
         assertEquals(NAME, actualResult.getItem().getTitle());
         assertEquals(SERIAL, actualResult.getItem().getSerial());
         assertEquals(DATE_TIME, actualResult.getItem().getArchivedDate());
@@ -73,7 +73,7 @@ public class AssetMutationTest {
     private Asset createAsset() {
         return Asset
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(NAME)
                 .serial(SERIAL)
                 .employee(createEmployee())
@@ -86,7 +86,7 @@ public class AssetMutationTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .role(ROLE)
@@ -96,7 +96,7 @@ public class AssetMutationTest {
 
     private AssetType createAssetType() {
         return AssetType.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(NAME)
                 .build();
     }

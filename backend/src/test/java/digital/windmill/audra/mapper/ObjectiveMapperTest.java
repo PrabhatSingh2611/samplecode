@@ -78,7 +78,7 @@ class ObjectiveMapperTest {
                 () -> assertEquals(NAME, result.getName()),
                 () -> assertEquals(STATUS, result.getStatus()),
                 () -> assertEquals(COMMENT, result.getComments()),
-                () -> assertEquals(TEST_UUID, result.getEmployee().getUuid()),
+                () -> assertEquals(TEST_UUID, result.getEmployee().getId()),
                 () -> assertEquals(ZONE_DATE_TIME, result.getDueToDate())
         );
     }
@@ -103,26 +103,9 @@ class ObjectiveMapperTest {
         );
     }
 
-    @Test
-    void shouldMapObjectiveToObjectiveEntity() {
-        when(employeeMapper.mapEmployeeToEmployeeEntity(any(Employee.class)))
-                .thenReturn(createEmployeeEntity());
-        var result = mapper.mapObjectiveToObjectiveEntity(createObjective());
-
-        assertAll(
-                () -> assertEquals(DESCRIPTION, result.getDescription()),
-                () -> assertEquals(NAME, result.getName()),
-                () -> assertEquals(STATUS, result.getStatus()),
-                () -> assertEquals(COMMENT, result.getComments()),
-                () -> assertEquals(INSTANT_LOCAL_DATE, result.getDueToDate()),
-                () -> assertEquals(TEST_UUID, result.getEmployee().getUuid()),
-                () -> assertEquals(EMPLOYEE_ROLE, result.getEmployee().getRole())
-        );
-    }
-
     private UpdateObjectiveInput createUpdateObjectiveEntity() {
         return UpdateObjectiveInput.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .comments(COMMENT)
                 .description(DESCRIPTION)
@@ -169,8 +152,7 @@ class ObjectiveMapperTest {
 
     private Objective createObjective() {
         return Objective.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .description(DESCRIPTION)
                 .comments(COMMENT)
@@ -182,8 +164,7 @@ class ObjectiveMapperTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .position(createEmployeePosition())
                 .role(ROLE)
                 .birthday(ZONE_DATE_TIME)
@@ -196,8 +177,7 @@ class ObjectiveMapperTest {
 
     private Location createLocation() {
         return Location.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }
@@ -208,8 +188,7 @@ class ObjectiveMapperTest {
 
     private EmployeePosition createEmployeePosition() {
         return EmployeePosition.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }

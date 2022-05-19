@@ -40,7 +40,7 @@ public class AssetTypeServiceImpl implements AssetTypeService {
     }
 
     @Override
-    public AssetTypeEntity createAssetType(AssetTypeEntity assetTypeEntity) {
+    public AssetTypeEntity save(AssetTypeEntity assetTypeEntity) {
         return assetTypeRepository.save(assetTypeEntity);
     }
 

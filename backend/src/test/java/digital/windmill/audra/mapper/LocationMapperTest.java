@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Instant;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +31,7 @@ class LocationMapperTest {
 
         assertNotNull(result);
         assertEquals(TEXT, result.getName());
-        assertEquals(TEST_UUID, result.getUuid());
+        assertEquals(TEST_UUID, result.getId());
     }
 
     @Test

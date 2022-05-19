@@ -46,15 +46,15 @@ public class VacancyResolverTest {
 
     @Test
     void shouldGetVacancy(@Mock VacancyInput vacancyInput) {
-        when(vacancyInput.getUuid()).thenReturn(TEST_UUID);
+        when(vacancyInput.getId()).thenReturn(TEST_UUID);
         when(vacancyFacade.findVacancyByUuid(any(UUID.class))).thenReturn(createVacancy());
 
         var actualResult = vacancyResolver.vacancy(vacancyInput);
         assertNotNull(actualResult);
-        assertEquals(TEST_UUID, actualResult.getItem().getUuid());
-        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getId());
+        assertEquals(TEST_UUID, actualResult.getItem().getPosition().getId());
         assertEquals(NAME, actualResult.getItem().getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItem().getAssignTo().getId());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getFirstName());
         assertEquals(NAME, actualResult.getItem().getAssignTo().getLastName());
         assertEquals(ROLE, actualResult.getItem().getAssignTo().getRole());
@@ -73,10 +73,10 @@ public class VacancyResolverTest {
         var actualResult = vacancyResolver.vacancies(vacanciesInput);
         assertNotNull(actualResult);
         assertEquals(1, actualResult.getItems().size());
-        assertEquals(TEST_UUID, actualResult.getItems().get(0).getUuid());
-        assertEquals(TEST_UUID, actualResult.getItems().get(0).getPosition().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItems().get(0).getId());
+        assertEquals(TEST_UUID, actualResult.getItems().get(0).getPosition().getId());
         assertEquals(NAME, actualResult.getItems().get(0).getPosition().getName());
-        assertEquals(TEST_UUID, actualResult.getItems().get(0).getAssignTo().getUuid());
+        assertEquals(TEST_UUID, actualResult.getItems().get(0).getAssignTo().getId());
         assertEquals(NAME, actualResult.getItems().get(0).getAssignTo().getFirstName());
         assertEquals(NAME, actualResult.getItems().get(0).getAssignTo().getLastName());
         assertEquals(ROLE, actualResult.getItems().get(0).getAssignTo().getRole());
@@ -90,7 +90,7 @@ public class VacancyResolverTest {
     private Vacancy createVacancy() {
         return Vacancy
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .position(createPosition())
                 .assignTo(createEmployee())
                 .description(DESCRIPTION)
@@ -101,7 +101,7 @@ public class VacancyResolverTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
@@ -114,12 +114,12 @@ public class VacancyResolverTest {
     private EmployeePosition createPosition() {
         return EmployeePosition
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .name(NAME)
                 .build();
     }
 
     private Location createLocation() {
-        return Location.builder().id(ID).uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 }

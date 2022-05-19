@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Asset implements Node {
 
-    private UUID uuid;
+    private UUID id;
     private String title;
     private String serial;
     private AssetType type;

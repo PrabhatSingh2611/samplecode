@@ -7,6 +7,7 @@ import digital.windmill.audra.dao.entity.EmployeePositionEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.AssetMapperImpl;
+import digital.windmill.audra.graphql.mapper.AssetTypeMapper;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.type.input.CreateAssetInput;
@@ -34,6 +35,8 @@ public class AssetMapperTest {
     private EmployeeMapperImpl employeeMapper;
     @Mock
     private DateTimeMapper zonedDateTime;
+    @Mock
+    private AssetTypeMapper assetTypeMapper;
 
     private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
     private static final String ASSET_TITLE = "Asset title";
@@ -51,7 +54,7 @@ public class AssetMapperTest {
         var actual = mapper.mapAssetEntityToAsset(createAssetEntity());
         assertAll(
                 () -> assertEquals(ASSET_TITLE, actual.getTitle()),
-                () -> assertEquals(TEST_UUID, actual.getUuid()),
+                () -> assertEquals(TEST_UUID, actual.getId()),
                 () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerial())
         );
     }
@@ -110,7 +113,7 @@ public class AssetMapperTest {
     private UpdateAssetInput updateAssetInput() {
         return UpdateAssetInput
                 .builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(ASSET_TITLE)
                 .serial(ASSET_SERIAL_NUMBER)
                 .employee(TEST_UUID)

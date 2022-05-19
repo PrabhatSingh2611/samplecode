@@ -54,7 +54,7 @@ class LeaveRequestServiceTest {
         var result = leaveRequestService.findLeaveRequestById(ID);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getEmployee().getUuid());
+        assertEquals(TEST_UUID, result.getEmployee().getId());
         assertEquals(INSTANT_DATE, result.getRequestDate());
         assertEquals(TEXT, result.getComment());
         assertEquals(STATUS, result.getStatus());
@@ -78,8 +78,8 @@ class LeaveRequestServiceTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
+                .id(TEST_UUID)
                 .birthday(ZONED_DATE_TIME)
                 .firstName(TEXT)
                 .lastName(TEXT)

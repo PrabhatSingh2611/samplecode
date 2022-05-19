@@ -20,7 +20,11 @@ public interface EmployeeMapper {
      * @param entity input as EmployeeEntity
      * @return output as Employee
      */
+    @Mapping(target = "id", source = "uuid")
+    @Mapping(target = "reportingManager.id", source = "reportingManager.uuid")
+    @Mapping(target = "reportingManager.location.id", source = "reportingManager.location.uuid")
     @Mapping(target = "reportingManager.reportingManager", ignore = true)
+    @Mapping(target = "location.id", source = "location.uuid")
     Employee mapEmployeeEntityToEmployee(EmployeeEntity entity);
 
     default String map(EmployeePositionEntity position) {
@@ -55,5 +59,4 @@ public interface EmployeeMapper {
         return UUID.randomUUID();
     }
 
-    EmployeeEntity mapEmployeeToEmployeeEntity(Employee employee);
 }

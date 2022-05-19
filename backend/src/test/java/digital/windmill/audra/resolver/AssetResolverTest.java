@@ -39,7 +39,7 @@ public class AssetResolverTest {
     void shouldGetAssetByUuid(@Mock AssetInput input,
                               @Mock Asset asset) {
 
-        when(input.getUuid()).thenReturn(ASSET_UUID);
+        when(input.getId()).thenReturn(ASSET_UUID);
         when(assetFacade.findAssetByUuid(any(UUID.class))).thenReturn(asset);
 
         var result = assetResolver.asset(input);

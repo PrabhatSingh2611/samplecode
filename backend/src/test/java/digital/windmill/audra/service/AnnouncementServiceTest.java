@@ -70,7 +70,7 @@ class AnnouncementServiceTest {
     void shouldSaveOrUpdateAnnouncement(@Mock AnnouncementEntity announcementEntity) {
         when(announcementRepository.save(any(AnnouncementEntity.class))).thenReturn(announcementEntity);
 
-        var result = service.saveOrUpdateAnnouncement(announcementEntity);
+        var result = service.save(announcementEntity);
         assertNotNull(result);
         assertSame(announcementEntity, result);
     }

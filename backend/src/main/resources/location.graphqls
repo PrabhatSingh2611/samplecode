@@ -1,19 +1,19 @@
 type Location implements Node {
-    uuid: UUID!
+    id: UUID!
     name: String!
 }
 
-input LocationInput{
-    uuid:UUID!
+input LocationInput {
+    id: UUID!
 }
 
-input CreateLocationInput{
+input CreateLocationInput {
     name: String!
 }
 
-input UpdateLocationInput{
-    uuid:UUID!
-    name:String!
+input UpdateLocationInput {
+    id: UUID!
+    name: String!
 }
 
 type LocationConnectionPayload implements ConnectionPayload {

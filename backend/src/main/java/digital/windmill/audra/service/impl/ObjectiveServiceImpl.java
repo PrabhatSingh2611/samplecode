@@ -8,8 +8,6 @@ import digital.windmill.audra.graphql.type.input.ObjectivesInput;
 import digital.windmill.audra.service.ObjectiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -30,23 +28,18 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     public Page<ObjectiveEntity> findAllObjectives(ObjectivesInput input) {
-        var specification = ObjectiveSpecification.objectives(input,DEFAULT_PAGE_SIZE);
+        var specification = ObjectiveSpecification.objectives(input, DEFAULT_PAGE_SIZE);
         return objectiveRepository.findAll(specification.getKey(), specification.getValue());
     }
 
     @Override
-    public ObjectiveEntity createObjective(ObjectiveEntity objectiveEntity) {
+    public ObjectiveEntity save(ObjectiveEntity objectiveEntity) {
         return objectiveRepository.save(objectiveEntity);
     }
 
     @Override
-    public ObjectiveEntity updateObjective(ObjectiveEntity updatedObjectiveEntity) {
-        return objectiveRepository.save(updatedObjectiveEntity);
-    }
-
-    @Override
-    public ObjectiveEntity deleteObjective(ObjectiveEntity objectiveToBeDeleted) {
-        objectiveRepository.delete(objectiveToBeDeleted);
-        return objectiveToBeDeleted;
+    public ObjectiveEntity deleteObjective(ObjectiveEntity objectiveEntity) {
+        objectiveRepository.delete(objectiveEntity);
+        return objectiveEntity;
     }
 }

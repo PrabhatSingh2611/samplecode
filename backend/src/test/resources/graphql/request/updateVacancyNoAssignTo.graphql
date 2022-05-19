@@ -1,6 +1,6 @@
 mutation{
     updateVacancy(input:{
-        uuid:"493a5be9-01ba-47c6-95c1-29c230528525"
+        id:"493a5be9-01ba-47c6-95c1-29c230528525"
         position:"cabfb51b-41c5-4f4d-afd5-146c796391ad"
         description:"UPDATE VACANCY"
         status:NEW
@@ -8,7 +8,7 @@ mutation{
     }){
         item {
             position{
-                uuid
+                id
                 name
             }
             description

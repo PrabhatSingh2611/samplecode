@@ -15,11 +15,11 @@ mutation createEmployee{
             birthday
             role
             position{
-                uuid
+                id
                 name
             }
             location{
-                uuid
+                id
                 name
             }
         }

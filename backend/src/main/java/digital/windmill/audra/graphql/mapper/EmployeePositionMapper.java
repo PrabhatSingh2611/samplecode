@@ -6,6 +6,7 @@ import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public interface EmployeePositionMapper {
      * @param employeePositionEntity EmployeePositionEntity
      * @return mapped EmployeePosition
      */
+    @Mapping(target = "id", source = "uuid")
     EmployeePosition mapEmployeePositionEntityToEmployeePosition(EmployeePositionEntity employeePositionEntity);
 
     /**
@@ -38,11 +40,11 @@ public interface EmployeePositionMapper {
      * @param employeePosition EmployeePosition
      * @return mapped EmployeePositionEntity
      */
-    @Mapping(target = "id", source = "employeePosition.id")
-    @Mapping(target = "uuid", source = "employeePosition.uuid")
-    @Mapping(target = "name", source = "input.name")
-    EmployeePositionEntity mapUpdateToEmployeePositionEntity(UpdateEmployeePositionInput input, EmployeePosition employeePosition);
+    @Mapping(target = "id", ignore = true)
+    EmployeePositionEntity mapUpdateToEmployeePositionEntity(@MappingTarget EmployeePositionEntity employeePositionEntity, UpdateEmployeePositionInput input);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", source = "id")
     EmployeePositionEntity mapEmployeePositionToEmployeePositionEntity(EmployeePosition employeePosition);
 
     default UUID generateUUID() {

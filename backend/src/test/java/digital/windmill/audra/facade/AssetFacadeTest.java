@@ -48,7 +48,7 @@ public class AssetFacadeTest {
         when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(createAsset());
         var result = facade.findAssetByUuid(TEST_UUID);
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getUuid());
+        Assertions.assertEquals(TEST_UUID, result.getId());
         Assertions.assertEquals(ASSET_TITLE, result.getTitle());
         Assertions.assertEquals(NAME, result.getEmployee().getFirstName());
         Assertions.assertEquals(NAME, result.getEmployee().getLastName());
@@ -57,7 +57,7 @@ public class AssetFacadeTest {
 
     private Asset createAsset() {
         return Asset.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(ASSET_TITLE)
                 .serial(ASSET_SERIAL_NUMBER)
                 .type(createAssetType())
@@ -82,7 +82,7 @@ public class AssetFacadeTest {
 
     private Employee createEmployee() {
         return Employee.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .firstName(NAME)
                 .lastName(NAME)
                 .birthday(DATE_TIME)
@@ -93,7 +93,7 @@ public class AssetFacadeTest {
 
     private AssetType createAssetType() {
         return AssetType.builder()
-                .uuid(TEST_UUID)
+                .id(TEST_UUID)
                 .title(ASSET_TITLE)
                 .build();
 
@@ -101,6 +101,6 @@ public class AssetFacadeTest {
 
 
     private Location createLocation() {
-        return Location.builder().uuid(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 }

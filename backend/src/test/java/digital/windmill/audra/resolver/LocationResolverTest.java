@@ -36,7 +36,7 @@ public class LocationResolverTest {
     void shouldGetLocationByUuid(@Mock LocationInput input,
                                  @Mock Location location) {
 
-        when(input.getUuid()).thenReturn(TEST_UUID);
+        when(input.getId()).thenReturn(TEST_UUID);
         when(locationfacade.findLocationByUuid(any(UUID.class)))
                 .thenReturn(location);
 
