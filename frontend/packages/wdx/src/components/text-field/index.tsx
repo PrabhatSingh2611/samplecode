@@ -9,6 +9,7 @@ import InputLabel, { InputLabelProps } from '@mui/material/InputLabel';
 import InputAdornment, {
   InputAdornmentProps,
 } from '@mui/material/InputAdornment';
+import Select, { SelectProps } from "@mui/material/Select";
 
 export type WTextFieldProps = TextFieldProps & {};
 
@@ -23,6 +24,8 @@ export interface WInputBaseProps extends InputBaseProps {}
 export interface WInputLabelProps extends InputLabelProps {}
 
 export interface WInputAdornmentProps extends InputAdornmentProps {}
+
+export interface WSelectProps extends SelectProps {}
 
 export function WInput(props: WInputProps) {
   return <Input {...props} />;
@@ -46,6 +49,10 @@ export function WInputLabel(props: WInputLabelProps) {
 
 export function WInputAdornment(props: WInputAdornmentProps) {
   return <InputAdornment {...props} />;
+}
+
+export function WSelect(props: WSelectProps) {
+    return <Select {...props} />
 }
 
 const WTextField = React.forwardRef<HTMLDivElement, WTextFieldProps>(

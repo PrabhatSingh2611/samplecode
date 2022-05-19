@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import { WSelect } from '../..';
 import WBox from '../box';
 import { WMenuItem } from '../menu';
 import WTypography from '../typography';
@@ -75,13 +76,28 @@ const TemplateTextArea: Story = args => {
 const TemplateSelect: Story = args => {
     const [value, setValue] = React.useState('label1');
     return (
-        <WTextField {...args} value={value} onChange={(e) => setValue(e.target.value)} select>
-            {selectData.map((option) => (
-                <WMenuItem key={option.value} value={option.value}>
-                    {option.label}
-                </WMenuItem>
-            ))}
-        </WTextField>
+        <WBox display="flex" gap={4}>
+            <WBox>
+                <WTypography>Select builded with TextField component</WTypography>
+                <WTextField fullWidth {...args} value={value} onChange={(e) => setValue(e.target.value)} select>
+                    {selectData.map((option) => (
+                        <WMenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </WMenuItem>
+                    ))}
+                </WTextField>
+            </WBox>
+            <WBox>
+                <WTypography>Select builded with Select component</WTypography>
+                <WSelect fullWidth onChange={(e) => setValue(e.target.name)}>
+                    {selectData.map((option) => (
+                        <WMenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </WMenuItem>
+                    ))}
+                </WSelect>
+            </WBox>
+        </WBox>
     )
 }
 

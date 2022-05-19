@@ -19,6 +19,7 @@ export * from './utils/cssStyles';
 // TYPES
 export { WUploadProps, WCustomFile } from './components/upload/type';
 export { WGallery } from './widgets/image-card/types';
+export { TIcons } from './components/icon/icons.type';
 
 // COMPONENTS
 export {
@@ -40,6 +41,7 @@ export {
   default as WAvatarGroup,
   WAvatarGroupProps,
 } from './components/avatar-group';
+export { default as WAlert, WAlertProps } from './components/alert';
 export { default as WBadge, WBadgeProps } from './components/badge';
 export { default as WBox, WBoxProps } from './components/box';
 export {
@@ -90,7 +92,6 @@ export {
 } from './components/form';
 export { default as WGrid, WGridProps } from './components/grid';
 export { default as WIcon, WIconProps } from './components/icon';
-export { TIcons } from './components/icon/icons.type';
 export { default as WIconButton, WIconButtonProps } from './components/icon-button';
 export { default as WIconofy, WIconifyProps } from './components/iconify';
 export { default as WImage, WImageRato } from './components/image';
@@ -159,6 +160,8 @@ export {
   WInputProps,
   WOutlinedInput,
   WOutlinedInputProps,
+  WSelect,
+  WSelectProps,
 } from './components/text-field';
 export { default as WTooltip, WTooltipProps } from './components/tooltip';
 export { default as WSwitch, WSwitchProps } from './components/switch';

@@ -23,10 +23,13 @@ import Switch from './Switch';
 import Typography from './Typography';
 import Tooltip from './Tooltip';
 import Table from './Table';
+import Alert from './Alert';
+import Select from './Select';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
     Accordion(theme),
+    Alert(theme),
     Avatar(theme),
     Badge(),
     Breadcrumbs(theme),
@@ -43,6 +46,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Menu(theme),
     Paper(theme),
     Radio(theme),
+    Select(),
     Slider(theme),
     Steper(theme),
     Switch(theme),
