@@ -14,6 +14,8 @@ import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } fro
 - Purpose: **Test latest Develop**
 - URL (_FrontEnd_): <ExternalLink url="https://dev-audra.dev.topazdigital.cloud"/>
 - Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/Audra-front/"/>
+- URL (_API Schema_): <ExternalLink url="https://audra-service.dev.topazdigital.cloud/graphiql"/>
+- URI (_API_): <ExternalLink url="https://audra-service.dev.topazdigital.cloud/graphql"/>
 - Main Develop Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
 - Automatically redeploys only affected/updated/changed MF's: 🚀 **Incremental Auto Deploy**
 
