@@ -6,6 +6,16 @@ FROM node:16
 ARG TARGET=host
 ENV TARGET=${TARGET}
 
+# Specify ENV variable for production domain, used for remote MFs absolute URL
+# Dev domain by default
+ARG PRODUCTION_DOMAIN=https://dev-audra.dev.topazdigital.cloud
+ENV REACT_APP_PRODUCTION_DOMAIN=${PRODUCTION_DOMAIN}
+
+# Specify ENV variable for API Gateway URI
+# Dev URI by default
+ARG GATEWAY_HTTP_URI=https://audra-service.dev.topazdigital.cloud/graphql
+ENV REACT_APP_GATEWAY_HTTP_URI=${GATEWAY_HTTP_URI}
+
 # Instal pnpm globaly
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 

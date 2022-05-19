@@ -26,6 +26,9 @@ dist/
 # JetBrains IDE
 .idea/
 
+# VSCode settings
+.vscode/
+
 # Unit test reports
 TEST*.xml
 
