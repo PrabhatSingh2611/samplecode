@@ -12,7 +12,11 @@ API Design should be done for every major GraphQL Schema update to be sure that 
 
 ## How to
 
-:::caution
+:::warning
+Never do API Design more than 1,5 hour! If you haven't been able to finish with one 1,5 hour session schedule new in 30 mins or next day.
+:::
+
+:::info
 Always both BE and FE representatives should be on API Design, PO is recomended to participate also, to answer questions about Functional requirements.
 :::
 
