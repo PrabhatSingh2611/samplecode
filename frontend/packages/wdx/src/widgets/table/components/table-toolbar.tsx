@@ -13,7 +13,7 @@ export interface IWTableToolBar {
   withDivider?: boolean;
 }
 
-export function WTableToolBar({
+function WTableToolBar({
   spacing,
   direction,
   sx,
@@ -118,3 +118,5 @@ WTableToolBar.Filter = ({
     </TextField>
   );
 };
+
+export default WTableToolBar;

@@ -4,7 +4,7 @@ import { WTableHead } from './components/table-head';
 import { emptyRows, onSelectRow, onSort } from './utils';
 import WTableRow from './components/table-row';
 import WTableFooter from './components/table-footer';
-import { WTableToolBar } from './components/table-toolbar';
+import WTableToolBar from './components/table-toolbar';
 import WTableSelectedActions from './components/table-selected-actions';
 import WTabs, { IWTab } from '../../components/tabs';
 import WCard from '../../components/card';
@@ -14,7 +14,7 @@ export enum Order {
   DESC = 'desc',
 }
 
-export enum Align {
+export enum AlignTableCell {
   LEFT = 'left',
   CENTER = 'center',
   RIGHT = 'right',
@@ -22,7 +22,7 @@ export enum Align {
 
 export interface IHeaderCellData {
   id: string;
-  align?: Align;
+  align?: AlignTableCell;
   width?: string;
   minWidth?: string;
   label: string;
@@ -35,24 +35,24 @@ export type TMoreMenuActions = ({
 }) => React.ReactNode;
 
 export interface IWBaseTableProps<T extends { id: string }> {
-  page: number;
+  currentPage: number;
+  rowsPerPage: number;
+  headerData: IHeaderCellData[];
+  bodyData: T[];
+  totalPageCount: number;
+  setCurrentPage: (page: number) => void;
+  setRowsPerPage: (rowsPerPage: number) => void;
   order?: Order;
   orderBy?: string;
-  rowsPerPage: number;
   selected?: string[];
   tabs?: IWTab[];
   activeTab?: string;
   setActiveTab?: (id: string) => void;
-  headerData: IHeaderCellData[];
-  bodyData: T[];
   isCheckable?: boolean;
   renderBodyRow?: (rowData: T) => React.ReactNode;
   renderFooter?: React.ReactNode;
   withFooter?: boolean;
-  totalPageCount: number;
   toolbarElements?: React.ReactNode;
-  setCurrentPage: (page: number) => void;
-  setRowsPerPage: (rowsPerPage: number) => void;
   setSelected?: (selected: string[]) => void;
   setOrderBy?: (orderBy: string) => void;
   setOrder?: (order: Order) => void;
@@ -61,7 +61,7 @@ export interface IWBaseTableProps<T extends { id: string }> {
 }
 
 export default function WBaseTable<T extends { id: string }>({
-  page = 0,
+  currentPage = 0,
   order,
   orderBy,
   rowsPerPage,
@@ -73,7 +73,7 @@ export default function WBaseTable<T extends { id: string }>({
   bodyData,
   isCheckable = true,
   renderFooter,
-  withFooter = false,
+  withFooter = true,
   totalPageCount,
   toolbarElements,
   setCurrentPage,
@@ -116,19 +116,20 @@ export default function WBaseTable<T extends { id: string }>({
   const footerProps = {
     totalPageCount,
     rowsPerPage,
-    page,
+    currentPage,
     dense,
     onChangePage: setCurrentPage,
     onChangeRowsPerPage: setRowsPerPage,
     onChangeDense: onChangeDense,
   };
+
   const footer = renderFooter ? (
     renderFooter
   ) : (
     <WTableFooter {...footerProps} />
   );
 
-  const emptyRowsCount = emptyRows(page, rowsPerPage, bodyData.length);
+  const emptyRowsCount = emptyRows(rowsPerPage, bodyData.length);
   const onSortHandler =
     orderBy && setOrderBy && setOrder && order
       ? (id: string): void => {
@@ -174,11 +175,16 @@ export default function WBaseTable<T extends { id: string }>({
             orderBy={orderBy}
             selectedCount={selected?.length}
             order={order}
+            addMoreActionsCell={!!moreMenuActions}
           />
           <WTable.Body>
             {bodyData.map((rowData: T) =>
               !!renderBodyRow ? (
-                <>{renderBodyRow}</>
+                <TableRowComponent
+                  rowData={rowData}
+                  renderBodyRow={renderBodyRow}
+                  key={rowData.id}
+                />
               ) : (
                 <WTableRow
                   hover={isCheckable}
@@ -192,6 +198,7 @@ export default function WBaseTable<T extends { id: string }>({
                   isCheckable={isCheckable}
                   moreMenuActions={moreMenuActions}
                   key={rowData.id}
+                  headerData={headerData}
                 />
               )
             )}
@@ -208,4 +215,9 @@ export default function WBaseTable<T extends { id: string }>({
       {withFooter && footer}
     </WCard>
   );
+}
+
+//TODO: Find another solution to avoid extrawrap for passing key (VS)
+function TableRowComponent({ renderBodyRow, rowData }: any): JSX.Element {
+  return renderBodyRow(rowData);
 }

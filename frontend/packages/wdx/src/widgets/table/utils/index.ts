@@ -1,16 +1,7 @@
 import React from 'react';
 import { Order } from '../base-table.widget';
 
-export type Props = {
-  defaultDense?: boolean;
-  defaultOrder?: 'asc' | 'desc';
-  defaultOrderBy?: string;
-  defaultSelected?: string[];
-  defaultRowsPerPage?: number;
-  defaultCurrentPage?: number;
-};
-
-interface IOnSelectRow {
+export interface IOnSelectRow {
   id: string;
   selected: string[];
   setSelected: (selected: string[]) => void;
@@ -40,7 +31,7 @@ export const onSelectRow = ({
   setSelected(newSelected);
 };
 
-interface IOnSort {
+export interface IOnSort {
   id: string;
   orderBy: string;
   order: Order;
@@ -71,10 +62,6 @@ export const onChangeRowsPerPage = (
   setPage(0);
 };
 
-export function emptyRows(
-  page: number,
-  rowsPerPage: number,
-  arrayLength: number
-): number {
-  return page > 0 ? Math.max(0, (1 + page) * rowsPerPage - arrayLength) : 0;
+export function emptyRows(rowsPerPage: number, arrayLength: number): number {
+  return arrayLength < rowsPerPage ? rowsPerPage - arrayLength : 0;
 }

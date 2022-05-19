@@ -11,7 +11,8 @@ interface IWTableRow {
   hover?: boolean;
   selected?: boolean;
   onSelectRow?: (row: string) => void;
-
+  //TODO: FIX types (VS)
+  headerData: any;
   moreMenuActions?: TMoreMenuActions;
 }
 
@@ -22,11 +23,12 @@ export default function WTableRow({
   selected,
   onSelectRow,
   moreMenuActions,
+  headerData,
 }: IWTableRow) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
-  const rawData = { ...rowData };
-  delete rawData.id;
+  const rowDataCopy = { ...rowData };
+  delete rowDataCopy.id;
   return (
     <WTable.Row
       hover={hover}
@@ -38,12 +40,12 @@ export default function WTableRow({
           <WCheckbox checked={selected} />
         </WTable.Cell>
       )}
-      {Object.keys(rawData).map((rowDataKey, index) => (
+      {headerData.map((rowDataKey: any, index: number) => (
         <WTable.Cell
-          key={rawData[rowDataKey]}
+          key={rowData.id + rowDataCopy[rowDataKey.id]}
           align={index > 0 ? 'right' : 'left'}
         >
-          {rawData[rowDataKey]}
+          {rowDataCopy[rowDataKey.id]}
         </WTable.Cell>
       ))}
       {moreMenuActions && (

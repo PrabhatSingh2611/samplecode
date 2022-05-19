@@ -8,7 +8,7 @@ import { Theme } from '@mui/material/styles';
 interface IWTableFooter {
   paginationOptions?: number[];
   rowsPerPage: number;
-  page: number;
+  currentPage: number;
   onChangePage: (page: number) => void;
   onChangeRowsPerPage: (rowsPerPage: number) => void;
   dense: boolean;
@@ -20,7 +20,7 @@ interface IWTableFooter {
 export default function WTableFooter({
   paginationOptions,
   rowsPerPage,
-  page,
+  currentPage,
   onChangePage,
   onChangeRowsPerPage,
   dense,
@@ -38,7 +38,7 @@ export default function WTableFooter({
         component={'div'}
         count={totalPageCount}
         rowsPerPage={rowsPerPage}
-        page={page}
+        page={currentPage}
         onPageChange={(_: any, newPage: number) => onChangePage(newPage)}
         onRowsPerPageChange={onChangeRows}
       />

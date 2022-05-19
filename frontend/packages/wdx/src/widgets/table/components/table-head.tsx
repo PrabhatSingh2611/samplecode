@@ -2,7 +2,7 @@ import React from 'react';
 import WTable from '../../../components/table';
 import { SxProps, TableSortLabel } from '@mui/material';
 import WBox from '../../../components/box';
-import { Align, IHeaderCellData, Order } from '../base-table.widget';
+import { AlignTableCell, IHeaderCellData, Order } from '../base-table.widget';
 import { Theme } from '@mui/material/styles';
 import WCheckbox from '../../../components/checkbox';
 
@@ -19,6 +19,7 @@ interface IWTableHead {
   orderBy?: string;
   order?: Order;
   sx?: SxProps<Theme>;
+  addMoreActionsCell?: boolean;
 }
 
 const visuallyHiddenSortingStyles = {
@@ -43,9 +44,9 @@ export function WTableHead({
   orderBy,
   order,
   sx,
+  addMoreActionsCell = false,
 }: IWTableHead): JSX.Element {
-  const showCheckbox =
-    !!onSelectAllRows && isCheckable && selectedCount !== undefined;
+  const showCheckbox = isCheckable && selectedCount !== undefined;
   return (
     <WTable.Head sx={sx}>
       <WTable.Row selected={true}>
@@ -67,7 +68,7 @@ export function WTableHead({
         {headerData.map((headCellData: any) => (
           <WTable.Cell
             key={headCellData.id}
-            align={headCellData.align || Align.LEFT}
+            align={headCellData.align || AlignTableCell.LEFT}
             sortDirection={orderBy === headCellData.id ? order : false}
             sx={{ width: headCellData.width, minWidth: headCellData.minWidth }}
           >
@@ -83,6 +84,9 @@ export function WTableHead({
             )}
           </WTable.Cell>
         ))}
+        {addMoreActionsCell && (
+          <WTable.Cell key="actions" align={AlignTableCell.LEFT} />
+        )}
       </WTable.Row>
     </WTable.Head>
   );

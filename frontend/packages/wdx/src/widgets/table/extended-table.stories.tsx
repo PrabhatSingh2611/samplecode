@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
 import { Meta, Story } from '@storybook/react';
-import WBaseTable, { Align, Order } from './base-table.widget';
-import { WTableToolBar } from './components/table-toolbar';
+import WBaseTable, { AlignTableCell, Order } from './base-table.widget';
+import WTableToolBar from './components/table-toolbar';
 import { IconButton, Tooltip } from '@mui/material';
 import WIconify from '../../components/iconify';
 import { WMenuItem } from '../../components/menu';
+import WTable from '../../components/table';
+import WCheckbox from '../../components/checkbox';
+import WButton from '../../components/button';
+import { onSelectRow } from '../../widgets/table/utils';
 
 const makeOption = (text: string) => {
   return { id: text + '/option', label: text };
@@ -33,11 +37,11 @@ const STATUS_OPTIONS = [
 
 const headerData = [
   { id: 'dessert', label: 'Dessert (100g serving)' },
-  { id: 'calories', label: 'Calories', align: Align.RIGHT },
-  { id: 'fat', label: 'Fat (g)', align: Align.RIGHT },
-  { id: 'carbs', label: 'Carbs (g)', align: Align.RIGHT },
-  { id: 'protein', label: 'Protein (g)', align: Align.RIGHT },
-  { id: 'actions', label: '', align: Align.RIGHT },
+  { id: 'calories', label: 'Calories', align: AlignTableCell.RIGHT },
+  { id: 'fat', label: 'Fat (g)', align: AlignTableCell.RIGHT },
+  { id: 'carbs', label: 'Carbs (g)', align: AlignTableCell.RIGHT },
+  { id: 'protein', label: 'Protein (g)', align: AlignTableCell.RIGHT },
+  { id: 'actions', label: '', align: AlignTableCell.RIGHT },
 ];
 
 const meta: Meta = {
@@ -49,14 +53,14 @@ const meta: Meta = {
 };
 
 function createData(
-  name: string,
+  dessert: string,
   calories: number,
   fat: number,
   carbs: number,
   protein: number,
   id = Math.random() + ''
 ) {
-  return { id, name, calories, fat, carbs, protein };
+  return { id, dessert, calories, fat, carbs, protein };
 }
 
 const bodyData = [
@@ -144,7 +148,7 @@ const Template: Story = () => {
 
   return (
     <WBaseTable
-      page={page}
+      currentPage={page}
       setCurrentPage={setCurrentPage}
       order={order}
       setOrder={setOrder}
@@ -162,9 +166,78 @@ const Template: Story = () => {
       toolbarElements={toolbarElements}
       selectActions={<SelectActions />}
       moreMenuActions={MoreMenuActions}
+      renderBodyRow={(rowData): JSX.Element => (
+        <CustomRow
+          selected={selected.includes(rowData.id)}
+          isCheckable={true}
+          onSelectRow={(rowId: string) =>
+            onSelectRow({ id: rowId, selected, setSelected })
+          }
+          rowData={rowData}
+        />
+      )}
     />
   );
 };
+
+type TRowData = {
+  id: string;
+  dessert: string;
+  fat: number;
+  calories: number;
+  carbs: number;
+  protein: number;
+};
+
+interface ICustomRow {
+  rowData: TRowData;
+  onSelectRow: (rowData: string) => void;
+  selected: boolean;
+  isCheckable: boolean;
+}
+
+function CustomRow({
+  rowData,
+  selected,
+  onSelectRow,
+  isCheckable,
+}: ICustomRow): JSX.Element {
+  const rowDataCopy = { ...rowData };
+  //TODO:Fix ts-ignore (VS)
+  // @ts-ignore
+  delete rowDataCopy.id;
+  return (
+    <WTable.Row selected={selected} onClick={() => onSelectRow?.(rowData.id)}>
+      {isCheckable && (
+        <WTable.Cell padding="checkbox">
+          <WCheckbox checked={selected} />
+        </WTable.Cell>
+      )}
+      <WTable.Cell key={rowData.id + rowDataCopy.dessert} align="left">
+        {rowDataCopy.dessert}
+      </WTable.Cell>
+      <WTable.Cell key={rowData.id + rowDataCopy.calories} align="right">
+        <WButton color="primary">{rowDataCopy.calories}</WButton>
+      </WTable.Cell>
+      <WTable.Cell key={rowData.id + rowDataCopy.fat} align="right">
+        <WButton color="error">{rowDataCopy.fat}</WButton>
+      </WTable.Cell>
+      <WTable.Cell key={rowData.id + rowDataCopy.fat} align="right">
+        <WIconify
+          icon="eva:more-vertical-fill"
+          width={20}
+          height={20}
+          color="error"
+        ></WIconify>
+        {rowDataCopy.fat}
+      </WTable.Cell>
+      <WTable.Cell key={rowData.id + rowDataCopy.fat} align="right">
+        {rowDataCopy.fat}
+      </WTable.Cell>
+      {<span>more ?</span>}
+    </WTable.Row>
+  );
+}
 
 export const Default = Template.bind({});
 

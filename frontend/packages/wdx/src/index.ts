@@ -188,6 +188,9 @@ export {
 
 export * as Yup from 'yup';
 
+export { default as WTableMoreMenu } from './widgets/table/components/table-more-menu';
+export { default as WTableToolBar } from './widgets/table/components/table-toolbar';
+
 // WIDGETS
 export {
   default as WEmptyState,
@@ -198,4 +201,15 @@ export { default as WSubHeader, WSubHeaderProps } from './widgets/subheader';
 export {
   default as WBaseTable,
   IWBaseTableProps,
+  AlignTableCell,
+  Order,
+  IHeaderCellData,
 } from './widgets/table/base-table.widget';
+export {
+  onSelectRow,
+  IOnSelectRow,
+  IOnSort,
+  onSort,
+  onChangeRowsPerPage,
+  emptyRows,
+} from './widgets/table/utils/index';
