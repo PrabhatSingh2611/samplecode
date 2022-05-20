@@ -1,0 +1,13 @@
+mutation createPolicyForPoliciesList($input: CreatePolicyInput!) {
+    createPolicy(input: $input) {
+        policy {
+            id
+            title
+            file {
+                id
+                url
+            }
+            publicationDate
+        }
+    }
+}

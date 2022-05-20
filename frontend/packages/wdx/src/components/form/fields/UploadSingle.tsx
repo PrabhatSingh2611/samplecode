@@ -17,7 +17,12 @@ function WFormUploadSingle({ name, ...other }: WFormUploadProps) {
       const file = acceptedFiles[0];
 
       if (file) {
-        setValue(name, { ...file, preview: URL.createObjectURL(file) });
+        const isImage = file.type.startsWith('image/');
+        const valueToSet = isImage
+          ? Object.assign(file, { preview: URL.createObjectURL(file) })
+          : file;
+
+        setValue(name, valueToSet);
       }
     },
     [setValue]

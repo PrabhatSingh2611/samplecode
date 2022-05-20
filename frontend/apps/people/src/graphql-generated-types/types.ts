@@ -22,7 +22,7 @@ export type Announcement = Node & {
   __typename?: 'Announcement';
   body: Scalars['String'];
   createdAt: Scalars['ZonedDateTime'];
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type AnnouncementConnectionPayload = ConnectionPayload & {
@@ -33,7 +33,7 @@ export type AnnouncementConnectionPayload = ConnectionPayload & {
 };
 
 export type AnnouncementInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type AnnouncementPayload = {
@@ -51,12 +51,12 @@ export type Asset = Node & {
   __typename?: 'Asset';
   archivedDate?: Maybe<Scalars['ZonedDateTime']>;
   employee?: Maybe<Employee>;
+  id: Scalars['UUID'];
   nextActionDate?: Maybe<Scalars['ZonedDateTime']>;
   purchasedDate?: Maybe<Scalars['ZonedDateTime']>;
   serial?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   type?: Maybe<AssetType>;
-  uuid: Scalars['UUID'];
 };
 
 export type AssetConnectionPayload = ConnectionPayload & {
@@ -67,7 +67,7 @@ export type AssetConnectionPayload = ConnectionPayload & {
 };
 
 export type AssetInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type AssetPayload = {
@@ -78,8 +78,8 @@ export type AssetPayload = {
 export type AssetType = Node & {
   __typename?: 'AssetType';
   icon?: Maybe<Scalars['String']>;
+  id: Scalars['UUID'];
   title?: Maybe<Scalars['String']>;
-  uuid: Scalars['UUID'];
 };
 
 export type AssetTypeConnection = ConnectionPayload & {
@@ -90,7 +90,7 @@ export type AssetTypeConnection = ConnectionPayload & {
 };
 
 export type AssetTypeInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type AssetTypePayload = {
@@ -177,7 +177,7 @@ export type CreateVacancyInput = {
 };
 
 export type DeleteAnnouncementInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type DeleteAnnouncementPayload = {
@@ -186,7 +186,7 @@ export type DeleteAnnouncementPayload = {
 };
 
 export type DeleteEmployeePositionInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type DeleteEmployeePositionPayload = {
@@ -195,7 +195,7 @@ export type DeleteEmployeePositionPayload = {
 };
 
 export type DeleteObjectiveInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type DeleteObjectivePayload = {
@@ -214,19 +214,19 @@ export type DeletePoliciesPayload = {
 
 export type DeletedNodes = Nodes & {
   __typename?: 'DeletedNodes';
-  uuids: Array<Scalars['UUID']>;
+  ids: Array<Scalars['UUID']>;
 };
 
 export type Employee = Node & {
   __typename?: 'Employee';
   birthday?: Maybe<Scalars['ZonedDateTime']>;
   firstName?: Maybe<Scalars['String']>;
+  id: Scalars['UUID'];
   lastName?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
   position?: Maybe<EmployeePosition>;
   reportingManager?: Maybe<Employee>;
   role?: Maybe<EmployeeRole>;
-  uuid: Scalars['UUID'];
 };
 
 export type EmployeeConnectionPayload = ConnectionPayload & {
@@ -248,8 +248,8 @@ export type EmployeePayload = {
 
 export type EmployeePosition = Node & {
   __typename?: 'EmployeePosition';
+  id: Scalars['UUID'];
   name?: Maybe<Scalars['String']>;
-  uuid: Scalars['UUID'];
 };
 
 export type EmployeePositionPayload = {
@@ -275,15 +275,15 @@ export type LeaveRequest = Node & {
   __typename?: 'LeaveRequest';
   comment?: Maybe<Scalars['String']>;
   employee: Employee;
+  id: Scalars['UUID'];
   requestDate?: Maybe<Scalars['ZonedDateTime']>;
   status?: Maybe<Scalars['String']>;
-  uuid: Scalars['UUID'];
 };
 
 export type Location = Node & {
   __typename?: 'Location';
+  id: Scalars['UUID'];
   name: Scalars['String'];
-  uuid: Scalars['UUID'];
 };
 
 export type LocationConnectionPayload = ConnectionPayload & {
@@ -294,7 +294,7 @@ export type LocationConnectionPayload = ConnectionPayload & {
 };
 
 export type LocationInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type LocationPayload = {
@@ -428,19 +428,19 @@ export type MutationUploadResourceArgs = {
 };
 
 export type Node = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type NodeInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type Nodes = {
-  uuids: Array<Scalars['UUID']>;
+  ids: Array<Scalars['UUID']>;
 };
 
 export type NodesInput = {
-  uuids: Array<Scalars['UUID']>;
+  ids: Array<Scalars['UUID']>;
 };
 
 export type Objective = Node & {
@@ -449,9 +449,9 @@ export type Objective = Node & {
   description?: Maybe<Scalars['String']>;
   dueToDate?: Maybe<Scalars['ZonedDateTime']>;
   employee: Employee;
+  id: Scalars['UUID'];
   name: Scalars['String'];
   status?: Maybe<ObjectiveStatus>;
-  uuid: Scalars['UUID'];
 };
 
 export type ObjectiveConnectionPayload = ConnectionPayload & {
@@ -462,7 +462,7 @@ export type ObjectiveConnectionPayload = ConnectionPayload & {
 };
 
 export type ObjectiveInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type ObjectivePayload = {
@@ -508,11 +508,11 @@ export type PoliciesWhereInput = {
 export type Policy = Node & {
   __typename?: 'Policy';
   file: Resource;
+  id: Scalars['UUID'];
   owner: Employee;
   publicationDate?: Maybe<Scalars['ZonedDateTime']>;
   status: PolicyStatus;
   title: Scalars['String'];
-  uuid: Scalars['UUID'];
 };
 
 export type PolicyConnectionPayload = ConnectionPayload & {
@@ -623,13 +623,13 @@ export type QueryVacancyArgs = {
 
 export type Resource = {
   __typename?: 'Resource';
+  id: Scalars['UUID'];
   thumbnail?: Maybe<Scalars['String']>;
   url: Scalars['String'];
-  uuid: Scalars['UUID'];
 };
 
 export type ResourceInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type ResourcePayload = {
@@ -639,28 +639,28 @@ export type ResourcePayload = {
 
 export type UpdateAnnouncementInput = {
   body: Scalars['String'];
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type UpdateAssetInput = {
   archivedDate?: InputMaybe<Scalars['ZonedDateTime']>;
   employee?: InputMaybe<Scalars['UUID']>;
+  id: Scalars['UUID'];
   nextActionDate?: InputMaybe<Scalars['ZonedDateTime']>;
   purchasedDate?: InputMaybe<Scalars['ZonedDateTime']>;
   serial?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['UUID']>;
-  uuid: Scalars['UUID'];
 };
 
 export type UpdateEmployeePositionInput = {
+  id: Scalars['UUID'];
   name: Scalars['String'];
-  uuid: Scalars['UUID'];
 };
 
 export type UpdateLocationInput = {
+  id: Scalars['UUID'];
   name: Scalars['String'];
-  uuid: Scalars['UUID'];
 };
 
 export type UpdateObjectiveInput = {
@@ -668,18 +668,18 @@ export type UpdateObjectiveInput = {
   description?: InputMaybe<Scalars['String']>;
   dueToDate: Scalars['ZonedDateTime'];
   employee: Scalars['UUID'];
+  id: Scalars['UUID'];
   name: Scalars['String'];
   status?: InputMaybe<ObjectiveStatus>;
-  uuid: Scalars['UUID'];
 };
 
 export type UpdateVacancyInput = {
   assignTo?: InputMaybe<Scalars['UUID']>;
   description: Scalars['String'];
+  id: Scalars['UUID'];
   position: Scalars['UUID'];
   priority: VacancyPriority;
   status: VacancyStatus;
-  uuid: Scalars['UUID'];
 };
 
 export type VacanciesInput = {
@@ -692,10 +692,10 @@ export type Vacancy = Node & {
   /** default NEW */
   assignTo?: Maybe<Employee>;
   description: Scalars['String'];
+  id: Scalars['UUID'];
   position: EmployeePosition;
   priority: VacancyPriority;
   status: VacancyStatus;
-  uuid: Scalars['UUID'];
 };
 
 export type VacancyConnectionPayload = ConnectionPayload & {
@@ -706,7 +706,7 @@ export type VacancyConnectionPayload = ConnectionPayload & {
 };
 
 export type VacancyInput = {
-  uuid: Scalars['UUID'];
+  id: Scalars['UUID'];
 };
 
 export type VacancyPayload = {

@@ -1,0 +1,22 @@
+query getPoliciesForPolicyList($input: PoliciesInput!) {
+    policies(input: $input) {
+        items {
+            ...PolicyForPoliciesList
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+fragment PolicyForPoliciesList on Policy {
+    id
+    title
+    file {
+        id
+        url
+    }
+    publicationDate
+}

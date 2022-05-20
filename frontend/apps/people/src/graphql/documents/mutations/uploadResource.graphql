@@ -1,0 +1,13 @@
+mutation uploadResource($resource: Upload!) {
+    uploadResource(resource: $resource) {
+        resource {
+            ...Resource
+        }
+    }
+}
+
+fragment Resource on Resource {
+    id
+    url
+    thumbnail
+}

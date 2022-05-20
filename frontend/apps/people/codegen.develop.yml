@@ -1,14 +1,16 @@
 overwrite: true
 schema:
     - http://localhost:8080/graphql
-documents: 'src/features/**/**/*.graphql'
+documents:
+    - 'src/features/**/**/*.graphql'
+    - 'src/graphql/documents/**/**/*.graphql'
 generates:
     src/graphql-generated-types/types.ts:
         - typescript
     src/graphql-generated-types:
         preset: near-operation-file
         presetConfig:
-            extension: .generated.tsx
+            extension: .generated.ts
             baseTypesPath: types.ts
         plugins:
             - 'typescript-operations'

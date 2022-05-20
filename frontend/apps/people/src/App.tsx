@@ -5,7 +5,8 @@ import { ThemeProvider, WBox } from 'wdx';
 
 import { ApolloProvider } from '@apollo/client';
 
-import { getClient } from 'client';
+import { getClient } from 'graphql/client';
+
 import PeopleObservables from 'core/PeopleObservables';
 import Router from 'core/Router';
 import Routes from 'routes';
