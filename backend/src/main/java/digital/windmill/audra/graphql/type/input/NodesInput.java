@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,10 +18,7 @@ public class NodesInput implements Nodes {
 
     private List<UUID> ids;
 
-    public static NodesInput of(List<String> ids){
-        return new NodesInput(ids.stream()
-                .map(UUID::fromString)
-                .toList()
-        );
+    public static NodesInput of(String... ids) {
+        return new NodesInput(Arrays.stream(ids).map(UUID::fromString).toList());
     }
 }

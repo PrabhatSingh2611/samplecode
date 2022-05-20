@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AssetPayload {
-    private Asset asset;
+public class ArchiveAssetPayload{
+    private Node asset;
 }

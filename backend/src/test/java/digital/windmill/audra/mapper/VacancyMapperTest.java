@@ -141,7 +141,7 @@ public class VacancyMapperTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).country(NAME).build();
     }
 
     private VacancyEntity createVacancyEntity() {
@@ -181,7 +181,7 @@ public class VacancyMapperTest {
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
         e.setId(ID);
-        e.setName(NAME);
+        e.setCountry(NAME);
         return e;
     }
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.10.1" author="abhishek.kumar">
+
+        <addColumn tableName="asset">
+            <column name="location_id" type="INT8">
+            <constraints foreignKeyName="fk_asset2location" references="location(id)"/>
+            </column>
+            <column name="tag_number" type="VARCHAR(100)"/>
+            <column name="action_on_name" type="VARCHAR(100)"/>
+            <column name="comment" type="VARCHAR(500)"/>
+        </addColumn>
+        <renameColumn tableName="location" oldColumnName="name" newColumnName="country"/>
+        <addColumn tableName="location">
+            <column name="details" type="VARCHAR(50)"/>
+            <column name="flag_icon" type="VARCHAR(100)"/>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="r.0.10.2" author="tetiana.hladka">
+        <sql>
+            UPDATE location SET country = 'Portugal', details = 'Lisbon', flag_icon = 'https://cdn.pixabay.com/photo/2013/07/13/14/16/portugal-162394__480.png' WHERE uuid = 'cabfb51b-41c5-4f4d-afd5-146c796391af';
+            UPDATE location SET country = 'Spain', details = 'Madrid', flag_icon = 'https://cdn.pixabay.com/photo/2013/07/13/14/17/spain-162428__480.png' WHERE uuid = '79761728-8f51-475f-aa04-42385a0dfe36';
+            INSERT INTO location (id, uuid, country, details, flag_icon)
+                VALUES (3, 'c6faa656-6da1-450e-b176-6093e22298f6', 'Ukraine', 'Kyiv', 'https://cdn.pixabay.com/photo/2013/07/13/14/17/ukraine-162450__340.png');
+
+            INSERT INTO asset_type (id, uuid, title) VALUES
+                (4, 'fc78321c-9c43-4c78-9eec-b7bc658be233', 'Smartphone'),
+                (5, '3cfdfb9b-2b2b-443c-8c11-b907eb644858', 'Software license');
+            UPDATE asset_type SET icon = 'https://cdn.pixabay.com/photo/2017/01/10/03/54/icon-1968238__480.png';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

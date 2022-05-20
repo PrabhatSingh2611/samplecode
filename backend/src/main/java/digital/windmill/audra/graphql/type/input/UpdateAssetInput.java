@@ -15,10 +15,13 @@ import java.util.UUID;
 public class UpdateAssetInput {
     private UUID id;
     private String title;
-    private String serial;
-    private UUID type;
-    private UUID employee;
+    private String serialNumber;
+    private NodeInput type;
+    private NodeInput assignee;
+    private NodeInput location;
     private ZonedDateTime archivedDate;
-    private ZonedDateTime purchasedDate;
+    private ZonedDateTime waybillDate;
     private ZonedDateTime nextActionDate;
+    private String actionOnName;
+    private String comment;
 }

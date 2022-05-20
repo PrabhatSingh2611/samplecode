@@ -1,23 +1,38 @@
 type Asset implements Node {
     id: UUID!
     title: String
-    serial: String
-    type: AssetType
-    employee: Employee
-    archivedDate: ZonedDateTime
-    purchasedDate: ZonedDateTime
+    serialNumber: String!
+    type: AssetType!
+    assignee: Employee
+    waybillDate: ZonedDateTime!
+    location: Location
+    tagNumber: String
     nextActionDate: ZonedDateTime
+    actionOnName: String
+    archivedDate: ZonedDateTime
+    comment: String
 }
 
 input AssetsInput {
     where: AssetWhereInput
-    page: PageInput
+    pagination: PageInput
+    sort: [AssetSortEnum!] = [waybillDate_DESC]
 }
 
 input AssetWhereInput {
-    employee: NodeInput
-    archived: Boolean # asset.archivedDate is not null - TRUE
-    type: NodeInput
+    """
+    Filters by title OR serialNumber OR tagNumber
+    """
+    query: String
+    type: NodesInput
+    location: NodesInput
+    assignee: NodesInput
+    archived: Boolean = false # asset.archivedDate is not null - TRUE
+}
+
+enum AssetSortEnum {
+    waybillDate_ASC
+    waybillDate_DESC
 }
 
 input AssetInput {
@@ -25,7 +40,15 @@ input AssetInput {
 }
 
 type AssetPayload {
-    item: Asset
+    asset: Asset
+}
+
+type ArchiveAssetPayload {
+    asset: Node
+}
+
+input ArchiveAssetInput {
+    asset: NodeInput!
 }
 
 type AssetConnectionPayload implements ConnectionPayload {
@@ -35,22 +58,30 @@ type AssetConnectionPayload implements ConnectionPayload {
 }
 
 input CreateAssetInput {
-    title: String
-    serial: String
-    type: UUID
-    employee: UUID
-    archivedDate: ZonedDateTime
-    purchasedDate: ZonedDateTime
+    title: String!
+    serialNumber: String!
+    type: NodeInput!
+    assignee: NodeInput
+    location:NodeInput
+    tagNumber: String
+    waybillDate: ZonedDateTime!
+    actionOnName: String
     nextActionDate: ZonedDateTime
+    archivedDate: ZonedDateTime
+    comment: String
 }
 
 input UpdateAssetInput {
     id: UUID!
-    title: String
-    serial: String
-    type: UUID
-    employee: UUID
+    title: String!
+    serialNumber: String!
+    type: NodeInput!
+    assignee: NodeInput
+    waybillDate: ZonedDateTime!
+    location:NodeInput
+    tagNumber: String
     archivedDate: ZonedDateTime
-    purchasedDate: ZonedDateTime
     nextActionDate: ZonedDateTime
+    actionOnName: String
+    comment: String
 }

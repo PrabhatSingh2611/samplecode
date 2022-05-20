@@ -1,14 +1,23 @@
 {
   "data":{
     "createAsset":{
-      "item":{
+      "asset":{
         "title":"asset 1",
-        "serial":"123qwe",
-        "employee":{
+        "serialNumber":"123qwe",
+        "assignee":{
           "id":"48b560ab-7450-4088-b6bb-f57638ea0877"
         },
+        "location":{
+          "country":"england"
+        },
+        "type":{
+          "id":"5478b586-e607-4448-ac05-3e5f2adbbc1b",
+          "icon":"https://google.com/laptops",
+          "title":"Laptops"
+        },
+        "tagNumber":"123-MCP-4567",
         "archivedDate":"2022-03-23T19:37:14.480425Z[UTC]",
-        "purchasedDate":"2022-03-23T19:37:14.480425Z[UTC]",
+        "waybillDate":"2022-03-23T19:37:14.480425Z[UTC]",
         "nextActionDate":"2022-03-23T19:37:14.480425Z[UTC]"
       }
     }

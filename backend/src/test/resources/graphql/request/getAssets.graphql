@@ -1,15 +1,21 @@
-query getAssets($input: AssetsInput) {
+query getAssets($input: AssetsInput!) {
     assets(input: $input) {
         items {
             id
             title
-            serial
+            serialNumber
+            waybillDate
+            tagNumber
+            location {
+                id
+                country
+            }
             type {
                 id
                 title
                 icon
             }
-            employee {
+            assignee {
                 id
                 firstName
                 lastName
@@ -21,11 +27,11 @@ query getAssets($input: AssetsInput) {
                 }
                 location{
                     id
-                    name
+                    country
                 }
             }
             archivedDate
-            purchasedDate
+            waybillDate
         }
         pageInfo {
             currentPage

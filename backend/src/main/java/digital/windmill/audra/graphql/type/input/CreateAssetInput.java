@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -14,10 +13,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateAssetInput {
     private String title;
-    private String serial;
-    private UUID type;
-    private UUID employee;
+    private String serialNumber;
+    private NodeInput type;
+    private NodeInput assignee;
+    private NodeInput location;
+    private String tagNumber;
     private ZonedDateTime archivedDate;
-    private ZonedDateTime purchasedDate;
+    private ZonedDateTime waybillDate;
     private ZonedDateTime nextActionDate;
+    private String actionOnName;
+    private String comment;
 }

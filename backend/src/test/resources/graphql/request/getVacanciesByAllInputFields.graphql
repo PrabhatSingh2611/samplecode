@@ -32,7 +32,7 @@ query {
                 }
                 location{
                     id
-                    name
+                    country
                 }
             }
             priority

@@ -2,7 +2,7 @@ query {
     locations{
         items{
             id
-            name
+            country
         }
         pageInfo {
             currentPage

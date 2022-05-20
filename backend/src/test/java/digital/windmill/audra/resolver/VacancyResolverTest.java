@@ -120,6 +120,6 @@ public class VacancyResolverTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(TEST_UUID).name(NAME).build();
+        return Location.builder().id(TEST_UUID).country(NAME).build();
     }
 }

@@ -2,16 +2,23 @@ query
 {
     asset(input: {id: "e838b736-721a-4cf8-80f3-ebcb6da01a36"})
     {
-        item {
+        asset {
             id
             title
-            serial
+            serialNumber
+            tagNumber
+            waybillDate
+            actionOnName
+            location {
+                id
+                country
+            }
             type {
                 id
                 title
                 icon
             }
-            employee {
+            assignee {
                 id
                 firstName
                 lastName
@@ -23,7 +30,7 @@ query
                 }
                 location{
                     id
-                    name
+                    country
                 }
             }
         }

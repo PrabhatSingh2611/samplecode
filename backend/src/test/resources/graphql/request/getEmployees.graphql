@@ -15,7 +15,7 @@ query getEmployees($input: EmployeesInput) {
             }
             location{
                 id
-                name
+                country
             }
         }
         pageInfo {

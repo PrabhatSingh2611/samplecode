@@ -1,19 +1,22 @@
 type Location implements Node {
     id: UUID!
-    name: String!
+    country: String!
+    details: String # this can be City, but also can be smth like ‘Main office’, ‘Warehouse' or whatever
+    flagIcon: String!
 }
+
 
 input LocationInput {
     id: UUID!
 }
 
 input CreateLocationInput {
-    name: String!
+    country: String!
 }
 
 input UpdateLocationInput {
     id: UUID!
-    name: String!
+    country: String!
 }
 
 type LocationConnectionPayload implements ConnectionPayload {

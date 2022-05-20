@@ -57,7 +57,7 @@ public class EmployeeMapperTest {
                 () -> assertEquals(NAME, actual.getFirstName()),
                 () -> assertEquals(NAME, actual.getLastName()),
                 () -> assertEquals(NAME, actual.getPosition().getName()),
-                () -> assertEquals(NAME, actual.getLocation().getName()),
+                () -> assertEquals(NAME, actual.getLocation().getCountry()),
                 () -> assertEquals(DATE_TIME, actual.getBirthday())
         );
     }
@@ -74,7 +74,7 @@ public class EmployeeMapperTest {
         assertNotNull(result);
         assertAll(
                 () -> assertEquals(NAME, result.getFirstName()),
-                () -> assertEquals(NAME, result.getLocation().getName()),
+                () -> assertEquals(NAME, result.getLocation().getCountry()),
                 () -> assertEquals(NAME, result.getPosition().getName()),
                 () -> assertEquals(LOCAL_DATE, result.getBirthday())
 
@@ -126,7 +126,7 @@ public class EmployeeMapperTest {
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
         e.setId(ID);
-        e.setName(NAME);
+        e.setCountry(NAME);
         return e;
     }
 

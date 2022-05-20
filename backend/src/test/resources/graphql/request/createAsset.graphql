@@ -1,22 +1,40 @@
 mutation createAsset{
     createAsset(input: {
         title: "asset 1"
-        serial: "123qwe"
-        type: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
-        employee: "48b560ab-7450-4088-b6bb-f57638ea0877"
+        serialNumber: "123qwe"
+        type: {
+            id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
+        }
+        tagNumber: "123456789"
+        assignee: {
+            id:  "48b560ab-7450-4088-b6bb-f57638ea0877"
+        }
+        location: {
+            id: "b7f46256-e21d-483b-be29-8bf7617bc3c3"
+        }
+        tagNumber : "123-MCP-4567"
         archivedDate: "2022-03-23T19:37:14.480425Z"
-        purchasedDate: "2022-03-23T19:37:14.480425Z"
+        waybillDate: "2022-03-23T19:37:14.480425Z"
         nextActionDate: "2022-03-23T19:37:14.480425Z"
     })
     {
-        item {
+        asset {
             title
-            serial
-            employee {
+            serialNumber
+            assignee {
                 id
             }
+            location {
+                country
+            }
+            type {
+                id
+                icon
+                title
+            }
+            tagNumber
             archivedDate
-            purchasedDate
+            waybillDate
             nextActionDate
         }
     }

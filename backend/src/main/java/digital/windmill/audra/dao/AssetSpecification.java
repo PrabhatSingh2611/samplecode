@@ -1,35 +1,37 @@
 package digital.windmill.audra.dao;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
+import digital.windmill.audra.graphql.type.enums.AssetSortEnum;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
-import digital.windmill.audra.graphql.type.input.NodeInput;
+import digital.windmill.audra.graphql.type.input.NodesInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
+import digital.windmill.audra.graphql.utils.SortUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AssetSpecification {
 
-    private static final Integer DEFAULT_PAGE_SIZE = 10;
-
-    public static Pair<Specification<AssetEntity>, PageRequest> assets(AssetsInput input) {
+    public static Specification<AssetEntity> assets(AssetsInput input) {
+        var query = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getQuery).orElse(null);
         var archived = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getArchived).orElse(null);
-        var employee = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getEmployee).orElse(null);
+        var assignee = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getAssignee).orElse(null);
+        var location = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getLocation).orElse(null);
         var type = Optional.ofNullable(input).map(AssetsInput::getWhere).map(AssetWhereInput::getType).orElse(null);
 
-        var itemsPerPage = Optional.ofNullable(input).map(AssetsInput::getPage).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
-        var pageNumber = Optional.ofNullable(input).map(AssetsInput::getPage).map(PageInput::getPageNumber).orElse(0);
-
-        var spec = Specification.where(
-                        byArchived(archived))
-                .and(byEmployee(employee))
+        var spec = Specification
+                .where(byArchived(archived))
+                .and(bySearchText(query))
+                .and(byAssignee(assignee))
+                .and(byLocation(location))
                 .and(byType(type));
-
-        var pageable = PageRequest.of(pageNumber, itemsPerPage);
-        return Pair.of(spec, pageable);
+        return spec;
     }
 
     public static Specification<AssetEntity> byArchived(Boolean archived) {
@@ -38,30 +40,54 @@ public class AssetSpecification {
                 return builder.conjunction();
             }
             if (archived) {
-                return builder.isNotEmpty(root.get("archivedDate"));
+                return builder.isNotNull(root.get("archivedDate"));
             } else {
                 return builder.isNull(root.get("archivedDate"));
             }
         };
     }
 
-    public static Specification<AssetEntity> byEmployee(NodeInput employee) {
+    public static Specification<AssetEntity> byAssignee(NodesInput assignee) {
         return (root, query, builder) -> {
-            if (employee == null || employee.getId() == null) {
+            if (assignee == null || CollectionUtils.isEmpty(assignee.getIds())) {
                 return builder.conjunction();
             }
-            var employeeJoin = root.join("employee");
-            return builder.equal(employeeJoin.get("uuid"), employee.getId());
+            var assigneeJoin = root.join("assignee");
+            return builder.in(assigneeJoin.get("uuid")).value(assignee.getIds());
         };
     }
 
-    public static Specification<AssetEntity> byType(NodeInput type) {
+    public static Specification<AssetEntity> byType(NodesInput type) {
         return (root, query, builder) -> {
-            if (type == null || type.getId() == null) {
+            if (type == null || CollectionUtils.isEmpty(type.getIds())) {
                 return builder.conjunction();
             }
             var typeJoin = root.join("type");
-            return builder.equal(typeJoin.get("uuid"), type.getId());
+            return builder.in(typeJoin.get("uuid")).value(type.getIds());
+        };
+    }
+
+    public static Specification<AssetEntity> byLocation(NodesInput location) {
+        return (root, query, builder) -> {
+            if (location == null || CollectionUtils.isEmpty(location.getIds())) {
+                return builder.conjunction();
+            }
+            var locationJoin = root.join("location");
+            return builder.in(locationJoin.get("uuid")).value(location.getIds());
+        };
+    }
+
+    public static Specification<AssetEntity> bySearchText(String searchText) {
+        return (root, query, builder) -> {
+            if (searchText == null || searchText.isBlank()) {
+                return builder.conjunction();
+            }
+            var pattern = "%" + searchText.toLowerCase().trim() + "%";
+            return builder.or(
+                    builder.like(builder.lower(root.get("title")), pattern),
+                    builder.like(builder.lower(root.get("serialNumber")), pattern),
+                    builder.like(builder.lower(root.get("tagNumber")), pattern)
+            );
         };
     }
 }

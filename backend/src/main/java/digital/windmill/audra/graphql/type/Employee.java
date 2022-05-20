@@ -23,5 +23,6 @@ public class Employee implements Node {
     private Employee reportingManager;
     private EmployeePosition position;
     private Location location;
+    private String avatar;
 
 }

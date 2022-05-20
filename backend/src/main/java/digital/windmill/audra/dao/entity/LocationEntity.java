@@ -29,7 +29,10 @@ public class LocationEntity {
     private Long id;
     @Column(name = "uuid")
     private UUID uuid;
-    @Column(name = "name")
-    private String name;
-
+    @Column(name = "country")
+    private String country;
+    @Column(name = "details")
+    private String details;
+    @Column(name = "flag_icon")
+    private String flagIcon;
 }

@@ -39,9 +39,6 @@ input StrictDatePeriod {
     endDate: ZonedDateTime!
 }
 
-input NodesInput {
-    ids: [UUID!]!
-}
 
 
 scalar UUID

@@ -113,7 +113,7 @@ class PolicyMapperImplTest {
     private Location createLocation() {
         Location e = new Location();
         e.setId(TEST_UUID);
-        e.setName(TEXT);
+        e.setCountry(TEXT);
         return e;
     }
 
@@ -139,7 +139,7 @@ class PolicyMapperImplTest {
 
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
-        e.setName(TEXT);
+        e.setCountry(TEXT);
         return e;
     }
 

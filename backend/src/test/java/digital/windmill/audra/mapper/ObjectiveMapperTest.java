@@ -178,7 +178,7 @@ class ObjectiveMapperTest {
     private Location createLocation() {
         return Location.builder()
                 .id(TEST_UUID)
-                .name(NAME)
+                .country(NAME)
                 .build();
     }
 

@@ -1,16 +1,23 @@
 {
   "data": {
     "asset": {
-      "item": {
+      "asset": {
         "id": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
         "title": "Macbook Pro 13",
-        "serial": "Е673РВ",
+        "serialNumber": "Е673РВ",
+        "tagNumber":null,
+        "waybillDate":"2022-03-23T19:37:14.480425Z[UTC]",
+        "actionOnName":null,
+        "location":{
+          "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
+          "country":"england"
+        },
         "type": {
           "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
           "title": "Laptops",
           "icon": "https://google.com/laptops"
         },
-        "employee": {
+        "assignee": {
           "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
           "firstName": "Jacob",
           "lastName": "Morris",
@@ -22,7 +29,7 @@
           },
           "location":{
             "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "name":"london"
+            "country":"england"
           }
         }
       }

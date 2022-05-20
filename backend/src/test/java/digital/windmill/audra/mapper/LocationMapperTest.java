@@ -30,7 +30,7 @@ class LocationMapperTest {
         var result = mapper.mapLocationEntityToLocation(createLocationEntity());
 
         assertNotNull(result);
-        assertEquals(TEXT, result.getName());
+        assertEquals(TEXT, result.getCountry());
         assertEquals(TEST_UUID, result.getId());
     }
 
@@ -39,12 +39,12 @@ class LocationMapperTest {
         var result = mapper.mapCreateLocationInputToLocationEntity(testCreateLocationInput());
 
         assertNotNull(result);
-        assertEquals(TEXT, result.getName());
+        assertEquals(TEXT, result.getCountry());
     }
 
     private CreateLocationInput testCreateLocationInput() {
         CreateLocationInput l = new CreateLocationInput();
-        l.setName(TEXT);
+        l.setCountry(TEXT);
         return l;
     }
 
@@ -52,7 +52,7 @@ class LocationMapperTest {
         return LocationEntity.builder()
                 .id(ID)
                 .uuid(TEST_UUID)
-                .name(TEXT)
+                .country(TEXT)
                 .build();
     }
 }

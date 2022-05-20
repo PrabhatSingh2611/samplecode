@@ -17,7 +17,7 @@ query {
                 }
                 location {
                     id
-                    name
+                    country
                 }
             }
             file {

@@ -24,7 +24,7 @@
             },
             "location": {
               "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-              "name": "london"
+              "country": "england"
             }
           }
         },
@@ -50,7 +50,7 @@
             },
             "location": {
               "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-              "name": "london"
+              "country": "england"
             }
           }
         }

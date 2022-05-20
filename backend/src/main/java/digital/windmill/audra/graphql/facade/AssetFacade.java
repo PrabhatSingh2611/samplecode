@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.facade;
 
 import digital.windmill.audra.graphql.type.Asset;
+import digital.windmill.audra.graphql.type.input.ArchiveAssetInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.CreateAssetInput;
 import digital.windmill.audra.graphql.type.input.UpdateAssetInput;
@@ -45,4 +46,11 @@ public interface AssetFacade {
      * @return an updated asset
      */
     Asset updateAsset(UpdateAssetInput input);
+
+    /**
+     * This method will save asset as archive
+     * @param input will take asset to be marked as archived
+     * @return an updated asset
+     */
+    Asset updateAssetAsArchive(ArchiveAssetInput input);
 }

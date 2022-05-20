@@ -41,7 +41,7 @@ public class AssetResolverTest {
 
         var result = assetResolver.asset(input);
         assertNotNull(result);
-        assertSame(asset, result.getItem());
+        assertSame(asset, result.getAsset());
     }
 
     @Test

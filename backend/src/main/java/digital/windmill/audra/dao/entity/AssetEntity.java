@@ -25,7 +25,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "asset")
 public class AssetEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -41,12 +40,20 @@ public class AssetEntity {
     private AssetTypeEntity type;
     @OneToOne
     @JoinColumn(name = "employee_id")
-    private EmployeeEntity employee;
-    @Column(name = "archived_date")
-    private Instant archivedDate;
+    private EmployeeEntity assignee;
     @Column(name = "purchased_date")
-    private Instant purchasedDate;
+    private Instant waybillDate;
+    @OneToOne
+    @JoinColumn(name= "location_id")
+    private LocationEntity location;
+    @Column(name= "tag_number")
+    private String tagNumber;
     @Column(name = "next_action_date")
     private Instant nextActionDate;
-
+    @Column(name = "action_on_name")
+    private String actionOnName;
+    @Column(name = "archived_date")
+    private Instant archivedDate;
+    @Column(name= "comment")
+    private String comment;
 }

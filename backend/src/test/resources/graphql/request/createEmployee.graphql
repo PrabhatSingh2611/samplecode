@@ -20,7 +20,7 @@ mutation createEmployee{
             }
             location{
                 id
-                name
+                country
             }
         }
     }

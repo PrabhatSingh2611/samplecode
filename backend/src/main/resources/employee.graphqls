@@ -1,13 +1,15 @@
 type Employee implements Node {
-    id: UUID!
-    firstName: String
-    lastName: String
-    role: EmployeeRole
-    birthday: ZonedDateTime
-    reportingManager: Employee
-    position: EmployeePosition
-    location: Location
+	id: UUID!
+	firstName: String
+	lastName: String
+	role: EmployeeRole
+	birthday: ZonedDateTime
+	reportingManager:Employee
+	position: EmployeePosition
+	location: Location
+	avatar: String
 }
+
 
 type EmployeeConnectionPayload implements ConnectionPayload {
     items: [Employee!]!
@@ -31,7 +33,7 @@ enum EmployeeRole {
 }
 
 type EmployeePayload {
-    item: Employee
+	item: Employee
 }
 
 input EmployeesInput {
@@ -42,3 +44,4 @@ input EmployeesInput {
 input EmployeeWhereInput {
     location: NodeInput
 }
+

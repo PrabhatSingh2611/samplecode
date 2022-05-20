@@ -28,7 +28,7 @@ public interface LocationMapper {
      */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(generateUUID())")
-    @Mapping(target = "name", source = "input.name")
+    @Mapping(target = "country", source = "input.country")
     LocationEntity mapCreateLocationInputToLocationEntity(CreateLocationInput input);
 
     default UUID generateUUID() {

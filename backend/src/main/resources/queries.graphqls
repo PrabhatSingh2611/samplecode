@@ -1,6 +1,6 @@
 type Query {
     asset(input: AssetInput!): AssetPayload!
-    assets(input: AssetsInput): AssetConnectionPayload!
+    assets(input: AssetsInput!): AssetConnectionPayload!
     assetType(input: AssetTypeInput!): AssetTypePayload!
     assetTypes: AssetTypeConnection!
     employees(input: EmployeesInput): EmployeeConnectionPayload!

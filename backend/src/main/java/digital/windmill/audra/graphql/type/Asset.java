@@ -16,11 +16,14 @@ public class Asset implements Node {
 
     private UUID id;
     private String title;
-    private String serial;
+    private String serialNumber;
     private AssetType type;
-    private Employee employee;
-    private ZonedDateTime archivedDate;
-    private ZonedDateTime purchasedDate;
+    private Employee assignee;
+    private ZonedDateTime waybillDate;
+    private Location location;
+    private String tagNumber;
+    private String actionOnName;
     private ZonedDateTime nextActionDate;
-
+    private ZonedDateTime archivedDate;
+    private String comment;
 }

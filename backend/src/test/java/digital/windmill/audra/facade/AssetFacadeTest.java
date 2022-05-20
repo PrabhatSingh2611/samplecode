@@ -1,106 +1,121 @@
 package digital.windmill.audra.facade;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
+import digital.windmill.audra.dao.entity.AssetTypeEntity;
+import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.facade.impl.AssetFacadeImpl;
 import digital.windmill.audra.graphql.mapper.AssetMapper;
 import digital.windmill.audra.graphql.type.Asset;
-import digital.windmill.audra.graphql.type.AssetType;
-import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.service.impl.AssetServiceImpl;
+import digital.windmill.audra.graphql.type.input.ArchiveAssetInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
+import digital.windmill.audra.graphql.type.input.CreateAssetInput;
+import digital.windmill.audra.graphql.type.input.NodeInput;
+import digital.windmill.audra.service.AssetService;
+import digital.windmill.audra.service.AssetTypeService;
+import digital.windmill.audra.service.EmployeeService;
+import digital.windmill.audra.service.LocationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
-import java.time.Instant;
-import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetFacadeTest {
 
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final String ASSET_TITLE = "Asset title";
-    private static final String ASSET_SERIAL_NUMBER = "40aab8f6";
-    private static final String NAME = "Name";
-    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
-    private final static Instant LOCAL_DATE = Instant.now();
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.now();
+    private static final UUID ASSET_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
+    private static final UUID ASSET_TYPE_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
 
     @Mock
-    private AssetServiceImpl assetServiceImpl;
+    private AssetService assetService;
+
+    @Mock
+    private AssetTypeService assetTypeService;
+
+    @Mock
+    private EmployeeService employeeService;
+
+    @Mock
+    private LocationService locationService;
+
     @InjectMocks
     private AssetFacadeImpl facade;
     @Mock
     private AssetMapper assetMapper;
 
     @Test
-    void shouldReturnAssetByUuid() {
-        when(assetServiceImpl.findAssetByUuid(any(UUID.class))).thenReturn(createAssetEntity());
-        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(createAsset());
-        var result = facade.findAssetByUuid(TEST_UUID);
+    void shouldReturnAssetByUuid(@Mock AssetEntity assetEntity, @Mock Asset asset) {
+        when(assetService.findAssetByUuid(any(UUID.class))).thenReturn(assetEntity);
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(asset);
+        var result = facade.findAssetByUuid(ASSET_UUID);
         assertNotNull(result);
-        Assertions.assertEquals(TEST_UUID, result.getId());
-        Assertions.assertEquals(ASSET_TITLE, result.getTitle());
-        Assertions.assertEquals(NAME, result.getEmployee().getFirstName());
-        Assertions.assertEquals(NAME, result.getEmployee().getLastName());
+        Assertions.assertSame(asset, result);
     }
 
-
-    private Asset createAsset() {
-        return Asset.builder()
-                .id(TEST_UUID)
-                .title(ASSET_TITLE)
-                .serial(ASSET_SERIAL_NUMBER)
-                .type(createAssetType())
-                .employee(createEmployee())
-                .archivedDate(DATE_TIME)
-                .purchasedDate(DATE_TIME)
-                .nextActionDate(DATE_TIME)
-                .build();
+    @Test
+    void shouldFindAllAssets(@Mock AssetEntity assetEntity, @Mock Asset asset, @Mock AssetsInput assetsInput) {
+        Page<AssetEntity> assetEntityPage = createOneItemPage(assetEntity);
+        when(assetService.findAll(any(AssetsInput.class))).thenReturn(assetEntityPage);
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(asset);
+        var result = facade.findAllAssets(assetsInput);
+        assertNotNull(result);
+        assertSame(asset, result.getContent().get(0));
     }
 
-    private AssetEntity createAssetEntity() {
-        AssetEntity a = new AssetEntity();
-        a.setId(1L);
-        a.setUuid(TEST_UUID);
-        a.setTitle(ASSET_TITLE);
-        a.setSerialNumber(ASSET_SERIAL_NUMBER);
-        a.setArchivedDate(LOCAL_DATE);
-        a.setPurchasedDate(LOCAL_DATE);
-        a.setNextActionDate(LOCAL_DATE);
-        return a;
+    @Test
+    void shouldCreateAsset(@Mock AssetEntity assetEntity
+            , @Mock Asset asset
+            , @Mock CreateAssetInput input
+            , @Mock NodeInput nodeInput
+            , @Mock AssetTypeEntity assetTypeEntity
+            , @Mock LocationEntity locationEntity
+            , @Mock EmployeeEntity employeeEntity) {
+        when(input.getType()).thenReturn(nodeInput);
+        when(input.getAssignee()).thenReturn(nodeInput);
+        when(input.getLocation()).thenReturn(nodeInput);
+        when(input.getType().getId()).thenReturn(ASSET_TYPE_UUID);
+        when(assetTypeService.findAssetByUuid(any(UUID.class))).thenReturn(assetTypeEntity);
+        when(locationService.findLocationByUuid(any(UUID.class))).thenReturn(locationEntity);
+        when(employeeService.findEmployeeByUuid(any(UUID.class))).thenReturn(employeeEntity);
+        when(assetMapper.mapAssetCreateInputToAssetEntity(any(CreateAssetInput.class)
+                , any(AssetTypeEntity.class), any(EmployeeEntity.class), any(LocationEntity.class)))
+                .thenReturn(assetEntity);
+        when(assetService.createOrUpdateAsset(any(AssetEntity.class))).thenReturn(assetEntity);
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(asset);
+        var result = facade.createAsset(input);
+        assertNotNull(result);
+        assertSame(asset, result);
     }
 
-    private Employee createEmployee() {
-        return Employee.builder()
-                .id(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .birthday(DATE_TIME)
-                .location(createLocation())
-                .role(ROLE)
-                .build();
+    @Test
+    void shouldUpdateAssetAsArchive(@Mock AssetEntity assetEntity, @Mock Asset asset, @Mock ArchiveAssetInput input
+            , @Mock NodeInput nodeInput) {
+        when(input.getAsset()).thenReturn(nodeInput);
+        when(input.getAsset().getId()).thenReturn(ASSET_UUID);
+        when(assetService.findAssetByUuid(any(UUID.class))).thenReturn(assetEntity);
+        when(assetMapper.mapArchiveAssetInputToAssetEntity(any(ArchiveAssetInput.class)
+                , any(AssetEntity.class))).thenReturn(assetEntity);
+        when(assetService.createOrUpdateAsset(any(AssetEntity.class))).thenReturn(assetEntity);
+        when(assetMapper.mapAssetEntityToAsset(any(AssetEntity.class))).thenReturn(asset);
+        var result = facade.updateAssetAsArchive(input);
+        assertNotNull(result);
+        assertSame(asset, result);
     }
 
-    private AssetType createAssetType() {
-        return AssetType.builder()
-                .id(TEST_UUID)
-                .title(ASSET_TITLE)
-                .build();
-
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
 
-
-    private Location createLocation() {
-        return Location.builder().id(TEST_UUID).name(NAME).build();
-    }
 }

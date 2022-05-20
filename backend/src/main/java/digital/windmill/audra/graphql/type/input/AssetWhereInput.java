@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssetWhereInput {
-    private NodeInput employee;
+    private String query;
+    private NodesInput type;
+    private NodesInput location;
+    private NodesInput assignee;
     private Boolean archived;
-    private NodeInput type;
 }

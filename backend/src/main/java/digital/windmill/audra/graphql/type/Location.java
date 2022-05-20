@@ -14,5 +14,7 @@ import java.util.UUID;
 public class Location implements Node {
 
     private UUID id;
-    private String name;
+    private String country;
+    private String details;
+    private String flagIcon;
 }
