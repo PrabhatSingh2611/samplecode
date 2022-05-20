@@ -16,4 +16,7 @@ type Query {
     policies(input: PoliciesInput!): PolicyConnectionPayload!
     survey(input:SurveyInput!): SurveyPayload!
     surveys(input:SurveysInput!): SurveyConnectionPayload!
+    leaveRequest(input:LeaveRequestInput!):LeaveRequestPayload!
+    leaveRequests(input:LeaveRequestsInput!): LeaveRequestConnectionPayload!
+    leaveTypes(input: LeaveTypesInput!): LeaveTypeConnectionPayload!
 }

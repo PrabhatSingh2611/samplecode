@@ -6,6 +6,7 @@ import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.LeaveRequest;
 import digital.windmill.audra.properties.ResourceProperties;
 import digital.windmill.i18n.I18nConfig;
+import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
 import graphql.kickstart.servlet.apollo.ApolloScalars;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
@@ -17,7 +18,6 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(I18nConfig.class)
-@EnableAutoConfiguration
 @EnableConfigurationProperties({ResourceProperties.class})
 public class AppConfig {
 
@@ -43,7 +43,9 @@ public class AppConfig {
     public SchemaParserDictionary schemaParserDictionary() {
         return new SchemaParserDictionary()
                 .add(Asset.class)
-                .add(LeaveRequest.class);
+                .add(LeaveRequest.class)
+                .add(LeaveTypeEndOfYearAction.class)
+                ;
     }
 
     @Bean

@@ -43,7 +43,6 @@ class EmployeeFacadeTest {
     @InjectMocks
     private EmployeeFacadeImpl facade;
 
-
     @Test
     void shouldReturnEmployeesById2(@Mock EmployeeEntity employeeEntity, @Mock Employee employee) {
         when(employeeService.findEmployeeByUuid(EMPLOYEE_UUID)).thenReturn(employeeEntity);

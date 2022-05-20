@@ -1,0 +1,32 @@
+type LeaveType implements Node {
+    id : UUID!
+    name: String!
+    days: Int!
+    endOfYearAction: LeaveTypeEndOfYearAction!
+}
+
+enum LeaveTypeEndOfYearAction {
+    MOVE
+    EXPIRE
+}
+
+type LeaveTypeConnectionPayload implements ConnectionPayload {
+    items: [LeaveType!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input LeaveTypesInput {
+    # where: LeaveTypesWhereInput!
+    pagination: PageInput
+    sort: [LeaveTypesSortEnum!] = [name_ASC]
+}
+
+enum LeaveTypesSortEnum {
+    name_DESC
+    name_ASC
+}
+
+input LeaveTypesWhereInput {
+    employee: NodeInput!
+}

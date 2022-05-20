@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Override
     public EmployeeEntity save(EmployeeEntity employeeEntity) {

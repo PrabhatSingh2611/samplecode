@@ -1,0 +1,44 @@
+query {
+    leaveRequests(input:
+    { where:{
+
+        employee:{
+            id:"48b560ab-7450-4088-b6bb-f57638ea0877"
+        }
+    }
+    }){
+        items {
+            id
+            name
+            status
+            numberOfDays
+            requestDate
+            startDate
+            endDate
+            type {
+                id
+            }
+            comment
+            employee{
+                id
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    id
+                    name
+                }
+                location{
+                    id
+                    name
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

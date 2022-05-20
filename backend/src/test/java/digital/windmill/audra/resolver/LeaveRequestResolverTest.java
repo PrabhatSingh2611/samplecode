@@ -1,22 +1,23 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.facade.LeaveRequestFacade;
-import digital.windmill.audra.graphql.resolver.leaveRequestResolver.LeaveRequestResolver;
-import digital.windmill.audra.graphql.type.Employee;
+import digital.windmill.audra.graphql.resolver.leaveRequest.LeaveRequestResolver;
 import digital.windmill.audra.graphql.type.LeaveRequest;
+import digital.windmill.audra.graphql.type.input.LeaveRequestInput;
+import digital.windmill.audra.graphql.type.input.LeaveRequestsInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
-import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -24,13 +25,6 @@ import static org.mockito.Mockito.when;
 public class LeaveRequestResolverTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final Long ID = 1L;
-    private static final String COMMENT = "PcwrDcz";
-    private static final String NAME = "v965r2h";
-    private static final Instant LOCAL_DATE = Instant.now();
-    private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
-    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
-
     @Mock
     private LeaveRequestFacade facade;
 
@@ -38,36 +32,33 @@ public class LeaveRequestResolverTest {
     private LeaveRequestResolver leaveRequestResolver;
 
     @Test
-    void shouldGetLeaveRequestById() {
-        when(facade.findLeaveRequestById(any(Long.class)))
-                .thenReturn(createLeaveRequest());
+    void shouldGetLeaveRequestByUuid(@Mock LeaveRequestInput input,
+                                     @Mock LeaveRequest leaveRequest) {
+        when(input.getId()).thenReturn(TEST_UUID);
+        when(facade.findLeaveRequestByUuid(any(UUID.class)))
+                .thenReturn(leaveRequest);
 
-        var result = leaveRequestResolver.LeaveRequest(ID);
+        var result = leaveRequestResolver.leaveRequest(input);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getId());
-        assertEquals(STATUS, result.getStatus());
-        assertEquals(COMMENT, result.getComment());
-        assertEquals(TEST_UUID, result.getEmployee().getId());
-        assertEquals(NAME, result.getEmployee().getFirstName());
+        assertSame(leaveRequest, result.getLeaveRequest());
     }
 
-    private LeaveRequest createLeaveRequest() {
-        LeaveRequest l = new LeaveRequest();
-        l.setId(TEST_UUID);
-        l.setRequestDate(LOCAL_DATE);
-        l.setEmployee(createEmployee());
-        l.setStatus(STATUS);
-        l.setComment(COMMENT);
-        return l;
+    @Test
+    void shouldGetLeaveRequests(
+            @Mock LeaveRequestsInput input,
+            @Mock LeaveRequest leaveRequest) {
+        var pagedLeaveRequests = createOneItemPage(leaveRequest);
+        when(facade.getLeaveRequests(any(LeaveRequestsInput.class))).thenReturn(pagedLeaveRequests);
+        var result = leaveRequestResolver.leaveRequests(input);
+        assertNotNull(result);
+        assertSame(leaveRequest, result.getItems().get(0));
     }
 
-    private Employee createEmployee() {
-        return Employee.builder()
-                .id(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
-                .role(ROLE)
-                .build();
+
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
+
     }
+
 }

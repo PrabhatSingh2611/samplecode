@@ -1,0 +1,7 @@
+mutation deleteLeaveRequest{
+    deleteLeaveRequest(input:{id: "493a5be9-01ba-47c6-95c1-29c230528527"}){
+        leaveRequest {
+            id
+        }
+    }
+}

@@ -1,0 +1,34 @@
+query sortedLeaveRequests($sort: [LeaveRequestsSortEnum!]!) {
+    leaveRequests(input:{
+        sort: $sort
+    }){
+        items {
+            id
+            name
+            status
+            numberOfDays
+            requestDate
+            startDate
+            endDate
+            type {
+                id
+            }
+            comment
+            employee{
+                id
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    id
+                    name
+                }
+                location{
+                    id
+                    name
+                }
+            }
+        }
+    }
+}

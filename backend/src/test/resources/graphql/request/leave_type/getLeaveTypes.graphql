@@ -1,0 +1,19 @@
+query {
+    leaveTypes(input: {
+        pagination: {}
+        sort: [name_DESC]
+    })
+    {
+        items {
+            id
+            name
+            days
+            endOfYearAction
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

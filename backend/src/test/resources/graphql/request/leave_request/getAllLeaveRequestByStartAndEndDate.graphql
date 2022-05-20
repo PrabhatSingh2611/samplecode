@@ -1,0 +1,42 @@
+query {
+    leaveRequests(input:
+    { where:{
+        startDate:"2022-02-02T13:25:34.480425Z[UTC]",
+        endDate:"2022-02-02T13:25:34.480425Z[UTC]",
+    }
+    }){
+        items {
+            id
+            name
+            status
+            numberOfDays
+            requestDate
+            startDate
+            endDate
+            type {
+                id
+            }
+            comment
+            employee{
+                id
+                firstName
+                lastName
+                role
+                birthday
+                position{
+                    id
+                    name
+                }
+                location{
+                    id
+                    name
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

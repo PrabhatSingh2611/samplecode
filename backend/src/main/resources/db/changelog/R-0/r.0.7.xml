@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.7.1" author="rshtepa">
+        <sql> CREATE TYPE END_OF_YEAR_ACTION AS ENUM ('CARRY_OVER', 'RESET'); </sql>
+    </changeSet>
+    <changeSet id="r.0.7.2" author="rshtepa">
+
+        <createTable tableName="leave_type">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)"/>
+            <column name="days" type="SMALLINT"/>
+            <column name="end_of_year_action" type="END_OF_YEAR_ACTION"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="r.0.7.3" author="schiriac">
+        <addAutoIncrement
+                          columnName="id"
+                          tableName="leave_request"/>
+
+        <addColumn tableName="leave_request">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="number_of_days" type="SMALLINT"/>
+            <column name="leave_type_id" type="INT8">
+                <constraints nullable="false" foreignKeyName="fk_leave_request2leave_type" references="leave_type(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="r.0.7.4" author="rshtepa">
+        <sql>
+        ALTER TABLE leave_request ALTER COLUMN status TYPE VARCHAR(50);
+        DROP TYPE IF EXISTS LEAVE_REQUEST_STATUS;
+        
+        CREATE TYPE LEAVE_REQUEST_STATUS AS ENUM ('NEW','APPROVED', 'DECLINED');
+        
+        UPDATE leave_request SET status = 'DECLINED' WHERE status = 'NOT_APPROVED';
+        UPDATE leave_request SET status = 'NEW' WHERE status != 'APPROVED' AND status != 'DECLINED';
+        
+        
+        ALTER TABLE leave_request ALTER COLUMN status TYPE LEAVE_REQUEST_STATUS USING (status::LEAVE_REQUEST_STATUS);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

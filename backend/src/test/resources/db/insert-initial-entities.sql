@@ -49,11 +49,11 @@ insert into announcement (id, uuid, body, created_at)
             values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c88', 'this is sample 1 announcement body', '2022-02-02T13:25:34.480425Z'),
                    (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb890', 'this is sample 2 announcement body', '2021-02-02T13:25:34.480425Z');
 
-ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
-
 INSERT INTO resource (id, uuid, outer_reference, thumbnail_id)
 VALUES
 (1, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 1);
+
+ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
 
 insert into policy (id, uuid, title, resource_id, publication_date, status, employee_id)
 values
@@ -74,3 +74,17 @@ insert into option (id, uuid, text_i18n, question_id)
 ALTER SEQUENCE survey_id_seq RESTART WITH 1000;
 ALTER SEQUENCE question_id_seq RESTART WITH 1000;
 ALTER SEQUENCE option_id_seq RESTART WITH 1000;
+
+INSERT INTO leave_type(id, uuid, name, days, end_of_year_action)
+VALUES
+(1, 'b8931b95-ed2b-4f66-a211-776007dc56c1', 'SICK_LEAVE', 10, 'CARRY_OVER' ),
+(2, 'd94911c5-fe2b-4b32-86de-a68feb39a08b', 'REGULAR', 5, 'CARRY_OVER' );
+
+
+INSERT INTO leave_request (id, uuid,name,  employee_id, request_date, status, start_date, end_date, leave_type_id, number_of_days, comment)
+ VALUES
+(1, '493a5be9-01ba-47c6-95c1-29c230528527',  'Leave request 1', 1,'2022-02-02T13:25:34.480425Z', 'NEW', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 4, 'this is comment'),
+(2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2399', 'Leave request 2', 2,'2022-02-02T13:25:34.480425Z', 'APPROVED', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 10, 'this is comment 2');
+
+
+ALTER SEQUENCE leave_request_id_seq RESTART WITH 3;

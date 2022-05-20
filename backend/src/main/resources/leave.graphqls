@@ -1,7 +1,0 @@
-type LeaveRequest implements Node {
-    id: UUID!
-    requestDate: ZonedDateTime
-    employee: Employee!
-    status: String
-    comment: String
-}

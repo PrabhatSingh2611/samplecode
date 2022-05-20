@@ -1,7 +1,7 @@
 {
-  "data":{
-    "vacancies":{
-      "items":[
+  "data": {
+    "vacancies": {
+      "items": [
         {
           "id":"493a5be9-01ba-47c6-95c1-29c230528525",
           "position":{
@@ -25,7 +25,7 @@
               "name":"london"
             }
           },
-          "priority":"LOW"
+          "priority": "LOW"
         },
         {
           "id":"d7a9e9c8-fa56-47ce-b036-678e6f7f2398",
@@ -50,14 +50,14 @@
               "name":"london"
             }
           },
-          "priority":"NORMAL"
+          "priority": "NORMAL"
         }
       ],
-      "pageInfo":{
-        "currentPage":0,
-        "totalPages":1
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
       },
-      "totalItems":2
+      "totalItems": 2
     }
   }
 }

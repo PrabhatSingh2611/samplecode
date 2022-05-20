@@ -1,0 +1,79 @@
+type LeaveRequest implements Node{
+    id : UUID!
+    name: String!
+    numberOfDays: Int!
+    requestDate : ZonedDateTime!
+    startDate : ZonedDateTime!
+    endDate : ZonedDateTime!
+    employee : Employee!
+    status : LeaveRequestStatus!
+    comment : String
+    type: LeaveType!
+}
+
+enum LeaveRequestStatus {
+    NEW, APPROVED, DECLINED
+}
+
+type LeaveRequestConnectionPayload implements ConnectionPayload {
+    items: [LeaveRequest!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input CreateLeaveRequestInput{
+    name: String!
+    numberOfDays: Int!
+    period: StrictDatePeriod!
+    employee : NodeInput
+    status : LeaveRequestStatus!
+    comment : String
+    type: NodeInput!
+}
+
+input PatchLeaveRequestInput{
+    id : UUID!
+    name: String
+    numberOfDays: Int
+    period: StrictDatePeriod
+    employee : NodeInput
+    status : LeaveRequestStatus
+    comment : String
+    type: NodeInput
+}
+
+input DeleteLeaveRequestInput{
+    id: UUID!
+}
+
+type LeaveRequestPayload {
+    leaveRequest: LeaveRequest
+}
+
+type DeleteLeaveRequestPayload {
+    leaveRequest: Node!
+}
+
+input LeaveRequestsInput {
+    where: LeaveRequestWhereInput
+    pagination: PageInput
+    sort: [LeaveRequestsSortEnum!]! = [pending_DESC, startDate_DESC]
+}
+
+input LeaveRequestInput {
+    id: UUID!
+}
+
+input LeaveRequestWhereInput {
+    employee: NodeInput
+    approver: NodeInput
+    startDate: ZonedDateTime
+    endDate: ZonedDateTime
+}
+
+enum LeaveRequestsSortEnum {
+    pending_DESC
+    pending_ASC
+    startDate_DESC
+    startDate_ASC
+}

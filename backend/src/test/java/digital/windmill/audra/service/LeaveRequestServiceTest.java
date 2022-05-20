@@ -1,14 +1,10 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
-import digital.windmill.audra.dao.entity.enums.EmployeeRole;
-import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.dao.repository.LeaveRequestRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.mapper.LeaveRequestMapper;
-import digital.windmill.audra.graphql.type.Employee;
-import digital.windmill.audra.graphql.type.LeaveRequest;
+import digital.windmill.audra.graphql.type.input.LeaveRequestWhereInput;
+import digital.windmill.audra.graphql.type.input.LeaveRequestsInput;
 import digital.windmill.audra.service.impl.LeaveRequestServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,93 +12,81 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LeaveRequestServiceTest {
 
+    private static final UUID TEST_UUID = UUID.randomUUID();
+    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
     @Mock
     private LeaveRequestRepository leaveRequestRepository;
-    @Mock
-    private LeaveRequestMapper leaveRequestMapper;
 
     @InjectMocks
     private LeaveRequestServiceImpl leaveRequestService;
 
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final String TEXT = "BuA1VXU";
-    private static final Long ID = 1L;
-    private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
-    private static final EmployeeRole ROLE = EmployeeRole.EMPLOYEE;
-    private final static Instant INSTANT_DATE = Instant.now();
-    private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
-    private static final String NAME = "Name";
 
     @Test
-    void shouldFindByIdMapped() {
-        when(leaveRequestRepository.findById(any(Long.class))).thenReturn(createLeaveRequestEntity());
-        when(leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(any(LeaveRequestEntity.class))).thenReturn(createLeaveRequest());
-        var result = leaveRequestService.findLeaveRequestById(ID);
+    void shouldFindByIdMapped(@Mock LeaveRequestEntity leaveRequestEntity) {
+        when(leaveRequestRepository.findLeaveRequestByUuid(any(UUID.class))).thenReturn(Optional.of(leaveRequestEntity));
+        var result = leaveRequestService.findLeaveRequestByUuid(TEST_UUID);
 
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getEmployee().getId());
-        assertEquals(INSTANT_DATE, result.getRequestDate());
-        assertEquals(TEXT, result.getComment());
-        assertEquals(STATUS, result.getStatus());
+        assertSame(leaveRequestEntity, result);
     }
 
     @Test
-    void shouldThrowDataNotFoundWhenUuidIsNull() {
-        when(leaveRequestRepository.findById(any(Long.class)))
-                .thenThrow(new DataNotFoundException("location not found for :" + ID));
-        Assertions.assertThrows(DataNotFoundException.class, () -> leaveRequestService.findLeaveRequestById(ID));
+    void shouldThrowDataNotFoundException() {
+        Assertions.assertThrows(DataNotFoundException.class, () -> leaveRequestService.findLeaveRequestByUuid(TEST_UUID));
     }
 
-    private LeaveRequest createLeaveRequest() {
-        LeaveRequest l = new LeaveRequest();
-        l.setRequestDate(INSTANT_DATE);
-        l.setComment(TEXT);
-        l.setStatus(STATUS);
-        l.setEmployee(createEmployee());
-        return l;
+    @Test
+    void shouldReturnAllLeaveRequests(@Mock LeaveRequestsInput input,
+                                      @Mock LeaveRequestEntity announcementEntity) {
+        var leaveRequestEntityPage = createOneItemPage(announcementEntity);
+        when(input.getWhere()).thenReturn(LeaveRequestWhereInput
+                .builder()
+                .startDate(ZONED_DATE_TIME)
+                .endDate(ZONED_DATE_TIME)
+                .build());
+        when(leaveRequestRepository.findAll((Specification<LeaveRequestEntity>) any(), any(PageRequest.class)))
+                .thenReturn(leaveRequestEntityPage);
+        var result = leaveRequestService.findAllLeaveRequests(input);
+        assertNotNull(result);
+        assertSame(leaveRequestEntityPage, result);
     }
 
-    private Employee createEmployee() {
-        return Employee.builder()
-                .id(TEST_UUID)
-                .id(TEST_UUID)
-                .birthday(ZONED_DATE_TIME)
-                .firstName(TEXT)
-                .lastName(TEXT)
-                .build();
+    @Test
+    void shouldSaveOrUpdateLeaveRequest(@Mock LeaveRequestEntity leaveRequestEntity) {
+        when(leaveRequestRepository.save(any(LeaveRequestEntity.class))).thenReturn(leaveRequestEntity);
+        var result = leaveRequestService.createOrPatchLeaveRequest(leaveRequestEntity);
+        assertNotNull(result);
+        assertSame(leaveRequestEntity, result);
     }
 
-    private Optional<LeaveRequestEntity> createLeaveRequestEntity() {
-        LeaveRequestEntity l = new LeaveRequestEntity();
-        l.setId(ID);
-        l.setRequestDate(INSTANT_DATE);
-        l.setComment(TEXT);
-        l.setStatus(STATUS);
-        l.setEmployee(createEmployeeEntity());
-        return Optional.of(l);
+    @Test
+    void shouldDeleteAnnouncement(@Mock LeaveRequestEntity leaveRequestEntity) {
+        var result = leaveRequestService.deleteLeaveRequest(leaveRequestEntity);
+        assertNotNull(result);
+        assertSame(leaveRequestEntity, result);
     }
 
-    private EmployeeEntity createEmployeeEntity() {
-        EmployeeEntity e = new EmployeeEntity();
-        e.setId(1L);
-        e.setFirstName(NAME);
-        e.setLastName(NAME);
-        e.setUuid(TEST_UUID);
-        e.setRole(EmployeeRole.EMPLOYEE);
-        return e;
+    private <T> Page<T> createOneItemPage(T item) {
+
+        return new PageImpl<>(List.of(item));
+
     }
 }

@@ -14,7 +14,9 @@ spring:
     properties:
       hibernate:
         enable-lazy-load-no-trans: false
+    show-sql: false
   liquibase:
+    #    enabled: false
     change-log: "classpath:/db/changelog/changelog-master.xml"
     database-change-log-lock-table: "DATABASECHANGELOGLOCK"
     database-change-log-table: "DATABASECHANGELOG"
@@ -54,6 +56,9 @@ management:
 logging:
   level:
     root: "warn"
+    org:
+      springframework:
+        web: "warn"
 
 graphql:
   servlet:

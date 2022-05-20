@@ -1,0 +1,31 @@
+{
+  "data": {
+    "patchLeaveRequest": {
+      "leaveRequest": {
+        "id": "493a5be9-01ba-47c6-95c1-29c230528527",
+        "name": "Leave request 4",
+        "status": "NEW",
+        "numberOfDays": 4,
+        "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
+        "endDate": "2022-02-02T13:25:34.480425Z[UTC]",
+        "type": { "id": "b8931b95-ed2b-4f66-a211-776007dc56c1"},
+        "comment": "this is comment 4",
+        "employee": {
+          "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
+          "firstName": "Jacob",
+          "lastName": "Morris",
+          "role": "ADMIN",
+          "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
+          },
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "name": "london"
+          }
+        }
+      }
+    }
+  }
+}
