@@ -3,8 +3,8 @@ import { action } from '@storybook/addon-actions';
 import React from 'react';
 import WImageCard from './index';
 import WBox from '../../components/box';
-import WIconButton from '../../components/icon-button';
-import WIconify from '../../components/iconify';
+import WIconButton from '../../components/button';
+import WIcon from '../../components/icon';
 
 const meta: Meta = {
   title: 'Widgets/ImageCard',
@@ -36,7 +36,7 @@ const Template: Story = (args) => {
         }}
         actions={
           <WIconButton color="inherit">
-            <WIconify icon="eva:more-vertical-fill" width={20} height={20} />
+            <WIcon {...args} name="close" />
           </WIconButton>
         }
         onClick={action('OnClick')}/>

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import WIconButton from '../icon-button';
+import WIconButton from '../button';
 import WDrawer, { WDrawerProps } from '../drawer';
 import WBox from '../box';
 import WTypography from '../typography';

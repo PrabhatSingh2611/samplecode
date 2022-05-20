@@ -1,11 +1,11 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import WIconButton from './index';
-import WIconify from '../iconify';
+import WButtonGroup from './index';
+import WButton from '../button';
 
 const meta: Meta = {
-  title: 'MUI/Inputs/IconButton',
-  component: WIconButton,
+  title: 'MUI/Inputs/ButtonGroup',
+  component: WButtonGroup,
   argTypes: {
     children: {
       control: {
@@ -20,16 +20,25 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => {
+const Template: Story = args => {
   return (
-    <WIconButton {...args}>
-      <WIconify icon={'eva:close-fill'} width={20} height={20} />
-    </WIconButton>
+    <WButtonGroup {...args} aria-label="outlined primary button group" sx={{mx: 'auto'}}>
+      <WButton>One</WButton>
+      <WButton>Two</WButton>
+      <WButton>Three</WButton>
+    </WButtonGroup>
   );
-};
+}
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  size: "medium",
+  color: "primary",
+  variant: "contained",
+  orientation: "horizontal",
+  fullWidth: true,
+  disabled: false,
+};

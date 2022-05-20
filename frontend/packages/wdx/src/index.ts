@@ -44,11 +44,9 @@ export {
 export { default as WAlert, WAlertProps } from './components/alert';
 export { default as WBadge, WBadgeProps } from './components/badge';
 export { default as WBox, WBoxProps } from './components/box';
-export {
-  default as WBreadcrumbs,
-  WBreadcrumbsProps,
-} from './components/breadcrumbs';
-export { default as WButton, WButtonProps } from './components/button';
+export { default as WBreadcrumbs, WBreadcrumbsProps } from './components/breadcrumbs';
+export { default as WButton, WButtonBase, WIconButton, WLoadingButton, WButtonProps, WButtonBaseProps, WIconButtonProps, WLoadingButtonProps } from './components/button';
+export { default as WButtonGroup, WButtonGroupProps } from './components/button-group';
 export { default as WBlockContent } from './components/upload/block-content';
 export {
   default as WCard,
@@ -92,10 +90,6 @@ export {
 } from './components/form';
 export { default as WGrid, WGridProps } from './components/grid';
 export { default as WIcon, WIconProps } from './components/icon';
-export {
-  default as WIconButton,
-  WIconButtonProps,
-} from './components/icon-button';
 export { default as WIconofy, WIconifyProps } from './components/iconify';
 export { default as WImage, WImageRato } from './components/image';
 export { default as WLink, WLinkProps } from './components/link';

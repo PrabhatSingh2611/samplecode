@@ -5,6 +5,7 @@ import Avatar from './Avatar';
 import Badge from './Badge';
 import Breadcrumbs from './Breadcrumbs';
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 import Card from './Card';
 import Checkbox from './Checkbox';
 import Chip from './Chip';
@@ -34,6 +35,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Badge(),
     Breadcrumbs(theme),
     Button(theme),
+    ButtonGroup(theme),
     Card(theme),
     Checkbox(theme),
     Chip(theme),
