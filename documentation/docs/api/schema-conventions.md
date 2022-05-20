@@ -207,7 +207,7 @@ type PageInfo {
 
 type UserConnectionPayload implements ConnectionPayload {
   items: [User!]! # If can't implement like this than remove ConnectionPayload.items
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalItems: Int!
 }
 ```
@@ -379,7 +379,7 @@ type PageInfo {
 
 type UserConnectionPayload implements ConnectionPayload {
   items: [User!]! # If can't implement like this than remove ConnectionPayload.items
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalItems: Int!
 }
 ```

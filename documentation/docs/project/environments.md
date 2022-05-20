@@ -30,30 +30,36 @@ import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } fro
 
 ### Develop #1
 
-- Status: 🚧 **UNDER CONSTRUCTION**
+- Status: ✅ **ACTIVE**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
 - URL (_FrontEnd_): <ExternalLink url="https://dev-audra-1.dev.topazdigital.cloud"/>
-- Jenkinks (_FrontEnd_): N/A
+- Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/audra-front-1-3/"/>
+- URL (_API Schema_): <ExternalLink url="https://audra-service-1.dev.topazdigital.cloud/graphiql"/> 🚧 **UNDER CONSTRUCTION**
+- URI (_API_): <ExternalLink url="https://audra-service-1.dev.topazdigital.cloud/graphql"/> 🚧 **UNDER CONSTRUCTION**
 - Owner: <TeamLelekaMore/>
 - Develop #1 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
 
 ### Develop #2
 
-- Status: 🚧 **UNDER CONSTRUCTION**
+- Status: ✅ **ACTIVE**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
 - URL (_FrontEnd_): <ExternalLink url="https://dev-audra-2.dev.topazdigital.cloud"/>
-- Jenkinks (_FrontEnd_): N/A
+- Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/audra-front-1-3/"/>
+- URL (_API Schema_): <ExternalLink url="https://audra-service-2.dev.topazdigital.cloud/graphiql"/> 🚧 **UNDER CONSTRUCTION**
+- URI (_API_): <ExternalLink url="https://audra-service-2.dev.topazdigital.cloud/graphql"/> 🚧 **UNDER CONSTRUCTION**
 - Owner: <TeamAvengers/>
 - Develop #2 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
 
 ### Develop #3
 
-- Status: 🚧 **UNDER CONSTRUCTION**
+- Status: ✅ **ACTIVE**
 - Purpose: **Test unrelesed feature** _OR_ **Test feature under development**
 - URL (_FrontEnd_): <ExternalLink url="https://dev-audra-3.dev.topazdigital.cloud"/>
-- Jenkinks (_FrontEnd_): N/A
+- Jenkinks (_FrontEnd_): <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/audra-front-1-3/"/>
+- URL (_API Schema_): <ExternalLink url="https://audra-service-2.dev.topazdigital.cloud/graphiql"/> 🚧 **UNDER CONSTRUCTION**
+- URI (_API_): <ExternalLink url="https://audra-service-2.dev.topazdigital.cloud/graphql"/> 🚧 **UNDER CONSTRUCTION**
 - Owner: <TeamAchivers/>
 - Develop #3 Env deploys manually on demand: 🛵 **Manual Deploy**
 - Redeploy of all MF's _OR_ some of them should be chosen manually: **Full Deploy** _OR_ 🛵 **Incremental Manual Deploy**
