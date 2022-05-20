@@ -1,7 +1,7 @@
 import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { WDivider } from '../../index';
+import WDivider from '../../components/divider';
 import { SxProps } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 

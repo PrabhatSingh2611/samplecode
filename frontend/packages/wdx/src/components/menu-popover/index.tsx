@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { PopoverProps } from '@mui/material';
-import { WPopover } from '../../index';
+import WPopover from '../../components/popover';
 
 type Arrow =
   | 'top-left'

@@ -382,12 +382,12 @@ importers:
       '@mui/x-data-grid': ^5.8.0
       '@mui/x-date-pickers': 5.0.0-alpha.0
       '@size-limit/preset-small-lib': ^7.0.8
-      '@storybook/addon-actions': ^6.4.22
-      '@storybook/addon-essentials': ^6.4.22
+      '@storybook/addon-actions': ^6.5.3
+      '@storybook/addon-essentials': ^6.5.3
       '@storybook/addon-info': ^5.3.21
-      '@storybook/addon-links': ^6.4.22
-      '@storybook/addons': ^6.4.22
-      '@storybook/react': ^6.4.22
+      '@storybook/addon-links': ^6.5.3
+      '@storybook/addons': ^6.5.3
+      '@storybook/react': ^6.5.3
       '@types/numeral': ^2.0.2
       '@types/react': ^18.0.8
       '@types/react-dom': ^18.0.3
@@ -421,7 +421,7 @@ importers:
       '@mui/icons-material': 5.8.0_ar3vczqpton7uep5462l6mtgi4
       '@mui/lab': 5.0.0-alpha.82_ntd3uxiqn5sqwo7m25jkb7kuzi
       '@mui/material': 5.8.0_4xriuibr7qayay6mzcpq5f43me
-      '@mui/x-data-grid': 5.11.0_ege5asrjo5op7rkml6ktthkrla
+      '@mui/x-data-grid': 5.11.1_ege5asrjo5op7rkml6ktthkrla
       '@mui/x-date-pickers': 5.0.0-alpha.0_l2hhyjyj6d2pn6ntjrwckz6t74
       '@types/numeral': 2.0.2
       date-fns: 2.28.0
@@ -3784,14 +3784,15 @@ packages:
       react-is: 17.0.2
     dev: false
 
-  /@mui/x-data-grid/5.11.0_ege5asrjo5op7rkml6ktthkrla:
-    resolution: {integrity: sha512-hVGzzmtAUjTvsOKo26gWbmNQhApfelUh1SSA8BLQhMDYwaOHVrC6hBlIOJV/Qlw3sAIAdq60iAg+G9NeHEib4w==}
+  /@mui/x-data-grid/5.11.1_ege5asrjo5op7rkml6ktthkrla:
+    resolution: {integrity: sha512-Iwm3gmHciZrYsmAOrX1W2JKo2CexgGhdG7ZXvHh1rW3OD66ITSoFilThPtrb88Eg1fZI/goDWnPr6R7JXLHc5Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@mui/material': ^5.2.8
       '@mui/system': ^5.2.8
       react: ^17.0.2 || ^18.0.0
     dependencies:
+      '@babel/runtime': 7.18.0
       '@mui/material': 5.8.0_4xriuibr7qayay6mzcpq5f43me
       '@mui/utils': 5.8.0_react@18.1.0
       clsx: 1.1.1
@@ -7954,7 +7955,7 @@ packages:
     dev: true
 
   /batch/0.6.1:
-    resolution: {integrity: sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=}
+    resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
     dev: false
 
   /bcrypt-pbkdf/1.0.2:

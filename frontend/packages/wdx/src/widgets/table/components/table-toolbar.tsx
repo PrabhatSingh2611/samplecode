@@ -1,7 +1,8 @@
 import React from 'react';
 import { InputAdornment, SxProps, TextField } from '@mui/material';
 import WIconify from '../../../components/iconify';
-import { WDivider, WStack } from '../../../index';
+import WDivider from '../../../components/divider';
+import WStack from '../../../components/stack';
 import { Theme } from '@mui/material/styles';
 import { WMenuItem } from '../../../components/menu';
 

@@ -1,5 +1,5 @@
 // THEME
-export { default as ThemeProvider } from './theme/index';
+export { default as ThemeProvider } from './theme';
 
 // CORE
 export {
@@ -212,4 +212,4 @@ export {
   onSort,
   onChangeRowsPerPage,
   emptyRows,
-} from './widgets/table/utils/index';
+} from './widgets/table/utils';
