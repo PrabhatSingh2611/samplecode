@@ -12,9 +12,10 @@ import java.util.Objects;
 public class SurveySpecification {
     public static Specification<SurveyEntity> bySurveysInput(@NonNull SurveyWhereInput input) {
         return (root, query, cb) -> {
+
             var predicates = new ArrayList<Predicate>();
 
-            if (Objects.nonNull(input.getTitle())) {
+            if (Objects.nonNull(input) && Objects.nonNull(input.getTitle())) {
                 predicates.add(cb.equal(root.get("title"), input.getTitle()));
             }
             return cb.and(predicates.toArray(Predicate[]::new));

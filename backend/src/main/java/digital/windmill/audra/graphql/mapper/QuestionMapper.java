@@ -11,6 +11,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -31,6 +32,8 @@ public interface QuestionMapper {
 
     @AfterMapping
     default void addQuestionToOption(@MappingTarget QuestionEntity questionEntity) {
-        questionEntity.getOptions().forEach(option -> option.setQuestion(questionEntity));
+        if(Objects.nonNull(questionEntity.getOptions())) {
+            questionEntity.getOptions().forEach(option -> option.setQuestion(questionEntity));
+        }
     }
 }

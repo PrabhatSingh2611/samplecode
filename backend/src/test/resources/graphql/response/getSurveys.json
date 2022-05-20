@@ -25,19 +25,19 @@
           }
         },
         {
-          "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb891",
+          "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb891",
           "title": "Survey 2",
           "description": "this is sample 2 description",
           "questions": {
             "items": [
               {
-                "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb894",
+                "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb894",
                 "body": "this is sample 2 question body",
                 "type": "SINGLE",
                 "options": {
                   "items": [
                     {
-                      "uuid": "d3e573f6-9b06-46ab-b3ff-ebd7caefb896",
+                      "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb896",
                       "text": "this is sample 2 option text"
                     }
                   ]

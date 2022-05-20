@@ -8,12 +8,12 @@
             description
             questions {
                 items {
-                    uuid
+                    id
                     body
                     type
                     options {
                         items {
-                            uuid
+                            id
                             text
                         }
                     }
