@@ -29,8 +29,8 @@ public class PolicyFacadeImpl implements PolicyFacade {
     @Override
     public Policy createPolicy(CreatePolicyInput input, UUID ownerUuid) {
         var owner = employeeService.findEmployeeByUuid(ownerUuid);
-        var file = resourceService.findResourceByUuid(input.getFile().getId());
-        var policyToBeSaved = policyMapper.mapCreatePolicyInputToPolicyEntity(owner, file.get(), input);
+        var file = resourceService.findResourceByUuid(input.getFile().getId()).orElse(null);
+        var policyToBeSaved = policyMapper.mapCreatePolicyInputToPolicyEntity(owner, file, input);
         var savedPolicy = policyService.save(policyToBeSaved);
         return policyMapper.mapPolicyEntityToPolicy(savedPolicy);
     }
@@ -53,7 +53,8 @@ public class PolicyFacadeImpl implements PolicyFacade {
 
     @Override
     public Page<Policy> getPolicies(PoliciesInput input) {
-        var policiesFiltered = policyService.getPolicies(input);
-        return policiesFiltered.map(policyMapper::mapPolicyEntityToPolicy);
+        return policyService.getPolicies(input)
+                .map(policyMapper::mapPolicyEntityToPolicy);
+
     }
 }

@@ -19,8 +19,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PolicyServiceImpl implements PolicyService {
 
-    private static final Integer DEFAULT_PAGE_NUMBER = 0;
-    private static final Integer DEFAULT_PAGE_SIZE = 10;
     private PolicyRepository policyRepository;
 
     @Override
@@ -43,13 +41,13 @@ public class PolicyServiceImpl implements PolicyService {
 
     @Override
     public Page<PolicyEntity> getPolicies(PoliciesInput input) {
-        var specification = PolicySpecification.byPoliciesInput(input);
+        var specification = PolicySpecification.byPoliciesInput(input.getWhere(), input.getSort());
 
         var itemsPerPage = Optional.of(input).map(PoliciesInput::getPagination).
-                map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
+                map(PageInput::getItemsPerPage).orElse(PageInput.MAX_ITEMS_PER_PAGE);
 
         var pageNumber = Optional.of(input).map(PoliciesInput::getPagination).
-                map(PageInput::getPageNumber).orElse(DEFAULT_PAGE_NUMBER);
+                map(PageInput::getPageNumber).orElse(0);
 
         var pageable = PageRequest.of(pageNumber, itemsPerPage);
         return policyRepository.findAll(specification, pageable);
