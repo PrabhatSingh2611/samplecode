@@ -3,6 +3,7 @@ import React from 'react';
 import { WSelect } from '../..';
 import WBox from '../box';
 import { WMenuItem } from '../menu';
+import WSelect from '../select';
 import WTypography from '../typography';
 import WTextField from './index';
 

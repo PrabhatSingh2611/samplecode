@@ -1,7 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import WBox from '../box';
-import { WFormControlLabel } from '../form';
 import WIcon from '../icon';
 import WSwitch from '../switch';
 import WButton, { WButtonBase, WIconButton, WLoadingButton } from './index';
@@ -47,20 +46,13 @@ const TemplateLoadingButton: Story = args => {
 
   return (
     <WBox>
-      <WFormControlLabel
-        sx={{
-          display: 'block',
-        }}
-        control={
-          <WSwitch
-            checked={loading}
-            onChange={() => setLoading(!loading)}
-            name="loading"
-            color="primary"
-          />
-        }
-        label="Loading"
-      />
+        <WSwitch
+        checked={loading}
+        onChange={() => setLoading(!loading)}
+        name="loading"
+        color="primary"
+        />
+
       <WBox sx={{ '& > button': { m: 1 } }}>
         <WLoadingButton
           size="small"

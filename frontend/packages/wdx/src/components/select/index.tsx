@@ -5,7 +5,7 @@ import Select, { SelectProps } from "@mui/material/Select";
 export interface WSelectProps extends SelectProps {}
 
 function WSelect(props: WSelectProps): JSX.Element {
-    return <Select {...props} />;
+    return <Select {...props}/>;
 }
 
 export default WSelect;

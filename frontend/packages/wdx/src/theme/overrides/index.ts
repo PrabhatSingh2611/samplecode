@@ -26,6 +26,7 @@ import Tooltip from './Tooltip';
 import Table from './Table';
 import Alert from './Alert';
 import Select from './Select';
+import Pagination from './Pagination';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
@@ -46,6 +47,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Link(),
     List(theme),
     Menu(theme),
+    Pagination(theme),
     Paper(theme),
     Radio(theme),
     Select(),

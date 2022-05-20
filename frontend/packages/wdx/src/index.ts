@@ -112,8 +112,15 @@ export {
   WMenuItemProps,
   WMenuListProps,
 } from './components/menu';
+export {
+    default as WPagintation,
+    WPaginationItem,
+    WPaginationProps,
+    WPaginationItemProps,
+} from './components/pagination';
 export { default as WPage, WPageProps } from './components/page';
 export { default as WPaper, WPaperProps } from './components/paper';
+export { default as WPill, WPillProps } from './components/pill';
 export { default as WPopover, WPopoverProps } from './components/popover';
 export {
   default as WRadio,
@@ -122,6 +129,7 @@ export {
   WRadioGroupProps,
 } from './components/radio';
 export { default as WRejectionFiles } from './components/upload/rejection-files';
+export { default as WSelect, WSelectProps } from './components/select';
 export { default as WStack, WStackProps } from './components/stack';
 export { default as WSlider, WSliderProps } from './components/slider';
 export {
@@ -156,9 +164,7 @@ export {
   WInputLabelProps,
   WInputProps,
   WOutlinedInput,
-  WOutlinedInputProps,
-  WSelect,
-  WSelectProps,
+  WOutlinedInputProps
 } from './components/text-field';
 export { default as WTooltip, WTooltipProps } from './components/tooltip';
 export { default as WSwitch, WSwitchProps } from './components/switch';

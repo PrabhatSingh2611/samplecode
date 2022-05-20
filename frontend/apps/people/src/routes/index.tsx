@@ -1,12 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { WBox, WTypography } from 'wdx';
-
 import EmployeesList from 'features/employees/components/EmployeesList.component';
 import AuthorizationBtn from 'features/me/components/authBtn';
 import PoliciesPage from 'features/policies/containers/policies-page/policies-page.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
+import { WBox, WTypography } from 'wdx';
 
 function Routes(): JSX.Element {
     return (

@@ -1,3 +1,5 @@
+// TODO: Fix types to Theme (YD)
+// @ts-nocheck
 import { alpha, SxProps, Theme } from '@mui/material';
 import { WPillProps } from '.';
 import { ColorSchema } from '../../theme/palette';

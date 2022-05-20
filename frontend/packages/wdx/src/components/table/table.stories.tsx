@@ -5,7 +5,7 @@ import WBaseTable from '../../widgets/table/base-table.widget';
 import { TableCell } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Widgets/Data Display/Table',
+  title: 'MUI/Data Display/Table',
   component: WBaseTable,
   parameters: {
     controls: { expanded: true },
