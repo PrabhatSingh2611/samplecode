@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import React from 'react';
 import WImageCard from './index';
 import WBox from '../../components/box';
-import WIconButton from '../../components/button';
+import { WIconButton } from '../../components/button';
 import WIcon from '../../components/icon';
 
 const meta: Meta = {

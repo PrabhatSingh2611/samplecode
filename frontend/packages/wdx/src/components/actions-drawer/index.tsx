@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import WIconButton from '../button';
+import { WIconButton } from '../button';
 import WDrawer, { WDrawerProps } from '../drawer';
 import WBox from '../box';
 import WTypography from '../typography';
@@ -33,13 +33,12 @@ function WActionsDrawer({
           direction="row"
           alignItems="center"
           justifyContent="space-between"
-          sx={(theme: Theme)=>({px: 3, pt: 3, pb: 1.5, borderBottom: `1px solid ${theme.palette.divider}`})}
+          sx={(theme: Theme)=>({px: 4, py: 1.5, minHeight: '70px', borderBottom: `1px solid ${theme.palette.divider}`})}
         >
-          <WTypography variant="subtitle1" sx={{ flexGrow: 1 }}>
+          <WTypography component='div' variant="h6" sx={{ flexGrow: 1 }}>
             {title}
           </WTypography>
 
-            {/* TODO: Fix Icon */}
           <WIconButton onClick={onClose}>
             <WIcon name="close" fontSize='small' />
           </WIconButton>
