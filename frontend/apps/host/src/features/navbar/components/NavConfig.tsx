@@ -4,7 +4,6 @@ import SvgIconStyle from 'components/SvgIconStyle';
 import { EAssetsRouterLink } from 'models/assets-router-link';
 import { EPeopleRouterLink } from 'models/people-router-link';
 import { ERecruitmentRouterLink } from 'models/recruitment-router-llink';
-import { ESettingsRouterLink } from 'models/settings-router-link';
 
 const getIcon = (name: string): JSX.Element => (
     <SvgIconStyle src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
@@ -18,8 +17,6 @@ const ICONS = {
     invoice: getIcon('ic_invoice'),
     booking: getIcon('ic_booking'),
 };
-
-const settingsPeoplePath = ESettingsRouterLink.Settings + ESettingsRouterLink.People;
 
 const navConfig = [
     {
@@ -54,25 +51,22 @@ const navConfig = [
             },
             {
                 title: 'Settings',
-                path: ESettingsRouterLink.Settings,
+                path: '/',
                 icon: ICONS.user,
                 children: [
                     {
                         title: 'Positions',
-                        path: settingsPeoplePath + ESettingsRouterLink.Positions,
+                        path: EPeopleRouterLink.People + EPeopleRouterLink.Positions,
                     },
                     {
                         title: 'Asset Types',
-                        path:
-                            ESettingsRouterLink.Settings +
-                            ESettingsRouterLink.Assets +
-                            ESettingsRouterLink.Types,
+                        path: EAssetsRouterLink.Assets + EAssetsRouterLink.Types,
                     },
                     {
                         title: 'Locations',
-                        path: settingsPeoplePath + ESettingsRouterLink.Locations,
+                        path: EPeopleRouterLink.People + EPeopleRouterLink.Locations,
                     },
-                    { title: 'Admins', path: settingsPeoplePath + ESettingsRouterLink.Me },
+                    { title: 'Admins', path: EPeopleRouterLink.People + EPeopleRouterLink.Admins },
                 ],
             },
         ],

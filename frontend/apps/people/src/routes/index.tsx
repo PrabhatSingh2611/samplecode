@@ -24,7 +24,16 @@ function Routes(): JSX.Element {
                 <PageSample title="Leaves page" />
             </Route>
             <Route path={EPeopleRouterLink.Playbooks}>
-                <PageSample title="Playbooks" />
+                <PageSample title="Playbooks page" />
+            </Route>
+            <Route path={EPeopleRouterLink.Positions}>
+                <PageSample title="Positions page" />
+            </Route>
+            <Route path={EPeopleRouterLink.Locations}>
+                <PageSample title="Locations page" />
+            </Route>
+            <Route path={EPeopleRouterLink.Admins}>
+                <PageSample title="Admins page" />
             </Route>
             <Route exact={true} path="/">
                 <Redirect to={EPeopleRouterLink.Me} />
