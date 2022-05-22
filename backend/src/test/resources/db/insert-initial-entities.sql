@@ -49,9 +49,23 @@ insert into announcement (id, uuid, body, created_at)
             values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c88', 'this is sample 1 announcement body', '2022-02-02T13:25:34.480425Z'),
                    (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb890', 'this is sample 2 announcement body', '2021-02-02T13:25:34.480425Z');
 
-INSERT INTO resource (id, uuid, outer_reference, thumbnail_id)
+INSERT INTO candidate(id, uuid, vacancy_id, first_name, last_name, linkedin, attachment_uuid, status)
 VALUES
-(1, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 1);
+(1, '29e98fa1-778f-4922-980b-89e287c4e180' ,1,'Robert', 'Wilson','RobertW', 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'NEW'),
+(2, 'c5c381eb-5b4c-4d01-980c-31b842367e16' ,1,'William', 'Henry','WilliamH', '024ed048-68e9-47ca-99b8-3ee81dc70245', 'OFFER_SENT');
+
+ALTER SEQUENCE candidate_id_seq RESTART WITH 1000;
+
+INSERT INTO resource(id, uuid, outer_reference, thumbnail_id)
+VALUES
+(1, 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'ghjklalskdj', null),
+(2, '024ed048-68e9-47ca-99b8-3ee81dc70245', 'aasdfghgfsd', null),
+(3, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 3);
+
+INSERT INTO candidate_to_resources(candidate_id, resource_id)
+VALUES
+(1, 1),
+(2,2);
 
 ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
 
@@ -59,6 +73,7 @@ insert into policy (id, uuid, title, resource_id, publication_date, status, empl
 values
 (1001, '239e8741-f04d-406a-bf7d-e2feaf8f5619', 'policy_title_1', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 2),
 (1002, 'c9cfa69a-b21d-42e9-a75f-78993d6cb509', 'policy_title_2', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 1);
+
 insert into survey (id, uuid, title_i18n, description_i18n, created_at, updated_at)
             values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c89', '{"en": "Survey 1"}','{"en": "this is sample 1 description"}', '2022-02-02T13:25:34.480425Z','2022-02-02T13:25:34.480425Z'),
                    (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb891', '{"en": "Survey 2"}','{"en": "this is sample 2 description"}', '2021-02-02T13:25:34.480425Z','2021-02-02T13:25:34.480425Z');

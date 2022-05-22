@@ -1,0 +1,45 @@
+mutation {
+    createCandidate(input: {
+        vacancy: "493a5be9-01ba-47c6-95c1-29c230528525"
+        firstName:"Aman"
+        lastName:"Roy"
+        linkedIn:"AmanRoy"
+        attachments:{
+            ids: ["b5673d40-ac1f-4092-8361-80bcdc182a07"]}
+        status: NEW
+    }){
+        candidate {
+            vacancy {
+                position{
+                    id
+                    name
+                }
+                description
+                status
+                assignTo{
+                    id
+                    firstName
+                    lastName
+                    role
+                    birthday
+                    position{
+                        id
+                        name
+                    }
+                    location{
+                        id
+                        country
+                    }
+                }
+                priority
+            }
+            firstName
+            lastName
+            linkedIn
+            attachments{
+                id
+            }
+            status
+        }
+    }
+}

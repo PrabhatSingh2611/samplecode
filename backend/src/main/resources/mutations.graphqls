@@ -17,6 +17,8 @@ type Mutation {
     updateAnnouncement(input: UpdateAnnouncementInput!): AnnouncementPayload!
     deleteAnnouncement(input: DeleteAnnouncementInput!): DeleteAnnouncementPayload!
     uploadResource(resource: Upload!, thumbnail: Upload): ResourcePayload
+    createCandidate(input: CreateCandidateInput!): CandidatePayLoad!
+    patchCandidate(input: PatchCandidateInput!): CandidatePayLoad!
     createPolicy(input: CreatePolicyInput!): PolicyPayload!
     deletePolicies(input: DeletePoliciesInput!): DeletePoliciesPayload!
     archiveAsset(input: ArchiveAssetInput!): ArchiveAssetPayload!

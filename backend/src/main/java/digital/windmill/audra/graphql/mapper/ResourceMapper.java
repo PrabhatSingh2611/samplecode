@@ -9,6 +9,11 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import digital.windmill.audra.dao.entity.ResourceEntity;
+import digital.windmill.audra.graphql.type.Resource;
+
+import java.util.UUID;
+
 @Mapper(componentModel = "spring")
 public abstract class ResourceMapper {
 
@@ -36,5 +41,12 @@ public abstract class ResourceMapper {
             return null;
         }
         return StringUtils.join(urlPath, entity.getUuid());
+    }
+
+    public UUID mapToUuid(ResourceEntity resourceEntity) {
+        if (resourceEntity == null) {
+            return null;
+        }
+        return resourceEntity.getUuid();
     }
 }

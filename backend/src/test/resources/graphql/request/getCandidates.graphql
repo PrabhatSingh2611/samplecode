@@ -1,0 +1,25 @@
+{
+    candidates(input:
+    {
+    }
+    ){
+        items {
+            vacancy {
+                id
+            }
+            id
+            firstName
+            lastName
+            linkedIn
+            attachments{
+                id
+            }
+            status
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

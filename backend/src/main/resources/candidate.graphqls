@@ -1,0 +1,59 @@
+type Candidate implements Node {
+    id: UUID!
+    vacancy: Vacancy
+    firstName: String!
+    lastName: String!
+    linkedIn: String!
+    attachments: [Resource!]!
+    status: CandidateStatus!
+}
+
+enum CandidateStatus {
+    NEW
+    REJECTED
+    PASS
+    OFFER_SENT
+}
+
+input CandidateInput {
+    id: UUID!
+}
+
+type CandidatePayLoad {
+    candidate: Candidate
+}
+
+input VacancyCandidatesWhereInput {
+    vacancy: NodeInput!
+    status: [CandidateStatus!]
+}
+
+input CandidatesInput {
+    where: VacancyCandidatesWhereInput
+    pagination: PageInput
+}
+
+type CandidateConnectionPayload implements ConnectionPayload {
+    items: [Candidate!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+input CreateCandidateInput {
+    vacancy: UUID!
+    firstName: String!
+    lastName: String!
+    linkedIn: String!
+    attachments: NodesInput!
+    status: CandidateStatus!
+}
+
+input PatchCandidateInput {
+    id: UUID!
+    vacancy: UUID
+    firstName: String
+    lastName: String
+    linkedIn: String
+    attachments: NodesInput
+    status: CandidateStatus
+}

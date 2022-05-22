@@ -1,0 +1,40 @@
+{
+    candidate(input:{
+        id: "29e98fa1-778f-4922-980b-89e287c4e180"
+    }){
+        candidate {
+            id
+            vacancy {
+                position{
+                    id
+                    name
+                }
+                description
+                status
+                assignTo{
+                    id
+                    firstName
+                    lastName
+                    role
+                    birthday
+                    position{
+                        id
+                        name
+                    }
+                    location{
+                        id
+                        country
+                    }
+                }
+                priority
+            }
+            firstName
+            lastName
+            linkedIn
+            attachments{
+                id
+            }
+            status
+        }
+    }
+}

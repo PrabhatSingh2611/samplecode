@@ -1,0 +1,47 @@
+mutation {
+    patchCandidate(input: {
+        id:"29e98fa1-778f-4922-980b-89e287c4e180"
+        vacancy: "493a5be9-01ba-47c6-95c1-29c230528525"
+        firstName:"John"
+        lastName:"Jones"
+        linkedIn:"JohnJones"
+        attachments:{
+            ids:["b5673d40-ac1f-4092-8361-80bcdc182a07"] }
+        status: OFFER_SENT
+    }){
+        candidate {
+            vacancy {
+                id
+                position{
+                    id
+                    name
+                }
+                description
+                status
+                assignTo{
+                    id
+                    firstName
+                    lastName
+                    role
+                    birthday
+                    position{
+                        id
+                        name
+                    }
+                    location{
+                        id
+                        country
+                    }
+                }
+                priority
+            }
+            firstName
+            lastName
+            linkedIn
+            attachments{
+                id
+            }
+            status
+        }
+    }
+}

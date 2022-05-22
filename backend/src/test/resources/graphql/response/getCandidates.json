@@ -1,0 +1,44 @@
+{
+  "data": {
+    "candidates": {
+      "items": [
+        {
+          "vacancy": {
+            "id": "493a5be9-01ba-47c6-95c1-29c230528525"
+          },
+          "id": "29e98fa1-778f-4922-980b-89e287c4e180",
+          "firstName": "Robert",
+          "lastName": "Wilson",
+          "linkedIn": "RobertW",
+          "attachments": [
+            {
+              "id": "b5673d40-ac1f-4092-8361-80bcdc182a07"
+            }
+          ],
+          "status": "NEW"
+        },
+        {
+          "vacancy": {
+            "id": "493a5be9-01ba-47c6-95c1-29c230528525"
+          },
+          "id": "c5c381eb-5b4c-4d01-980c-31b842367e16",
+          "firstName": "William",
+          "lastName": "Henry",
+          "linkedIn": "WilliamH",
+          "attachments":[
+            {
+              "id": "024ed048-68e9-47ca-99b8-3ee81dc70245"
+            }
+          ],
+          "status": "OFFER_SENT"
+        }
+      ],
+      "pageInfo":
+      {
+        "currentPage":0,
+        "totalPages":1
+      },
+      "totalItems":2
+    }
+  }
+}

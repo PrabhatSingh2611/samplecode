@@ -1,5 +1,8 @@
 package digital.windmill.audra.graphql.type.input;
 
+import java.util.List;
+import java.util.UUID;
+
 import digital.windmill.audra.graphql.type.Nodes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

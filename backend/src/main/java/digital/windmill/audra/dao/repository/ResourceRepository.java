@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,5 +16,8 @@ public interface ResourceRepository extends JpaRepository<ResourceEntity, Long> 
 
     @Query("FROM ResourceEntity r WHERE r.uuid = :uuid")
     Optional<ResourceEntity> findByUuid(@Param("uuid") UUID uuid);
+
+    @Query("FROM ResourceEntity r WHERE r.uuid in :uuids")
+    List<ResourceEntity> findByUuids(@Param("uuids") Collection<UUID> uuids);
 
 }

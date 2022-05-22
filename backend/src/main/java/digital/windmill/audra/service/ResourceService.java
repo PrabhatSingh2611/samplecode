@@ -1,5 +1,12 @@
 package digital.windmill.audra.service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
 import digital.windmill.audra.dao.entity.ResourceEntity;
 import digital.windmill.audra.dao.repository.ResourceRepository;
 import lombok.AllArgsConstructor;
@@ -32,6 +39,10 @@ public class ResourceService {
         }
 
         return repository.save(resourceEntity);
+    }
+
+    public List<ResourceEntity> findByUuids(Collection<UUID> uuids){
+        return repository.findByUuids(uuids);
     }
 
 }
