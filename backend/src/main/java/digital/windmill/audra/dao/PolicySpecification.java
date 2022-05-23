@@ -62,8 +62,8 @@ public class PolicySpecification {
             return null;
         }
         return switch (sortItem) {
-            case publicationDate_DESC -> direction(criteriaBuilder, root.get("title"), Sort.Direction.DESC);
-            case publicationDate_ASC -> direction(criteriaBuilder, root.get("title"), Sort.Direction.ASC);
+            case publicationDate_DESC -> direction(criteriaBuilder, root.get("publicationDate"), Sort.Direction.DESC);
+            case publicationDate_ASC -> direction(criteriaBuilder, root.get("publicationDate"), Sort.Direction.ASC);
         };
     }
 }
