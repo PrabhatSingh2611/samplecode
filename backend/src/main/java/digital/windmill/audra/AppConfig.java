@@ -1,5 +1,6 @@
 package digital.windmill.audra;
 
+import digital.windmill.audra.graphql.coersing.URLScalarCoercing;
 import digital.windmill.audra.graphql.coersing.UUIDScalarCoercing;
 import digital.windmill.audra.graphql.coersing.ZonedDateTimeScalarCoercing;
 import digital.windmill.audra.graphql.type.Asset;
@@ -10,7 +11,6 @@ import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
 import graphql.kickstart.servlet.apollo.ApolloScalars;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,6 +51,15 @@ public class AppConfig {
     @Bean
     public GraphQLScalarType uploadScalar() {
         return ApolloScalars.Upload;
+    }
+
+    @Bean
+    public GraphQLScalarType getURLScalar() {
+        return GraphQLScalarType.newScalar()
+                .name("URL")
+                .description("URL")
+                .coercing(new URLScalarCoercing())
+                .build();
     }
 
 }

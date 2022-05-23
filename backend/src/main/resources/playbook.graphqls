@@ -1,0 +1,72 @@
+type Playbook implements Node {
+    id: UUID!
+    title: String!
+    image: Resource!
+    steps: [PlaybookStep!]!
+    createdAt: ZonedDateTime!
+    updatedAt: ZonedDateTime!
+}
+
+enum PlaybookSort {
+    createdAt_DESC
+    createdAt_ASC
+}
+
+type PlaybookPayload {
+    playbook: Playbook
+}
+
+input DeletePlaybookInput {
+    id: UUID!
+}
+
+input CreatePlaybookInput {
+    title: String!
+    image: ResourceInput!
+}
+
+input PlaybookInput {
+    id: UUID!
+}
+
+input PlaybooksInput {
+    where: PlaybooksWhereInput
+    pagination: PageInput
+    sort: [PlaybookSort!] = createdAt_DESC
+}
+
+input PlaybooksWhereInput {
+    title: String!
+}
+
+input UpdatePlaybookVideoInput {
+    url: URL! # FE will show only YouTube embeded videos
+    description: String!
+}
+
+input PatchPlaybookInput {
+    id: UUID!
+    title: String
+    image: ResourceInput
+}
+
+input UpdatePlaybookResourceInput {
+    resource: ResourceInput!
+}
+
+input PatchPlaybookVideoInput {
+    id: UUID!
+    url: URL
+    description: String
+}
+
+type PlaybookVideoPayload {
+    playbookVideo: PlaybookVideo
+}
+
+type DeletePlaybookPayload {
+    playbook: Node
+}
+
+
+
