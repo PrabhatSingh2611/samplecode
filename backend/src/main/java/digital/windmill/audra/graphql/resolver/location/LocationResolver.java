@@ -2,6 +2,7 @@ package digital.windmill.audra.graphql.resolver.location;
 
 import digital.windmill.audra.graphql.facade.LocationFacade;
 import digital.windmill.audra.graphql.type.ConnectionPayload;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.LocationCountry;
 import digital.windmill.audra.graphql.type.LocationPayload;
 import digital.windmill.audra.graphql.type.input.LocationInput;
@@ -25,6 +26,10 @@ public class LocationResolver implements GraphQLQueryResolver {
                 .builder()
                 .location(locationFacade.findLocationByUuid(input.getId()))
                 .build();
+    }
+
+    public ConnectionPayload<Location> locations() {
+        return ConnectionUtils.buildPayload(locationFacade.getLocations());
     }
 
     public ConnectionPayload<LocationCountry> locationCountries() {

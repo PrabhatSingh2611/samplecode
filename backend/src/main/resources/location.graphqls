@@ -29,13 +29,13 @@ type LocationPayload {
     location: Location!
 }
 
-type LocationCountry {
+type LocationCountry implements Node {
     id: UUID!
     name: String!
 }
 
 type LocationCountryConnectionPayload implements ConnectionPayload {
-    items: [Location!]!
+    items: [LocationCountry!]!
     pageInfo: PageInfo!
     totalItems: Int!
 }
