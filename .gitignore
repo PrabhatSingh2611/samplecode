@@ -51,3 +51,7 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Allure reporter results qa
+.allure
+*/allure-results
+build
