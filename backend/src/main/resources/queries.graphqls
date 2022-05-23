@@ -6,6 +6,7 @@ type Query {
     employees(input: EmployeesInput): EmployeeConnectionPayload!
     location(input: LocationInput!): LocationPayload!
     locations: LocationConnectionPayload!
+    locationCountries: LocationCountryConnectionPayload!
     vacancies(input: VacanciesInput!): VacancyConnectionPayload!
     vacancy(input: VacancyInput!): VacancyPayload!
     objective(input: ObjectiveInput!): ObjectivePayload!

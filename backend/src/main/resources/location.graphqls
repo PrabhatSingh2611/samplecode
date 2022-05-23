@@ -28,3 +28,14 @@ type LocationConnectionPayload implements ConnectionPayload {
 type LocationPayload {
     location: Location!
 }
+
+type LocationCountry {
+    id: UUID!
+    name: String!
+}
+
+type LocationCountryConnectionPayload implements ConnectionPayload {
+    items: [Location!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
