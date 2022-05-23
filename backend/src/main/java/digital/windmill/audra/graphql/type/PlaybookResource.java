@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaybookResource {
+public class PlaybookResource implements Node{
 
     private UUID id;
     private Resource resource;

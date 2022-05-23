@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaybookTaskList {
+public class PlaybookTaskList implements Node{
     private UUID id;
     private List<PlaybookTask> tasks;
 }
