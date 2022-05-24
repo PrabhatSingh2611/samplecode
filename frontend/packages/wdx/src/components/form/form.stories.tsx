@@ -45,7 +45,8 @@ const TemplateForm: Story = () => {
           gap={2}
           sx={{ width: 500 }}
         >
-          <WForm.Control>
+          <WForm.Control component="fieldset">
+            <WForm.Label component="legend">Label</WForm.Label>
             <WForm.Input name="input" label="My input" />
           </WForm.Control>
 

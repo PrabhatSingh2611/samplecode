@@ -21,7 +21,9 @@ export default function ControlLabel(theme: Theme):any {
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          color: theme.palette.text.disabled
+          ...theme.typography.subtitle1,
+          color: theme.palette.text.primary,
+          marginBottom: theme.spacing(2)
         }
       }
     }

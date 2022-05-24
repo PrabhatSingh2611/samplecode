@@ -11,15 +11,18 @@ export { default as initialize } from './core/initialize';
 // HOOKS
 // TODO: Fix Property 'breakpoints' does not exist on type 'Theme' (AU)
 // export * from './hooks/useResponsive';
+export * from './hooks/useTheme';
 
 // UTILS
 export * from './utils/getFontValue';
 export * from './utils/cssStyles';
+export * from './utils/styledComponent';
 
 // TYPES
 export { WUploadProps, WCustomFile } from './components/upload/type';
 export { WGallery } from './widgets/image-card/types';
 export { TIcons } from './components/icon/icons.type';
+export { WSxProps } from './types';
 
 // COMPONENTS
 export {
@@ -205,11 +208,6 @@ export {
 export { default as WTabs, WTab, WTabContext, WTabList, WTabPanel, WTabScrollButton, WTabsProps, WTabProps, WTabContextProps, WTabListProps, WTabPanelProps, WTabScrollButtonProps } from './components/tabs';
 export { default as ToggleButtonGroup, WToggleButton, WToggleButtonGroupProps, WToggleButtonProps  } from './components/toggle-button';
 
-export * as Yup from 'yup';
-
-export { default as WTableMoreMenu } from './widgets/table/components/table-more-menu';
-export { default as WTableToolBar } from './widgets/table/components/table-toolbar';
-
 // WIDGETS
 export {
   default as WEmptyState,
@@ -224,6 +222,8 @@ export {
   Order,
   IHeaderCellData,
 } from './widgets/table/base-table.widget';
+export { default as WTableMoreMenu } from './widgets/table/components/table-more-menu';
+export { default as WTableToolBar } from './widgets/table/components/table-toolbar';
 export {
   onSelectRow,
   IOnSelectRow,
@@ -232,3 +232,6 @@ export {
   onChangeRowsPerPage,
   emptyRows,
 } from './widgets/table/utils';
+
+// OTHER
+export * as Yup from 'yup';

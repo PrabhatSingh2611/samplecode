@@ -18,15 +18,15 @@ export function WTabList(props: WTabListProps):JSX.Element {
     return <TabList {...props} />;
 }
 
+export interface WTabPanelProps extends TabPanelProps {}
+export function WTabPanel(props: WTabPanelProps):JSX.Element {
+    return <TabPanel {...props} />;
+}
+
 // Base Components
 export interface WTabProps extends TabProps {}
 export function WTab(props: WTabProps):JSX.Element {
     return <Tab {...props} />;
-}
-
-export interface WTabPanelProps extends TabPanelProps {}
-export function WTabPanel(props: WTabPanelProps):JSX.Element {
-    return <TabPanel {...props} />;
 }
 
 export interface WTabScrollButtonProps extends TabScrollButtonProps {}
