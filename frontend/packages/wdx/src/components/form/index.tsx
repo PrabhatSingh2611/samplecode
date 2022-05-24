@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  useForm,
+  DeepPartial,
   FormProvider,
   UnpackNestedValue,
-  DeepPartial,
+  useForm,
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -21,6 +21,7 @@ import WFormInput from './fields/Input';
 import WFormSelect from './fields/Select';
 import WFormUploadSingle from './fields/UploadSingle';
 import WFormCheckbox from './fields/Checkbox';
+import WFormDatePicker from './fields/FormDatePicker';
 
 import WFormSubmit from './fields/Submit';
 
@@ -96,5 +97,6 @@ WForm.Input = WFormInput;
 WForm.Select = WFormSelect;
 WForm.UploadSingle = WFormUploadSingle;
 WForm.Checkbox = WFormCheckbox;
+WForm.DatePicker = WFormDatePicker;
 
 export default WForm;

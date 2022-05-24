@@ -44,9 +44,24 @@ export {
 export { default as WAlert, WAlertProps } from './components/alert';
 export { default as WBadge, WBadgeProps } from './components/badge';
 export { default as WBox, WBoxProps } from './components/box';
-export { default as WBreadcrumbs, WBreadcrumbsProps } from './components/breadcrumbs';
-export { default as WButton, WButtonBase, WIconButton, WLoadingButton, WButtonProps, WButtonBaseProps, WIconButtonProps, WLoadingButtonProps } from './components/button';
-export { default as WButtonGroup, WButtonGroupProps } from './components/button-group';
+export {
+  default as WBreadcrumbs,
+  WBreadcrumbsProps,
+} from './components/breadcrumbs';
+export {
+  default as WButton,
+  WButtonBase,
+  WIconButton,
+  WLoadingButton,
+  WButtonProps,
+  WButtonBaseProps,
+  WIconButtonProps,
+  WLoadingButtonProps,
+} from './components/button';
+export {
+  default as WButtonGroup,
+  WButtonGroupProps,
+} from './components/button-group';
 export { default as WBlockContent } from './components/upload/block-content';
 export {
   default as WCard,
@@ -88,6 +103,7 @@ export {
   WFormHelperTextProps,
   WFormLabelProps,
 } from './components/form';
+export { WFieldError } from './components/form/fields/FormDatePicker';
 export { default as WGrid, WGridProps } from './components/grid';
 export { default as WIcon, WIconProps } from './components/icon';
 export { default as WIconofy, WIconifyProps } from './components/iconify';
@@ -113,10 +129,10 @@ export {
   WMenuListProps,
 } from './components/menu';
 export {
-    default as WPagintation,
-    WPaginationItem,
-    WPaginationProps,
-    WPaginationItemProps,
+  default as WPagintation,
+  WPaginationItem,
+  WPaginationProps,
+  WPaginationItemProps,
 } from './components/pagination';
 export { default as WPage, WPageProps } from './components/page';
 export { default as WPaper, WPaperProps } from './components/paper';
@@ -164,7 +180,7 @@ export {
   WInputLabelProps,
   WInputProps,
   WOutlinedInput,
-  WOutlinedInputProps
+  WOutlinedInputProps,
 } from './components/text-field';
 export { default as WSwitch, WSwitchProps } from './components/switch';
 export { default as WTooltip, WTooltipProps } from './components/tooltip';

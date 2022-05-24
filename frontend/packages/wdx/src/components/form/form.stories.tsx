@@ -4,6 +4,8 @@ import WBox from '../box';
 import * as Yup from 'yup';
 import WForm from './index';
 import { WMenuItem } from '../menu';
+import { WAdapterDateFns, WLocalizationProvider } from '../date-picker';
+import WTextField from '../text-field';
 
 const meta: Meta = {
   title: 'MUI/Inputs/Form',
@@ -20,10 +22,12 @@ const TemplateForm: Story = () => {
     input: Yup.string().required('Name is required'),
     animal: Yup.string().required('Animal is required'),
     upload: Yup.object().required('Upload is required'),
+    date: Yup.date().required('Date is required'),
   });
 
   const defaultValues = {
     input: 'initial value',
+    date: null,
   };
 
   return (
@@ -46,7 +50,12 @@ const TemplateForm: Story = () => {
           </WForm.Control>
 
           <WForm.Control>
-            <WForm.Input multiline={true} name="textarea" label="My textarea" minRows={3} />
+            <WForm.Input
+              multiline={true}
+              name="textarea"
+              label="My textarea"
+              minRows={3}
+            />
           </WForm.Control>
 
           <WForm.Control>
@@ -66,6 +75,26 @@ const TemplateForm: Story = () => {
               control={<WForm.Checkbox name="checkbox" />}
               label="Label 1"
             />
+          </WForm.Control>
+
+          <WForm.Control>
+            <WLocalizationProvider dateAdapter={WAdapterDateFns}>
+              <WForm.DatePicker
+                name="date"
+                label="Date label"
+                renderInput={(params, error) => {
+                  return (
+                    <WTextField
+                      {...params}
+                      fullWidth
+                      margin="normal"
+                      error={!!error}
+                      helperText={error?.message}
+                    />
+                  );
+                }}
+              />
+            </WLocalizationProvider>
           </WForm.Control>
         </WBox>
       </WForm>
