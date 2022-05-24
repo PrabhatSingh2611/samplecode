@@ -57,9 +57,9 @@ function WForm<T>({
 
 export interface WFormControlProps extends FormControlProps {}
 
-function WFormControl(props: WFormControlProps) {
+const WFormControl: typeof FormControl = (props: FormControlProps) => {
   return <FormControl {...props} />;
-}
+};
 
 export interface WFormHelperTextProps extends FormHelperTextProps {}
 
@@ -80,8 +80,7 @@ function WFormGroup(props: WFormGroupProps) {
 }
 
 export interface WFormLabelProps extends FormLabelProps {}
-
-function WFormLabel(props: WFormLabelProps) {
+const WFormLabel: typeof FormLabel = (props: FormLabelProps) => {
   return <FormLabel {...props} />;
 }
 

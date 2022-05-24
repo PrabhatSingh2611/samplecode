@@ -166,8 +166,9 @@ export {
   WOutlinedInput,
   WOutlinedInputProps
 } from './components/text-field';
-export { default as WTooltip, WTooltipProps } from './components/tooltip';
 export { default as WSwitch, WSwitchProps } from './components/switch';
+export { default as WTooltip, WTooltipProps } from './components/tooltip';
+export { default as WTansitionCollapse, WTansitionFade, WTansitionGrow, WTansitionSlide, WTansitionZoom, WCollapseProps, WFadeProps, WGrowProps, WSlideProps, WZoomProps  } from './components/transition';
 export {
   default as WTypography,
   WTypographyProps,
@@ -185,6 +186,8 @@ export {
   WTableRowProps,
   WTableSortLabelProps,
 } from './components/table';
+export { default as WTabs, WTab, WTabContext, WTabList, WTabPanel, WTabScrollButton, WTabsProps, WTabProps, WTabContextProps, WTabListProps, WTabPanelProps, WTabScrollButtonProps } from './components/tabs';
+export { default as ToggleButtonGroup, WToggleButton, WToggleButtonGroupProps, WToggleButtonProps  } from './components/toggle-button';
 
 export * as Yup from 'yup';
 

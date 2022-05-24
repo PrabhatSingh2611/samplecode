@@ -6,7 +6,6 @@ import WTableRow from './components/table-row';
 import WTableFooter from './components/table-footer';
 import WTableToolBar from './components/table-toolbar';
 import WTableSelectedActions from './components/table-selected-actions';
-import WTabs, { IWTab } from '../../components/tabs';
 import WCard from '../../components/card';
 
 export enum Order {
@@ -45,9 +44,6 @@ export interface IWBaseTableProps<T extends { id: string }> {
   order?: Order;
   orderBy?: string;
   selected?: string[];
-  tabs?: IWTab[];
-  activeTab?: string;
-  setActiveTab?: (id: string) => void;
   isCheckable?: boolean;
   renderBodyRow?: (rowData: T) => React.ReactNode;
   renderFooter?: React.ReactNode;
@@ -66,9 +62,6 @@ export default function WBaseTable<T extends { id: string }>({
   orderBy,
   rowsPerPage,
   selected,
-  tabs,
-  activeTab,
-  setActiveTab,
   headerData,
   bodyData,
   isCheckable = true,
@@ -138,10 +131,6 @@ export default function WBaseTable<T extends { id: string }>({
       : undefined;
   return (
     <WCard>
-      {!!tabs?.length && !!setActiveTab && (
-        <WTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={tabs} />
-      )}
-
       {!!toolbarElements && <WTableToolBar toolbarElements={toolbarElements} />}
       <WTable.Container sx={{ minWidth: 800, position: 'relative' }}>
         {!!selectActions && !!selected?.length && (

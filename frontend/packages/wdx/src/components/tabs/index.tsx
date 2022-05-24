@@ -1,48 +1,42 @@
-import React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import WDivider from '../../components/divider';
-import { SxProps } from '@mui/material';
-import { Theme } from '@mui/material/styles';
+import React from "react";
 
-export interface IWTab {
-  id: string;
-  label: string;
+import Tabs, { TabsProps } from '@mui/material/Tabs';
+import Tab, { TabProps } from '@mui/material/Tab';
+import TabContext, { TabContextProps } from '@mui/lab/TabContext';
+import TabList, { TabListProps } from '@mui/lab/TabList';
+import TabPanel, { TabPanelProps } from '@mui/lab/TabPanel';
+import TabScrollButton, { TabScrollButtonProps } from '@mui/material/TabScrollButton';
+
+// Experimental Components
+export interface WTabContextProps extends TabContextProps {}
+export function WTabContext(props: WTabContextProps):JSX.Element {
+    return <TabContext {...props} />;
 }
 
-export interface IWTabs {
-  activeTab?: string;
-  onTabChange: (id: string) => void;
-  tabs: IWTab[];
-  allowScrollButtonsMobile?: boolean;
-  variant?: string;
-  scrollButtons?: any;
-  sx?: SxProps<Theme>;
+export interface WTabListProps extends TabListProps {}
+export function WTabList(props: WTabListProps):JSX.Element {
+    return <TabList {...props} />;
 }
 
-export default function WTabs({
-  activeTab,
-  onTabChange,
-  tabs,
-  sx,
-}: IWTabs): JSX.Element {
-  return (
-    <>
-      <Tabs
-        value={activeTab}
-        // TODO :Fix type (vs)
-        onChange={(_: any, value: string): void => {
-          onTabChange(value);
-        }}
-        sx={{ px: 2, bgcolor: 'background.neutral', ...sx }}
-      >
-        {tabs.map(
-          (tab: any): JSX.Element => (
-            <Tab disableRipple key={tab.id} label={tab.label} value={tab.id} />
-          )
-        )}
-      </Tabs>
-      <WDivider />
-    </>
-  );
+// Base Components
+export interface WTabProps extends TabProps {}
+export function WTab(props: WTabProps):JSX.Element {
+    return <Tab {...props} />;
 }
+
+export interface WTabPanelProps extends TabPanelProps {}
+export function WTabPanel(props: WTabPanelProps):JSX.Element {
+    return <TabPanel {...props} />;
+}
+
+export interface WTabScrollButtonProps extends TabScrollButtonProps {}
+export function WTabScrollButton(props: WTabScrollButtonProps):JSX.Element {
+    return <TabScrollButton {...props} />;
+}
+
+export interface WTabsProps extends TabsProps {}
+function WTabs(props: WTabsProps):JSX.Element {
+    return <Tabs {...props} />;
+}
+
+export default WTabs;

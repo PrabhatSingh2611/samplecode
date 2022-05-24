@@ -15,15 +15,18 @@ import Fab from './Fab';
 import Input from './Input';
 import Link from './Link';
 import List from './List';
+import LoadingButton from './LoadingButton';
 import Menu from './Menu';
 import Paper from './Paper';
 import Radio from './Radio';
 import Slider from './Slider';
 import Steper from './Stepper';
 import Switch from './Switch';
-import Typography from './Typography';
-import Tooltip from './Tooltip';
 import Table from './Table';
+import Tabs from './Tabs';
+import ToggleButton from './ToggleButton';
+import Tooltip from './Tooltip';
+import Typography from './Typography';
 import Alert from './Alert';
 import Select from './Select';
 import Pagination from './Pagination';
@@ -46,6 +49,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Input(theme),
     Link(),
     List(theme),
+    LoadingButton(),
     Menu(theme),
     Pagination(theme),
     Paper(theme),
@@ -54,8 +58,10 @@ export default function ComponentsOverrides(theme: Theme) {
     Slider(theme),
     Steper(theme),
     Switch(theme),
-    Typography(theme),
     Table(theme),
-    Tooltip(theme)
+    Tabs(theme),
+    ToggleButton(theme),
+    Tooltip(theme),
+    Typography(theme),
   );
 }
