@@ -46,8 +46,13 @@ public class AssetFacadeImpl implements AssetFacade {
     @Transactional
     public Asset createAsset(CreateAssetInput input) {
         var assetTypeEntity = assetTypeService.findAssetByUuid(input.getType().getId());
-        var employeeEntity = employeeService.findEmployeeByUuid(input.getAssignee().getId());
-        var locationEntity = locationService.findLocationByUuid(input.getLocation().getId());
+
+        var employeeEntity = input.getAssignee() != null ?
+                employeeService.findEmployeeByUuid(input.getAssignee().getId()) : null;
+
+        var locationEntity = input.getLocation() != null ?
+                locationService.findLocationByUuid(input.getLocation().getId()) : null;
+
         var entity = assetMapper.mapAssetCreateInputToAssetEntity(input, assetTypeEntity, employeeEntity, locationEntity);
         return assetMapper.mapAssetEntityToAsset(assetService.createOrUpdateAsset(entity));
     }
@@ -59,12 +64,11 @@ public class AssetFacadeImpl implements AssetFacade {
         var assetTypeEntity = assetTypeService.findAssetByUuid(input.getType().getId());
 
         var employeeEntity = input.getAssignee() != null ?
-                employeeService.findEmployeeByUuid(input.getAssignee().getId())
-                : null;
+                employeeService.findEmployeeByUuid(input.getAssignee().getId()) : null;
 
         var locationEntity = input.getLocation() != null ?
-                locationService.findLocationByUuid(input.getLocation().getId())
-                : null;
+                locationService.findLocationByUuid(input.getLocation().getId()) : null;
+
         var entity = assetMapper.mapAssetUpdateInputToAssetEntity(assetEntity,input, assetTypeEntity, employeeEntity, locationEntity);
         return assetMapper.mapAssetEntityToAsset(assetService.createOrUpdateAsset(entity));
     }

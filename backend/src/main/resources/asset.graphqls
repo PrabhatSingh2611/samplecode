@@ -62,7 +62,7 @@ input CreateAssetInput {
     serialNumber: String!
     type: NodeInput!
     assignee: NodeInput
-    location:NodeInput
+    location: NodeInput
     tagNumber: String
     waybillDate: ZonedDateTime!
     actionOnName: String
