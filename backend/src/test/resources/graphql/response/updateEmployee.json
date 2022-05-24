@@ -1,0 +1,22 @@
+{
+  "data": {
+    "updateEmployee": {
+      "item": {
+        "firstName": "Herman",
+        "lastName": "Blair",
+        "birthday": "2002-05-12T14:12:18.480425Z[UTC]",
+        "role": "EMPLOYEE",
+        "position": {
+          "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+          "name": "manager"
+        },
+        "location": null,
+        "reportingManager": {
+          "id": "b48db556-3bd0-479e-9f1a-231be9636887",
+          "firstName": "Danielle",
+          "lastName": "Kelly"
+        }
+      }
+    }
+  }
+}

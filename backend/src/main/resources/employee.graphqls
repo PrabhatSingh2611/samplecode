@@ -27,6 +27,17 @@ input CreateEmployeeInput {
     location: UUID
 }
 
+input UpdateEmployeeInput {
+	id: UUID!
+	firstName: String!
+	lastName: String!
+	birthday: ZonedDateTime!
+	role: EmployeeRole!
+	reportingManager: UUID
+	position: UUID
+	location: UUID
+}
+
 enum EmployeeRole {
     ADMIN
     EMPLOYEE

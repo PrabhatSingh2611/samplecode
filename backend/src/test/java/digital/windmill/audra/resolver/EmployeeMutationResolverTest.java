@@ -4,6 +4,7 @@ import digital.windmill.audra.graphql.facade.EmployeeFacade;
 import digital.windmill.audra.graphql.resolver.employee.EmployeeMutationResolver;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
+import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,18 @@ class EmployeeMutationResolverTest {
                 .thenReturn(employee);
 
         var result = employeeMutationResolver.createEmployee(input);
+        assertNotNull(result);
+        assertSame(employee, result.getItem());
+    }
+
+    @Test
+    void shouldUpdateEmployee(@Mock UpdateEmployeeInput input,
+                              @Mock Employee employee) {
+
+        when(employeeFacade.updateEmployee(any(UpdateEmployeeInput.class)))
+                .thenReturn(employee);
+
+        var result = employeeMutationResolver.updateEmployee(input);
         assertNotNull(result);
         assertSame(employee, result.getItem());
     }

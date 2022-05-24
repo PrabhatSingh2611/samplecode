@@ -10,44 +10,19 @@ import org.mapstruct.MappingTarget;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", imports = {UUID.class})
 public interface LocationMapper {
 
-
-    /**
-     * @param entity it takes LocationEntity as Input
-     * @return mapped to Location
-     */
     @Mapping(target = "id", source = "uuid")
     Location mapLocationEntityToLocation(LocationEntity entity);
 
-
-    /**
-     * @param input it takes CreateLocationInput as Input
-     * @return mapped to LocationEntity
-     */
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "uuid", expression = "java(generateUUID())")
+    @Mapping(target = "uuid", expression = "java(UUID.randomUUID())")
     @Mapping(target = "country", source = "input.country")
     LocationEntity mapCreateLocationInputToLocationEntity(CreateLocationInput input);
 
-    default UUID generateUUID() {
-        return UUID.randomUUID();
-    }
-
-    /**
-     * Maps Location To LocationEntity
-     *
-     * @param locationEntity Location
-     * @return mapped Location
-     */
-    LocationEntity mapLocationToLocationEntity(LocationEntity locationEntity);
-
-    /**
-     * @param input
-     * @param updatedLocationEntity
-     * @return
-     */
     @Mapping(target = "id", ignore = true)
-    LocationEntity mapLocationToLocationEntityUpdate(UpdateLocationInput input, @MappingTarget LocationEntity updatedLocationEntity);
+    LocationEntity mapLocationToLocationEntityUpdate(UpdateLocationInput input,
+                                                     @MappingTarget LocationEntity updatedLocationEntity);
+
 }
