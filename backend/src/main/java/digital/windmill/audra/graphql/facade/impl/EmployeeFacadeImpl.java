@@ -5,6 +5,7 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
+import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.LocationService;
@@ -37,6 +38,7 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     }
 
     @Override
+    @Transactional
     public Employee createEmployee(CreateEmployeeInput input) {
         var employeeEntity = employeeMapper.mapEmployeeInputToEmployeeEntity(
                 input,
@@ -45,5 +47,18 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
                 locationService.findLocationByUuid(input.getLocation()));
         var savedEmployeeEntity = employeeService.save(employeeEntity);
         return employeeMapper.mapEmployeeEntityToEmployee(savedEmployeeEntity);
+    }
+
+    @Override
+    @Transactional
+    public Employee updateEmployee(UpdateEmployeeInput input) {
+        var employeeEntity = employeeMapper.mapUpdateEmployeeInputToEmployeeEntity(
+                input,
+                employeeService.findEmployeeByUuid(input.getId()),
+                employeeService.findEmployeeByUuid(input.getReportingManager()),
+                employeePositionService.findEmployeePositionByUuid(input.getPosition()),
+                locationService.findLocationByUuid(input.getLocation()));
+        var updatedEmployeeEntity = employeeService.save(employeeEntity);
+        return employeeMapper.mapEmployeeEntityToEmployee(updatedEmployeeEntity);
     }
 }

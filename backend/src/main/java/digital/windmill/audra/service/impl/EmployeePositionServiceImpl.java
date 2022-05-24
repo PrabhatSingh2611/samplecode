@@ -28,6 +28,7 @@ public class EmployeePositionServiceImpl implements EmployeePositionService {
 
     @Override
     public EmployeePositionEntity findEmployeePositionByUuid(UUID uuid) {
+        if (uuid == null) return null;
         return employeePositionRepository.findByUuid(uuid)
                 .orElseThrow(() -> new DataNotFoundException("Employee Position not found for : " + uuid.toString()));
     }

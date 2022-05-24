@@ -8,6 +8,7 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
+import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.LocationService;
@@ -86,6 +87,29 @@ class EmployeeFacadeTest {
         when(locationService.findLocationByUuid(input.getLocation())).thenReturn(locationEntity);
 
         var actualResult = facade.createEmployee(input);
+
+        assertEquals(employee, actualResult);
+    }
+
+    @Test
+    void shouldUpdateEmployee(@Mock UpdateEmployeeInput input,
+                              @Mock EmployeeEntity employeeEntity,
+                              @Mock EmployeePositionEntity employeePositionEntity,
+                              @Mock LocationEntity locationEntity,
+                              @Mock Employee employee) {
+
+
+        when(employeeMapper.mapUpdateEmployeeInputToEmployeeEntity(eq(input), any(EmployeeEntity.class), any(EmployeeEntity.class), any(EmployeePositionEntity.class), any(LocationEntity.class)))
+                .thenReturn(employeeEntity);
+        when(employeeService.save(employeeEntity)).thenReturn(employeeEntity);
+        when(employeeMapper.mapEmployeeEntityToEmployee(employeeEntity)).thenReturn(employee);
+
+        when(employeeService.findEmployeeByUuid(input.getId())).thenReturn(employeeEntity);
+        when(employeeService.findEmployeeByUuid(input.getReportingManager())).thenReturn(employeeEntity);
+        when(employeePositionService.findEmployeePositionByUuid(input.getPosition())).thenReturn(employeePositionEntity);
+        when(locationService.findLocationByUuid(input.getLocation())).thenReturn(locationEntity);
+
+        var actualResult = facade.updateEmployee(input);
 
         assertEquals(employee, actualResult);
     }

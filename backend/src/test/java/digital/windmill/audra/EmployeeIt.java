@@ -37,4 +37,15 @@ class EmployeeIt extends AbstractIntegrationTest {
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
 
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldUpdateEmployee() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/updateEmployee.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/updateEmployee.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
 }

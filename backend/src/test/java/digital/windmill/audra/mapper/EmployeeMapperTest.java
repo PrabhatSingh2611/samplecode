@@ -7,8 +7,11 @@ import digital.windmill.audra.dao.entity.enums.EmployeeRole;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
+import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
+import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
+import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,105 +39,146 @@ public class EmployeeMapperTest {
     DateTimeMapper dateTimeMapper;
     @Mock
     EmployeePositionMapper employeePositionMapper;
+    @Mock
+    LocationMapper locationMapper;
 
-    private static final UUID TEST_UUID = UUID.fromString("40aab8f6-271b-42de-867b-e65cc31dc90f");
-    private static final Long ID = 22L;
-    private static final String NAME = "9AMj3X";
+    private static final UUID EMPLOYEE_UUID = UUID.randomUUID();
+    private static final UUID LOCATION_UUID = UUID.randomUUID();
+    private static final UUID POSITION_UUID = UUID.randomUUID();
+    private static final UUID REPORTING_MANAGER_UUID = UUID.randomUUID();
+    private static final String NAME = "name";
+    private static final String FIRST_NAME = "first";
+    private static final String LAST_NAME = "last";
     private static final EmployeeRole ROLE = EmployeeRole.ADMIN;
-    private static final ZoneId zone = ZoneId.systemDefault();
-    private final static ZonedDateTime DATE_TIME = ZonedDateTime.of(2020, 2, 12, 7, 55, 20, 100, zone);
-    private final static Instant LOCAL_DATE = DATE_TIME.toInstant();
+    private static final ZoneId ZONE_ID = ZoneId.systemDefault();
+    private final static ZonedDateTime BIRTH_DATE = ZonedDateTime.of(2020, 2, 12, 7, 55, 20, 100, ZONE_ID);
+    private final static Instant BIRTH_INSTANT = BIRTH_DATE.toInstant();
 
     @Test
     void shouldMapEmployeeEntityToEmployee() {
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
-                .thenReturn(createPosition());
-        when(dateTimeMapper.map(any(Instant.class))).thenReturn(DATE_TIME);
+                .thenReturn(buildPosition());
+        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
+                .thenReturn(buildLocation());
+        when(dateTimeMapper.map(any(Instant.class))).thenReturn(BIRTH_DATE);
 
-        var actual = mapper.mapEmployeeEntityToEmployee(createEmployeeEntity());
+        var actual = mapper.mapEmployeeEntityToEmployee(buildEmployeeEntity());
         assertAll(
-                () -> assertEquals(TEST_UUID, actual.getId()),
+                () -> assertEquals(EMPLOYEE_UUID, actual.getId()),
                 () -> assertEquals(NAME, actual.getFirstName()),
                 () -> assertEquals(NAME, actual.getLastName()),
-                () -> assertEquals(NAME, actual.getPosition().getName()),
-                () -> assertEquals(NAME, actual.getLocation().getCountry()),
-                () -> assertEquals(DATE_TIME, actual.getBirthday())
+                () -> assertEquals(BIRTH_DATE, actual.getBirthday()),
+                () -> assertEquals(POSITION_UUID, actual.getPosition().getId()),
+                () -> assertEquals(LOCATION_UUID, actual.getLocation().getId())
         );
     }
 
     @Test
     void shouldMapEmployeeInputToEmployeeEntity() {
-        when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(LOCAL_DATE);
+        when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(BIRTH_INSTANT);
         var result = mapper.mapEmployeeInputToEmployeeEntity(
-                createCreateEmployeeInput(),
-                createEmployeeEntity(),
-                createEmployeePositionEntity(),
-                createLocationEntity());
+                buildCreateEmployeeInput(),
+                buildEmployeeEntity(),
+                buildEmployeePositionEntity(),
+                buildLocationEntity());
 
         assertNotNull(result);
         assertAll(
-                () -> assertEquals(NAME, result.getFirstName()),
-                () -> assertEquals(NAME, result.getLocation().getCountry()),
-                () -> assertEquals(NAME, result.getPosition().getName()),
-                () -> assertEquals(LOCAL_DATE, result.getBirthday())
-
+                () -> assertEquals(FIRST_NAME, result.getFirstName()),
+                () -> assertEquals(LAST_NAME, result.getLastName()),
+                () -> assertEquals(ROLE, result.getRole()),
+                () -> assertEquals(BIRTH_INSTANT, result.getBirthday()),
+                () -> assertEquals(LOCATION_UUID, result.getLocation().getUuid()),
+                () -> assertEquals(POSITION_UUID, result.getPosition().getUuid())
         );
 
     }
 
-    private EmployeePosition createPosition() {
+    @Test
+    void shouldMapUpdateEmployeeInputToEmployeeEntity() {
+        when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(BIRTH_INSTANT);
+        var result = mapper.mapUpdateEmployeeInputToEmployeeEntity(
+                buildUpdateEmployeeInput(),
+                buildEmployeeEntity(),
+                buildEmployeeEntity(),
+                buildEmployeePositionEntity(),
+                buildLocationEntity());
+
+        assertNotNull(result);
+        assertAll(
+                () -> assertEquals(EMPLOYEE_UUID, result.getUuid()),
+                () -> assertEquals(FIRST_NAME, result.getFirstName()),
+                () -> assertEquals(LAST_NAME, result.getLastName()),
+                () -> assertEquals(ROLE, result.getRole()),
+                () -> assertEquals(BIRTH_INSTANT, result.getBirthday()),
+                () -> assertEquals(LOCATION_UUID, result.getLocation().getUuid()),
+                () -> assertEquals(POSITION_UUID, result.getPosition().getUuid())
+        );
+
+    }
+
+    private EmployeePosition buildPosition() {
         return EmployeePosition.builder()
-                .id(TEST_UUID)
-                .name(NAME)
+                .id(POSITION_UUID)
                 .build();
     }
 
-    private EmployeePositionEntity createEmployeePositionEntity() {
+    private EmployeePositionEntity buildEmployeePositionEntity() {
         return EmployeePositionEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
+                .uuid(POSITION_UUID)
                 .build();
     }
 
-    private CreateEmployeeInput createCreateEmployeeInput() {
+    private CreateEmployeeInput buildCreateEmployeeInput() {
         return CreateEmployeeInput.builder()
-                .location(TEST_UUID)
-                .position(TEST_UUID)
-                .reportingManager(TEST_UUID)
-                .firstName(NAME)
-                .lastName(NAME)
+                .location(LOCATION_UUID)
+                .position(POSITION_UUID)
+                .reportingManager(REPORTING_MANAGER_UUID)
+                .firstName(FIRST_NAME)
+                .lastName(LAST_NAME)
                 .role(ROLE)
-                .birthday(DATE_TIME)
+                .birthday(BIRTH_DATE)
                 .build();
     }
 
-    private EmployeeEntity createEmployeeEntity() {
+    private UpdateEmployeeInput buildUpdateEmployeeInput() {
+        return UpdateEmployeeInput.builder()
+                .location(LOCATION_UUID)
+                .position(POSITION_UUID)
+                .reportingManager(REPORTING_MANAGER_UUID)
+                .firstName(FIRST_NAME)
+                .lastName(LAST_NAME)
+                .role(ROLE)
+                .birthday(BIRTH_DATE)
+                .build();
+    }
+
+    private EmployeeEntity buildEmployeeEntity() {
         EmployeeEntity e = new EmployeeEntity();
-        e.setUuid(TEST_UUID);
+        e.setUuid(EMPLOYEE_UUID);
         e.setFirstName(NAME);
         e.setLastName(NAME);
-        e.setBirthday(LOCAL_DATE);
-        e.setId(ID);
-        e.setPosition(createPositionEntity());
-        e.setLocation(createLocationEntity());
-
-        return e;
-
-    }
-
-    private LocationEntity createLocationEntity() {
-        LocationEntity e = new LocationEntity();
-        e.setId(ID);
-        e.setCountry(NAME);
+        e.setBirthday(BIRTH_INSTANT);
+        e.setPosition(buildPositionEntity());
+        e.setLocation(buildLocationEntity());
         return e;
     }
 
-    private EmployeePositionEntity createPositionEntity() {
+    private Location buildLocation() {
+        return Location.builder()
+                .id(LOCATION_UUID)
+                .build();
+    }
+
+    private LocationEntity buildLocationEntity() {
+        return LocationEntity.builder()
+                .uuid(LOCATION_UUID)
+                .build();
+    }
+
+    private EmployeePositionEntity buildPositionEntity() {
         return EmployeePositionEntity.builder()
-                .id(ID)
-                .uuid(TEST_UUID)
-                .name(NAME)
+                .uuid(POSITION_UUID)
                 .build();
     }
 }
