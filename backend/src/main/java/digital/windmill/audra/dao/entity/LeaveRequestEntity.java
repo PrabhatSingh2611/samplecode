@@ -32,10 +32,6 @@ public class LeaveRequestEntity {
     private Long id;
     @Column(name = "uuid")
     private UUID uuid;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "number_of_days")
-    private Long numberOfDays;
     @OneToOne
     @JoinColumn(name = "employee_id")
     private EmployeeEntity employee;

@@ -96,10 +96,10 @@ VALUES
 (2, 'd94911c5-fe2b-4b32-86de-a68feb39a08b', 'REGULAR', 5, 'CARRY_OVER' );
 
 
-INSERT INTO leave_request (id, uuid,name,  employee_id, request_date, status, start_date, end_date, leave_type_id, number_of_days, comment)
+INSERT INTO leave_request (id, uuid, employee_id, request_date, status, start_date, end_date, leave_type_id, comment)
  VALUES
-(1, '493a5be9-01ba-47c6-95c1-29c230528527',  'Leave request 1', 1,'2022-02-02T13:25:34.480425Z', 'NEW', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 4, 'this is comment'),
-(2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2399', 'Leave request 2', 2,'2022-02-02T13:25:34.480425Z', 'APPROVED', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 10, 'this is comment 2');
+(1, '493a5be9-01ba-47c6-95c1-29c230528527', 1,'2022-02-02T13:25:34.480425Z', 'NEW', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 'this is comment'),
+(2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2399', 2,'2022-02-02T13:25:34.480425Z', 'APPROVED', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 'this is comment 2');
 
 
 ALTER SEQUENCE leave_request_id_seq RESTART WITH 3;

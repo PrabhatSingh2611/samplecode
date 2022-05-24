@@ -15,7 +15,8 @@ import org.mapstruct.MappingTarget;
 import java.time.Instant;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class}, imports = {Instant.class})
+@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class}, 
+    imports = {Instant.class, UUID.class})
 public interface AssetMapper {
 
     /**
@@ -31,7 +32,7 @@ public interface AssetMapper {
     Asset mapAssetEntityToAsset(AssetEntity entity);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "uuid", expression = "java(generateUUID())")
+    @Mapping(target = "uuid", expression = "java(UUID.randomUUID())")
     @Mapping(target = "title", source = "input.title")
     @Mapping(target = "serialNumber", source = "input.serialNumber")
     @Mapping(target = "type", source = "assetTypeEntity")
@@ -64,11 +65,6 @@ public interface AssetMapper {
                                                  AssetTypeEntity assetTypeEntity,
                                                  EmployeeEntity employeeEntity,
                                                  LocationEntity locationEntity);
-
-    default UUID generateUUID() {
-        return UUID.randomUUID();
-    }
-
 
     @Mapping(target = "archivedDate", expression = "java(Instant.now())")
     AssetEntity mapArchiveAssetInputToAssetEntity(ArchiveAssetInput input, @MappingTarget AssetEntity assetEntity);

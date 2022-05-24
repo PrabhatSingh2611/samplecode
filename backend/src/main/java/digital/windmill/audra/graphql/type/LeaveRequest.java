@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.type;
 
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
@@ -22,6 +23,19 @@ public class LeaveRequest implements Node {
     private LeaveRequestStatus status;
     private String comment;
     private LeaveType type;
-    private String name;
     private Long numberOfDays;
+
+    public Long getNumberOfDays() {
+        return numberOfDays == null ? calcRequestDuration()
+                : numberOfDays;
+    }
+
+    private Long calcRequestDuration() {
+        if (startDate == null 
+                || endDate == null
+                || startDate.isAfter(endDate)) {
+            return 0L;
+        }
+        return ChronoUnit.DAYS.between(startDate, endDate);
+    }
 }

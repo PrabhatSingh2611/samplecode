@@ -7,7 +7,6 @@ query {
     }){
         items {
             id
-            name
             status
             numberOfDays
             requestDate

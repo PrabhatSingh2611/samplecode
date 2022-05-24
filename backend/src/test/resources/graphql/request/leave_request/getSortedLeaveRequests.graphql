@@ -4,7 +4,6 @@ query sortedLeaveRequests($sort: [LeaveRequestsSortEnum!]!) {
     }){
         items {
             id
-            name
             status
             numberOfDays
             requestDate

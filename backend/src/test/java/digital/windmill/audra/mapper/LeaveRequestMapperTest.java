@@ -37,10 +37,6 @@ class LeaveRequestMapperTest {
     private static final UUID LEAVE_REQUEST_UUID = UUID.randomUUID();
     private static final String COMMENT = "comment";
     private static final String UPDATED_COMMENT = "updated comment";
-    private static final String NAME = "Name";
-    private static final String UPDATED_NAME = "updated name";
-    private static final Long NUMBER_OF_DAYS = 1L;
-    private static final Long UPDATED_NUMBER_OF_DAYS = 2L;
     private static final LeaveRequestStatus STATUS = LeaveRequestStatus.NEW;
     private static final Instant REQUEST_DATE = Instant.now().minusSeconds(1800);
     private static final Instant START_DATE = Instant.now();
@@ -65,10 +61,8 @@ class LeaveRequestMapperTest {
 
         assertAll(
                 () -> assertEquals(LEAVE_REQUEST_UUID, result.getId()),
-                () -> assertEquals(NAME, result.getName()),
                 () -> assertEquals(COMMENT, result.getComment()),
                 () -> assertEquals(STATUS, result.getStatus()),
-                () -> assertEquals(NUMBER_OF_DAYS, result.getNumberOfDays()),
                 () -> assertEquals(toDateTime(START_DATE), result.getStartDate()),
                 () -> assertEquals(toDateTime(END_DATE), result.getEndDate())
         );
@@ -80,10 +74,8 @@ class LeaveRequestMapperTest {
         var result = mapper.mapCreateLeaveRequestInputToLeaveRequestEntity(createLeaveRequestInput());
 
         assertAll(
-                () -> assertEquals(NAME, result.getName()),
                 () -> assertEquals(COMMENT, result.getComment()),
                 () -> assertEquals(STATUS, result.getStatus()),
-                () -> assertEquals(NUMBER_OF_DAYS, result.getNumberOfDays()),
                 () -> assertEquals(START_DATE, result.getStartDate()),
                 () -> assertEquals(END_DATE, result.getEndDate())
         );
@@ -98,8 +90,6 @@ class LeaveRequestMapperTest {
     void shouldMapPatchLeaveRequestInputToLeaveRequestEntity(LeaveRequestEntity current, PatchLeaveRequestInput input, LeaveRequestEntity expected) {
         var result = mapper.map(input, current);
         assertEquals(expected.getUuid(), result.getUuid());
-        assertEquals(expected.getName(), result.getName());
-        assertEquals(expected.getNumberOfDays(), result.getNumberOfDays());
         assertEquals(expected.getStatus(), result.getStatus());
         assertEquals(expected.getComment(), result.getComment());
         assertEquals(expected.getStartDate(), result.getStartDate());
@@ -121,16 +111,14 @@ class LeaveRequestMapperTest {
                 ),
                 Arguments.of(
                     // should update field according to patch input
-                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, NAME, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW, NUMBER_OF_DAYS),
+                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW),
                     PatchLeaveRequestInput.builder()
                         .id(UUID.randomUUID())
-                        .name(UPDATED_NAME)
-                        .numberOfDays(UPDATED_NUMBER_OF_DAYS)
                         .status(LeaveRequestStatus.APPROVED)
                         .comment(UPDATED_COMMENT)
                         .period(new DatePeriod(toDateTime(UPDATED_START_DATE), toDateTime(UPDATED_END_DATE)))
                         .build(),
-                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, UPDATED_NAME, UPDATED_COMMENT, REQUEST_DATE, UPDATED_START_DATE, UPDATED_END_DATE, LeaveRequestStatus.APPROVED, UPDATED_NUMBER_OF_DAYS)
+                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, UPDATED_COMMENT, REQUEST_DATE, UPDATED_START_DATE, UPDATED_END_DATE, LeaveRequestStatus.APPROVED)
                 )
                 );
     }
@@ -138,11 +126,9 @@ class LeaveRequestMapperTest {
     private CreateLeaveRequestInput createLeaveRequestInput() {
         return CreateLeaveRequestInput
                 .builder()
-                .name(NAME)
                 .comment(COMMENT)
                 .status(STATUS)
                 .period(createDatePeriod())
-                .numberOfDays(NUMBER_OF_DAYS)
                 .build();
     }
 
@@ -151,10 +137,10 @@ class LeaveRequestMapperTest {
     }
 
     private static LeaveRequestEntity createLeaveRequestEntity() {
-        return createLeaveRequestEntity(LEAVE_REQUEST_UUID, NAME, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW, NUMBER_OF_DAYS);
+        return createLeaveRequestEntity(LEAVE_REQUEST_UUID, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW);
     }
 
-    private static LeaveRequestEntity createLeaveRequestEntity(UUID uuid, String name, String comment, Instant requestDate, Instant startDate, Instant endDate, LeaveRequestStatus status, Long numberOfDays) {
+    private static LeaveRequestEntity createLeaveRequestEntity(UUID uuid, String comment, Instant requestDate, Instant startDate, Instant endDate, LeaveRequestStatus status) {
         LeaveRequestEntity l = new LeaveRequestEntity();
         l.setUuid(uuid);
         l.setComment(comment);
@@ -162,8 +148,6 @@ class LeaveRequestMapperTest {
         l.setStartDate(startDate);
         l.setEndDate(endDate);
         l.setStatus(status);
-        l.setNumberOfDays(numberOfDays);
-        l.setName(name);
         return l;
     }
 

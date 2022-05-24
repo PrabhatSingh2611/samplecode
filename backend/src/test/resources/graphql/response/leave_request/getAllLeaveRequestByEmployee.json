@@ -4,9 +4,8 @@
       "items": [
         {
           "id": "493a5be9-01ba-47c6-95c1-29c230528527",
-          "name": "Leave request 1",
           "status": "NEW",
-          "numberOfDays": 4,
+          "numberOfDays": 0,
           "requestDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "endDate": "2022-02-02T13:25:34.480425Z[UTC]",

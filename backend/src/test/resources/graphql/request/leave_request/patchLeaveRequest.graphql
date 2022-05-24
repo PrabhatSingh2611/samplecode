@@ -1,12 +1,10 @@
 mutation{
     patchLeaveRequest(input:{
         id:"493a5be9-01ba-47c6-95c1-29c230528527"
-        name:"Leave request 4",
         status:NEW,
-        numberOfDays:4,
         period: {
             startDate:"2022-02-02T13:25:34.480425Z[UTC]",
-            endDate:"2022-02-02T13:25:34.480425Z[UTC]"
+            endDate:"2022-02-06T13:25:34.480425Z[UTC]"
         }
         type: { id: "b8931b95-ed2b-4f66-a211-776007dc56c1"},
         comment:"this is comment 4",
@@ -14,7 +12,6 @@ mutation{
     }){
         leaveRequest {
             id
-            name
             status
             numberOfDays
             startDate

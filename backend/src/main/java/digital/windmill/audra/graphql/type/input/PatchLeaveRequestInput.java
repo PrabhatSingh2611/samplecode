@@ -15,8 +15,6 @@ import java.util.UUID;
 public class PatchLeaveRequestInput {
 
     private UUID id;
-    private String name;
-    private Long numberOfDays;
     private NodeInput employee;
     private LeaveRequestStatus status;
     private String comment;

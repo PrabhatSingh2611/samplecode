@@ -19,7 +19,6 @@ public interface LeaveRequestMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(UUID.randomUUID())")
-    @Mapping(target = "name", source = "input.name")
     @Mapping(target = "status", source = "input.status")
     @Mapping(target = "type", ignore = true)
     @Mapping(target = "employee", ignore = true)
@@ -32,12 +31,10 @@ public interface LeaveRequestMapper {
     @Mapping(target = "uuid", ignore = true )
     @Mapping(target = "employee", ignore = true )
     @Mapping(target = "type", ignore = true )
-    @Mapping(target = "name", source = "input.name", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE )
     @Mapping(target = "status", source = "input.status", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "comment", source = "input.comment", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "startDate", source = "input.period.startDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "endDate", source =  "input.period.endDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "numberOfDays", source = "input.numberOfDays", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     LeaveRequestEntity map(PatchLeaveRequestInput input,
                          @MappingTarget LeaveRequestEntity leaveRequestEntity);
 

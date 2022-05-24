@@ -2,7 +2,6 @@ mutation patchLeaveRequests($input: PatchLeaveRequestInput!) {
     patchLeaveRequest(input: $input){
         leaveRequest {
             id
-            name
             status
             numberOfDays
             requestDate

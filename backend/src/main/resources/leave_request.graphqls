@@ -1,6 +1,5 @@
 type LeaveRequest implements Node{
     id : UUID!
-    name: String!
     numberOfDays: Int!
     requestDate : ZonedDateTime!
     startDate : ZonedDateTime!
@@ -22,8 +21,6 @@ type LeaveRequestConnectionPayload implements ConnectionPayload {
 }
 
 input CreateLeaveRequestInput{
-    name: String!
-    numberOfDays: Int!
     period: StrictDatePeriod!
     employee : NodeInput
     status : LeaveRequestStatus!
@@ -33,8 +30,6 @@ input CreateLeaveRequestInput{
 
 input PatchLeaveRequestInput{
     id : UUID!
-    name: String
-    numberOfDays: Int
     period: StrictDatePeriod
     employee : NodeInput
     status : LeaveRequestStatus

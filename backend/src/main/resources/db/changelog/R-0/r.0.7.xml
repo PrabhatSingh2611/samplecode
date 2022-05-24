@@ -51,4 +51,8 @@
         ALTER TABLE leave_request ALTER COLUMN status TYPE LEAVE_REQUEST_STATUS USING (status::LEAVE_REQUEST_STATUS);
         </sql>
     </changeSet>
+    <changeSet id="r.0.7.5" author="rshtepa"> 
+        <dropColumn tableName="leave_request" columnName="name"/>
+        <dropColumn tableName="leave_request" columnName="number_of_days"/>
+    </changeSet>
 </databaseChangeLog>

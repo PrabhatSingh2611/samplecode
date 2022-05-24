@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreateLeaveRequestInput {
 
-    private String name;
-    private Long numberOfDays;
     private NodeInput employee;
     private LeaveRequestStatus status;
     private String comment;
