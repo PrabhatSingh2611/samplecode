@@ -1,6 +1,6 @@
 query {
     policies(
-        input: { where: { query: "policy_title_1" }, sort: publicationDate_DESC }
+        input: { where: { query: "Title_1" }, sort: publicationDate_DESC }
     ) {
         items {
             id

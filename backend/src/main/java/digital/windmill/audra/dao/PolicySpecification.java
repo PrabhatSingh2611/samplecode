@@ -54,7 +54,7 @@ public class PolicySpecification {
     }
 
     private static Specification<PolicyEntity> byQuery(@NonNull String queryString) {
-        return (root, query, cb) -> cb.like(root.get("title"), "%" + queryString + "%");
+        return (root, query, cb) -> cb.like(cb.lower(root.get("title")), "%" + queryString.toLowerCase() + "%");
     }
 
     private static Order prepareOrder(Root<PolicyEntity> root, CriteriaBuilder criteriaBuilder, PolicySort sortItem) {
