@@ -54,6 +54,7 @@ export interface IWBaseTableProps<T extends { id: string }> {
   setOrder?: (order: Order) => void;
   selectActions?: React.ReactNode;
   moreMenuActions?: TMoreMenuActions;
+  emptyRowsHeight?: number;
 }
 
 export default function WBaseTable<T extends { id: string }>({
@@ -77,6 +78,7 @@ export default function WBaseTable<T extends { id: string }>({
   renderBodyRow,
   selectActions,
   moreMenuActions,
+  emptyRowsHeight = 54,
 }: IWBaseTableProps<T>): JSX.Element {
   const [dense, setDense] = useState(false);
   const onChangeDense = (_: ChangeEvent<HTMLInputElement>, value: boolean) =>
@@ -100,7 +102,7 @@ export default function WBaseTable<T extends { id: string }>({
     return setSelected([]);
   };
 
-  const denseHeight = dense ? 34 : 54;
+  const denseHeight = dense ? 34 : emptyRowsHeight;
   const tableSize = dense ? 'small' : 'medium';
   const onRowSelect =
     selected !== undefined && setSelected
@@ -124,7 +126,7 @@ export default function WBaseTable<T extends { id: string }>({
 
   const emptyRowsCount = emptyRows(rowsPerPage, bodyData.length);
   const onSortHandler =
-    orderBy && setOrderBy && setOrder && order
+    orderBy && setOrder && order
       ? (id: string): void => {
           onSort({ id, orderBy, setOrderBy, setOrder, order });
         }
@@ -148,9 +150,10 @@ export default function WBaseTable<T extends { id: string }>({
           />
         )}
         <WTable size={tableSize}>
+          {/*TODO: Add posibility to disablec lick on any header cell (VS)*/}
           <WTableHead
             headerData={headerData}
-            rowCount={headerData.length}
+            rowCount={rowsPerPage}
             isCheckable={isCheckable}
             onSortHandler={(value: IHeaderCellData) => {
               onSortHandler?.(value.id);

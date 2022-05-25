@@ -14,7 +14,7 @@ export default function EmployeesList(): JSX.Element {
         <>
             {data?.employees.items.map((employee) => {
                 return (
-                    <WBox key={employee.uuid}>
+                    <WBox key={employee.id}>
                         {employee.firstName} - Position: {employee.position?.name || 'none'}
                         <WButton
                             onClick={(): Employee[] =>
@@ -31,7 +31,7 @@ export default function EmployeesList(): JSX.Element {
                 {selectedEmployees.length ? (
                     <>
                         {selectedEmployees.map((employee) => (
-                            <WBox key={employee.uuid}>{employee.firstName}</WBox>
+                            <WBox key={employee.id}>{employee.firstName}</WBox>
                         ))}
                     </>
                 ) : (

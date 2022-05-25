@@ -1,0 +1,7 @@
+mutation deletePolicyForPoliciesList($input: DeletePoliciesInput!) {
+    deletePolicies(input: $input) {
+        policies {
+            ids
+        }
+    }
+}

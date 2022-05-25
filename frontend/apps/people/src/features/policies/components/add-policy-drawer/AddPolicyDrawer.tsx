@@ -9,9 +9,13 @@ import {
     useIsAddPolicyDrawerOpened,
 } from 'features/policies/hooks/api-policies.hooks';
 
-export default function AddPolicyDrawer(): JSX.Element {
+interface IAddPolicyDrawer {
+    refetchPolicies: () => void;
+}
+
+export default function AddPolicyDrawer({ refetchPolicies }: IAddPolicyDrawer): JSX.Element {
     const [isOpened, setIsOpened] = useIsAddPolicyDrawerOpened();
-    const [createPolicy] = useCreatePolicy();
+    const [createPolicy] = useCreatePolicy(refetchPolicies);
 
     const onFormSubmit = (values: IAddPolicyFormValues): void => {
         createPolicy(values);

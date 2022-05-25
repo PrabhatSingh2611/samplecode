@@ -8,22 +8,18 @@ import WImage from '../../components/image';
 import WBox from '../../components/box';
 import { styled } from '@mui/material/styles';
 import { WGallery } from './types';
-import { fDate } from '../../utils/formatTime';
+import { formatDate } from '../../utils/formatDate';
 import cssStyles from '../../utils/cssStyles';
 
 export interface WImageCardProps {
   image: WGallery;
-  actions: JSX.Element
+  actions: JSX.Element;
   onClick: () => void;
 }
 
-function WImageCard({
-  image,
-  actions,
-  onClick,
-}: WImageCardProps): JSX.Element {
+function WImageCard({ image, actions, onClick }: WImageCardProps): JSX.Element {
   const { imageUrl, title, postAt } = image;
-  const WCaptionStyle = styled(WCardContent)(({ theme }):any => ({
+  const WCaptionStyle = styled(WCardContent)(({ theme }): any => ({
     ...cssStyles().bgBlur({ blur: 2, color: theme.palette.grey[900] }),
     bottom: 0,
     width: '100%',
@@ -47,13 +43,15 @@ function WImageCard({
       />
 
       <WCaptionStyle>
-        <WBox component={'div'} sx={{maxWidth: "80%"}}>
-          <WTypography variant="subtitle1" noWrap={true}>{title}</WTypography>
+        <WBox component={'div'} sx={{ maxWidth: '80%' }}>
+          <WTypography variant="subtitle1" noWrap={true}>
+            {title}
+          </WTypography>
           <WTypography variant="body2" sx={{ opacity: 0.72 }}>
-            {fDate(postAt)}
+            {formatDate(postAt)}
           </WTypography>
         </WBox>
-        <WBox component={'div'} sx={{display: 'flex', alignItems: 'center'}}>
+        <WBox component={'div'} sx={{ display: 'flex', alignItems: 'center' }}>
           {actions}
         </WBox>
       </WCaptionStyle>

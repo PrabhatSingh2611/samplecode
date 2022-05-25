@@ -70,7 +70,7 @@ export function WTableHead({
             key={headCellData.id}
             align={headCellData.align || AlignTableCell.LEFT}
             sortDirection={orderBy === headCellData.id ? order : false}
-            sx={{ width: headCellData.width, minWidth: headCellData.minWidth }}
+            sx={{ width: headCellData.width, minWidth: headCellData.minWidth, ...headCellData.sx }}
           >
             {onSortHandler ? (
               <WTableHead.TableSort

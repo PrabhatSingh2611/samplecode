@@ -36,7 +36,7 @@ export interface IOnSort {
   orderBy: string;
   order: Order;
   setOrder: (order: Order) => void;
-  setOrderBy: (orderBy: string) => void;
+  setOrderBy?: (orderBy: string) => void;
 }
 
 export const onSort = ({
@@ -49,7 +49,7 @@ export const onSort = ({
   const isAsc = orderBy === id && order === Order.ASC;
   if (id !== '') {
     setOrder(isAsc ? Order.DESC : Order.ASC);
-    setOrderBy(id);
+    setOrderBy?.(id);
   }
 };
 

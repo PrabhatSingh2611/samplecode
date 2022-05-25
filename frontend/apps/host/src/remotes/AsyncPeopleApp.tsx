@@ -18,6 +18,7 @@ const PeopleApp = React.memo(function PeopleApp({
     const unmountRef = useRef<(() => void) | null>(null);
     const [state, setState] = useState<ImportState | null>(null);
     const history = useHistory();
+    const searchParams = history.location.search;
 
     useLayoutEffect(() => {
         setState(ImportState.LOADING);
@@ -30,11 +31,10 @@ const PeopleApp = React.memo(function PeopleApp({
                     EPeopleRouterLink.People,
                     false,
                 );
-
                 unmountRef.current = mount({
                     element: ref.current!,
                     inIsolation: false,
-                    initialEntry: relativePathname,
+                    initialEntry: relativePathname + searchParams,
                 });
                 setState(ImportState.SUCCESS);
             })

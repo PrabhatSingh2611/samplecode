@@ -6,7 +6,7 @@ import { WBox, WTypography, WButton } from 'wdx';
 import EmployeesList from 'features/employees/components/EmployeesList.component';
 import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/leave-request-drawer.component';
 import AuthorizationBtn from 'features/me/components/authBtn';
-import PoliciesPage from 'features/policies/containers/policies-page/policies-page.container';
+import PoliciesPage from 'features/policies/containers/policies-page/PoliciesPage.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
 
 function Routes(): JSX.Element {

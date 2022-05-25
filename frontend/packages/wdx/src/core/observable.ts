@@ -51,10 +51,10 @@ export default class Observable<T = any> {
 
   private _schema!: Object;
 
-    constructor(namespace: string, schema: Object) {
-        this.namespace = namespace;
-        this.schema = schema;
-    }
+  constructor(namespace: string, schema: Object) {
+    this.namespace = namespace;
+    this.schema = schema;
+  }
 
   set namespace(namespace: string) {
     this._namespace = namespace;

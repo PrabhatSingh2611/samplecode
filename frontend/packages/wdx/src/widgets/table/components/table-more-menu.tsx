@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { IconButton } from '@mui/material';
-import WMenuPopover from '../../../components/menu-popover';
 import WIconify from '../../../components/iconify';
 import { TMoreMenuActions } from '../base-table.widget';
+import WPopover from '../../../components/popover';
 
 interface IWTableMoreMenu {
   actions: TMoreMenuActions;
@@ -25,17 +25,15 @@ export default function WTableMoreMenu({
       >
         <WIconify icon={'eva:more-vertical-fill'} width={20} height={20} />
       </IconButton>
-
-      <WMenuPopover
+      <WPopover
         open={Boolean(open)}
         anchorEl={open}
         onClose={() => setOpen(null)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        arrow="right-top"
+        arrow="top-right"
         sx={{
-          mt: -1,
-          width: 160,
+          ml: 1,
           '& .MuiMenuItem-root': {
             px: 1,
             typography: 'body2',
@@ -45,7 +43,7 @@ export default function WTableMoreMenu({
         }}
       >
         {actions({ onClose: () => setOpen(null) })}
-      </WMenuPopover>
+      </WPopover>
     </>
   );
 }

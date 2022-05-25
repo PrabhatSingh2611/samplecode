@@ -11,6 +11,9 @@ export const HOST_APP_CHANNEL = {
                 pathname: {
                     type: 'string',
                 },
+                search: {
+                    type: 'string',
+                },
             },
             required: ['pathname'],
         },
@@ -30,6 +33,7 @@ export const PEOPLE_APP_CHANNEL = {
                 pathname: {
                     type: 'string',
                 },
+                search: { type: 'string' },
             },
             required: ['pathname'],
         },

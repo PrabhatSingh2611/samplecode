@@ -12,12 +12,27 @@ export { default as initialize } from './core/initialize';
 // TODO: Fix Property 'breakpoints' does not exist on type 'Theme' (AU)
 // export * from './hooks/useResponsive';
 export * from './hooks/useTheme';
+export {
+  useAddQueryParamsToUrl,
+  useGetUrlSearchParams,
+  useUpdateSearchUrlParam,
+} from './hooks/urlParams.hooks';
 
 // UTILS
+export { formatDate, deleteUtcFromDate } from './utils/formatDate';
 export * from './utils/getFontValue';
 export * from './utils/cssStyles';
 export * from './utils/styledComponent';
 export { getAvatarInitials } from './utils/getAvatarInitials';
+export {
+  castToInt,
+  castToString,
+  castToArray,
+  castToObject,
+  castToBoolean,
+} from './utils/maybeUtils';
+
+export { createDownloadLink } from './utils/downloadLinkUtil';
 
 // TYPES
 export { WUploadProps, WCustomFile } from './components/upload/type';
