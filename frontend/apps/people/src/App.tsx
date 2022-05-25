@@ -1,7 +1,7 @@
 import { HelmetProvider } from 'react-helmet-async';
 
 import { FlagsProvider } from 'flagged';
-import { ThemeProvider, WBox } from 'wdx';
+import { WAdapterDateFns, WLocalizationProvider, ThemeProvider, WBox } from 'wdx';
 
 import { ApolloProvider } from '@apollo/client';
 
@@ -21,15 +21,17 @@ function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
         <ApolloProvider client={getClient(inIsolation)}>
             <FlagsProvider>
                 <HelmetProvider>
-                    {/* TODO: Remove ThemeProvider when it will be fixed (AU) */}
-                    <ThemeProvider themeMode="light" themeDirection="ltr">
-                        <WBox className="PeopleApp">
-                            <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                                <PeopleObservables />
-                                <Routes />
-                            </Router>
-                        </WBox>
-                    </ThemeProvider>
+                    <WLocalizationProvider dateAdapter={WAdapterDateFns}>
+                        {/* TODO: Remove ThemeProvider when it will be fixed (AU) */}
+                        <ThemeProvider>
+                            <WBox className="PeopleApp">
+                                <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                                    <PeopleObservables />
+                                    <Routes />
+                                </Router>
+                            </WBox>
+                        </ThemeProvider>
+                    </WLocalizationProvider>
                 </HelmetProvider>
             </FlagsProvider>
         </ApolloProvider>

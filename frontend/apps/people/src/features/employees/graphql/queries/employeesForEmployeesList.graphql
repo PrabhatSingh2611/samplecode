@@ -28,6 +28,6 @@ fragment EmployeeForEmployeesList on Employee {
     }
     location {
         id
-        name
+        country
     }
 }

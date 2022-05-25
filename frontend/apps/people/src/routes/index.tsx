@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { WBox, WTypography, WButton } from 'wdx';
+
 import EmployeesList from 'features/employees/components/EmployeesList.component';
+import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/leave-request-drawer.component';
 import AuthorizationBtn from 'features/me/components/authBtn';
 import PoliciesPage from 'features/policies/containers/policies-page/policies-page.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
-import { WBox, WTypography } from 'wdx';
 
 function Routes(): JSX.Element {
     return (
         <Switch>
             <Route path={EPeopleRouterLink.Me}>
-                <AuthorizationBtn />
+                <PageSample title="Me page" />
             </Route>
             <Route path={EPeopleRouterLink.Policies}>
                 <PoliciesPage />
@@ -43,9 +45,14 @@ function Routes(): JSX.Element {
 
 // TODO: Remove after adding all pages
 function PageSample({ title }: { title: string }): JSX.Element {
+    const [isDrawerOpened, setIsDrawerOpened] = useState(false);
+
     return (
         <WBox>
             <WTypography>{title}</WTypography>
+            <AuthorizationBtn />
+            <WButton onClick={(): void => setIsDrawerOpened(true)}>Request a Leave</WButton>
+            <LeaveRequestDrawer isOpened={isDrawerOpened} setIsOpened={setIsDrawerOpened} />
         </WBox>
     );
 }

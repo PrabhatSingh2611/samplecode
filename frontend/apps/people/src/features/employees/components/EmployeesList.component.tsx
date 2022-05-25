@@ -18,7 +18,7 @@ export default function EmployeesList(): JSX.Element {
                         {employee.firstName} - Position: {employee.position?.name || 'none'}
                         <WButton
                             onClick={(): Employee[] =>
-                                employeesListVar([...employeesListVar(), employee])
+                                employeesListVar([...employeesListVar(), employee as Employee])
                             }
                         >
                             Select

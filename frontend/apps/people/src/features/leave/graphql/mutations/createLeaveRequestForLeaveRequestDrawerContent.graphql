@@ -1,0 +1,17 @@
+mutation createLeaveRequestForLeaveRequestDrawerContent($input: CreateLeaveRequestInput!) {
+    createLeaveRequest(input: $input) {
+        leaveRequest {
+            id
+            numberOfDays
+            requestDate
+            startDate
+            endDate
+            status
+            comment
+            type {
+                id
+                name
+            }
+        }
+    }
+}

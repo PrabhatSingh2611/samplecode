@@ -14,8 +14,8 @@ import shadows, { customShadows } from './shadows';
 
 interface IProps {
   children: ReactNode;
-  themeMode: 'light' | 'dark';
-  themeDirection: 'rtl' | 'ltr';
+  themeMode?: 'light' | 'dark';
+  themeDirection?: 'rtl' | 'ltr';
 }
 
 export default function ThemeProvider({ children, themeMode="light", themeDirection="ltr" }: IProps): JSX.Element {

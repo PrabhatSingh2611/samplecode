@@ -1,0 +1,12 @@
+query getLeaveTypesForLeaveRequestDrawerContent($input: LeaveTypesInput!) {
+    leaveTypes(input: $input) {
+        items {
+            ...LeaveTypeForLeaveRequestDrawerContent
+        }
+    }
+}
+
+fragment LeaveTypeForLeaveRequestDrawerContent on LeaveType {
+    id
+    name
+}
