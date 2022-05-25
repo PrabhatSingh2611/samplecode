@@ -17,6 +17,7 @@ export * from './hooks/useTheme';
 export * from './utils/getFontValue';
 export * from './utils/cssStyles';
 export * from './utils/styledComponent';
+export { getAvatarInitials } from './utils/getAvatarInitials';
 
 // TYPES
 export { WUploadProps, WCustomFile } from './components/upload/type';
@@ -187,7 +188,18 @@ export {
 } from './components/text-field';
 export { default as WSwitch, WSwitchProps } from './components/switch';
 export { default as WTooltip, WTooltipProps } from './components/tooltip';
-export { default as WTansitionCollapse, WTansitionFade, WTansitionGrow, WTansitionSlide, WTansitionZoom, WCollapseProps, WFadeProps, WGrowProps, WSlideProps, WZoomProps  } from './components/transition';
+export {
+  default as WTansitionCollapse,
+  WTansitionFade,
+  WTansitionGrow,
+  WTansitionSlide,
+  WTansitionZoom,
+  WCollapseProps,
+  WFadeProps,
+  WGrowProps,
+  WSlideProps,
+  WZoomProps,
+} from './components/transition';
 export {
   default as WTypography,
   WTypographyProps,
@@ -205,8 +217,26 @@ export {
   WTableRowProps,
   WTableSortLabelProps,
 } from './components/table';
-export { default as WTabs, WTab, WTabContext, WTabList, WTabPanel, WTabScrollButton, WTabsProps, WTabProps, WTabContextProps, WTabListProps, WTabPanelProps, WTabScrollButtonProps } from './components/tabs';
-export { default as ToggleButtonGroup, WToggleButton, WToggleButtonGroupProps, WToggleButtonProps  } from './components/toggle-button';
+export {
+  default as WTabs,
+  WTab,
+  WTabContext,
+  WTabList,
+  WTabPanel,
+  WTabScrollButton,
+  WTabsProps,
+  WTabProps,
+  WTabContextProps,
+  WTabListProps,
+  WTabPanelProps,
+  WTabScrollButtonProps,
+} from './components/tabs';
+export {
+  default as ToggleButtonGroup,
+  WToggleButton,
+  WToggleButtonGroupProps,
+  WToggleButtonProps,
+} from './components/toggle-button';
 
 // WIDGETS
 export {
