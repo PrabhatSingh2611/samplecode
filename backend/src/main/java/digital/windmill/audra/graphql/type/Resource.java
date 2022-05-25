@@ -10,5 +10,6 @@ public class Resource {
     private UUID id;
     private String url;
     private String thumbnail;
+    private String mimeType;
 
 }

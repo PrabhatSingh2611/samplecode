@@ -9,9 +9,6 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import digital.windmill.audra.dao.entity.ResourceEntity;
-import digital.windmill.audra.graphql.type.Resource;
-
 import java.util.UUID;
 
 @Mapper(componentModel = "spring")

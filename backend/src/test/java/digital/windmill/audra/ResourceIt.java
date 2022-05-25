@@ -61,7 +61,7 @@ class ResourceIt extends AbstractIntegrationTest {
         UUID uuidOfPrevResource = findUuidOfLastAddedResource();
         assertNull(uuidOfPrevResource, "Any resources were added before");
 
-        ResourcePayload uploadResponse = uploadResourceFromClassPath("graphql/request/uploadResource.graphql");
+        ResourcePayload uploadResponse = uploadResourceFromClassPath("pdf-test.pdf");
 
         UUID lastAddedResourceUuid = findUuidOfLastAddedResource();
         assertNotNull(uploadResponse.getResource());
@@ -69,12 +69,13 @@ class ResourceIt extends AbstractIntegrationTest {
         assertTrue(uploadResponse.getResource().getUrl().startsWith(storageUrl), "Url should starts with url path from configuration");
         assertTrue(uploadResponse.getResource().getUrl().endsWith(lastAddedResourceUuid.toString()), "Url should ends with resource uuid");
         assertTrue(uploadResponse.getResource().getThumbnail().startsWith(storageUrl), "Thumbnail should be generated automatically");
+        assertEquals("application/pdf", uploadResponse.getResource().getMimeType());
     }
 
     @Test
     void shouldGetUploadedResourceByUuid() throws IOException, URISyntaxException {
 
-        ResourcePayload uploadedResponse = uploadResourceFromClassPath("graphql/request/uploadResource.graphql");
+        ResourcePayload uploadedResponse = uploadResourceFromClassPath("pdf-test.pdf");
         var input = objectMapper.createObjectNode().putPOJO("id", uploadedResponse.getResource().getId());
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getResource.graphql", input);
 
@@ -85,6 +86,7 @@ class ResourceIt extends AbstractIntegrationTest {
         assertNotNull(actual.getResource());
         assertEquals(uploadedResponse.getResource().getId(), actual.getResource().getId());
         assertEquals(uploadedResponse.getResource().getUrl(), actual.getResource().getUrl());
+        assertEquals("application/pdf", actual.getResource().getMimeType());
         assertEquals(uploadedResponse.getResource().getThumbnail(), actual.getResource().getThumbnail());
     }
 

@@ -11,6 +11,7 @@ import digital.windmill.audra.storage.StorageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,15 +41,31 @@ public class ResourceFacade {
 
     @Transactional
     public Resource storeResource(Part file, Part thumbnail) throws IOException {
+        String fileReference = storeFile(file);
+        String thumbnailReference = storeThumbnail(thumbnail != null ? thumbnail : file);
+
+        var thumbnailEntity = new ResourceEntity();
+        thumbnailEntity.setUuid(UUID.randomUUID());
+        thumbnailEntity.setOuterReference(thumbnailReference);
+        thumbnailEntity.setMimeType("image/jpg");
+
+        var resourceEntity = new ResourceEntity();
+        resourceEntity.setUuid(UUID.randomUUID());
+        resourceEntity.setOuterReference(fileReference);
+        resourceEntity.setMimeType(file.getContentType());
+        resourceEntity.setThumbnail(thumbnailEntity);
+
+        return mapper.map(service.save(resourceEntity));
+    }
+
+    private String storeFile(Part file) throws IOException {
         StorableObject resourceToStore = StorableObject.builder()
                 .contentType(file.getContentType())
                 .fileName(file.getSubmittedFileName())
                 .stream(file.getInputStream())
                 .build();
-        String resourceReference = storageService.store(resourceToStore);
-        String thumbnailReference = storeThumbnail(thumbnail != null ? thumbnail : file);
-        ResourceEntity newResource = service.createResourceByReference(resourceReference, thumbnailReference);
-        return mapper.map(newResource);
+
+        return storageService.store(resourceToStore);
     }
 
     private String storeThumbnail(Part file) {

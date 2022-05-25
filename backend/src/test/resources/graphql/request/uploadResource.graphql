@@ -4,6 +4,7 @@ mutation uploadResource($file: Upload!, $thumbnail: Upload){
       id
       url
       thumbnail
+      mimeType
     }
   }
 }

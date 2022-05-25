@@ -15,4 +15,6 @@
     <include file="R-0/r.0.10.xml" relativeToChangelogFile="true"/>
     <include file="R-0/r.0.11.xml" relativeToChangelogFile="true"/>
     <include file="R-0/r.0.12.xml" relativeToChangelogFile="true"/>
+    <include file="R-0/r.0.13.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

@@ -28,6 +28,8 @@ public class ResourceEntity {
     private UUID uuid;
     @Column(name = "outer_reference")
     private String outerReference;
+    @Column(name = "mime_type")
+    private String mimeType;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "thumbnail_id")
     private ResourceEntity thumbnail;

@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 class ResourceMapperTest {
 
     private static final UUID RESOURCE_UUID = UUID.randomUUID();
+    private static final String RESOURCE_EXTENSION = "jpg";
     private static final UUID RESOURCE_THUMBNAIL_UUID = UUID.randomUUID();
     private static final String RESOURCE_PATH = "http://resource_path";
     private static final String RESOURCE_URL = RESOURCE_PATH + "/" + RESOURCE_UUID;

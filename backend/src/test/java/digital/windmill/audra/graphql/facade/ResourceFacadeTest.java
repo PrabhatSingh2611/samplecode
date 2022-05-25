@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -82,7 +83,7 @@ class ResourceFacadeTest {
         when(part.getInputStream()).thenReturn(inputStream);
         when(part.getContentType()).thenReturn(RESOURCE_CONTENT_TYPE);
         when(storageService.store(objectToStore)).thenReturn(RESOURCE_REFERENCE);
-        when(service.createResourceByReference(RESOURCE_REFERENCE, null)).thenReturn(resourceEntity);
+        when(service.save(any(ResourceEntity.class))).thenReturn(resourceEntity);
         when(mapper.map(resourceEntity)).thenReturn(resource);
         when(resourceProperties.getThumbnail()).thenReturn(thumbnail);
         when(resourceProperties.getThumbnail().getHeight()).thenReturn(100);

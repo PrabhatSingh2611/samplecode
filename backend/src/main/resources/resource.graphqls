@@ -2,6 +2,7 @@ type Resource {
     id: UUID!
     url: String!
     thumbnail: String
+    mimeType: String!
 }
 
 input ResourceInput {

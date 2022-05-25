@@ -56,11 +56,11 @@ VALUES
 
 ALTER SEQUENCE candidate_id_seq RESTART WITH 1000;
 
-INSERT INTO resource(id, uuid, outer_reference, thumbnail_id)
+INSERT INTO resource(id, uuid, outer_reference, thumbnail_id, mime_type)
 VALUES
-(1, 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'ghjklalskdj', null),
-(2, '024ed048-68e9-47ca-99b8-3ee81dc70245', 'aasdfghgfsd', null),
-(3, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 3);
+(1, 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'ghjklalskdj', null, 'application/pdf'),
+(2, '024ed048-68e9-47ca-99b8-3ee81dc70245', 'aasdfghgfsd', null, 'image/jpg'),
+(3, 'e72e2eff-def2-479c-a827-bc5e59d694b4', 'resource_outer_reference_1', 2, 'application/txt');
 
 INSERT INTO candidate_to_resources(candidate_id, resource_id)
 VALUES
