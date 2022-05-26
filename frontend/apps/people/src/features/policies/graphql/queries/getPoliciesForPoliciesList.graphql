@@ -6,7 +6,6 @@ query getPoliciesForPoliciesList($input: PoliciesInput!) {
         pageInfo {
             ...PolicyForPolicyListPageInfo
         }
-        totalItems
     }
 }
 

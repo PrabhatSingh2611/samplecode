@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { Order } from 'wdx';
+import { castToInt, EFetchPolicy, Order } from 'wdx';
 
 import { makeVar, useReactiveVar } from '@apollo/client';
 
@@ -12,12 +12,18 @@ import {
     GetPoliciesForPoliciesListQueryResult,
     useGetPoliciesForPoliciesListQuery,
 } from 'features/policies/graphql/queries/getPoliciesForPoliciesList.generated';
+import {
+    GetPoliciesTotalItemsQueryResult,
+    useGetPoliciesTotalItemsQuery,
+} from 'features/policies/graphql/queries/getPoliciesTotalItemsForPoliciesList.generated';
 import { useGetPoliciesListPageSearchParams } from 'features/policies/hooks/hooks';
 import { PolicyConnectionPayload, PolicySort, PolicyStatus } from 'graphql-generated-types/types';
 import { useUploadResource } from 'hooks/graphql/upload.hooks';
 
-export const useGetPolicies = (): [
-    PolicyConnectionPayload | undefined,
+export const useGetPolicies = (
+    fetchPolicy = EFetchPolicy.CACHE_ONLY,
+): [
+    Omit<PolicyConnectionPayload, 'totalItems'> | undefined,
     GetPoliciesForPoliciesListQueryResult,
 ] => {
     const { currentPage, order, policiesPerPage, searchValue } =
@@ -31,14 +37,12 @@ export const useGetPolicies = (): [
     const getPoliciesQuery = useGetPoliciesForPoliciesListQuery({
         variables: {
             input: {
-                where: {
-                    query,
-                },
+                where: { query },
                 pagination: { pageNumber: +currentPage, itemsPerPage: +policiesPerPage },
                 sort: [sortOrder],
             },
         },
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: fetchPolicy,
     });
     const policies = getPoliciesQuery.data?.policies;
 
@@ -103,4 +107,24 @@ export const useDeletePolicies = ({
     );
 
     return [deletePolicy, loading];
+};
+
+export const useGetTotalPolicies = (): [number, GetPoliciesTotalItemsQueryResult] => {
+    const { searchValue } = useGetPoliciesListPageSearchParams();
+
+    const query = searchValue.length >= MIN_COUNT_OF_SYMBOLS_TO_SEARCH ? searchValue : undefined;
+
+    const getPoliciesQuery = useGetPoliciesTotalItemsQuery({
+        variables: {
+            input: {
+                where: {
+                    query,
+                },
+            },
+        },
+        fetchPolicy: EFetchPolicy.CACHE_FIRST,
+    });
+    const policiesTotal = castToInt(getPoliciesQuery.data?.policies.totalItems);
+
+    return [policiesTotal, getPoliciesQuery];
 };

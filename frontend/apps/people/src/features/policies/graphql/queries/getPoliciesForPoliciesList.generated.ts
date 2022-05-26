@@ -8,7 +8,7 @@ export type GetPoliciesForPoliciesListQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetPoliciesForPoliciesListQuery = { __typename?: 'Query', policies: { __typename?: 'PolicyConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Policy', id: any, title: string, publicationDate?: any | null, status: Types.PolicyStatus, file: { __typename?: 'Resource', id: any, url: string, thumbnail?: string | null, mimeType: string }, owner: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
+export type GetPoliciesForPoliciesListQuery = { __typename?: 'Query', policies: { __typename?: 'PolicyConnectionPayload', items: Array<{ __typename?: 'Policy', id: any, title: string, publicationDate?: any | null, status: Types.PolicyStatus, file: { __typename?: 'Resource', id: any, url: string, thumbnail?: string | null, mimeType: string }, owner: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
 
 export type PolicyForPolicyListFragment = { __typename?: 'Policy', id: any, title: string, publicationDate?: any | null, status: Types.PolicyStatus, file: { __typename?: 'Resource', id: any, url: string, thumbnail?: string | null, mimeType: string }, owner: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } };
 
@@ -63,7 +63,6 @@ export const GetPoliciesForPoliciesListDocument = gql`
     pageInfo {
       ...PolicyForPolicyListPageInfo
     }
-    totalItems
   }
 }
     ${PolicyForPolicyListFragmentDoc}

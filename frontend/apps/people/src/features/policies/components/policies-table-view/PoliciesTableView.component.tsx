@@ -1,11 +1,18 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { WBaseTable, WTableToolBar, useUpdateSearchUrlParam, useAddQueryParamsToUrl } from 'wdx';
+import {
+    WBaseTable,
+    WTableToolBar,
+    useUpdateSearchUrlParam,
+    useAddQueryParamsToUrl,
+    onSelectRow,
+} from 'wdx';
 
 import { PolicyListTableRow } from 'features/policies/components/policies-table-row/PoliciesTableRow.component';
 import { PoliciesTableSelectActions } from 'features/policies/components/policies-table-select-actions/PoliciesTableSelectActions.component';
 import { POLICY_TABLE_HEADER_DATA, POLICIES_ORDER_BY } from 'features/policies/constants';
 import { PolicyForPolicyListFragment } from 'features/policies/graphql/queries/getPoliciesForPoliciesList.generated';
+import { useDeletePolicies } from 'features/policies/hooks/api-policies.hooks';
 import { useGetPoliciesListPageSearchParams } from 'features/policies/hooks/hooks';
 
 export enum EPoliciesPageSearchParams {
@@ -17,21 +24,20 @@ export enum EPoliciesPageSearchParams {
 
 interface IPoliciesListTableViewProps {
     tableData: PolicyForPolicyListFragment[];
-    totalPageCount: number;
-    selected: string[];
-    onSelectRow: (selectedId: string) => void;
-    selectAllRows: (selectedId: string[]) => void;
-    onDeletePolicies: () => void;
+    totalPoliciesCount: number;
+    refetchPoliciesData: () => void;
 }
 
 export function PoliciesListTableView({
     tableData,
-    totalPageCount,
-    selected,
-    onSelectRow,
-    selectAllRows,
-    onDeletePolicies,
+    totalPoliciesCount,
+    refetchPoliciesData,
 }: IPoliciesListTableViewProps): JSX.Element {
+    const [deletePolicies] = useDeletePolicies({
+        onCompleted: () => refetchPoliciesData(),
+    });
+    const [selected, setSelected] = useState<string[]>([]);
+
     const { currentPage, order, policiesPerPage, searchValue } =
         useGetPoliciesListPageSearchParams();
 
@@ -55,12 +61,17 @@ export function PoliciesListTableView({
         updateSearchParam(EPoliciesPageSearchParams.Order, order);
     };
 
+    const onDeletePolicies = (): void => {
+        deletePolicies(selected);
+        setSelected([]);
+    };
+
     return (
         <WBaseTable
             headerData={POLICY_TABLE_HEADER_DATA}
             bodyData={tableData}
             withFooter={true}
-            totalPageCount={totalPageCount}
+            totalPageCount={totalPoliciesCount}
             currentPage={currentPage}
             setCurrentPage={(page: number): void => {
                 updateSearchParam(EPoliciesPageSearchParams.CurrentPage, page);
@@ -83,10 +94,12 @@ export function PoliciesListTableView({
                 <PolicyListTableRow
                     rowData={rowData}
                     selected={selected.includes(rowData.id)}
-                    onSelectRow={onSelectRow}
+                    onSelectRow={(rowId: string): void =>
+                        onSelectRow({ id: rowId, setSelected, selected })
+                    }
                 />
             )}
-            setSelected={selectAllRows}
+            setSelected={setSelected}
             selectActions={<PoliciesTableSelectActions onDeletePolicies={onDeletePolicies} />}
             emptyRowsHeight={96}
         />

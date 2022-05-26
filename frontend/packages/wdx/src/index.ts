@@ -280,3 +280,4 @@ export {
 
 // OTHER
 export * as Yup from 'yup';
+export { EFetchPolicy } from './types/fetchPolicy';

@@ -1,0 +1,5 @@
+query getPoliciesTotalItems($input: PoliciesInput!) {
+    policies(input: $input) {
+        totalItems
+    }
+}

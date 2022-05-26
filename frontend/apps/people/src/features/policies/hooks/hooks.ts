@@ -14,7 +14,7 @@ export function useGetPoliciesListPageSearchParams(): IGetPoliciesListPageSearch
 
     const {
         currentPage,
-        order = Order.ASC,
+        order = Order.DESC,
         policiesPerPage = POLICIES_TABLE_DEFAULT_ROWS_COUNT.toString(),
         searchValue,
     } = urlSearchParamsValues;
