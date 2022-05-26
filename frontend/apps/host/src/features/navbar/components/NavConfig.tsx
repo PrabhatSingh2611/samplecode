@@ -5,6 +5,7 @@ import { EAssetsRouterLink } from 'models/assets-router-link';
 import { EPeopleRouterLink } from 'models/people-router-link';
 import { ERecruitmentRouterLink } from 'models/recruitment-router-llink';
 
+// TODO: Fix this to fetch from correct path on production [IM]
 const getIcon = (name: string): JSX.Element => (
     <SvgIconStyle src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
 );
