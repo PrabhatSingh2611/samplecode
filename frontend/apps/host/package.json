@@ -6,7 +6,7 @@
         "dev": "env-cmd -f ./environments/.develop.env craco start",
         "dev:staging": "env-cmd -f ./environments/.staging.env craco start",
         "build": "env-cmd -f ./environments/.develop.env craco build",
-        "build:staging": "env-cmd -f ./environments/.staging.env craco build",
+        "build:ci": "craco build",
         "build:serve": "serve build -p 3000",
         "test": "craco test",
         "eject": "react-scripts eject",

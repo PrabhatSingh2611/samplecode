@@ -1,14 +1,14 @@
 {
     "pipeline": {
         "build": {
-            "dependsOn": ["^build"],
-            "outputs": ["build/**"]
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "build/**"
+            ]
         },
-        "build:staging": {
-            "dependsOn": ["^build"],
-            "outputs": ["build/**"]
-        },
-        "build:host": {
+        "build:ci": {
             "cache": false
         },
         "lint": {
