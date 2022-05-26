@@ -34,4 +34,3 @@ function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
 }
 
 export default App;
-
