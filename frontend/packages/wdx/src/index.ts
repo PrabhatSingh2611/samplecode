@@ -161,7 +161,7 @@ export {
 } from './components/radio';
 export { default as WRejectionFiles } from './components/upload/rejection-files';
 export { default as WSelect, WSelectProps } from './components/select';
-export { default as WSkeleton, WSkeletonProps } from './components/skeleton';
+export { default as WSkeleton, IWSkeletonProps } from './components/skeleton';
 export { default as WSnackbar, WSnackbarProps, WSnackbarContent, WSnackbarContentProps, WSnackbarOrigin } from './components/snackbar';
 export { default as WStack, WStackProps } from './components/stack';
 export { default as WSlider, WSliderProps } from './components/slider';
@@ -183,7 +183,6 @@ export {
   WStepIconProps,
   WStepLabelProps,
 } from './components/stepper';
-export { default as WSkeleton, IWSkeletonProps } from './components/skeleton';
 export { default as WTreeView, WTreeViewProps } from './components/tree-view';
 export { default as WTreeItem, WTreeItemProps } from './components/tree-item';
 export {
