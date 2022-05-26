@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CardActionArea, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 import Iconify from 'components/Iconify';
 import useSettings from 'hooks/useSettings';
@@ -21,6 +21,8 @@ export default function SettingStretch(): JSX.Element {
         width: themeStretch ? 24 : 18,
         height: themeStretch ? 24 : 18,
     };
+
+    const theme = useTheme();
 
     return (
         <BoxStyle
@@ -44,8 +46,10 @@ export default function SettingStretch(): JSX.Element {
                     pl: 2,
                     color: 'action.active',
                     borderRadius: 1,
-                    boxShadow: (theme) => theme.customShadows.z12,
-                    transition: (theme) => theme.transitions.create('width'),
+                    boxShadow: theme.customShadows.z12,
+                    transition: (theme): string => {
+                        return theme.transitions.create('width');
+                    },
                     bgcolor: 'background.default',
                     ...(themeStretch && {
                         width: 1,

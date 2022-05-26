@@ -24,7 +24,7 @@ export interface IHeaderCellData {
   align?: AlignTableCell;
   width?: string;
   minWidth?: string;
-  label: string;
+  label?: string;
 }
 
 export type TMoreMenuActions = ({

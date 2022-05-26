@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 import Paper, { PaperProps } from '@mui/material/Paper';
 
 export interface WPaperProps extends PaperProps {}
 
-function WPaper(props: WPaperProps):JSX.Element {
-    return <Paper {...props} />;
+function WPaper(props: WPaperProps) {
+  return <Paper {...props} />;
 }
 
 export default WPaper;

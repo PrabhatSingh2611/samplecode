@@ -6,15 +6,15 @@ import { AlignTableCell, IHeaderCellData, Order } from '../base-table.widget';
 import { Theme } from '@mui/material/styles';
 import WCheckbox from '../../../components/checkbox';
 
-interface IWTableHead {
+export interface IWTableHead {
   headerData: IHeaderCellData[];
-  isCheckable: boolean;
+  isCheckable?: boolean;
   onSortHandler: (value: IHeaderCellData) => void;
-  onSelectAllRows: (value: {
+  onSelectAllRows?: (value: {
     element: EventTarget & HTMLInputElement;
     isChecked: boolean;
   }) => void;
-  rowCount: number;
+  rowCount?: number;
   selectedCount?: number;
   orderBy?: string;
   order?: Order;
@@ -36,7 +36,7 @@ const visuallyHiddenSortingStyles = {
 
 export function WTableHead({
   headerData,
-  isCheckable,
+  isCheckable = false,
   onSortHandler,
   onSelectAllRows,
   rowCount,
@@ -50,7 +50,7 @@ export function WTableHead({
   return (
     <WTable.Head sx={sx}>
       <WTable.Row selected={true}>
-        {showCheckbox && (
+        {showCheckbox && !!rowCount && !!onSelectAllRows && (
           <WTable.Cell padding="checkbox">
             <WCheckbox
               indeterminate={

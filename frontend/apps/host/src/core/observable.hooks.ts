@@ -3,14 +3,15 @@ import { useHistory } from 'react-router-dom';
 
 import { Observable } from 'wdx';
 
-import { PEOPLE_APP_CHANNEL, HOST_APP_CHANNEL } from 'core/constants';
-
-import { EPeopleRouterLink } from '../models/people-router-link';
+import { PEOPLE_APP_CHANNEL, HOST_APP_CHANNEL, ASSETS_APP_CHANNEL } from 'core/constants';
+import { EAssetsRouterLink } from 'models/assets-router-link';
+import { EPeopleRouterLink } from 'models/people-router-link';
 
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
 export const useInitHostObservables = (): void => {
     useInitHostNavigateObservable();
     useInitPeopleNavigateObservable();
+    useInitAssetsNavigateObservable();
 };
 
 const useInitHostNavigateObservable = (): void => {
@@ -39,6 +40,7 @@ const useInitPeopleNavigateObservable = (): void => {
         PEOPLE_APP_CHANNEL.NAVIGATE.EVENT,
         PEOPLE_APP_CHANNEL.NAVIGATE.SCHEMA,
     );
+
     const history = useHistory();
     // TODO: Fix typo
     const onPeopleNavigate = ({ pathname, search }: any): void => {
@@ -54,7 +56,7 @@ const useInitPeopleNavigateObservable = (): void => {
         }
         if (pathname !== unPrependedRelativePathName) {
             console.log(
-                '🚀 ~ file: observable.hooks.ts ~ line 42 ~ onPeopleNavigate ~ relativePathname',
+                '🚀 ~ file: observable.hooks.ts ~ line 49 ~ onPeopleNavigate ~ relativePathname',
                 relativePathname,
             );
             history.push(relativePathname);
@@ -63,6 +65,39 @@ const useInitPeopleNavigateObservable = (): void => {
 
     useLayoutEffect(() => {
         peopleNavigateObservable.subscribe(onPeopleNavigate);
+    });
+};
+
+const useInitAssetsNavigateObservable = (): void => {
+    const assetsNavigateObservable = new Observable(
+        ASSETS_APP_CHANNEL.NAVIGATE.EVENT,
+        ASSETS_APP_CHANNEL.NAVIGATE.SCHEMA,
+    );
+
+    const history = useHistory();
+    // TODO: Fix typo
+    const onAssetsNavigate = ({ pathname, search }: any): void => {
+        const relativePathname = getRelativePathname(pathname, EAssetsRouterLink.Assets);
+        const unPrependedRelativePathName = getRelativePathname(
+            pathname,
+            EAssetsRouterLink.Assets,
+            false,
+        );
+
+        if (search && search !== history.location.search) {
+            return history.replace(relativePathname + search);
+        }
+        if (pathname !== unPrependedRelativePathName) {
+            console.log(
+                '🚀 ~ file: observable.hooks.ts ~ line 94 ~ onAssetsNavigate ~ relativePathname',
+                relativePathname,
+            );
+            history.push(relativePathname);
+        }
+    };
+
+    useLayoutEffect(() => {
+        assetsNavigateObservable.subscribe(onAssetsNavigate);
     });
 };
 

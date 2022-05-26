@@ -11,7 +11,7 @@ import MotionLazyContainer from 'components/MotionLazyContainer';
 import ThemeSettingsProvider from 'components/ThemeSettingsProvider';
 import ThemeSettings from 'components/settings';
 import { CollapseDrawerProvider } from 'contexts/CollapseDrawerContext';
-import { SettingsProvider } from 'contexts/SettingsContext';
+import SettingsProvider from 'contexts/SettingsContext';
 import HostObservables from 'core/HostObservables';
 import Layout from 'layout';
 

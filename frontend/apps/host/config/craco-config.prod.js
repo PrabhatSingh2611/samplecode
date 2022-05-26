@@ -15,7 +15,9 @@ module.exports = {
             name: 'host',
             remotes: {
                 // people: `people@http://localhost:3001/remoteEntry.js`, // Use for local production test with "build:serve" script
+                // people: `assets@http://localhost:3002/remoteEntry.js`, // Use for local production test with "build:serve" script
                 people: `people@${domain}/people/latest/remoteEntry.js`, // Use for Production
+                assets: `assets@${domain}/assets/latest/remoteEntry.js`, // Use for Production
             },
             shared: {
                 ...deps,

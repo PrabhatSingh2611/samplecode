@@ -37,7 +37,7 @@ const MainStyle = styled('main', {
     },
 }));
 
-export default function DashboardLayout(): JSX.Element {
+export default function AppLayout(): JSX.Element {
     const { collapseClick, isCollapse } = useCollapseDrawer();
 
     const { themeLayout } = useSettings();

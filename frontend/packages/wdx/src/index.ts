@@ -19,18 +19,12 @@ export {
 } from './hooks/urlParams.hooks';
 
 // UTILS
-export { formatDate, deleteUtcFromDate } from './utils/formatDate';
+export * from './utils/formatDate';
 export * from './utils/getFontValue';
 export * from './utils/cssStyles';
 export * from './utils/styledComponent';
 export { getAvatarInitials } from './utils/getAvatarInitials';
-export {
-  castToInt,
-  castToString,
-  castToArray,
-  castToObject,
-  castToBoolean,
-} from './utils/maybeUtils';
+export * from './utils/maybeUtils';
 
 export { createDownloadLink } from './utils/downloadLinkUtil';
 
@@ -185,6 +179,13 @@ export {
   WStepIconProps,
   WStepLabelProps,
 } from './components/stepper';
+export { default as WSkeleton, IWSkeletonProps } from './components/skeleton';
+export { default as WTreeView, WTreeViewProps } from './components/tree-view';
+export { default as WTreeItem, WTreeItemProps } from './components/tree-item';
+export {
+  default as WScrollbarContainer,
+  IWScrollbarContainerProps,
+} from './components/scroll-bar';
 export {
   default as WTextField,
   WTextFieldProps,
@@ -269,6 +270,7 @@ export {
 } from './widgets/table/base-table.widget';
 export { default as WTableMoreMenu } from './widgets/table/components/table-more-menu';
 export { default as WTableToolBar } from './widgets/table/components/table-toolbar';
+export { WTableHead, IWTableHead } from './widgets/table/components/table-head';
 export {
   onSelectRow,
   IOnSelectRow,

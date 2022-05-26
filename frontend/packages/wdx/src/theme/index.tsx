@@ -18,7 +18,11 @@ interface IProps {
   themeDirection?: 'rtl' | 'ltr';
 }
 
-export default function ThemeProvider({ children, themeMode="light", themeDirection="ltr" }: IProps): JSX.Element {
+export default function ThemeProvider({
+  children,
+  themeMode = 'light',
+  themeDirection = 'ltr',
+}: IProps): JSX.Element {
   const isLight = themeMode === 'light';
 
   const themeOptions: ThemeOptions = useMemo(

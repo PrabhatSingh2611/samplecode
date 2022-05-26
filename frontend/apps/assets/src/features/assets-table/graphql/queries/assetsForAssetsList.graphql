@@ -1,0 +1,61 @@
+query getAssetsForAssetsList($input: AssetsInput!) {
+    assets(input: $input) {
+        items {
+            ...AssetsItem
+        }
+        pageInfo {
+            ...PageInfo
+        }
+        totalItems
+    }
+}
+
+fragment AssetsItem on Asset {
+    id
+    title
+    serialNumber
+    waybillDate
+    tagNumber
+    type {
+        ...AssetsType
+    }
+    location {
+        ...AssetsLocation
+    }
+    assignee {
+        ...AssetsAssignee
+    }
+}
+
+fragment AssetsType on AssetType {
+    id
+    title
+    icon
+}
+
+fragment AssetsLocation on Location {
+    id
+    country
+    details
+    flagIcon
+}
+
+fragment AssetsAssignee on Employee {
+    id
+    firstName
+    lastName
+    avatar
+    position {
+        ...AssetsAssigneeEmployee
+    }
+}
+
+fragment AssetsAssigneeEmployee on EmployeePosition {
+    id
+    name
+}
+
+fragment PageInfo on PageInfo {
+    currentPage
+    totalPages
+}

@@ -39,3 +39,23 @@ export const PEOPLE_APP_CHANNEL = {
         },
     },
 };
+
+enum AssetsEvent {
+    NAVIGATE = 'assets:navigate',
+}
+
+export const ASSETS_APP_CHANNEL = {
+    NAVIGATE: {
+        EVENT: AssetsEvent.NAVIGATE,
+        SCHEMA: {
+            type: 'object',
+            properties: {
+                pathname: {
+                    type: 'string',
+                },
+                search: { type: 'string' },
+            },
+            required: ['pathname'],
+        },
+    },
+};

@@ -4,22 +4,19 @@ import { useHistory } from 'react-router-dom';
 import { createRemoteObservable } from 'wdx';
 
 // NOTE: !!! This should be done only once per app. !!!
-type RemoteExampleNavigatePayload = {
+type AssetsNavigatePayload = {
     pathname: string;
 };
 
-const remoteExampleNavigateObservable = createRemoteObservable<RemoteExampleNavigatePayload>(
-    'remote-example:navigate',
-    {
-        type: 'object',
-        properties: {
-            pathname: {
-                type: 'string',
-            },
+const remoteAssetsObservable = createRemoteObservable<AssetsNavigatePayload>('assets:navigate', {
+    type: 'object',
+    properties: {
+        pathname: {
+            type: 'string',
         },
-        required: ['pathname'],
     },
-);
+    required: ['pathname'],
+});
 
 // NOTE: !!! This should be done only once per app. !!!
 type HostNavigatePayload = {
@@ -39,7 +36,7 @@ export const hostNavigateObservable = createRemoteObservable<HostNavigatePayload
 // NOTE: Hooks should be called only inside <Router> child to be able to work with useHistory()
 export const useInitRemoteExampleObservables = (): void => {
     useInitHostNavigateObservable();
-    useInitRemoteExampleNavigateObservable();
+    useInitAssetsNavigateObservable();
 };
 
 const useInitHostNavigateObservable = (): void => {
@@ -58,13 +55,13 @@ const useInitHostNavigateObservable = (): void => {
     });
 };
 
-const useInitRemoteExampleNavigateObservable = (): void => {
+const useInitAssetsNavigateObservable = (): void => {
     const history = useHistory();
 
     const onHistoryChange = ({ pathname }: Location): void => {
-        const lastEvent = remoteExampleNavigateObservable.observable.getLastEvent();
+        const lastEvent = remoteAssetsObservable.observable.getLastEvent();
         if (lastEvent?.pathname !== pathname) {
-            remoteExampleNavigateObservable.publish({ pathname });
+            remoteAssetsObservable.publish({ pathname });
         }
     };
     // TODO: Fix typo

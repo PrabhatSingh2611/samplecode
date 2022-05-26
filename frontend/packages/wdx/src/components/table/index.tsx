@@ -25,7 +25,7 @@ export interface WTableCellProps extends TableCellProps {}
 export interface WTableContainerProps extends TableContainerProps {}
 export interface WTableFooterProps extends TableFooterProps {}
 export interface WTableHeadProps extends TableHeadProps {}
-// TODO: Fix it later (TH)
+// TODO: Fix types (TH)
 export type WTablePaginationProps = TablePaginationProps & {
   component: string;
 };
