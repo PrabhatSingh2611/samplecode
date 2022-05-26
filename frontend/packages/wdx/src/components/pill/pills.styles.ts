@@ -30,7 +30,7 @@ export const generatePillStyles = (
     height: 22,
     minWidth: 22,
     lineHeight: 0,
-    borderRadius: 6,
+    borderRadius: '6px',
     cursor: 'default',
     alignItems: 'center',
     whiteSpace: 'nowrap',

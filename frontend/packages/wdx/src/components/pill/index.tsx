@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material";
-import React  from "react";
+import React, { useMemo }  from "react";
 import { ColorSchema } from "../../theme/palette";
 
 import WBox, { WBoxProps } from "../box";
@@ -33,7 +33,10 @@ function WPill({
     }: WPillProps):JSX.Element {
     const theme = useTheme();
 
-    const pillStyles = generatePillStyles(theme, {color, variant});
+    const pillStyles = useMemo(
+        () => generatePillStyles(theme, {color, variant}),
+        [color, variant]
+    );
 
     return (
         <WBox

@@ -30,6 +30,8 @@ import Typography from './Typography';
 import Alert from './Alert';
 import Select from './Select';
 import Pagination from './Pagination';
+import Skeleton from './Skeleton';
+import Dialog from './Dialog';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
@@ -45,6 +47,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Chip(theme),
     ControlLabel(theme),
     CssBaseline(),
+    Dialog(theme),
     Fab(theme),
     Input(theme),
     Link(),
@@ -53,8 +56,10 @@ export default function ComponentsOverrides(theme: Theme) {
     Menu(theme),
     Pagination(theme),
     Paper(theme),
+    Pagination(theme),
     Radio(theme),
     Select(),
+    Skeleton(theme),
     Slider(theme),
     Steper(theme),
     Switch(theme),
