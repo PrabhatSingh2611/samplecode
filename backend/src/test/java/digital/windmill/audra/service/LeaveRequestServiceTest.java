@@ -3,6 +3,7 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.repository.LeaveRequestRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.exception.InvalidDataInputException;
 import digital.windmill.audra.graphql.type.input.LeaveRequestWhereInput;
 import digital.windmill.audra.graphql.type.input.LeaveRequestsInput;
 import digital.windmill.audra.service.impl.LeaveRequestServiceImpl;
@@ -17,14 +18,18 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -71,10 +76,21 @@ class LeaveRequestServiceTest {
 
     @Test
     void shouldSaveOrUpdateLeaveRequest(@Mock LeaveRequestEntity leaveRequestEntity) {
+        when(leaveRequestEntity.getStartDate()).thenReturn(Instant.now());
+        when(leaveRequestEntity.getEndDate()).thenReturn(Instant.now().plusSeconds(1));
         when(leaveRequestRepository.save(any(LeaveRequestEntity.class))).thenReturn(leaveRequestEntity);
         var result = leaveRequestService.createOrPatchLeaveRequest(leaveRequestEntity);
         assertNotNull(result);
         assertSame(leaveRequestEntity, result);
+    }
+
+    @Test
+    void shouldNowSaveOrUpdateLeaveRequestWithWrongPeriod(@Mock LeaveRequestEntity leaveRequestEntity) {
+        when(leaveRequestEntity.getStartDate()).thenReturn(Instant.now().plusSeconds(1));
+        when(leaveRequestEntity.getEndDate()).thenReturn(Instant.now());
+        InvalidDataInputException invalidDataException = assertThrows(InvalidDataInputException.class, () -> leaveRequestService.createOrPatchLeaveRequest(leaveRequestEntity));
+        assertEquals("Wrong dates", invalidDataException.getMessage());
+        verifyNoInteractions(leaveRequestRepository);
     }
 
     @Test

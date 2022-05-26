@@ -1,0 +1,39 @@
+mutation {
+    createLeaveRequest(
+        input: {
+            status: NEW
+            period: {
+                startDate: "2022-02-03T13:25:34.480425Z[UTC]"
+                endDate: "2022-02-02T13:25:34.480425Z[UTC]"
+            }
+            type: { id: "b8931b95-ed2b-4f66-a211-776007dc56c1" }
+            comment: "this is comment 3"
+        }
+    ) {
+        leaveRequest {
+            status
+            numberOfDays
+            startDate
+            endDate
+            type {
+                id
+            }
+            comment
+            employee {
+                id
+                firstName
+                lastName
+                role
+                birthday
+                position {
+                    id
+                    name
+                }
+                location {
+                    id
+                    country
+                }
+            }
+        }
+    }
+}

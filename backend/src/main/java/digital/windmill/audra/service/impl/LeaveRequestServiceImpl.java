@@ -4,6 +4,7 @@ import digital.windmill.audra.dao.LeaveRequestSpecification;
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.repository.LeaveRequestRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
+import digital.windmill.audra.exception.InvalidDataInputException;
 import digital.windmill.audra.graphql.type.input.LeaveRequestsInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
 import digital.windmill.audra.service.LeaveRequestService;
@@ -40,6 +41,13 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
     @Override
     public LeaveRequestEntity createOrPatchLeaveRequest(LeaveRequestEntity leaveRequestEntity) {
+        if (leaveRequestEntity == null 
+                || leaveRequestEntity.getStartDate() == null
+                || leaveRequestEntity.getEndDate() == null
+                || leaveRequestEntity.getStartDate().isAfter(leaveRequestEntity.getEndDate())
+                ) {
+            throw new InvalidDataInputException("Wrong dates");
+        }
         return leaveRequestRepository.save(leaveRequestEntity);
     }
 

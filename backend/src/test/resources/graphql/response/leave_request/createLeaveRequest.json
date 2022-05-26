@@ -3,7 +3,7 @@
         "createLeaveRequest": {
             "leaveRequest": {
                 "status": "NEW",
-                "numberOfDays": 0,
+                "numberOfDays": 1,
                 "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
                 "endDate": "2022-02-02T13:25:34.480425Z[UTC]",
                 "type": {
