@@ -8,7 +8,6 @@ mutation {
             }
             type: { id: "b8931b95-ed2b-4f66-a211-776007dc56c1" }
             comment: "this is comment 3"
-            employee: { id: "48b560ab-7450-4088-b6bb-f57638ea0877" }
         }
     ) {
         leaveRequest {
