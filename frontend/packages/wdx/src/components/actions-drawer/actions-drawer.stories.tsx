@@ -2,6 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import WActionsDrawer from './index';
 import WButton from '../button';
+import WIcon from '../icon';
 
 const meta: Meta = {
   title: 'Extra Components/ActionsDrawer',
@@ -35,12 +36,19 @@ const Template: Story = (args) => {
         title="Settings"
       >
         <WActionsDrawer.Content>
-            Some content
+          Some content
         </WActionsDrawer.Content>
-        <WActionsDrawer.Footer>
-            <WButton>Save</WButton>
-            <WButton variant="outlined">Continue</WButton>
-        </WActionsDrawer.Footer>
+        <WActionsDrawer.Footer
+          leftContent={
+            <WButton variant="outlined" color="error" startIcon={<WIcon name="delete" />}>Delete</WButton>
+          }
+          rightContent={
+            <>
+              <WButton variant="outlined" color="inherit">Cancel</WButton>
+              <WButton variant="contained">Save</WButton>
+            </>
+          }
+        />
       </WActionsDrawer>
     </>
   );

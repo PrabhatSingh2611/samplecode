@@ -4,8 +4,8 @@ import Box, { BoxProps } from '@mui/material/Box';
 
 export interface WBoxProps extends BoxProps {}
 
-function WBox(props: WBoxProps):JSX.Element {
-    return <Box {...props} />;
-}
+const WBox = React.forwardRef<HTMLElement, WBoxProps>((props, ref) => {
+    return <Box {...props} ref={ref} />;
+});
 
 export default WBox;

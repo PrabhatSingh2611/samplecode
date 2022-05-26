@@ -58,11 +58,14 @@ WActionsDrawer.Content = function WActionsDrawerContent({children}:{children: Re
     )
 }
 
-WActionsDrawer.Footer = function WActionsDrawerContent({children}:{children: ReactNode}):JSX.Element {
+WActionsDrawer.Footer = function WActionsDrawerContent({leftContent, rightContent}:{leftContent?: ReactNode, rightContent?: ReactNode}):JSX.Element {
+    const alignLeftContent = !leftContent && {ml: 'auto'};
+
     return (
-        <WBox sx={{p: 3, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.5}}>
-            {children}
-        </WBox>
+        <WStack direction="row" alignItems="center" justifyContent="space-between" sx={{p: 3}}>
+          {leftContent && <WStack direction="row" sx={{gap: 1.5}}>{leftContent}</WStack>}
+          {rightContent && <WStack direction="row" sx={{gap: 1.5, ...alignLeftContent}}>{rightContent}</WStack>}
+        </WStack>
     )
 }
 

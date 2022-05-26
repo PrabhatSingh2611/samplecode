@@ -9,10 +9,14 @@ import DownloadIcon from '@mui/icons-material/Download';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MoreHoriz from '@mui/icons-material/MoreHoriz';
+import MoreVertical from '@mui/icons-material/MoreVert';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import AddIcon from '@mui/icons-material/Add';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Search from '@mui/icons-material/Search';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import MoreVertical from '@mui/icons-material/MoreVert';
 type TIconComponent = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
   muiName: string;
 };
@@ -28,6 +32,10 @@ export const iconsConfig: Record<TIcons, TIconComponent> = {
   'expand-more': ExpandMore,
   visibility: VisibilityIcon,
   delete: DeleteIcon,
+  'more-horizontal': MoreHoriz,
+  'arrow-right-alt': ArrowRightAltIcon,
+  add: AddIcon,
+  'insert-drive-file': InsertDriveFileIcon,
   'more-vertical': MoreVertical,
   search: Search,
 };

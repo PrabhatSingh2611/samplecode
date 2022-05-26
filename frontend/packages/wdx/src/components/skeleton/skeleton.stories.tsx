@@ -1,5 +1,4 @@
 import React from 'react';
-import { Theme } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import WBox from '../box';
 import WSkeleton from './index';

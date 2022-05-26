@@ -1,5 +1,3 @@
-import { WForm, WActionsDrawer, WButton } from 'wdx';
-
 import AddPolicyForm, {
     AddPolicyFormId,
     IAddPolicyFormValues,
@@ -8,6 +6,7 @@ import {
     useCreatePolicy,
     useIsAddPolicyDrawerOpened,
 } from 'features/policies/hooks/api-policies.hooks';
+import { WForm, WActionsDrawer, WButton } from 'wdx';
 
 interface IAddPolicyDrawer {
     refetchPolicies: () => void;
@@ -32,10 +31,14 @@ export default function AddPolicyDrawer({ refetchPolicies }: IAddPolicyDrawer): 
                 <AddPolicyForm onSubmit={onFormSubmit} />
             </WActionsDrawer.Content>
 
-            <WActionsDrawer.Footer>
-                <WButton onClick={(): void => setIsOpened(false)}>Cancel</WButton>
-                <WForm.Submit form={AddPolicyFormId}>Save</WForm.Submit>
-            </WActionsDrawer.Footer>
+            <WActionsDrawer.Footer
+                rightContent={
+                    <>
+                        <WButton onClick={(): void => setIsOpened(false)}>Cancel</WButton>
+                        <WForm.Submit form={AddPolicyFormId}>Save</WForm.Submit>
+                    </>
+                }
+            />
         </WActionsDrawer>
     );
 }

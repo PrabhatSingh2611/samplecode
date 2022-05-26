@@ -1,3 +1,4 @@
+// TODO: Fix types to Theme (AU)
 import { WForm, WStack, Yup } from 'wdx';
 
 export const AddPolicyFormId = 'add-policy-form';
@@ -16,12 +17,16 @@ export default function AddPolicyForm({ onSubmit }: IProps): JSX.Element {
         <WForm id={AddPolicyFormId} onSubmit={onSubmit} validation={validation}>
             <WStack gap={2}>
                 <WForm.Control component="fieldset">
-                    <WForm.Label component="legend">Search engine</WForm.Label>
+                    <WForm.Label component="legend" variant="bold">
+                        Search engine
+                    </WForm.Label>
                     <WForm.Input name="title" placeholder="Title" />
                 </WForm.Control>
 
                 <WForm.Control component="fieldset">
-                    <WForm.Label component="legend">Upload</WForm.Label>
+                    <WForm.Label component="legend" variant="bold">
+                        Upload
+                    </WForm.Label>
                     <WForm.UploadSingle name="file" />
                 </WForm.Control>
             </WStack>

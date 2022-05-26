@@ -3,13 +3,17 @@ export type TIcons =
   | 'ac-unit'
   | 'access-alarm'
   | 'close'
-    | 'search'
+  | 'search'
   | 'download'
   | 'edit'
-    | 'expand-less'
-    | 'expand-more'
-    | 'more-vertical'
+  | 'expand-less'
+  | 'expand-more'
+  | 'more-vertical'
+  | 'more-horizontal'
   | 'visibility'
-  | 'delete';
+  | 'delete'
+  | 'arrow-right-alt'
+  | 'add'
+  | 'insert-drive-file';
 
  // TODO: Add more types of icons (YD)

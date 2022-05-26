@@ -46,7 +46,7 @@ const TemplateForm: Story = () => {
           sx={{ width: 500 }}
         >
           <WForm.Control component="fieldset">
-            <WForm.Label component="legend">Label</WForm.Label>
+            <WForm.Label component="legend" variant="bold">Label</WForm.Label>
             <WForm.Input name="input" label="My input" />
           </WForm.Control>
 

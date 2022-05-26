@@ -1,4 +1,3 @@
-import { Theme } from '@mui/material';
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import WBox from '../box';

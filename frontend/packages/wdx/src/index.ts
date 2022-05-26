@@ -92,6 +92,7 @@ export {
 } from './components/card';
 export { default as WCheckbox, WCheckboxProps } from './components/checkbox';
 export { default as WChip, WChipProps } from './components/chip';
+export { default as WClickAwayListener, WClickAwayListenerProps  } from './components/click-away-listener';
 export { default as WContainer, WContainerProps } from './components/container';
 export {
   default as WDatePicker,

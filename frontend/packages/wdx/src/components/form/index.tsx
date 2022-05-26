@@ -24,6 +24,8 @@ import WFormCheckbox from './fields/Checkbox';
 import WFormDatePicker from './fields/FormDatePicker';
 
 import WFormSubmit from './fields/Submit';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { FormLabelTypeMap } from '@mui/material/FormLabel/FormLabel';
 
 export interface WFormProps<T> {
   id: string;
@@ -81,9 +83,13 @@ function WFormGroup(props: WFormGroupProps) {
 }
 
 export interface WFormLabelProps extends FormLabelProps {}
-const WFormLabel: typeof FormLabel = (props: FormLabelProps) => {
+const WFormLabel: OverridableComponent<
+  FormLabelTypeMap<{
+    variant?: 'bold';
+  }>
+> = (props: WFormLabelProps) => {
   return <FormLabel {...props} />;
-}
+};
 
 WForm.Control = WFormControl;
 WForm.ControlLabel = WFormControlLabel;
