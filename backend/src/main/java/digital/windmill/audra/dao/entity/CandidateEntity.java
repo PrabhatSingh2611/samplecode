@@ -1,17 +1,24 @@
 package digital.windmill.audra.dao.entity;
 
 import digital.windmill.audra.dao.entity.enums.CandidateStatus;
-import digital.windmill.audra.graphql.type.Node;
-import digital.windmill.audra.graphql.type.Resource;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 @Entity
 @Getter

@@ -1,27 +1,25 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
+import digital.windmill.audra.graphql.type.LeaveRequest;
+import digital.windmill.audra.graphql.type.input.LeaveRequestsSortEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
-
-import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
-import digital.windmill.audra.graphql.type.LeaveRequest;
-import digital.windmill.audra.graphql.type.input.LeaveRequestsSortEnum;
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @Slf4j
 public class LeaveRequestIt extends AbstractIntegrationTest {

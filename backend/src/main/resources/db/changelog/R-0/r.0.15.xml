@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.15.1" author="schiriac">
+
+        <sql>
+            CREATE TYPE PLAYBOOK_STEP_TYPE AS ENUM ('TASK_LIST', 'VIDEO', 'RESOURCE');
+        </sql>
+
+    </changeSet>
+    <changeSet id="r.0.15.2" author="schiriac">
+
+        <createTable tableName="playbook">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_policy2resource" references="resource(id)" nullable="true"/>
+            </column>
+            <column name="created_at" type="timestamptz"/>
+            <column name="updated_at" type="timestamptz"/>
+        </createTable>
+
+        <createTable tableName="playbook_task_list">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_resource">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_playbook_resource2resource" references="resource(id)" nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_video">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="description_i18n" type="jsonb" defaultValue="{}"/>
+        </createTable>
+
+        <createTable tableName="playbook_task">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="playbook_task_list_id" type="INT8">
+                <constraints foreignKeyName="fk_step2task_list" references="playbook_task_list(id)" nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_step">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="type" type="PLAYBOOK_STEP_TYPE"/>
+            <column name="playbook_task_list_id" type="INT8">
+                <constraints foreignKeyName="fk_step2task_list" references="playbook_task_list(id)" nullable="true"/>
+            </column>
+            <column name="playbook_resource_id" type="INT8">
+                <constraints foreignKeyName="fk_step2playbook_resource" references="playbook_resource(id)" nullable="true"/>
+            </column>
+            <column name="playbook_video_id" type="INT8">
+                <constraints foreignKeyName="fk_step2video" references="playbook_video(id)" nullable="true"/>
+            </column>
+            <column name="playbook_id" type="INT8">
+                <constraints foreignKeyName="fk_step2playbook" references="playbook(id)" nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

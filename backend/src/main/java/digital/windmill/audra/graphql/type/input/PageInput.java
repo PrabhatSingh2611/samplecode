@@ -1,11 +1,10 @@
 package digital.windmill.audra.graphql.type.input;
 
-import org.springframework.data.domain.PageRequest;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.PageRequest;
 
 @Setter
 @Builder

@@ -1,0 +1,32 @@
+query {
+    playbooks(input:
+    {}){
+        items{
+            id
+            title
+            image {
+                id
+                url
+                thumbnail
+            }
+            steps {
+                id
+                title
+                taskList {
+                    id
+                    tasks {
+                        id
+                        title
+                    }
+                }
+            }
+            createdAt
+            updatedAt
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

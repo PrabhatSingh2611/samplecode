@@ -1,8 +1,19 @@
 package digital.windmill.audra.dao;
 
 
-import static digital.windmill.audra.dao.SpecificationUtils.direction;
+import digital.windmill.audra.dao.entity.EmployeeEntity;
+import digital.windmill.audra.dao.entity.LeaveRequestEntity;
+import digital.windmill.audra.graphql.type.input.LeaveRequestWhereInput;
+import digital.windmill.audra.graphql.type.input.LeaveRequestsSortEnum;
+import digital.windmill.audra.graphql.type.input.NodeInput;
+import lombok.NonNull;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Root;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -12,20 +23,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Root;
-
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-
-import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.dao.entity.LeaveRequestEntity;
-import digital.windmill.audra.graphql.type.input.LeaveRequestWhereInput;
-import digital.windmill.audra.graphql.type.input.LeaveRequestsSortEnum;
-import digital.windmill.audra.graphql.type.input.NodeInput;
-import lombok.NonNull;
+import static digital.windmill.audra.dao.SpecificationUtils.direction;
 
 public class LeaveRequestSpecification {
 

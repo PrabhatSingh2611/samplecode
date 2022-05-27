@@ -1,23 +1,5 @@
 package digital.windmill.audra.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.UUID;
-import java.util.stream.Stream;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
@@ -30,6 +12,23 @@ import digital.windmill.audra.graphql.mapper.LeaveTypeMapperImpl;
 import digital.windmill.audra.graphql.type.input.CreateLeaveRequestInput;
 import digital.windmill.audra.graphql.type.input.DatePeriod;
 import digital.windmill.audra.graphql.type.input.PatchLeaveRequestInput;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.InjectMocks;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.UUID;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class LeaveRequestMapperTest {

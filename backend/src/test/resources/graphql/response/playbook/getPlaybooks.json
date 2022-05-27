@@ -1,0 +1,65 @@
+{
+  "data": {
+    "playbooks": {
+      "items": [
+        {
+          "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c89",
+          "title": "Playbook 1",
+          "image": {
+            "id": "b5673d40-ac1f-4092-8361-80bcdc182a07",
+            "url": "http://localhost:8080/resources/b5673d40-ac1f-4092-8361-80bcdc182a07",
+            "thumbnail": null
+          },
+          "steps": [
+            {
+              "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
+              "title": "Playbook step 1",
+              "taskList": {
+                "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c92",
+                "tasks": [
+                  {
+                    "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
+                    "title": "Task 1"
+                  }
+                ]
+              }
+            }
+          ],
+          "createdAt": "2022-02-02T13:25:34.480425Z[UTC]",
+          "updatedAt": "2022-02-02T13:25:34.480425Z[UTC]"
+        },
+        {
+          "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb891",
+          "title": "Playbook 2",
+          "image": {
+            "id": "b5673d40-ac1f-4092-8361-80bcdc182a07",
+            "url": "http://localhost:8080/resources/b5673d40-ac1f-4092-8361-80bcdc182a07",
+            "thumbnail": null
+          },
+          "steps": [
+            {
+              "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb896",
+              "title": "Playbook step 2",
+              "taskList": {
+                "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb894",
+                "tasks": [
+                  {
+                    "id": "d3e573f6-9b06-46ab-b3ff-ebd7caefb896",
+                    "title": "Task 2"
+                  }
+                ]
+              }
+            }
+          ],
+          "createdAt": "2021-02-02T13:25:34.480425Z[UTC]",
+          "updatedAt": "2021-02-02T13:25:34.480425Z[UTC]"
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 2
+    }
+  }
+}

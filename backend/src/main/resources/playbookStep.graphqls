@@ -11,15 +11,6 @@ type PlaybookStepPayload {
     playbookStep: PlaybookStep
 }
 
-type PlaybookStepTaskListPayload {
-    playbookStepTaskList: PlaybookStepTaskList
-}
-
-type PlaybookStepTaskList implements Node {
-    id: UUID!
-    tasks: [PlaybookStepTask]
-}
-
 type PlaybookStepTask {
     title: String
 }

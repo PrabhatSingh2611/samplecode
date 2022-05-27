@@ -5,16 +5,15 @@ import digital.windmill.audra.graphql.coersing.UUIDScalarCoercing;
 import digital.windmill.audra.graphql.coersing.ZonedDateTimeScalarCoercing;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.LeaveRequest;
+import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
 import digital.windmill.audra.graphql.type.Playbook;
 import digital.windmill.audra.graphql.type.PlaybookResource;
 import digital.windmill.audra.graphql.type.PlaybookStep;
-import digital.windmill.audra.graphql.type.PlaybookStepTaskList;
 import digital.windmill.audra.graphql.type.PlaybookTask;
 import digital.windmill.audra.graphql.type.PlaybookTaskList;
 import digital.windmill.audra.graphql.type.PlaybookVideo;
 import digital.windmill.audra.properties.ResourceProperties;
 import digital.windmill.i18n.I18nConfig;
-import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
 import graphql.kickstart.servlet.apollo.ApolloScalars;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
@@ -54,7 +53,6 @@ public class AppConfig {
                 .add(LeaveTypeEndOfYearAction.class)
                 .add(Playbook.class)
                 .add(PlaybookStep.class)
-                .add(PlaybookStepTaskList.class)
                 .add(PlaybookVideo.class)
                 .add(PlaybookResource.class)
                 .add(PlaybookTask.class)

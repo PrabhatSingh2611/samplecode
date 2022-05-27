@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaybookTask implements Node{
+public class PlaybookTask implements Node {
 
     private UUID id;
     private String title;

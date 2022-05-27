@@ -1,13 +1,12 @@
 package digital.windmill.audra.dao;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Order;
-
+import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
-import lombok.experimental.UtilityClass;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Order;
 
 @UtilityClass
 public class SpecificationUtils {

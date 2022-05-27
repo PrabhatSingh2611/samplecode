@@ -103,3 +103,35 @@ INSERT INTO leave_request (id, uuid, employee_id, request_date, status, start_da
 
 
 ALTER SEQUENCE leave_request_id_seq RESTART WITH 3;
+
+
+insert into playbook (id, uuid, title_i18n, resource_id, created_at, updated_at)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c89', '{"en": "Playbook 1"}', 1, '2022-02-02T13:25:34.480425Z','2022-02-02T13:25:34.480425Z'),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb891', '{"en": "Playbook 2"}', 1, '2021-02-02T13:25:34.480425Z','2021-02-02T13:25:34.480425Z');
+
+insert into playbook_task_list (id, uuid)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92'),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894');
+
+insert into playbook_resource (id, uuid, resource_id)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92', 1),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894', 2);
+
+insert into playbook_video (id, uuid, url, description_i18n)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92', 'https://test.com', '{"en": "Playbook Video Description 1"}'),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894', 'https://test.com', '{"en": "Playbook Video Description 2"}');
+
+insert into playbook_task (id, uuid, title_i18n, playbook_task_list_id)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "Task 1"}', 1),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "Task 2"}', 2);
+
+insert into playbook_step (id, uuid, title_i18n, playbook_task_list_id, playbook_resource_id, playbook_video_id, playbook_id)
+            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "Playbook step 1"}', 1, 1, 1, 1),
+                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "Playbook step 2"}', 2, 2, 2, 2);
+
+ALTER SEQUENCE playbook_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_task_list_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_resource_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_video_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_task_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_step_id_seq RESTART WITH 1000;

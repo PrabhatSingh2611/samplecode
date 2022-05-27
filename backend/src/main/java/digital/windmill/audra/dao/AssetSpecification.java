@@ -1,19 +1,12 @@
 package digital.windmill.audra.dao;
 
 import digital.windmill.audra.dao.entity.AssetEntity;
-import digital.windmill.audra.graphql.type.enums.AssetSortEnum;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.NodesInput;
-import digital.windmill.audra.graphql.type.input.PageInput;
-import digital.windmill.audra.graphql.utils.SortUtils;
-import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.CollectionUtils;
 
-import java.util.List;
 import java.util.Optional;
 
 public class AssetSpecification {

@@ -1,9 +1,7 @@
 package digital.windmill.audra.service.impl;
 
 import digital.windmill.audra.dao.LeaveTypeSpecification;
-import digital.windmill.audra.dao.LocationSpecification;
 import digital.windmill.audra.dao.entity.LeaveTypeEntity;
-import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LeaveTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
 import digital.windmill.audra.graphql.type.input.LeaveTypesInput;

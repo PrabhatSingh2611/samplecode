@@ -2,12 +2,11 @@ package digital.windmill.audra.mapper;
 
 import digital.windmill.audra.dao.entity.LeaveTypeEntity;
 import digital.windmill.audra.dao.entity.enums.EndOfYearAction;
-import digital.windmill.audra.graphql.mapper.*;
+import digital.windmill.audra.graphql.mapper.LeaveTypeMapperImpl;
 import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;

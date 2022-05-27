@@ -1,6 +1,9 @@
 package digital.windmill.audra.dao.entity;
 
-import java.util.UUID;
+import digital.windmill.audra.dao.entity.enums.EndOfYearAction;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-
-import digital.windmill.audra.dao.entity.enums.EndOfYearAction;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.UUID;
 
 @Getter
 @Setter

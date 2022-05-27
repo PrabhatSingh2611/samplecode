@@ -8,7 +8,6 @@ import digital.windmill.audra.graphql.type.input.LeaveRequestsInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
 import digital.windmill.audra.service.LeaveRequestService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;

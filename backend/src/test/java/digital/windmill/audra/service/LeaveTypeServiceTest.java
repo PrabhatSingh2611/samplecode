@@ -1,10 +1,8 @@
 package digital.windmill.audra.service;
 
-import digital.windmill.audra.dao.entity.AnnouncementEntity;
 import digital.windmill.audra.dao.entity.LeaveTypeEntity;
 import digital.windmill.audra.dao.repository.LeaveTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.graphql.type.input.AnnouncementsInput;
 import digital.windmill.audra.graphql.type.input.LeaveTypesInput;
 import digital.windmill.audra.service.impl.LeaveTypeServiceImpl;
 import org.junit.jupiter.api.Assertions;

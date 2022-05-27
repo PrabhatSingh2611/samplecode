@@ -1,21 +1,19 @@
 package digital.windmill.audra.dao;
 
-import static digital.windmill.audra.dao.SpecificationUtils.direction;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Root;
-
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-
 import digital.windmill.audra.dao.entity.LeaveTypeEntity;
 import digital.windmill.audra.dao.entity.enums.LeaveTypesSortEnum;
 import digital.windmill.audra.graphql.type.input.LeaveTypesWhereInput;
 import lombok.experimental.UtilityClass;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
+
+import static digital.windmill.audra.dao.SpecificationUtils.direction;
 
 @UtilityClass
 public class LeaveTypeSpecification {

@@ -16,6 +16,12 @@ type PlaybookPayload {
     playbook: Playbook
 }
 
+type PlaybookConnectionPayload implements ConnectionPayload {
+    items: [Playbook!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
 input DeletePlaybookInput {
     id: UUID!
 }

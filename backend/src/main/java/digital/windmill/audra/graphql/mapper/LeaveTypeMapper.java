@@ -4,7 +4,6 @@ import digital.windmill.audra.dao.entity.LeaveTypeEntity;
 import digital.windmill.audra.dao.entity.enums.EndOfYearAction;
 import digital.windmill.audra.graphql.type.LeaveType;
 import digital.windmill.audra.graphql.type.LeaveTypeEndOfYearAction;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

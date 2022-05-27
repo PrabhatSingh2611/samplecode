@@ -2,9 +2,7 @@ package digital.windmill.audra.resolver;
 
 import digital.windmill.audra.graphql.facade.LeaveTypeFacade;
 import digital.windmill.audra.graphql.resolver.leaveType.LeaveTypeResolver;
-import digital.windmill.audra.graphql.type.Announcement;
 import digital.windmill.audra.graphql.type.LeaveType;
-import digital.windmill.audra.graphql.type.input.AnnouncementsInput;
 import digital.windmill.audra.graphql.type.input.LeaveTypesInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +17,6 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

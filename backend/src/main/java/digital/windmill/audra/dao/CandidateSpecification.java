@@ -1,22 +1,12 @@
 package digital.windmill.audra.dao;
 
 import digital.windmill.audra.dao.entity.CandidateEntity;
-import digital.windmill.audra.dao.entity.enums.CandidateStatus;
 import digital.windmill.audra.graphql.type.input.CandidatesInput;
-import digital.windmill.audra.graphql.type.input.NodeInput;
-import digital.windmill.audra.graphql.type.input.VacancyCandidateWhereInput;
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 
 public class CandidateSpecification {

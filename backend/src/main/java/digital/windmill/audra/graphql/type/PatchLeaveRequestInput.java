@@ -1,9 +1,9 @@
 package digital.windmill.audra.graphql.type;
 
-import java.util.UUID;
-
 import digital.windmill.audra.dao.entity.enums.LeaveRequestStatus;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 public class PatchLeaveRequestInput {
