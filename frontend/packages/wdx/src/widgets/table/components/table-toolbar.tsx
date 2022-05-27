@@ -38,11 +38,13 @@ function WTableToolBar({
 export interface ISearchBar {
   onSearchChange: (value: string) => void;
   searchValue: string;
+  placeholder?: string;
 }
 
 WTableToolBar.SearchBar = ({
   onSearchChange,
   searchValue,
+  placeholder = 'Search',
 }: ISearchBar): JSX.Element => {
   return (
     <TextField
@@ -51,7 +53,7 @@ WTableToolBar.SearchBar = ({
       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
         onSearchChange(event.target.value)
       }
-      placeholder="Search user..."
+      placeholder={placeholder}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

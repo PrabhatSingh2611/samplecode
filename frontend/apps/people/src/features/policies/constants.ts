@@ -13,7 +13,12 @@ export const POLICY_TABLE_HEADER_DATA = [
         sx: { pl: 12 },
     },
     { id: 'owner', label: 'Owner', align: AlignTableCell.LEFT },
-    { id: 'publicationDate', label: 'Publication Date', align: AlignTableCell.LEFT },
+    {
+        id: 'publicationDate',
+        label: 'Publication Date',
+        align: AlignTableCell.LEFT,
+        isClickable: true,
+    },
     { id: 'status', label: 'Status', align: AlignTableCell.LEFT, width: '150px' },
     { id: 'actions', label: '', align: AlignTableCell.LEFT, width: '76px' },
 ];

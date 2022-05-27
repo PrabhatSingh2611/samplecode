@@ -25,6 +25,7 @@ export interface IHeaderCellData {
   width?: string;
   minWidth?: string;
   label?: string;
+  isClickable?: boolean;
 }
 
 export type TMoreMenuActions = ({
