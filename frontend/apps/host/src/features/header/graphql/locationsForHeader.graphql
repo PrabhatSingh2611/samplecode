@@ -7,6 +7,6 @@ query getLocationsForHeader {
 }
 
 fragment LocationForHeader on Location {
-    uuid
-    name
+    id
+    country
 }

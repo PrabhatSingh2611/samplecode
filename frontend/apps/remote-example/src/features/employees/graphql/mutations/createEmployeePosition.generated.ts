@@ -8,14 +8,14 @@ export type CreateEmployeePositionMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateEmployeePositionMutation = { __typename?: 'Mutation', createEmployeePosition: { __typename?: 'EmployeePositionPayload', item?: { __typename?: 'EmployeePosition', uuid: any, name?: string | null } | null } };
+export type CreateEmployeePositionMutation = { __typename?: 'Mutation', createEmployeePosition: { __typename?: 'EmployeePositionPayload', item?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null } };
 
 
 export const CreateEmployeePositionDocument = gql`
     mutation createEmployeePosition($input: CreateEmployeePositionInput!) {
   createEmployeePosition(input: $input) {
     item {
-      uuid
+      id
       name
     }
   }

@@ -12,22 +12,22 @@ query getEmployeesForEmployeesList($input: EmployeesInput) {
 }
 
 fragment EmployeeForEmployeesList on Employee {
-    uuid
+    id
     firstName
     lastName
     role
     birthday
     reportingManager {
-        uuid
+        id
         firstName
         lastName
     }
     position {
-        uuid
+        id
         name
     }
     location {
-        uuid
-        name
+        id
+        country
     }
 }

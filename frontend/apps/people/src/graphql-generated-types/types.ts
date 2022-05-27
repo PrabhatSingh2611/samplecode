@@ -338,6 +338,7 @@ export type Employee = Node & {
   __typename?: 'Employee';
   avatar?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['ZonedDateTime']>;
+  email?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   id: Scalars['UUID'];
   lastName?: Maybe<Scalars['String']>;
@@ -382,12 +383,20 @@ export enum EmployeeRole {
 
 export type EmployeeWhereInput = {
   location?: InputMaybe<NodeInput>;
+  /** Filters by 'firstName', 'lastName' and 'email', with 'OR' condition! */
+  query?: InputMaybe<Scalars['String']>;
 };
 
 export type EmployeesInput = {
   pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<EmployeesSortEnum>>;
   where?: InputMaybe<EmployeeWhereInput>;
 };
+
+export enum EmployeesSortEnum {
+  FirstNameAsc = 'firstName_ASC',
+  FirstNameDesc = 'firstName_DESC'
+}
 
 export type LeaveRequest = Node & {
   __typename?: 'LeaveRequest';

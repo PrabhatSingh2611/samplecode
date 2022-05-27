@@ -8,29 +8,29 @@ export type GetEmployeesForEmployeesListQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetEmployeesForEmployeesListQuery = { __typename?: 'Query', employees: { __typename?: 'EmployeeConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Employee', uuid: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', uuid: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', uuid: any, name?: string | null } | null, location?: { __typename?: 'Location', uuid: any, name: string } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
+export type GetEmployeesForEmployeesListQuery = { __typename?: 'Query', employees: { __typename?: 'EmployeeConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: string } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
 
-export type EmployeeForEmployeesListFragment = { __typename?: 'Employee', uuid: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', uuid: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', uuid: any, name?: string | null } | null, location?: { __typename?: 'Location', uuid: any, name: string } | null };
+export type EmployeeForEmployeesListFragment = { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: string } | null };
 
 export const EmployeeForEmployeesListFragmentDoc = gql`
     fragment EmployeeForEmployeesList on Employee {
-  uuid
+  id
   firstName
   lastName
   role
   birthday
   reportingManager {
-    uuid
+    id
     firstName
     lastName
   }
   position {
-    uuid
+    id
     name
   }
   location {
-    uuid
-    name
+    id
+    country
   }
 }
     `;

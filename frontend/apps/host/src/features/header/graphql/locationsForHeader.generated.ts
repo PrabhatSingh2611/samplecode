@@ -6,14 +6,14 @@ const defaultOptions = {} as const;
 export type GetLocationsForHeaderQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetLocationsForHeaderQuery = { __typename?: 'Query', locations: { __typename?: 'LocationConnectionPayload', items: Array<{ __typename?: 'Location', uuid: any, name: string }> } };
+export type GetLocationsForHeaderQuery = { __typename?: 'Query', locations: { __typename?: 'LocationConnectionPayload', items: Array<{ __typename?: 'Location', id: any, country: string }> } };
 
-export type LocationForHeaderFragment = { __typename?: 'Location', uuid: any, name: string };
+export type LocationForHeaderFragment = { __typename?: 'Location', id: any, country: string };
 
 export const LocationForHeaderFragmentDoc = gql`
     fragment LocationForHeader on Location {
-  uuid
-  name
+  id
+  country
 }
     `;
 export const GetLocationsForHeaderDocument = gql`
