@@ -14,6 +14,15 @@ export type TIcons =
   | 'delete'
   | 'arrow-right-alt'
   | 'add'
-  | 'insert-drive-file';
+  | 'insert-drive-file'
+  | 'badge'
+  | 'people'
+  | 'people-alt'
+  | 'nature-people'
+  | 'computer'
+  | 'connect-without-contact'
+  | 'policy'
+  | 'menu-book'
+  | 'settings';
 
  // TODO: Add more types of icons (YD)

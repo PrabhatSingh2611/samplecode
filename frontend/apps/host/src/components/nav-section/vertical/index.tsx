@@ -2,7 +2,6 @@ import React from 'react';
 
 import { List, Box, ListSubheader, SxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
 import { INavSectionProps } from 'components/nav-section/type';
 import { NavListRoot } from 'components/nav-section/vertical/NavList';
 
@@ -33,16 +32,6 @@ export default function NavSectionVertical({
         <Box {...other}>
             {navConfig.map((group) => (
                 <List key={group.subheader} disablePadding sx={{ px: 2 }}>
-                    <ListSubheaderStyle
-                        sx={{
-                            ...(isCollapse && {
-                                opacity: 0,
-                            }),
-                        }}
-                    >
-                        {group.subheader}
-                    </ListSubheaderStyle>
-
                     {group.items.map((list) => (
                         <NavListRoot
                             key={list.title + list.path}

@@ -2,18 +2,15 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { styled, useTheme } from '@mui/material/styles';
-import { WDrawer, WStack } from 'wdx';
-
 import Logo from 'components/Logo';
 import Scrollbar from 'components/Scrollbar';
 import { NavSectionVertical } from 'components/nav-section';
-import CollapseButton from 'features/navbar/components/CollapseButton';
 import navConfig from 'features/navbar/components/NavConfig';
-import NavbarAccount from 'features/navbar/components/NavbarAccount';
 import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
 import { NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
+import { WDrawer, WStack } from 'wdx';
 
 const RootStyle = styled('div')(({ theme }) => ({
     [theme.breakpoints.up('lg')]: {
@@ -63,24 +60,27 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
                 spacing={3}
                 sx={{
                     flexShrink: 0,
+                    py: 4,
                     px: 2.5,
-                    pt: 3,
-                    pb: 2,
                     ...(isCollapse && { alignItems: 'center' }),
                 }}
             >
-                <WStack direction="row" alignItems="center" justifyContent="space-between">
+                <WStack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    sx={{ pl: 2 }}
+                >
                     <Logo />
 
-                    {isDesktop && !isCollapse && (
+                    {/* TODO: Return if necessary and make a LOGO option for collapse (AU) */}
+                    {/* {isDesktop && !isCollapse && (
                         <CollapseButton
                             onToggleCollapse={onToggleCollapse}
                             collapseClick={collapseClick}
                         />
-                    )}
+                    )} */}
                 </WStack>
-
-                <NavbarAccount isCollapse={isCollapse} />
             </WStack>
 
             <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />

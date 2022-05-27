@@ -17,6 +17,16 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Search from '@mui/icons-material/Search';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import Badge from '@mui/icons-material/Badge';
+import People from '@mui/icons-material/People';
+import PeopleAlt from '@mui/icons-material/PeopleAlt';
+import NaturePeople from '@mui/icons-material/NaturePeople';
+import Computer from '@mui/icons-material/Computer';
+import ConnectWithoutContact from '@mui/icons-material/ConnectWithoutContact';
+import Policy from '@mui/icons-material/Policy';
+import MenuBook from '@mui/icons-material/MenuBook';
+import Settings from '@mui/icons-material/Settings';
+
 type TIconComponent = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
   muiName: string;
 };
@@ -38,4 +48,13 @@ export const iconsConfig: Record<TIcons, TIconComponent> = {
   'insert-drive-file': InsertDriveFileIcon,
   'more-vertical': MoreVertical,
   search: Search,
+  badge: Badge,
+  people: People,
+  'people-alt': PeopleAlt,
+  'nature-people': NaturePeople,
+  computer: Computer,
+  'connect-without-contact': ConnectWithoutContact,
+  policy: Policy,
+  'menu-book': MenuBook,
+  settings: Settings,
 };
