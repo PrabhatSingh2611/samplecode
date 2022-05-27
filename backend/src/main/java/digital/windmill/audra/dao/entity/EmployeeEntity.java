@@ -43,6 +43,8 @@ public class EmployeeEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
+    private String email;
     @Column(name = "role", columnDefinition = "EMPLOYEE_ROLE")
     @Enumerated(EnumType.STRING)
     @Type(type = "pgsql_enum")

@@ -1,42 +1,89 @@
 package digital.windmill.audra.dao;
 
-
 import digital.windmill.audra.dao.entity.EmployeeEntity;
-import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
-import digital.windmill.audra.graphql.type.input.EmployeesInput;
-import digital.windmill.audra.graphql.type.input.NodeInput;
-import digital.windmill.audra.graphql.type.input.PageInput;
-import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.data.domain.PageRequest;
+import digital.windmill.audra.dao.entity.LocationEntity;
+import digital.windmill.audra.graphql.type.enums.EmployeeSort;
+import digital.windmill.audra.graphql.type.input.*;
+import lombok.NonNull;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Root;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static digital.windmill.audra.dao.SpecificationUtils.direction;
 
 public class EmployeeSpecification {
-    private static final Integer DEFAULT_PAGE_SIZE = 10;
+  public static Specification<EmployeeEntity> employees(EmployeeWhereInput input,List<EmployeeSort> sort) {
 
-    public static Pair<Specification<EmployeeEntity>, PageRequest> employees(EmployeesInput input) {
-        var location = Optional.ofNullable(input).map(EmployeesInput::getWhere).map(EmployeeWhereInput::getLocation).orElse(null);
+        Specification<EmployeeEntity> byQuery = Optional.ofNullable(input)
+                .map(EmployeeWhereInput::getQuery)
+                .map(EmployeeSpecification::bySearchText)
+                .orElse(null);
 
-        var itemsPerPage = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
-        var pageNumber = Optional.ofNullable(input).map(EmployeesInput::getPagination).map(PageInput::getPageNumber).orElse(0);
+        Specification<EmployeeEntity> byLocation = Optional.ofNullable(input)
+                .map(EmployeeWhereInput::getLocation)
+                .map(NodeInput::getId)
+                .map(EmployeeSpecification::byLocation)
+                .orElse(null);
 
-        var spec = Specification.where(
-                byLocation(location));
+        Specification<EmployeeEntity> addCustomSorting = sortedBy(sort);
+        return Stream.of(byQuery,byLocation, addCustomSorting)
+                .filter(Objects::nonNull)
+                .reduce(EmployeeSpecification.any(), Specification::and);
+    }
+    public static Specification<EmployeeEntity> any() {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.conjunction();
+    }
 
+    public static Specification<EmployeeEntity> byLocation(@NonNull UUID locationUuid) {
+        return (root, query, criteriaBuilder) -> {
+            Join<EmployeeEntity, LocationEntity> locationJoin = root.join("location");
+            return criteriaBuilder.equal(locationJoin.get("uuid"), locationUuid);
+        };
+    }
 
-        var pageable = PageRequest.of(pageNumber, itemsPerPage);
-        return Pair.of(spec, pageable);
+    private static Specification<EmployeeEntity> sortedBy(List<EmployeeSort> sort) {
+         return (root, query, criteriaBuilder) -> {
+            List<Order> orders = new ArrayList<>();
+            for (EmployeeSort sortItem : sort) {
+                var order = prepareOrder(root, criteriaBuilder, sortItem);
+                if (order != null) {
+                    orders.add(order);
+                }
+            }
+            query.orderBy(orders);
+            return null;
+        };
     }
 
 
-    public static Specification<EmployeeEntity> byLocation(NodeInput location) {
+    private static Order prepareOrder(Root<EmployeeEntity> root, CriteriaBuilder criteriaBuilder, EmployeeSort sortItem) {
+        if (sortItem == null) {
+            return null;
+        }
+        return switch (sortItem) {
+            case firstName_ASC -> direction(criteriaBuilder, root.get("firstName"), Sort.Direction.ASC);
+            case firstName_DESC -> direction(criteriaBuilder, root.get("firstName"), Sort.Direction.DESC);
+        };
+    }
+
+    public static Specification<EmployeeEntity> bySearchText(String searchText) {
         return (root, query, builder) -> {
-            if (location == null || location.getId() == null) {
+            if (!StringUtils.isNotBlank(searchText)) {
                 return builder.conjunction();
             }
-            var locationJoin = root.join("employee");
-            return builder.equal(locationJoin.get("uuid"), location.getId());
+            var pattern = "%" + searchText.toLowerCase().trim() + "%";
+            return builder.or(
+                    builder.like(builder.lower(root.get("firstName")), pattern),
+                    builder.like(builder.lower(root.get("lastName")), pattern),
+                    builder.like(builder.lower(root.get("email")), pattern)
+            );
         };
     }
 }

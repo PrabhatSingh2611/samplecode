@@ -18,6 +18,7 @@ public class Employee implements Node {
     private UUID id;
     private String firstName;
     private String lastName;
+    private String email;
     private EmployeeRole role;
     private ZonedDateTime birthday;
     private Employee reportingManager;

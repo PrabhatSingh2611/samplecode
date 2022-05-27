@@ -8,13 +8,13 @@ values
 (1, 'cabfb51b-41c5-4f4d-afd5-146c796391ad', 'manager'),
 (2, '79761728-8f51-475f-aa04-42385a0dfe35', 'principle');
 
-INSERT INTO employee(id, uuid, first_name, last_name, role, birthday, manager_id, position_id, location_id)
+INSERT INTO employee(id, uuid, first_name, last_name, email, role, birthday, manager_id, position_id, location_id)
 VALUES
-(1, '48b560ab-7450-4088-b6bb-f57638ea0877', 'Jacob', 'Morris', 'ADMIN', '2022-03-23T19:37:14.480425Z',2,1,1),
-(2, '5bea1a4d-b457-47c9-bf8b-72f50182b707', 'Edmund', 'Hogan', 'EMPLOYEE', '2022-02-28T12:03:00.480425Z',1,1,1),
-(3, '6bac1755-c88c-4462-ae14-527b54b03e0d', 'Geneva', 'Norman', 'EMPLOYEE', '2022-01-16T08:12:50.480425Z',1,1,1),
-(4, 'b48db556-3bd0-479e-9f1a-231be9636887', 'Danielle', 'Kelly', 'ADMIN', '2022-02-08T18:34:45.480425Z',2,1,1),
-(5, '78098941-0591-4b9c-998f-95a65e1ece55', 'Victoria', 'Luna', 'EMPLOYEE', '2022-03-15T22:11:15.480425Z',2,1,1);
+(1, '48b560ab-7450-4088-b6bb-f57638ea0877', 'Jacob', 'Morris','jacob@gmail.com', 'ADMIN', '2022-03-23T19:37:14.480425Z',2,1,1),
+(2, '5bea1a4d-b457-47c9-bf8b-72f50182b707', 'Edmund', 'Hogan','edmund@gmail.com', 'EMPLOYEE', '2022-02-28T12:03:00.480425Z',1,1,1),
+(3, '6bac1755-c88c-4462-ae14-527b54b03e0d', 'Geneva', 'Norman','geneva@gmail.com', 'EMPLOYEE', '2022-01-16T08:12:50.480425Z',1,1,1),
+(4, 'b48db556-3bd0-479e-9f1a-231be9636887', 'Danielle', 'Kelly','danielle@gmail.com', 'ADMIN', '2022-02-08T18:34:45.480425Z',2,1,1),
+(5, '78098941-0591-4b9c-998f-95a65e1ece55', 'Victoria', 'Luna','victoria@gmail.com', 'EMPLOYEE', '2022-03-15T22:11:15.480425Z',2,1,1);
 
 INSERT INTO asset_type (id, uuid, title, icon)
 VALUES

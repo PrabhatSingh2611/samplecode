@@ -1,9 +1,13 @@
-query getEmployees($input: EmployeesInput) {
-    employees(input: $input) {
+query {
+    employees(
+        input: {
+            sort: firstName_ASC
+        }) {
         items {
             id
             firstName
             lastName
+            email
             role
             birthday
             reportingManager{

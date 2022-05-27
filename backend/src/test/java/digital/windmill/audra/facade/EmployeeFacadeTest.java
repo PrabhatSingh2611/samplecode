@@ -23,6 +23,7 @@ import org.springframework.data.domain.PageImpl;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -55,18 +56,20 @@ class EmployeeFacadeTest {
     }
 
     @Test
-    void shouldReturnAllEmployees(@Mock EmployeesInput employeesInput,
-                                  @Mock EmployeeEntity employeeEntity,
-                                  @Mock Employee employee
+    void shouldReturnAllEmployees(@Mock EmployeeEntity employeeEntity,
+                                  @Mock Employee employee,
+                                  @Mock EmployeesInput employeesInput
     ) {
 
         Page<EmployeeEntity> employeesPage = createOneItemPage(employeeEntity);
-        when(employeeService.getEmployees(employeesInput)).thenReturn(employeesPage);
-        when(employeeMapper.mapEmployeeEntityToEmployee(employeeEntity)).thenReturn(employee);
-
+        when(employeeService.getEmployees(any(EmployeesInput.class)))
+                .thenReturn(employeesPage);
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class)))
+                .thenReturn(employee);
         var result = facade.getEmployees(employeesInput);
 
-        assertEquals(createOneItemPage(employee), result);
+        assertNotNull(result);
+        assertEquals(employee, result.getContent().get(0));
     }
 
     @Test
