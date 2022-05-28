@@ -5,6 +5,8 @@ import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.enums.EmployeeSort;
 import digital.windmill.audra.graphql.type.input.*;
 import lombok.NonNull;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,7 +21,7 @@ import java.util.stream.Stream;
 import static digital.windmill.audra.dao.SpecificationUtils.direction;
 
 public class EmployeeSpecification {
-  public static Specification<EmployeeEntity> employees(EmployeeWhereInput input,List<EmployeeSort> sort) {
+  public static Specification<EmployeeEntity> employees(EmployeeWhereInput input, List<EmployeeSort> sort) {
 
         Specification<EmployeeEntity> byQuery = Optional.ofNullable(input)
                 .map(EmployeeWhereInput::getQuery)
@@ -33,7 +35,7 @@ public class EmployeeSpecification {
                 .orElse(null);
 
         Specification<EmployeeEntity> addCustomSorting = sortedBy(sort);
-        return Stream.of(byQuery,byLocation, addCustomSorting)
+        return Stream.of(byQuery, byLocation, addCustomSorting)
                 .filter(Objects::nonNull)
                 .reduce(EmployeeSpecification.any(), Specification::and);
     }
@@ -50,14 +52,16 @@ public class EmployeeSpecification {
 
     private static Specification<EmployeeEntity> sortedBy(List<EmployeeSort> sort) {
          return (root, query, criteriaBuilder) -> {
-            List<Order> orders = new ArrayList<>();
-            for (EmployeeSort sortItem : sort) {
-                var order = prepareOrder(root, criteriaBuilder, sortItem);
-                if (order != null) {
-                    orders.add(order);
+            if (CollectionUtils.isNotEmpty(sort)) {
+                List<Order> orders = new ArrayList<>();
+                for (EmployeeSort sortItem : sort) {
+                    var order = prepareOrder(root, criteriaBuilder, sortItem);
+                    if (order != null) {
+                        orders.add(order);
+                    }
                 }
+                query.orderBy(orders);
             }
-            query.orderBy(orders);
             return null;
         };
     }

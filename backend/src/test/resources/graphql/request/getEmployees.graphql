@@ -1,8 +1,5 @@
-query {
-    employees(
-        input: {
-            sort: firstName_ASC
-        }) {
+query getEmployees($input: EmployeesInput){
+    employees(input: $input) {
         items {
             id
             firstName
