@@ -8,9 +8,6 @@
                 "build/**"
             ]
         },
-        "build:ci": {
-            "cache": false
-        },
         "lint": {
             "outputs": []
         },
@@ -18,9 +15,6 @@
             "outputs": []
         },
         "dev": {
-            "cache": false
-        },
-        "dev:staging": {
             "cache": false
         },
         "clear-all": {
