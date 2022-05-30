@@ -36,4 +36,9 @@ Always follow Schema Conventions while design.
 9. Than go to Subscriptions if needed. **ASK** questions.
 10. After you finished check one more time your designed Schema with Functional requirements and Figma designs. Change Schema if needed.
 11. After all thing are covered and commited copy all file Contents and paste them in Jira ticket Comments section with GraphQL styling (type three Backticks).
+
+:::caution
+If you made Breaking changes reflect them in General chat for all Squads.
+:::
+
 12. Repeat the same for all Jira Tickets.
