@@ -6,7 +6,7 @@
 
     <changeSet id="r.0.12.1" author="abhishek.kumar">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
+            <sqlCheck expectedResult="f">
                 SELECT exists ( SELECT *
                     FROM information_schema.columns 
                     WHERE table_name='asset' and column_name='location_id');
@@ -30,7 +30,7 @@
 
     <changeSet id="r.0.12.2" author="tetiana.hladka">
         <preConditions onFail="MARK_RAN">
-          <sqlCheck expectedResult="0">
+          <sqlCheck expectedResult="f">
               SELECT exists ( SELECT *
             FROM location
             WHERE id = 3);
