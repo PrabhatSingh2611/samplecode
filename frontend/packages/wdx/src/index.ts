@@ -22,6 +22,7 @@ export {
 export * from './utils/formatDate';
 export * from './utils/getFontValue';
 export * from './utils/cssStyles';
+export * from './utils/getAvatarInitials';
 export * from './utils/styledComponent';
 export { getAvatarInitials } from './utils/getAvatarInitials';
 export * from './utils/maybeUtils';
@@ -161,7 +162,7 @@ export {
 } from './components/pagination';
 export { default as WPage, WPageProps } from './components/page';
 export { default as WPaper, WPaperProps } from './components/paper';
-export { default as WPill, WPillProps } from './components/pill';
+export { default as WPill, WPillProps, LabelColor } from './components/pill';
 export { default as WPopover, WPopoverProps } from './components/popover';
 export {
   WCircularProgress,

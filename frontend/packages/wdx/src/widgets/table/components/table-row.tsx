@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import WCheckbox from '../../../components/checkbox';
 import WTable from '../../../components/table';
 import WTableMoreMenu from './table-more-menu';
-import { TMoreMenuActions } from '../base-table.widget';
+import { AlignTableCell, TMoreMenuActions } from '../base-table.widget';
 
 interface IWTableRow {
   // TODO Fix type (VS)
@@ -43,7 +43,10 @@ export default function WTableRow({
       {headerData.map((rowDataKey: any, index: number) => (
         <WTable.Cell
           key={rowData.id + rowDataCopy[rowDataKey.id]}
-          align={index > 0 ? 'right' : 'left'}
+          align={
+            rowDataKey.align ||
+            (index > 0 ? AlignTableCell.RIGHT : AlignTableCell.LEFT)
+          }
         >
           {rowDataCopy[rowDataKey.id]}
         </WTable.Cell>

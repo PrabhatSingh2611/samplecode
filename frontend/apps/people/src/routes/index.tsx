@@ -5,6 +5,7 @@ import { WBox, WTypography, WButton } from 'wdx';
 
 import EmployeesList from 'features/employees/components/EmployeesList.component';
 import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/leave-request-drawer.component';
+import RequestsPage from 'features/leave/containers/requests-page/requests-page.container';
 import AuthorizationBtn from 'features/me/components/authBtn';
 import PoliciesPage from 'features/policies/containers/policies-page/PoliciesPage.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
@@ -22,7 +23,7 @@ function Routes(): JSX.Element {
                 <EmployeesList />
             </Route>
             <Route path={EPeopleRouterLink.Leaves}>
-                <PageSample title="Leaves page" />
+                <RequestsPage />
             </Route>
             <Route path={EPeopleRouterLink.Playbooks}>
                 <PageSample title="Playbooks page" />

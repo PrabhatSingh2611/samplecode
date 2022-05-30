@@ -22,6 +22,13 @@ export function formatDateToNow(date: Date | string | number) {
   });
 }
 
+export function formatDateByTemplate(
+  date: Date | string | number,
+  template: string
+): string {
+  return format(new Date(date), template);
+}
+
 export function deleteUtcFromDate(date: string): string {
   return date.replace('[UTC]', '');
 }

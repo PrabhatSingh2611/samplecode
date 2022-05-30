@@ -4,7 +4,10 @@ import { SvgIconTypeMap } from '@mui/material/SvgIcon/SvgIcon';
 import Abc from '@mui/icons-material/Abc';
 import AcUnit from '@mui/icons-material/AcUnit';
 import AccessAlarm from '@mui/icons-material/AccessAlarm';
+import ArrowBackIosNew from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
 import Close from '@mui/icons-material/Close';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import DownloadIcon from '@mui/icons-material/Download';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -35,6 +38,9 @@ export const iconsConfig: Record<TIcons, TIconComponent> = {
   abc: Abc,
   'ac-unit': AcUnit,
   'access-alarm': AccessAlarm,
+  'chevron-down': KeyboardArrowDown,
+  'chevron-left': ArrowBackIosNew,
+  'chevron-right': ArrowForwardIos,
   close: Close,
   download: DownloadIcon,
   edit: EditIcon,

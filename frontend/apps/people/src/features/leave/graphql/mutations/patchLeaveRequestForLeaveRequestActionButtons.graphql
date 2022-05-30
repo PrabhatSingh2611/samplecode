@@ -1,0 +1,8 @@
+mutation patchLeaveRequestForLeaveRequestActionButtons($input: PatchLeaveRequestInput!) {
+    patchLeaveRequest(input: $input) {
+        leaveRequest {
+            id
+            status
+        }
+    }
+}

@@ -27,6 +27,7 @@ const Template: Story = (args) => {
   return (
     <WSubHeader
       {...args}
+      subtitle="I'm subtitle"
       actions={
         <>
           <WButton color="secondary" size="large">Secondary</WButton>

@@ -7,6 +7,7 @@ import WTableFooter from './components/table-footer';
 import WTableToolBar from './components/table-toolbar';
 import WTableSelectedActions from './components/table-selected-actions';
 import WCard from '../../components/card';
+import { WTableRowSkeleton } from './components/table-row-skeleton';
 
 export enum Order {
   ASC = 'asc',
@@ -47,6 +48,7 @@ export interface IWBaseTableProps<T extends { id: string }> {
   selected?: string[];
   isCheckable?: boolean;
   renderBodyRow?: (rowData: T) => React.ReactNode;
+  renderSkeletonRow?: (index: number) => React.ReactNode;
   renderFooter?: React.ReactNode;
   withFooter?: boolean;
   toolbarElements?: React.ReactNode;
@@ -56,6 +58,7 @@ export interface IWBaseTableProps<T extends { id: string }> {
   selectActions?: React.ReactNode;
   moreMenuActions?: TMoreMenuActions;
   emptyRowsHeight?: number;
+  isLoading?: boolean;
 }
 
 export default function WBaseTable<T extends { id: string }>({
@@ -77,9 +80,11 @@ export default function WBaseTable<T extends { id: string }>({
   setOrderBy,
   setOrder,
   renderBodyRow,
+  renderSkeletonRow,
   selectActions,
   moreMenuActions,
   emptyRowsHeight = 54,
+  isLoading = false,
 }: IWBaseTableProps<T>): JSX.Element {
   const [dense, setDense] = useState(false);
   const onChangeDense = (_: ChangeEvent<HTMLInputElement>, value: boolean) =>
@@ -132,6 +137,38 @@ export default function WBaseTable<T extends { id: string }>({
           onSort({ id, orderBy, setOrderBy, setOrder, order });
         }
       : undefined;
+
+  const bodyRows = bodyData.map((rowData: T) =>
+    !!renderBodyRow ? (
+      <TableRowComponent
+        rowData={rowData}
+        renderBodyRow={renderBodyRow}
+        key={rowData.id}
+      />
+    ) : (
+      <WTableRow
+        hover={isCheckable}
+        onSelectRow={onRowSelect}
+        selected={
+          !!selected && !!selected?.length && selected.includes(rowData.id)
+        }
+        rowData={rowData}
+        isCheckable={isCheckable}
+        moreMenuActions={moreMenuActions}
+        key={rowData.id}
+        headerData={headerData}
+      />
+    )
+  );
+
+  const skeletonRows = Array.from({ length: rowsPerPage }, (_, index) => {
+    return renderSkeletonRow ? (
+      renderSkeletonRow(index)
+    ) : (
+      <WTableRowSkeleton columnLength={headerData.length} key={index} />
+    );
+  });
+
   return (
     <WCard>
       {!!toolbarElements && <WTableToolBar toolbarElements={toolbarElements} />}
@@ -171,30 +208,7 @@ export default function WBaseTable<T extends { id: string }>({
             addMoreActionsCell={!!moreMenuActions}
           />
           <WTable.Body>
-            {bodyData.map((rowData: T) =>
-              !!renderBodyRow ? (
-                <TableRowComponent
-                  rowData={rowData}
-                  renderBodyRow={renderBodyRow}
-                  key={rowData.id}
-                />
-              ) : (
-                <WTableRow
-                  hover={isCheckable}
-                  onSelectRow={onRowSelect}
-                  selected={
-                    !!selected &&
-                    !!selected?.length &&
-                    selected.includes(rowData.id)
-                  }
-                  rowData={rowData}
-                  isCheckable={isCheckable}
-                  moreMenuActions={moreMenuActions}
-                  key={rowData.id}
-                  headerData={headerData}
-                />
-              )
-            )}
+            {isLoading ? skeletonRows : bodyRows}
 
             {!!emptyRowsCount && (
               <WTable.EmptyRows

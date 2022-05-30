@@ -1,0 +1,36 @@
+query getLeaveRequestsForRequestsList($input: LeaveRequestsInput!) {
+    leaveRequests(input: $input) {
+        items {
+            ...leaveRequestForRequestsList
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+fragment leaveRequestForRequestsList on LeaveRequest {
+    id
+    numberOfDays
+    requestDate
+    startDate
+    endDate
+    employee {
+        id
+        firstName
+        lastName
+        position {
+            id
+            name
+        }
+        avatar
+    }
+    status
+    comment
+    type {
+        id
+        name
+    }
+}
