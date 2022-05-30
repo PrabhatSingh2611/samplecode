@@ -5,7 +5,7 @@
         {
           "id": "493a5be9-01ba-47c6-95c1-29c230528527",
           "status": "NEW",
-          "numberOfDays": 0,
+          "numberOfDays": 1,
           "requestDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "endDate": "2022-02-02T13:25:34.480425Z[UTC]",
@@ -30,7 +30,7 @@
         {
           "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2399",
           "status": "APPROVED",
-          "numberOfDays": 0,
+          "numberOfDays": 1,
           "requestDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
           "endDate": "2022-02-02T13:25:34.480425Z[UTC]",

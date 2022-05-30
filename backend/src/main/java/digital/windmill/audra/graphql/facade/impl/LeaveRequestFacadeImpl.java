@@ -11,6 +11,7 @@ import digital.windmill.audra.graphql.type.input.PatchLeaveRequestInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.LeaveRequestService;
 import digital.windmill.audra.service.LeaveTypeService;
+import digital.windmill.audra.service.impl.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     private final LeaveRequestMapper leaveRequestMapper;
     private final EmployeeService employeeService;
     private final LeaveTypeService leaveTypeService;
+    private final SecurityService securityService;
 
     @Transactional(readOnly = true)
     public LeaveRequest findLeaveRequestByUuid(UUID uuid) {
@@ -44,14 +46,13 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     public LeaveRequest createLeaveRequest(CreateLeaveRequestInput input) {
         var mappedLeaveRequestEntity = leaveRequestMapper
                 .mapCreateLeaveRequestInputToLeaveRequestEntity(input);
+        
         Optional.ofNullable(input)
             .map(CreateLeaveRequestInput::getType)
             .map(NodeInput::getId)
             .map(leaveTypeService::findByUuid)
             .ifPresent(mappedLeaveRequestEntity::setType);
-        Optional.ofNullable(input)
-            .map(CreateLeaveRequestInput::getEmployee)
-            .map(NodeInput::getId)
+        Optional.ofNullable(securityService.getCurrentUserUuid())
             .map(employeeService::findEmployeeByUuid)
             .ifPresent(mappedLeaveRequestEntity::setEmployee);
         return leaveRequestMapper
@@ -81,7 +82,7 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     public LeaveRequest deleteLeaveRequest(DeleteLeaveRequestInput input) {
         var leaveRequest = leaveRequestService.findLeaveRequestByUuid(input.getId());
         return leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(
-                leaveRequestService.deleteLeaveRequest(leaveRequest)
+            leaveRequestService.deleteLeaveRequest(leaveRequest)
         );
     }
 

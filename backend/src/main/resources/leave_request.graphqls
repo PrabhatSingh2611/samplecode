@@ -22,7 +22,6 @@ type LeaveRequestConnectionPayload implements ConnectionPayload {
 
 input CreateLeaveRequestInput{
     period: StrictDatePeriod!
-    employee : NodeInput
     status : LeaveRequestStatus!
     comment : String
     type: NodeInput!

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
+import digital.windmill.audra.graphql.type.enums.EmployeeSort;
 import digital.windmill.audra.graphql.type.input.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
@@ -16,21 +18,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class EmployeeIt extends AbstractIntegrationTest {
 
-@Test
-@Sql("classpath:/db/insert-initial-entities.sql")
-void shouldReturnAllEmployees() throws IOException, URISyntaxException {
-    var where = EmployeesInput.builder().where(
-                    EmployeeWhereInput.builder()
-                            .build())
-            .build();
-    var input = objectMapper.createObjectNode().putPOJO("input", where);
-    GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);
-
-    log.info(response.readTree().toPrettyString());
-    String jsonString = readFromResource("graphql/response/getEmployees.json");
-    JsonNode expectedJson = objectMapper.readTree(jsonString);
-    assertEquals(expectedJson, response.get("$", JsonNode.class));
-}
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllEmployees() throws IOException, URISyntaxException {
+        var where = EmployeesInput.builder().where(
+                        EmployeeWhereInput.builder()
+                                .build())
+                .sort(List.of(EmployeeSort.firstName_ASC))
+                .build();
+        var input = objectMapper.createObjectNode().putPOJO("input", where);
+        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);
+    
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getEmployees.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
@@ -62,6 +65,7 @@ void shouldReturnAllEmployees() throws IOException, URISyntaxException {
                                 .query("Jacob")
                                 .location(NodeInput.of("b7f46256-e21d-483b-be29-8bf7617bc3c3"))
                                 .build())
+                    .sort(List.of(EmployeeSort.firstName_ASC))
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);
@@ -79,6 +83,7 @@ void shouldReturnAllEmployees() throws IOException, URISyntaxException {
                                 .pageNumber(0)
                                 .itemsPerPage(5)
                                 .build())
+                .sort(List.of(EmployeeSort.firstName_ASC))
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);

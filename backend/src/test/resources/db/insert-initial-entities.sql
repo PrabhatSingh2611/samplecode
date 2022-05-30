@@ -14,7 +14,10 @@ VALUES
 (2, '5bea1a4d-b457-47c9-bf8b-72f50182b707', 'Edmund', 'Hogan','edmund@gmail.com', 'EMPLOYEE', '2022-02-28T12:03:00.480425Z',1,1,1),
 (3, '6bac1755-c88c-4462-ae14-527b54b03e0d', 'Geneva', 'Norman','geneva@gmail.com', 'EMPLOYEE', '2022-01-16T08:12:50.480425Z',1,1,1),
 (4, 'b48db556-3bd0-479e-9f1a-231be9636887', 'Danielle', 'Kelly','danielle@gmail.com', 'ADMIN', '2022-02-08T18:34:45.480425Z',2,1,1),
-(5, '78098941-0591-4b9c-998f-95a65e1ece55', 'Victoria', 'Luna','victoria@gmail.com', 'EMPLOYEE', '2022-03-15T22:11:15.480425Z',2,1,1);
+(5, '78098941-0591-4b9c-998f-95a65e1ece55', 'Victoria', 'Luna','victoria@gmail.com', 'EMPLOYEE', '2022-03-15T22:11:15.480425Z',2,1,1),
+(6, '493a5be9-01ba-47c6-95c1-29c230528520', 'Tom', 'Johns','tom.johns@gmail.com', 'ADMIN', '2022-05-26T17:26:17.186989Z', 1, 1, 2);
+
+ALTER SEQUENCE employee_id_seq RESTART WITH 1000;
 
 INSERT INTO asset_type (id, uuid, title, icon)
 VALUES

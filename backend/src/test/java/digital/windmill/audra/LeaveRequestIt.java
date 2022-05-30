@@ -88,6 +88,17 @@ public class LeaveRequestIt extends AbstractIntegrationTest {
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
+    
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldNotCreateLeaveRequestBecauseWrongDatePeriod() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate
+                .postForResource("graphql/request/leave_request/createLeaveRequestWithWrongPeriod.graphql");
+        
+        log.info(response.readTree().toPrettyString());
+        
+        assertEquals("Exception while fetching data (/createLeaveRequest) : Wrong dates", response.get("$.errors[0].message", String.class));
+    }
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")

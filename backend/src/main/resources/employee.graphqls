@@ -50,7 +50,7 @@ type EmployeePayload {
 input EmployeesInput {
 	where: EmployeeWhereInput
 	pagination: PageInput
-	sort: [EmployeesSortEnum!] = [firstName_ASC]
+	sort: [EmployeesSortEnum!]! = [firstName_ASC]
 }
 
 input EmployeeWhereInput {

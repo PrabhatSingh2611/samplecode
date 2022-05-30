@@ -36,6 +36,6 @@ public class LeaveRequest implements Node {
                 || startDate.isAfter(endDate)) {
             return 0L;
         }
-        return ChronoUnit.DAYS.between(startDate, endDate);
+        return ChronoUnit.DAYS.between(startDate, endDate) + 1;
     }
 }

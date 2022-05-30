@@ -1,7 +1,7 @@
 {
-  "data":{
-    "employees":{
-      "items":[
+  "data": {
+    "employees": {
+      "items": [
         {
           "id": "b48db556-3bd0-479e-9f1a-231be9636887",
           "firstName": "Danielle",
@@ -9,73 +9,92 @@
           "email": "danielle@gmail.com",
           "role": "ADMIN",
           "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
-          "reportingManager" : {
-            "firstName" : "Edmund"
+          "reportingManager": {
+            "firstName": "Edmund"
           },
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
-            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country":"england"
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "country": "england"
           }
         },
         {
-          "id":"5bea1a4d-b457-47c9-bf8b-72f50182b707",
-          "firstName":"Edmund",
-          "lastName":"Hogan",
-          "email":"edmund@gmail.com",
-          "role":"EMPLOYEE",
-          "birthday":"2022-02-28T12:03:00.480425Z[UTC]",
-          "reportingManager":{
-            "firstName":"Jacob"
+          "id": "5bea1a4d-b457-47c9-bf8b-72f50182b707",
+          "firstName": "Edmund",
+          "lastName": "Hogan",
+          "email": "edmund@gmail.com",
+          "role": "EMPLOYEE",
+          "birthday": "2022-02-28T12:03:00.480425Z[UTC]",
+          "reportingManager": {
+            "firstName": "Jacob"
           },
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
-            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country":"england"
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "country": "england"
           }
         },
         {
           "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
           "firstName": "Geneva",
           "lastName": "Norman",
-          "email":"geneva@gmail.com",
+          "email": "geneva@gmail.com",
           "role": "EMPLOYEE",
           "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
-          "reportingManager" : {
-            "firstName" : "Jacob"
+          "reportingManager": {
+            "firstName": "Jacob"
           },
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
-            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country":"england"
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "country": "england"
           }
         },
         {
-          "id":"48b560ab-7450-4088-b6bb-f57638ea0877",
-          "firstName":"Jacob",
-          "lastName":"Morris",
+          "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
+          "firstName": "Jacob",
+          "lastName": "Morris",
           "email": "jacob@gmail.com",
-          "role":"ADMIN",
-          "birthday":"2022-03-23T19:37:14.480425Z[UTC]",
-          "reportingManager":{
-            "firstName":"Edmund"
+          "role": "ADMIN",
+          "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+          "reportingManager": {
+            "firstName": "Edmund"
           },
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
-            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country":"england"
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "country": "england"
+          }
+        },
+        {
+          "id": "493a5be9-01ba-47c6-95c1-29c230528520",
+          "firstName": "Tom",
+          "lastName": "Johns",
+          "email": "tom.johns@gmail.com",
+          "role": "ADMIN",
+          "birthday": "2022-05-26T17:26:17.186989Z[UTC]",
+          "reportingManager": {
+            "firstName": "Jacob"
+          },
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
+          },
+          "location": {
+            "id": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
+            "country": "UAE"
           }
         },
         {
@@ -85,16 +104,16 @@
           "email": "victoria@gmail.com",
           "role": "EMPLOYEE",
           "birthday": "2022-03-15T22:11:15.480425Z[UTC]",
-          "reportingManager" : {
-            "firstName" : "Edmund"
+          "reportingManager": {
+            "firstName": "Edmund"
           },
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
-            "id":"b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country":"england"
+          "location": {
+            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
+            "country": "england"
           }
         }
       ],
@@ -102,7 +121,7 @@
         "currentPage": 0,
         "totalPages": 1
       },
-      "totalItems": 5
+      "totalItems": 6
     }
   }
 }
