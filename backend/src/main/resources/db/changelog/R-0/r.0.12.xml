@@ -5,7 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="r.0.12.1" author="abhishek.kumar">
-
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT exists ( SELECT *
+                    FROM information_schema.columns 
+                    WHERE table_name='asset' and column_name='location_id');
+            </sqlCheck>
+        </preConditions>
         <addColumn tableName="asset">
             <column name="location_id" type="INT8">
             <constraints foreignKeyName="fk_asset2location" references="location(id)"/>
@@ -23,6 +29,13 @@
     </changeSet>
 
     <changeSet id="r.0.12.2" author="tetiana.hladka">
+        <preConditions onFail="MARK_RAN">
+          <sqlCheck expectedResult="0">
+              SELECT exists ( SELECT *
+            FROM location
+            WHERE id = 3);
+          </sqlCheck>
+        </preConditions>
         <sql>
             UPDATE location SET country = 'Portugal', details = 'Lisbon', flag_icon = 'https://cdn.pixabay.com/photo/2013/07/13/14/16/portugal-162394__480.png' WHERE uuid = 'cabfb51b-41c5-4f4d-afd5-146c796391af';
             UPDATE location SET country = 'Spain', details = 'Madrid', flag_icon = 'https://cdn.pixabay.com/photo/2013/07/13/14/17/spain-162428__480.png' WHERE uuid = '79761728-8f51-475f-aa04-42385a0dfe36';
