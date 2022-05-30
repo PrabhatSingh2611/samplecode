@@ -1,3 +1,4 @@
+import getStaticAssetUrl from 'utils/staticAssetUrl';
 import { AlignTableCell } from 'wdx';
 
 export interface ITypeOptions {
@@ -82,7 +83,7 @@ export const LOCATION_OPTIONS_LIST: ILocationOptions[] = [
     {
         id: '0',
         name: 'United Kingdom',
-        flagIcon: '/assets/icons/flags/ic_flag_en.svg',
+        flagIcon: getStaticAssetUrl('/assets/icons/flags/ic_flag_en.svg'),
         children: [
             {
                 id: '1',
