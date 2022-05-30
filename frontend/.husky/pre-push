@@ -4,7 +4,7 @@ cd frontend
 
 SRC_PATTERN="frontend/"
 
-if git diff @{push} --cached --name-only | grep --quiet "$SRC_PATTERN"
+if git diff @~..@  --name-only | grep --quiet "$SRC_PATTERN"
 then
   pnpm run lint && pnpm run unused-exports && pnpm build
 else
