@@ -1,6 +1,9 @@
-import { WCustomFile } from '../components/upload/type';
+import { WCustomFile } from '../components/upload/types';
 
-export default function getFileData(file: WCustomFile | string, index?: number) {
+export default function getFileData(
+  file: WCustomFile | string,
+  index?: number
+) {
   if (typeof file === 'string') {
     return {
       key: index ? `${file}-${index}` : file,

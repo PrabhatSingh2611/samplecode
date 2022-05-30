@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { WIcon, WTreeView, WTreeItem, wStyled, WCheckbox, WForm } from 'wdx';
+import { WCheckbox, WForm, WIcon, WTreeView } from 'wdx';
 
 import { ITypeOptions, TYPE_OPTIONS } from 'const/AssetsTable.const';
 import { getOnChange, ISelected } from 'features/assets-table/utils/renderOptions.utils';
@@ -18,7 +18,7 @@ export default function TypeSelect({ setTypes }: ITypeSelect): JSX.Element {
 
     const renderTree = (nodes: ITypeOptions[]): JSX.Element[] =>
         nodes.map((node) => (
-            <WTreeItem
+            <WTreeView.Item
                 key={node.id}
                 nodeId={node.id}
                 label={
@@ -46,23 +46,15 @@ export default function TypeSelect({ setTypes }: ITypeSelect): JSX.Element {
                 }
             >
                 {!!Array.isArray(node.children) && renderTree(node.children)}
-            </WTreeItem>
+            </WTreeView.Item>
         ));
 
-    const StyledWTreeView = wStyled(WTreeView)(() => ({
-        '& .MuiTreeItem-root': {
-            '& .MuiTreeItem-content': {
-                flexDirection: 'row-reverse',
-            },
-        },
-    }));
-
     return (
-        <StyledWTreeView
+        <WTreeView
             defaultCollapseIcon={<WIcon name="expand-less" sx={{ width: 20, height: 20 }} />}
             defaultExpandIcon={<WIcon name="expand-more" sx={{ width: 20, height: 20 }} />}
         >
             {renderTree(TYPE_OPTIONS)}
-        </StyledWTreeView>
+        </WTreeView>
     );
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { WIcon } from 'wdx';
+
 import SvgIconStyle from 'components/SvgIconStyle';
 import { EAssetsRouterLink } from 'models/assets-router-link';
 import { EPeopleRouterLink } from 'models/people-router-link';
 import { ERecruitmentRouterLink } from 'models/recruitment-router-llink';
-import { WIcon } from 'wdx';
 
 // TODO: Fix this to fetch from correct path on production [IM]
 const getIcon = (name: string): JSX.Element => (

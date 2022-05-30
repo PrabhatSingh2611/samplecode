@@ -29,7 +29,7 @@ export * from './utils/maybeUtils';
 export { createDownloadLink } from './utils/downloadLinkUtil';
 
 // TYPES
-export { WUploadProps, WCustomFile } from './components/upload/type';
+export { WUploadProps, WCustomFile } from './components/upload/types';
 export { WGallery } from './widgets/image-card/types';
 export { TIcons } from './components/icon/icons.type';
 export { WSxProps } from './types';
@@ -92,7 +92,10 @@ export {
 } from './components/card';
 export { default as WCheckbox, WCheckboxProps } from './components/checkbox';
 export { default as WChip, WChipProps } from './components/chip';
-export { default as WClickAwayListener, WClickAwayListenerProps  } from './components/click-away-listener';
+export {
+  default as WClickAwayListener,
+  WClickAwayListenerProps,
+} from './components/click-away-listener';
 export { default as WContainer, WContainerProps } from './components/container';
 export {
   default as WDatePicker,
@@ -103,7 +106,14 @@ export {
   WLocalizationProviderProps,
   WAdapterDateFns,
 } from './components/date-picker';
-export { default as WDialog, WDialogProps, WDialogActionsProps, WDialogContentProps, WDialogContentTextProps, WDialogTitleProps } from './components/dialog';
+export {
+  default as WDialog,
+  WDialogProps,
+  WDialogActionsProps,
+  WDialogContentProps,
+  WDialogContentTextProps,
+  WDialogTitleProps,
+} from './components/dialog';
 export { default as WDivider, WDividerProps } from './components/divider';
 export { default as WDrawer, WDrawerProps } from './components/drawer';
 export {
@@ -153,7 +163,12 @@ export { default as WPage, WPageProps } from './components/page';
 export { default as WPaper, WPaperProps } from './components/paper';
 export { default as WPill, WPillProps } from './components/pill';
 export { default as WPopover, WPopoverProps } from './components/popover';
-export { WCircularProgress, WCircularProgressProps, WLinearProgress, WLinearProgressProps } from './components/progress';
+export {
+  WCircularProgress,
+  WCircularProgressProps,
+  WLinearProgress,
+  WLinearProgressProps,
+} from './components/progress';
 export {
   default as WRadio,
   WRadioProps,
@@ -163,7 +178,13 @@ export {
 export { default as WRejectionFiles } from './components/upload/rejection-files';
 export { default as WSelect, WSelectProps } from './components/select';
 export { default as WSkeleton, IWSkeletonProps } from './components/skeleton';
-export { default as WSnackbar, WSnackbarProps, WSnackbarContent, WSnackbarContentProps, WSnackbarOrigin } from './components/snackbar';
+export {
+  default as WSnackbar,
+  WSnackbarProps,
+  WSnackbarContent,
+  WSnackbarContentProps,
+  WSnackbarOrigin,
+} from './components/snackbar';
 export { default as WStack, WStackProps } from './components/stack';
 export { default as WSlider, WSliderProps } from './components/slider';
 export {
@@ -184,8 +205,6 @@ export {
   WStepIconProps,
   WStepLabelProps,
 } from './components/stepper';
-export { default as WTreeView, WTreeViewProps } from './components/tree-view';
-export { default as WTreeItem, WTreeItemProps } from './components/tree-item';
 export {
   default as WScrollbarContainer,
   IWScrollbarContainerProps,
@@ -257,6 +276,12 @@ export {
   WToggleButtonGroupProps,
   WToggleButtonProps,
 } from './components/toggle-button';
+
+export {
+  default as WTreeView,
+  WTreeViewProps,
+  WTreeItemProps,
+} from './components/tree-view';
 
 // WIDGETS
 export {

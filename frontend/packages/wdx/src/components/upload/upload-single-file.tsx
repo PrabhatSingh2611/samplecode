@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
-import { WUploadProps } from './type';
+import { WUploadProps } from './types';
 import WImage from '../image';
 import RejectionFiles from './rejection-files';
 import BlockContent from './block-content';

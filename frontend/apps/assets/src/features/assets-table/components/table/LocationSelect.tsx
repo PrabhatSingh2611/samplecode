@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { WIcon, WImage, WStack, wStyled, WForm, WCheckbox, WTreeView, WTreeItem } from 'wdx';
+import { WCheckbox, WForm, WIcon, WImage, WStack, WTreeView } from 'wdx';
 
 import { ILocationOptions, LOCATION_OPTIONS_LIST } from 'const/AssetsTable.const';
 import { getOnChange, ISelected } from 'features/assets-table/utils/renderOptions.utils';
@@ -18,7 +18,7 @@ export default function LocationSelect({ setLocations }: ILocationSelect): JSX.E
 
     const renderTree = (nodes: ILocationOptions[]): JSX.Element[] =>
         nodes.map((node) => (
-            <WTreeItem
+            <WTreeView.Item
                 key={node.id}
                 nodeId={node.id}
                 label={
@@ -58,23 +58,15 @@ export default function LocationSelect({ setLocations }: ILocationSelect): JSX.E
                 }
             >
                 {!!Array.isArray(node.children) && renderTree(node.children)}
-            </WTreeItem>
+            </WTreeView.Item>
         ));
 
-    const StyledTreeView = wStyled(WTreeView)(() => ({
-        '& .MuiTreeItem-root': {
-            '& .MuiTreeItem-content': {
-                flexDirection: 'row-reverse',
-            },
-        },
-    }));
-
     return (
-        <StyledTreeView
+        <WTreeView
             defaultCollapseIcon={<WIcon name="expand-less" sx={{ width: 20, height: 20 }} />}
             defaultExpandIcon={<WIcon name="expand-more" sx={{ width: 20, height: 20 }} />}
         >
             {renderTree(LOCATION_OPTIONS_LIST)}
-        </StyledTreeView>
+        </WTreeView>
     );
 }

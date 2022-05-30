@@ -32,6 +32,7 @@ import Select from './Select';
 import Pagination from './Pagination';
 import Skeleton from './Skeleton';
 import Dialog from './Dialog';
+import TreeView from './TreeView';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
@@ -68,5 +69,6 @@ export default function ComponentsOverrides(theme: Theme) {
     ToggleButton(theme),
     Tooltip(theme),
     Typography(theme),
+    TreeView(theme)
   );
 }

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { styled, useTheme } from '@mui/material/styles';
+import { WDrawer, WStack } from 'wdx';
+
 import Logo from 'components/Logo';
 import Scrollbar from 'components/Scrollbar';
 import { NavSectionVertical } from 'components/nav-section';
@@ -10,7 +12,6 @@ import useCollapseDrawer from 'hooks/useCollapseDrawer';
 import useResponsive from 'hooks/useResponsive';
 import { NAVBAR } from 'theme/config';
 import cssStyles from 'utils/cssStyles';
-import { WDrawer, WStack } from 'wdx';
 
 const RootStyle = styled('div')(({ theme }) => ({
     [theme.breakpoints.up('lg')]: {

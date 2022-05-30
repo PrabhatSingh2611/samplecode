@@ -25,4 +25,4 @@ export type TIcons =
   | 'menu-book'
   | 'settings';
 
- // TODO: Add more types of icons (YD)
+// TODO: Add more types of icons (YD)

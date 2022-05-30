@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import React, { useCallback } from 'react';
 
 import WUploadSingleFile from '../../upload/upload-single-file';
-import { WUploadProps } from '../../upload/type';
+import { WUploadProps } from '../../upload/types';
 import WForm from '../index';
 
 type WFormUploadProps = WUploadProps & {

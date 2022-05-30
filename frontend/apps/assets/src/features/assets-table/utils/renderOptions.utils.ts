@@ -64,7 +64,9 @@ export function getOnChange<T extends IRenderOptions>({
 
     let array = checked
         ? [...selected, ...allNode]
-        : selected.filter((value) => !allNode.includes(value));
+        : selected.filter((value) => {
+              return allNode.every((node) => node.id !== value.id);
+          });
 
     array = array.filter((v, i) => array.indexOf(v) === i);
 

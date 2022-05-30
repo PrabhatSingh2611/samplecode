@@ -2,6 +2,7 @@ import React from 'react';
 
 import { List, Box, ListSubheader, SxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
 import { INavSectionProps } from 'components/nav-section/type';
 import { NavListRoot } from 'components/nav-section/vertical/NavList';
 
