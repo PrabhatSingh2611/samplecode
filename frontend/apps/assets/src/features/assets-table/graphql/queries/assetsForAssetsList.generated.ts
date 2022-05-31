@@ -8,13 +8,13 @@ export type GetAssetsForAssetsListQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetAssetsForAssetsListQuery = { __typename?: 'Query', assets: { __typename?: 'AssetConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Asset', id: any, title?: string | null, serialNumber: string, waybillDate: any, tagNumber?: string | null, type: { __typename?: 'AssetType', id: any, title?: string | null, icon?: string | null }, location?: { __typename?: 'Location', id: any, country: string, details?: string | null, flagIcon: string } | null, assignee?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, avatar?: string | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
+export type GetAssetsForAssetsListQuery = { __typename?: 'Query', assets: { __typename?: 'AssetConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Asset', id: any, title?: string | null, serialNumber: string, waybillDate: any, tagNumber?: string | null, type: { __typename?: 'AssetType', id: any, title?: string | null, icon?: string | null }, location?: { __typename?: 'Location', id: any, name?: string | null, country: { __typename?: 'LocationCountry', id: any, name: string, iconName: string } } | null, assignee?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, avatar?: string | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
 
-export type AssetsItemFragment = { __typename?: 'Asset', id: any, title?: string | null, serialNumber: string, waybillDate: any, tagNumber?: string | null, type: { __typename?: 'AssetType', id: any, title?: string | null, icon?: string | null }, location?: { __typename?: 'Location', id: any, country: string, details?: string | null, flagIcon: string } | null, assignee?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, avatar?: string | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null } | null };
+export type AssetsItemFragment = { __typename?: 'Asset', id: any, title?: string | null, serialNumber: string, waybillDate: any, tagNumber?: string | null, type: { __typename?: 'AssetType', id: any, title?: string | null, icon?: string | null }, location?: { __typename?: 'Location', id: any, name?: string | null, country: { __typename?: 'LocationCountry', id: any, name: string, iconName: string } } | null, assignee?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, avatar?: string | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null } | null };
 
 export type AssetsTypeFragment = { __typename?: 'AssetType', id: any, title?: string | null, icon?: string | null };
 
-export type AssetsLocationFragment = { __typename?: 'Location', id: any, country: string, details?: string | null, flagIcon: string };
+export type AssetsLocationFragment = { __typename?: 'Location', id: any, name?: string | null, country: { __typename?: 'LocationCountry', id: any, name: string, iconName: string } };
 
 export type AssetsAssigneeFragment = { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, avatar?: string | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null };
 
@@ -32,9 +32,12 @@ export const AssetsTypeFragmentDoc = gql`
 export const AssetsLocationFragmentDoc = gql`
     fragment AssetsLocation on Location {
   id
-  country
-  details
-  flagIcon
+  name
+  country {
+    id
+    name
+    iconName
+  }
 }
     `;
 export const AssetsAssigneeEmployeeFragmentDoc = gql`

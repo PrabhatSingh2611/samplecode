@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 
 import { WCheckbox, WForm, WIcon, WTreeView } from 'wdx';
 
-import { ITypeOptions, TYPE_OPTIONS } from 'const/AssetsTable.const';
+import { ITypeOptions, TYPE_OPTIONS } from 'const/assets-table';
+import { CustomWTreeItem } from 'features/assets-table/components/table/custom-components/CustomWTreeItem';
 import { getOnChange, ISelected } from 'features/assets-table/utils/renderOptions.utils';
 
 interface ITypeSelect {
@@ -18,7 +19,7 @@ export default function TypeSelect({ setTypes }: ITypeSelect): JSX.Element {
 
     const renderTree = (nodes: ITypeOptions[]): JSX.Element[] =>
         nodes.map((node) => (
-            <WTreeView.Item
+            <CustomWTreeItem
                 key={node.id}
                 nodeId={node.id}
                 label={
@@ -46,7 +47,7 @@ export default function TypeSelect({ setTypes }: ITypeSelect): JSX.Element {
                 }
             >
                 {!!Array.isArray(node.children) && renderTree(node.children)}
-            </WTreeView.Item>
+            </CustomWTreeItem>
         ));
 
     return (

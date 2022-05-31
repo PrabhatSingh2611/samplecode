@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 
 import { WCheckbox, WForm, WIcon, WImage, WStack, WTreeView } from 'wdx';
 
-import { ILocationOptions, LOCATION_OPTIONS_LIST } from 'const/AssetsTable.const';
+import { ILocationOptions, LOCATION_OPTIONS_LIST } from 'const/assets-table';
+import { CustomWTreeItem } from 'features/assets-table/components/table/custom-components/CustomWTreeItem';
 import { getOnChange, ISelected } from 'features/assets-table/utils/renderOptions.utils';
 
 interface ILocationSelect {
@@ -18,7 +19,7 @@ export default function LocationSelect({ setLocations }: ILocationSelect): JSX.E
 
     const renderTree = (nodes: ILocationOptions[]): JSX.Element[] =>
         nodes.map((node) => (
-            <WTreeView.Item
+            <CustomWTreeItem
                 key={node.id}
                 nodeId={node.id}
                 label={
@@ -58,7 +59,7 @@ export default function LocationSelect({ setLocations }: ILocationSelect): JSX.E
                 }
             >
                 {!!Array.isArray(node.children) && renderTree(node.children)}
-            </WTreeView.Item>
+            </CustomWTreeItem>
         ));
 
     return (

@@ -14,6 +14,14 @@ export const useInitHostObservables = (): void => {
     useInitAssetsNavigateObservable();
 };
 
+const getRootPathName = (pathname: string): string => {
+    if (pathname.includes(EPeopleRouterLink.People)) {
+        return EPeopleRouterLink.People;
+    }
+
+    return `/${pathname.split('/')[1]}`;
+};
+
 const useInitHostNavigateObservable = (): void => {
     const history = useHistory();
     const hostNavigateObservable = new Observable(
@@ -23,25 +31,29 @@ const useInitHostNavigateObservable = (): void => {
 
     // TODO: Fix typo
     const onHistoryChange = ({ pathname, search }: any): void => {
-        const relativePathname = getRelativePathname(pathname, EPeopleRouterLink.People, false);
+        const checkPath = getRootPathName(pathname);
+        const relativePathname = getRelativePathname(pathname, checkPath, false);
         const lastEvent = hostNavigateObservable.getLastEvent();
+
         if (search && lastEvent?.search !== search) {
             return hostNavigateObservable.publish({ pathname: relativePathname, search });
         }
-        if (lastEvent?.pathname !== pathname) {
+
+        if (lastEvent?.pathname !== checkPath) {
             hostNavigateObservable.publish({ pathname: relativePathname });
         }
     };
+
     history.listen(onHistoryChange);
 };
 
 const useInitPeopleNavigateObservable = (): void => {
+    const history = useHistory();
     const peopleNavigateObservable = new Observable(
         PEOPLE_APP_CHANNEL.NAVIGATE.EVENT,
         PEOPLE_APP_CHANNEL.NAVIGATE.SCHEMA,
     );
 
-    const history = useHistory();
     // TODO: Fix typo
     const onPeopleNavigate = ({ pathname, search }: any): void => {
         const relativePathname = getRelativePathname(pathname, EPeopleRouterLink.People);
@@ -54,11 +66,8 @@ const useInitPeopleNavigateObservable = (): void => {
         if (search && search !== history.location.search) {
             return history.replace(relativePathname + search);
         }
+
         if (pathname !== unPrependedRelativePathName) {
-            console.log(
-                '🚀 ~ file: observable.hooks.ts ~ line 49 ~ onPeopleNavigate ~ relativePathname',
-                relativePathname,
-            );
             history.push(relativePathname);
         }
     };
@@ -69,12 +78,12 @@ const useInitPeopleNavigateObservable = (): void => {
 };
 
 const useInitAssetsNavigateObservable = (): void => {
+    const history = useHistory();
     const assetsNavigateObservable = new Observable(
         ASSETS_APP_CHANNEL.NAVIGATE.EVENT,
         ASSETS_APP_CHANNEL.NAVIGATE.SCHEMA,
     );
 
-    const history = useHistory();
     // TODO: Fix typo
     const onAssetsNavigate = ({ pathname, search }: any): void => {
         const relativePathname = getRelativePathname(pathname, EAssetsRouterLink.Assets);
@@ -87,11 +96,8 @@ const useInitAssetsNavigateObservable = (): void => {
         if (search && search !== history.location.search) {
             return history.replace(relativePathname + search);
         }
+
         if (pathname !== unPrependedRelativePathName) {
-            console.log(
-                '🚀 ~ file: observable.hooks.ts ~ line 94 ~ onAssetsNavigate ~ relativePathname',
-                relativePathname,
-            );
             history.push(relativePathname);
         }
     };

@@ -6,7 +6,7 @@ import {
     WImage,
     WAvatar,
     WList,
-    formatDateTime,
+    formatDate,
     AlignTableCell,
     WPill,
     castToString,
@@ -62,7 +62,7 @@ export default function AssetTableRow({
             </WTable.Cell>
 
             <WTable.Cell align={AlignTableCell.CENTER}>
-                <WList.ItemText primary={formatDateTime(waybillDateString)} />
+                <WList.ItemText primary={formatDate(waybillDateString)} />
             </WTable.Cell>
 
             <WTable.Cell align={AlignTableCell.LEFT}>

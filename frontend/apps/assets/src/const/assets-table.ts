@@ -1,10 +1,29 @@
 import getStaticAssetUrl from 'utils/staticAssetUrl';
 import { AlignTableCell } from 'wdx';
 
+export enum EAssetsSearchParams {
+    RowsPerPage = 'rowsPerPage',
+    CurrentPage = 'currentPage',
+    SearchValue = 'searchValue',
+    Order = 'order',
+    OrderBy = 'orderBy',
+}
+
+export const ORDER_BY = 'dateOfWaybill';
+export const TABLE_DEFAULT_ROWS_COUNT = 5;
+export const MIN_COUNT_OF_SYMBOLS_TO_SEARCH = 2;
+
+export const SEARCH_PARAMS_KEYS = [
+    EAssetsSearchParams.Order,
+    EAssetsSearchParams.OrderBy,
+    EAssetsSearchParams.SearchValue,
+    EAssetsSearchParams.CurrentPage,
+    EAssetsSearchParams.RowsPerPage,
+];
+
 export interface ITypeOptions {
     id: string;
     name: string;
-
     children?: ITypeOptions[];
 }
 
@@ -107,14 +126,25 @@ interface IHeaderCellData {
     width?: string;
     minWidth?: string;
     label?: string;
+    isClickable?: boolean;
 }
 
 export const TABLE_HEAD: IHeaderCellData[] = [
-    { id: 'type', label: 'Type', align: AlignTableCell.LEFT },
-    { id: 'nameAndSerialNumber', label: 'Name and serial number', align: AlignTableCell.LEFT },
-    { id: 'assignee', label: 'Assignee', align: AlignTableCell.LEFT },
-    { id: 'dateOfWaybill', label: 'Date of Waybill', align: AlignTableCell.CENTER },
-    { id: 'location', label: 'Location', align: AlignTableCell.LEFT },
-    { id: 'tagNumber', label: 'Tag Number', align: AlignTableCell.LEFT },
+    { id: 'type', label: 'Type', align: AlignTableCell.LEFT, isClickable: false },
+    {
+        id: 'nameAndSerialNumber',
+        label: 'Name and serial number',
+        align: AlignTableCell.LEFT,
+        isClickable: false,
+    },
+    { id: 'assignee', label: 'Assignee', align: AlignTableCell.LEFT, isClickable: false },
+    {
+        id: 'dateOfWaybill',
+        label: 'Date of Waybill',
+        align: AlignTableCell.CENTER,
+        isClickable: true,
+    },
+    { id: 'location', label: 'Location', align: AlignTableCell.LEFT, isClickable: false },
+    { id: 'tagNumber', label: 'Tag Number', align: AlignTableCell.LEFT, isClickable: false },
     { id: '' },
 ];

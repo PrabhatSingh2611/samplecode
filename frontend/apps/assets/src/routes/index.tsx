@@ -7,8 +7,11 @@ import { EAssetsRouterLink } from 'models/router/assets-router-link';
 function Routes(): JSX.Element {
     return (
         <Switch>
-            <Route path={EAssetsRouterLink.Assets}>
+            <Route path={EAssetsRouterLink.AssetsList}>
                 <AssetsPage />
+            </Route>
+            <Route path={EAssetsRouterLink.Types}>
+                <h2>Asset types</h2>
             </Route>
         </Switch>
     );

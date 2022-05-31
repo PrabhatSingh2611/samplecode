@@ -1,18 +1,15 @@
+import { Order } from 'wdx';
+
 import { ApolloError } from '@apollo/client';
 
+import { MIN_COUNT_OF_SYMBOLS_TO_SEARCH } from 'const/assets-table';
 import {
     GetAssetsForAssetsListQuery,
     GetAssetsForAssetsListQueryHookResult,
     useGetAssetsForAssetsListQuery,
 } from 'features/assets-table/graphql/queries/assetsForAssetsList.generated';
+import { useGetAssetsListSearchParams } from 'features/assets-table/hooks/searcParams.hooks';
 import { AssetSortEnum } from 'graphql-generated-types/types';
-
-interface IUseGetAssetsTableListProps {
-    input?: string;
-    itemsPerPage?: number;
-    pageNumber?: number;
-    sort?: [AssetSortEnum];
-}
 
 interface IUseGetAssetsTableListResult {
     assetsListQueryResult: GetAssetsForAssetsListQueryHookResult;
@@ -21,21 +18,26 @@ interface IUseGetAssetsTableListResult {
     error?: ApolloError;
 }
 
-export const useGetAssetsTableList = ({
-    input,
-    itemsPerPage,
-    pageNumber,
-    sort = [AssetSortEnum.WaybillDateDesc],
-}: IUseGetAssetsTableListProps): IUseGetAssetsTableListResult => {
+export const useGetAssetsTableList = (): IUseGetAssetsTableListResult => {
+    const { currentPage, order, rowsPerPage, searchValue } = useGetAssetsListSearchParams();
+
+    const waybillOrder =
+        order === Order.DESC ? AssetSortEnum.WaybillDateDesc : AssetSortEnum.WaybillDateAsc;
+
+    const query =
+        searchValue && searchValue.length >= MIN_COUNT_OF_SYMBOLS_TO_SEARCH
+            ? searchValue
+            : undefined;
+
     const assetsListQueryResult = useGetAssetsForAssetsListQuery({
         variables: {
             input: {
-                where: { query: input },
+                where: { query },
                 pagination: {
-                    itemsPerPage,
-                    pageNumber,
+                    itemsPerPage: rowsPerPage,
+                    pageNumber: currentPage,
                 },
-                sort,
+                sort: [waybillOrder],
             },
         },
     });

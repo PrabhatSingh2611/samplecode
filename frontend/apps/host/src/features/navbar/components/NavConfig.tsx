@@ -42,7 +42,11 @@ const navConfig = [
                 path: EPeopleRouterLink.People + EPeopleRouterLink.Leaves,
                 icon: ICONS.people,
             },
-            { title: 'Assets', path: EAssetsRouterLink.Assets, icon: ICONS.computer },
+            {
+                title: 'Assets',
+                path: EAssetsRouterLink.Assets + EAssetsRouterLink.AssetsList,
+                icon: ICONS.computer,
+            },
             { title: 'Recruitment', path: ERecruitmentRouterLink.Recruitment, icon: ICONS.connect },
             {
                 title: 'Policies',

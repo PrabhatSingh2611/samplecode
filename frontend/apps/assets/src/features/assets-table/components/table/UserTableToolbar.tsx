@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 
-import { WStack, WTextField, WIcon, WInputAdornment } from 'wdx';
+import { WStack, WTextField } from 'wdx';
 
 import { AssetMenuItem } from 'features/assets-table/components/table/AssetMenuItem';
+import { AssetsListSearch } from 'features/assets-table/components/table/AssetsListSearch';
 import LocationSelect from 'features/assets-table/components/table/LocationSelect';
 import TypeSelect from 'features/assets-table/components/table/TypeSelect';
 import { ISelected } from 'features/assets-table/utils/renderOptions.utils';
 
-interface IUserTableToolbarProps {
-    filterName: string;
-    onFilterName: (value: string) => void;
-}
-
-export default function UserTableToolbar({
-    filterName,
-    onFilterName,
-}: IUserTableToolbarProps): JSX.Element {
+export default function UserTableToolbar(): JSX.Element {
     const [types, setTypes] = React.useState<ISelected[]>([]);
     const [locations, setLocations] = React.useState<ISelected[]>([]);
 
@@ -80,24 +73,7 @@ export default function UserTableToolbar({
                 <LocationSelect setLocations={setLocations} />
             </WTextField>
 
-            <WTextField
-                fullWidth
-                value={filterName}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
-                    onFilterName(event.target.value)
-                }
-                placeholder="Search user..."
-                InputProps={{
-                    startAdornment: (
-                        <WInputAdornment position="start">
-                            <WIcon
-                                name="search"
-                                sx={{ width: 20, height: 20, color: 'text.disabled' }}
-                            />
-                        </WInputAdornment>
-                    ),
-                }}
-            />
+            <AssetsListSearch />
         </WStack>
     );
 }

@@ -1,4 +1,4 @@
-import { IRenderOptions } from 'const/AssetsTable.const';
+import { IRenderOptions } from 'const/assets-table';
 
 function getChildById<T extends IRenderOptions>(data: T[], nodeId: string): ISelected[] | [] {
     let array: ISelected[] = [];
