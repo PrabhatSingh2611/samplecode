@@ -28,7 +28,7 @@ function WActionsDrawer({
 }: WActionsDrawerProps): JSX.Element {
   return (
     <WDrawer {...props} open={isOpened} onClose={onClose} anchor="right">
-      <WBox sx={{display: 'grid', gridTemplateRows: 'max-content 1fr max-content', height: 1, width: 660, ...childSx}}>
+      <WBox sx={{display: 'grid', gridTemplateRows: 'max-content fit-content(100%) max-content', height: 1, width: 660, ...childSx}}>
         <WStack
           direction="row"
           alignItems="center"

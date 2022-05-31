@@ -1,33 +1,35 @@
-// TODO: Uncomment when we find fix to GetFontValue (AU)
-// import { useTheme } from '@mui/material/styles';
-// import { Variant } from '@mui/material/styles/createTypography';
-// import useResponsive from '../hooks/useResponsive';
+// TODO: Fix types to Theme (AU)
+// @ts-nocheck
+import { useTheme } from '@mui/material/styles';
+import { Variant } from '@mui/material/styles/createTypography';
+import useGetScreenWidthBreakpoint from '../hooks/useGetScreenWidthBreakpoint.hooks';
 
-// export default function GetFontValue(variant: Variant) {
-//   const theme = useTheme();
-//   const breakpoints = useWidth();
+export interface IGetFontValueResult {
+  fontSize: number;
+  lineHeight: number;
+  fontWeight: number;
+  letterSpacing: number;
+}
 
-//   const key = theme.breakpoints.up(breakpoints === 'xl' ? 'lg' : breakpoints);
+export default function getFontValue(variant: Variant): IGetFontValueResult {
+  const theme = useTheme();
+  const breakpoints = useGetScreenWidthBreakpoint();
 
-//   const hasResponsive =
-//     variant === 'h1' ||
-//     variant === 'h2' ||
-//     variant === 'h3' ||
-//     variant === 'h4' ||
-//     variant === 'h5' ||
-//     variant === 'h6';
+  const key = theme.breakpoints.up(breakpoints === 'xl' ? 'lg' : breakpoints);
 
-//   const getFont: any =
-//     hasResponsive && theme.typography[variant][key]
-//       ? theme.typography[variant][key]
-//       : theme.typography[variant];
+  const hasResponsive = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(variant);
 
-//   const fontSize = remToPx(getFont.fontSize);
-//   const lineHeight = Number(theme.typography[variant].lineHeight) * fontSize;
-//   const { fontWeight, letterSpacing } = theme.typography[variant];
+  const font: any =
+    hasResponsive && theme.typography[variant][key]
+      ? theme.typography[variant][key]
+      : theme.typography[variant];
 
-//   return { fontSize, lineHeight, fontWeight, letterSpacing };
-// }
+  const fontSize = remToPx(font.fontSize);
+  const lineHeight = Number(theme.typography[variant].lineHeight) * fontSize;
+  const { fontWeight, letterSpacing } = theme.typography[variant];
+
+  return { fontSize, lineHeight, fontWeight, letterSpacing };
+}
 
 export function remToPx(value: string) {
   return Math.round(parseFloat(value) * 16);
@@ -37,7 +39,7 @@ export function pxToRem(value: number) {
   return `${value / 16}rem`;
 }
 
-export function responsiveFontSizes({ sm, md, lg }: { sm: number; md: number; lg: number }) {
+export function getResponsiveFontSizes({ sm, md, lg }: { sm: number; md: number; lg: number }) {
   return {
     '@media (min-width:600px)': {
       fontSize: pxToRem(sm),
@@ -50,16 +52,3 @@ export function responsiveFontSizes({ sm, md, lg }: { sm: number; md: number; lg
     },
   };
 }
-
-// function useWidth() {
-//   const theme = useTheme();
-//   const keys = [...theme.breakpoints.keys].reverse();
-//   return (
-//     // @ts-ignore not sure what is this
-//     keys.reduce((output, key) => {
-//       // eslint-disable-next-line react-hooks/rules-of-hooks
-//       const matches = useResponsive('up', key);
-//       return !output && matches ? key : output;
-//     }, null) || 'xs'
-//   );
-// }

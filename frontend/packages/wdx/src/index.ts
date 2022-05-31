@@ -17,6 +17,7 @@ export {
   useGetUrlSearchParams,
   useUpdateSearchUrlParam,
 } from './hooks/urlParams.hooks';
+export * from './hooks/useGetScreenWidthBreakpoint.hooks';
 
 // UTILS
 export * from './utils/formatDate';
@@ -271,8 +272,9 @@ export {
   WTabPanelProps,
   WTabScrollButtonProps,
 } from './components/tabs';
+export { default as WTextMaxLine, WTextMaxLineProps } from './components/text-max-line';
 export {
-  default as ToggleButtonGroup,
+  default as WToggleButtonGroup,
   WToggleButton,
   WToggleButtonGroupProps,
   WToggleButtonProps,

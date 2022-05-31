@@ -58,7 +58,7 @@ const TemplateCustomSeparator: Story = args => {
             <WBreadcrumbs {...args} separator="›" aria-label="breadcrumb">
                 {breadcrumbs}
             </WBreadcrumbs>
-            <WBreadcrumbs {...args} separator="-" aria-label="breadcrumb">
+            <WBreadcrumbs {...args} separator="•" aria-label="breadcrumb">
                 {breadcrumbs}
             </WBreadcrumbs>
             <WBreadcrumbs

@@ -1,3 +1,5 @@
+// TODO: Fix types to Theme (AU)
+// @ts-nocheck
 import { Breakpoint } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
