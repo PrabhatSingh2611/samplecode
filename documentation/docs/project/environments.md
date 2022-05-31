@@ -21,12 +21,21 @@ import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } fro
 
 ### Documentation
 
-- Status: 🚧 **UNDER CONSTRUCTION**
+- Status: ✅ **ACTIVE**
 - Purpose: **Read Documentation**
-- URL (_FrontEnd_): <ExternalLink url="https://dev-audra-docs.dev.topazdigital.cloud"/>
-- Jenkinks (_FrontEnd_): N/A
+- URL: <ExternalLink url="https://dev-audra-docs.dev.topazdigital.cloud"/>
+- Jenkinks: <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/audra-document"/>
 - Owner: <TeamAll/>
 - Documentation Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
+
+### WDX-React Storybook
+
+- Status: 🚧 **UNDER CONSTRUCTION**
+- Purpose: **WDX React Components Documentation**
+- URL: <ExternalLink url="https://dev-audra-wdx-react.dev.topazdigital.cloud"/>
+- Jenkinks: N/A
+- Owner: <TeamAll/>
+- WDX-React Storybook Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
 
 ### Develop #1
 
