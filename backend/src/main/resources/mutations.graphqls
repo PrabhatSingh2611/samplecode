@@ -7,6 +7,8 @@ type Mutation {
     updateAsset(input: UpdateAssetInput!): AssetPayload!
     createLocation(input: CreateLocationInput!): LocationPayload!
     updateLocation(input: UpdateLocationInput!): LocationPayload!
+    createLocationCountry(input: CreateLocationCountryInput!): LocationCountryPayload!
+    patchLocationCountry(input: PatchLocationCountryInput!): LocationCountryPayload!
     createEmployee(input: CreateEmployeeInput!): EmployeePayload!
     updateEmployee(input: UpdateEmployeeInput!): EmployeePayload!
     createVacancy(input: CreateVacancyInput!): VacancyPayload!

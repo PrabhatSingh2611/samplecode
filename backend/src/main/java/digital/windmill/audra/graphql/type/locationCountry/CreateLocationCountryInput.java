@@ -1,17 +1,15 @@
-package digital.windmill.audra.graphql.type.input;
+package digital.windmill.audra.graphql.type.locationCountry;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateLocationInput {
-    private UUID id;
-    private String country;
+public class CreateLocationCountryInput {
+    private String name;
+    private String iconName;
 }

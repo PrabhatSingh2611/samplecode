@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type;
+package digital.windmill.audra.graphql.type.locationCountry;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,10 @@ import java.util.UUID;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Location implements Node {
-
+@AllArgsConstructor
+public class PatchLocationCountryInput {
     private UUID id;
-    private String country;
-    private String details;
-    private String flagIcon;
+    private String name;
+    private String iconName;
 }

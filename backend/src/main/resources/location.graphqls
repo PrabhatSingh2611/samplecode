@@ -1,41 +1,46 @@
 type Location implements Node {
     id: UUID!
-    country: String!
-    details: String # this can be City, but also can be smth like ‘Main office’, ‘Warehouse' or whatever
-    flagIcon: String!
+    name: String # this can be City, but also can be smth like ‘Main office’, ‘Warehouse' or whatever
+    country: LocationCountry!
 }
-
 
 input LocationInput {
     id: UUID!
 }
 
+input LocationsInput {
+    where: LocationsWhereInput
+    pagination: PageInput
+    sort: [LocationSort!] = name_ASC
+}
+
+input LocationsWhereInput {
+    name: String
+    country: NodeInput
+}
+
+enum LocationSort {
+    name_DESC
+    name_ASC
+}
+
 input CreateLocationInput {
-    country: String!
+    name: String!
+    country: NodeInput!
 }
 
 input UpdateLocationInput {
     id: UUID!
-    country: String!
-}
-
-type LocationConnectionPayload implements ConnectionPayload {
-    items: [Location!]!
-    pageInfo: PageInfo!
-    totalItems: Int!
+    name: String!
+    country: NodeInput!
 }
 
 type LocationPayload {
     location: Location!
 }
 
-type LocationCountry implements Node {
-    id: UUID!
-    name: String!
-}
-
-type LocationCountryConnectionPayload implements ConnectionPayload {
-    items: [LocationCountry!]!
+type LocationConnectionPayload implements ConnectionPayload {
+    items: [Location!]!
     pageInfo: PageInfo!
     totalItems: Int!
 }

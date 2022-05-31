@@ -16,6 +16,10 @@ public class NodeInput implements Node {
 
     private UUID id;
 
+    public static NodeInput of(UUID id) {
+        return new NodeInput(id);
+    }
+
     public static NodeInput of(String id) {
         return new NodeInput(UUID.fromString(id));
     }

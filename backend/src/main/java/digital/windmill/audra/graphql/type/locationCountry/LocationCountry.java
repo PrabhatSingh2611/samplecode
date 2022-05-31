@@ -1,5 +1,6 @@
-package digital.windmill.audra.graphql.type;
+package digital.windmill.audra.graphql.type.locationCountry;
 
+import digital.windmill.audra.graphql.type.Node;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +15,5 @@ import java.util.UUID;
 public class LocationCountry implements Node {
     private UUID id;
     private String name;
+    private String iconName;
 }

@@ -55,7 +55,7 @@ public class AssetIt extends AbstractIntegrationTest {
                                 .query("Dell")
                                 .type(NodesInput.of("5478b586-e607-4448-ac05-3e5f2adbbc1b"))
                                 .assignee(NodesInput.of("6bac1755-c88c-4462-ae14-527b54b03e0d"))
-                                .location(NodesInput.of("b7f46256-e21d-483b-be29-8bf7617bc3c3"))
+                                .location(NodesInput.of("cabfb51b-41c5-4f4d-afd5-146c796391af"))
                                 .build())
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);

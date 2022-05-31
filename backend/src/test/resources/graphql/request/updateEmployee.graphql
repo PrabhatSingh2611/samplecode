@@ -21,7 +21,7 @@ mutation updateEmployee{
             }
             location{
                 id
-                country
+                name
             }
             reportingManager {
                 id

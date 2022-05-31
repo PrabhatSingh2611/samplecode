@@ -12,7 +12,7 @@ import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.mapper.VacancyMapperImpl;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.location.Location;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
 import digital.windmill.audra.graphql.type.input.UpdateVacancyInput;
 import org.junit.jupiter.api.Test;
@@ -141,7 +141,7 @@ public class VacancyMapperTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(TEST_UUID).country(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 
     private VacancyEntity createVacancyEntity() {
@@ -181,7 +181,7 @@ public class VacancyMapperTest {
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
         e.setId(ID);
-        e.setCountry(NAME);
+        e.setName(NAME);
         return e;
     }
 

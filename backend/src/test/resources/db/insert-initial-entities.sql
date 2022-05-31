@@ -1,7 +1,17 @@
-insert into location(id, uuid, country, flag_icon)
-values
-(1, 'b7f46256-e21d-483b-be29-8bf7617bc3c3', 'england', 'https://google.com/england_flag'),
-(2, '9c6369ec-fd74-449f-8b68-83cae2df1aac', 'UAE', 'https://google.com/uae_flag');
+ALTER SEQUENCE location_id_seq RESTART WITH 1000;
+ALTER SEQUENCE location_country_id_seq RESTART WITH 1000;
+
+INSERT INTO location_country (id, uuid, name, icon_name)
+VALUES
+    (1, '3f7b6d39-ffbc-4e9a-8e15-075aff4c8f17', 'Portugal', 'portugal_flag'),
+    (2, '0164033e-2381-4d80-aa30-363532352e7d', 'Spain', 'spain_flag'),
+    (3, 'b86cf217-9049-4a15-bef6-4d6849176da4', 'Ukraine', 'ukraine_flag');
+
+INSERT INTO location(id, uuid, name, country_id)
+VALUES
+(1, 'cabfb51b-41c5-4f4d-afd5-146c796391af', 'Lisbon', 1),
+(2, '79761728-8f51-475f-aa04-42385a0dfe36', 'Madrid', 2),
+(3, 'c6faa656-6da1-450e-b176-6093e22298f6', 'Kyiv', 3);
 
 insert into employee_position(id, uuid, name)
 values

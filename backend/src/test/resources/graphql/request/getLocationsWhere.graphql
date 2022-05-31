@@ -1,0 +1,20 @@
+query {
+    locations(input: {where: {name: "kyiv"}}){
+        items{
+            id
+            name
+            country {
+                id
+                name
+                iconName
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+

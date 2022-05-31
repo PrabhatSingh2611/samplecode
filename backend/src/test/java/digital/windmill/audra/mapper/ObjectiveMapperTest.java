@@ -10,7 +10,7 @@ import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.mapper.ObjectiveMapperImpl;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.location.Location;
 import digital.windmill.audra.graphql.type.Objective;
 import digital.windmill.audra.graphql.type.input.CreateObjectiveInput;
 import digital.windmill.audra.graphql.type.input.UpdateObjectiveInput;
@@ -69,7 +69,7 @@ class ObjectiveMapperTest {
 
     @Test
     void shouldMapObjectiveEntityToObjective() {
-
+        when(employeeMapper.mapEmployeeEntityToEmployee(any(EmployeeEntity.class))).thenReturn(createEmployee());
         when(dateTimeMapper.map(any(Instant.class))).thenReturn(ZONE_DATE_TIME);
         var result = mapper.mapObjectiveEntityToObjective(createObjectiveEntity());
 
@@ -178,7 +178,7 @@ class ObjectiveMapperTest {
     private Location createLocation() {
         return Location.builder()
                 .id(TEST_UUID)
-                .country(NAME)
+                .name(NAME)
                 .build();
     }
 

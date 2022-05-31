@@ -13,7 +13,7 @@ import digital.windmill.audra.graphql.mapper.PolicyMapperImpl;
 import digital.windmill.audra.graphql.mapper.ResourceMapper;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.location.Location;
 import digital.windmill.audra.graphql.type.Resource;
 import digital.windmill.audra.graphql.type.input.CreatePolicyInput;
 import digital.windmill.audra.graphql.type.input.ResourceInput;
@@ -113,7 +113,7 @@ class PolicyMapperImplTest {
     private Location createLocation() {
         Location e = new Location();
         e.setId(TEST_UUID);
-        e.setCountry(TEXT);
+        e.setName(TEXT);
         return e;
     }
 
@@ -139,7 +139,7 @@ class PolicyMapperImplTest {
 
     private LocationEntity createLocationEntity() {
         LocationEntity e = new LocationEntity();
-        e.setCountry(TEXT);
+        e.setName(TEXT);
         return e;
     }
 

@@ -22,7 +22,7 @@ mutation createPolicy {
                 role
                 location {
                     id
-                    country
+                    name
                 }
                 position {
                     id

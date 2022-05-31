@@ -18,6 +18,10 @@ public class NodesInput implements Nodes {
 
     private List<UUID> ids;
 
+    public static NodesInput of(UUID... ids) {
+        return new NodesInput(List.of(ids));
+    }
+
     public static NodesInput of(String... ids) {
         return new NodesInput(Arrays.stream(ids).map(UUID::fromString).toList());
     }

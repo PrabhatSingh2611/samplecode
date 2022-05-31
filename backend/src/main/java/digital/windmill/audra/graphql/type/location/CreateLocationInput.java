@@ -1,5 +1,6 @@
-package digital.windmill.audra.graphql.type.input;
+package digital.windmill.audra.graphql.type.location;
 
+import digital.windmill.audra.graphql.type.input.NodeInput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,5 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateLocationInput {
-    private String country;
+    private NodeInput country;
+    private String name;
 }

@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type;
+package digital.windmill.audra.graphql.type.locationCountry;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationPayload {
-    private Location location;
+public class LocationCountriesWhereInput {
+    private String name;
 }

@@ -63,7 +63,7 @@ class EmployeeIt extends AbstractIntegrationTest {
         var where = EmployeesInput.builder().where(
                         EmployeeWhereInput.builder()
                                 .query("Jacob")
-                                .location(NodeInput.of("b7f46256-e21d-483b-be29-8bf7617bc3c3"))
+                                .location(NodeInput.of("cabfb51b-41c5-4f4d-afd5-146c796391af"))
                                 .build())
                     .sort(List.of(EmployeeSort.firstName_ASC))
                 .build();

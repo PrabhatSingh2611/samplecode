@@ -44,6 +44,7 @@ public class ObjectiveFacadeImpl implements ObjectiveFacade {
     }
 
     @Override
+    @Transactional
     public Objective deleteObjective(DeleteObjectiveInput input) {
         var objectiveToBeDeleted = objectiveService.findObjectiveByUuid(input.getId());
         return  objectiveMapper.mapObjectiveEntityToObjective(

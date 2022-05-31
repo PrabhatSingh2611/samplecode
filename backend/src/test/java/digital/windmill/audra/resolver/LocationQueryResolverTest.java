@@ -1,9 +1,10 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.graphql.facade.LocationFacade;
-import digital.windmill.audra.graphql.resolver.location.LocationResolver;
-import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.input.LocationInput;
+import digital.windmill.audra.graphql.facade.impl.LocationFacade;
+import digital.windmill.audra.graphql.resolver.location.LocationQueryResolver;
+import digital.windmill.audra.graphql.type.location.Location;
+import digital.windmill.audra.graphql.type.location.LocationInput;
+import digital.windmill.audra.graphql.type.location.LocationsInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class LocationResolverTest {
+public class LocationQueryResolverTest {
 
     private static final UUID TEST_UUID = UUID.randomUUID();
 
@@ -28,7 +29,7 @@ public class LocationResolverTest {
     private LocationFacade locationfacade;
 
     @InjectMocks
-    private LocationResolver locationResolver;
+    private LocationQueryResolver locationResolver;
 
     @Test
     void shouldGetLocationByUuid(@Mock LocationInput input,
@@ -44,12 +45,12 @@ public class LocationResolverTest {
     }
 
     @Test
-    void shouldGetAllLocations(@Mock Location location) {
+    void shouldGetAllLocations(@Mock Location location, @Mock LocationsInput locationsInput) {
 
         Page<Location> pagedResponse = createOneItemPage(location);
-        when(locationfacade.getLocations()).thenReturn(pagedResponse);
+        when(locationfacade.getLocations(locationsInput)).thenReturn(pagedResponse);
 
-        var result = locationResolver.locations();
+        var result = locationResolver.locations(locationsInput);
         assertNotNull(result);
         assertEquals(pagedResponse.getContent(), result.getItems());
     }

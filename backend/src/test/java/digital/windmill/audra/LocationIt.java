@@ -26,11 +26,22 @@ class LocationIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
-    void shouldReturnAllLocations() throws IOException, URISyntaxException {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getLocations.graphql");
+    void shouldReturnAllLocationsWhere() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getLocationsWhere.graphql");
 
         log.info(response.readTree().toPrettyString());
-        String jsonString = readFromResource("graphql/response/getLocations.json");
+        String jsonString = readFromResource("graphql/response/getLocationsWhere.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllLocationsPage() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getLocationsPage.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getLocationsPage.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }

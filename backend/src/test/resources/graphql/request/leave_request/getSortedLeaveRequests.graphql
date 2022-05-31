@@ -25,7 +25,7 @@ query sortedLeaveRequests($sort: [LeaveRequestsSortEnum!]!) {
                 }
                 location{
                     id
-                    country
+                    name
                 }
             }
         }

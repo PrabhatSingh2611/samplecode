@@ -1,0 +1,24 @@
+query {
+    locationCountries(input: {where: {name: "ain"}}){
+        items{
+            id
+            name
+            iconName
+            locations {
+                id
+                name
+                country {
+                    id
+                    name
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+

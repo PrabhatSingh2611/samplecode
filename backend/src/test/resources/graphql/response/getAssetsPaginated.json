@@ -9,8 +9,8 @@
           "waybillDate": "2022-01-27T08:12:24.480425Z[UTC]",
           "tagNumber": null,
           "location": {
-            "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-            "country": "england"
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+            "name": "Lisbon"
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
@@ -28,8 +28,8 @@
               "name": "manager"
             },
             "location": {
-              "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-              "country": "england"
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+              "name": "Lisbon"
             }
           },
           "archivedDate": "2022-02-02T13:25:34.480425Z[UTC]"
@@ -41,8 +41,8 @@
           "waybillDate": "2022-01-15T14:17:26.480425Z[UTC]",
           "tagNumber": null,
           "location": {
-            "id": "9c6369ec-fd74-449f-8b68-83cae2df1aac",
-            "country": "UAE"
+            "id":"79761728-8f51-475f-aa04-42385a0dfe36",
+            "name":"Madrid"
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
@@ -60,8 +60,8 @@
               "name": "manager"
             },
             "location": {
-              "id": "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-              "country": "england"
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+              "name": "Lisbon"
             }
           },
           "archivedDate": null

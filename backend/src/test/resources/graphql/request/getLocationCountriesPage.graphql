@@ -1,8 +1,9 @@
 query {
-    locations{
+    locationCountries(input: {pagination: {itemsPerPage: 2, pageNumber: 1}}){
         items{
             id
-            country
+            name
+            iconName
         }
         pageInfo {
             currentPage

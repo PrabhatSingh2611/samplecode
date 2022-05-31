@@ -1,8 +1,8 @@
 mutation updateLocation{
-    updateLocation(input:{id: "b7f46256-e21d-483b-be29-8bf7617bc3c3", country:"pune"} ){
+    updateLocation(input:{id: "79761728-8f51-475f-aa04-42385a0dfe36", name:"Warehouse", country: {id: "0164033e-2381-4d80-aa30-363532352e7d"}} ){
         location{
             id
-            country
+            name
         }
     }
 }

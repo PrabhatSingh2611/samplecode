@@ -8,7 +8,7 @@ query getAssets($input: AssetsInput!) {
             tagNumber
             location {
                 id
-                country
+                name
             }
             type {
                 id
@@ -27,7 +27,7 @@ query getAssets($input: AssetsInput!) {
                 }
                 location{
                     id
-                    country
+                    name
                 }
             }
             archivedDate

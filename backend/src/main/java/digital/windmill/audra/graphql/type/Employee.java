@@ -1,6 +1,7 @@
 package digital.windmill.audra.graphql.type;
 
 import digital.windmill.audra.dao.entity.enums.EmployeeRole;
+import digital.windmill.audra.graphql.type.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

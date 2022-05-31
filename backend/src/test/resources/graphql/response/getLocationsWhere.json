@@ -1,0 +1,22 @@
+{
+  "data": {
+    "locations": {
+      "items": [
+        {
+          "id": "c6faa656-6da1-450e-b176-6093e22298f6",
+          "name": "Kyiv",
+          "country": {
+            "id": "b86cf217-9049-4a15-bef6-4d6849176da4",
+            "name": "Ukraine",
+            "iconName": "ukraine_flag"
+          }
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 1
+    }
+  }
+}

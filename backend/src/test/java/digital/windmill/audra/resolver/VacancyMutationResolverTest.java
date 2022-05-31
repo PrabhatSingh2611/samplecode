@@ -7,7 +7,7 @@ import digital.windmill.audra.graphql.facade.VacancyFacade;
 import digital.windmill.audra.graphql.resolver.vacancy.VacancyMutationResolver;
 import digital.windmill.audra.graphql.type.Employee;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
+import digital.windmill.audra.graphql.type.location.Location;
 import digital.windmill.audra.graphql.type.Vacancy;
 import digital.windmill.audra.graphql.type.input.CreateVacancyInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
@@ -122,6 +122,6 @@ public class VacancyMutationResolverTest {
     }
 
     private Location createLocation() {
-        return Location.builder().id(TEST_UUID).country(NAME).build();
+        return Location.builder().id(TEST_UUID).name(NAME).build();
     }
 }

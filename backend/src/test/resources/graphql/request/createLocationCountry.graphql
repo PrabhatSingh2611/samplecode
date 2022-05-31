@@ -1,0 +1,8 @@
+mutation createLocation{
+    createLocationCountry(input: {name: "Montenegro", iconName: "montenegro_flag"}){
+        locationCountry {
+            name
+            iconName
+        }
+    }
+}

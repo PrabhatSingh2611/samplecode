@@ -1,0 +1,44 @@
+type LocationCountry implements Node {
+    id: UUID!
+    name: String!
+    iconName: String!
+    locations: [Location!]!
+}
+
+input LocationCountriesInput {
+    where: LocationCountriesWhereInput
+    pagination: PageInput
+    sort: [LocationCountrySort!] = name_ASC
+}
+
+input LocationCountriesWhereInput {
+    name: String
+}
+
+type LocationCountryConnectionPayload implements ConnectionPayload {
+    items: [LocationCountry!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+enum LocationCountrySort {
+    name_DESC
+    name_ASC
+}
+
+input CreateLocationCountryInput {
+    name: String!
+    iconName: String! # FE icon name, not BE logic on it, BE just store this value!
+}
+
+input PatchLocationCountryInput {
+    id: UUID!
+    name: String
+    iconName: String
+}
+
+type LocationCountryPayload {
+    locationCountry: LocationCountry
+}
+
+

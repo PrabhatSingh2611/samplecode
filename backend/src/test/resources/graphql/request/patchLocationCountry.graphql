@@ -1,0 +1,9 @@
+mutation patchLocationCountry {
+    patchLocationCountry(input: {id: "0164033e-2381-4d80-aa30-363532352e7d", name: null, iconName: "spain_flag_new"}){
+        locationCountry {
+            id
+            name
+            iconName
+        }
+    }
+}

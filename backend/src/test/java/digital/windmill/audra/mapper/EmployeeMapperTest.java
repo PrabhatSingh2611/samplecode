@@ -9,9 +9,9 @@ import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
-import digital.windmill.audra.graphql.type.Location;
 import digital.windmill.audra.graphql.type.input.CreateEmployeeInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
+import digital.windmill.audra.graphql.type.location.Location;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -58,7 +58,7 @@ public class EmployeeMapperTest {
     void shouldMapEmployeeEntityToEmployee() {
         when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(any(EmployeePositionEntity.class)))
                 .thenReturn(buildPosition());
-        when(locationMapper.mapLocationEntityToLocation(any(LocationEntity.class)))
+        when(locationMapper.map(any(LocationEntity.class)))
                 .thenReturn(buildLocation());
         when(dateTimeMapper.map(any(Instant.class))).thenReturn(BIRTH_DATE);
 

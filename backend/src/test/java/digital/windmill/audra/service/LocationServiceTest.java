@@ -3,7 +3,8 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.dao.repository.LocationRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.service.impl.LocationServiceImpl;
+import digital.windmill.audra.graphql.type.location.LocationsInput;
+import digital.windmill.audra.service.impl.LocationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,30 +28,27 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class LocationServiceTest {
 
-    private static final UUID TEST_UUID = UUID.randomUUID();
+    private static final UUID LOCATION_UUID = UUID.randomUUID();
 
     @Mock
     private LocationRepository locationRepository;
 
     @InjectMocks
-    private LocationServiceImpl locationService;
+    private LocationService locationService;
 
     @Test
     void shouldReturnLocationByUuid(@Mock LocationEntity locationEntity) {
-
-        when(locationRepository.findByUuid(any(UUID.class)))
+        when(locationRepository.findByUuid(LOCATION_UUID))
                 .thenReturn(Optional.ofNullable(locationEntity));
 
-        var result = locationService.findLocationByUuid(TEST_UUID);
+        var result = locationService.findLocationByUuid(LOCATION_UUID);
         assertNotNull(result);
         assertEquals(locationEntity, result);
     }
 
     @Test
-    void shouldCreateLocation(@Mock LocationEntity locationEntity) {
-
-        when(locationRepository.save(any(LocationEntity.class)))
-                .thenReturn(locationEntity);
+    void shouldSaveLocation(@Mock LocationEntity locationEntity) {
+        when(locationRepository.save(locationEntity)).thenReturn(locationEntity);
 
         var result = locationService.save(locationEntity);
         assertNotNull(result);
@@ -58,23 +56,11 @@ public class LocationServiceTest {
     }
 
     @Test
-    void shouldUpdateLocation(@Mock LocationEntity locationEntity) {
-
-        when(locationRepository.save(any(LocationEntity.class)))
-                .thenReturn(locationEntity);
-
-        var result = locationService.save(locationEntity);
-        assertNotNull(result);
-        assertSame(locationEntity, result);
-    }
-
-    @Test
-    void shouldReturnAllLocations(@Mock LocationEntity locationEntity) {
-
-        Page<LocationEntity> locationPage = createOneItemPage(locationEntity);
+    void shouldReturnAllLocations(@Mock LocationEntity locationEntity, @Mock LocationsInput locationsInput) {
+        var locationPage = createOneItemPage(locationEntity);
         when(locationRepository.findAll((Specification<LocationEntity>) any(), any(PageRequest.class)))
                 .thenReturn(locationPage);
-        var result = locationService.getLocations();
+        var result = locationService.getLocations(locationsInput);
 
         assertNotNull(result);
         assertSame(locationPage, result);
@@ -87,8 +73,8 @@ public class LocationServiceTest {
     @Test
     void shouldThrowDataNotFoundWhenUuidIsNull() {
         when(locationRepository.findByUuid(any(UUID.class)))
-                .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
-        Assertions.assertThrows(DataNotFoundException.class, () -> locationService.findLocationByUuid(TEST_UUID));
+                .thenThrow(new DataNotFoundException("Location not found " + LOCATION_UUID));
+        Assertions.assertThrows(DataNotFoundException.class, () -> locationService.findLocationByUuid(LOCATION_UUID));
     }
 
 }

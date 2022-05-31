@@ -15,20 +15,12 @@ import org.mapstruct.MappingTarget;
 import java.time.Instant;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class}, 
-    imports = {Instant.class, UUID.class})
+@Mapper(componentModel = "spring",
+        uses = {DateTimeMapper.class, EmployeeMapper.class, AssetTypeMapper.class, LocationMapper.class},
+        imports = {Instant.class, UUID.class})
 public interface AssetMapper {
 
-    /**
-     * This Map AssetEntity to Asset
-     *
-     * @param entity it takes AssetEntity
-     * @return mapped Asset
-     */
-
     @Mapping(target = "id", source = "uuid")
-    @Mapping(target = "type.id", source = "type.uuid")
-    @Mapping(target = "location.id", source = "location.uuid")
     Asset mapAssetEntityToAsset(AssetEntity entity);
 
     @Mapping(target = "id", ignore = true)

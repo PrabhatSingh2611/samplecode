@@ -1,7 +1,12 @@
 mutation createLocation{
-    createLocation(input:{country: "India"}){
+    createLocation(input: {name: "Main office", country: {id: "0164033e-2381-4d80-aa30-363532352e7d"}}){
         location {
-            country
+            name
+            country {
+                id
+                name
+                iconName
+            }
         }
     }
 }

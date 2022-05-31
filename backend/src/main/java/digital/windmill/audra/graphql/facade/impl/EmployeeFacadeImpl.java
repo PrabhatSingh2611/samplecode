@@ -8,7 +8,7 @@ import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeeInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import digital.windmill.audra.service.EmployeeService;
-import digital.windmill.audra.service.LocationService;
+import digital.windmill.audra.service.impl.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

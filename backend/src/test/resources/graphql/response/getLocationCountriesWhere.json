@@ -1,0 +1,43 @@
+{
+  "data": {
+    "locationCountries": {
+      "items": [
+        {
+          "id": "0164033e-2381-4d80-aa30-363532352e7d",
+          "name": "Spain",
+          "iconName": "spain_flag",
+          "locations": [
+            {
+              "id": "79761728-8f51-475f-aa04-42385a0dfe36",
+              "name": "Madrid",
+              "country": {
+                "id": "0164033e-2381-4d80-aa30-363532352e7d",
+                "name": "Spain"
+              }
+            }
+          ]
+        },
+        {
+          "id": "b86cf217-9049-4a15-bef6-4d6849176da4",
+          "name": "Ukraine",
+          "iconName": "ukraine_flag",
+          "locations": [
+            {
+              "id": "c6faa656-6da1-450e-b176-6093e22298f6",
+              "name": "Kyiv",
+              "country": {
+                "id": "b86cf217-9049-4a15-bef6-4d6849176da4",
+                "name": "Ukraine"
+              }
+            }
+          ]
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 2
+    }
+  }
+}

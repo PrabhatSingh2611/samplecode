@@ -28,7 +28,7 @@ query {
                 }
                 location{
                     id
-                    country
+                    name
                 }
             }
         }

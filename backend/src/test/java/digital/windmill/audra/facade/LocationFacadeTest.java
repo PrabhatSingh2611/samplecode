@@ -1,12 +1,16 @@
 package digital.windmill.audra.facade;
 
+import digital.windmill.audra.dao.entity.LocationCountryEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
-import digital.windmill.audra.graphql.facade.impl.LocationFacadeImpl;
+import digital.windmill.audra.graphql.facade.impl.LocationFacade;
 import digital.windmill.audra.graphql.mapper.LocationMapper;
-import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.input.CreateLocationInput;
-import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
-import digital.windmill.audra.service.LocationService;
+import digital.windmill.audra.graphql.type.input.NodeInput;
+import digital.windmill.audra.graphql.type.location.CreateLocationInput;
+import digital.windmill.audra.graphql.type.location.Location;
+import digital.windmill.audra.graphql.type.location.LocationsInput;
+import digital.windmill.audra.graphql.type.location.UpdateLocationInput;
+import digital.windmill.audra.service.impl.LocationCountryService;
+import digital.windmill.audra.service.impl.LocationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,21 +29,23 @@ import static org.mockito.Mockito.when;
 class LocationFacadeTest {
 
     private static final UUID LOCATION_UUID = UUID.randomUUID();
+    private static final UUID COUNTRY_UUID = UUID.randomUUID();
 
     @Mock
     private LocationService locationService;
-
+    @Mock
+    private LocationCountryService locationCountryService;
     @Mock
     private LocationMapper locationMapper;
 
     @InjectMocks
-    private LocationFacadeImpl locationFacade;
+    private LocationFacade locationFacade;
 
     @Test
     void shouldFindLocationByUuid(@Mock LocationEntity locationEntity,
                                   @Mock Location location) {
         when(locationService.findLocationByUuid(LOCATION_UUID)).thenReturn(locationEntity);
-        when(locationMapper.mapLocationEntityToLocation(locationEntity)).thenReturn(location);
+        when(locationMapper.map(locationEntity)).thenReturn(location);
 
         var actualResult = locationFacade.findLocationByUuid(LOCATION_UUID);
 
@@ -48,12 +54,13 @@ class LocationFacadeTest {
 
     @Test
     void shouldFindAllLocation(@Mock LocationEntity locationEntity,
+                               @Mock LocationsInput locationsInput,
                                @Mock Location location) {
 
-        when(locationService.getLocations()).thenReturn(createOneItemPage(locationEntity));
-        when(locationMapper.mapLocationEntityToLocation(locationEntity)).thenReturn(location);
+        when(locationService.getLocations(locationsInput)).thenReturn(createOneItemPage(locationEntity));
+        when(locationMapper.map(locationEntity)).thenReturn(location);
 
-        var actualResult = locationFacade.getLocations();
+        var actualResult = locationFacade.getLocations(locationsInput);
 
         assertEquals(createOneItemPage(location), actualResult);
     }
@@ -62,11 +69,14 @@ class LocationFacadeTest {
     @Test
     void shouldCreateLocation(@Mock CreateLocationInput input,
                               @Mock LocationEntity locationEntity,
+                              @Mock LocationCountryEntity locationCountryEntity,
                               @Mock Location location) {
 
-        when(locationMapper.mapCreateLocationInputToLocationEntity(input)).thenReturn(locationEntity);
+        when(input.getCountry()).thenReturn(NodeInput.of(COUNTRY_UUID));
+        when(locationCountryService.findByUuid(input.getCountry().getId())).thenReturn(locationCountryEntity);
+        when(locationMapper.map(input, locationCountryEntity)).thenReturn(locationEntity);
         when(locationService.save(locationEntity)).thenReturn(locationEntity);
-        when(locationMapper.mapLocationEntityToLocation(locationEntity)).thenReturn(location);
+        when(locationMapper.map(locationEntity)).thenReturn(location);
 
         var actualResult = locationFacade.createLocation(input);
 
@@ -76,14 +86,17 @@ class LocationFacadeTest {
     @Test
     void shouldUpdateLocation(@Mock UpdateLocationInput input,
                               @Mock LocationEntity locationEntity,
+                              @Mock LocationCountryEntity locationCountryEntity,
                               @Mock Location location) {
 
+        when(input.getCountry()).thenReturn(NodeInput.of(COUNTRY_UUID));
+        when(locationCountryService.findByUuid(input.getCountry().getId())).thenReturn(locationCountryEntity);
         when(locationService.findLocationByUuid(input.getId())).thenReturn(locationEntity);
-        when(locationMapper.mapLocationToLocationEntityUpdate(input, locationEntity)).thenReturn(locationEntity);
+        when(locationMapper.map(input, locationEntity, locationCountryEntity)).thenReturn(locationEntity);
         when(locationService.save(locationEntity)).thenReturn(locationEntity);
-        when(locationMapper.mapLocationEntityToLocation(locationEntity)).thenReturn(location);
+        when(locationMapper.map(locationEntity)).thenReturn(location);
 
-        var actualResult = locationFacade.updateLocation(input);
+        var actualResult = locationFacade. updateLocation(input);
 
         assertEquals(location, actualResult);
     }

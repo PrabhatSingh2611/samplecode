@@ -23,7 +23,7 @@ mutation patchLeaveRequests($input: PatchLeaveRequestInput!) {
                 }
                 location{
                     id
-                    country
+                    name
                 }
             }
         }

@@ -1,0 +1,10 @@
+{
+  "data": {
+    "createLocationCountry": {
+      "locationCountry": {
+        "name": "Montenegro",
+        "iconName": "montenegro_flag"
+      }
+    }
+  }
+}

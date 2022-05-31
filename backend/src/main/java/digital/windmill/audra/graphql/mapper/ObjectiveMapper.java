@@ -13,7 +13,8 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, EmployeePositionMapper.class})
+@Mapper(componentModel = "spring",
+        uses = {DateTimeMapper.class, EmployeeMapper.class})
 public interface ObjectiveMapper {
 
     @Mapping(target = "id", ignore = true)
@@ -37,9 +38,6 @@ public interface ObjectiveMapper {
     ObjectiveEntity mapInputToEntityWhenUpdate(UpdateObjectiveInput input, @MappingTarget ObjectiveEntity entity, EmployeeEntity employeeEntity);
 
     @Mapping(target = "id", source = "uuid")
-    @Mapping(target = "employee.reportingManager", ignore = true)
-    @Mapping(target = "employee.id", source = "employee.uuid")
-    @Mapping(target = "employee.location.id", source = "employee.location.uuid")
     Objective mapObjectiveEntityToObjective(ObjectiveEntity objectiveEntity);
 
     default UUID generateUUID() {

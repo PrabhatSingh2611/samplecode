@@ -8,7 +8,8 @@
           "id":"48b560ab-7450-4088-b6bb-f57638ea0877"
         },
         "location":{
-          "country":"england"
+          "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+          "name": "Lisbon"
         },
         "type":{
           "id":"5478b586-e607-4448-ac05-3e5f2adbbc1b",

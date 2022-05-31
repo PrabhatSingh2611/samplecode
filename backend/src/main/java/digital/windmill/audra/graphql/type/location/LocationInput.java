@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type.input;
+package digital.windmill.audra.graphql.type.location;
 
 import digital.windmill.audra.graphql.type.Node;
 import lombok.AllArgsConstructor;

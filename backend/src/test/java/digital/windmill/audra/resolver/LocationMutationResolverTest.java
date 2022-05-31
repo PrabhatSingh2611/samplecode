@@ -1,10 +1,10 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.graphql.facade.LocationFacade;
+import digital.windmill.audra.graphql.facade.impl.LocationFacade;
 import digital.windmill.audra.graphql.resolver.location.LocationMutationResolver;
-import digital.windmill.audra.graphql.type.Location;
-import digital.windmill.audra.graphql.type.input.CreateLocationInput;
-import digital.windmill.audra.graphql.type.input.UpdateLocationInput;
+import digital.windmill.audra.graphql.type.location.CreateLocationInput;
+import digital.windmill.audra.graphql.type.location.Location;
+import digital.windmill.audra.graphql.type.location.UpdateLocationInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

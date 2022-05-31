@@ -31,7 +31,7 @@ mutation {
                 }
                 location {
                     id
-                    country
+                    name
                 }
             }
         }

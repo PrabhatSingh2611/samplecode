@@ -49,4 +49,35 @@
         </sql>
     </changeSet>
 
+    <changeSet id="r.0.12.3" author="tetiana.hladka">
+        <dropColumn tableName="location" columnName="flag_icon"/>
+        <dropColumn tableName="location" columnName="country"/>
+        <renameColumn tableName="location" oldColumnName="details" newColumnName="name"/>
+        <createTable tableName="location_country">
+            <column name="id" type="int8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="uuid">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(100)"/>
+            <column name="icon_name" type="varchar(100)"/>
+        </createTable>
+        <addColumn tableName="location">
+            <column name="country_id" type="int8">
+                <constraints foreignKeyName="fk_location_to_country" references="location_country(id)"/>
+            </column>
+        </addColumn>
+
+        <sql>
+            INSERT INTO location_country (id, uuid, name, icon_name)
+            VALUES
+                   (1, '3f7b6d39-ffbc-4e9a-8e15-075aff4c8f17', 'Portugal', 'portugal_flag'),
+                   (2, '0164033e-2381-4d80-aa30-363532352e7d', 'Spain', 'spain_flag'),
+                   (3, 'b86cf217-9049-4a15-bef6-4d6849176da4', 'Ukraine', 'ukraine_flag');
+            UPDATE location SET country_id = id WHERE id IN (1, 2, 3);
+        </sql>
+
+    </changeSet>
+
 </databaseChangeLog>

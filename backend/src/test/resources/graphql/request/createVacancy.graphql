@@ -25,7 +25,7 @@ mutation{
                 }
                 location{
                     id
-                    country
+                    name
                 }
             }
             priority

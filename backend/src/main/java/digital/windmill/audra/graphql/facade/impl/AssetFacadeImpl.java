@@ -11,7 +11,7 @@ import digital.windmill.audra.graphql.type.input.UpdateAssetInput;
 import digital.windmill.audra.service.AssetService;
 import digital.windmill.audra.service.AssetTypeService;
 import digital.windmill.audra.service.EmployeeService;
-import digital.windmill.audra.service.LocationService;
+import digital.windmill.audra.service.impl.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

@@ -14,7 +14,7 @@ import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.service.AssetService;
 import digital.windmill.audra.service.AssetTypeService;
 import digital.windmill.audra.service.EmployeeService;
-import digital.windmill.audra.service.LocationService;
+import digital.windmill.audra.service.impl.LocationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

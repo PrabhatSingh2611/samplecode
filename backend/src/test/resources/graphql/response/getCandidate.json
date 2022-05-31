@@ -16,13 +16,13 @@
             "lastName": "Morris",
             "role": "ADMIN",
             "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
-            "position" : {
-              "id" : "cabfb51b-41c5-4f4d-afd5-146c796391ad",
-              "name" : "manager"
+            "position": {
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name": "manager"
             },
-            "location" : {
-              "id" : "b7f46256-e21d-483b-be29-8bf7617bc3c3",
-              "country" : "england"
+            "location": {
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+              "name": "Lisbon"
             }
           },
           "priority": "LOW"
@@ -30,9 +30,11 @@
         "firstName": "Robert",
         "lastName": "Wilson",
         "linkedIn": "RobertW",
-        "attachments":[{
-          "id": "b5673d40-ac1f-4092-8361-80bcdc182a07"
-        }],
+        "attachments": [
+          {
+            "id": "b5673d40-ac1f-4092-8361-80bcdc182a07"
+          }
+        ],
         "status": "NEW"
       }
     }
