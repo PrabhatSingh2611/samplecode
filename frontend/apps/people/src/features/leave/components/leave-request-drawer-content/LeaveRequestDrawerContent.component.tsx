@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-import { isBefore } from 'date-fns';
+import { isBefore, addHours } from 'date-fns';
 import { WActionsDrawer, WButton, WGrid, WMenuItem, WTextField, WForm, WStack, Yup } from 'wdx';
 
 import { useCreateLeaveRequest, useGetLeaveTypes } from 'features/leave/hooks/leave.hooks';
 import { LeaveRequestStatus } from 'graphql-generated-types/types';
 
 const leaveRequestFormId = 'leave-request-form';
-const oneDay = 3600 * 1000 * 24;
+const oneHour = 1;
 const currentDate = new Date();
-const nextDate = new Date(Date.now() + oneDay);
+const nextDate = addHours(currentDate, oneHour);
 
 const defaultValues = {
     leaveType: '',
@@ -32,8 +32,8 @@ interface ILeaveRequestDrawerContentProps {
 export function LeaveRequestDrawerContent({
     onClose,
 }: ILeaveRequestDrawerContentProps): JSX.Element {
-    const [startDate, setStartDate] = useState<Date>(currentDate);
-    const [endDate, setEndDate] = useState<Date>(nextDate);
+    const [startDate, setStartDate] = useState(currentDate);
+    const [endDate, setEndDate] = useState(nextDate);
     const [leaveTypes] = useGetLeaveTypes();
     const [createLeaveRequest] = useCreateLeaveRequest();
 
@@ -88,10 +88,10 @@ export function LeaveRequestDrawerContent({
                                 name="startDate"
                                 views={['day']}
                                 label="Start Date"
-                                onChange={(newValue: any) => {
-                                    setStartDate(newValue);
+                                onChange={(newValue: unknown): void => {
+                                    setStartDate(newValue as Date);
                                 }}
-                                renderInput={(params, error) => (
+                                renderInput={(params, error): JSX.Element => (
                                     <WTextField
                                         {...params}
                                         fullWidth={true}
@@ -109,10 +109,10 @@ export function LeaveRequestDrawerContent({
                                 name="endDate"
                                 views={['day']}
                                 label="End Date"
-                                onChange={(newValue: any) => {
-                                    setEndDate(newValue);
+                                onChange={(newValue: unknown): void => {
+                                    setEndDate(newValue as Date);
                                 }}
-                                renderInput={(params, error) => (
+                                renderInput={(params, error): JSX.Element => (
                                     <WTextField
                                         {...params}
                                         fullWidth={true}

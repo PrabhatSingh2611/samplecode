@@ -18,13 +18,11 @@ import { getLeaveRequestListRowData } from 'features/leave/utils/leave-request.u
 const tabs = ['All'];
 
 const headerData = [
-    { id: 'type', label: 'Type', align: AlignTableCell.LEFT },
-    { id: 'name', label: 'Name and Position', align: AlignTableCell.LEFT },
-    { id: 'timeRange', label: 'Time Range', align: AlignTableCell.LEFT },
-    { id: 'days', label: 'N° of Days', align: AlignTableCell.RIGHT, width: '108px' },
-    { id: 'comment', label: 'Comment', align: AlignTableCell.LEFT },
+    { id: 'name', label: 'Name and Position', align: AlignTableCell.LEFT, minWidth: '200px' },
+    { id: 'timeRange', label: 'Time Range', align: AlignTableCell.LEFT, minWidth: '120px' },
+    { id: 'description', label: 'Description', align: AlignTableCell.LEFT },
     { id: 'status', label: 'Status', align: AlignTableCell.LEFT, width: '108px' },
-    { id: 'аctions', label: 'Actions', align: AlignTableCell.RIGHT },
+    { id: 'аctions', label: 'Actions', align: AlignTableCell.RIGHT, minWidth: '210px' },
 ];
 
 export default function RequestsList(): JSX.Element {

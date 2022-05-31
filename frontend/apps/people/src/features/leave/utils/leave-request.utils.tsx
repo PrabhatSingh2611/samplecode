@@ -1,9 +1,9 @@
-import { formatDateByTemplate, deleteUtcFromDate, castToString } from 'wdx';
+import { formatDateByTemplate, deleteUtcFromDate, castToString, WTypography } from 'wdx';
 
-import { LeaveRequestActionButtons } from 'features/leave/components/leave-request-action-buttons/leave-request-action-buttons.component';
-import { LeaveRequestAuthor } from 'features/leave/components/leave-request-author/leave-request-author.component';
-import { LeaveRequestItemStatus } from 'features/leave/components/leave-request-item-status/leave-request-item-status.component';
-import { LeaveRequestType } from 'features/leave/components/leave-request-type/leave-request-type.component';
+import { LeaveRequestActionButtons } from 'features/leave/components/leave-request-action-buttons/LeaveRequestActionButtons.component';
+import { LeaveRequestAuthor } from 'features/leave/components/leave-request-author/LeaveRequestAuthor.component';
+import { LeaveRequestItemStatus } from 'features/leave/components/leave-request-item-status/LeaveRequestItemStatus.component';
+import { LeaveRequestType } from 'features/leave/components/leave-request-type/LeaveRequestType.component';
 import { LeaveRequestForRequestsListFragment } from 'features/leave/graphql/queries/getLeaveRequestsForRequestsList.generated';
 
 const getRangeDates = (startDate: string, endDate: string): string => {
@@ -15,11 +15,9 @@ const getRangeDates = (startDate: string, endDate: string): string => {
 
 interface IRequestsListRowData {
     id: string;
-    type: JSX.Element;
     name: JSX.Element;
-    timeRange: string;
-    days: number;
-    comment: string;
+    timeRange: JSX.Element;
+    description: JSX.Element;
     status: JSX.Element;
     аctions: JSX.Element;
 }
@@ -36,17 +34,37 @@ export const getLeaveRequestListRowData = ({
 }: LeaveRequestForRequestsListFragment): IRequestsListRowData => {
     return {
         id,
-        type: <LeaveRequestType title={type.name} />,
         name: (
             <LeaveRequestAuthor
                 name={`${employee.firstName} ${employee.lastName}`}
                 position={employee.position?.name}
             />
         ),
-        timeRange: getRangeDates(startDate, endDate),
-        days: numberOfDays,
-        comment: castToString(comment),
+        timeRange: (
+            <>
+                {getRangeDates(startDate, endDate)}
+                <WTypography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {getRangeDays(numberOfDays)}
+                </WTypography>
+            </>
+        ),
+        description: (
+            <>
+                <LeaveRequestType title={type.name} />
+                <WTypography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {castToString(comment)}
+                </WTypography>
+            </>
+        ),
         status: <LeaveRequestItemStatus status={status} />,
         аctions: <LeaveRequestActionButtons leaveRequestId={id} status={status} />,
     };
+};
+
+const getRangeDays = (numberOfDays: number): string => {
+    if (numberOfDays === 1) {
+        return 'a day';
+    }
+
+    return `${numberOfDays} days`;
 };

@@ -1,6 +1,6 @@
 import { WPage } from 'wdx';
 
-import RequestsList from 'features/leave/components/requests-list/requests-list.component';
+import RequestsList from 'features/leave/components/requests-list/RequestsList.component';
 
 export default function RequestsPage(): JSX.Element {
     return (

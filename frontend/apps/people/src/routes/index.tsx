@@ -4,8 +4,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { WBox, WTypography, WButton } from 'wdx';
 
 import EmployeesList from 'features/employees/components/EmployeesList.component';
-import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/leave-request-drawer.component';
-import RequestsPage from 'features/leave/containers/requests-page/requests-page.container';
+import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/LeaveRequestDrawer.component';
+import RequestsPage from 'features/leave/containers/requests-page/RequestsPage.container';
 import AuthorizationBtn from 'features/me/components/authBtn';
 import PoliciesPage from 'features/policies/containers/policies-page/PoliciesPage.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';

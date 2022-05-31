@@ -1,6 +1,6 @@
 import { WActionsDrawer } from 'wdx';
 
-import { LeaveRequestDrawerContent } from 'features/leave/components/leave-request-drawer-content/leave-request-drawer-content.component';
+import { LeaveRequestDrawerContent } from 'features/leave/components/leave-request-drawer-content/LeaveRequestDrawerContent.component';
 
 interface IProps {
     isOpened: boolean;

@@ -20,6 +20,13 @@ export function LeaveRequestActionButtons({ status, leaveRequestId }: IActionBut
         [isOpen],
     );
 
+    const onAction = (status: LeaveRequestStatus): void => {
+        patchLeaveRequestStatus({
+            id: leaveRequestId,
+            status,
+        });
+    };
+
     if (status === LeaveRequestStatus.Approved || status === LeaveRequestStatus.Declined) {
         const ariaControlsValue = isOpen ? 'basic-menu' : undefined;
         const ariaExpandedValue = isOpen ? 'true' : undefined;
@@ -33,11 +40,8 @@ export function LeaveRequestActionButtons({ status, leaveRequestId }: IActionBut
             setAnchorEl(null);
         };
 
-        const onAction = (status: LeaveRequestStatus): void => {
-            patchLeaveRequestStatus({
-                id: leaveRequestId,
-                status,
-            });
+        const onToggleAction = (status: LeaveRequestStatus): void => {
+            onAction(status);
             handleClose();
         };
 
@@ -64,7 +68,7 @@ export function LeaveRequestActionButtons({ status, leaveRequestId }: IActionBut
                 >
                     <WMenuItem
                         onClick={(): void => {
-                            onAction(LeaveRequestStatus.Declined);
+                            onToggleAction(LeaveRequestStatus.Declined);
                         }}
                         selected={isRejected}
                     >
@@ -72,7 +76,7 @@ export function LeaveRequestActionButtons({ status, leaveRequestId }: IActionBut
                     </WMenuItem>
                     <WMenuItem
                         onClick={(): void => {
-                            onAction(LeaveRequestStatus.Approved);
+                            onToggleAction(LeaveRequestStatus.Approved);
                         }}
                         selected={!isRejected}
                     >
@@ -85,10 +89,23 @@ export function LeaveRequestActionButtons({ status, leaveRequestId }: IActionBut
 
     return (
         <WStack direction="row" gap={1} justifyContent="flex-end">
-            <WButton variant="outlined" color="error">
+            <WButton
+                onClick={(): void => {
+                    onAction(LeaveRequestStatus.Declined);
+                }}
+                variant="outlined"
+                color="error"
+            >
                 Reject
             </WButton>
-            <WButton variant="contained">Approve</WButton>
+            <WButton
+                onClick={(): void => {
+                    onAction(LeaveRequestStatus.Approved);
+                }}
+                variant="contained"
+            >
+                Approve
+            </WButton>
         </WStack>
     );
 }
