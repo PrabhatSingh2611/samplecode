@@ -271,6 +271,57 @@ input NodesInput {
 }
 ```
 
+### Type DateTimeInput
+
+DateTimeInput is a helper general type to use for filtering entities by date and time.
+
+```graphql
+input DateTimeInput {
+  le: DateTime # less or equal, can be used with ge & gt
+  lt: DateTime # strictly less, can be used with ge & gt
+  ge: DateTime # greater or equal, can be used with le & lt
+  gt: DateTime # strictly greater, can be used with le & lt
+}
+```
+
+Example of usage:
+
+```graphql
+type Playbook implements Node {
+    id: UUID!
+    ...
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+input PlaybooksWhereInput {
+    ...
+    createdAt: DateTimeInput
+    updatedAt: DateTimeInput
+}
+
+# This query asks for Playbooks that was created between 2022-05-31-00-00-00 and 2022-06-02-00-00-00.
+query getPlaybooks {
+    playbooks(
+        input: {
+            # ... Other filters
+            where: {
+                # ...Other filters
+                createdAt: {
+                    ge: "2022-05-31-00-00-00",
+                    lt: "2022-06-02-00-00-00"
+                }
+            },
+        }
+    ) {
+        items {
+            id
+            # ... Other fields
+        }
+    }
+}
+```
+
 ### Multiple (Connection)
 
 Connection inputs should follow below structure
