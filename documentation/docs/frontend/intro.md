@@ -35,7 +35,7 @@ sidebar_position: 1
 
 Before start make sure you have `pnpm` installed globally.
 
-### Installing dependencies: 
+### Installing dependencies:
 
     cd frontend && pnpm i
 
@@ -45,7 +45,7 @@ Run WDX package:
 
     pnpm dev:wdx
 
-After WDX is up run others: 
+After WDX is up run others:
 
     pnpm dev
 
