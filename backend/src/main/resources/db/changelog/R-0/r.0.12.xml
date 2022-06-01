@@ -80,4 +80,12 @@
 
     </changeSet>
 
+    <changeSet id="r.0.12.4" author="tetiana.hladka">
+        <sql>
+            UPDATE location_country SET icon_name = 'PT' WHERE id = 1;
+            UPDATE location_country SET icon_name = 'ES' WHERE id = 2;
+            UPDATE location_country SET icon_name = 'UA' WHERE id = 3;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
