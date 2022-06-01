@@ -30,10 +30,10 @@ import { ExternalLink, TeamAll, TeamLelekaMore, TeamAvengers, TeamAchivers } fro
 
 ### WDX-React Storybook
 
-- Status: 🚧 **UNDER CONSTRUCTION**
+- Status: ✅ **ACTIVE**
 - Purpose: **WDX React Components Documentation**
-- URL: <ExternalLink url="https://dev-audra-wdx-react.dev.topazdigital.cloud"/>
-- Jenkinks: N/A
+- URL: <ExternalLink url="https://dev-audra-wdx.dev.topazdigital.cloud"/>
+- Jenkinks: <ExternalLink url="https://jenkins.dev.topazdigital.cloud/view/Audra-Dev/job/audra-wdx"/>
 - Owner: <TeamAll/>
 - WDX-React Storybook Env redeploys automatically on each push/merge to `develop` branch: 🚀 **Auto Deploy**
 
