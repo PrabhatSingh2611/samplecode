@@ -18,7 +18,7 @@ RUN pnpm fetch
 RUN pnpm install -r --offline
 
 # Build only MF App and it's dependencies from packages
-RUN pnpm run build:wdx
+RUN pnpm run build:wdx-storybook
 
 # Copy MF build sources to /app/dist
 RUN cp -a packages/wdx/storybook-static .
