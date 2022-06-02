@@ -4,7 +4,7 @@ mutation updateAsset{
             title: "asset 1"
             serialNumber: "123qwe"
             tagNumber: "1234567"
-            waybillDate: "2022-03-23T19:37:14.480425Z"
+            waybillDate: "2022-03-23T19:37:14.480Z"
             type: {
                 id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
             }
@@ -14,8 +14,8 @@ mutation updateAsset{
             location: {
                 id: "cabfb51b-41c5-4f4d-afd5-146c796391af"
             }
-            archivedDate: "2022-03-23T19:37:14.480425Z"
-            nextActionDate: "2022-03-23T19:37:14.480425Z"
+            archivedDate: "2022-03-23T19:37:14.480Z"
+            nextActionDate: "2022-03-23T19:37:14.480Z"
         })
         {
             asset {

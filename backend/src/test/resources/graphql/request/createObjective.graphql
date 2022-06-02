@@ -1,7 +1,7 @@
 mutation createObjective{
     createObjective(input:
     {name: "graphql" employee: "5bea1a4d-b457-47c9-bf8b-72f50182b707"
-        description: "learning graphql" comments: "schema,etc" dueToDate: "2022-07-28T12:03:00.480425Z" status: NEW}){
+        description: "learning graphql" comments: "schema,etc" dueToDate: "2022-07-28T12:03:00.480Z" status: NEW}){
         item {
             name
             employee {

@@ -6,7 +6,7 @@
           "id": "37464c92-80fa-4946-b41f-27928e6ec4d3",
           "title": "Dell Latitude 15",
           "serialNumber": "343234323",
-          "waybillDate":"2022-02-23T12:32:45.480425Z[UTC]",
+          "waybillDate":"2022-02-23T12:32:45.480Z",
           "tagNumber":null,
           "location":{
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -22,7 +22,7 @@
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "birthday": "2022-01-16T08:12:50.480Z",
             "position":{
               "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"

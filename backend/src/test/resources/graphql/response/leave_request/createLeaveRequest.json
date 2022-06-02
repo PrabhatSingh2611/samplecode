@@ -4,8 +4,8 @@
       "leaveRequest": {
         "status": "NEW",
         "numberOfDays": 1,
-        "startDate": "2022-02-02T13:25:34.480425Z[UTC]",
-        "endDate": "2022-02-02T13:25:34.480425Z[UTC]",
+        "startDate": "2022-02-02T13:25:34.480Z",
+        "endDate": "2022-02-02T13:25:34.480Z",
         "type": {
           "id": "b8931b95-ed2b-4f66-a211-776007dc56c1"
         },
@@ -15,7 +15,7 @@
           "firstName": "Tom",
           "lastName": "Johns",
           "role": "ADMIN",
-          "birthday": "2022-05-26T17:26:17.186989Z[UTC]",
+          "birthday": "2022-05-26T17:26:17.186Z",
           "position": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
             "name": "manager"

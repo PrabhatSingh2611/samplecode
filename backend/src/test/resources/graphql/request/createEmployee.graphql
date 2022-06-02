@@ -2,7 +2,7 @@ mutation createEmployee{
     createEmployee(input: {
         firstName: "lox"
         lastName: "carry"
-        birthday: "2022-03-23T19:37:14.480425Z"
+        birthday: "2022-03-23T19:37:14.480Z"
         position: "cabfb51b-41c5-4f4d-afd5-146c796391ad"
         location: "cabfb51b-41c5-4f4d-afd5-146c796391af"
         reportingManager: "48b560ab-7450-4088-b6bb-f57638ea0877"

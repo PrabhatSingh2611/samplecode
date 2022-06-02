@@ -8,7 +8,7 @@
           "lastName": "Morris",
           "email": "jacob@gmail.com",
           "role": "ADMIN",
-          "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+          "birthday": "2022-03-23T19:37:14.480Z",
           "reportingManager": {
             "firstName": "Edmund"
           },

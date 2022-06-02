@@ -1,7 +1,7 @@
 type Announcement implements Node {
     id: UUID!
     body: String!
-    createdAt: ZonedDateTime!
+    createdAt: DateTime!
 }
 
 input AnnouncementInput {
@@ -15,8 +15,8 @@ type AnnouncementConnectionPayload implements ConnectionPayload {
 }
 
 input AnnouncementsInput {
-    from: ZonedDateTime
-    to: ZonedDateTime
+    from: DateTime
+    to: DateTime
     pagination: PageInput
 }
 

@@ -4,8 +4,8 @@ mutation{
         name:"Leave request 4",
         status:NEW,
         numberOfDays:4,
-        startDate:"2022-02-02T13:25:34.480425Z[UTC]",
-        endDate:"2022-02-02T13:25:34.480425Z[UTC]",
+        startDate:"2022-02-02T13:25:34.480Z",
+        endDate:"2022-02-02T13:25:34.480Z",
         type: { id: "b8931b95-ed2b-4f66-a211-776007dc56c1"},
         comment:"this is comment 4",
         employee: "48b560ab-7450-4088-b6bb-f57638ea0877"

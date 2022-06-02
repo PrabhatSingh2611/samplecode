@@ -4,7 +4,7 @@ type Employee implements Node {
 	lastName: String
 	email: String
 	role: EmployeeRole
-	birthday: ZonedDateTime
+	birthday: DateTime
 	reportingManager: Employee
 	position: EmployeePosition
 	location: Location
@@ -20,7 +20,7 @@ type EmployeeConnectionPayload implements ConnectionPayload {
 input CreateEmployeeInput {
     firstName: String!
     lastName: String!
-    birthday: ZonedDateTime!
+    birthday: DateTime!
     role: EmployeeRole!
     reportingManager: UUID
     position: UUID
@@ -31,7 +31,7 @@ input UpdateEmployeeInput {
 	id: UUID!
 	firstName: String!
 	lastName: String!
-	birthday: ZonedDateTime!
+	birthday: DateTime!
 	role: EmployeeRole!
 	reportingManager: UUID
 	position: UUID

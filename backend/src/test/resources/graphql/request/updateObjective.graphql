@@ -1,7 +1,7 @@
 mutation updateObjective{
     updateObjective(input:
     {name: "graphql" id:"e94f4d6a-a6cf-4786-a0b8-f096290057e3"  employee: "5bea1a4d-b457-47c9-bf8b-72f50182b707"
-        description: "learning graphql" comments: "schema,etc" dueToDate: "2022-07-28T12:03:00.480425Z" status: NEW}){
+        description: "learning graphql" comments: "schema,etc" dueToDate: "2022-07-28T12:03:00.480Z" status: NEW}){
         item {
             name
             employee {

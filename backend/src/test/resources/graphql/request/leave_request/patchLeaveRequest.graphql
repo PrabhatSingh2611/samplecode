@@ -3,8 +3,8 @@ mutation{
         id:"493a5be9-01ba-47c6-95c1-29c230528527"
         status:NEW,
         period: {
-            startDate:"2022-02-02T13:25:34.480425Z[UTC]",
-            endDate:"2022-02-06T13:25:34.480425Z[UTC]"
+            startDate:"2022-02-02T13:25:34.480Z",
+            endDate:"2022-02-06T13:25:34.480Z"
         }
         type: { id: "b8931b95-ed2b-4f66-a211-776007dc56c1"},
         comment:"this is comment 4",

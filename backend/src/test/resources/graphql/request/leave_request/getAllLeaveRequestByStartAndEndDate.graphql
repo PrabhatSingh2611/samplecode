@@ -1,8 +1,8 @@
 query {
     leaveRequests(input:
     { where:{
-        startDate:"2022-02-02T13:25:34.480425Z[UTC]",
-        endDate:"2022-02-02T13:25:34.480425Z[UTC]",
+        startDate:"2022-02-02T13:25:34.480Z",
+        endDate:"2022-02-02T13:25:34.480Z",
     }
     }){
         items {

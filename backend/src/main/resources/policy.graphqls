@@ -8,7 +8,7 @@ type Policy implements Node {
     id: UUID!
     title: String!
     file: Resource!
-    publicationDate: ZonedDateTime
+    publicationDate: DateTime
     status: PolicyStatus!
     owner: Employee!
 }

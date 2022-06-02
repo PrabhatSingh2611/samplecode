@@ -6,7 +6,7 @@
           "id": "b1b6aaeb-252b-4324-9166-10c42635572d",
           "title": "DUNU Titan 1",
           "serialNumber": "83837363",
-          "waybillDate": "2022-01-27T08:12:24.480425Z[UTC]",
+          "waybillDate": "2022-01-27T08:12:24.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -22,7 +22,7 @@
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "birthday": "2022-01-16T08:12:50.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -32,13 +32,13 @@
               "name": "Lisbon"
             }
           },
-          "archivedDate": "2022-02-02T13:25:34.480425Z[UTC]"
+          "archivedDate": "2022-02-02T13:25:34.480Z"
         },
         {
           "id": "3c5201a9-cf34-4fd2-95d8-0d8b2e534463",
           "title": "Lenovo Laptop 14",
           "serialNumber": "EJS32SDGSD",
-          "waybillDate": "2022-01-15T14:17:26.480425Z[UTC]",
+          "waybillDate": "2022-01-15T14:17:26.480Z",
           "tagNumber": null,
           "location": {
             "id":"79761728-8f51-475f-aa04-42385a0dfe36",
@@ -54,7 +54,7 @@
             "firstName": "Danielle",
             "lastName": "Kelly",
             "role": "ADMIN",
-            "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
+            "birthday": "2022-02-08T18:34:45.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"

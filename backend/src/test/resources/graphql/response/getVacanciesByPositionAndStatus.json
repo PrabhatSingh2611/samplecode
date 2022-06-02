@@ -15,7 +15,7 @@
             "firstName":"Jacob",
             "lastName":"Morris",
             "role":"ADMIN",
-            "birthday":"2022-03-23T19:37:14.480425Z[UTC]",
+            "birthday":"2022-03-23T19:37:14.480Z",
             "position":{
               "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
@@ -40,7 +40,7 @@
             "firstName":"Edmund",
             "lastName":"Hogan",
             "role":"EMPLOYEE",
-            "birthday":"2022-02-28T12:03:00.480425Z[UTC]",
+            "birthday":"2022-02-28T12:03:00.480Z",
             "position":{
               "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"

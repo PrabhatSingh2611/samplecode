@@ -4,12 +4,12 @@ type Asset implements Node {
     serialNumber: String!
     type: AssetType!
     assignee: Employee
-    waybillDate: ZonedDateTime!
+    waybillDate: DateTime!
     location: Location
     tagNumber: String
-    nextActionDate: ZonedDateTime
+    nextActionDate: DateTime
     actionOnName: String
-    archivedDate: ZonedDateTime
+    archivedDate: DateTime
     comment: String
 }
 
@@ -64,10 +64,10 @@ input CreateAssetInput {
     assignee: NodeInput
     location: NodeInput
     tagNumber: String
-    waybillDate: ZonedDateTime!
+    waybillDate: DateTime!
     actionOnName: String
-    nextActionDate: ZonedDateTime
-    archivedDate: ZonedDateTime
+    nextActionDate: DateTime
+    archivedDate: DateTime
     comment: String
 }
 
@@ -77,11 +77,11 @@ input UpdateAssetInput {
     serialNumber: String!
     type: NodeInput!
     assignee: NodeInput
-    waybillDate: ZonedDateTime!
+    waybillDate: DateTime!
     location:NodeInput
     tagNumber: String
-    archivedDate: ZonedDateTime
-    nextActionDate: ZonedDateTime
+    archivedDate: DateTime
+    nextActionDate: DateTime
     actionOnName: String
     comment: String
 }

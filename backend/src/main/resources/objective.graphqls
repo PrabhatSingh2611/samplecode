@@ -4,7 +4,7 @@ type Objective implements Node {
     name: String!
     description: String
     comments: String
-    dueToDate: ZonedDateTime
+    dueToDate: DateTime
     status: ObjectiveStatus
 }
 
@@ -36,7 +36,7 @@ input CreateObjectiveInput {
     name: String!
     description: String
     comments: String
-    dueToDate: ZonedDateTime!
+    dueToDate: DateTime!
     status: ObjectiveStatus
 }
 
@@ -46,7 +46,7 @@ input UpdateObjectiveInput {
     name: String!
     description: String
     comments: String
-    dueToDate: ZonedDateTime!
+    dueToDate: DateTime!
     status: ObjectiveStatus
 }
 input ObjectiveInput {

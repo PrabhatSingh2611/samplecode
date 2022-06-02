@@ -8,7 +8,7 @@
           "lastName": "Kelly",
           "email": "danielle@gmail.com",
           "role": "ADMIN",
-          "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
+          "birthday": "2022-02-08T18:34:45.480Z",
           "reportingManager": {
             "firstName": "Edmund"
           },
@@ -27,7 +27,7 @@
           "lastName": "Hogan",
           "email": "edmund@gmail.com",
           "role": "EMPLOYEE",
-          "birthday": "2022-02-28T12:03:00.480425Z[UTC]",
+          "birthday": "2022-02-28T12:03:00.480Z",
           "reportingManager": {
             "firstName": "Jacob"
           },
@@ -46,7 +46,7 @@
           "lastName": "Norman",
           "email": "geneva@gmail.com",
           "role": "EMPLOYEE",
-          "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+          "birthday": "2022-01-16T08:12:50.480Z",
           "reportingManager": {
             "firstName": "Jacob"
           },
@@ -65,7 +65,7 @@
           "lastName": "Morris",
           "email": "jacob@gmail.com",
           "role": "ADMIN",
-          "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+          "birthday": "2022-03-23T19:37:14.480Z",
           "reportingManager": {
             "firstName": "Edmund"
           },
@@ -84,7 +84,7 @@
           "lastName": "Johns",
           "email": "tom.johns@gmail.com",
           "role": "ADMIN",
-          "birthday": "2022-05-26T17:26:17.186989Z[UTC]",
+          "birthday": "2022-05-26T17:26:17.186Z",
           "reportingManager": {
             "firstName": "Jacob"
           },

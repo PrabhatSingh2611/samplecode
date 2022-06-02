@@ -1,9 +1,9 @@
 type LeaveRequest implements Node{
     id : UUID!
     numberOfDays: Int!
-    requestDate : ZonedDateTime!
-    startDate : ZonedDateTime!
-    endDate : ZonedDateTime!
+    requestDate : DateTime!
+    startDate : DateTime!
+    endDate : DateTime!
     employee : Employee!
     status : LeaveRequestStatus!
     comment : String
@@ -61,8 +61,8 @@ input LeaveRequestInput {
 input LeaveRequestWhereInput {
     employee: NodeInput
     approver: NodeInput
-    startDate: ZonedDateTime
-    endDate: ZonedDateTime
+    startDate: DateTime
+    endDate: DateTime
 }
 
 enum LeaveRequestsSortEnum {

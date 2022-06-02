@@ -6,7 +6,7 @@
           "id": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
           "title": "Macbook Pro 13",
           "serialNumber": "Е673РВ",
-          "waybillDate":"2022-03-23T19:37:14.480425Z[UTC]",
+          "waybillDate":"2022-03-23T19:37:14.480Z",
           "tagNumber":null,
           "location":{
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -22,7 +22,7 @@
             "firstName": "Jacob",
             "lastName": "Morris",
             "role": "ADMIN",
-            "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+            "birthday": "2022-03-23T19:37:14.480Z",
             "position":{
               "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name":"manager"
@@ -32,13 +32,13 @@
               "name": "Lisbon"
             }
           },
-          "archivedDate": "2022-03-23T19:37:14.480425Z[UTC]"
+          "archivedDate": "2022-03-23T19:37:14.480Z"
         },
         {
           "id": "edcfd952-4f1b-4f78-b4ac-f5705b703f33",
           "title": "Meze Neo",
           "serialNumber": "XJSK67HJ897",
-          "waybillDate": "2022-03-23T13:27:14.480425Z[UTC]",
+          "waybillDate": "2022-03-23T13:27:14.480Z",
           "tagNumber": null,
           "location": {
             "id":"79761728-8f51-475f-aa04-42385a0dfe36",
@@ -54,7 +54,7 @@
             "firstName": "Victoria",
             "lastName": "Luna",
             "role": "EMPLOYEE",
-            "birthday": "2022-03-15T22:11:15.480425Z[UTC]",
+            "birthday": "2022-03-15T22:11:15.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -70,7 +70,7 @@
           "id": "759e9771-bdfa-4156-b5d8-71a5ecf22d2f",
           "title": "Dell Monitor 24",
           "serialNumber": "56327382",
-          "waybillDate": "2022-03-07T19:51:11.480425Z[UTC]",
+          "waybillDate": "2022-03-07T19:51:11.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -86,7 +86,7 @@
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "birthday": "2022-01-16T08:12:50.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -96,13 +96,13 @@
               "name": "Lisbon"
             }
           },
-          "archivedDate": "2022-01-12T19:37:14.480425Z[UTC]"
+          "archivedDate": "2022-01-12T19:37:14.480Z"
         },
         {
           "id": "224c2d4d-05fb-449e-8dca-309fc390fbe5",
           "title": "Dell Latitude 13",
           "serialNumber": "SD832HGJTR",
-          "waybillDate": "2022-03-04T13:34:42.480425Z[UTC]",
+          "waybillDate": "2022-03-04T13:34:42.480Z",
           "tagNumber": null,
           "location": {
             "id":"79761728-8f51-475f-aa04-42385a0dfe36",
@@ -118,7 +118,7 @@
             "firstName": "Jacob",
             "lastName": "Morris",
             "role": "ADMIN",
-            "birthday": "2022-03-23T19:37:14.480425Z[UTC]",
+            "birthday": "2022-03-23T19:37:14.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -134,7 +134,7 @@
           "id": "37464c92-80fa-4946-b41f-27928e6ec4d3",
           "title": "Dell Latitude 15",
           "serialNumber": "343234323",
-          "waybillDate": "2022-02-23T12:32:45.480425Z[UTC]",
+          "waybillDate": "2022-02-23T12:32:45.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -150,7 +150,7 @@
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "birthday": "2022-01-16T08:12:50.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -166,7 +166,7 @@
           "id": "0f3f7f9a-4a9c-45b5-b43d-59cad5a49725",
           "title": "KOSS Porta Pro",
           "serialNumber": "737383389",
-          "waybillDate": "2022-02-13T17:34:28.480425Z[UTC]",
+          "waybillDate": "2022-02-13T17:34:28.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -182,7 +182,7 @@
             "firstName": "Danielle",
             "lastName": "Kelly",
             "role": "ADMIN",
-            "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
+            "birthday": "2022-02-08T18:34:45.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -198,7 +198,7 @@
           "id": "b1b6aaeb-252b-4324-9166-10c42635572d",
           "title": "DUNU Titan 1",
           "serialNumber": "83837363",
-          "waybillDate": "2022-01-27T08:12:24.480425Z[UTC]",
+          "waybillDate": "2022-01-27T08:12:24.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -214,7 +214,7 @@
             "firstName": "Geneva",
             "lastName": "Norman",
             "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480425Z[UTC]",
+            "birthday": "2022-01-16T08:12:50.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -224,13 +224,13 @@
               "name": "Lisbon"
             }
           },
-          "archivedDate": "2022-02-02T13:25:34.480425Z[UTC]"
+          "archivedDate": "2022-02-02T13:25:34.480Z"
         },
         {
           "id": "3c5201a9-cf34-4fd2-95d8-0d8b2e534463",
           "title": "Lenovo Laptop 14",
           "serialNumber": "EJS32SDGSD",
-          "waybillDate": "2022-01-15T14:17:26.480425Z[UTC]",
+          "waybillDate": "2022-01-15T14:17:26.480Z",
           "tagNumber": null,
           "location": {
             "id":"79761728-8f51-475f-aa04-42385a0dfe36",
@@ -246,7 +246,7 @@
             "firstName": "Danielle",
             "lastName": "Kelly",
             "role": "ADMIN",
-            "birthday": "2022-02-08T18:34:45.480425Z[UTC]",
+            "birthday": "2022-02-08T18:34:45.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"

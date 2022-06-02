@@ -3,7 +3,7 @@ mutation updateEmployee{
         id: "5bea1a4d-b457-47c9-bf8b-72f50182b707"
         firstName: "Herman"
         lastName: "Blair"
-        birthday: "2002-05-12T14:12:18.480425Z"
+        birthday: "2002-05-12T14:12:18.480Z"
         position: "cabfb51b-41c5-4f4d-afd5-146c796391ad"
         location: null
         reportingManager: "b48db556-3bd0-479e-9f1a-231be9636887"

@@ -3,8 +3,8 @@ type Playbook implements Node {
     title: String!
     image: Resource!
     steps: [PlaybookStep!]!
-    createdAt: ZonedDateTime!
-    updatedAt: ZonedDateTime!
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
 enum PlaybookSort {
@@ -46,7 +46,7 @@ input PlaybooksWhereInput {
 }
 
 input UpdatePlaybookVideoInput {
-    url: URL! # FE will show only YouTube embeded videos
+    url: Url! # FE will show only YouTube embeded videos
     description: String!
 }
 
@@ -62,7 +62,7 @@ input UpdatePlaybookResourceInput {
 
 input PatchPlaybookVideoInput {
     id: UUID!
-    url: URL
+    url: Url
     description: String
 }
 

@@ -36,12 +36,13 @@ type PageInfo {
 
 
 input StrictDatePeriod {
-    startDate: ZonedDateTime!
-    endDate: ZonedDateTime!
+    startDate: DateTime!
+    endDate: DateTime!
 }
 
 
 
 scalar UUID
-scalar ZonedDateTime
+scalar DateTime
 scalar Upload
+scalar Url

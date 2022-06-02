@@ -16,9 +16,9 @@
           "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
           "name": "Lisbon"
         },
-        "waybillDate" : "2022-03-23T19:37:14.480425Z[UTC]",
-        "archivedDate" : "2022-03-23T19:37:14.480425Z[UTC]",
-        "nextActionDate" : "2022-03-23T19:37:14.480425Z[UTC]"
+        "waybillDate" : "2022-03-23T19:37:14.480Z",
+        "archivedDate" : "2022-03-23T19:37:14.480Z",
+        "nextActionDate" : "2022-03-23T19:37:14.480Z"
       }
     }
   }
