@@ -1,13 +1,13 @@
 query getEmployeesForEmployeesList($input: EmployeesInput) {
     employees(input: $input) {
-       items {
-           ...EmployeeForEmployeesList
-       }
-       pageInfo {
+        items {
+            ...EmployeeForEmployeesList
+        }
+        pageInfo {
             currentPage
             totalPages
-       }
-       totalItems
+        }
+        totalItems
     }
 }
 
@@ -28,6 +28,9 @@ fragment EmployeeForEmployeesList on Employee {
     }
     location {
         id
-        country
+        country {
+            id
+            name
+        }
     }
 }

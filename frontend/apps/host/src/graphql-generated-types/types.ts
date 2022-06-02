@@ -225,14 +225,19 @@ export type CreateEmployeePositionInput = {
 
 export type CreateLeaveRequestInput = {
   comment?: InputMaybe<Scalars['String']>;
-  employee?: InputMaybe<NodeInput>;
   period: StrictDatePeriod;
   status: LeaveRequestStatus;
   type: NodeInput;
 };
 
+export type CreateLocationCountryInput = {
+  iconName: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type CreateLocationInput = {
-  country: Scalars['String'];
+  country: NodeInput;
+  name: Scalars['String'];
 };
 
 export type CreateObjectiveInput = {
@@ -389,7 +394,7 @@ export type EmployeeWhereInput = {
 
 export type EmployeesInput = {
   pagination?: InputMaybe<PageInput>;
-  sort?: InputMaybe<Array<EmployeesSortEnum>>;
+  sort?: Array<EmployeesSortEnum>;
   where?: InputMaybe<EmployeeWhereInput>;
 };
 
@@ -486,11 +491,10 @@ export enum LeaveTypesSortEnum {
 
 export type Location = Node & {
   __typename?: 'Location';
-  country: Scalars['String'];
-  details?: Maybe<Scalars['String']>;
   /** this can be City, but also can be smth like ‘Main office’, ‘Warehouse' or whatever */
-  flagIcon: Scalars['String'];
+  country: LocationCountry;
   id: Scalars['UUID'];
+  name?: Maybe<Scalars['String']>;
 };
 
 export type LocationConnectionPayload = ConnectionPayload & {
@@ -500,9 +504,21 @@ export type LocationConnectionPayload = ConnectionPayload & {
   totalItems: Scalars['Int'];
 };
 
+export type LocationCountriesInput = {
+  pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<LocationCountrySort>>;
+  where?: InputMaybe<LocationCountriesWhereInput>;
+};
+
+export type LocationCountriesWhereInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type LocationCountry = Node & {
   __typename?: 'LocationCountry';
+  iconName: Scalars['String'];
   id: Scalars['UUID'];
+  locations: Array<Location>;
   name: Scalars['String'];
 };
 
@@ -513,6 +529,16 @@ export type LocationCountryConnectionPayload = ConnectionPayload & {
   totalItems: Scalars['Int'];
 };
 
+export type LocationCountryPayload = {
+  __typename?: 'LocationCountryPayload';
+  locationCountry?: Maybe<LocationCountry>;
+};
+
+export enum LocationCountrySort {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC'
+}
+
 export type LocationInput = {
   id: Scalars['UUID'];
 };
@@ -520,6 +546,22 @@ export type LocationInput = {
 export type LocationPayload = {
   __typename?: 'LocationPayload';
   location: Location;
+};
+
+export enum LocationSort {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC'
+}
+
+export type LocationsInput = {
+  pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<LocationSort>>;
+  where?: InputMaybe<LocationsWhereInput>;
+};
+
+export type LocationsWhereInput = {
+  country?: InputMaybe<NodeInput>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type Mutation = {
@@ -533,6 +575,7 @@ export type Mutation = {
   createEmployeePosition: EmployeePositionPayload;
   createLeaveRequest: LeaveRequestPayload;
   createLocation: LocationPayload;
+  createLocationCountry: LocationCountryPayload;
   createObjective: ObjectivePayload;
   createPolicy: PolicyPayload;
   createSurvey: SurveyPayload;
@@ -545,6 +588,7 @@ export type Mutation = {
   deleteSurvey: DeleteSurveyPayload;
   patchCandidate: CandidatePayLoad;
   patchLeaveRequest: LeaveRequestPayload;
+  patchLocationCountry: LocationCountryPayload;
   patchSurvey: SurveyPayload;
   updateAnnouncement: AnnouncementPayload;
   updateAsset: AssetPayload;
@@ -599,6 +643,11 @@ export type MutationCreateLeaveRequestArgs = {
 
 export type MutationCreateLocationArgs = {
   input: CreateLocationInput;
+};
+
+
+export type MutationCreateLocationCountryArgs = {
+  input: CreateLocationCountryInput;
 };
 
 
@@ -659,6 +708,11 @@ export type MutationPatchCandidateArgs = {
 
 export type MutationPatchLeaveRequestArgs = {
   input: PatchLeaveRequestInput;
+};
+
+
+export type MutationPatchLocationCountryArgs = {
+  input: PatchLocationCountryInput;
 };
 
 
@@ -800,6 +854,12 @@ export type PatchLeaveRequestInput = {
   type?: InputMaybe<NodeInput>;
 };
 
+export type PatchLocationCountryInput = {
+  iconName?: InputMaybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type PatchSurveyInput = {
   description?: InputMaybe<Scalars['String']>;
   id: Scalars['UUID'];
@@ -817,11 +877,32 @@ export type Playbook = Node & {
   updatedAt: Scalars['ZonedDateTime'];
 };
 
+export type PlaybookConnectionPayload = ConnectionPayload & {
+  __typename?: 'PlaybookConnectionPayload';
+  items: Array<Playbook>;
+  pageInfo: PageInfo;
+  totalItems: Scalars['Int'];
+};
+
+export type PlaybookInput = {
+  id: Scalars['UUID'];
+};
+
+export type PlaybookPayload = {
+  __typename?: 'PlaybookPayload';
+  playbook?: Maybe<Playbook>;
+};
+
 export type PlaybookResource = Node & {
   __typename?: 'PlaybookResource';
   id: Scalars['UUID'];
   resource: Resource;
 };
+
+export enum PlaybookSort {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC'
+}
 
 export type PlaybookStep = Node & {
   __typename?: 'PlaybookStep';
@@ -831,17 +912,6 @@ export type PlaybookStep = Node & {
   title: Scalars['String'];
   type: PlaybookStepType;
   video?: Maybe<PlaybookVideo>;
-};
-
-export type PlaybookStepTask = {
-  __typename?: 'PlaybookStepTask';
-  title?: Maybe<Scalars['String']>;
-};
-
-export type PlaybookStepTaskList = Node & {
-  __typename?: 'PlaybookStepTaskList';
-  id: Scalars['UUID'];
-  tasks?: Maybe<Array<Maybe<PlaybookStepTask>>>;
 };
 
 export enum PlaybookStepType {
@@ -867,6 +937,16 @@ export type PlaybookVideo = Node & {
   description: Scalars['String'];
   id: Scalars['UUID'];
   url: Scalars['URL'];
+};
+
+export type PlaybooksInput = {
+  pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<PlaybookSort>>;
+  where?: InputMaybe<PlaybooksWhereInput>;
+};
+
+export type PlaybooksWhereInput = {
+  title: Scalars['String'];
 };
 
 export type PoliciesInput = {
@@ -929,8 +1009,11 @@ export type Query = {
   location: LocationPayload;
   locationCountries: LocationCountryConnectionPayload;
   locations: LocationConnectionPayload;
+  me: EmployeePayload;
   objective: ObjectivePayload;
   objectives: ObjectiveConnectionPayload;
+  playbook: PlaybookPayload;
+  playbooks: PlaybookConnectionPayload;
   policies: PolicyConnectionPayload;
   resource: ResourcePayload;
   survey: SurveyPayload;
@@ -1000,6 +1083,16 @@ export type QueryLocationArgs = {
 };
 
 
+export type QueryLocationCountriesArgs = {
+  input: LocationCountriesInput;
+};
+
+
+export type QueryLocationsArgs = {
+  input: LocationsInput;
+};
+
+
 export type QueryObjectiveArgs = {
   input: ObjectiveInput;
 };
@@ -1007,6 +1100,16 @@ export type QueryObjectiveArgs = {
 
 export type QueryObjectivesArgs = {
   input: ObjectivesInput;
+};
+
+
+export type QueryPlaybookArgs = {
+  input: PlaybookInput;
+};
+
+
+export type QueryPlaybooksArgs = {
+  input: PlaybooksInput;
 };
 
 
@@ -1159,8 +1262,9 @@ export type UpdateEmployeePositionInput = {
 };
 
 export type UpdateLocationInput = {
-  country: Scalars['String'];
+  country: NodeInput;
   id: Scalars['UUID'];
+  name: Scalars['String'];
 };
 
 export type UpdateObjectiveInput = {

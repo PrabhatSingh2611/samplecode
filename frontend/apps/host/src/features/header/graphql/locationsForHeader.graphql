@@ -1,5 +1,5 @@
-query getLocationsForHeader {
-    locations {
+query getLocationsForHeader($input: LocationsInput!) {
+    locations(input: $input) {
         items {
             ...LocationForHeader
         }
@@ -8,5 +8,8 @@ query getLocationsForHeader {
 
 fragment LocationForHeader on Location {
     id
-    country
+    country {
+        id
+        name
+    }
 }

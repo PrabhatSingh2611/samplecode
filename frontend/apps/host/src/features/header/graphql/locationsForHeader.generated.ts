@@ -3,22 +3,27 @@ import * as Types from '../../../graphql-generated-types/types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GetLocationsForHeaderQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetLocationsForHeaderQueryVariables = Types.Exact<{
+  input: Types.LocationsInput;
+}>;
 
 
-export type GetLocationsForHeaderQuery = { __typename?: 'Query', locations: { __typename?: 'LocationConnectionPayload', items: Array<{ __typename?: 'Location', id: any, country: string }> } };
+export type GetLocationsForHeaderQuery = { __typename?: 'Query', locations: { __typename?: 'LocationConnectionPayload', items: Array<{ __typename?: 'Location', id: any, country: { __typename?: 'LocationCountry', id: any, name: string } }> } };
 
-export type LocationForHeaderFragment = { __typename?: 'Location', id: any, country: string };
+export type LocationForHeaderFragment = { __typename?: 'Location', id: any, country: { __typename?: 'LocationCountry', id: any, name: string } };
 
 export const LocationForHeaderFragmentDoc = gql`
     fragment LocationForHeader on Location {
   id
-  country
+  country {
+    id
+    name
+  }
 }
     `;
 export const GetLocationsForHeaderDocument = gql`
-    query getLocationsForHeader {
-  locations {
+    query getLocationsForHeader($input: LocationsInput!) {
+  locations(input: $input) {
     items {
       ...LocationForHeader
     }
@@ -38,10 +43,11 @@ export const GetLocationsForHeaderDocument = gql`
  * @example
  * const { data, loading, error } = useGetLocationsForHeaderQuery({
  *   variables: {
+ *      input: // value for 'input'
  *   },
  * });
  */
-export function useGetLocationsForHeaderQuery(baseOptions?: Apollo.QueryHookOptions<GetLocationsForHeaderQuery, GetLocationsForHeaderQueryVariables>) {
+export function useGetLocationsForHeaderQuery(baseOptions: Apollo.QueryHookOptions<GetLocationsForHeaderQuery, GetLocationsForHeaderQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetLocationsForHeaderQuery, GetLocationsForHeaderQueryVariables>(GetLocationsForHeaderDocument, options);
       }

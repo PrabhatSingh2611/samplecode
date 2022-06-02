@@ -6,7 +6,6 @@ import { Localization } from '@mui/material/locale';
 import Image from 'components/Image';
 import MenuPopover from 'components/MenuPopover';
 import { IconButtonAnimate } from 'components/animate';
-import { useGetLocations } from 'features/header/hooks/locations.hooks';
 import { allLangs } from 'theme/config';
 
 interface ILangOption {
@@ -18,7 +17,6 @@ interface ILangOption {
 
 export default function LanguagePopover(): JSX.Element {
     const [open, setOpen] = useState<HTMLElement | null>(null);
-    useGetLocations();
 
     const handleOpen = (event: React.MouseEvent<HTMLElement>): void => {
         setOpen(event.currentTarget);

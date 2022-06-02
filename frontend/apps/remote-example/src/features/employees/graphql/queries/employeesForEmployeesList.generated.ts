@@ -8,9 +8,9 @@ export type GetEmployeesForEmployeesListQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetEmployeesForEmployeesListQuery = { __typename?: 'Query', employees: { __typename?: 'EmployeeConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: string } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
+export type GetEmployeesForEmployeesListQuery = { __typename?: 'Query', employees: { __typename?: 'EmployeeConnectionPayload', totalItems: number, items: Array<{ __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: { __typename?: 'LocationCountry', id: any, name: string } } | null }>, pageInfo: { __typename?: 'PageInfo', currentPage: number, totalPages: number } } };
 
-export type EmployeeForEmployeesListFragment = { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: string } | null };
+export type EmployeeForEmployeesListFragment = { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null, role?: Types.EmployeeRole | null, birthday?: any | null, reportingManager?: { __typename?: 'Employee', id: any, firstName?: string | null, lastName?: string | null } | null, position?: { __typename?: 'EmployeePosition', id: any, name?: string | null } | null, location?: { __typename?: 'Location', id: any, country: { __typename?: 'LocationCountry', id: any, name: string } } | null };
 
 export const EmployeeForEmployeesListFragmentDoc = gql`
     fragment EmployeeForEmployeesList on Employee {
@@ -30,7 +30,10 @@ export const EmployeeForEmployeesListFragmentDoc = gql`
   }
   location {
     id
-    country
+    country {
+      id
+      name
+    }
   }
 }
     `;
