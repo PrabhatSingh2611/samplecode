@@ -98,6 +98,10 @@ export {
   default as WClickAwayListener,
   WClickAwayListenerProps,
 } from './components/click-away-listener';
+export {
+  default as WAutocomplete,
+  WAutocompleteProps,
+} from './components/autocomplete';
 export { default as WContainer, WContainerProps } from './components/container';
 export {
   default as WDatePicker,
@@ -272,7 +276,10 @@ export {
   WTabPanelProps,
   WTabScrollButtonProps,
 } from './components/tabs';
-export { default as WTextMaxLine, WTextMaxLineProps } from './components/text-max-line';
+export {
+  default as WTextMaxLine,
+  WTextMaxLineProps,
+} from './components/text-max-line';
 export {
   default as WToggleButtonGroup,
   WToggleButton,
