@@ -64,10 +64,10 @@ management:
 
 logging:
   level:
-    root: "warn"
+    root: "info"
     org:
       springframework:
-        web: "warn"
+        web: "info"
 
 graphql:
   servlet:

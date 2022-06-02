@@ -70,8 +70,7 @@ class ResourceFacadeTest {
             @Mock Part part,
             @Mock InputStream inputStream,
             @Mock ResourceEntity resourceEntity,
-            @Mock Resource resource,
-            @Mock ResourceProperties.Thumbnail thumbnail
+            @Mock Resource resource
     ) throws IOException {
         StorableObject objectToStore = StorableObject.builder()
                 .stream(inputStream)
@@ -85,9 +84,6 @@ class ResourceFacadeTest {
         when(storageService.store(objectToStore)).thenReturn(RESOURCE_REFERENCE);
         when(service.save(any(ResourceEntity.class))).thenReturn(resourceEntity);
         when(mapper.map(resourceEntity)).thenReturn(resource);
-        when(resourceProperties.getThumbnail()).thenReturn(thumbnail);
-        when(resourceProperties.getThumbnail().getHeight()).thenReturn(100);
-        when(resourceProperties.getThumbnail().getWidth()).thenReturn(100);
 
         Resource actualResult = facade.storeResource(part, null);
         assertNotNull(actualResult);

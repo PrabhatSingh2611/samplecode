@@ -10,13 +10,12 @@ import digital.windmill.audra.storage.StorableObject;
 import digital.windmill.audra.storage.StorageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,18 +40,36 @@ public class ResourceFacade {
     @Transactional
     public Resource storeResource(Part file, Part thumbnail) throws IOException {
         String fileReference = storeFile(file);
-        String thumbnailReference = storeThumbnail(thumbnail != null ? thumbnail : file);
-
-        var thumbnailEntity = new ResourceEntity();
-        thumbnailEntity.setUuid(UUID.randomUUID());
-        thumbnailEntity.setOuterReference(thumbnailReference);
-        thumbnailEntity.setMimeType("image/jpg");
 
         var resourceEntity = new ResourceEntity();
         resourceEntity.setUuid(UUID.randomUUID());
         resourceEntity.setOuterReference(fileReference);
         resourceEntity.setMimeType(file.getContentType());
-        resourceEntity.setThumbnail(thumbnailEntity);
+
+        if (thumbnail != null) {
+            var thumbnailReference = this.storeFile(thumbnail);
+
+            var thumbnailEntity = new ResourceEntity();
+            thumbnailEntity.setUuid(UUID.randomUUID());
+            thumbnailEntity.setOuterReference(thumbnailReference);
+            thumbnailEntity.setMimeType(thumbnail.getContentType());
+
+            resourceEntity.setThumbnail(thumbnailEntity);
+        }
+
+        // TODO: implement auto-generate thumbnail
+//        var generatedThumbnailFile = generateThumbnail(file);
+//        if (generatedThumbnailFile != null) {
+//            var thumbnailReference = this.storeFile(generatedThumbnailFile);
+//
+//            var thumbnailEntity = new ResourceEntity();
+//            thumbnailEntity.setUuid(UUID.randomUUID());
+//            thumbnailEntity.setOuterReference(thumbnailReference);
+//            thumbnailEntity.setMimeType("image/jpg");
+//
+//            resourceEntity.setThumbnail(thumbnailEntity);
+//        }
+
 
         return mapper.map(service.save(resourceEntity));
     }
@@ -67,23 +84,10 @@ public class ResourceFacade {
         return storageService.store(resourceToStore);
     }
 
-    private String storeThumbnail(Part file) {
+    private File generateThumbnail(Part file) {
         var thumbProps = resourceProperty.getThumbnail();
         return Optional.ofNullable(file)
                 .map(f -> thumbnailService.generateThumbnail(f, thumbProps.getHeight(), thumbProps.getWidth()))
-                .map(thumbnailFile -> {
-                    try {
-                        return StorableObject.builder()
-                                .fileName(thumbnailFile.getName())
-                                .contentType(Files.probeContentType(thumbnailFile.toPath()))
-                                .stream(FileUtils.openInputStream(thumbnailFile))
-                                .build();
-                    } catch (IOException e) {
-                        log.error("Can not create StorableObject for thumbnail {}", thumbnailFile, e);
-                        throw new RuntimeException(e);
-                    }
-                })
-                .map(storageService::store)
                 .orElse(null);
     }
 
