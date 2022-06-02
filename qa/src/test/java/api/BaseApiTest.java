@@ -37,7 +37,7 @@ public class BaseApiTest {
 
         if (req == null) {
             PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
-            req = new RequestSpecBuilder().setBaseUri(config.getBaseURL())
+            req = new RequestSpecBuilder().setBaseUri(config.getApiURL())
                     .addFilter(RequestLoggingFilter.logRequestTo(log))
                     .addFilter(ResponseLoggingFilter.logResponseTo(log)).setContentType(ContentType.JSON).build();
             return req;
@@ -73,7 +73,7 @@ public class BaseApiTest {
         queryData.setVariables(queryVariable);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         RequestSpecification requestSpecification = given().spec(requestSpecification()).body(ow.writeValueAsString(queryData));
-        Response rspns = requestSpecification.when().post();
+        Response rspns = requestSpecification.when().post();        
         return new ObjectMapper().readValue(rspns.asPrettyString(), QueryResponse.class);
     }
 }

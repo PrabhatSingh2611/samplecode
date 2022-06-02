@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AssetTypeItems {
-	private String uuid;
+	private String id;
 	private String title;
 	private String icon;
 }

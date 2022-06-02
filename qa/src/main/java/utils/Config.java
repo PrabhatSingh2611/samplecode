@@ -10,6 +10,8 @@ public class Config {
     private final String propertyFilePath = "src/main/resources/audra.aqa.properties";
     private String baseURL;
     private String apiURL;
+    private String testDataDirectory;
+    
     Properties properties = new Properties();
 
     public Config(){
@@ -19,6 +21,7 @@ public class Config {
 
             this.baseURL = properties.getProperty("base.url");
             this.apiURL = properties.getProperty("api.url");
+            this.testDataDirectory = properties.getProperty("test.data.directory");
 
             fileInputStream.close();
         } catch (FileNotFoundException e) {
@@ -30,8 +33,7 @@ public class Config {
 
     public String getProperty(String propName) {
         try {
-            InputStream input = new FileInputStream(
-                    System.getProperty("user.dir") + File.separator + "Config" + File.separator + "config.properties");
+            InputStream input = new FileInputStream(propertyFilePath);
             properties.load(input);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -54,4 +56,6 @@ public class Config {
         }
         return properties.getProperty(propName);
     }
+    
+    
 }

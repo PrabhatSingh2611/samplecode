@@ -1,77 +1,77 @@
 package api;
 
 import api.pojo.QueryResponse;
+import utils.XLUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import api.enums.Queries;
-import org.testng.asserts.SoftAssert;
 
+import static org.testng.Assert.assertEquals;
+
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Objects;
 
 public class AssetTypeTest extends BaseApiTest {
+	String xlsFile = config.getTestDataDirectory()+"AssetTypeData.xlsx";
+	@Test
+	void listOfAssetTypes() throws Exception {
 
-    @DataProvider(name = "DetailsOfAssetType")
-    public Object[][] DetailsOfAssetType() {
-        return new Object[][]{
-                {"Laptops", "https://google.com/laptops", "c0ba7c5f-b683-40c0-88cb-5a51912703cb"},
-                {"Monitors", "https://google.com/monitors", "6bd7fd52-1eb2-460e-8615-10e12376af4a"}
-        };
-    }
+		QueryResponse response = sendRequest(Queries.ASSET_TYPES, queryVariables);
 
-    @DataProvider(name = "addAssetType")
-    public Object[][] addAssetType() {
-        return new Object[][]{
-                {"demo1", "demo1"},
-                {"demo2", "demo2"}
-        };
-    }
+		Map<String, Map<String, String>> excelData = XLUtils.getListData(xlsFile, "AssetTypes");
 
-    @Test
-     void listOfAssetTypes() throws IOException {
-        String[] title = {"Laptops", "Monitors", "Accessories"};
-        String[] icon = {"https://google.com/laptops", "https://google.com/monitors", "https://google.com/accessories"};
+		// Remove comments once QA environment is available
+		/*
+		 * Assert.assertEquals(response.getData().getAssetTypes().getTotalItems(), excelData.get(String.valueOf(1)).get("totalItems").trim());
+		 * Assert.assertEquals(response.getData().getAssetTypes().getPageInfo(). getTotalPages(),excelData.get(String.valueOf(1)).get("totalPages").trim());
+		 * Assert.assertEquals(response.getData().getAssetTypes().getPageInfo(). getCurrentPage(),excelData.get(String.valueOf(1)).get("currentPage").trim());
+		 */
 
-        sendRequest(Queries.ASSET_TYPES, queryVariables);
-        QueryResponse response = getRespose();
+		for (int i = 1; i <= excelData.size(); i++) {
+			Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i - 1).getId().trim(),excelData.get(String.valueOf(i)).get("id").trim());
+			Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i - 1).getTitle().trim(),	excelData.get(String.valueOf(i)).get("title").trim());
+			Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i - 1).getIcon().trim(),excelData.get(String.valueOf(i)).get("icon").trim());
+		}
+	}
 
-        for (int i = 0; i < title.length; i++) {
-            Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i).getTitle(), title[i].trim());
-            Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i).getIcon(), icon[i].trim());
-        }
-    }
+	@Test(dataProvider = "AssetType")
+	void detailsOfAssetType(Map<Object, Object> data) throws IOException {
+		queryVariables.setId(data.get("id").toString().trim());
 
-    @Test
-    void listOfAssetTypes2() throws IOException {
-        String[] title = {"Laptops", "Monitors", "Accessories"};
-        String[] icon = {"https://google.com/laptops", "https://google.com/monitors", "https://google.com/accessories"};
+		QueryResponse response = sendRequest(Queries.ASSET_TYPE, queryVariables);
 
-        QueryResponse response = sendRequest(Queries.ASSET_TYPES, queryVariables);
+		Assert.assertEquals(response.getData().getAssetType().getItem().getId(), data.get("id").toString().trim());
+		Assert.assertEquals(response.getData().getAssetType().getItem().getTitle(),	data.get("title").toString().trim());
+		Assert.assertEquals(Objects.toString(response.getData().getAssetType().getItem().getIcon(), "").trim(),	data.get("icon").toString().trim());
+	}
 
-        for (int i = 0; i < title.length; i++) {
-            Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i).getTitle(), title[i].trim());
-            Assert.assertEquals(response.getData().getAssetTypes().getItems().get(i).getIcon(), icon[i].trim());
-        }
-    }
+	@Test(dataProvider = "AssetType")
+	void addAssetType(Map<Object, Object> data) throws Exception, IOException {
+		queryVariables.setTitle(data.get("title").toString().trim());
 
-    @Test(dataProvider = "DetailsOfAssetType")
-    void DetailsOfAssetType(String title, String icon, String uuid) throws IOException {
-        queryVariables.setUuid(uuid);
+		QueryResponse response = sendRequest(Queries.ADD_ASSET_TYPE, queryVariables);
+		
+		if (!(response.getData().getCreateAssetType().getItem().getId().trim().length() > 0)) {
+			assertEquals(false, true);
+		}
+		Assert.assertEquals(response.getData().getCreateAssetType().getItem().getTitle().trim(),data.get("title").toString().trim());
+		Assert.assertEquals(Objects.toString(response.getData().getCreateAssetType().getItem().getIcon(), "").trim(),data.get("icon").toString().trim());
+	}
 
-        QueryResponse response = sendRequest(Queries.ASSET_TYPE, queryVariables);
-
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(response.getData().getAssetType().getItem().getUuid().trim(), uuid.trim());
-        softAssert.assertEquals(response.getData().getAssetType().getItem().getTitle().trim(), title.trim());
-        softAssert.assertEquals(response.getData().getAssetType().getItem().getIcon().trim(), icon.trim());
-        softAssert.assertAll();
-    }
-
-    @Test(dataProvider = "addAssetType")
-    void addAssetType(String title, String icon) throws IOException {
-        queryVariables.setTitle(title);
-        QueryResponse response = sendRequest(Queries.ADD_ASSET_TYPE, queryVariables);
-
-        Assert.assertEquals(response.getData().getCreateAssetType().getItem().getTitle(), title.trim());
-    }
+	@DataProvider(name = "AssetType")
+	public Object[][] assetTypeDataProvider(Method m) throws Exception {
+		
+		switch (m.getName()) {
+		case "addAssetType":
+			return XLUtils.getExcelSheetData(xlsFile, "AddAssetType");
+		case "detailsOfAssetType":
+			return XLUtils.getExcelSheetData(xlsFile, "AssetType");
+		default:
+			throw new Exception("No data provider found for test case "+m.getName());
+		}
+	}
 }
