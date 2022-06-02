@@ -1,6 +1,6 @@
 type Candidate implements Node {
     id: UUID!
-    vacancy: Vacancy
+    vacancy: Vacancy!
     firstName: String!
     lastName: String!
     linkedIn: String!

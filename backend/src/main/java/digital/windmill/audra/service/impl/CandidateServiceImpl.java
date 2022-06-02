@@ -34,9 +34,9 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public Page<CandidateEntity> findAllCandidates(CandidatesInput input) {
-        var specification = CandidateSpecification.byCandidatesInput(input);
-        var itemsPerPage = Optional.ofNullable(input).map(CandidatesInput::getPagination).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
-        var pageNumber = Optional.ofNullable(input).map(CandidatesInput::getPagination).map(PageInput::getPageNumber).orElse(0);
+        var specification = CandidateSpecification.byCandidatesInput(input.getWhere());
+        var itemsPerPage = Optional.ofNullable(input.getPagination()).map(PageInput::getItemsPerPage).orElse(DEFAULT_PAGE_SIZE);
+        var pageNumber = Optional.ofNullable(input.getPagination()).map(PageInput::getPageNumber).orElse(0);
         var pageable = PageRequest.of(pageNumber, itemsPerPage);
         return candidateRepository.findAll(specification, pageable);
     }

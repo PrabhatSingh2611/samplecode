@@ -62,13 +62,12 @@ public class AssetFacadeImpl implements AssetFacade {
     public Asset updateAsset(UpdateAssetInput input) {
         var assetEntity = assetService.findAssetByUuid(input.getId());
         var assetTypeEntity = assetTypeService.findAssetByUuid(input.getType().getId());
-
         var employeeEntity = input.getAssignee() != null ?
-                employeeService.findEmployeeByUuid(input.getAssignee().getId()) : null;
-
+                employeeService.findEmployeeByUuid(input.getAssignee().getId())
+                : null;
         var locationEntity = input.getLocation() != null ?
-                locationService.findLocationByUuid(input.getLocation().getId()) : null;
-
+                locationService.findLocationByUuid(input.getLocation().getId())
+                : null;
         var entity = assetMapper.mapAssetUpdateInputToAssetEntity(assetEntity,input, assetTypeEntity, employeeEntity, locationEntity);
         return assetMapper.mapAssetEntityToAsset(assetService.createOrUpdateAsset(entity));
     }

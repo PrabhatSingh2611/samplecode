@@ -64,8 +64,11 @@ insert into announcement (id, uuid, body, created_at)
 
 INSERT INTO candidate(id, uuid, vacancy_id, first_name, last_name, linkedin, attachment_uuid, status)
 VALUES
-(1, '29e98fa1-778f-4922-980b-89e287c4e180' ,1,'Robert', 'Wilson','RobertW', 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'NEW'),
-(2, 'c5c381eb-5b4c-4d01-980c-31b842367e16' ,1,'William', 'Henry','WilliamH', '024ed048-68e9-47ca-99b8-3ee81dc70245', 'OFFER_SENT');
+(1, '29e98fa1-778f-4922-980b-89e287c4e180', 1, 'Robert', 'Wilson', 'RobertW', 'b5673d40-ac1f-4092-8361-80bcdc182a07', 'NEW'),
+(2, 'c5c381eb-5b4c-4d01-980c-31b842367e16', 1, 'William', 'Henry', 'WilliamH', '024ed048-68e9-47ca-99b8-3ee81dc70245', 'OFFER_SENT'),
+(3, '78edf7f1-a660-4ce1-978f-8d394cdfa068', 1, 'Joe', 'Hang', 'JHang', 'a9aa8317-c5a9-421f-914e-26d0b473cd98', 'REJECTED'),
+(4, 'ea93f158-d5ed-452d-ad75-08a683c5c834', 2, 'Duke', 'Milne', 'DMilne', 'ea42a183-c8f5-43d2-bae9-968346481bc7', 'PASS'),
+(5, 'fd0afd22-e70a-4b11-8314-d86023b083aa', 2, 'Ellise', 'Tillman', 'ETillman', 'd12476da-0e83-4393-9075-1aff91640790', 'OFFER_SENT');
 
 ALTER SEQUENCE candidate_id_seq RESTART WITH 1000;
 
