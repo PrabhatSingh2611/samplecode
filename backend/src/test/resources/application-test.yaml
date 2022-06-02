@@ -60,11 +60,7 @@ management:
 
 logging:
   level:
-    root: info
-    liquibase: "warn"
-    org:
-      springframework:
-        web: "warn"
+    root: "info"
 
 graphql:
   servlet:

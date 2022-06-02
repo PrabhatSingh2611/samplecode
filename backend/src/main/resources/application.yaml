@@ -65,9 +65,6 @@ management:
 logging:
   level:
     root: "info"
-    org:
-      springframework:
-        web: "info"
 
 graphql:
   servlet:

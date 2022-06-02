@@ -59,10 +59,7 @@ management:
 
 logging:
   level:
-    liquibase: "INFO"
-    org:
-      springframework:
-        web: "info"
+    root: "info"
 
 graphql:
   servlet:

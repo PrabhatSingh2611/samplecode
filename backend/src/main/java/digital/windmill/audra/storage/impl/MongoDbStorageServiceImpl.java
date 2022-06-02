@@ -7,7 +7,6 @@ import digital.windmill.audra.storage.StorageService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,7 +17,6 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Component
-@Primary
 public class MongoDbStorageServiceImpl implements StorageService {
 
     private final GridFsTemplate gridFsTemplate;

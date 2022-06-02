@@ -24,7 +24,7 @@
         <hibernate-types.version>2.10.0</hibernate-types.version>
         <test-containers.version>1.15.3</test-containers.version>
         <wdx-i18n-core.version>1.0-20220516.142236-3</wdx-i18n-core.version>
-        <jthumbnail.version>master-SNAPSHOT</jthumbnail.version>
+        <apache-commons-collections4.version>4.1</apache-commons-collections4.version>
         <spring-cloud-azure.version>4.0.0</spring-cloud-azure.version>
     </properties>
     <dependencyManagement>
@@ -135,9 +135,9 @@
             <version>${hibernate-types.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.makbn</groupId>
-            <artifactId>JThumbnail</artifactId>
-            <version>${jthumbnail.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${apache-commons-collections4.version}</version>
         </dependency>
         <!-- OTHER DEPENDECIES END -->
 

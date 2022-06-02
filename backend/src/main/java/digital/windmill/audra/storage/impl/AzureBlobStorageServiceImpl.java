@@ -5,6 +5,7 @@ import digital.windmill.audra.storage.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
+@Primary
 @Slf4j
 public class AzureBlobStorageServiceImpl implements StorageService {
     @Value("${spring.cloud.azure.storage.blob.container.resources}")
