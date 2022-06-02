@@ -251,6 +251,11 @@ export {
 } from './components/typography';
 export { default as WUploadSingleFile } from './components/upload/upload-single-file';
 export {
+  default as WUploadAttachments,
+  WUploadAttachmentsProps,
+  WTAccept,
+} from './components/upload-attachments/upload-attachments';
+export {
   default as WTable,
   WTableProps,
   WFormControlTableLabelProps,
