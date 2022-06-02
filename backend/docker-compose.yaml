@@ -29,6 +29,10 @@ services:
       SPRING_MONGO_PORT: 27017
       RESOURCE_THUMBNAIL_HEIGHT: 800
       RESOURCE_THUMBNAIL_WIDTH: 500
+      AZURE_STORAGE_ACCOUNT_NAME: strgcdnaudralocal
+      AZURE_STORAGE_ACCOUNT_ACCESS_KEY: 3olLXQb+lO+cBUs2jIep+tjTpRJ4TrAiJfuZXVubnJP/4XJagRVEbCPoXfxfCuQkUuq3xt7brrzu+AStRUgazA==
+      AZURE_STORAGE_BLOG_SERVICE_ENDPOINT: https://strgcdnaudralocal.blob.core.windows.net/
+      AZURE_STORAGE_CONTAINER_RESOURCES: resources
     depends_on:
       - "db"
       - "mongo"

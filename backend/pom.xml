@@ -24,6 +24,7 @@
         <test-containers.version>1.15.3</test-containers.version>
         <wdx-i18n-core.version>1.0-20220516.142236-3</wdx-i18n-core.version>
         <jthumbnail.version>master-SNAPSHOT</jthumbnail.version>
+        <spring-cloud-azure.version>4.0.0</spring-cloud-azure.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -31,6 +32,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.azure.spring</groupId>
+                <artifactId>spring-cloud-azure-dependencies</artifactId>
+                <version>${spring-cloud-azure.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -83,6 +91,13 @@
             <scope>runtime</scope>
         </dependency>
         <!-- GRAPH QL DEPENDECIES END -->
+
+        <!-- AZURE DEPENDENCIES -->
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+        </dependency>
+        <!-- AZURE DEPENDENCIES END -->
 
         <!-- OTHER DEPENDECIES -->
         <dependency>

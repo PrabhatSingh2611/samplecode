@@ -33,6 +33,15 @@ spring:
       port: 27017
       uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}
       gridfs.database: files
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: "strgcdnaudralocal"
+          account-key: "3olLXQb+lO+cBUs2jIep+tjTpRJ4TrAiJfuZXVubnJP/4XJagRVEbCPoXfxfCuQkUuq3xt7brrzu+AStRUgazA=="
+          endpoint: "https://strgcdnaudralocal.blob.core.windows.net/"
+          container:
+            resources: "resources"
 
 management:
   server:

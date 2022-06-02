@@ -1,6 +1,8 @@
 server:
   port: "8080"
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     url: "jdbc:postgresql://localhost:5432/audra"
     username: "postgres"
@@ -33,7 +35,15 @@ spring:
       port: 27017
       uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}
       gridfs.database: files
-
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: "test-account"
+          account-key: "test-account-key"
+          endpoint: "https://test-account.blob.core.windows.net"
+          container:
+            resources: "resources"
 management:
   server:
     port: "8081"

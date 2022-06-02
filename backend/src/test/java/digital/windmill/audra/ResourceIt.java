@@ -2,12 +2,15 @@ package digital.windmill.audra;
 
 import com.graphql.spring.boot.test.GraphQLResponse;
 import digital.windmill.audra.graphql.type.ResourcePayload;
+import digital.windmill.audra.storage.StorableObject;
+import digital.windmill.audra.storage.StorageService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.http.HttpEntity;
@@ -34,10 +37,10 @@ import java.util.LinkedHashMap;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 @Slf4j
 @Testcontainers
@@ -55,6 +58,8 @@ class ResourceIt extends AbstractIntegrationTest {
     protected TestRestTemplate restTemplate;
     @Autowired
     protected JdbcTemplate jdbcTemplate;
+    @Autowired
+    protected StorageService storageService;
     @Value("${storage.destination.url}")
     protected String storageUrl;
 
@@ -63,6 +68,8 @@ class ResourceIt extends AbstractIntegrationTest {
     void shouldStoreResource() throws IOException, URISyntaxException {
         UUID uuidOfPrevResource = findUuidOfLastAddedResource();
         assertNull(uuidOfPrevResource, "Any resources were added before");
+
+        when(storageService.store(any(StorableObject.class))).then(invocation -> UUID.randomUUID().toString());
 
         ResourcePayload uploadResponse = uploadResourceFromClassPath("pdf-test.pdf");
 
@@ -77,6 +84,7 @@ class ResourceIt extends AbstractIntegrationTest {
 
     @Test
     void shouldGetUploadedResourceByUuid() throws IOException, URISyntaxException {
+        when(storageService.store(any(StorableObject.class))).then(invocation -> UUID.randomUUID().toString());
 
         ResourcePayload uploadedResponse = uploadResourceFromClassPath("pdf-test.pdf");
         var input = objectMapper.createObjectNode().putPOJO("id", uploadedResponse.getResource().getId());
@@ -97,6 +105,10 @@ class ResourceIt extends AbstractIntegrationTest {
     void shouldReturnResourceBodyByUuid() throws IOException, URISyntaxException {
         String fileNameToUpload = "graphql/request/uploadResource.graphql";
         String fileBody = readFromResource("graphql/request/uploadResource.graphql");
+
+        when(storageService.store(any(StorableObject.class))).then(invocation -> UUID.randomUUID().toString());
+        when(storageService.findById(anyString())).thenReturn(Optional.of(new ByteArrayResource(fileBody.getBytes())));
+
         ResourcePayload uploadedResponse = uploadResourceFromClassPath(fileNameToUpload);
         var url = URI.create(uploadedResponse.getResource().getUrl()).getPath();
 

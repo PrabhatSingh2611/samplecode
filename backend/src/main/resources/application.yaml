@@ -38,6 +38,15 @@ spring:
       max-file-size: 1GB
       max-request-size: 1GB
       enabled: true
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+          account-key: ${AZURE_STORAGE_ACCOUNT_ACCESS_KEY}
+          endpoint: ${AZURE_STORAGE_BLOG_SERVICE_ENDPOINT}
+          container:
+            resources: ${AZURE_STORAGE_CONTAINER_RESOURCES}
 
 management:
   server:
