@@ -4,9 +4,14 @@ import digital.windmill.audra.dao.entity.AssetEntity;
 import digital.windmill.audra.graphql.type.input.AssetWhereInput;
 import digital.windmill.audra.graphql.type.input.AssetsInput;
 import digital.windmill.audra.graphql.type.input.NodesInput;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class AssetSpecification {
@@ -75,12 +80,28 @@ public class AssetSpecification {
             if (searchText == null || searchText.isBlank()) {
                 return builder.conjunction();
             }
-            var pattern = "%" + searchText.toLowerCase().trim() + "%";
-            return builder.or(
-                    builder.like(builder.lower(root.get("title")), pattern),
-                    builder.like(builder.lower(root.get("serialNumber")), pattern),
-                    builder.like(builder.lower(root.get("tagNumber")), pattern)
-            );
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (StringUtils.isNotBlank(searchText)) {
+                var words = searchText.trim().toLowerCase().split("\\s+");
+
+                for (String word : words) {
+                    var pattern = "%" + word + "%";
+
+                    var title = builder.like(builder.lower(root.get("title")), pattern);
+                    var serialNumber = builder.like(builder.lower(root.get("serialNumber")), pattern);
+                    var tagNumber = builder.like(builder.lower(root.get("tagNumber")), pattern);
+
+                    var assignee = root.join("assignee", JoinType.LEFT);
+                    var firstName = builder.like(builder.lower(assignee.get("firstName")), pattern);
+                    var lastName = builder.like(builder.lower(assignee.get("lastName")), pattern);
+
+                    predicates.add(builder.or(title, serialNumber, tagNumber, firstName, lastName));
+                }
+            }
+
+            return builder.and(predicates.toArray(Predicate[]::new));
         };
     }
 }

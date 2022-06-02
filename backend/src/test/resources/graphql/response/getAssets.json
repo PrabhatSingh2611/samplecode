@@ -6,9 +6,9 @@
           "id": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
           "title": "Macbook Pro 13",
           "serialNumber": "Е673РВ",
-          "waybillDate":"2022-03-23T19:37:14.480Z",
-          "tagNumber":null,
-          "location":{
+          "waybillDate": "2022-03-23T19:37:14.480Z",
+          "tagNumber": null,
+          "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
             "name": "Lisbon"
           },
@@ -23,11 +23,11 @@
             "lastName": "Morris",
             "role": "ADMIN",
             "birthday": "2022-03-23T19:37:14.480Z",
-            "position":{
-              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-              "name":"manager"
+            "position": {
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name": "manager"
             },
-            "location":{
+            "location": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
               "name": "Lisbon"
             }
@@ -41,8 +41,8 @@
           "waybillDate": "2022-03-23T13:27:14.480Z",
           "tagNumber": null,
           "location": {
-            "id":"79761728-8f51-475f-aa04-42385a0dfe36",
-            "name":"Madrid"
+            "id": "79761728-8f51-475f-aa04-42385a0dfe36",
+            "name": "Madrid"
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
@@ -105,8 +105,8 @@
           "waybillDate": "2022-03-04T13:34:42.480Z",
           "tagNumber": null,
           "location": {
-            "id":"79761728-8f51-475f-aa04-42385a0dfe36",
-            "name":"Madrid"
+            "id": "79761728-8f51-475f-aa04-42385a0dfe36",
+            "name": "Madrid"
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
@@ -227,14 +227,32 @@
           "archivedDate": "2022-02-02T13:25:34.480Z"
         },
         {
+          "id": "40c73e5b-a93c-43ac-b575-5add9ea03df7",
+          "title": "Panasonic",
+          "serialNumber": "238320203HJN",
+          "waybillDate": "2022-01-17T09:15:24.480Z",
+          "tagNumber": null,
+          "location": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
+            "name": "Lisbon"
+          },
+          "type": {
+            "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+            "title": "Headphones",
+            "icon": "https://google.com/headphones"
+          },
+          "assignee": null,
+          "archivedDate": null
+        },
+        {
           "id": "3c5201a9-cf34-4fd2-95d8-0d8b2e534463",
           "title": "Lenovo Laptop 14",
           "serialNumber": "EJS32SDGSD",
           "waybillDate": "2022-01-15T14:17:26.480Z",
           "tagNumber": null,
           "location": {
-            "id":"79761728-8f51-475f-aa04-42385a0dfe36",
-            "name":"Madrid"
+            "id": "79761728-8f51-475f-aa04-42385a0dfe36",
+            "name": "Madrid"
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
@@ -263,7 +281,7 @@
         "currentPage": 0,
         "totalPages": 1
       },
-      "totalItems": 8
+      "totalItems": 9
     }
   }
 }

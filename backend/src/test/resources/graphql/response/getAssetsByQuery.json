@@ -3,10 +3,10 @@
     "assets": {
       "items": [
         {
-          "id": "b1b6aaeb-252b-4324-9166-10c42635572d",
-          "title": "DUNU Titan 1",
-          "serialNumber": "83837363",
-          "waybillDate": "2022-01-27T08:12:24.480Z",
+          "id": "0f3f7f9a-4a9c-45b5-b43d-59cad5a49725",
+          "title": "KOSS Porta Pro",
+          "serialNumber": "737383389",
+          "waybillDate": "2022-02-13T17:34:28.480Z",
           "tagNumber": null,
           "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
@@ -18,11 +18,11 @@
             "icon": "https://google.com/headphones"
           },
           "assignee": {
-            "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
-            "firstName": "Geneva",
-            "lastName": "Norman",
-            "role": "EMPLOYEE",
-            "birthday": "2022-01-16T08:12:50.480Z",
+            "id": "b48db556-3bd0-479e-9f1a-231be9636887",
+            "firstName": "Danielle",
+            "lastName": "Kelly",
+            "role": "ADMIN",
+            "birthday": "2022-02-08T18:34:45.480Z",
             "position": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
               "name": "manager"
@@ -32,24 +32,6 @@
               "name": "Lisbon"
             }
           },
-          "archivedDate": "2022-02-02T13:25:34.480Z"
-        },
-        {
-          "id": "40c73e5b-a93c-43ac-b575-5add9ea03df7",
-          "title": "Panasonic",
-          "serialNumber": "238320203HJN",
-          "waybillDate": "2022-01-17T09:15:24.480Z",
-          "tagNumber": null,
-          "location": {
-            "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
-            "name": "Lisbon"
-          },
-          "type": {
-            "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
-          },
-          "assignee": null,
           "archivedDate": null
         },
         {
@@ -86,10 +68,10 @@
         }
       ],
       "pageInfo": {
-        "currentPage": 2,
-        "totalPages": 3
+        "currentPage": 0,
+        "totalPages": 1
       },
-      "totalItems": 9
+      "totalItems": 2
     }
   }
 }

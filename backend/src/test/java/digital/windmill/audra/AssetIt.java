@@ -8,6 +8,8 @@ import digital.windmill.audra.graphql.type.input.NodesInput;
 import digital.windmill.audra.graphql.type.input.PageInput;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.io.IOException;
@@ -37,8 +39,6 @@ public class AssetIt extends AbstractIntegrationTest {
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getAssets.graphql", input);
-       /* GraphQLResponse response = graphQLTestTemplate
-                .postForResource("graphql/request/getAssets.graphql");*/
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAssets.json");
@@ -63,6 +63,24 @@ public class AssetIt extends AbstractIntegrationTest {
 
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAssetsFiltered.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Kelly Danielle", "ell Kel", "danielle"})
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAssetsByQuery(String searchText) throws IOException, URISyntaxException {
+        var where = AssetsInput.builder().where(
+                        AssetWhereInput.builder()
+                                .query(searchText)
+                                .build())
+                .build();
+        var input = objectMapper.createObjectNode().putPOJO("input", where);
+        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getAssets.graphql", input);
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getAssetsByQuery.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
