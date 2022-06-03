@@ -3,23 +3,23 @@ package e2e;
 // Global before/after methods should be api/e2e tests sensitive.
 // After any change here, full regression for e2e and api should be provided for verification.
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.*;
 import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
-import pageObject.pages.Example1Page;
-import pageObject.pages.Example2Page;
+import org.testng.annotations.BeforeMethod;
 import utils.Config;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 public class BaseTest {
 
-
     Config config = new Config();
-    Example1Page example1Page = page(Example1Page.class);
-    Example2Page example2Page = page(Example2Page.class);
+
+    @BeforeMethod
+    public void setUp() {
+        Configuration.baseUrl = config.getBaseURL();
+    }
 
     @AfterMethod
     public void teardown() {

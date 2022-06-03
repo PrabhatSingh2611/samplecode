@@ -11,7 +11,9 @@ public class Config {
     private String baseURL;
     private String apiURL;
     private String testDataDirectory;
-    
+    private String downloadFolder;
+    private String testImageJpeg;
+
     Properties properties = new Properties();
 
     public Config(){
@@ -22,6 +24,8 @@ public class Config {
             this.baseURL = properties.getProperty("base.url");
             this.apiURL = properties.getProperty("api.url");
             this.testDataDirectory = properties.getProperty("test.data.directory");
+            this.downloadFolder = properties.getProperty("download.folder");
+            this.testImageJpeg = properties.getProperty("image.jpeg");
 
             fileInputStream.close();
         } catch (FileNotFoundException e) {
@@ -56,6 +60,4 @@ public class Config {
         }
         return properties.getProperty(propName);
     }
-    
-    
 }
