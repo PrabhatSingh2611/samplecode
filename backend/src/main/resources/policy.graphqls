@@ -36,6 +36,10 @@ type PolicyConnectionPayload implements ConnectionPayload {
     totalItems: Int!
 }
 
+input PolicyInput {
+    id: UUID!
+}
+
 input PoliciesInput {
     where: PoliciesWhereInput
     pagination: PageInput

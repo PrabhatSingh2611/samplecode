@@ -8,11 +8,13 @@ import digital.windmill.audra.graphql.type.Policy;
 import digital.windmill.audra.graphql.type.input.CreatePolicyInput;
 import digital.windmill.audra.graphql.type.input.DeletePoliciesInput;
 import digital.windmill.audra.graphql.type.input.PoliciesInput;
+import digital.windmill.audra.graphql.type.input.PolicyInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.PolicyService;
 import digital.windmill.audra.service.ResourceService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -56,5 +58,11 @@ public class PolicyFacadeImpl implements PolicyFacade {
         return policyService.getPolicies(input)
                 .map(policyMapper::mapPolicyEntityToPolicy);
 
+    }
+
+    @Override
+    public Policy getPolicy(@NonNull PolicyInput input) {
+        var policyEntity = policyService.findPolicyByUuid(input.getId());
+        return policyMapper.mapPolicyEntityToPolicy(policyEntity);
     }
 }

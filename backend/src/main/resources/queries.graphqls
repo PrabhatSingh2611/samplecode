@@ -16,6 +16,7 @@ type Query {
     announcement(input: AnnouncementInput!): AnnouncementPayload!
     announcements(input: AnnouncementsInput!): AnnouncementConnectionPayload!
     resource(input: ResourceInput!): ResourcePayload!
+    policy(input: PolicyInput!): PolicyPayload!
     policies(input: PoliciesInput!): PolicyConnectionPayload!
     candidate(input: CandidateInput!): CandidatePayLoad!
     candidates(input: CandidatesInput!): CandidateConnectionPayload!

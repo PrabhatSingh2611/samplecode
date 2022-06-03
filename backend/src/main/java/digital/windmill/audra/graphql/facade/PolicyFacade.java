@@ -5,6 +5,7 @@ import digital.windmill.audra.graphql.type.Policy;
 import digital.windmill.audra.graphql.type.input.CreatePolicyInput;
 import digital.windmill.audra.graphql.type.input.DeletePoliciesInput;
 import digital.windmill.audra.graphql.type.input.PoliciesInput;
+import digital.windmill.audra.graphql.type.input.PolicyInput;
 import org.springframework.data.domain.Page;
 
 import java.util.UUID;
@@ -28,4 +29,6 @@ public interface PolicyFacade {
      * @return a list of Policy
      */
     Page<Policy> getPolicies(PoliciesInput input);
+
+    Policy getPolicy(PolicyInput input);
 }

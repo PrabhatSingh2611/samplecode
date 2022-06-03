@@ -10,6 +10,7 @@ import digital.windmill.audra.graphql.type.input.CreatePolicyInput;
 import digital.windmill.audra.graphql.type.input.DeletePoliciesInput;
 import digital.windmill.audra.graphql.type.input.NodesInput;
 import digital.windmill.audra.graphql.type.input.PoliciesInput;
+import digital.windmill.audra.graphql.type.input.PolicyInput;
 import digital.windmill.audra.graphql.type.input.ResourceInput;
 import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.PolicyService;
@@ -27,6 +28,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static com.mongodb.assertions.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -90,9 +92,9 @@ class PolicyFacadeImplTest {
     }
 
     @Test
-    void shouldGetPolicy(@Mock PoliciesInput input,
-                         @Mock PolicyEntity policyEntity,
-                         @Mock Policy policy) {
+    void shouldGetPolicies(@Mock PoliciesInput input,
+                           @Mock PolicyEntity policyEntity,
+                           @Mock Policy policy) {
 
         var page = createOneItemPage(policyEntity);
 
@@ -103,6 +105,17 @@ class PolicyFacadeImplTest {
         var result = facade.getPolicies(input);
         assertNotNull(result);
         assertSame(page.getContent().get(0).getUuid(), result.getContent().get(0).getId());
+    }
+
+    @Test
+    void shouldGetPolicy(@Mock PolicyInput input,
+                         @Mock PolicyEntity policyEntity,
+                         @Mock Policy policy) {
+        when(input.getId()).thenReturn(POLICY_UUID);
+        when(policyService.findPolicyByUuid(POLICY_UUID)).thenReturn(policyEntity);
+        when(policyMapper.mapPolicyEntityToPolicy(policyEntity)).thenReturn(policy);
+        var actualResult = facade.getPolicy(input);
+        assertEquals(policy, actualResult);
     }
 
     private <T> Page<T> createOneItemPage(T item) {

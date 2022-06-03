@@ -1,0 +1,16 @@
+query Policy($input: PolicyInput!) {
+    policy(input: $input) {
+        policy {
+            id
+            title
+            file {
+                id
+            }
+            owner {
+                id
+            }
+            publicationDate
+            status
+        }
+    }
+}
