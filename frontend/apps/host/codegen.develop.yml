@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-    - http://localhost:8080/graphql
+    - https://audra-service.dev.topazdigital.cloud/graphql
 documents: 'src/features/**/**/*.graphql'
 generates:
     src/graphql-generated-types/types.ts:

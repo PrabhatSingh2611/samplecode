@@ -10,20 +10,20 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** URL */
-  URL: any;
-  /** UUID */
+  /** An RFC-3339 compliant DateTime Scalar */
+  DateTime: any;
+  /** A universally unique identifier compliant UUID Scalar */
   UUID: any;
   /** A file part in a multipart request */
   Upload: any;
-  /** ZonedDateTime */
-  ZonedDateTime: any;
+  /** A Url scalar */
+  Url: any;
 };
 
 export type Announcement = Node & {
   __typename?: 'Announcement';
   body: Scalars['String'];
-  createdAt: Scalars['ZonedDateTime'];
+  createdAt: Scalars['DateTime'];
   id: Scalars['UUID'];
 };
 
@@ -44,9 +44,9 @@ export type AnnouncementPayload = {
 };
 
 export type AnnouncementsInput = {
-  from?: InputMaybe<Scalars['ZonedDateTime']>;
+  from?: InputMaybe<Scalars['DateTime']>;
   pagination?: InputMaybe<PageInput>;
-  to?: InputMaybe<Scalars['ZonedDateTime']>;
+  to?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ArchiveAssetInput = {
@@ -61,17 +61,17 @@ export type ArchiveAssetPayload = {
 export type Asset = Node & {
   __typename?: 'Asset';
   actionOnName?: Maybe<Scalars['String']>;
-  archivedDate?: Maybe<Scalars['ZonedDateTime']>;
+  archivedDate?: Maybe<Scalars['DateTime']>;
   assignee?: Maybe<Employee>;
   comment?: Maybe<Scalars['String']>;
   id: Scalars['UUID'];
   location?: Maybe<Location>;
-  nextActionDate?: Maybe<Scalars['ZonedDateTime']>;
+  nextActionDate?: Maybe<Scalars['DateTime']>;
   serialNumber: Scalars['String'];
   tagNumber?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   type: AssetType;
-  waybillDate: Scalars['ZonedDateTime'];
+  waybillDate: Scalars['DateTime'];
 };
 
 export type AssetConnectionPayload = ConnectionPayload & {
@@ -97,13 +97,44 @@ export enum AssetSortEnum {
 
 export type AssetType = Node & {
   __typename?: 'AssetType';
-  icon?: Maybe<Scalars['String']>;
+  category?: Maybe<AssetTypeCategory>;
+  createdAt: Scalars['DateTime'];
+  iconName: Scalars['String'];
   id: Scalars['UUID'];
-  title?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
-export type AssetTypeConnection = ConnectionPayload & {
-  __typename?: 'AssetTypeConnection';
+export type AssetTypeCategoriesInput = {
+  pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<AssetTypeSort>>;
+  where?: InputMaybe<AssetTypeCategoriesWhereInput>;
+};
+
+export type AssetTypeCategoriesWhereInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type AssetTypeCategory = Node & {
+  __typename?: 'AssetTypeCategory';
+  id: Scalars['UUID'];
+  name: Scalars['String'];
+  types: Array<AssetType>;
+};
+
+export type AssetTypeCategoryConnectionPayload = ConnectionPayload & {
+  __typename?: 'AssetTypeCategoryConnectionPayload';
+  items: Array<AssetTypeCategory>;
+  pageInfo: PageInfo;
+  totalItems: Scalars['Int'];
+};
+
+export type AssetTypeCategoryPayload = {
+  __typename?: 'AssetTypeCategoryPayload';
+  assetTypeCategory?: Maybe<AssetTypeCategory>;
+};
+
+export type AssetTypeConnectionPayload = ConnectionPayload & {
+  __typename?: 'AssetTypeConnectionPayload';
   items: Array<AssetType>;
   pageInfo: PageInfo;
   totalItems: Scalars['Int'];
@@ -115,7 +146,23 @@ export type AssetTypeInput = {
 
 export type AssetTypePayload = {
   __typename?: 'AssetTypePayload';
-  item?: Maybe<AssetType>;
+  assetType: AssetType;
+};
+
+export enum AssetTypeSort {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC'
+}
+
+export type AssetTypesInput = {
+  pagination?: InputMaybe<PageInput>;
+  sort?: InputMaybe<Array<AssetTypeSort>>;
+  where?: InputMaybe<AssetTypesWhereInput>;
+};
+
+export type AssetTypesWhereInput = {
+  category?: InputMaybe<NodeInput>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type AssetWhereInput = {
@@ -141,7 +188,7 @@ export type Candidate = Node & {
   lastName: Scalars['String'];
   linkedIn: Scalars['String'];
   status: CandidateStatus;
-  vacancy?: Maybe<Vacancy>;
+  vacancy: Vacancy;
 };
 
 export type CandidateConnectionPayload = ConnectionPayload & {
@@ -184,20 +231,26 @@ export type CreateAnnouncementInput = {
 
 export type CreateAssetInput = {
   actionOnName?: InputMaybe<Scalars['String']>;
-  archivedDate?: InputMaybe<Scalars['ZonedDateTime']>;
+  archivedDate?: InputMaybe<Scalars['DateTime']>;
   assignee?: InputMaybe<NodeInput>;
   comment?: InputMaybe<Scalars['String']>;
   location?: InputMaybe<NodeInput>;
-  nextActionDate?: InputMaybe<Scalars['ZonedDateTime']>;
+  nextActionDate?: InputMaybe<Scalars['DateTime']>;
   serialNumber: Scalars['String'];
   tagNumber?: InputMaybe<Scalars['String']>;
   title: Scalars['String'];
   type: NodeInput;
-  waybillDate: Scalars['ZonedDateTime'];
+  waybillDate: Scalars['DateTime'];
+};
+
+export type CreateAssetTypeCategoryInput = {
+  name: Scalars['String'];
 };
 
 export type CreateAssetTypeInput = {
-  title: Scalars['String'];
+  category?: InputMaybe<NodeInput>;
+  iconName: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type CreateCandidateInput = {
@@ -210,7 +263,7 @@ export type CreateCandidateInput = {
 };
 
 export type CreateEmployeeInput = {
-  birthday: Scalars['ZonedDateTime'];
+  birthday: Scalars['DateTime'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   location?: InputMaybe<Scalars['UUID']>;
@@ -243,7 +296,7 @@ export type CreateLocationInput = {
 export type CreateObjectiveInput = {
   comments?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  dueToDate: Scalars['ZonedDateTime'];
+  dueToDate: Scalars['DateTime'];
   employee: Scalars['UUID'];
   name: Scalars['String'];
   status?: InputMaybe<ObjectiveStatus>;
@@ -342,7 +395,7 @@ export type DeletedNodes = Nodes & {
 export type Employee = Node & {
   __typename?: 'Employee';
   avatar?: Maybe<Scalars['String']>;
-  birthday?: Maybe<Scalars['ZonedDateTime']>;
+  birthday?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   id: Scalars['UUID'];
@@ -407,11 +460,11 @@ export type LeaveRequest = Node & {
   __typename?: 'LeaveRequest';
   comment?: Maybe<Scalars['String']>;
   employee: Employee;
-  endDate: Scalars['ZonedDateTime'];
+  endDate: Scalars['DateTime'];
   id: Scalars['UUID'];
   numberOfDays: Scalars['Int'];
-  requestDate: Scalars['ZonedDateTime'];
-  startDate: Scalars['ZonedDateTime'];
+  requestDate: Scalars['DateTime'];
+  startDate: Scalars['DateTime'];
   status: LeaveRequestStatus;
   type: LeaveType;
 };
@@ -441,8 +494,8 @@ export enum LeaveRequestStatus {
 export type LeaveRequestWhereInput = {
   approver?: InputMaybe<NodeInput>;
   employee?: InputMaybe<NodeInput>;
-  endDate?: InputMaybe<Scalars['ZonedDateTime']>;
-  startDate?: InputMaybe<Scalars['ZonedDateTime']>;
+  endDate?: InputMaybe<Scalars['DateTime']>;
+  startDate?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type LeaveRequestsInput = {
@@ -570,6 +623,7 @@ export type Mutation = {
   createAnnouncement: AnnouncementPayload;
   createAsset: AssetPayload;
   createAssetType: AssetTypePayload;
+  createAssetTypeCategory: AssetTypeCategoryPayload;
   createCandidate: CandidatePayLoad;
   createEmployee: EmployeePayload;
   createEmployeePosition: EmployeePositionPayload;
@@ -586,12 +640,14 @@ export type Mutation = {
   deleteObjective: DeleteObjectivePayload;
   deletePolicies: DeletePoliciesPayload;
   deleteSurvey: DeleteSurveyPayload;
+  patchAssetTypeCategory: AssetTypeCategoryPayload;
   patchCandidate: CandidatePayLoad;
   patchLeaveRequest: LeaveRequestPayload;
   patchLocationCountry: LocationCountryPayload;
   patchSurvey: SurveyPayload;
   updateAnnouncement: AnnouncementPayload;
   updateAsset: AssetPayload;
+  updateAssetType: AssetTypePayload;
   updateEmployee: EmployeePayload;
   updateEmployeePosition: EmployeePositionPayload;
   updateLocation: LocationPayload;
@@ -618,6 +674,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateAssetTypeArgs = {
   input: CreateAssetTypeInput;
+};
+
+
+export type MutationCreateAssetTypeCategoryArgs = {
+  input: CreateAssetTypeCategoryInput;
 };
 
 
@@ -701,6 +762,11 @@ export type MutationDeleteSurveyArgs = {
 };
 
 
+export type MutationPatchAssetTypeCategoryArgs = {
+  input: PatchAssetTypeCategoryInput;
+};
+
+
 export type MutationPatchCandidateArgs = {
   input: PatchCandidateInput;
 };
@@ -728,6 +794,11 @@ export type MutationUpdateAnnouncementArgs = {
 
 export type MutationUpdateAssetArgs = {
   input: UpdateAssetInput;
+};
+
+
+export type MutationUpdateAssetTypeArgs = {
+  input: UpdateAssetTypeInput;
 };
 
 
@@ -781,7 +852,7 @@ export type Objective = Node & {
   __typename?: 'Objective';
   comments?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  dueToDate?: Maybe<Scalars['ZonedDateTime']>;
+  dueToDate?: Maybe<Scalars['DateTime']>;
   employee: Employee;
   id: Scalars['UUID'];
   name: Scalars['String'];
@@ -835,6 +906,11 @@ export type PageInput = {
   pageNumber?: InputMaybe<Scalars['Int']>;
 };
 
+export type PatchAssetTypeCategoryInput = {
+  id: Scalars['UUID'];
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type PatchCandidateInput = {
   attachments?: InputMaybe<NodesInput>;
   firstName?: InputMaybe<Scalars['String']>;
@@ -869,12 +945,12 @@ export type PatchSurveyInput = {
 
 export type Playbook = Node & {
   __typename?: 'Playbook';
-  createdAt: Scalars['ZonedDateTime'];
+  createdAt: Scalars['DateTime'];
   id: Scalars['UUID'];
   image: Resource;
   steps: Array<PlaybookStep>;
   title: Scalars['String'];
-  updatedAt: Scalars['ZonedDateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type PlaybookConnectionPayload = ConnectionPayload & {
@@ -936,7 +1012,7 @@ export type PlaybookVideo = Node & {
   __typename?: 'PlaybookVideo';
   description: Scalars['String'];
   id: Scalars['UUID'];
-  url: Scalars['URL'];
+  url: Scalars['Url'];
 };
 
 export type PlaybooksInput = {
@@ -965,7 +1041,7 @@ export type Policy = Node & {
   file: Resource;
   id: Scalars['UUID'];
   owner: Employee;
-  publicationDate?: Maybe<Scalars['ZonedDateTime']>;
+  publicationDate?: Maybe<Scalars['DateTime']>;
   status: PolicyStatus;
   title: Scalars['String'];
 };
@@ -975,6 +1051,10 @@ export type PolicyConnectionPayload = ConnectionPayload & {
   items: Array<Policy>;
   pageInfo: PageInfo;
   totalItems: Scalars['Int'];
+};
+
+export type PolicyInput = {
+  id: Scalars['UUID'];
 };
 
 export type PolicyPayload = {
@@ -998,7 +1078,8 @@ export type Query = {
   announcements: AnnouncementConnectionPayload;
   asset: AssetPayload;
   assetType: AssetTypePayload;
-  assetTypes: AssetTypeConnection;
+  assetTypeCategories: AssetTypeCategoryConnectionPayload;
+  assetTypes: AssetTypeConnectionPayload;
   assets: AssetConnectionPayload;
   candidate: CandidatePayLoad;
   candidates: CandidateConnectionPayload;
@@ -1015,6 +1096,7 @@ export type Query = {
   playbook: PlaybookPayload;
   playbooks: PlaybookConnectionPayload;
   policies: PolicyConnectionPayload;
+  policy: PolicyPayload;
   resource: ResourcePayload;
   survey: SurveyPayload;
   surveys: SurveyConnectionPayload;
@@ -1040,6 +1122,16 @@ export type QueryAssetArgs = {
 
 export type QueryAssetTypeArgs = {
   input: AssetTypeInput;
+};
+
+
+export type QueryAssetTypeCategoriesArgs = {
+  input: AssetTypeCategoriesInput;
+};
+
+
+export type QueryAssetTypesArgs = {
+  input: AssetTypesInput;
 };
 
 
@@ -1118,6 +1210,11 @@ export type QueryPoliciesArgs = {
 };
 
 
+export type QueryPolicyArgs = {
+  input: PolicyInput;
+};
+
+
 export type QueryResourceArgs = {
   input: ResourceInput;
 };
@@ -1188,8 +1285,8 @@ export type ResourcePayload = {
 };
 
 export type StrictDatePeriod = {
-  endDate: Scalars['ZonedDateTime'];
-  startDate: Scalars['ZonedDateTime'];
+  endDate: Scalars['DateTime'];
+  startDate: Scalars['DateTime'];
 };
 
 export type Survey = Node & {
@@ -1232,21 +1329,28 @@ export type UpdateAnnouncementInput = {
 
 export type UpdateAssetInput = {
   actionOnName?: InputMaybe<Scalars['String']>;
-  archivedDate?: InputMaybe<Scalars['ZonedDateTime']>;
+  archivedDate?: InputMaybe<Scalars['DateTime']>;
   assignee?: InputMaybe<NodeInput>;
   comment?: InputMaybe<Scalars['String']>;
   id: Scalars['UUID'];
   location?: InputMaybe<NodeInput>;
-  nextActionDate?: InputMaybe<Scalars['ZonedDateTime']>;
+  nextActionDate?: InputMaybe<Scalars['DateTime']>;
   serialNumber: Scalars['String'];
   tagNumber?: InputMaybe<Scalars['String']>;
   title: Scalars['String'];
   type: NodeInput;
-  waybillDate: Scalars['ZonedDateTime'];
+  waybillDate: Scalars['DateTime'];
+};
+
+export type UpdateAssetTypeInput = {
+  category?: InputMaybe<NodeInput>;
+  iconName: Scalars['String'];
+  id: Scalars['UUID'];
+  name: Scalars['String'];
 };
 
 export type UpdateEmployeeInput = {
-  birthday: Scalars['ZonedDateTime'];
+  birthday: Scalars['DateTime'];
   firstName: Scalars['String'];
   id: Scalars['UUID'];
   lastName: Scalars['String'];
@@ -1270,7 +1374,7 @@ export type UpdateLocationInput = {
 export type UpdateObjectiveInput = {
   comments?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  dueToDate: Scalars['ZonedDateTime'];
+  dueToDate: Scalars['DateTime'];
   employee: Scalars['UUID'];
   id: Scalars['UUID'];
   name: Scalars['String'];
