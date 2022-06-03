@@ -29,6 +29,8 @@ import ConnectWithoutContact from '@mui/icons-material/ConnectWithoutContact';
 import Policy from '@mui/icons-material/Policy';
 import MenuBook from '@mui/icons-material/MenuBook';
 import Settings from '@mui/icons-material/Settings';
+import Undo from '@mui/icons-material/Undo';
+import Redo from '@mui/icons-material/Redo';
 
 type TIconComponent = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
   muiName: string;
@@ -63,4 +65,6 @@ export const iconsConfig: Record<TIcons, TIconComponent> = {
   policy: Policy,
   'menu-book': MenuBook,
   settings: Settings,
+  undo: Undo,
+  redo: Redo,
 };

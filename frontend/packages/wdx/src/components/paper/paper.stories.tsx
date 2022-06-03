@@ -4,7 +4,7 @@ import WPaper from './index';
 import WBox from '../box';
 
 const meta: Meta = {
-  title: 'MUI/Paper',
+  title: 'MUI/Surfaces/Paper',
   component: WPaper,
   parameters: {
     controls: { expanded: true },

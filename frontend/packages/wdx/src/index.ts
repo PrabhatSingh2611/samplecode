@@ -151,6 +151,7 @@ export {
   WListItemTextProps,
   WListSubheaderProps,
 } from './components/list';
+export { default as WMarkdown, WIMarkdownProps } from "./components/markdown"
 export {
   default as WMenu,
   WMenuItem,
@@ -299,6 +300,7 @@ export {
 } from './components/tree-view';
 
 // WIDGETS
+export { default as WEditor, WIEditorProps } from './widgets/editor';
 export {
   default as WEmptyState,
   WEmptyStateProps,

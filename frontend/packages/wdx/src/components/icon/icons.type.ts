@@ -26,6 +26,8 @@ export type TIcons =
   | 'connect-without-contact'
   | 'policy'
   | 'menu-book'
-  | 'settings';
+  | 'settings'
+  | 'undo'
+  | 'redo';
 
 // TODO: Add more types of icons (YD)
