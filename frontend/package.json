@@ -23,7 +23,8 @@
         "prepare": "cd .. && husky install frontend/.husky",
         "unused-exports": "turbo run unused-exports",
         "codegen": "turbo run codegen --parallel --filter=!./apps/remote-example",
-        "codegen:staging": "turbo run codegen:staging --parallel --filter=!./apps/remote-example"
+        "codegen:staging": "turbo run codegen:staging --parallel --filter=!./apps/remote-example",
+        "re-install": "pnpm clear-all && pnpm install"
     },
     "devDependencies": {
         "@welldone-software/why-did-you-render": "^7.0.1",

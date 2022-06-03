@@ -174,7 +174,7 @@ importers:
       change-case: 4.1.2
       date-fns: 2.28.0
       flagged: 2.0.4_react@18.1.0
-      framer-motion: 6.3.7_ef5jwxihqo6n7gxfmzogljlgcm
+      framer-motion: 6.3.8_ef5jwxihqo6n7gxfmzogljlgcm
       graphql: 16.5.0
       jsonschema: 1.4.1
       react: 18.1.0
@@ -514,7 +514,7 @@ importers:
       '@mui/x-date-pickers': 5.0.0-alpha.0_x4gkpaxywrqpesp2oejpkr7s3i
       '@types/numeral': 2.0.2
       date-fns: 2.28.0
-      framer-motion: 6.3.7_ef5jwxihqo6n7gxfmzogljlgcm
+      framer-motion: 6.3.8_ef5jwxihqo6n7gxfmzogljlgcm
       jsonschema: 1.4.1
       numeral: 2.0.6
       react-dropzone: 14.2.1_react@18.1.0
@@ -8162,7 +8162,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001346
-      electron-to-chromium: 1.4.144
+      electron-to-chromium: 1.4.145
       escalade: 3.1.1
       node-releases: 2.0.5
       picocolors: 1.0.0
@@ -9891,8 +9891,8 @@ packages:
     dependencies:
       jake: 10.8.5
 
-  /electron-to-chromium/1.4.144:
-    resolution: {integrity: sha512-R3RV3rU1xWwFJlSClVWDvARaOk6VUO/FubHLodIASDB3Mc2dzuWvNdfOgH9bwHUTqT79u92qw60NWfwUdzAqdg==}
+  /electron-to-chromium/1.4.145:
+    resolution: {integrity: sha512-g4VQCi61gA0t5fJHsalxAc8NpvxC/CEwLAGLfJ+DmkRXTEyntJA7H01771uVD6X6nnViv3GToPgb0QOVA8ivOQ==}
 
   /elegant-spinner/1.0.1:
     resolution: {integrity: sha512-B+ZM+RXvRqQaAmkMlO/oSe5nMUOaUnyfGYCEHoR8wrXsZR2mA0XVibsxV1bvTwxdRWah1PkQqso2EzhILGHtEQ==}
@@ -11769,8 +11769,8 @@ packages:
       map-cache: 0.2.2
     dev: true
 
-  /framer-motion/6.3.7_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-ozpJkJAfK1b3m7Naki6YPNgoqN57Z1fU8pn6/i/bsGV/nzKUkGWh9oVOUhhA2U4XZmqqnO56xdjmT9UPcP1jOA==}
+  /framer-motion/6.3.8_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-FBbSAG/kzi3Tm9taF6tULhdKtWqiXmISBocsNC+jqHMQP/3PsnS0dFL2qZMmwgVAGwg3InhY739gKNjqOCR7Cw==}
     peerDependencies:
       react: '>=16.8 || ^17.0.0 || ^18.0.0'
       react-dom: '>=16.8 || ^17.0.0 || ^18.0.0'
