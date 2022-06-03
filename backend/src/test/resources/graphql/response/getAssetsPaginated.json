@@ -47,8 +47,9 @@
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
+            "name": "Headphones",
+            "iconName": "headphones_icon",
+            "createdAt":"2022-05-11T13:18:14.480Z"
           },
           "assignee": null,
           "archivedDate": null
