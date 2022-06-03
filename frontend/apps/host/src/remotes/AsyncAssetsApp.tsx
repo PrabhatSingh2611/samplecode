@@ -10,7 +10,7 @@ interface IImportLoaderProps {
     importErrorFallback?: React.ReactNode;
 }
 
-const AssetsApp = React.memo(function PeopleApp({
+const AssetsApp = React.memo(function AssetsApp({
     importLoadingFallback,
     importErrorFallback,
 }: IImportLoaderProps): JSX.Element {

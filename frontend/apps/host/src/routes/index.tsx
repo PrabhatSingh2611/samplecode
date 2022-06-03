@@ -6,7 +6,7 @@ import { WBox, WTypography } from 'wdx';
 import { EAssetsRouterLink } from 'models/assets-router-link';
 import { EPeopleRouterLink } from 'models/people-router-link';
 import { ERecruitmentRouterLink } from 'models/recruitment-router-llink';
-import AssetsApp from 'remotes/AsyncAssetsApp';
+import AsyncAssetsApp from 'remotes/AsyncAssetsApp';
 import AsyncPeopleApp from 'remotes/AsyncPeopleApp';
 
 export default function Routes(): JSX.Element {
@@ -16,7 +16,7 @@ export default function Routes(): JSX.Element {
                 <AsyncPeopleApp />
             </Route>
             <Route path={EAssetsRouterLink.Assets}>
-                <AssetsApp />
+                <AsyncAssetsApp />
             </Route>
             <Route path={ERecruitmentRouterLink.Recruitment}>
                 <Page title="Recruitment page" />
