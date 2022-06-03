@@ -78,4 +78,10 @@
         </sql>
     </changeSet>
 
+    <changeSet id="r.0.16.4" author="tetiana.hladka">
+        <sql>
+            UPDATE asset_type SET icon_name = regexp_replace(icon_name, '_', '-');
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
