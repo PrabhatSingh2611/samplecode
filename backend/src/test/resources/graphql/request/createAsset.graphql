@@ -30,8 +30,9 @@ mutation createAsset{
             }
             type {
                 id
-                icon
-                title
+                name
+                iconName
+                createdAt
             }
             tagNumber
             archivedDate

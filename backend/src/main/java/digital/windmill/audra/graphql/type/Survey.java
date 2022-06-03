@@ -16,5 +16,4 @@ public class Survey implements Node {
     private UUID id;
     private String title;
     private String description;
-    private QuestionConnectionPayload questions;
 }

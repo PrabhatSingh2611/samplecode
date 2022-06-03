@@ -1,4 +1,4 @@
-package digital.windmill.audra.graphql.type.input;
+package digital.windmill.audra.graphql.type.assetTypeCategory;
 
 import digital.windmill.audra.graphql.type.Node;
 import lombok.AllArgsConstructor;
@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssetTypeInput implements Node {
+@Builder
+public class AssetTypeCategory implements Node {
+
     private UUID id;
-    private String title;
+    private String name;
+
 }

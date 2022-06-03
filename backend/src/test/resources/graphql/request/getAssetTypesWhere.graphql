@@ -1,0 +1,21 @@
+query {
+    assetTypes(input: {where: {name: "Monitors"}}){
+        items{
+            id
+            name
+            iconName
+            createdAt
+            category {
+                id
+                name
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+

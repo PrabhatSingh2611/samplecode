@@ -5,6 +5,10 @@ type Mutation {
     createAssetType(input: CreateAssetTypeInput!): AssetTypePayload!
     createAsset(input: CreateAssetInput!): AssetPayload!
     updateAsset(input: UpdateAssetInput!): AssetPayload!
+    createAssetType(input: CreateAssetTypeInput!): AssetTypePayload!
+    updateAssetType(input: UpdateAssetTypeInput!): AssetTypePayload!
+    createAssetTypeCategory(input: CreateAssetTypeCategoryInput!): AssetTypeCategoryPayload!
+    patchAssetTypeCategory(input: PatchAssetTypeCategoryInput!): AssetTypeCategoryPayload!
     createLocation(input: CreateLocationInput!): LocationPayload!
     updateLocation(input: UpdateLocationInput!): LocationPayload!
     createLocationCountry(input: CreateLocationCountryInput!): LocationCountryPayload!

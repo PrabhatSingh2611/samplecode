@@ -23,7 +23,6 @@ import java.util.UUID;
 public interface QuestionMapper {
 
     @Mapping(target = "id", source = "uuid")
-    @Mapping(target = "options", ignore = true)
     Question mapQuestionEntityToQuestion(QuestionEntity entity);
 
 

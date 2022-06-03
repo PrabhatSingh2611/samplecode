@@ -1,9 +1,8 @@
-query getAssetsType {
-    assetTypes{
-        items {
+query {
+    assetTypeCategories(input: {pagination: {itemsPerPage: 2, pageNumber: 1}}){
+        items{
             id
-            title
-            icon
+            name
         }
         pageInfo {
             currentPage
@@ -12,3 +11,5 @@ query getAssetsType {
         totalItems
     }
 }
+
+

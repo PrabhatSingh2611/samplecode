@@ -1,0 +1,33 @@
+{
+  "data": {
+    "assetTypes": {
+      "items": [
+        {
+          "id": "e67a9709-0ae7-4da8-aa7c-6731cb52921d",
+          "name": "Application",
+          "iconName": "app_icon",
+          "createdAt": "2022-05-11T13:18:14.480Z",
+          "category": {
+            "id": "5ae9cce4-b25f-447f-8e6f-a534c9a07934",
+            "name": "Licenses"
+          }
+        },
+        {
+          "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+          "name": "Monitors",
+          "iconName": "monitors_icon",
+          "createdAt": "2022-02-14T21:37:05.480Z",
+          "category": {
+            "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+            "name": "Devices"
+          }
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 1,
+        "totalPages": 3
+      },
+      "totalItems": 5
+    }
+  }
+}

@@ -4,7 +4,8 @@ package digital.windmill.audra.service;
 import digital.windmill.audra.dao.entity.AssetTypeEntity;
 import digital.windmill.audra.dao.repository.AssetTypeRepository;
 import digital.windmill.audra.exception.DataNotFoundException;
-import digital.windmill.audra.service.impl.AssetTypeServiceImpl;
+import digital.windmill.audra.graphql.type.assetType.AssetTypesInput;
+import digital.windmill.audra.service.impl.AssetTypeService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,86 +17,66 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeServiceTest {
 
-    private static final Long ID = 1L;
-    private static final UUID TEST_UUID = UUID.randomUUID();
-    private static final String TITLE = "Laptops";
-    private static final String ICON = "https://google.com/laptops";
+    private static final UUID ASSETTYPE_UUID = UUID.randomUUID();
 
     @Mock
     private AssetTypeRepository assetTypeRepository;
 
 
     @InjectMocks
-    private AssetTypeServiceImpl assetTypeService;
+    private AssetTypeService assetTypeService;
 
     @Test
-    void shouldFindAssetByUuid() {
-        when(assetTypeRepository.findByUuid(any(UUID.class))).thenReturn(createAssetTypeEntity());
-        var result = assetTypeService.findAssetByUuid(TEST_UUID);
+    void shouldReturnAssetTypeByUuid(@Mock AssetTypeEntity assetTypeEntity) {
+        when(assetTypeRepository.findByUuid(ASSETTYPE_UUID))
+                .thenReturn(Optional.ofNullable(assetTypeEntity));
+
+        var result = assetTypeService.findAssetByUuid(ASSETTYPE_UUID);
         assertNotNull(result);
-        assertEquals(TEST_UUID, result.getUuid());
-    }
-
-
-    @Test
-    void shouldReturnAllAssetsType() {
-        when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
-                .thenReturn(createAssetTypeEntityList());
-        var result = assetTypeService.getAssetsType();
-        assertNotNull(result);
-        assertEquals(2L, result.getTotalElements());
-        assertEquals(TEST_UUID, result.getContent().get(0).getUuid());
-        assertEquals(TITLE, result.getContent().get(0).getTitle());
-        assertEquals(ICON, result.getContent().get(0).getIcon());
-
+        assertEquals(assetTypeEntity, result);
     }
 
     @Test
     void shouldThrowDataNotFoundWhenUuidIsNull() {
         when(assetTypeRepository.findByUuid(any(UUID.class)))
-                .thenThrow(new DataNotFoundException("location not found for :" + TEST_UUID));
-        Assertions.assertThrows(DataNotFoundException.class, () -> assetTypeService.findAssetByUuid(TEST_UUID));
+                .thenThrow(new DataNotFoundException("Asset Type not found " + ASSETTYPE_UUID));
+        Assertions.assertThrows(DataNotFoundException.class, () -> assetTypeService.findAssetByUuid(ASSETTYPE_UUID));
     }
 
+    @Test
+    void shouldReturnAllAssetTypes(@Mock AssetTypeEntity assetTypeEntity,
+                                   @Mock AssetTypesInput input) {
+        var assetTypePage = createOneItemPage(assetTypeEntity);
+        when(assetTypeRepository.findAll((Specification<AssetTypeEntity>) any(), any(PageRequest.class)))
+                .thenReturn(assetTypePage);
+        var result = assetTypeService.getAssetTypes(input);
 
-    private Optional<AssetTypeEntity> createAssetTypeEntity() {
-        return Optional.ofNullable(AssetTypeEntity.builder()
-                .uuid(TEST_UUID)
-                .icon(ICON)
-                .id(ID)
-                .title(TITLE)
-                .build());
+        assertNotNull(result);
+        assertSame(assetTypePage, result);
     }
 
-
-    private Page<AssetTypeEntity> createAssetTypeEntityList() {
-        return new PageImpl<>(createAssetsTypeEntity());
+    private <T> Page<T> createOneItemPage(T item) {
+        return new PageImpl<>(List.of(item));
     }
+    @Test
+    void shouldSaveAssetType(@Mock AssetTypeEntity assetTypeEntity) {
+        when(assetTypeRepository.save(assetTypeEntity)).thenReturn(assetTypeEntity);
 
-    private List<AssetTypeEntity> createAssetsTypeEntity() {
-        return Arrays.asList(AssetTypeEntity.builder()
-                        .uuid(TEST_UUID)
-                        .title(TITLE)
-                        .icon(ICON)
-                        .build(),
-                AssetTypeEntity.builder()
-                        .uuid(TEST_UUID)
-                        .title(TITLE)
-                        .icon(ICON)
-                        .build()
-        );
+        var result = assetTypeService.save(assetTypeEntity);
+        assertNotNull(result);
+        assertSame(assetTypeEntity, result);
     }
 }

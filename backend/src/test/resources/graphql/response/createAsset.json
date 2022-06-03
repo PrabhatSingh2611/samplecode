@@ -1,25 +1,26 @@
 {
-  "data":{
-    "createAsset":{
-      "asset":{
-        "title":"asset 1",
-        "serialNumber":"123qwe",
-        "assignee":{
-          "id":"48b560ab-7450-4088-b6bb-f57638ea0877"
+  "data": {
+    "createAsset": {
+      "asset": {
+        "title": "asset 1",
+        "serialNumber": "123qwe",
+        "assignee": {
+          "id": "48b560ab-7450-4088-b6bb-f57638ea0877"
         },
-        "location":{
+        "location": {
           "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
           "name": "Lisbon"
         },
-        "type":{
-          "id":"5478b586-e607-4448-ac05-3e5f2adbbc1b",
-          "icon":"https://google.com/laptops",
-          "title":"Laptops"
+        "type": {
+          "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+          "name": "Laptops",
+          "iconName": "laptops_icon",
+          "createdAt": "2021-11-21T18:14:25.480Z"
         },
-        "tagNumber":"123-MCP-4567",
-        "archivedDate":"2022-03-23T19:37:14.480Z",
-        "waybillDate":"2022-03-23T19:37:14.480Z",
-        "nextActionDate":"2022-03-23T19:37:14.480Z"
+        "tagNumber": "123-MCP-4567",
+        "archivedDate": "2022-03-23T19:37:14.480Z",
+        "waybillDate": "2022-03-23T19:37:14.480Z",
+        "nextActionDate": "2022-03-23T19:37:14.480Z"
       }
     }
   }

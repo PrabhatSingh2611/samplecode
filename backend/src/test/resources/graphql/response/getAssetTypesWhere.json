@@ -1,0 +1,23 @@
+{
+  "data": {
+    "assetTypes": {
+      "items": [
+        {
+          "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+          "name": "Monitors",
+          "iconName": "monitors_icon",
+          "createdAt": "2022-02-14T21:37:05.480Z",
+          "category": {
+            "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+            "name": "Devices"
+          }
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 1
+    }
+  }
+}

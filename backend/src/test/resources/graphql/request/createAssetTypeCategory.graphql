@@ -1,0 +1,7 @@
+mutation createLocation{
+    createAssetTypeCategory(input: {name: "accessories"}){
+        assetTypeCategory {
+            name
+        }
+    }
+}

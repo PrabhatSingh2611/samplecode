@@ -11,7 +11,7 @@ import digital.windmill.audra.graphql.mapper.AssetTypeMapperImpl;
 import digital.windmill.audra.graphql.mapper.DateTimeMapper;
 import digital.windmill.audra.graphql.mapper.EmployeeMapperImpl;
 import digital.windmill.audra.graphql.mapper.LocationMapperImpl;
-import digital.windmill.audra.graphql.type.AssetType;
+import digital.windmill.audra.graphql.type.assetType.AssetType;
 import digital.windmill.audra.graphql.type.input.ArchiveAssetInput;
 import digital.windmill.audra.graphql.type.input.CreateAssetInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
@@ -54,7 +54,6 @@ public class AssetMapperTest {
     private static final String ACTION_NAME = "update";
     private static final String COMMENT = "nothing";
     private static final String TAG_NUMBER = "323-45CXRE";
-    private final static ZonedDateTime WAY_BILL_DATE = ZonedDateTime.now();
     private final static Instant LOCAL_DATE = Instant.now();
     private final static ZonedDateTime ZONED_DATE_TIME = ZonedDateTime.now();
 
@@ -64,7 +63,7 @@ public class AssetMapperTest {
     @Test
     void shouldMapAssetEntityToAsset() {
         when(locationMapper.map(any(LocationEntity.class))).thenReturn(createLocation());
-        when(assetTypeMapper.mapAssetTypeEntityToAssetType(any(AssetTypeEntity.class))).thenReturn(createAssetType());
+        when(assetTypeMapper.map(any(AssetTypeEntity.class))).thenReturn(createAssetType());
         when(dateTimeMapper.map(any(Instant.class))).thenReturn(ZONED_DATE_TIME);
         var actual = mapper.mapAssetEntityToAsset(createAssetEntity());
         assertAll(
@@ -75,6 +74,7 @@ public class AssetMapperTest {
                 () -> assertEquals(TEST_UUID, actual.getLocation().getId()),
                 () -> assertEquals(TAG_NUMBER, actual.getTagNumber()),
                 () -> assertEquals(ZONED_DATE_TIME, actual.getWaybillDate()),
+                () -> assertEquals(ZONED_DATE_TIME, actual.getNextActionDate()),
                 () -> assertEquals(ZONED_DATE_TIME, actual.getArchivedDate())
         );
     }
@@ -90,9 +90,11 @@ public class AssetMapperTest {
                 () -> assertEquals(ASSET_TITLE, actual.getTitle()),
                 () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerialNumber()),
                 () -> assertEquals(TEST_UUID, actual.getType().getUuid()),
-                () -> assertEquals(NAME, actual.getType().getTitle()),
+                () -> assertEquals(NAME, actual.getType().getName()),
                 () -> assertEquals(TEST_UUID, actual.getAssignee().getUuid()),
+                () -> assertEquals(LOCAL_DATE, actual.getNextActionDate()),
                 () -> assertEquals(LOCAL_DATE, actual.getArchivedDate()),
+                () -> assertEquals(LOCAL_DATE, actual.getWaybillDate()),
                 () -> assertEquals(ACTION_NAME, actual.getActionOnName()),
                 () -> assertEquals(COMMENT, actual.getComment()),
                 () -> assertEquals(TAG_NUMBER, actual.getTagNumber())
@@ -102,18 +104,19 @@ public class AssetMapperTest {
     @Test
     void shouldMapAssetUpdateInputToAssetEntity(@Mock LocationEntity locationEntity) {
         when(dateTimeMapper.map(any(ZonedDateTime.class))).thenReturn(LOCAL_DATE);
-        var actual = mapper.mapAssetUpdateInputToAssetEntity(createAssetEntity(),updateAssetInput(),
+        var actual = mapper.mapAssetUpdateInputToAssetEntity(createAssetEntity(), updateAssetInput(),
                 createAssetTypeEntity(),
                 createEmployeeEntity(),
                 locationEntity);
         assertAll(
-                () -> assertEquals(TEST_UUID, actual.getUuid()),
                 () -> assertEquals(ASSET_TITLE, actual.getTitle()),
                 () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerialNumber()),
                 () -> assertEquals(TEST_UUID, actual.getType().getUuid()),
-                () -> assertEquals(NAME, actual.getType().getTitle()),
+                () -> assertEquals(NAME, actual.getType().getName()),
                 () -> assertEquals(TEST_UUID, actual.getAssignee().getUuid()),
+                () -> assertEquals(LOCAL_DATE, actual.getNextActionDate()),
                 () -> assertEquals(LOCAL_DATE, actual.getArchivedDate()),
+                () -> assertEquals(LOCAL_DATE, actual.getWaybillDate()),
                 () -> assertEquals(ACTION_NAME, actual.getActionOnName()),
                 () -> assertEquals(COMMENT, actual.getComment()),
                 () -> assertEquals(TAG_NUMBER, actual.getTagNumber())
@@ -126,12 +129,13 @@ public class AssetMapperTest {
         var actual = mapper.mapArchiveAssetInputToAssetEntity(archiveAssetInput(),
                 createAssetEntity());
         assertAll(
-                () -> assertEquals(TEST_UUID, actual.getUuid()),
                 () -> assertEquals(ASSET_TITLE, actual.getTitle()),
                 () -> assertEquals(ASSET_SERIAL_NUMBER, actual.getSerialNumber()),
                 () -> assertEquals(TEST_UUID, actual.getType().getUuid()),
-                () -> assertEquals(NAME, actual.getType().getTitle()),
+                () -> assertEquals(NAME, actual.getType().getName()),
                 () -> assertEquals(TEST_UUID, actual.getAssignee().getUuid()),
+                () -> assertEquals(LOCAL_DATE, actual.getNextActionDate()),
+                () -> assertEquals(LOCAL_DATE, actual.getWaybillDate()),
                 () -> assertEquals(ACTION_NAME, actual.getActionOnName()),
                 () -> assertEquals(COMMENT, actual.getComment()),
                 () -> assertEquals(TAG_NUMBER, actual.getTagNumber())
@@ -148,7 +152,7 @@ public class AssetMapperTest {
         return AssetTypeEntity.builder()
                 .uuid(TEST_UUID)
                 .id(ID)
-                .title(NAME)
+                .name(NAME)
                 .build();
     }
 
@@ -200,7 +204,7 @@ public class AssetMapperTest {
         a.setType(AssetTypeEntity
                 .builder()
                 .uuid(TEST_UUID)
-                .title(NAME)
+                .name(NAME)
                 .build());
         a.setSerialNumber(ASSET_SERIAL_NUMBER);
         a.setLocation(createLocationEntity());

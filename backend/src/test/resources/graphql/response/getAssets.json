@@ -14,8 +14,9 @@
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
+            "name": "Laptops",
+            "iconName": "laptops_icon",
+            "createdAt": "2021-11-21T18:14:25.480Z"
           },
           "assignee": {
             "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
@@ -46,8 +47,9 @@
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
+            "name": "Headphones",
+            "iconName": "headphones_icon",
+            "createdAt": "2022-05-11T13:18:14.480Z"
           },
           "assignee": {
             "id": "78098941-0591-4b9c-998f-95a65e1ece55",
@@ -78,8 +80,9 @@
           },
           "type": {
             "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
-            "title": "Monitors",
-            "icon": "https://google.com/monitors"
+            "name": "Monitors",
+            "iconName": "monitors_icon",
+            "createdAt": "2022-02-14T21:37:05.480Z"
           },
           "assignee": {
             "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
@@ -110,8 +113,9 @@
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
+            "name": "Laptops",
+            "iconName": "laptops_icon",
+            "createdAt": "2021-11-21T18:14:25.480Z"
           },
           "assignee": {
             "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
@@ -142,8 +146,9 @@
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
+            "name": "Laptops",
+            "iconName": "laptops_icon",
+            "createdAt": "2021-11-21T18:14:25.480Z"
           },
           "assignee": {
             "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
@@ -174,8 +179,9 @@
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
+            "name": "Headphones",
+            "iconName": "headphones_icon",
+            "createdAt": "2022-05-11T13:18:14.480Z"
           },
           "assignee": {
             "id": "b48db556-3bd0-479e-9f1a-231be9636887",
@@ -206,8 +212,9 @@
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
+            "name": "Headphones",
+            "iconName": "headphones_icon",
+            "createdAt": "2022-05-11T13:18:14.480Z"
           },
           "assignee": {
             "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
@@ -256,8 +263,9 @@
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
+            "name": "Laptops",
+            "iconName": "laptops_icon",
+            "createdAt": "2021-11-21T18:14:25.480Z"
           },
           "assignee": {
             "id": "b48db556-3bd0-479e-9f1a-231be9636887",

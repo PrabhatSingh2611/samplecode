@@ -5,17 +5,18 @@
         "id": "e838b736-721a-4cf8-80f3-ebcb6da01a36",
         "title": "Macbook Pro 13",
         "serialNumber": "Е673РВ",
-        "tagNumber":null,
-        "waybillDate":"2022-03-23T19:37:14.480Z",
-        "actionOnName":null,
-        "location":{
+        "tagNumber": null,
+        "waybillDate": "2022-03-23T19:37:14.480Z",
+        "actionOnName": null,
+        "location": {
           "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
           "name": "Lisbon"
         },
         "type": {
           "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-          "title": "Laptops",
-          "icon": "https://google.com/laptops"
+          "name": "Laptops",
+          "iconName": "laptops_icon",
+          "createdAt": "2021-11-21T18:14:25.480Z"
         },
         "assignee": {
           "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
@@ -23,11 +24,11 @@
           "lastName": "Morris",
           "role": "ADMIN",
           "birthday": "2022-03-23T19:37:14.480Z",
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
+          "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
             "name": "Lisbon"
           }

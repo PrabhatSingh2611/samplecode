@@ -1,0 +1,8 @@
+mutation updateAssetType{
+    updateAssetType(input:{id: "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b", name:"Desktop", iconName: "https://google.com/desktop", category: {id: "f2b267a2-3336-4cdf-97cd-295207054497"}} ){
+        assetType{
+            name
+            iconName
+        }
+    }
+}

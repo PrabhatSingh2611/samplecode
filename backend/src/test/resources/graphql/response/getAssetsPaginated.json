@@ -14,8 +14,9 @@
           },
           "type": {
             "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
-            "title": "Headphones",
-            "icon": "https://google.com/headphones"
+            "name": "Headphones",
+            "iconName": "headphones_icon",
+            "createdAt": "2022-05-11T13:18:14.480Z"
           },
           "assignee": {
             "id": "6bac1755-c88c-4462-ae14-527b54b03e0d",
@@ -64,8 +65,9 @@
           },
           "type": {
             "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-            "title": "Laptops",
-            "icon": "https://google.com/laptops"
+            "name": "Laptops",
+            "iconName": "laptops_icon",
+            "createdAt": "2021-11-21T18:14:25.480Z"
           },
           "assignee": {
             "id": "b48db556-3bd0-479e-9f1a-231be9636887",

@@ -17,5 +17,4 @@ public class Question implements Node {
     private UUID id;
     private String body;
     private QuestionType type;
-    private OptionConnectionPayload options;
 }

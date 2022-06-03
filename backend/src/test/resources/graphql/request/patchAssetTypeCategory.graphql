@@ -1,0 +1,8 @@
+mutation patchLocationCountry {
+    patchAssetTypeCategory(input: {id: "30502d59-30b3-42e1-9f6b-11670c7b2083", name: "electricals" }){
+        assetTypeCategory {
+            id
+            name
+        }
+    }
+}

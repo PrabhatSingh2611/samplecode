@@ -27,7 +27,9 @@ mutation updateAsset{
                 tagNumber
                 type {
                     id
-                    icon
+                    name
+                    iconName
+                    createdAt
                 }
                 location {
                     id

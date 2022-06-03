@@ -1,0 +1,10 @@
+{
+  "data": {
+    "updateAssetType": {
+      "assetType": {
+        "name": "Desktop",
+        "iconName": "https://google.com/desktop"
+      }
+    }
+  }
+}

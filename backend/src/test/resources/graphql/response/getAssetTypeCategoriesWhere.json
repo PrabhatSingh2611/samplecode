@@ -1,0 +1,55 @@
+{
+  "data": {
+    "assetTypeCategories": {
+      "items": [
+        {
+          "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+          "name": "Devices",
+          "types": [
+            {
+              "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+              "name": "Laptops",
+              "iconName": "laptops_icon",
+              "createdAt": "2021-11-21T18:14:25.480Z",
+              "category": {
+                "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+                "name": "Devices"
+              }
+            },
+            {
+              "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+              "name": "Monitors",
+              "iconName": "monitors_icon",
+              "createdAt": "2022-02-14T21:37:05.480Z",
+              "category": {
+                "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+                "name": "Devices"
+              }
+            }
+          ]
+        },
+        {
+          "id": "30502d59-30b3-42e1-9f6b-11670c7b2083",
+          "name": "Accessories",
+          "types": [
+            {
+              "id": "773e44fe-ca9e-4e2b-872b-3a9dacb7ab57",
+              "name": "Headphones",
+              "iconName": "headphones_icon",
+              "createdAt": "2022-05-11T13:18:14.480Z",
+              "category": {
+                "id": "30502d59-30b3-42e1-9f6b-11670c7b2083",
+                "name": "Accessories"
+              }
+            }
+          ]
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 0,
+        "totalPages": 1
+      },
+      "totalItems": 2
+    }
+  }
+}

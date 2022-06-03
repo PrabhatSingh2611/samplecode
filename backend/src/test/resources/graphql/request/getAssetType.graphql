@@ -1,9 +1,21 @@
 query {
     assetType(input: {id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"}) {
-        item {
+        assetType {
             id
-            title
-            icon
+            name
+            iconName
+            createdAt
+            category {
+                id
+                name
+                types {
+                    id
+                    name
+                    iconName
+                    createdAt
+
+                }
+            }
         }
     }
 }

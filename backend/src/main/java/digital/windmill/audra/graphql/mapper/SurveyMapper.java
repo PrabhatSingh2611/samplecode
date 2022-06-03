@@ -23,7 +23,6 @@ import java.util.UUID;
 public interface SurveyMapper {
 
     @Mapping(target = "id", source = "uuid")
-    @Mapping(target = "questions", ignore = true)
     Survey mapSurveyEntityToSurvey(SurveyEntity entity);
 
     @Mapping(target = "id", ignore = true)

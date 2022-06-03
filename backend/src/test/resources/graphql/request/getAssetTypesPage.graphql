@@ -1,0 +1,19 @@
+query {
+    assetTypes(input: {pagination: {itemsPerPage: 2, pageNumber: 1}}){
+        items{
+            id
+            name
+            iconName
+            createdAt
+            category {
+                id
+                name
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

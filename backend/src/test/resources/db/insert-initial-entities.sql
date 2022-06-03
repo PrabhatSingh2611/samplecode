@@ -30,11 +30,23 @@ VALUES
 
 ALTER SEQUENCE employee_id_seq RESTART WITH 1000;
 
-INSERT INTO asset_type (id, uuid, title, icon)
+INSERT INTO asset_type_category (id, uuid, name)
 VALUES
-(1, '5478b586-e607-4448-ac05-3e5f2adbbc1b', 'Laptops', 'https://google.com/laptops'),
-(2, 'b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b', 'Monitors', 'https://google.com/monitors'),
-(3, '773e44fe-ca9e-4e2b-872b-3a9dacb7ab57', 'Headphones', 'https://google.com/headphones');
+    (1, 'f2b267a2-3336-4cdf-97cd-295207054497', 'Devices'),
+    (2, '30502d59-30b3-42e1-9f6b-11670c7b2083', 'Accessories'),
+    (3, '5ae9cce4-b25f-447f-8e6f-a534c9a07934', 'Licenses');
+
+INSERT INTO asset_type (id, uuid, name, icon_name, created_at, asset_type_category_id)
+VALUES
+(1, '5478b586-e607-4448-ac05-3e5f2adbbc1b', 'Laptops', 'laptops_icon','2021-11-21T18:14:25.480425Z',1),
+(2, 'b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b', 'Monitors', 'monitors_icon','2022-02-14T21:37:05.480425Z',1),
+(3, '773e44fe-ca9e-4e2b-872b-3a9dacb7ab57', 'Headphones', 'headphones_icon','2022-05-11T13:18:14.480425Z',2),
+(4, '9bec3da6-13d5-408a-8ecf-b0fae84f4ba3', 'OS', 'os_icon','2022-05-11T13:18:14.480425Z',3),
+(5, 'e67a9709-0ae7-4da8-aa7c-6731cb52921d', 'Application', 'app_icon','2022-05-11T13:18:14.480425Z',3);
+
+ALTER SEQUENCE asset_type_id_seq RESTART WITH 1000;
+ALTER SEQUENCE asset_type_category_id_seq RESTART WITH 1000;
+
 
 INSERT INTO asset (id, uuid, title, serial_number, asset_type_id, employee_id, archived_date, purchased_date, location_id)
 VALUES

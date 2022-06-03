@@ -15,8 +15,9 @@ query
             }
             type {
                 id
-                title
-                icon
+                name
+                iconName
+                createdAt
             }
             assignee {
                 id

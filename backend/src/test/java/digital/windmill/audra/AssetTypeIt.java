@@ -17,11 +17,31 @@ class AssetTypeIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
-    void shouldReturnAssetTypeByUuid() throws IOException, URISyntaxException {
+    void shouldReturnAssetTypeById() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetType.graphql");
-
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getAssetType.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllAssetTypesByWhereInput() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetTypesWhere.graphql");
+
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getAssetTypesWhere.json");
+        JsonNode expectedJson = objectMapper.readTree(jsonString);
+        assertEquals(expectedJson, response.get("$", JsonNode.class));
+    }
+
+    @Test
+    @Sql("classpath:/db/insert-initial-entities.sql")
+    void shouldReturnAllAssetTypesByPage() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetTypesPage.graphql");
+        log.info(response.readTree().toPrettyString());
+        String jsonString = readFromResource("graphql/response/getAssetTypesPage.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
@@ -38,11 +58,11 @@ class AssetTypeIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
-    void shouldReturnAllAssetsType() throws IOException, URISyntaxException {
-        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/getAssetTypes.graphql");
+    void shouldUpdateAssetType() throws IOException, URISyntaxException {
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/request/updateAssetType.graphql");
 
         log.info(response.readTree().toPrettyString());
-        String jsonString = readFromResource("graphql/response/getAssetTypes.json");
+        String jsonString = readFromResource("graphql/response/updateAssetType.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }

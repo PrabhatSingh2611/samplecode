@@ -1,8 +1,13 @@
 {
   "data": {
     "createAssetType": {
-      "item": {
-        "title": "Table"
+      "assetType": {
+        "name": "Chairs",
+        "iconName": "https://google.com/chairs",
+        "category": {
+          "id": "5ae9cce4-b25f-447f-8e6f-a534c9a07934",
+          "name": "Licenses"
+        }
       }
     }
   }

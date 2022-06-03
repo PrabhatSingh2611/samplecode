@@ -3,7 +3,8 @@ type Query {
     asset(input: AssetInput!): AssetPayload!
     assets(input: AssetsInput!): AssetConnectionPayload!
     assetType(input: AssetTypeInput!): AssetTypePayload!
-    assetTypes: AssetTypeConnection!
+    assetTypes(input: AssetTypesInput!): AssetTypeConnectionPayload!
+    assetTypeCategories(input: AssetTypeCategoriesInput!): AssetTypeCategoryConnectionPayload!
     employees(input: EmployeesInput): EmployeeConnectionPayload!
     location(input: LocationInput!): LocationPayload!
     locations(input: LocationsInput!): LocationConnectionPayload!

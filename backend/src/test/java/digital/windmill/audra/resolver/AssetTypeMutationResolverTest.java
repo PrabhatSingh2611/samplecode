@@ -1,9 +1,10 @@
 package digital.windmill.audra.resolver;
 
-import digital.windmill.audra.graphql.facade.AssetTypeFacade;
-import digital.windmill.audra.graphql.resolver.asset.AssetTypeMutationResolver;
-import digital.windmill.audra.graphql.type.AssetType;
-import digital.windmill.audra.graphql.type.input.CreateAssetTypeInput;
+import digital.windmill.audra.graphql.facade.impl.AssetTypeFacade;
+import digital.windmill.audra.graphql.resolver.assetType.AssetTypeMutationResolver;
+import digital.windmill.audra.graphql.type.assetType.AssetType;
+import digital.windmill.audra.graphql.type.assetType.CreateAssetTypeInput;
+import digital.windmill.audra.graphql.type.assetType.UpdateAssetTypeInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,7 +33,19 @@ public class AssetTypeMutationResolverTest {
 
         var result = assetTypeMutationResolver.createAssetType(input);
         assertNotNull(result);
-        assertSame(assetType, result.getItem());
+        assertSame(assetType, result.getAssetType());
+
+    }
+
+    @Test
+    void shouldUpdateAssetType(@Mock UpdateAssetTypeInput input,
+                               @Mock AssetType assetType) {
+
+        when(assetTypeFacade.updateAssetType(any(UpdateAssetTypeInput.class))).thenReturn(assetType);
+
+        var result = assetTypeMutationResolver.updateAssetType(input);
+        assertNotNull(result);
+        assertSame(assetType, result.getAssetType());
 
     }
 }

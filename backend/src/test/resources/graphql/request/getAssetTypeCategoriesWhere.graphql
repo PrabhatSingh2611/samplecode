@@ -1,0 +1,25 @@
+query {
+    assetTypeCategories(input: {where: {name: "ces"}}){
+        items{
+            id
+            name
+            types{
+                id
+                name
+                iconName
+                createdAt
+                category {
+                    id
+                    name
+                }
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}
+
+

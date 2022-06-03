@@ -1,10 +1,29 @@
 {
   "data": {
     "assetType": {
-      "item": {
+      "assetType": {
         "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
-        "title": "Laptops",
-        "icon": "https://google.com/laptops"
+        "name": "Laptops",
+        "iconName": "laptops_icon",
+        "createdAt": "2021-11-21T18:14:25.480Z",
+        "category": {
+          "id": "f2b267a2-3336-4cdf-97cd-295207054497",
+          "name": "Devices",
+          "types": [
+            {
+              "id": "5478b586-e607-4448-ac05-3e5f2adbbc1b",
+              "name": "Laptops",
+              "iconName": "laptops_icon",
+              "createdAt": "2021-11-21T18:14:25.480Z"
+            },
+            {
+              "id": "b7c34a7d-eeb8-4491-b2c8-0e79d1367b6b",
+              "name": "Monitors",
+              "iconName": "monitors_icon",
+              "createdAt": "2022-02-14T21:37:05.480Z"
+            }
+          ]
+        }
       }
     }
   }

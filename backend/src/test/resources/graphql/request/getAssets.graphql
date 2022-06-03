@@ -12,8 +12,9 @@ query getAssets($input: AssetsInput!) {
             }
             type {
                 id
-                title
-                icon
+                name
+                iconName
+                createdAt
             }
             assignee {
                 id

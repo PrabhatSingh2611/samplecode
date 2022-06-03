@@ -1,11 +1,55 @@
 type AssetType implements Node {
     id: UUID!
-    title: String
-    icon: String
+    category: AssetTypeCategory
+    name: String!
+    iconName: String!
+    createdAt: DateTime!
 }
 
-type AssetTypeConnection implements ConnectionPayload {
+type AssetTypeCategory implements Node {
+    id: UUID!
+    name: String!
+    types: [AssetType!]!
+}
+
+input CreateAssetTypeInput {
+    category: NodeInput
+    name: String!
+    iconName: String!
+}
+
+input UpdateAssetTypeInput {
+    id: UUID!
+    category: NodeInput
+    name: String!
+    iconName: String!
+}
+
+input CreateAssetTypeCategoryInput {
+    name: String!
+}
+
+input PatchAssetTypeCategoryInput {
+    id: UUID!
+    name: String
+}
+
+type AssetTypePayload {
+    assetType: AssetType!
+}
+
+type AssetTypeCategoryPayload {
+    assetTypeCategory: AssetTypeCategory
+}
+
+type AssetTypeConnectionPayload implements ConnectionPayload {
     items: [AssetType!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+type AssetTypeCategoryConnectionPayload implements ConnectionPayload {
+    items: [AssetTypeCategory!]!
     pageInfo: PageInfo!
     totalItems: Int!
 }
@@ -14,10 +58,30 @@ input AssetTypeInput {
     id: UUID!
 }
 
-type AssetTypePayload {
-    item: AssetType
+input AssetTypesInput {
+    where: AssetTypesWhereInput
+    pagination: PageInput
+    sort: [AssetTypeSort!] = createdAt_DESC
 }
 
-input CreateAssetTypeInput {
-    title: String!
+input AssetTypeCategoriesInput {
+    where: AssetTypeCategoriesWhereInput
+    pagination: PageInput
+    sort: [AssetTypeSort!] = createdAt_DESC
 }
+
+enum AssetTypeSort {
+    createdAt_DESC
+    createdAt_ASC
+}
+
+input AssetTypesWhereInput {
+    name: String
+    category: NodeInput
+}
+
+input AssetTypeCategoriesWhereInput {
+    name: String
+}
+
+

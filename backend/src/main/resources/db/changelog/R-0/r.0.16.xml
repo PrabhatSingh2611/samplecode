@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="r.0.16.1" author="prabhat.singh">
+        <renameColumn tableName="asset_type" oldColumnName="title" newColumnName="name"/>
+        <renameColumn tableName="asset_type" oldColumnName="icon" newColumnName="icon_name"/>
+        <addColumn tableName="asset_type">
+            <column name="created_at" type="timestamptz"/>
+        </addColumn>
+
+        <createTable tableName="asset_type_category">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(100)"/>
+            <column name="created_at" type="timestamptz"/>
+        </createTable>
+
+        <addColumn tableName="asset_type">
+            <column name="asset_type_category_id" type="int8">
+                <constraints foreignKeyName="fk_asset_type_to_category" references="asset_type_category(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="r.0.16.2" author="tetiana.hladka">
+        <sql>
+            INSERT INTO asset_type_category (id, uuid, name)
+            VALUES
+                (1, 'adeba05c-4904-4bb8-a6e9-253b61270b09', 'Computer Devices'),
+                (2, '4cb9c158-f94e-4b12-b8a0-7747f484f3e7', 'Computer Hardware'),
+                (3, 'e31d2618-c7de-4adc-82ea-c1285f789bf1', 'Computer Accessories'),
+                (4, '3a888f0a-be8a-4eab-aa17-e80de65e19b8', 'Software Licenses'),
+                (5, 'fec4e0af-af58-4b21-ba8f-594d4c3f0eba', 'Office Equipment'),
+                (6, 'b09c6515-dc1f-4bbd-bea1-0b5f2f3d0110', 'Vehicles');
+
+            UPDATE asset_type SET name = 'Laptop', icon_name = 'LaptopMac', asset_type_category_id = 1 WHERE id = 1;
+            UPDATE asset_type SET name = 'Monitor', icon_name = 'Monitor', asset_type_category_id = 2 WHERE id = 2;
+            UPDATE asset_type SET name = 'Keyboard', icon_name = 'Keyboard', asset_type_category_id = 3 WHERE id = 3;
+            UPDATE asset_type SET name = 'Smartphone', icon_name = 'PhoneIphone', asset_type_category_id = 1 WHERE id = 4;
+            UPDATE asset_type SET name = 'Application', icon_name = 'Apps', asset_type_category_id = 4 WHERE id = 5;
+            DELETE FROM asset_type WHERE id > 5;
+
+            INSERT INTO asset_type (id, uuid, name, icon_name, asset_type_category_id)
+            VALUES
+                (6, 'ec505cb3-3563-47bc-9867-51264d1a01ff', 'Server', 'Storage', 1),
+                (7, '28339809-9f17-4ef5-a9c8-f6e5135ce4a4', 'Desktop', 'DesktopMac', 1),
+                (8, '39773d3e-2e87-465f-b02a-57e9578d6ed9', 'Laptop', 'LaptopMac', 1),
+                (9, '5502c9e5-d15a-400e-aa50-49884979a77e', 'Tablet', 'TabletMac', 1),
+                (10, 'c1ae1bc9-3a08-4bbb-b621-07b135e0ec0a', 'Other', 'DevicesOther', 1),
+                (11, '54ad5fcf-70c6-414e-9d12-9d532b8173b2', 'Printer/MFU', 'Print', 2),
+                (12, '90121edc-e8cc-4db0-a603-bd151fbdbf6f', 'Network Equipment', 'Router', 2),
+                (13, '348177a8-8a2d-4673-8ba4-6168ebd3e38d', 'Storage Devices', 'SdStorage', 2),
+                (14, '2bc138f2-9c3b-448f-a0a1-c3c162149d4e', 'Memory Extension', 'Memory', 2),
+                (15, '5ce3c585-5095-4e19-9462-51e31f62efdf', 'Power Supply', 'Power', 2),
+                (16, '187b49e4-6208-481a-a9a9-1a53e17e8b88', 'Headset', 'Headphones', 3),
+                (17, '7c574403-f6a3-4906-a130-b1c7c7b52a43', 'Camera', 'PhotoCamera', 3),
+                (18, '7ee1aa0a-35ce-4e68-bb33-3bac9abc8491', 'Pen Tablet', 'Tablet', 3),
+                (19, '6303e24b-b607-4bdc-b0bd-9818e8e12bda', 'Stylus', 'Edit', 3),
+                (20, '48bb8cfd-cda0-4f76-99db-44dd75c062fc', 'Adapter/Connector', 'SettingsInputHdmi', 3),
+                (21, '6d9b4b99-a27a-4bcf-b7d9-0d165e577655', 'OS', 'Save', 4),
+                (22, '1912780b-c595-42dc-923a-82bf2db1f817', 'Furniture', 'ChairAlt', 5),
+                (23, '6d749084-aec4-47d2-9fc2-1d9c739796c3', 'Electric Device', 'EmojiObjects', 5),
+                (24, '1a7e3f97-158a-4da9-93ea-da4dc45778ff', 'Other', 'Business', 5),
+                (25, 'ad06ada7-a7e5-464b-a945-74d5dcfbb751', 'Auto', 'DirectionsCar', 6);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
