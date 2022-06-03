@@ -151,7 +151,7 @@ export {
   WListItemTextProps,
   WListSubheaderProps,
 } from './components/list';
-export { default as WMarkdown, WIMarkdownProps } from "./components/markdown"
+export { default as WMarkdown, WIMarkdownProps } from './components/markdown';
 export {
   default as WMenu,
   WMenuItem,

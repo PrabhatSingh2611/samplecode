@@ -29,8 +29,8 @@ fragment AssetsItem on Asset {
 
 fragment AssetsType on AssetType {
     id
-    title
-    icon
+    name
+    iconName
 }
 
 fragment AssetsLocation on Location {

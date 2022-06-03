@@ -3,14 +3,14 @@ import React from 'react';
 import {
     WBox,
     WTable,
-    WImage,
     WAvatar,
     WList,
     formatDate,
     AlignTableCell,
     WPill,
-    castToString,
     deleteUtcFromDate,
+    WIcon,
+    TIcons,
 } from 'wdx';
 
 import { AssigneeCell } from 'features/assets-table/components/table/table-cells/AssigneeCell';
@@ -36,12 +36,7 @@ export default function AssetTableRow({
         <WTable.Row hover>
             <WTable.Cell align={AlignTableCell.LEFT}>
                 <WAvatar variant="rounded" sx={{ width: 64, height: 64, bgcolor: '#D6E4FF' }}>
-                    <WImage
-                        disabledEffect
-                        src={castToString(type.icon)}
-                        alt={castToString(type.title)}
-                        sx={{ width: '100%', height: '100%' }}
-                    />
+                    <WIcon name={type.iconName as TIcons} sx={{ height: 30, color: 'black' }} />
                 </WAvatar>
             </WTable.Cell>
 
