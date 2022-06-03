@@ -28,10 +28,10 @@
         "unused-exports": {
             "outputs": []
         },
-        "codegen": {
+        "codegen:develop": {
             "cache": false
         },
-        "codegen:staging": {
+        "codegen:local": {
             "cache": false
         }
     }
