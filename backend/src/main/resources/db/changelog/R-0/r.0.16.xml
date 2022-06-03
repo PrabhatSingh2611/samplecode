@@ -72,4 +72,10 @@
         </sql>
     </changeSet>
 
+    <changeSet id="r.0.16.3" author="tetiana.hladka">
+        <sql>
+            UPDATE asset_type SET icon_name = trim(both '_' from lower(regexp_replace(icon_name, '([A-Z])','_\1', 'g')));
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
