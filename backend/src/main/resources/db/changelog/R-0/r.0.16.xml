@@ -84,9 +84,9 @@
         </sql>
     </changeSet>
 
-    <changeSet id="r.0.16.5" author="tetiana.hladka">
+    <changeSet id="r.0.16.6" author="tetiana.hladka">
         <sql>
-            UPDATE asset_type SET icon_name = 'settings-input_hdmi' WHERE id = 20;
+            UPDATE asset_type SET icon_name = 'settings-input-hdmi' WHERE id = 20;
         </sql>
     </changeSet>
 
