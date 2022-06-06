@@ -35,4 +35,5 @@ type Mutation {
     createLeaveRequest(input: CreateLeaveRequestInput!): LeaveRequestPayload!
     patchLeaveRequest(input: PatchLeaveRequestInput!): LeaveRequestPayload!
     deleteLeaveRequest(input: DeleteLeaveRequestInput!): DeleteLeaveRequestPayload!
+    createPost(input: CreatePostInput!): PostPayload!
 }

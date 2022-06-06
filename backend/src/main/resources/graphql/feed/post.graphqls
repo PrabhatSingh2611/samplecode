@@ -1,0 +1,16 @@
+input CreatePostInput {
+    text: String
+    images: NodesInput
+}
+
+type PostPayload {
+    post: Post
+}
+
+type Post implements FeedItem & Node {
+    id: UUID!
+    text: String
+    images: [Resource!]
+    author: Employee!
+    createdAt: DateTime!
+}

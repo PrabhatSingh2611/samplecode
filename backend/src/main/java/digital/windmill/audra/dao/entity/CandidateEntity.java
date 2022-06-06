@@ -1,9 +1,7 @@
 package digital.windmill.audra.dao.entity;
 
-import digital.windmill.audra.dao.entity.enums.CandidateStatus;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
+import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,8 +16,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
-import java.util.UUID;
+
+import org.hibernate.annotations.Type;
+
+import digital.windmill.audra.dao.entity.enums.CandidateStatus;
+import digital.windmill.audra.graphql.type.Node;
+import digital.windmill.audra.graphql.type.Resource;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Getter
 @Setter
@@ -41,7 +49,6 @@ public class CandidateEntity {
     @Column(name = "linkedin")
     private String linkedIn;
     @ManyToMany(cascade = CascadeType.MERGE)
-    @Column(name = "attachment_uuid")
     @JoinTable(name = "candidate_to_resources",
             joinColumns = @JoinColumn(name = "candidate_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "resource_id", referencedColumnName = "id"))

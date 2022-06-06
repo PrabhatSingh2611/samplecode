@@ -1,0 +1,19 @@
+input FeedInput {
+    pagination: PageInput
+    sort: [FeedSort!]! = [createdAt_DESC]
+}
+
+enum FeedSort {
+    createdAt_DESC
+    createdAt_ASC
+}
+
+type FeedConnectionPayload implements ConnectionPayload {
+    items: [FeedItem!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
+
+interface FeedItem implements Node {
+    id: UUID!
+}

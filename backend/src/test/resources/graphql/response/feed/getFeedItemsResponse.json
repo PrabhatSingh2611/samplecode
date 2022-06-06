@@ -1,0 +1,42 @@
+{
+  "data": {
+    "feed": {
+      "items": [
+        {
+          "id": "32e22341-040f-4b5f-9b1a-4dc2c59813f6",
+          "text": "post 2",
+          "author": {
+            "id": "5bea1a4d-b457-47c9-bf8b-72f50182b707"
+          },
+          "createdAt": "2022-05-31T15:10:23.296Z",
+          "images": [
+            {
+              "id": "e72e2eff-def2-479c-a827-bc5e59d694b4"
+            }
+          ]
+        },
+        {
+          "id": "be0c9210-16d1-4ae8-918a-b3c951243c4c",
+          "text": "post 1",
+          "author": {
+            "id": "48b560ab-7450-4088-b6bb-f57638ea0877"
+          },
+          "createdAt": "2022-05-30T15:00:23.296Z",
+          "images": [
+            {
+              "id": "b5673d40-ac1f-4092-8361-80bcdc182a07"
+            },
+            {
+              "id": "024ed048-68e9-47ca-99b8-3ee81dc70245"
+            }
+          ]
+        }
+      ],
+      "pageInfo": {
+        "currentPage": 2,
+        "totalPages": 2
+      },
+      "totalItems": 4
+    }
+  }
+}

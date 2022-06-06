@@ -1,0 +1,22 @@
+query feedTemplate($input: FeedInput!) {
+  feed(input : $input) {
+    items {
+      id
+      ... on Post {
+        text
+        author {
+          id
+        }
+        createdAt
+        images {
+          id
+        }
+      }
+    }
+    pageInfo {
+      currentPage
+      totalPages
+    }
+    totalItems
+  }
+}

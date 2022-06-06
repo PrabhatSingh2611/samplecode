@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import digital.windmill.audra.graphql.type.enums.EmployeeSort;
-import digital.windmill.audra.graphql.type.input.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
+
+import digital.windmill.audra.graphql.type.enums.EmployeeSort;
+import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
+import digital.windmill.audra.graphql.type.input.EmployeesInput;
+import digital.windmill.audra.graphql.type.input.NodeInput;
+import digital.windmill.audra.utils.PageInput;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

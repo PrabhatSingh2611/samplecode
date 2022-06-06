@@ -10,7 +10,7 @@ import javax.persistence.criteria.Order;
 
 @UtilityClass
 public class SpecificationUtils {
-    static Order direction( final CriteriaBuilder cb, final Expression<?> e, final Sort.Direction direction ) {
+    public static Order direction( final CriteriaBuilder cb, final Expression<?> e, final Sort.Direction direction ) {
         if ( direction == Direction.ASC ) {
             return cb.asc( e );
         }

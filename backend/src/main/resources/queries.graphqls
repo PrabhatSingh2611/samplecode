@@ -27,4 +27,5 @@ type Query {
     leaveTypes(input: LeaveTypesInput!): LeaveTypeConnectionPayload!
     playbooks(input: PlaybooksInput!): PlaybookConnectionPayload!
     playbook(input: PlaybookInput!): PlaybookPayload!
+    feed(input: FeedInput!): FeedConnectionPayload!
 }

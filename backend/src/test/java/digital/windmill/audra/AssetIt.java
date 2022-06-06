@@ -1,21 +1,24 @@
 package digital.windmill.audra;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.graphql.spring.boot.test.GraphQLResponse;
-import digital.windmill.audra.graphql.type.input.AssetWhereInput;
-import digital.windmill.audra.graphql.type.input.AssetsInput;
-import digital.windmill.audra.graphql.type.input.NodesInput;
-import digital.windmill.audra.graphql.type.input.PageInput;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.test.context.jdbc.Sql;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import digital.windmill.audra.graphql.type.input.NodesInput;
+import digital.windmill.audra.utils.PageInput;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.graphql.spring.boot.test.GraphQLResponse;
+import digital.windmill.audra.graphql.type.input.AssetWhereInput;
+import digital.windmill.audra.graphql.type.input.AssetsInput;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 @Slf4j
 public class AssetIt extends AbstractIntegrationTest {
@@ -90,7 +93,7 @@ public class AssetIt extends AbstractIntegrationTest {
     void shouldReturnAssetsPaginated() throws IOException, URISyntaxException {
         var where = AssetsInput.builder().pagination(
                         PageInput.builder()
-                                .pageNumber(2)
+                                .pageNumber(3)
                                 .itemsPerPage(3)
                                 .build())
                 .build();

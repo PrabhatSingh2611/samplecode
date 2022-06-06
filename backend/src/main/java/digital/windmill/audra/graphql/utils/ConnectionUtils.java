@@ -20,7 +20,7 @@ public class ConnectionUtils {
 
             @Override
             public PageInfo getPageInfo() {
-                return new PageInfo(elements.getNumber(), elements.getTotalPages());
+                return new PageInfo(elements.getNumber() + 1, elements.getTotalPages());
             }
 
             @Override

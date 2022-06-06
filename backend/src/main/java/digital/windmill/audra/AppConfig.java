@@ -1,5 +1,6 @@
 package digital.windmill.audra;
 
+import digital.windmill.audra.feed.graphql.type.FeedSort;
 import digital.windmill.audra.graphql.coersing.URLScalarCoercing;
 import digital.windmill.audra.graphql.type.Asset;
 import digital.windmill.audra.graphql.type.LeaveRequest;
@@ -38,6 +39,7 @@ public class AppConfig {
                 .add(PlaybookResource.class)
                 .add(PlaybookTask.class)
                 .add(PlaybookTaskList.class)
+                .add(FeedSort.class)
                 ;
     }
 

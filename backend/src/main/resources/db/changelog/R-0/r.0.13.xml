@@ -14,4 +14,43 @@
         <addNotNullConstraint tableName="resource" columnName="mime_type"/>
     </changeSet>
 
+    <changeSet id="r.0.13.1" author="rshtepa">
+        <createTable tableName="feed_item">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_at" type="timestamptz">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="r.0.13.2" author="rshtepa">
+        <createTable tableName="post">
+            <column name="id" type="INT8">
+                <constraints primaryKey="true" foreignKeyName="fk_post2feed_item" references="feed_item(id)"/>
+            </column>
+            <column name="text" type="text"/>
+            <column name="author_id" type="INT8">
+                <constraints nullable="false" foreignKeyName="fk_post2employee" references="employee(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="r.0.13.3" author="rshtepa">
+        <createTable tableName="post_to_resource">
+            <column name="id" type="INT8" autoIncrement="true" >
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="post_id" type="INT8">
+                <constraints foreignKeyName="fk_resource2post" references="post(id)" />
+            </column>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_post2resource" references="resource(id)" />
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
