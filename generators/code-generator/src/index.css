@@ -3,13 +3,8 @@ body {
   padding: 30px;
 }
 
-form {
-  width: 500px;
-  margin: 0 auto;
-}
-
 .code-block {
   width: 1000px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 16px;
 }
