@@ -13,7 +13,7 @@
         "clear-all": "rm -rf build node_modules",
         "re-start": "rm -rf build node_modules && pnpm install && pnpm start",
         "re-build": "rm -rf build node_modules && pnpm install && pnpm build",
-        "unused-exports": "./node_modules/.bin/ts-unused-exports tsconfig.json --searchNamespaces --ignoreFiles=.*generated --excludePathsFromReport=\"index\" --showLineNumber",
+        "unused-exports": "ts-unused-exports tsconfig.json --searchNamespaces --ignoreFiles=.*generated --excludePathsFromReport=\"index\" --showLineNumber",
         "codegen": "graphql-codegen --overwrite --config codegen.develop.yml",
         "codegen:staging": "graphql-codegen --overwrite --config codegen.staging.yml"
     },
