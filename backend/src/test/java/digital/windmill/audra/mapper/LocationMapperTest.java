@@ -66,6 +66,7 @@ class LocationMapperTest {
         var result = mapper.map(buildUpdateLocationInput(), location, country);
 
         assertNotNull(result);
+        assertEquals(LOCATION_UUID, result.getUuid());
         assertEquals(LOCATION_NAME, result.getName());
         assertEquals(COUNTRY_UUID, result.getCountry().getUuid());
     }

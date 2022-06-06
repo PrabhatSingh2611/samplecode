@@ -3,6 +3,11 @@ mutation updateLocation{
         location{
             id
             name
+            country {
+                id
+                name
+                iconName
+            }
         }
     }
 }

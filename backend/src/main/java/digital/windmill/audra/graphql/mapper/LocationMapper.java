@@ -27,6 +27,7 @@ public interface LocationMapper {
                        LocationCountryEntity country);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "name", source = "input.name")
     @Mapping(target = "country", source = "country")
     LocationEntity map(UpdateLocationInput input,
