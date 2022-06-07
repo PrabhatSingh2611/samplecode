@@ -28,4 +28,5 @@ type Query {
     playbooks(input: PlaybooksInput!): PlaybookConnectionPayload!
     playbook(input: PlaybookInput!): PlaybookPayload!
     feed(input: FeedInput!): FeedConnectionPayload!
+    employeePositions(input: EmployeePositionsInput!): EmployeePositionConnectionPayload!
 }

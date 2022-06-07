@@ -1,0 +1,13 @@
+query GetEmployeePositions($input: EmployeePositionsInput!) {
+    employeePositions(input: $input) {
+        items {
+            id
+            name
+        }
+        pageInfo {
+            currentPage
+            totalPages
+        }
+        totalItems
+    }
+}

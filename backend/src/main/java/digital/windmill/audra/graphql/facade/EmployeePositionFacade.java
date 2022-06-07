@@ -3,7 +3,9 @@ package digital.windmill.audra.graphql.facade;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
+import digital.windmill.audra.graphql.type.input.EmployeePositionsInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
+import org.springframework.data.domain.Page;
 
 public interface EmployeePositionFacade {
 
@@ -30,5 +32,5 @@ public interface EmployeePositionFacade {
      */
     EmployeePosition deleteEmployeePosition(DeleteEmployeePositionInput input);
 
-
+    Page<EmployeePosition> getEmployeePositions(EmployeePositionsInput input);
 }

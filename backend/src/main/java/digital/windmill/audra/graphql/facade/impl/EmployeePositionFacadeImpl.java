@@ -5,10 +5,14 @@ import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
+import digital.windmill.audra.graphql.type.input.EmployeePositionsInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -37,6 +41,13 @@ public class EmployeePositionFacadeImpl implements EmployeePositionFacade {
         var employeePositionEntity = employeePositionService.findEmployeePositionByUuid(input.getId());
         var deletedEmployeePositionEntity = employeePositionService.deleteEmployeePosition(employeePositionEntity);
         return employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(deletedEmployeePositionEntity);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<EmployeePosition> getEmployeePositions(@NonNull EmployeePositionsInput input) {
+        return employeePositionService.findAll(input)
+                .map(employeePositionMapper::mapEmployeePositionEntityToEmployeePosition);
     }
 
 }

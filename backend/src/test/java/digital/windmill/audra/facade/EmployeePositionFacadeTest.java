@@ -6,6 +6,7 @@ import digital.windmill.audra.graphql.mapper.EmployeePositionMapper;
 import digital.windmill.audra.graphql.type.EmployeePosition;
 import digital.windmill.audra.graphql.type.input.CreateEmployeePositionInput;
 import digital.windmill.audra.graphql.type.input.DeleteEmployeePositionInput;
+import digital.windmill.audra.graphql.type.input.EmployeePositionsInput;
 import digital.windmill.audra.graphql.type.input.UpdateEmployeePositionInput;
 import digital.windmill.audra.service.EmployeePositionService;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -69,6 +73,20 @@ public class EmployeePositionFacadeTest {
         var actualResult = facade.deleteEmployeePosition(input);
 
         assertEquals(employeePosition, actualResult);
+    }
+
+    @Test
+    void shouldGetEmployeePositions(@Mock EmployeePositionsInput input,
+                                    @Mock EmployeePositionEntity employeePositionEntity,
+                                    @Mock EmployeePosition employeePosition) {
+        when(employeePositionService.findAll(input)).thenReturn(new PageImpl<>(List.of(employeePositionEntity)));
+        when(employeePositionMapper.mapEmployeePositionEntityToEmployeePosition(employeePositionEntity)).thenReturn(employeePosition);
+
+        var actualResult = facade.getEmployeePositions(input);
+
+        assertEquals(List.of(employeePosition), actualResult.getContent());
+        assertEquals(1, actualResult.getTotalElements());
+        assertEquals(1, actualResult.getTotalPages());
     }
 
 }

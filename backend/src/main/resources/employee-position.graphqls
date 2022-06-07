@@ -22,3 +22,19 @@ type EmployeePositionPayload {
 type DeleteEmployeePositionPayload {
     employeePosition: Node!
 }
+
+input EmployeePositionsInput {
+    pagination: PageInput
+    sort: [EmployeePositionsSort!] = [name_ASC]
+}
+
+enum EmployeePositionsSort {
+    name_ASC
+    name_DESC
+}
+
+type EmployeePositionConnectionPayload implements ConnectionPayload {
+    items: [EmployeePosition!]!
+    pageInfo: PageInfo!
+    totalItems: Int!
+}
