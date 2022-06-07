@@ -10,6 +10,9 @@ module.exports = {
         historyApiFallback: {
             index: '/index.html',
         },
+        devMiddleware: {
+            writeToDisk: true,
+        },
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*',

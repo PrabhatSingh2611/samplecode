@@ -2,6 +2,11 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const devRemotes = require('./dev-remotes');
 const { getShareableDeps } = require('./shareable-dependencies');
 const deps = getShareableDeps();
+const path = require('path');
+
+const watchFiles = Object.keys(devRemotes).map((remote) =>
+    path.resolve(__dirname, '..', '..', remote, 'src/**/*'),
+);
 
 module.exports = {
     devServer: {
@@ -9,6 +14,8 @@ module.exports = {
         historyApiFallback: {
             index: '/index.html',
         },
+        liveReload: true,
+        watchFiles: watchFiles,
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*',
