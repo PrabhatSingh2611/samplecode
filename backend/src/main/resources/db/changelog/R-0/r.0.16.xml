@@ -90,4 +90,10 @@
         </sql>
     </changeSet>
 
+    <changeSet id="r.0.16.7" author="tetiana.hladka">
+        <sql>
+            DELETE FROM asset_type WHERE id = 8;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
