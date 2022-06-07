@@ -45,7 +45,7 @@ public class AssetServiceImpl implements AssetService {
         var sort = sortValues.stream().map(e -> SortUtils.parse(e.name())).reduce(Sort::and).get();
         var pageable = PageRequest.of(pageNumber, itemsPerPage, sort);
         var spec = AssetSpecification.assets(input);
-        return assetRepository.findAll(spec,pageable);
+        return assetRepository.findAll(spec, pageable);
     }
 
     @Override

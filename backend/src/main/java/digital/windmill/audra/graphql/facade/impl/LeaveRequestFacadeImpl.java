@@ -46,15 +46,15 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     public LeaveRequest createLeaveRequest(CreateLeaveRequestInput input) {
         var mappedLeaveRequestEntity = leaveRequestMapper
                 .mapCreateLeaveRequestInputToLeaveRequestEntity(input);
-        
+
         Optional.ofNullable(input)
-            .map(CreateLeaveRequestInput::getType)
-            .map(NodeInput::getId)
-            .map(leaveTypeService::findByUuid)
-            .ifPresent(mappedLeaveRequestEntity::setType);
+                .map(CreateLeaveRequestInput::getType)
+                .map(NodeInput::getId)
+                .map(leaveTypeService::findByUuid)
+                .ifPresent(mappedLeaveRequestEntity::setType);
         Optional.ofNullable(securityService.getCurrentUserUuid())
-            .map(employeeService::findEmployeeByUuid)
-            .ifPresent(mappedLeaveRequestEntity::setEmployee);
+                .map(employeeService::findEmployeeByUuid)
+                .ifPresent(mappedLeaveRequestEntity::setEmployee);
         return leaveRequestMapper
                 .mapLeaveRequestEntityToLeaveRequest(leaveRequestService.createOrPatchLeaveRequest(mappedLeaveRequestEntity));
     }
@@ -63,15 +63,15 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     public LeaveRequest patchLeaveRequest(PatchLeaveRequestInput input) {
         var leaveRequest = leaveRequestService.findLeaveRequestByUuid(input.getId());
         Optional.ofNullable(input)
-            .map(PatchLeaveRequestInput::getEmployee)
-            .map(NodeInput::getId)
-            .map(employeeService::findEmployeeByUuid)
-            .ifPresent(leaveRequest::setEmployee);
+                .map(PatchLeaveRequestInput::getEmployee)
+                .map(NodeInput::getId)
+                .map(employeeService::findEmployeeByUuid)
+                .ifPresent(leaveRequest::setEmployee);
         Optional.ofNullable(input)
-            .map(PatchLeaveRequestInput::getType)
-            .map(NodeInput::getId)
-            .map(leaveTypeService::findByUuid)
-            .ifPresent(leaveRequest::setType);
+                .map(PatchLeaveRequestInput::getType)
+                .map(NodeInput::getId)
+                .map(leaveTypeService::findByUuid)
+                .ifPresent(leaveRequest::setType);
         var mappedLeaveRequestEntity = leaveRequestMapper
                 .map(input, leaveRequest);
         return leaveRequestMapper
@@ -82,7 +82,7 @@ public class LeaveRequestFacadeImpl implements LeaveRequestFacade {
     public LeaveRequest deleteLeaveRequest(DeleteLeaveRequestInput input) {
         var leaveRequest = leaveRequestService.findLeaveRequestByUuid(input.getId());
         return leaveRequestMapper.mapLeaveRequestEntityToLeaveRequest(
-            leaveRequestService.deleteLeaveRequest(leaveRequest)
+                leaveRequestService.deleteLeaveRequest(leaveRequest)
         );
     }
 

@@ -39,7 +39,7 @@ class CandidateMutationResolverTest {
 
     @Test
     void shouldPatchCandidate(@Mock PatchCandidateInput input,
-                               @Mock Candidate candidate) {
+                              @Mock Candidate candidate) {
 
         when(candidateFacade.patchCandidate(any(PatchCandidateInput.class)))
                 .thenReturn(candidate);

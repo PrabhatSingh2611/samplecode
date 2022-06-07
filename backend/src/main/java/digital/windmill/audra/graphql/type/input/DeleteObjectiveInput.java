@@ -12,6 +12,6 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeleteObjectiveInput implements Node{
+public class DeleteObjectiveInput implements Node {
     private UUID id;
 }

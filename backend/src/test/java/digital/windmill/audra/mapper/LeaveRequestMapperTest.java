@@ -97,29 +97,29 @@ class LeaveRequestMapperTest {
 
     private static Stream<Arguments> patchTestData() {
         return Stream.of(Arguments.of(
-                    // result should be same as patch input empty
-                    createLeaveRequestEntity(),
-                    PatchLeaveRequestInput.builder().build(),
-                    createLeaveRequestEntity()
+                        // result should be same as patch input empty
+                        createLeaveRequestEntity(),
+                        PatchLeaveRequestInput.builder().build(),
+                        createLeaveRequestEntity()
                 ),
                 Arguments.of(
-                    // should not update entity uuid
-                    createLeaveRequestEntity(),
-                    PatchLeaveRequestInput.builder().id(UUID.randomUUID()).build(),
-                    createLeaveRequestEntity()
+                        // should not update entity uuid
+                        createLeaveRequestEntity(),
+                        PatchLeaveRequestInput.builder().id(UUID.randomUUID()).build(),
+                        createLeaveRequestEntity()
                 ),
                 Arguments.of(
-                    // should update field according to patch input
-                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW),
-                    PatchLeaveRequestInput.builder()
-                        .id(UUID.randomUUID())
-                        .status(LeaveRequestStatus.APPROVED)
-                        .comment(UPDATED_COMMENT)
-                        .period(new DatePeriod(toDateTime(UPDATED_START_DATE), toDateTime(UPDATED_END_DATE)))
-                        .build(),
-                    createLeaveRequestEntity(LEAVE_REQUEST_UUID, UPDATED_COMMENT, REQUEST_DATE, UPDATED_START_DATE, UPDATED_END_DATE, LeaveRequestStatus.APPROVED)
+                        // should update field according to patch input
+                        createLeaveRequestEntity(LEAVE_REQUEST_UUID, COMMENT, REQUEST_DATE, START_DATE, END_DATE, LeaveRequestStatus.NEW),
+                        PatchLeaveRequestInput.builder()
+                                .id(UUID.randomUUID())
+                                .status(LeaveRequestStatus.APPROVED)
+                                .comment(UPDATED_COMMENT)
+                                .period(new DatePeriod(toDateTime(UPDATED_START_DATE), toDateTime(UPDATED_END_DATE)))
+                                .build(),
+                        createLeaveRequestEntity(LEAVE_REQUEST_UUID, UPDATED_COMMENT, REQUEST_DATE, UPDATED_START_DATE, UPDATED_END_DATE, LeaveRequestStatus.APPROVED)
                 )
-                );
+        );
     }
 
     private CreateLeaveRequestInput createLeaveRequestInput() {

@@ -1,0 +1,8 @@
+mutation CreatePlaybookSectionTopic($input: CreatePlaybookSectionTopicInput!) {
+    createPlaybookSectionTopic(input: $input) {
+        topic {
+            id
+            name
+        }
+    }
+}

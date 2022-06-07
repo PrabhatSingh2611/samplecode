@@ -25,7 +25,7 @@ public class ResourceService {
         return repository.save(resourceEntity);
     }
 
-    public List<ResourceEntity> findByUuids(Collection<UUID> uuids){
+    public List<ResourceEntity> findByUuids(Collection<UUID> uuids) {
         return repository.findByUuids(uuids);
     }
 

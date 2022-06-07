@@ -1,0 +1,21 @@
+mutation createPlaybook{
+    createPlaybook(input:
+    {   name: "graphql"
+        description: "graphql"
+        image: {
+            id: "e72e2eff-def2-479c-a827-bc5e59d694b4"
+        }
+        status: DRAFT
+    }){
+        playbook{
+            name
+            description
+            status
+            image {
+                id
+                url
+                thumbnail
+            }
+        }
+    }
+}

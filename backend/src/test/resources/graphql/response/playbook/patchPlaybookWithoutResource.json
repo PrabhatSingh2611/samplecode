@@ -1,0 +1,14 @@
+{
+  "data": {
+    "patchPlaybook": {
+      "playbook": {
+        "name": "graphql",
+        "image": {
+          "id": "b5673d40-ac1f-4092-8361-80bcdc182a07",
+          "url": "http://localhost:8080/resources/b5673d40-ac1f-4092-8361-80bcdc182a07",
+          "thumbnail": null
+        }
+      }
+    }
+  }
+}

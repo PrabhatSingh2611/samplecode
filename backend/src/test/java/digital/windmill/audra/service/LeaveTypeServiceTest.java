@@ -55,7 +55,7 @@ public class LeaveTypeServiceTest {
     void shouldReturnAllLeaveTypes(
             @Mock LeaveTypesInput input,
             @Mock LeaveTypeEntity leaveTypeEntity
-            ) {
+    ) {
         var leaveTypeEntityPage = createOneItemPage(leaveTypeEntity);
         when(leaveTypeRepository.findAll(any(Specification.class), any(PageRequest.class)))
                 .thenReturn(leaveTypeEntityPage);
@@ -63,6 +63,7 @@ public class LeaveTypeServiceTest {
         assertNotNull(result);
         assertSame(leaveTypeEntityPage, result);
     }
+
     private <T> Page<T> createOneItemPage(T item) {
         return new PageImpl<>(List.of(item));
     }

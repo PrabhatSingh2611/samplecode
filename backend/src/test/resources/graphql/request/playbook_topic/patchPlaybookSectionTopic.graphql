@@ -1,0 +1,9 @@
+mutation PatchPlaybookSectionTopic($input: PatchPlaybookSectionTopicInput!) {
+    patchPlaybookSectionTopic(input: $input) {
+        topic {
+            id
+            name
+            body
+        }
+    }
+}

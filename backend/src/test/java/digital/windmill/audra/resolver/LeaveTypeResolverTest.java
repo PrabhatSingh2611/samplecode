@@ -33,7 +33,7 @@ public class LeaveTypeResolverTest {
     void shouldGetLeaveTypes(
             @Mock LeaveTypesInput input,
             @Mock LeaveType leaveType
-            ) {
+    ) {
         var pagedLeaveType = createOneItemPage(leaveType);
         when(leaveTypeFacade.getLeaveTypes(input))
                 .thenReturn(pagedLeaveType);

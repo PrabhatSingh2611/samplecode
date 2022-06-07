@@ -1,0 +1,10 @@
+mutation ReorderPlaybookSection($input: ReorderPlaybookSectionInput!) {
+    reorderPlaybookSection(input: $input) {
+        playbook {
+            sections {
+                id
+                name
+            }
+        }
+    }
+}

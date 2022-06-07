@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class LeaveTypeIt extends AbstractIntegrationTest{
+public class LeaveTypeIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")

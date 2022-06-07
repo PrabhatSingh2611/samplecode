@@ -1,27 +1,23 @@
 query {
     playbooks(input:
-    {}){
+    {where: {}, sort: updatedAt_DESC }){
         items{
             id
-            title
+            name
+            status
             image {
                 id
                 url
                 thumbnail
             }
-            steps {
+            sections {
                 id
-                title
-                taskList {
+                topics {
                     id
-                    tasks {
-                        id
-                        title
-                    }
+                    name
+                    body
                 }
             }
-            createdAt
-            updatedAt
         }
         pageInfo {
             currentPage

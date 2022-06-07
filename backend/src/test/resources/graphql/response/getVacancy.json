@@ -15,11 +15,11 @@
           "lastName": "Morris",
           "role": "ADMIN",
           "birthday": "2022-03-23T19:37:14.480Z",
-          "position" : {
-            "id" : "cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name" : "manager"
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location" : {
+          "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
             "name": "Lisbon"
           }

@@ -20,7 +20,7 @@ public class URLScalarCoercing implements Coercing<URL, String> {
     @Override
     public URL parseValue(Object input) throws CoercingParseValueException {
         try {
-            return new URL(input.toString()) ;
+            return new URL(input.toString());
         } catch (RuntimeException | MalformedURLException e) {
             throw new CoercingParseValueException("Cannot cast value " + input + " into URL");
         }

@@ -1,43 +1,43 @@
 mutation updateAsset{
-        updateAsset(input: {
-            id: "b1b6aaeb-252b-4324-9166-10c42635572d"
-            title: "asset 1"
-            serialNumber: "123qwe"
-            tagNumber: "1234567"
-            waybillDate: "2022-03-23T19:37:14.480Z"
-            type: {
-                id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
+    updateAsset(input: {
+        id: "b1b6aaeb-252b-4324-9166-10c42635572d"
+        title: "asset 1"
+        serialNumber: "123qwe"
+        tagNumber: "1234567"
+        waybillDate: "2022-03-23T19:37:14.480Z"
+        type: {
+            id: "5478b586-e607-4448-ac05-3e5f2adbbc1b"
+        }
+        assignee: {
+            id: "48b560ab-7450-4088-b6bb-f57638ea0877"
+        }
+        location: {
+            id: "cabfb51b-41c5-4f4d-afd5-146c796391af"
+        }
+        archivedDate: "2022-03-23T19:37:14.480Z"
+        nextActionDate: "2022-03-23T19:37:14.480Z"
+    })
+    {
+        asset {
+            title
+            serialNumber
+            assignee {
+                id
             }
-            assignee: {
-                id: "48b560ab-7450-4088-b6bb-f57638ea0877"
-            }
-            location: {
-                id: "cabfb51b-41c5-4f4d-afd5-146c796391af"
-            }
-            archivedDate: "2022-03-23T19:37:14.480Z"
-            nextActionDate: "2022-03-23T19:37:14.480Z"
-        })
-        {
-            asset {
-                title
-                serialNumber
-                assignee {
-                    id
-                }
-                tagNumber
-                type {
-                    id
-                    name
+            tagNumber
+            type {
+                id
+                name
                     iconName
                     createdAt
-                }
-                location {
-                    id
-                    name
-                }
-                waybillDate
-                archivedDate
-                nextActionDate
             }
+            location {
+                id
+                name
+            }
+            waybillDate
+            archivedDate
+            nextActionDate
         }
+    }
 }

@@ -3,9 +3,9 @@ package digital.windmill.audra.dao;
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.LocationEntity;
 import digital.windmill.audra.graphql.type.enums.EmployeeSort;
-import digital.windmill.audra.graphql.type.input.*;
+import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
+import digital.windmill.audra.graphql.type.input.NodeInput;
 import lombok.NonNull;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort;
@@ -15,13 +15,17 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import static digital.windmill.audra.dao.SpecificationUtils.direction;
 
 public class EmployeeSpecification {
-  public static Specification<EmployeeEntity> employees(EmployeeWhereInput input, List<EmployeeSort> sort) {
+    public static Specification<EmployeeEntity> employees(EmployeeWhereInput input, List<EmployeeSort> sort) {
 
         Specification<EmployeeEntity> byQuery = Optional.ofNullable(input)
                 .map(EmployeeWhereInput::getQuery)
@@ -39,6 +43,7 @@ public class EmployeeSpecification {
                 .filter(Objects::nonNull)
                 .reduce(EmployeeSpecification.any(), Specification::and);
     }
+
     public static Specification<EmployeeEntity> any() {
         return (root, query, criteriaBuilder) -> criteriaBuilder.conjunction();
     }
@@ -51,7 +56,7 @@ public class EmployeeSpecification {
     }
 
     private static Specification<EmployeeEntity> sortedBy(List<EmployeeSort> sort) {
-         return (root, query, criteriaBuilder) -> {
+        return (root, query, criteriaBuilder) -> {
             if (CollectionUtils.isNotEmpty(sort)) {
                 List<Order> orders = new ArrayList<>();
                 for (EmployeeSort sortItem : sort) {

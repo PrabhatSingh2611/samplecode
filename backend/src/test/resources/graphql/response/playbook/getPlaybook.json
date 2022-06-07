@@ -2,30 +2,43 @@
   "data": {
     "playbook": {
       "playbook": {
-        "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c89",
-        "title": "Playbook 1",
+        "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2400",
+        "name": "Playbook 1",
+        "status": "DRAFT",
         "image": {
           "id": "b5673d40-ac1f-4092-8361-80bcdc182a07",
           "url": "http://localhost:8080/resources/b5673d40-ac1f-4092-8361-80bcdc182a07",
           "thumbnail": null
         },
-        "steps": [
+        "sections": [
           {
-            "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
-            "title": "Playbook step 1",
-            "taskList": {
-              "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c92",
-              "tasks": [
-                {
-                  "id": "f0ebfc41-acfb-4049-9aef-ea8ab8057c95",
-                  "title": "Task 1"
-                }
-              ]
-            }
+            "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2405",
+            "topics": [
+              {
+                "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2407",
+                "name": "Playbook section topic 2",
+                "body": "This is body test 2"
+              },
+              {
+                "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2408",
+                "name": "Playbook section topic 3",
+                "body": "This is body test 3"
+              }
+            ]
+          },
+          {
+            "id": "91b240f7-087f-4d78-9907-66a1e4f14342",
+            "topics": []
+          },
+          {
+            "id": "e88c0f10-a84b-4bfa-a8d4-bfe924874224",
+            "topics": []
+          },
+          {
+            "id": "2d71d9b3-874d-416c-a874-9275886d0a19",
+            "topics": []
           }
-        ],
-        "createdAt": "2022-02-02T13:25:34.480Z",
-        "updatedAt": "2022-02-02T13:25:34.480Z"
+        ]
       }
     }
   }

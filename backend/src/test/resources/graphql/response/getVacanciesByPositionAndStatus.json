@@ -3,24 +3,24 @@
     "vacancies": {
       "items": [
         {
-          "id":"493a5be9-01ba-47c6-95c1-29c230528525",
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+          "id": "493a5be9-01ba-47c6-95c1-29c230528525",
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "description":"Vacancy 1",
-          "status":"NEW",
-          "assignTo":{
-            "id":"48b560ab-7450-4088-b6bb-f57638ea0877",
-            "firstName":"Jacob",
-            "lastName":"Morris",
-            "role":"ADMIN",
-            "birthday":"2022-03-23T19:37:14.480Z",
-            "position":{
-              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-              "name":"manager"
+          "description": "Vacancy 1",
+          "status": "NEW",
+          "assignTo": {
+            "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
+            "firstName": "Jacob",
+            "lastName": "Morris",
+            "role": "ADMIN",
+            "birthday": "2022-03-23T19:37:14.480Z",
+            "position": {
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name": "manager"
             },
-            "location":{
+            "location": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
               "name": "Lisbon"
             }
@@ -28,24 +28,24 @@
           "priority": "LOW"
         },
         {
-          "id":"d7a9e9c8-fa56-47ce-b036-678e6f7f2398",
-          "position":{
-            "id":"79761728-8f51-475f-aa04-42385a0dfe35",
-            "name":"principle"
+          "id": "d7a9e9c8-fa56-47ce-b036-678e6f7f2398",
+          "position": {
+            "id": "79761728-8f51-475f-aa04-42385a0dfe35",
+            "name": "principle"
           },
-          "description":"Vacancy 2",
-          "status":"IN_PROGRESS",
-          "assignTo":{
-            "id":"5bea1a4d-b457-47c9-bf8b-72f50182b707",
-            "firstName":"Edmund",
-            "lastName":"Hogan",
-            "role":"EMPLOYEE",
-            "birthday":"2022-02-28T12:03:00.480Z",
-            "position":{
-              "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-              "name":"manager"
+          "description": "Vacancy 2",
+          "status": "IN_PROGRESS",
+          "assignTo": {
+            "id": "5bea1a4d-b457-47c9-bf8b-72f50182b707",
+            "firstName": "Edmund",
+            "lastName": "Hogan",
+            "role": "EMPLOYEE",
+            "birthday": "2022-02-28T12:03:00.480Z",
+            "position": {
+              "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+              "name": "manager"
             },
-            "location":{
+            "location": {
               "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
               "name": "Lisbon"
             }

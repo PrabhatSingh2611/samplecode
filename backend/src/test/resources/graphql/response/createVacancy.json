@@ -1,29 +1,29 @@
 {
-  "data":{
-    "createVacancy":{
-      "item":{
-        "position":{
-          "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-          "name":"manager"
+  "data": {
+    "createVacancy": {
+      "item": {
+        "position": {
+          "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+          "name": "manager"
         },
-        "description":"CREATE VACANCY",
-        "status":"NEW",
-        "assignTo":{
-          "id":"48b560ab-7450-4088-b6bb-f57638ea0877",
-          "firstName":"Jacob",
-          "lastName":"Morris",
-          "role":"ADMIN",
-          "birthday":"2022-03-23T19:37:14.480Z",
-          "position":{
-            "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-            "name":"manager"
+        "description": "CREATE VACANCY",
+        "status": "NEW",
+        "assignTo": {
+          "id": "48b560ab-7450-4088-b6bb-f57638ea0877",
+          "firstName": "Jacob",
+          "lastName": "Morris",
+          "role": "ADMIN",
+          "birthday": "2022-03-23T19:37:14.480Z",
+          "position": {
+            "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+            "name": "manager"
           },
-          "location":{
+          "location": {
             "id": "cabfb51b-41c5-4f4d-afd5-146c796391af",
             "name": "Lisbon"
           }
         },
-        "priority":"LOW"
+        "priority": "LOW"
       }
     }
   }

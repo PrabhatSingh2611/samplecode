@@ -1,6 +1,6 @@
 package digital.windmill.audra.graphql.type.input;
 
-import digital.windmill.audra.dao.entity.enums.PlaybookSort;
+import digital.windmill.audra.graphql.type.enums.PlaybookSort;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

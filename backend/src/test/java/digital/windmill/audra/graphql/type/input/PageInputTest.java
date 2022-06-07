@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 class PageInputTest {
 
     private PageInput pageInput;
-    
+
     @BeforeEach
     void beforeEach() {
         pageInput = new PageInput();
@@ -33,6 +33,6 @@ class PageInputTest {
                 Arguments.of(99, 99),
                 Arguments.of(101, PageInput.MAX_ITEMS_PER_PAGE),
                 Arguments.of(1000, PageInput.MAX_ITEMS_PER_PAGE)
-                );
+        );
     }
 }

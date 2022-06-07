@@ -36,6 +36,6 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
                 .map(LeaveTypesInput::getPagination)
                 .map(PageInput::toPageRequest)
                 .orElse(PageInput.DEFAULT_PAGINATION);
-        return leaveTypeRepository.findAll(specification, pagination);  
+        return leaveTypeRepository.findAll(specification, pagination);
     }
 }

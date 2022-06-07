@@ -31,7 +31,7 @@ public interface QuestionMapper {
 
     @AfterMapping
     default void addQuestionToOption(@MappingTarget QuestionEntity questionEntity) {
-        if(Objects.nonNull(questionEntity.getOptions())) {
+        if (Objects.nonNull(questionEntity.getOptions())) {
             questionEntity.getOptions().forEach(option -> option.setQuestion(questionEntity));
         }
     }

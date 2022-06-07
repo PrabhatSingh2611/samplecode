@@ -88,15 +88,15 @@ public class LeaveRequestIt extends AbstractIntegrationTest {
         JsonNode expectedJson = objectMapper.readTree(jsonString);
         assertEquals(expectedJson, response.get("$", JsonNode.class));
     }
-    
+
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
     void shouldNotCreateLeaveRequestBecauseWrongDatePeriod() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate
                 .postForResource("graphql/request/leave_request/createLeaveRequestWithWrongPeriod.graphql");
-        
+
         log.info(response.readTree().toPrettyString());
-        
+
         assertEquals("Exception while fetching data (/createLeaveRequest) : Wrong dates", response.get("$.errors[0].message", String.class));
     }
 
@@ -132,7 +132,7 @@ public class LeaveRequestIt extends AbstractIntegrationTest {
         objectNode.putPOJO("status", "APPROVED");
         ObjectNode input = JsonNodeFactory.instance.objectNode();
         input.set("input", objectNode);
-        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/patchLeaveRequestTemplate.graphql", input );
+        GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/patchLeaveRequestTemplate.graphql", input);
         log.info(response.readTree().toPrettyString());
 
         LeaveRequest actualLeaveRequest = response.get("$.data.patchLeaveRequest.leaveRequest", LeaveRequest.class);
@@ -143,13 +143,13 @@ public class LeaveRequestIt extends AbstractIntegrationTest {
 
     @Nested
     @Sql({"classpath:/db/delete-all.sql",
-        "classpath:/db/insert-leave-requests-for-sorting.sql"})
+            "classpath:/db/insert-leave-requests-for-sorting.sql"})
     class SortingTest {
         @Test
         void shouldReturnLeaveRequestsAccordingSortOrder_byCreatedAtDesc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.startDate_DESC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f"),
@@ -162,70 +162,70 @@ public class LeaveRequestIt extends AbstractIntegrationTest {
         void shouldReturnLeaveRequestsAccordingSortOrder_byCreatedAtAsc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.startDate_ASC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("d7a9e9c8-fa56-47ce-b036-678e6f7f2399"),
                     UUID.fromString("493a5be9-01ba-47c6-95c1-29c230528527"),
                     UUID.fromString("c823dbfb-b1c6-4c77-b22e-fc06f2737b2b"),
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f")
-                    ), response);
+            ), response);
         }
 
         @Test
         void shouldReturnLeaveRequestsAccordingSortOrder_byPendingFirstCreatedAtAsc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.pending_DESC, LeaveRequestsSortEnum.startDate_ASC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("493a5be9-01ba-47c6-95c1-29c230528527"),
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f"),
                     UUID.fromString("d7a9e9c8-fa56-47ce-b036-678e6f7f2399"),
                     UUID.fromString("c823dbfb-b1c6-4c77-b22e-fc06f2737b2b")
-                    ), response);
+            ), response);
         }
 
         @Test
         void shouldReturnLeaveRequestsAccordingSortOrder_byPendingFirstCreatedAtDesc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.pending_DESC, LeaveRequestsSortEnum.startDate_DESC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f"),
                     UUID.fromString("493a5be9-01ba-47c6-95c1-29c230528527"),
                     UUID.fromString("c823dbfb-b1c6-4c77-b22e-fc06f2737b2b"),
                     UUID.fromString("d7a9e9c8-fa56-47ce-b036-678e6f7f2399")
-                    ), response);
+            ), response);
         }
 
         @Test
         void shouldReturnLeaveRequestsAccordingSortOrder_byPendingLastCreatedAtAsc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.pending_ASC, LeaveRequestsSortEnum.startDate_ASC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("d7a9e9c8-fa56-47ce-b036-678e6f7f2399"),
                     UUID.fromString("c823dbfb-b1c6-4c77-b22e-fc06f2737b2b"),
                     UUID.fromString("493a5be9-01ba-47c6-95c1-29c230528527"),
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f")
-                    ), response);
+            ), response);
         }
 
         @Test
         void shouldReturnLeaveRequestsAccordingSortOrder_byPendingLastCreatedAtDesc() throws IOException {
             ObjectNode sortVariable = JsonNodeFactory.instance.objectNode();
             sortVariable.putPOJO("sort", List.of(LeaveRequestsSortEnum.pending_ASC, LeaveRequestsSortEnum.startDate_DESC));
-            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable );
+            GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/leave_request/getSortedLeaveRequests.graphql", sortVariable);
             log.info(response.readTree().toPrettyString());
             assertLeaveRequestUuids(List.of(
                     UUID.fromString("c823dbfb-b1c6-4c77-b22e-fc06f2737b2b"),
                     UUID.fromString("d7a9e9c8-fa56-47ce-b036-678e6f7f2399"),
                     UUID.fromString("3c0e4949-d259-4e1d-86a5-e6025308346f"),
                     UUID.fromString("493a5be9-01ba-47c6-95c1-29c230528527")
-                    ), response);
+            ), response);
         }
 
         private void assertLeaveRequestUuids(List<UUID> expectedUuids, GraphQLResponse response) {

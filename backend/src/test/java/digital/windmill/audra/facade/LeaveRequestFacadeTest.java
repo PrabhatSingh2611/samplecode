@@ -1,22 +1,5 @@
 package digital.windmill.audra.facade;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.mockito.Answers.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.UUID;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-
 import digital.windmill.audra.dao.entity.EmployeeEntity;
 import digital.windmill.audra.dao.entity.LeaveRequestEntity;
 import digital.windmill.audra.dao.entity.LeaveTypeEntity;
@@ -32,6 +15,22 @@ import digital.windmill.audra.service.EmployeeService;
 import digital.windmill.audra.service.LeaveRequestService;
 import digital.windmill.audra.service.LeaveTypeService;
 import digital.windmill.audra.service.impl.SecurityService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import java.util.List;
+import java.util.UUID;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Answers.RETURNS_DEEP_STUBS;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LeaveRequestFacadeTest {
@@ -110,7 +109,7 @@ class LeaveRequestFacadeTest {
     }
 
     @Test
-    void shouldPatchLeaveRequest(@Mock(answer = RETURNS_DEEP_STUBS ) PatchLeaveRequestInput input,
+    void shouldPatchLeaveRequest(@Mock(answer = RETURNS_DEEP_STUBS) PatchLeaveRequestInput input,
                                  @Mock LeaveRequest leaveRequest,
                                  @Mock EmployeeEntity employeeEntity,
                                  @Mock LeaveRequestEntity leaveRequestEntity,

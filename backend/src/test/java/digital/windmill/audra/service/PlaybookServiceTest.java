@@ -59,7 +59,23 @@ class PlaybookServiceTest {
         assertNotNull(result);
         assertSame(playbookEntityPage, result);
     }
-    
+
+    @Test
+    void shouldSave(@Mock PlaybookEntity playbookEntity) {
+        when(playbookRepository.save(any(PlaybookEntity.class))).thenReturn(playbookEntity);
+
+        var result = service.save(playbookEntity);
+        assertNotNull(result);
+        assertSame(playbookEntity, result);
+    }
+
+    @Test
+    void shouldDeleteSurvey(@Mock PlaybookEntity playbookEntity) {
+        var result = service.deletePlaybook(playbookEntity);
+        assertNotNull(result);
+        assertSame(playbookEntity, result);
+    }
+
     private <T> Page<T> createOneItemPage(T item) {
         return new PageImpl<>(List.of(item));
     }

@@ -1,0 +1,7 @@
+mutation DeletePlaybookSectionTopic($input: DeletePlaybookSectionTopicInput!) {
+    deletePlaybookSectionTopic(input: $input) {
+        topic {
+            id
+        }
+    }
+}

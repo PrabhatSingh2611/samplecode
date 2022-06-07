@@ -25,7 +25,7 @@
           "firstName": "William",
           "lastName": "Henry",
           "linkedIn": "WilliamH",
-          "attachments":[
+          "attachments": [
             {
               "id": "024ed048-68e9-47ca-99b8-3ee81dc70245"
             }
@@ -33,12 +33,11 @@
           "status": "OFFER_SENT"
         }
       ],
-      "pageInfo":
-      {
-        "currentPage":1,
-        "totalPages":1
+      "pageInfo": {
+        "currentPage": 1,
+        "totalPages": 1
       },
-      "totalItems":2
+      "totalItems": 2
     }
   }
 }

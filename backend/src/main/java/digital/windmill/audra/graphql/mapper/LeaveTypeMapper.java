@@ -10,13 +10,13 @@ import org.mapstruct.Named;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = { EmployeeMapper.class},imports = {UUID.class})
+@Mapper(componentModel = "spring", uses = {EmployeeMapper.class}, imports = {UUID.class})
 public interface LeaveTypeMapper {
 
     @Mapping(target = "id", source = "uuid")
     @Mapping(target = "endOfYearAction", source = "action", qualifiedByName = "mapAction")
     LeaveType map(LeaveTypeEntity leaveTypeEntity);
-    
+
     @Named("mapAction")
     default LeaveTypeEndOfYearAction map(EndOfYearAction action) {
         if (action == null) {

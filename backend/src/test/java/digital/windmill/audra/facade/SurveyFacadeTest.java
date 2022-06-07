@@ -76,7 +76,7 @@ class SurveyFacadeTest {
 
         when(surveyMapper.mapSurveyEntityToSurvey(any(SurveyEntity.class)))
                 .thenReturn(survey);
-        when(surveyMapper.mapCreateAnnounceInputToSurveyEntity(any(CreateSurveyInput.class)))
+        when(surveyMapper.mapCreateSurveyInputToSurveyEntity(any(CreateSurveyInput.class)))
                 .thenReturn(surveyEntity);
         when(surveyService.save(any(SurveyEntity.class)))
                 .thenReturn(surveyEntity);

@@ -35,5 +35,16 @@ type Mutation {
     createLeaveRequest(input: CreateLeaveRequestInput!): LeaveRequestPayload!
     patchLeaveRequest(input: PatchLeaveRequestInput!): LeaveRequestPayload!
     deleteLeaveRequest(input: DeleteLeaveRequestInput!): DeleteLeaveRequestPayload!
+    createPlaybook(input: CreatePlaybookInput!): PlaybookPayload!
+    patchPlaybook(input: PatchPlaybookInput!): PlaybookPayload!
+    deletePlaybook(input: DeletePlaybookInput!): DeletePlaybookPayload!
+    createPlaybookSection(input: CreatePlaybookSectionInput!): PlaybookSectionPayload!
+    patchPlaybookSection(input: PatchPlaybookSectionInput!): PlaybookSectionPayload!
+    deletePlaybookSection(input: DeletePlaybookSectionInput!): DeletePlaybookSectionPayload!
+    createPlaybookSectionTopic(input: CreatePlaybookSectionTopicInput!): PlaybookSectionTopicPayload!
+    patchPlaybookSectionTopic(input: PatchPlaybookSectionTopicInput!): PlaybookSectionTopicPayload!
+    deletePlaybookSectionTopic(input: DeletePlaybookSectionTopicInput!): DeletePlaybookSectionTopicPayload!
+    reorderPlaybookSection(input: ReorderPlaybookSectionInput!): PlaybookPayload!
+    reorderPlaybookSectionTopic(input: ReorderPlaybookSectionTopicInput!): PlaybookSectionPayload!
     createPost(input: CreatePostInput!): PostPayload!
 }

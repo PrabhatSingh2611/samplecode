@@ -1,5 +1,6 @@
 package digital.windmill.audra.graphql.type;
 
+import digital.windmill.audra.dao.entity.enums.PlaybookStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,11 +15,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class Playbook implements Node {
-
     private UUID id;
-    private String title;
+    private String name;
+    private String description;
     private Resource image;
-    private List<PlaybookStep> steps;
+    private PlaybookStatus status;
+    private List<PlaybookSection> sections;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
 }

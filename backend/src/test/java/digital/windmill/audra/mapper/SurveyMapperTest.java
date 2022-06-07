@@ -67,7 +67,7 @@ class SurveyMapperTest {
             return multiLanguageText;
         });
 
-        var result = mapper.mapCreateAnnounceInputToSurveyEntity(createSurveyInput());
+        var result = mapper.mapCreateSurveyInputToSurveyEntity(createSurveyInput());
         assertNotNull(result);
         assertEquals(TEXT, result.getTitle().get("en"));
         assertEquals(TEXT, result.getDescription().get("en"));

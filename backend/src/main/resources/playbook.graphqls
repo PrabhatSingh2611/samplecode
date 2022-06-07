@@ -1,15 +1,23 @@
 type Playbook implements Node {
     id: UUID!
-    title: String!
+    name: String!
+    description: String
     image: Resource!
-    steps: [PlaybookStep!]!
+    status: PlaybookStatus
+    sections: [PlaybookSection!]!
     createdAt: DateTime!
     updatedAt: DateTime!
 }
 
 enum PlaybookSort {
-    createdAt_DESC
-    createdAt_ASC
+    updatedAt_DESC
+    updatedAt_ASC
+}
+
+enum PlaybookStatus {
+    DRAFT
+    PUBLISHED
+    DELETED
 }
 
 type PlaybookPayload {
@@ -27,8 +35,10 @@ input DeletePlaybookInput {
 }
 
 input CreatePlaybookInput {
-    title: String!
+    name: String!
+    description: String
     image: ResourceInput!
+    status: PlaybookStatus! = DRAFT
 }
 
 input PlaybookInput {
@@ -38,36 +48,19 @@ input PlaybookInput {
 input PlaybooksInput {
     where: PlaybooksWhereInput
     pagination: PageInput
-    sort: [PlaybookSort!] = createdAt_DESC
+    sort: [PlaybookSort!] = updatedAt_DESC
 }
 
 input PlaybooksWhereInput {
-    title: String!
-}
-
-input UpdatePlaybookVideoInput {
-    url: Url! # FE will show only YouTube embeded videos
-    description: String!
+    name: String
 }
 
 input PatchPlaybookInput {
     id: UUID!
-    title: String
+    name: String
+    description:String
     image: ResourceInput
-}
-
-input UpdatePlaybookResourceInput {
-    resource: ResourceInput!
-}
-
-input PatchPlaybookVideoInput {
-    id: UUID!
-    url: Url
-    description: String
-}
-
-type PlaybookVideoPayload {
-    playbookVideo: PlaybookVideo
+    status: PlaybookStatus!
 }
 
 type DeletePlaybookPayload {

@@ -11,7 +11,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, LeaveTypeMapper.class},imports = {UUID.class})
+@Mapper(componentModel = "spring", uses = {DateTimeMapper.class, EmployeeMapper.class, LeaveTypeMapper.class}, imports = {UUID.class})
 public interface LeaveRequestMapper {
 
     @Mapping(target = "id", source = "uuid")
@@ -23,19 +23,19 @@ public interface LeaveRequestMapper {
     @Mapping(target = "type", ignore = true)
     @Mapping(target = "employee", ignore = true)
     @Mapping(target = "startDate", source = "period.startDate")
-    @Mapping(target = "endDate", source =  "period.endDate")
+    @Mapping(target = "endDate", source = "period.endDate")
     @Mapping(target = "comment", source = "input.comment")
     LeaveRequestEntity mapCreateLeaveRequestInputToLeaveRequestEntity(CreateLeaveRequestInput input);
 
-    @Mapping(target = "id", ignore = true )
-    @Mapping(target = "uuid", ignore = true )
-    @Mapping(target = "employee", ignore = true )
-    @Mapping(target = "type", ignore = true )
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
+    @Mapping(target = "employee", ignore = true)
+    @Mapping(target = "type", ignore = true)
     @Mapping(target = "status", source = "input.status", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "comment", source = "input.comment", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "startDate", source = "input.period.startDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "endDate", source =  "input.period.endDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "endDate", source = "input.period.endDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     LeaveRequestEntity map(PatchLeaveRequestInput input,
-                         @MappingTarget LeaveRequestEntity leaveRequestEntity);
+                           @MappingTarget LeaveRequestEntity leaveRequestEntity);
 
 }

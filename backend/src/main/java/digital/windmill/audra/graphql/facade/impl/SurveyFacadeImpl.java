@@ -38,7 +38,7 @@ public class SurveyFacadeImpl implements SurveyFacade {
     @Transactional
     public Survey createSurvey(CreateSurveyInput input) {
         return surveyMapper.mapSurveyEntityToSurvey(surveyService.save(
-                surveyMapper.mapCreateAnnounceInputToSurveyEntity(input)
+                surveyMapper.mapCreateSurveyInputToSurveyEntity(input)
         ));
     }
 

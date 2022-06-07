@@ -49,6 +49,7 @@ public interface AssetFacade {
 
     /**
      * This method will save asset as archive
+     *
      * @param input will take asset to be marked as archived
      * @return an updated asset
      */

@@ -1,10 +1,10 @@
 mutation uploadResource($file: Upload!, $thumbnail: Upload){
-  uploadResource(resource: $file, thumbnail: $thumbnail) {
-    resource {
-      id
-      url
-      thumbnail
-      mimeType
+    uploadResource(resource: $file, thumbnail: $thumbnail) {
+        resource {
+            id
+            url
+            thumbnail
+            mimeType
+        }
     }
-  }
 }

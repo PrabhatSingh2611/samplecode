@@ -18,15 +18,15 @@ import static digital.windmill.audra.dao.SpecificationUtils.direction;
 @UtilityClass
 public class LeaveTypeSpecification {
 
-    public static Specification<LeaveTypeEntity> leaveTypes(LeaveTypesWhereInput input, 
-            List<LeaveTypesSortEnum> sort) {
+    public static Specification<LeaveTypeEntity> leaveTypes(LeaveTypesWhereInput input,
+                                                            List<LeaveTypesSortEnum> sort) {
         return sortedBy(sort);
     }
 
     public static Specification<LeaveTypeEntity> sortedBy(List<LeaveTypesSortEnum> sort) {
         return (root, query, criteriaBuilder) -> {
             List<Order> orders = new ArrayList<>();
-            for (LeaveTypesSortEnum sortItem: sort) {
+            for (LeaveTypesSortEnum sortItem : sort) {
                 var order = prepareOrder(root, criteriaBuilder, sortItem);
                 if (order != null) {
                     orders.add(order);
@@ -42,8 +42,8 @@ public class LeaveTypeSpecification {
             return null;
         }
         return switch (order) {
-            case name_ASC -> direction( cb, root.get("name"), Sort.Direction.ASC);
-            case name_DESC -> direction( cb, root.get("name"), Sort.Direction.DESC);
+            case name_ASC -> direction(cb, root.get("name"), Sort.Direction.ASC);
+            case name_DESC -> direction(cb, root.get("name"), Sort.Direction.DESC);
         };
     }
 }

@@ -1,0 +1,17 @@
+mutation patchPlaybook{
+    patchPlaybook(input:
+    {
+        id:"d7a9e9c8-fa56-47ce-b036-678e6f7f2400"
+        name: "graphql"
+        status:PUBLISHED
+    }){
+        playbook{
+            name
+            image {
+                id
+                url
+                thumbnail
+            }
+        }
+    }
+}

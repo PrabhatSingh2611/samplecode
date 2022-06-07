@@ -1,23 +1,21 @@
 package digital.windmill.audra;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
-
 import digital.windmill.audra.graphql.type.enums.EmployeeSort;
 import digital.windmill.audra.graphql.type.input.EmployeeWhereInput;
 import digital.windmill.audra.graphql.type.input.EmployeesInput;
 import digital.windmill.audra.graphql.type.input.NodeInput;
 import digital.windmill.audra.utils.PageInput;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 class EmployeeIt extends AbstractIntegrationTest {
@@ -32,7 +30,7 @@ class EmployeeIt extends AbstractIntegrationTest {
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);
-    
+
         log.info(response.readTree().toPrettyString());
         String jsonString = readFromResource("graphql/response/getEmployees.json");
         JsonNode expectedJson = objectMapper.readTree(jsonString);
@@ -69,7 +67,7 @@ class EmployeeIt extends AbstractIntegrationTest {
                                 .query("Jacob")
                                 .location(NodeInput.of("cabfb51b-41c5-4f4d-afd5-146c796391af"))
                                 .build())
-                    .sort(List.of(EmployeeSort.firstName_ASC))
+                .sort(List.of(EmployeeSort.firstName_ASC))
                 .build();
         var input = objectMapper.createObjectNode().putPOJO("input", where);
         GraphQLResponse response = graphQLTestTemplate.perform("graphql/request/getEmployees.graphql", input);

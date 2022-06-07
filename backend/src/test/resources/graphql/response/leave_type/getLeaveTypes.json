@@ -3,16 +3,14 @@
     "leaveTypes": {
       "items": [
         {
-
-        "id": "b8931b95-ed2b-4f66-a211-776007dc56c1",
-        "name":"SICK_LEAVE",
-        "days": 10,
-        "endOfYearAction": "MOVE"
-      },
+          "id": "b8931b95-ed2b-4f66-a211-776007dc56c1",
+          "name": "SICK_LEAVE",
+          "days": 10,
+          "endOfYearAction": "MOVE"
+        },
         {
-
           "id": "d94911c5-fe2b-4b32-86de-a68feb39a08b",
-          "name":"REGULAR",
+          "name": "REGULAR",
           "days": 5,
           "endOfYearAction": "MOVE"
         }

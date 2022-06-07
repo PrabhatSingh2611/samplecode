@@ -27,7 +27,7 @@ public interface SurveyMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", expression = "java(UUID.randomUUID())")
-    SurveyEntity mapCreateAnnounceInputToSurveyEntity(CreateSurveyInput input);
+    SurveyEntity mapCreateSurveyInputToSurveyEntity(CreateSurveyInput input);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", ignore = true)

@@ -41,7 +41,7 @@ class CandidateIt extends AbstractIntegrationTest {
 
     @Test
     @Sql("classpath:/db/insert-initial-entities.sql")
-     void shouldCreateCandidate() throws IOException, URISyntaxException {
+    void shouldCreateCandidate() throws IOException, URISyntaxException {
         GraphQLResponse response = graphQLTestTemplate.
                 postForResource("graphql/request/createCandidate.graphql");
 

@@ -96,7 +96,7 @@ class LocationFacadeTest {
         when(locationService.save(locationEntity)).thenReturn(locationEntity);
         when(locationMapper.map(locationEntity)).thenReturn(location);
 
-        var actualResult = locationFacade. updateLocation(input);
+        var actualResult = locationFacade.updateLocation(input);
 
         assertEquals(location, actualResult);
     }

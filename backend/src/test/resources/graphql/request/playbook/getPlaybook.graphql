@@ -1,28 +1,24 @@
 {
     playbook(input:{
-        id:"f0ebfc41-acfb-4049-9aef-ea8ab8057c89"
+        id:"d7a9e9c8-fa56-47ce-b036-678e6f7f2400"
     }){
         playbook{
             id
-            title
+            name
+            status
             image {
                 id
                 url
                 thumbnail
             }
-            steps {
+            sections {
                 id
-                title
-                taskList {
+                topics {
                     id
-                    tasks {
-                        id
-                        title
-                    }
+                    name
+                    body
                 }
             }
-            createdAt
-            updatedAt
         }
     }
 }

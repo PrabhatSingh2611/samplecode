@@ -117,10 +117,10 @@ public class CandidateFacadeTest {
 
     @Test
     void shouldPatchCandidate(@Mock PatchCandidateInput input,
-                               @Mock CandidateEntity candidateEntity,
-                               @Mock Candidate candidate,
-                               @Mock VacancyEntity vacancyEntity,
-                               @Mock ResourceEntity resourceEntity) {
+                              @Mock CandidateEntity candidateEntity,
+                              @Mock Candidate candidate,
+                              @Mock VacancyEntity vacancyEntity,
+                              @Mock ResourceEntity resourceEntity) {
 
         when(input.getVacancy()).thenReturn(VACANCY_UUID);
         when(input.getId()).thenReturn(TEST_UUID);
@@ -144,8 +144,6 @@ public class CandidateFacadeTest {
         assertNotNull(result);
         assertSame(candidate, result);
     }
-
-
 
 
 }

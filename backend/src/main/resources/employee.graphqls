@@ -1,14 +1,14 @@
 type Employee implements Node {
-	id: UUID!
-	firstName: String
-	lastName: String
-	email: String
-	role: EmployeeRole
-	birthday: DateTime
-	reportingManager: Employee
-	position: EmployeePosition
-	location: Location
-	avatar: String
+    id: UUID!
+    firstName: String
+    lastName: String
+    email: String
+    role: EmployeeRole
+    birthday: DateTime
+    reportingManager: Employee
+    position: EmployeePosition
+    location: Location
+    avatar: String
 }
 
 type EmployeeConnectionPayload implements ConnectionPayload {
@@ -28,14 +28,14 @@ input CreateEmployeeInput {
 }
 
 input UpdateEmployeeInput {
-	id: UUID!
-	firstName: String!
-	lastName: String!
-	birthday: DateTime!
-	role: EmployeeRole!
-	reportingManager: UUID
-	position: UUID
-	location: UUID
+    id: UUID!
+    firstName: String!
+    lastName: String!
+    birthday: DateTime!
+    role: EmployeeRole!
+    reportingManager: UUID
+    position: UUID
+    location: UUID
 }
 
 enum EmployeeRole {
@@ -44,26 +44,26 @@ enum EmployeeRole {
 }
 
 type EmployeePayload {
-	item: Employee
+    item: Employee
 }
 
 input EmployeesInput {
-	where: EmployeeWhereInput
-	pagination: PageInput
-	sort: [EmployeesSortEnum!]! = [firstName_ASC]
+    where: EmployeeWhereInput
+    pagination: PageInput
+    sort: [EmployeesSortEnum!]! = [firstName_ASC]
 }
 
 input EmployeeWhereInput {
-	"""
-	Filters by 'firstName', 'lastName' and 'email', with 'OR' condition!
-	"""
-	query: String
-	location: NodeInput
+    """
+    Filters by 'firstName', 'lastName' and 'email', with 'OR' condition!
+    """
+    query: String
+    location: NodeInput
 }
 
 enum EmployeesSortEnum {
-	firstName_ASC
-	firstName_DESC
+    firstName_ASC
+    firstName_DESC
 }
 
 

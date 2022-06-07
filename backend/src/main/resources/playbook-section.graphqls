@@ -1,0 +1,40 @@
+type PlaybookSection implements Node {
+    id: UUID!
+    name: String!
+    topics: [PlaybookSectionTopic!]!
+}
+
+type PlaybookSectionPayload {
+    section: PlaybookSection
+}
+
+input ReorderPlaybookSectionInput {
+    id: UUID!
+    """
+    If null insert to the first position
+    """
+    afterId: UUID
+}
+
+input CreatePlaybookSectionInput {
+    playbook: NodeInput!
+    name: String!
+}
+
+input PatchPlaybookSectionInput {
+    id: UUID!
+    name: String
+}
+
+input DeletePlaybookSectionInput {
+    id: UUID!
+}
+
+type DeletePlaybookSectionPayload {
+    section: Node
+}
+
+
+
+
+

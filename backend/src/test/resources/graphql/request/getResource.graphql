@@ -1,12 +1,12 @@
 query getResource($id : UUID!) {
-  resource(input: {
-    id: $id
-  }) {
-    resource {
-      id
-      url
-      thumbnail
-      mimeType
+    resource(input: {
+        id: $id
+    }) {
+        resource {
+            id
+            url
+            thumbnail
+            mimeType
+        }
     }
-  } 
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaybookVideo implements Node{
+public class PlaybookVideo implements Node {
 
     private UUID id;
     private URL url;

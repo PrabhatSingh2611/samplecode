@@ -97,8 +97,6 @@ VALUES
 (1, 1),
 (2,2);
 
-ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
-
 insert into policy (id, uuid, title, resource_id, publication_date, status, employee_id)
 values
 (1001, '239e8741-f04d-406a-bf7d-e2feaf8f5619', 'policy_title_1', 1, '2022-02-02T13:25:34.480425Z', 'PUBLISHED', 2),
@@ -116,10 +114,6 @@ insert into option (id, uuid, text_i18n, question_id)
             values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "this is sample 1 option text"}',1),
                    (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "this is sample 2 option text"}',2);
 
-ALTER SEQUENCE survey_id_seq RESTART WITH 1000;
-ALTER SEQUENCE question_id_seq RESTART WITH 1000;
-ALTER SEQUENCE option_id_seq RESTART WITH 1000;
-
 INSERT INTO leave_type(id, uuid, name, days, end_of_year_action)
 VALUES
 (1, 'b8931b95-ed2b-4f66-a211-776007dc56c1', 'SICK_LEAVE', 10, 'CARRY_OVER' ),
@@ -132,36 +126,30 @@ INSERT INTO leave_request (id, uuid, employee_id, request_date, status, start_da
 (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2399', 2,'2022-02-02T13:25:34.480425Z', 'APPROVED', '2022-02-02T13:25:34.480425Z', '2022-02-02T13:25:34.480425Z', 1, 'this is comment 2');
 
 
-ALTER SEQUENCE leave_request_id_seq RESTART WITH 3;
+insert into playbook (id, uuid, name, description, status, image_id, created_at, updated_at)
+            values (1, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2400', 'Playbook 1', 'Playbook description 1', 'DRAFT', 1, '2022-02-02T13:25:34.480425Z','2022-02-02T13:25:34.480425Z'),
+                   (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2401', 'Playbook 2', 'Playbook description 2', 'PUBLISHED', 1, '2021-02-02T13:25:34.480425Z','2021-02-02T13:25:34.480425Z');
+
+insert into playbook_section (id, uuid, name, sort, playbook_id)
+values (1, 'd0228476-aa22-4f2a-95ab-ee7bd0178330', 'Section 1 Playbook 2', 1, 2),
+       (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2405', 'Section 1 Playbook 1', 1, 1),
+       (3, '91b240f7-087f-4d78-9907-66a1e4f14342', 'Section 2 Playbook 1', 2, 1),
+       (4, 'e88c0f10-a84b-4bfa-a8d4-bfe924874224', 'Section 3 Playbook 1', 3, 1),
+       (5, '2d71d9b3-874d-416c-a874-9275886d0a19', 'Section 4 Playbook 1', 4, 1);
+
+insert into playbook_section_topic (id, uuid, name, body, sort, playbook_section_id)
+            values (1, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2406', 'Playbook section topic 1', 'This is body test 1', 1, 1),
+                   (2, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2407', 'Playbook section topic 2', 'This is body test 2', 2, 2),
+                   (3, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2408', 'Playbook section topic 3', 'This is body test 3', 3, 2),
+                   (4, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2409', 'Playbook section topic 4', 'This is body test 4', 4, 1),
+                   (5, 'd7a9e9c8-fa56-47ce-b036-678e6f7f2410', 'Playbook section topic 5', 'This is body test 5', 5, 1);
 
 
-insert into playbook (id, uuid, title_i18n, resource_id, created_at, updated_at)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c89', '{"en": "Playbook 1"}', 1, '2022-02-02T13:25:34.480425Z','2022-02-02T13:25:34.480425Z'),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb891', '{"en": "Playbook 2"}', 1, '2021-02-02T13:25:34.480425Z','2021-02-02T13:25:34.480425Z');
-
-insert into playbook_task_list (id, uuid)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92'),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894');
-
-insert into playbook_resource (id, uuid, resource_id)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92', 1),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894', 2);
-
-insert into playbook_video (id, uuid, url, description_i18n)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c92', 'https://test.com', '{"en": "Playbook Video Description 1"}'),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb894', 'https://test.com', '{"en": "Playbook Video Description 2"}');
-
-insert into playbook_task (id, uuid, title_i18n, playbook_task_list_id)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "Task 1"}', 1),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "Task 2"}', 2);
-
-insert into playbook_step (id, uuid, title_i18n, playbook_task_list_id, playbook_resource_id, playbook_video_id, playbook_id)
-            values (1, 'f0ebfc41-acfb-4049-9aef-ea8ab8057c95', '{"en": "Playbook step 1"}', 1, 1, 1, 1),
-                   (2, 'd3e573f6-9b06-46ab-b3ff-ebd7caefb896', '{"en": "Playbook step 2"}', 2, 2, 2, 2);
-
+ALTER SEQUENCE resource_id_seq RESTART WITH 1000;
+ALTER SEQUENCE survey_id_seq RESTART WITH 1000;
+ALTER SEQUENCE question_id_seq RESTART WITH 1000;
+ALTER SEQUENCE option_id_seq RESTART WITH 1000;
+ALTER SEQUENCE leave_request_id_seq RESTART WITH 1000;
 ALTER SEQUENCE playbook_id_seq RESTART WITH 1000;
-ALTER SEQUENCE playbook_task_list_id_seq RESTART WITH 1000;
-ALTER SEQUENCE playbook_resource_id_seq RESTART WITH 1000;
-ALTER SEQUENCE playbook_video_id_seq RESTART WITH 1000;
-ALTER SEQUENCE playbook_task_id_seq RESTART WITH 1000;
-ALTER SEQUENCE playbook_step_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_section_id_seq RESTART WITH 1000;
+ALTER SEQUENCE playbook_section_topic_id_seq RESTART WITH 1000;

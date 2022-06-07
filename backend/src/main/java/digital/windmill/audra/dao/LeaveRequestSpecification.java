@@ -30,10 +30,10 @@ public class LeaveRequestSpecification {
     public static Specification<LeaveRequestEntity> byLeaveRequestsInput(LeaveRequestWhereInput input, List<LeaveRequestsSortEnum> sort) {
 
         Specification<LeaveRequestEntity> byEmployee = Optional.ofNullable(input)
-            .map(LeaveRequestWhereInput::getEmployee)
-            .map(NodeInput::getId)
-            .map(LeaveRequestSpecification::byEmployee)
-            .orElse(null);
+                .map(LeaveRequestWhereInput::getEmployee)
+                .map(NodeInput::getId)
+                .map(LeaveRequestSpecification::byEmployee)
+                .orElse(null);
 
         Specification<LeaveRequestEntity> byApprover = Optional.ofNullable(input)
                 .map(LeaveRequestWhereInput::getApprover)
@@ -89,7 +89,7 @@ public class LeaveRequestSpecification {
     public static Specification<LeaveRequestEntity> sortedBy(List<LeaveRequestsSortEnum> sort) {
         return (root, query, criteriaBuilder) -> {
             List<Order> orders = new ArrayList<>();
-            for (LeaveRequestsSortEnum sortItem: sort) {
+            for (LeaveRequestsSortEnum sortItem : sort) {
                 var order = prepareOrder(root, criteriaBuilder, sortItem);
                 if (order != null) {
                     orders.add(order);
@@ -105,10 +105,10 @@ public class LeaveRequestSpecification {
             return null;
         }
         return switch (order) {
-            case pending_ASC -> direction( cb, root.get("orderByPending"), Sort.Direction.ASC);
-            case pending_DESC -> direction( cb, root.get("orderByPending"), Sort.Direction.DESC);
-            case startDate_ASC -> direction( cb, root.get("startDate"), Sort.Direction.ASC);
-            case startDate_DESC -> direction( cb, root.get("startDate"), Sort.Direction.DESC);
+            case pending_ASC -> direction(cb, root.get("orderByPending"), Sort.Direction.ASC);
+            case pending_DESC -> direction(cb, root.get("orderByPending"), Sort.Direction.DESC);
+            case startDate_ASC -> direction(cb, root.get("startDate"), Sort.Direction.ASC);
+            case startDate_DESC -> direction(cb, root.get("startDate"), Sort.Direction.DESC);
         };
     }
 

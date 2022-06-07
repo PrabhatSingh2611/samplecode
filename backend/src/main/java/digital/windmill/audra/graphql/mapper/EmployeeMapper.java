@@ -33,6 +33,7 @@ public interface EmployeeMapper {
                                                     EmployeeEntity reportingManagerEntity,
                                                     EmployeePositionEntity employeePositionEntity,
                                                     LocationEntity locationEntity);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "uuid", ignore = true)
     @Mapping(target = "firstName", source = "input.firstName")
@@ -43,9 +44,9 @@ public interface EmployeeMapper {
     @Mapping(target = "location", expression = "java(locationEntity)")
     @Mapping(target = "position", expression = "java(employeePositionEntity)")
     EmployeeEntity mapUpdateEmployeeInputToEmployeeEntity(UpdateEmployeeInput input,
-                                                        @MappingTarget EmployeeEntity entity,
-                                                        EmployeeEntity reportingManagerEntity,
-                                                        EmployeePositionEntity employeePositionEntity,
-                                                        LocationEntity locationEntity);
+                                                          @MappingTarget EmployeeEntity entity,
+                                                          EmployeeEntity reportingManagerEntity,
+                                                          EmployeePositionEntity employeePositionEntity,
+                                                          LocationEntity locationEntity);
 
 }

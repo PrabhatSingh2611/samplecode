@@ -1,14 +1,14 @@
 {
-  "data":{
-    "updateVacancy":{
-      "item":{
-        "position":{
-          "id":"cabfb51b-41c5-4f4d-afd5-146c796391ad",
-          "name":"manager"
+  "data": {
+    "updateVacancy": {
+      "item": {
+        "position": {
+          "id": "cabfb51b-41c5-4f4d-afd5-146c796391ad",
+          "name": "manager"
         },
-        "description":"UPDATE VACANCY",
-        "status":"NEW",
-        "priority":"LOW"
+        "description": "UPDATE VACANCY",
+        "status": "NEW",
+        "priority": "LOW"
       }
     }
   }

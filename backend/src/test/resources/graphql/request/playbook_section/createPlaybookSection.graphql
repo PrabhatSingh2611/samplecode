@@ -1,0 +1,8 @@
+mutation CreatePlaybookSection($input: CreatePlaybookSectionInput!) {
+    createPlaybookSection(input: $input) {
+        section {
+            id
+            name
+        }
+    }
+}

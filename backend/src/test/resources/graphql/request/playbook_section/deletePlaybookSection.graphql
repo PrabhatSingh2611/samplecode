@@ -1,0 +1,7 @@
+mutation DeletePlaybookSection($input: DeletePlaybookSectionInput!) {
+    deletePlaybookSection(input: $input) {
+        section {
+            id
+        }
+    }
+}

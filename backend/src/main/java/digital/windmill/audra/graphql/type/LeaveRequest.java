@@ -31,7 +31,7 @@ public class LeaveRequest implements Node {
     }
 
     private Long calcRequestDuration() {
-        if (startDate == null 
+        if (startDate == null
                 || endDate == null
                 || startDate.isAfter(endDate)) {
             return 0L;

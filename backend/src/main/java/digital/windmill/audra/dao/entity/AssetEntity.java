@@ -44,9 +44,9 @@ public class AssetEntity {
     @Column(name = "purchased_date")
     private Instant waybillDate;
     @OneToOne
-    @JoinColumn(name= "location_id")
+    @JoinColumn(name = "location_id")
     private LocationEntity location;
-    @Column(name= "tag_number")
+    @Column(name = "tag_number")
     private String tagNumber;
     @Column(name = "next_action_date")
     private Instant nextActionDate;
@@ -54,6 +54,6 @@ public class AssetEntity {
     private String actionOnName;
     @Column(name = "archived_date")
     private Instant archivedDate;
-    @Column(name= "comment")
+    @Column(name = "comment")
     private String comment;
 }

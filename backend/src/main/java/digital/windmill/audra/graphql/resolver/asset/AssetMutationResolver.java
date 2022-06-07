@@ -30,10 +30,10 @@ public class AssetMutationResolver implements GraphQLMutationResolver {
                 .build();
     }
 
-    public ArchiveAssetPayload archiveAsset(ArchiveAssetInput archiveAssetInput){
-         return  ArchiveAssetPayload
-                 .builder()
-                 .asset(facade.updateAssetAsArchive(archiveAssetInput))
-                 .build();
+    public ArchiveAssetPayload archiveAsset(ArchiveAssetInput archiveAssetInput) {
+        return ArchiveAssetPayload
+                .builder()
+                .asset(facade.updateAssetAsArchive(archiveAssetInput))
+                .build();
     }
 }
