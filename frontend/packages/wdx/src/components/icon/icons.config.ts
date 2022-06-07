@@ -56,6 +56,7 @@ import TabletMac from '@mui/icons-material/TabletMac';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Undo from '@mui/icons-material/Undo';
 import Redo from '@mui/icons-material/Redo';
+import DragIndicator from '@mui/icons-material/DragIndicator';
 
 type TIconComponent = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
   muiName: string;
@@ -117,4 +118,5 @@ export const iconsConfig: Record<TIcons, TIconComponent> = {
   visibility: VisibilityIcon,
   undo: Undo,
   redo: Redo,
+  'drag-indicator': DragIndicator,
 };

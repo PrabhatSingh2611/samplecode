@@ -57,6 +57,7 @@ export {
   WAvatarGroupProps,
 } from './components/avatar-group';
 export { default as WAlert, WAlertProps } from './components/alert';
+export { default as WBackdrop, WBackdropProps } from './components/backdrop';
 export { default as WBadge, WBadgeProps } from './components/badge';
 export { default as WBox, WBoxProps } from './components/box';
 export {

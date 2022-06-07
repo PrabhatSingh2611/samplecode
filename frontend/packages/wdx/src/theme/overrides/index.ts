@@ -2,6 +2,7 @@ import { Theme } from '@mui/material/styles';
 
 import Accordion from './Accordion';
 import Avatar from './Avatar';
+import Backdrop from './Backdrop';
 import Badge from './Badge';
 import Breadcrumbs from './Breadcrumbs';
 import Button from './Button';
@@ -18,6 +19,7 @@ import List from './List';
 import LoadingButton from './LoadingButton';
 import Menu from './Menu';
 import Paper from './Paper';
+import Popover from './Popover';
 import Radio from './Radio';
 import Slider from './Slider';
 import Steper from './Stepper';
@@ -32,6 +34,7 @@ import Select from './Select';
 import Pagination from './Pagination';
 import Skeleton from './Skeleton';
 import Dialog from './Dialog';
+import Drawer from './Drawer';
 import TreeView from './TreeView';
 
 export default function ComponentsOverrides(theme: Theme) {
@@ -39,6 +42,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Accordion(theme),
     Alert(theme),
     Avatar(theme),
+    Backdrop(theme),
     Badge(),
     Breadcrumbs(theme),
     Button(theme),
@@ -49,6 +53,7 @@ export default function ComponentsOverrides(theme: Theme) {
     ControlLabel(theme),
     CssBaseline(),
     Dialog(theme),
+    Drawer(theme),
     Fab(theme),
     Input(theme),
     Link(),
@@ -57,7 +62,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Menu(theme),
     Pagination(theme),
     Paper(theme),
-    Pagination(theme),
+    Popover(theme),
     Radio(theme),
     Select(),
     Skeleton(theme),

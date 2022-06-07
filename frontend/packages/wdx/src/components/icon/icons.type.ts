@@ -53,6 +53,7 @@ export type TIcons =
   | 'tablet-mac'
   | 'visibility'
   | 'undo'
+  | 'drag-indicator'
   | 'redo';
 
 // TODO: Add more types of icons (YD)
