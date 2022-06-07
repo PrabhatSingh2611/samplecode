@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AssetTypeFacadeTest {
 
-    private static final UUID ASSETTYPE_UUID = UUID.randomUUID();
+    private static final UUID ASSET_TYPE_UUID = UUID.randomUUID();
     private static final UUID CATEGORY_UUID = UUID.randomUUID();
 
     @Mock
@@ -48,10 +48,10 @@ public class AssetTypeFacadeTest {
     void shouldFindAssetTypeByUuid(@Mock AssetTypeEntity assetTypeEntity,
                                    @Mock AssetType assetType) {
 
-        when(assetTypeService.findAssetByUuid(ASSETTYPE_UUID)).thenReturn(assetTypeEntity);
+        when(assetTypeService.findAssetByUuid(ASSET_TYPE_UUID)).thenReturn(assetTypeEntity);
         when(assetTypeMapper.map(assetTypeEntity)).thenReturn(assetType);
 
-        var actualResult = assetTypeFacade.findAssetTypeByUuid(ASSETTYPE_UUID);
+        var actualResult = assetTypeFacade.findAssetTypeByUuid(ASSET_TYPE_UUID);
         assertEquals(assetType, actualResult);
     }
 
@@ -79,7 +79,21 @@ public class AssetTypeFacadeTest {
 
         when(input.getCategory()).thenReturn(NodeInput.of(String.valueOf(CATEGORY_UUID)));
         when(assetTypeCategoryService.findAssetTypeCategoryByUuid(input.getCategory().getId())).thenReturn(assetTypeCategoryEntity);
-        when(assetTypeMapper.map(input, assetTypeCategoryEntity)).thenReturn(assetTypeEntity);
+        when(assetTypeMapper.map(input)).thenReturn(assetTypeEntity);
+        when(assetTypeService.save(assetTypeEntity)).thenReturn(assetTypeEntity);
+        when(assetTypeMapper.map(assetTypeEntity)).thenReturn(assetType);
+
+        var actualResult = assetTypeFacade.createAssetType(input);
+        assertEquals(assetType, actualResult);
+    }
+
+    @Test
+    void shouldCreateAssetTypeWithoutCategory(@Mock CreateAssetTypeInput input,
+                                              @Mock AssetTypeEntity assetTypeEntity,
+                                              @Mock AssetType assetType) {
+
+        when(input.getCategory()).thenReturn(null);
+        when(assetTypeMapper.map(input)).thenReturn(assetTypeEntity);
         when(assetTypeService.save(assetTypeEntity)).thenReturn(assetTypeEntity);
         when(assetTypeMapper.map(assetTypeEntity)).thenReturn(assetType);
 
@@ -96,7 +110,7 @@ public class AssetTypeFacadeTest {
         when(input.getCategory()).thenReturn(NodeInput.of(String.valueOf(CATEGORY_UUID)));
         when(assetTypeCategoryService.findAssetTypeCategoryByUuid(input.getCategory().getId())).thenReturn(assetTypeCategoryEntity);
         when(assetTypeService.findAssetByUuid(input.getId())).thenReturn(assetTypeEntity);
-        when(assetTypeMapper.map(input, assetTypeEntity, assetTypeCategoryEntity)).thenReturn(assetTypeEntity);
+        when(assetTypeMapper.map(input, assetTypeEntity)).thenReturn(assetTypeEntity);
         when(assetTypeService.save(assetTypeEntity)).thenReturn(assetTypeEntity);
         when(assetTypeMapper.map(assetTypeEntity)).thenReturn(assetType);
 
@@ -104,5 +118,19 @@ public class AssetTypeFacadeTest {
         assertEquals(assetType, actualResult);
     }
 
+    @Test
+    void shouldUpdateAssetTypeWithoutCategory(@Mock UpdateAssetTypeInput input,
+                                              @Mock AssetTypeEntity assetTypeEntity,
+                                              @Mock AssetType assetType) {
+
+        when(input.getCategory()).thenReturn(null);
+        when(assetTypeService.findAssetByUuid(input.getId())).thenReturn(assetTypeEntity);
+        when(assetTypeMapper.map(input, assetTypeEntity)).thenReturn(assetTypeEntity);
+        when(assetTypeService.save(assetTypeEntity)).thenReturn(assetTypeEntity);
+        when(assetTypeMapper.map(assetTypeEntity)).thenReturn(assetType);
+
+        var actualResult = assetTypeFacade.updateAssetType(input);
+        assertEquals(assetType, actualResult);
+    }
 
 }

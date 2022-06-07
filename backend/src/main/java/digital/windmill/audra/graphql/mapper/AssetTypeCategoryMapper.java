@@ -24,6 +24,6 @@ public interface AssetTypeCategoryMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     AssetTypeCategoryEntity map(PatchAssetTypeCategoryInput input,
-                                @MappingTarget AssetTypeCategoryEntity country);
+                                @MappingTarget AssetTypeCategoryEntity entity);
 
 }

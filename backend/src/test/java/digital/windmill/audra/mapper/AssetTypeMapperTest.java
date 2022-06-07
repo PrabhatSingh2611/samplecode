@@ -55,38 +55,30 @@ class AssetTypeMapperTest {
 
         Assertions.assertNotNull(result);
         assertEquals(ASSETTYPE_UUID, result.getId());
-        assertEquals(CATEGORY_UUID, result.getCategory().getId());
         assertEquals(ASSETTYPE_NAME, result.getName());
-        assertEquals(CATEGORY_NAME, result.getCategory().getName());
         assertEquals(ICON_NAME, result.getIconName());
         assertEquals(ZONE_DATE_TIME, result.getCreatedAt());
     }
 
     @Test
     void mapCreateAssetTypeInputToAssetTypeEntity() {
-        var category = createAssetTypeCategoryEntity();
-        var result = assetTypeMapper.map(buildCreateAssetTypeInput(), category);
+        var result = assetTypeMapper.map(buildCreateAssetTypeInput());
 
         Assertions.assertNotNull(result);
         assertEquals(ASSETTYPE_NAME, result.getName());
-        assertEquals(CATEGORY_UUID, result.getCategory().getUuid());
         assertEquals(ICON_NAME, result.getIconName());
     }
 
     @Test
     void mapUpdateAssetTypeInputToAssetTypeEntity() {
         var assetType = createAssetTypeEntity();
-        var category = createAssetTypeCategoryEntity();
-        var result = assetTypeMapper.map(buildUpdateAssetTypeInput(), assetType, category);
+        var result = assetTypeMapper.map(buildUpdateAssetTypeInput(), assetType);
 
         Assertions.assertNotNull(result);
-        assertEquals(CATEGORY_NAME, result.getName());
-        assertEquals(CATEGORY_UUID, result.getCategory().getUuid());
+        assertEquals(ASSETTYPE_NAME, result.getName());
         assertEquals(ICON_NAME, result.getIconName());
 
     }
-
-
 
     private CreateAssetTypeInput buildCreateAssetTypeInput() {
         return CreateAssetTypeInput
@@ -101,7 +93,7 @@ class AssetTypeMapperTest {
         return UpdateAssetTypeInput
                 .builder()
                 .category(NodeInput.of(CATEGORY_UUID))
-                .name(CATEGORY_NAME)
+                .name(ASSETTYPE_NAME)
                 .iconName(ICON_NAME)
                 .build();
     }

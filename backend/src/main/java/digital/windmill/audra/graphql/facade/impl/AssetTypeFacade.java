@@ -42,16 +42,21 @@ public class AssetTypeFacade {
 
     @Transactional
     public AssetType createAssetType(CreateAssetTypeInput createAssetTypeInput) {
-        var category = assetTypeCategoryService.findAssetTypeCategoryByUuid(createAssetTypeInput.getCategory().getId());
-        var createdAssetType = assetTypeMapper.map(createAssetTypeInput, category);
-        return assetTypeMapper.map(assetTypeService.save(createdAssetType));
+        var assetType = assetTypeMapper.map(createAssetTypeInput);
+        var category = createAssetTypeInput.getCategory() == null ? null :
+                assetTypeCategoryService.findAssetTypeCategoryByUuid(createAssetTypeInput.getCategory().getId());
+        assetType.setCategory(category);
+        return assetTypeMapper.map(assetTypeService.save(assetType));
     }
 
     @Transactional
     public AssetType updateAssetType(UpdateAssetTypeInput updateAssetTypeInput) {
-        var category = assetTypeCategoryService.findAssetTypeCategoryByUuid(updateAssetTypeInput.getCategory().getId());
         var assetType = assetTypeService.findAssetByUuid(updateAssetTypeInput.getId());
-        var updatedAssetType = assetTypeMapper.map(updateAssetTypeInput, assetType, category);
-        return assetTypeMapper.map(assetTypeService.save(updatedAssetType));    }
+        var category = updateAssetTypeInput.getCategory() == null ? null :
+                assetTypeCategoryService.findAssetTypeCategoryByUuid(updateAssetTypeInput.getCategory().getId());
+        assetType.setCategory(category);
+        var updatedAssetType = assetTypeMapper.map(updateAssetTypeInput, assetType);
+        return assetTypeMapper.map(assetTypeService.save(updatedAssetType));
+    }
 
 }

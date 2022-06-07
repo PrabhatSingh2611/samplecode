@@ -1,5 +1,5 @@
 query {
-    assetTypeCategories(input: {pagination: {itemsPerPage: 2, pageNumber: 1}}){
+    assetTypeCategories(input: {pagination: {itemsPerPage: 2, pageNumber: 2}}){
         items{
             id
             name
