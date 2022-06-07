@@ -32,7 +32,7 @@ module.exports = {
     // TODO: Decide about size and how to calulcate in GZIP (IM)
     performance: {
         maxAssetSize: 500000,
-        maxEntrypointSize: 500000,
+        maxEntrypointSize: 20000,
         hints: 'error',
     },
 };
