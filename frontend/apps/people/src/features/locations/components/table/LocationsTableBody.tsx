@@ -1,23 +1,25 @@
 import React, { useMemo } from 'react';
 
-import { WScrollbarContainer, WTable } from 'wdx';
+import { EFetchPolicy, WScrollbarContainer, WTable } from 'wdx';
 
-import AssetTableRow from 'features/assets-table/components/table/AssetTableRow';
-import { AssetsTableHead } from 'features/assets-table/components/table/AssetsTableHead';
-import TableSkeletonChildren from 'features/assets-table/components/table/TableSkeletonChildren';
-import { useGetAssetsTableList } from 'features/assets-table/hooks/assetsTable.hooks';
-import { useGetAssetsListSearchParams } from 'features/assets-table/hooks/searcParams.hooks';
+import { LocationsTableHead } from 'features/locations/components/table/LocationsTableHead';
+import LocationsTableRow from 'features/locations/components/table/LocationsTableRow';
+import { useGetLocationsTableList } from 'features/locations/hooks/locationsTable.hooks';
+import { useGetLocationsListSearchParams } from 'features/locations/hooks/searchParams.hooks';
 
-interface IAssetsTableBodyProps {
+interface ILocationsTableBodyProps {
     dense: boolean;
 }
 
-export function AssetsTableBody({ dense }: IAssetsTableBodyProps): JSX.Element {
-    const { rowsPerPage } = useGetAssetsListSearchParams();
-    const { data, isLoading, error } = useGetAssetsTableList();
+export function LocationsTableBody({ dense }: ILocationsTableBodyProps): JSX.Element {
+    const { rowsPerPage } = useGetLocationsListSearchParams();
+    const { locations, locationsListQuery } = useGetLocationsTableList(
+        EFetchPolicy.CACHE_AND_NETWORK,
+    );
 
-    const tableDataArr = data?.assets.items;
-    const isNotFound = !!tableDataArr?.length || error;
+    const { error, loading: isLoading } = locationsListQuery;
+
+    const isNotFound = Boolean(!!locations?.length || error);
 
     const minDenseHeight = 52;
     const maxDenseHeight = 72;
@@ -26,39 +28,43 @@ export function AssetsTableBody({ dense }: IAssetsTableBodyProps): JSX.Element {
     const tableData = useMemo(
         () => (
             <>
-                {tableDataArr?.map((row) => (
-                    <AssetTableRow
+                {locations?.map((row) => (
+                    <LocationsTableRow
                         key={row.id}
                         row={row}
                         onDeleteRow={(): void => handleDeleteRow(row.id)}
                         onEditRow={(): void => handleEditRow(row.id)}
+                        onViewDetails={(): void => handleViewDetails(row.id)}
                     />
                 ))}
             </>
         ),
-        [tableDataArr],
+        [locations],
     );
 
     const tableSkeleton = useMemo(
         () => (
             <>
                 {[...Array(rowsPerPage)].map((_, index) => (
-                    <WTable.Skeleton key={index} sx={{ height: denseHeight }}>
-                        {TableSkeletonChildren()}
-                    </WTable.Skeleton>
+                    <WTable.Skeleton key={index} sx={{ height: denseHeight }} />
                 ))}
             </>
         ),
         [denseHeight, rowsPerPage],
     );
 
-    // TODO: Add logic for delete row (TK)
+    // TODO: Add logic for delete row (TD)
     const handleDeleteRow = (id: string): void => {
         console.log(id);
     };
 
-    // TODO: Add logic for edit row (TK)
+    // TODO: Add logic for edit row (TD)
     const handleEditRow = (id: string): void => {
+        console.log(id);
+    };
+
+    // TODO: Add logic for edit row (TD)
+    const handleViewDetails = (id: string): void => {
         console.log(id);
     };
 
@@ -66,14 +72,14 @@ export function AssetsTableBody({ dense }: IAssetsTableBodyProps): JSX.Element {
         return arrayLength < perPage ? perPage - arrayLength : 0;
     }
 
-    const emptyRowsCount = !!tableDataArr?.length && emptyRows(rowsPerPage, tableDataArr.length);
+    const emptyRowsCount = !!locations?.length && emptyRows(rowsPerPage, locations.length);
     const showTableNoData = !isLoading && !isNotFound;
 
     return (
         <WScrollbarContainer>
-            <WTable.Container sx={{ position: 'relative', minWidth: 800 }}>
+            <WTable.Container sx={{ position: 'relative', minWidth: 800, pt: 1 }}>
                 <WTable size={dense ? 'small' : 'medium'}>
-                    <AssetsTableHead />
+                    <LocationsTableHead />
 
                     <WTable.Body>
                         {!isLoading ? tableData : tableSkeleton}

@@ -1,0 +1,11 @@
+mutation createLocationForAddLocationModal($input: CreateLocationInput!) {
+    createLocation(input: $input) {
+        location {
+            id
+            name
+            country {
+                id
+            }
+        }
+    }
+}

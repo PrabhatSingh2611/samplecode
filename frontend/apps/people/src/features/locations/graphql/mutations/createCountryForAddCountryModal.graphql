@@ -1,0 +1,9 @@
+mutation createCountryForAddLocationModal($input: CreateLocationCountryInput!) {
+    createLocationCountry(input: $input) {
+        locationCountry {
+            id
+            name
+            iconName
+        }
+    }
+}

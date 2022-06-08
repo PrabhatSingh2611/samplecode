@@ -1,0 +1,22 @@
+query getLocationCountriesForAddLocationModal($input: LocationCountriesInput!) {
+    locationCountries(input: $input) {
+        items {
+            ...CountryForAddLocationModal
+        }
+        pageInfo {
+          ...PageInfo
+        }
+        totalItems
+     }
+}
+
+fragment CountryForAddLocationModal on LocationCountry {
+     id
+     name
+     iconName
+}
+
+fragment PageInfo on PageInfo {
+    currentPage
+    totalPages
+}

@@ -1,11 +1,14 @@
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import WBox from '../box';
 import * as Yup from 'yup';
 import WForm from './index';
 import { WMenuItem } from '../menu';
 import { WAdapterDateFns, WLocalizationProvider } from '../date-picker';
 import WTextField from '../text-field';
+import { getRandomCountry } from '../../utils/getRandomEntity';
+import WList from '../list';
+import { castToString } from '../../utils/maybeUtils';
 
 const meta: Meta = {
   title: 'MUI/Inputs/Form',
@@ -17,17 +20,40 @@ const meta: Meta = {
 
 export default meta;
 
+interface ICountryType {
+  label: string;
+}
+
+const countries: ICountryType[] = [
+  { label: getRandomCountry() },
+  { label: getRandomCountry() },
+  { label: getRandomCountry() },
+  { label: getRandomCountry() },
+  { label: getRandomCountry() },
+];
+
 const TemplateForm: Story = () => {
   const validation = Yup.object().shape({
     input: Yup.string().required('Name is required'),
     animal: Yup.string().required('Animal is required'),
     upload: Yup.object().required('Upload is required'),
     date: Yup.date().required('Date is required'),
+    autocomplete: Yup.lazy((value) => {
+      switch (typeof value) {
+        case 'object':
+          return Yup.object({
+            label: Yup.string().required('Autocomplete is required'),
+          });
+        default:
+          return Yup.string().min(2);
+      }
+    }),
   });
 
   const defaultValues = {
     input: 'initial value',
     date: null,
+    autocomplete: '',
   };
 
   return (
@@ -46,7 +72,9 @@ const TemplateForm: Story = () => {
           sx={{ width: 500 }}
         >
           <WForm.Control component="fieldset">
-            <WForm.Label component="legend" variant="bold">Label</WForm.Label>
+            <WForm.Label component="legend" variant="bold">
+              Label
+            </WForm.Label>
             <WForm.Input name="input" label="My input" />
           </WForm.Control>
 
@@ -96,6 +124,31 @@ const TemplateForm: Story = () => {
                 }}
               />
             </WLocalizationProvider>
+          </WForm.Control>
+          <WForm.Control>
+            <WForm.Autocomplete
+              name="autocomplete"
+              freeSolo={true}
+              options={countries}
+              getOptionLabel={(option: any) =>
+                castToString(option?.label || option)
+              }
+              renderOption={(
+                props: HTMLAttributes<HTMLLIElement>,
+                option: any
+              ): JSX.Element => (
+                <WList.Item {...props}>{option.label || option}</WList.Item>
+              )}
+              renderInput={(params, error) => (
+                <WTextField
+                  {...params}
+                  label="Choose a country"
+                  variant="outlined"
+                  error={!!error}
+                  helperText={error?.message}
+                />
+              )}
+            />
           </WForm.Control>
         </WBox>
       </WForm>

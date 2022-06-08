@@ -1,0 +1,30 @@
+query getLocationsForLocationsList($input: LocationsInput!) {
+    locations(input: $input) {
+        items {
+            ...LocationForLocationsList
+        }
+        pageInfo {
+          ...PageInfo
+        }
+        totalItems
+     }
+}
+
+fragment LocationForLocationsList on Location {
+    id
+    name
+    country {
+        ...LocationCountryForLocationsList
+    }
+}
+
+fragment LocationCountryForLocationsList on LocationCountry {
+    id
+    name
+    iconName
+}
+
+fragment PageInfo on PageInfo {
+    currentPage
+    totalPages
+}

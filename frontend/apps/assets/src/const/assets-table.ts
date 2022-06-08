@@ -1,5 +1,6 @@
-import getStaticAssetUrl from 'utils/staticAssetUrl';
 import { AlignTableCell } from 'wdx';
+
+import getStaticAssetUrl from 'utils/staticAssetUrl';
 
 export enum EAssetsSearchParams {
     RowsPerPage = 'rowsPerPage',

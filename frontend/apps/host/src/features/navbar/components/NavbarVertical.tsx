@@ -34,14 +34,8 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }: IProps
 
     const isDesktop = useResponsive('up', 'lg');
 
-    const {
-        isCollapse,
-        collapseClick,
-        collapseHover,
-        onToggleCollapse,
-        onHoverEnter,
-        onHoverLeave,
-    } = useCollapseDrawer();
+    const { isCollapse, collapseClick, collapseHover, onHoverEnter, onHoverLeave } =
+        useCollapseDrawer();
 
     useEffect(() => {
         if (isOpenSidebar) {

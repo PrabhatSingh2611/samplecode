@@ -10,7 +10,7 @@ import { getClient } from 'client';
 import RemoteExampleObservables from 'core/RemoteExampleObservavbles';
 import Router from 'core/Router';
 import EmployeesList from 'features/employees/components/EmployeesList.component';
-import AuthorizationBtn from 'features/me/components/authBtn';
+import AuthorizationBtn from 'features/me/components/AuthBtn.component';
 
 interface IAppProps {
     inIsolation: boolean;
@@ -51,8 +51,8 @@ const Header = (): JSX.Element => (
 
 const Home = (): JSX.Element => (
     <WBox className="RemoteExampleAppHome">
-        <WTypography>Remote Example App</WTypography>
         <AuthorizationBtn />
+        <WTypography>Remote Example App</WTypography>
     </WBox>
 );
 

@@ -22,6 +22,7 @@ import WFormSelect from './fields/Select';
 import WFormUploadSingle from './fields/UploadSingle';
 import WFormCheckbox from './fields/Checkbox';
 import WFormDatePicker from './fields/FormDatePicker';
+import WFormAutocomplete from './fields/Autocomplete';
 
 import WFormSubmit from './fields/Submit';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
@@ -104,5 +105,6 @@ WForm.Select = WFormSelect;
 WForm.UploadSingle = WFormUploadSingle;
 WForm.Checkbox = WFormCheckbox;
 WForm.DatePicker = WFormDatePicker;
+WForm.Autocomplete = WFormAutocomplete;
 
 export default WForm;

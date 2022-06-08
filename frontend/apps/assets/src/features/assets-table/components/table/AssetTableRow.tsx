@@ -1,9 +1,5 @@
 import React from 'react';
 
-import { AssigneeCell } from 'features/assets-table/components/table/table-cells/AssigneeCell';
-import { LocationCell } from 'features/assets-table/components/table/table-cells/LocationCell';
-import { MoreMenuCell } from 'features/assets-table/components/table/table-cells/MoreMenuCell';
-import { AssetsItemFragment } from 'features/assets-table/graphql/queries/assetsForAssetsList.generated';
 import {
     WBox,
     WTable,
@@ -17,6 +13,11 @@ import {
     useWTheme,
     TIcons,
 } from 'wdx';
+
+import { AssigneeCell } from 'features/assets-table/components/table/table-cells/AssigneeCell';
+import { LocationCell } from 'features/assets-table/components/table/table-cells/LocationCell';
+import { MoreMenuCell } from 'features/assets-table/components/table/table-cells/MoreMenuCell';
+import { AssetsItemFragment } from 'features/assets-table/graphql/queries/assetsForAssetsList.generated';
 
 interface IAssetTableRow {
     row: AssetsItemFragment;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { WImage, WList, WStack, WTooltip, WTansitionFade } from 'wdx';
+import { WImage, WList, WStack, WTansitionFade, WTooltip } from 'wdx';
 
 import { AssetsLocationFragment } from 'features/assets-table/graphql/queries/assetsForAssetsList.generated';
 

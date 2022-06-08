@@ -20,6 +20,10 @@ import {
   TableSortLabelProps,
 } from '@mui/material';
 import TableBody from '@mui/material/TableBody';
+import WStack from '../stack';
+import WSkeleton from '../skeleton';
+import WEmptyState from '../../widgets/empty-state';
+
 export interface WTableProps extends TableProps {}
 export interface WTableCellProps extends TableCellProps {}
 export interface WTableContainerProps extends TableContainerProps {}
@@ -36,6 +40,11 @@ interface ITableEmptyRows {
   emptyRows: number;
   height?: number;
 }
+
+type TTableSkeleton = WTableRowProps & {
+  rowHeight?: number;
+  children?: JSX.Element;
+};
 
 export function WTable(props: WTableProps): JSX.Element {
   return <Table {...props} />;
@@ -83,6 +92,45 @@ WTable.EmptyRows = ({ emptyRows, height }: ITableEmptyRows): JSX.Element => (
   >
     <TableCell colSpan={9} />
   </TableRow>
+);
+
+WTable.Skeleton = (props: TTableSkeleton): JSX.Element => {
+  const defaultRowHeight = 40;
+
+  return (
+    <WTable.Row {...props}>
+      <WTable.Cell colSpan={12}>
+        <WStack spacing={3} direction="row" alignItems="center">
+          <WSkeleton
+            variant="rectangular"
+            width={65}
+            height={65}
+            sx={{ flexShrink: 0, borderRadius: 1 }}
+          />
+          <WSkeleton
+            variant="text"
+            width="100%"
+            height={props.rowHeight || defaultRowHeight}
+          />
+          {props.children}
+        </WStack>
+      </WTable.Cell>
+    </WTable.Row>
+  );
+};
+
+WTable.NoData = (): JSX.Element => (
+  <WTable.Row>
+    <WTable.Cell colSpan={12}>
+      <WEmptyState
+        title="No matches found"
+        subtitle="Change your search query or modify filters"
+        sx={{
+          '& span.MuiBox-root': { height: 160 },
+        }}
+      />
+    </WTable.Cell>
+  </WTable.Row>
 );
 
 export default WTable;

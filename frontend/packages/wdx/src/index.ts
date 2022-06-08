@@ -37,6 +37,7 @@ export { TIcons } from './components/icon/icons.type';
 export { WSxProps } from './types';
 
 // COMPONENTS
+export { default as WCountryFlag } from './components/country-flag';
 export {
   default as WAccordion,
   WAccordionActions,
@@ -101,6 +102,7 @@ export {
 } from './components/click-away-listener';
 export {
   default as WAutocomplete,
+  WCreateFilterOptions,
   WAutocompleteProps,
 } from './components/autocomplete';
 export { default as WContainer, WContainerProps } from './components/container';

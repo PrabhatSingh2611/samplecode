@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { WBox, WTypography, WButton } from 'wdx';
+import { WBox, WButton, WTypography } from 'wdx';
 
 import EmployeesList from 'features/employees/components/EmployeesList.component';
 import LeaveRequestDrawer from 'features/leave/components/leave-request-drawer/LeaveRequestDrawer.component';
 import RequestsPage from 'features/leave/containers/requests-page/RequestsPage.container';
-import AuthorizationBtn from 'features/me/components/authBtn';
+import LocationsPage from 'features/locations/containers/LocationsPage.container';
 import PoliciesPage from 'features/policies/containers/policies-page/PoliciesPage.container';
 import { EPeopleRouterLink } from 'models/router/people-router-link';
 
@@ -32,7 +32,7 @@ function Routes(): JSX.Element {
                 <PageSample title="Positions page" />
             </Route>
             <Route path={EPeopleRouterLink.Locations}>
-                <PageSample title="Locations page" />
+                <LocationsPage />
             </Route>
             <Route path={EPeopleRouterLink.Admins}>
                 <PageSample title="Admins page" />
@@ -51,7 +51,6 @@ function PageSample({ title }: { title: string }): JSX.Element {
     return (
         <WBox>
             <WTypography>{title}</WTypography>
-            <AuthorizationBtn />
             <WButton onClick={(): void => setIsDrawerOpened(true)}>Request a Leave</WButton>
             <LeaveRequestDrawer isOpened={isDrawerOpened} setIsOpened={setIsDrawerOpened} />
         </WBox>

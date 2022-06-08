@@ -2,36 +2,36 @@ import React, { ChangeEvent } from 'react';
 
 import { useUpdateSearchUrlParam, WBox, WForm, WSwitch, WTable } from 'wdx';
 
-import { EAssetsSearchParams } from 'const/assets-table';
-import { useGetAssetsTableList } from 'features/assets-table/hooks/assetsTable.hooks';
-import { useGetAssetsListSearchParams } from 'features/assets-table/hooks/searcParams.hooks';
+import { ELocationsSearchParams } from 'features/locations/constants/locationsTable';
+import { useGetLocationsTableList } from 'features/locations/hooks/locationsTable.hooks';
+import { useGetLocationsListSearchParams } from 'features/locations/hooks/searchParams.hooks';
 
-interface IAssetsTablePaginationProps {
+interface ILocationsTablePaginationProps {
     dense: boolean;
     setDense: (dense: boolean) => void;
 }
 
-export function AssetsTablePagination({
+export function LocationsTablePagination({
     dense,
     setDense,
-}: IAssetsTablePaginationProps): JSX.Element {
+}: ILocationsTablePaginationProps): JSX.Element {
     const updateSearchParam = useUpdateSearchUrlParam();
-    const { rowsPerPage } = useGetAssetsListSearchParams();
-    const { data } = useGetAssetsTableList();
+    const { rowsPerPage } = useGetLocationsListSearchParams();
+    const { locationsListQuery } = useGetLocationsTableList();
 
     const perPage = [5, 10, 25];
-    const pageInfo = data?.assets.pageInfo;
-    const totalItems = data?.assets.totalItems;
+    const pageInfo = locationsListQuery.data?.locations.pageInfo;
+    const totalItems = locationsListQuery.data?.locations.totalItems;
 
     const onChangeDense = (event: ChangeEvent<HTMLInputElement>): void => {
         setDense(event.target.checked);
     };
 
     const onChangePage = (_: unknown, newPage: number): void => {
-        updateSearchParam(EAssetsSearchParams.CurrentPage, newPage);
+        updateSearchParam(ELocationsSearchParams.CurrentPage, newPage);
     };
     const onChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>): void => {
-        updateSearchParam(EAssetsSearchParams.RowsPerPage, event.target.value);
+        updateSearchParam(ELocationsSearchParams.RowsPerPage, event.target.value);
     };
 
     return (

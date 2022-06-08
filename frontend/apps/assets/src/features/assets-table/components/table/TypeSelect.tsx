@@ -46,7 +46,7 @@ export default function TypeSelect({ setTypes }: ITypeSelect): JSX.Element {
                     />
                 }
             >
-                {!!Array.isArray(node.children) && renderTree(node.children)}
+                {Array.isArray(node.children) && renderTree(node.children)}
             </CustomWTreeItem>
         ));
 
