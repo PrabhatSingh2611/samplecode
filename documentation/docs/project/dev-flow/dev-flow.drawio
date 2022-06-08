@@ -1,0 +1,178 @@
+<mxfile host="65bd71144e" pages="2">
+    <diagram id="pyCtDmYj4w88TtMRKa-u" name="Page-1">
+        <mxGraphModel dx="844" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3000" pageHeight="1000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="iJWudAlqPAcr36nk3VlF-1" target="iJWudAlqPAcr36nk3VlF-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-1" value="Creates new branch from develop" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="168" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-2" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;DEV&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="70" y="208" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="iJWudAlqPAcr36nk3VlF-5" target="iJWudAlqPAcr36nk3VlF-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-5" value="Moves ticket to &lt;b&gt;In Progress&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="559.21" y="168" width="127.19" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="iJWudAlqPAcr36nk3VlF-15" target="iJWudAlqPAcr36nk3VlF-17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;" parent="1" source="iJWudAlqPAcr36nk3VlF-15" target="iJWudAlqPAcr36nk3VlF-22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-15" value="After code is done Dev creates a pR and moves ticket to &lt;b&gt;PR review&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="920" y="168" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;" parent="1" source="iJWudAlqPAcr36nk3VlF-17" target="iJWudAlqPAcr36nk3VlF-27" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-17" value="After receiving all the required PR checks Dev moves ticket to &lt;b&gt;Ready for QA&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="1240" y="168" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-19" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;QA&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="70" y="523" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;" parent="1" source="iJWudAlqPAcr36nk3VlF-20" target="iJWudAlqPAcr36nk3VlF-29" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="iJWudAlqPAcr36nk3VlF-20" target="iJWudAlqPAcr36nk3VlF-31" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1562.5" y="478" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-20" value="Deploys branch to Squad Env" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="435.5" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-21" value="" style="endArrow=classic;html=1;rounded=0;fontSize=20;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="iJWudAlqPAcr36nk3VlF-5" target="iJWudAlqPAcr36nk3VlF-15" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="762.81" y="458" as="sourcePoint"/>
+                        <mxPoint x="842.81" y="198" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-22" value="Should block his/her PR with creating Breaking Change task in BitBucket PR if it's a &lt;b&gt;Breaking Change&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="288" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-27" value="In case it's a FE ticket and it should be tested with special BE branch FE Dev should mention this BE branch in ticket Desription" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="1200" y="288" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-29" value="In case of only BE ticket only BE branch could be deployed and tested, in case of FE ticket QA should deploy both FE and BE branches" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="1200" y="558" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;strokeColor=#2D7600;strokeWidth=3;fillColor=#60a917;" parent="1" source="iJWudAlqPAcr36nk3VlF-31" target="iJWudAlqPAcr36nk3VlF-54" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-31" value="Starts Testing and moves ticket to &lt;b&gt;QA In Progress&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1557.5" y="435.5" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-35" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;PO&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="70" y="738" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-39" value="TODO" style="swimlane;fontSize=20;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#ffffff;swimlaneFillColor=none;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="93" width="240" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-33" value="After Failed testing QA moves ticket to &lt;b&gt;TODO&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="iJWudAlqPAcr36nk3VlF-39" vertex="1">
+                    <mxGeometry x="40" y="342.5" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-61" value="" style="endArrow=none;dashed=1;html=1;rounded=1;fontSize=20;strokeColor=#000000;strokeWidth=3;" parent="iJWudAlqPAcr36nk3VlF-39" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-120" y="585" as="sourcePoint"/>
+                        <mxPoint x="2080" y="585" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-40" value="In Progress" style="swimlane;fontSize=20;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=none;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="93" width="440" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-7" value="In case it's a FE developer and he/she needs API which is not in develop yet, FE developer should get branch from BE developer and &lt;b&gt;start API locally&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="iJWudAlqPAcr36nk3VlF-40" vertex="1">
+                    <mxGeometry x="42.80000000000001" y="195" width="360" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-41" value="" style="endArrow=none;dashed=1;html=1;rounded=1;fontSize=20;strokeColor=#000000;strokeWidth=3;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="40" y="398" as="sourcePoint"/>
+                        <mxPoint x="2240" y="398" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-48" value="PR Review" style="swimlane;fontSize=20;swimlaneFillColor=none;fillColor=#f8cecc;strokeColor=#b85450;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="93" width="320" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-54" value="After Success testing QA moves ticket to&amp;nbsp;&lt;b&gt;Ready for Deployment&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1797.5" y="435.5" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-56" value="" style="endArrow=classic;html=1;rounded=1;fontSize=20;strokeColor=#B20000;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#e51400;" parent="1" source="iJWudAlqPAcr36nk3VlF-31" target="iJWudAlqPAcr36nk3VlF-33" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1130" y="528" as="sourcePoint"/>
+                        <mxPoint x="650" y="528" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1638" y="518"/>
+                            <mxPoint x="280" y="518"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-57" value="Ready For QA" style="swimlane;fontSize=20;fillColor=#e1d5e7;strokeColor=#9673a6;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1160" y="93" width="360" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-58" value="QA In Progress" style="swimlane;fontSize=20;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1517.5" y="93" width="242.5" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-59" value="Ready for Deployment" style="swimlane;fontSize=20;fillColor=#f8cecc;strokeColor=#b85450;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1760" y="93" width="240" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-62" value="When PO asks Dev should merge PR" style="rounded=1;whiteSpace=wrap;html=1;" parent="iJWudAlqPAcr36nk3VlF-59" vertex="1">
+                    <mxGeometry x="37.5" y="75" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-60" value="Done" style="swimlane;fontSize=20;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#ffffff;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="2000" y="93" width="240" height="745" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-36" value="PO can recheck Deployed to Squad Env code" style="rounded=1;whiteSpace=wrap;html=1;" parent="iJWudAlqPAcr36nk3VlF-60" vertex="1">
+                    <mxGeometry x="-202.5" y="625" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-37" value="After Success check PO should merge PR to develop and move ticket to &lt;b&gt;Done&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="iJWudAlqPAcr36nk3VlF-60" vertex="1">
+                    <mxGeometry x="37.5" y="625" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="iJWudAlqPAcr36nk3VlF-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=20;strokeWidth=2;" parent="iJWudAlqPAcr36nk3VlF-60" source="iJWudAlqPAcr36nk3VlF-36" target="iJWudAlqPAcr36nk3VlF-37" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-1" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;Feature branch&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="995" y="878" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-3" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;direction=north;strokeWidth=3;perimeterSpacing=0;gradientColor=none;gradientDirection=north;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="848" width="1820" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-4" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;direction=north;strokeWidth=3;perimeterSpacing=0;gradientColor=none;gradientDirection=north;" parent="1" vertex="1">
+                    <mxGeometry x="2010" y="848" width="220" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-5" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;Develop branch&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2035" y="878" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-7" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;direction=south;strokeWidth=3;perimeterSpacing=0;gradientColor=none;gradientDirection=north;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="60" width="1820" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-8" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;Feature branch&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="995" y="20" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-9" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;direction=south;strokeWidth=3;perimeterSpacing=0;gradientColor=none;gradientDirection=north;" parent="1" vertex="1">
+                    <mxGeometry x="2000" y="60" width="220" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-10" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;Develop branch&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2025" y="20" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-11" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Git&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#B3B3B3;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="843" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-12" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Git&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#B3B3B3;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="55" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-13" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Git&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#B3B3B3;" parent="1" vertex="1">
+                    <mxGeometry x="2270" y="843" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="gqXhVW59oo6XGXfuyd32-14" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Git&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#B3B3B3;" parent="1" vertex="1">
+                    <mxGeometry x="2270" y="55" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
