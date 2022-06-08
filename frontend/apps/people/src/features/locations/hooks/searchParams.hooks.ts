@@ -21,7 +21,7 @@ export function useGetLocationsListSearchParams(): IGetLocationsListSearchParams
     } = urlSearchParamsValues;
 
     return {
-        currentPage: +castToString(currentPage, '0'),
+        currentPage: +castToString(currentPage, '1'),
         order: order as Order,
         rowsPerPage: +rowsPerPage,
     };

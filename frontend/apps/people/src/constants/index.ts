@@ -1,0 +1,2 @@
+export const DEFAULT_PAGE_NUMBER_API = 1;
+export const DEFAULT_PAGE_NUMBER_TABLE = 0;

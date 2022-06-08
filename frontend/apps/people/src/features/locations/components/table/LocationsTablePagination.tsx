@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 
 import { useUpdateSearchUrlParam, WBox, WForm, WSwitch, WTable } from 'wdx';
 
+import { DEFAULT_PAGE_NUMBER_API, DEFAULT_PAGE_NUMBER_TABLE } from 'constants/index';
 import { ELocationsSearchParams } from 'features/locations/constants/locationsTable';
 import { useGetLocationsTableList } from 'features/locations/hooks/locationsTable.hooks';
 import { useGetLocationsListSearchParams } from 'features/locations/hooks/searchParams.hooks';
@@ -28,11 +29,17 @@ export function LocationsTablePagination({
     };
 
     const onChangePage = (_: unknown, newPage: number): void => {
-        updateSearchParam(ELocationsSearchParams.CurrentPage, newPage);
+        updateSearchParam(ELocationsSearchParams.CurrentPage, newPage + DEFAULT_PAGE_NUMBER_API);
     };
     const onChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>): void => {
         updateSearchParam(ELocationsSearchParams.RowsPerPage, event.target.value);
     };
+
+    const tableCurrentPage =
+        pageInfo &&
+        (pageInfo.currentPage < 0
+            ? DEFAULT_PAGE_NUMBER_TABLE
+            : pageInfo.currentPage - DEFAULT_PAGE_NUMBER_API);
 
     return (
         <WBox sx={{ position: 'relative' }}>
@@ -42,7 +49,7 @@ export function LocationsTablePagination({
                     component="div"
                     count={totalItems}
                     rowsPerPage={rowsPerPage}
-                    page={pageInfo.currentPage}
+                    page={tableCurrentPage}
                     onPageChange={onChangePage}
                     onRowsPerPageChange={onChangeRowsPerPage}
                 />
