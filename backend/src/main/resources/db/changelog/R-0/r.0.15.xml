@@ -6,7 +6,12 @@
 
     <changeSet id="r.0.15.1" author="schiriac">
 
-        <sql>CREATE TYPE PLAYBOOK_STATUS AS ENUM ('DRAFT', 'PUBLISHED', 'DELETED');</sql>
+        <sql>
+            CREATE TYPE PLAYBOOK_STEP_TYPE AS ENUM ('TASK_LIST', 'VIDEO', 'RESOURCE');
+        </sql>
+
+    </changeSet>
+    <changeSet id="r.0.15.2" author="schiriac">
 
         <createTable tableName="playbook">
             <column name="id" type="INT8" autoIncrement="true">
@@ -15,20 +20,99 @@
             <column name="uuid" type="UUID">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="varchar(1000)"/>
-            <column name="status" type="PLAYBOOK_STATUS">
-                <constraints nullable="false"/>
-            </column>
-            <column name="image_id" type="INT8">
-                <constraints foreignKeyName="fk_image2resource" references="resource(id)" nullable="true"/>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_policy2resource" references="resource(id)" nullable="true"/>
             </column>
             <column name="created_at" type="timestamptz"/>
             <column name="updated_at" type="timestamptz"/>
         </createTable>
 
+        <createTable tableName="playbook_task_list">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_resource">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="resource_id" type="INT8">
+                <constraints foreignKeyName="fk_playbook_resource2resource" references="resource(id)" nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_video">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="description_i18n" type="jsonb" defaultValue="{}"/>
+        </createTable>
+
+        <createTable tableName="playbook_task">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="playbook_task_list_id" type="INT8">
+                <constraints foreignKeyName="fk_step2task_list" references="playbook_task_list(id)" nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="playbook_step">
+            <column name="id" type="INT8" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title_i18n" type="jsonb" defaultValue="{}"/>
+            <column name="type" type="PLAYBOOK_STEP_TYPE"/>
+            <column name="playbook_task_list_id" type="INT8">
+                <constraints foreignKeyName="fk_step2task_list" references="playbook_task_list(id)" nullable="true"/>
+            </column>
+            <column name="playbook_resource_id" type="INT8">
+                <constraints foreignKeyName="fk_step2playbook_resource" references="playbook_resource(id)" nullable="true"/>
+            </column>
+            <column name="playbook_video_id" type="INT8">
+                <constraints foreignKeyName="fk_step2video" references="playbook_video(id)" nullable="true"/>
+            </column>
+            <column name="playbook_id" type="INT8">
+                <constraints foreignKeyName="fk_step2playbook" references="playbook(id)" nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+    <changeSet id="r.0.15.3" author="schiriac_and_rshtepa">
+        <sql>CREATE TYPE PLAYBOOK_STATUS AS ENUM ('DRAFT', 'PUBLISHED', 'DELETED');</sql>
+        <addColumn tableName="playbook">
+            <column name="name" type="varchar(100)"/>
+            <column name="description" type="varchar(1000)"/>
+            <column name="status" type="PLAYBOOK_STATUS" defaultValue="DRAFT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_id" type="INT8">
+                <constraints foreignKeyName="fk_image2resource" references="resource(id)" nullable="true"/>
+            </column>
+        </addColumn>  
+        <sql>UPDATE playbook SET name = title_i18n::json -> 'en'</sql>
+        <dropColumn tableName="playbook" columnName="title_i18n" />
+        <dropColumn tableName="playbook" columnName="resource_id" />
+        <addNotNullConstraint tableName="playbook" columnName="name"/>
         <createTable tableName="playbook_section">
             <column name="id" type="INT8" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -46,7 +130,6 @@
                 <constraints foreignKeyName="fk_section2playbook" references="playbook(id)" nullable="true"/>
             </column>
         </createTable>
-
         <createTable tableName="playbook_section_topic">
             <column name="id" type="INT8" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -65,7 +148,12 @@
                 <constraints foreignKeyName="fk_topic2section" references="playbook_section(id)" nullable="true"/>
             </column>
         </createTable>
-
+        <dropTable tableName="playbook_step"/>
+        <dropTable tableName="playbook_task"/>
+        <dropTable tableName="playbook_task_list"/>
+        <dropTable tableName="playbook_resource"/>
+        <dropTable tableName="playbook_video"/>
+        <sql>DROP TYPE PLAYBOOK_STEP_TYPE;</sql>
     </changeSet>
 
 </databaseChangeLog>
