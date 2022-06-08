@@ -1,15 +1,14 @@
 import { HelmetProvider } from 'react-helmet-async';
 
+import PeopleObservables from 'core/PeopleObservables';
+import Router from 'core/Router';
 import { FlagsProvider } from 'flagged';
-import { WAdapterDateFns, WLocalizationProvider, ThemeProvider, WBox } from 'wdx';
+import Routes from 'routes';
+import { WAdapterDateFns, WLocalizationProvider, ThemeProvider } from 'wdx';
 
 import { ApolloProvider } from '@apollo/client';
 
 import { getClient } from 'graphql/client';
-
-import PeopleObservables from 'core/PeopleObservables';
-import Router from 'core/Router';
-import Routes from 'routes';
 
 interface IAppProps {
     inIsolation: boolean;
@@ -24,12 +23,10 @@ function App({ inIsolation, initialEntry }: IAppProps): JSX.Element {
                     <WLocalizationProvider dateAdapter={WAdapterDateFns}>
                         {/* TODO: Remove ThemeProvider when it will be fixed (AU) */}
                         <ThemeProvider>
-                            <WBox className="PeopleApp">
-                                <Router inIsolation={inIsolation} initialEntry={initialEntry}>
-                                    <PeopleObservables />
-                                    <Routes />
-                                </Router>
-                            </WBox>
+                            <Router inIsolation={inIsolation} initialEntry={initialEntry}>
+                                <PeopleObservables />
+                                <Routes />
+                            </Router>
                         </ThemeProvider>
                     </WLocalizationProvider>
                 </HelmetProvider>

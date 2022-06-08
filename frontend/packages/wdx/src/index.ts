@@ -139,7 +139,7 @@ export {
 } from './components/form';
 export { WFieldError } from './components/form/fields/FormDatePicker';
 export { default as WGrid, WGridProps } from './components/grid';
-export { default as WIcon, WIconProps } from './components/icon';
+export { default as WIcon, WIconProps, WSvgIcon, WSvgIconProps } from './components/icon';
 export { default as WIconofy, WIconifyProps } from './components/iconify';
 export { default as WImage, WImageRato } from './components/image';
 export { default as WLink, WLinkProps } from './components/link';
@@ -185,6 +185,7 @@ export {
   WRadioGroup,
   WRadioGroupProps,
 } from './components/radio';
+export { default as WRating, WRatingProps } from './components/rating';
 export { default as WRejectionFiles } from './components/upload/rejection-files';
 export { default as WSelect, WSelectProps } from './components/select';
 export { default as WSkeleton, IWSkeletonProps } from './components/skeleton';
@@ -235,6 +236,16 @@ export {
   WOutlinedInput,
   WOutlinedInputProps,
 } from './components/text-field';
+export {
+default as WTimeline,
+  WTimelineSeparatorProps,
+  WTimelineProps,
+  WTimelineItemProps,
+  WTimelineConnectorProps,
+  WTimelineContentProps,
+  WTimelineDotProps,
+  WTimelineOppositeContentProps
+} from './components/timeline';
 export { default as WSwitch, WSwitchProps } from './components/switch';
 export { default as WTooltip, WTooltipProps } from './components/tooltip';
 export {

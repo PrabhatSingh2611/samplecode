@@ -36,6 +36,9 @@ import Skeleton from './Skeleton';
 import Dialog from './Dialog';
 import Drawer from './Drawer';
 import TreeView from './TreeView';
+import SvgIcon from './SvgIcon';
+import Rating from './Rating';
+import Timeline from './Timeline';
 
 export default function ComponentsOverrides(theme: Theme) {
   return Object.assign(
@@ -64,13 +67,16 @@ export default function ComponentsOverrides(theme: Theme) {
     Paper(theme),
     Popover(theme),
     Radio(theme),
+    Rating(theme),
     Select(),
     Skeleton(theme),
     Slider(theme),
     Steper(theme),
+    SvgIcon(),
     Switch(theme),
     Table(theme),
     Tabs(theme),
+    Timeline(theme),
     ToggleButton(theme),
     Tooltip(theme),
     Typography(theme),
