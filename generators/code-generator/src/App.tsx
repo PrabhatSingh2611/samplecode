@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Title } from "@mantine/core";
 
 import Form from "./components/Form";
 import {
@@ -9,6 +10,7 @@ import {
 import { Schema } from "./meta-models";
 import { buildNameVariations } from "./engines/name-variations";
 import CodeBox from "./components/CodeBox";
+import ActionCodeBox from "./components/ActionCodeBox";
 
 const App = () => {
   const [schema, setSchema] = useState<Schema | null>(null);
@@ -58,6 +60,12 @@ const App = () => {
           events={events}
           language="typescript"
           title="Hooks"
+        />
+        <ActionCodeBox
+          action="GET_ONE"
+          schema={schema}
+          events={events}
+          title="React - Get One"
         />
       </div>
     </div>
